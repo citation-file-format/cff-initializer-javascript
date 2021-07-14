@@ -9,15 +9,19 @@ Yoda is a Professor. He doesn't develop much software anymore himself, but more 
 
 He wants easy access to tooling . He has a few PhDs and PostDocs in his group. 
 
-Jan is a Phd student, who has developed some code that he wants people to cite. He has stumbled upon a link in the GitHub docs that point to cffinit. He wants to get this done in 5 minutes.
+Jan is a Phd student, who has developed some code that he wants people to cite. He has stumbled upon a link in the GitHub docs that point to cffinit. He wants to get this done in 5 minutes. Jan wants an easy way of getting the CITATION.cff file from cffinit to his repo. It should be clear to him that the minimal  amount of work that is required of him is in fact a small amount of work
 
 
 
 ## user stories
 
+- Peter is a developer who contributed to an existing project and now wants to also be recognized as an author of the software. The software already has a CITATION.cff file. He wants to be able to load the CITATION.cff information somehow, and then just add his own details and be done.
+- Bouwe is a developer for a software package that has many contributors. His project does not yet have a CITATION.cff file. He wants to automatically populate the CITATION.cff file with the information about whoever is listed as a contributor on his repository.
+- Stefano is a developer for a software package that has many contributors. His project does not yet have a CITATION.cff file but has been published on Zenodo. He wants to automatically populate the CITATION.cff file with the information associated with the DOI.
+
 - developer who wants to get recognition for the software from one of their repositories
 - developer who wants to make it easier to accurately cite the software from one of their repositories
-- new developer who wants to also be recognized as an author of the software
+ 
 - researcher who wants to accurately cite a piece of software that they did not develop themselves
 - policy maker wants people to use cffinit
 - publisher wants paper authors to accurately describe which software was used for creating the results discussed in a given paper

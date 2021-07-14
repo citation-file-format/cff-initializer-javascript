@@ -13,8 +13,6 @@ Jan is a Phd student, who has developed some code that he wants people to cite. 
 
 
 
-
-
 ## user stories
 
 - developer who wants to get recognition for the software from one of their repositories
@@ -24,7 +22,14 @@ Jan is a Phd student, who has developed some code that he wants people to cite. 
 - policy maker wants people to use cffinit
 - publisher wants paper authors to accurately describe which software was used for creating the results discussed in a given paper
 - publisher of a software journal wants to easily populate a form given a github url
+- publisher wants to maximize the value of a given paper. Papers that are reproducible because they accurately cite what software was used for a paper, a re more valuable.
 - funders want to ensure the funding helps others. For a paper that depends on software for its results, that means you have to be able to accurately cite the software used to produce the results produced in the paper
-
+- reviewer wants to reproduce the work under review but they can't find what software was used.
 
 - Maria wants to point other people to the cffinit website, but will only do so if she's confident that the website will give the users a good experience
+
+## out of scope
+
+- citing software developed by commercial companies
+- 
+

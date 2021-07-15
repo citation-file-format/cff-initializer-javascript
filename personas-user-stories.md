@@ -21,13 +21,16 @@
 ### milestones
 
 1. Replicate the green cffinit v1 site's behavior but nicer
-    - Jan  
+    - relevant user stories: Jan  
 3. Add editing options based on existing CITATION.cff in a given github repo that users supply
-4. Two way editing form -> text, text -> form
-5. Add bringing in information from GitHub API, and offer functionality to merge the two information sources
-6. Add bringing in information from Zenodo API, and offer functionality to merge the two information sources
-7. Add support for preferred-citation
-8. Add support for references
+    - relevant user stories: Peter 
+5. Two way editing form -> text, text -> form
+6. Add bringing in information from GitHub API, and offer functionality to merge the two information sources
+    - relevant user stories: Bouwe
+8. Add bringing in information from Zenodo API, and offer functionality to merge the two information sources
+    - relevant user stories: Stefano
+10. Add support for preferred-citation
+11. Add support for references
 
 
 

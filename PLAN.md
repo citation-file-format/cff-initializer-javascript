@@ -4,7 +4,7 @@
       - Fiddling with Vue.js 3.0 and Nuxt.js to decide what option we prefer
       - Select UI Framework (see section below for the options)
     2. From 3 August Tuesday until 10 August Tuesday
-      - Develop the first prototype
+      - Develop the first prototype (see below for the requirements)
 
 ## Minimal requirements of the first prototype:
   - Router with 2 steps: start and finish pages

@@ -8,7 +8,7 @@
 
 ## Minimal requirements of the first prototype:
   - Router with 2 steps: start and finish pages
-  - Simple input field which the value of will be stored somewhere (CFF)
+  - Simple input field which the value (state) of will be stored (similar to CFF preview widget)
   - First draft of README.dev.md
 
 ## Technology choices

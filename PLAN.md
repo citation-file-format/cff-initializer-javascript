@@ -12,64 +12,65 @@
   - First draft of README.dev.md
 
 ## Technology choices
-General:
+
+### General:
  - Dedicated configuration for each tool
  - Package manager: npm
+ - Single Page App
 
-JS Framework
+### JS Framework (TBD)
   - Vue.js 3
   - Nuxt.js (easy routing, state management, plugins etc) 
-  - Single Page App
 
-UI Framework
+### UI Framework (TBD)
   - Vuetify.js
   - Quasar
   - Primer.css (from GitHub)
   - Tailwind.css
   - Buefy
 
-State management:
+### State management
   - vuex
 
-Storing information:
+### Storing informatio
   - local storage
 
-Deployment:
+### Deployment  (TBD)
   - GitHub.io page
   - Do we want a custom domain?
 
-Language:
+### Language
   - Typescript
 
-Schema validation:
+### Schema validation  (TBD)
   - AJV
   - JSON schema --> Typescript convertion
 
-CSS flavor:
+### CSS flavor
   - CSS
 
-YAML syntax higlighting:
+### YAML syntax higlighting  (TBD)
   - prism.js 
   - ask Jesus
 
-Testing:
+### Testing:
   - Unit testing
     - Jest (comes with coverage reporting?)
-  - e2e testing
+  - e2e testing  (TBD)
     - WebdriverIO
     - Storybook.js
 
-Linting:
+### Linting:
   - ESLint
   - Prettier 
   - StyleLint
 
-Commit hooks:
+### Commit hooks
   - GitHook
   - Husky
 
-Artwork:
-  - icons
+### Artwork
+  - icons  (TBD)
     - material-design-icons
     - font awesome
     - octicons (from GitHub) 
@@ -78,7 +79,5 @@ Artwork:
     - Roboto Mono
 
 ## To be decided:
-   Documentation:
-     - 
-   Code coverage:
-     -
+### Documentation
+### Code coverage

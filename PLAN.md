@@ -31,6 +31,7 @@
 
 ### State management
   - vuex
+  - Vue 3 / Nuxt composition API 
 
 ### Storing informatio
   - local storage
@@ -50,8 +51,8 @@
   - CSS
 
 ### YAML syntax higlighting  (TBD)
-  - prism.js 
-  - ask Jesus
+  - prism.js
+  - highlight.js
 
 ### Testing:
   - Unit testing
@@ -62,7 +63,7 @@
 
 ### Linting:
   - ESLint
-  - Prettier 
+  - Prettier (Jesus: eslint is sufficient, eslint+prettier may be conflicting)
   - StyleLint
 
 ### Commit hooks
@@ -72,9 +73,11 @@
 ### Artwork
   - icons  (TBD)
     - material-design-icons
-    - font awesome
-    - octicons (from GitHub) 
-  - fonts
+    - font awesome (Jesus: use SVG)
+    - octicons (from GitHub)
+    - hero-icons (https://heroicons.com/)
+    - feather-icons (https://feathericons.com/)
+  - fonts (Jesus: don't use fonts, use system fonts)
     - Roboto Condensed
     - Roboto Mono
 

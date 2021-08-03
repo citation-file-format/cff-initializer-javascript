@@ -1,12 +1,12 @@
 <template>
-  <h1>Landing Page</h1>
+  <h1>Screen2 Page</h1>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PageIndex',
+  name: 'PageScreen2',
   components: { },
   setup () {
     return {}

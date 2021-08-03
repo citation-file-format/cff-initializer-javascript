@@ -6,7 +6,16 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/Index.vue') }]
   },
-
+  {
+    path: '/screen1',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Screen1.vue') }]
+  },
+  {
+    path: '/screen2',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Screen2.vue') }]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

@@ -1,15 +1,11 @@
 <template>
-  <h1>Landing Page</h1>
+  <h1>CFF preview</h1>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PageIndex',
-  components: { },
-  setup () {
-    return {}
-  }
+  name: 'Preview'
 })
 </script>

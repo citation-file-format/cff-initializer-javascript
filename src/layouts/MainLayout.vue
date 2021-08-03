@@ -1,100 +1,70 @@
 <template>
-  <q-layout view="hHh lpR fff">
-    <q-header reveal bordered elevated>
+  <q-layout view="hhh lpr fff">
+
+    <q-header class="bg-grey-4 text-white">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          cffinit v2
+        <q-space ></q-space>
+        <q-toolbar-title align="right">
+            <q-btn-group flat>
+              <q-btn flat color="" label="Report an issue" icon-right="ion-logo-github" type="a" href="" target="_blank" />
+              <q-btn flat color="" label="Documentation" icon-right="" />
+              <q-btn flat color="" label="About" icon-right="" />
+            </q-btn-group>
         </q-toolbar-title>
-
-        <div>cffinit v2</div>
       </q-toolbar>
     </q-header>
 
-    <div class="row">
-      <div class="col-2">
-        <!-- <SideMenu
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        /> -->
-        <Stepper />
-      </div>
-      <div class="col-6">
-        <q-page-container>
-          <router-view />
-        </q-page-container>
-      </div>
-      <div class="col-4">
-        CFF preview
-      </div>
-    </div>
+    <q-page-container>
+      <q-page>
+        <div class="row">
+            <div class="col-2">
+              <Stepper />
+            </div>
+            <div class="col-6">
+              <q-page-container >
+                <router-view />
+              </q-page-container>
+            </div>
+            <div class="col-4">
+              <Preview />
+            </div>
+        </div>
+      </q-page>
+    </q-page-container>
+
+    <q-footer class="bg-grey-4 text-white">
+      <q-toolbar>
+        <q-toolbar-title>
+            <img src="~/assets/nlesc-logo.svg">
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+
   </q-layout>
 </template>
 
 <script lang="ts">
-import SideMenu from 'src/components/SideMenu.vue'
 import Stepper from 'src/components/Stepper.vue'
+import Preview from 'src/components/Preview.vue'
 
-const linksList = [
-  {
-    title: 'Start',
-    caption: '',
-    icon: 'star',
-    link: '/start'
-  },
-  {
-    title: 'Authors',
-    caption: '',
-    icon: 'star',
-    link: '/authors'
-  },
-  {
-    title: 'Finish',
-    caption: '',
-    icon: 'star',
-    link: '/finish'
-  }
-]
-
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    SideMenu,
-    Stepper
+    Stepper,
+    Preview
   },
 
   setup () {
-    const leftDrawerOpen = ref(false)
-
     return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
     }
   }
 })
 </script>
 
 <style scoped>
-
-.row {
-  margin-left: 200px;
-  margin-right: 200px;
-}
 
 .col-2 {
   border-style: solid;

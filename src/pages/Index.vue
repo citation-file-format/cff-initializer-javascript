@@ -5,7 +5,7 @@
       <q-toolbar>
         <q-space ></q-space>
         <q-toolbar-title align="right">
-            <q-btn-group>
+            <q-btn-group flat>
               <q-btn flat color="" label="Report an issue" icon-right="ion-logo-github" type="a" href="https://github.com/citation-file-format/cffinit/issues/new" target="_blank" />
               <q-btn flat color="" label="Documentation" icon-right="" />
               <q-btn flat color="" label="About" icon-right="" />

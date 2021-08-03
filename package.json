@@ -1,8 +1,8 @@
 {
-  "name": "cffinitv2_quasar",
+  "name": "cffinitv2",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "CFF init page",
+  "productName": "CFFinit V2",
   "author": "nlesc",
   "private": true,
   "scripts": {

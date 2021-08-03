@@ -208,7 +208,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'cffinitv2_quasar'
+        appId: 'cffinitv2'
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

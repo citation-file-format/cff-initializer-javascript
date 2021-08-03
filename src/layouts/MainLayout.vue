@@ -35,7 +35,7 @@
     <q-footer class="bg-grey-4 text-white">
       <q-toolbar>
         <q-toolbar-title>
-            <img src="~/assets/nlesc-logo.svg">
+            <img src="~assets/nlesc-logo.svg">
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
@@ -44,8 +44,8 @@
 </template>
 
 <script lang="ts">
-import Stepper from 'src/components/Stepper.vue'
-import Preview from 'src/components/Preview.vue'
+import Stepper from 'components/Stepper.vue'
+import Preview from 'components/Preview.vue'
 
 import { defineComponent } from 'vue'
 

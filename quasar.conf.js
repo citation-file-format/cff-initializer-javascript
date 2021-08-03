@@ -141,9 +141,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: 'Quasar App',
-        short_name: 'Quasar App',
-        description: 'A Quasar Framework app',
+        name: 'cffinit v2',
+        short_name: 'cffinit',
+        description: 'A webpage to generate Citation File Format file.',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

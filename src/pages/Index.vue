@@ -1,12 +1,27 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
-  </q-page>
+  <q-layout view="hHh lpR fFf">
+
+    <q-header elevated class="bg-grey-4 text-white">
+      <q-toolbar>
+        <q-toolbar-title>
+
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+
+    <q-footer elevated class="bg-grey-4 text-white">
+      <q-toolbar>
+        <q-toolbar-title>
+            <img src="~/assets/nlesc-logo.svg">
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+
+  </q-layout>
 </template>
 
 <script lang="ts">
@@ -16,7 +31,7 @@ import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { ExampleComponent },
+  components: { },
   setup () {
     const todos = ref<Todo[]>([
       {

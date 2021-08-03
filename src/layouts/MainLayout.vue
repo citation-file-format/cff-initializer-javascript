@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          cffinit v2
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>cffinit v2</div>
       </q-toolbar>
     </q-header>
 
@@ -33,7 +33,7 @@
           Essential Links
         </q-item-label>
 
-        <EssentialLink
+        <Stepper
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue'
+import Stepper from 'src/components/Stepper.vue'
 
 const linksList = [
   {
@@ -101,7 +101,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    Stepper
   },
 
   setup () {

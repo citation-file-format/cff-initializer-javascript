@@ -54,19 +54,19 @@ const linksList = [
   {
     title: 'Start',
     caption: '',
-    icon: 'school',
+    icon: 'star',
     link: '/start'
   },
   {
     title: 'Authors',
     caption: '',
-    icon: 'account-group',
+    icon: 'star',
     link: '/authors'
   },
   {
     title: 'Finish',
     caption: '',
-    icon: 'certificate',
+    icon: 'star',
     link: '/finish'
   }
 ]

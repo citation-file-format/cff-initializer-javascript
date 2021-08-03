@@ -1,4 +1,4 @@
-name: cd
+name: Build
 
 on: [push, pull_request]
 
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Setup node env
+      - name: Setup Node
         uses: actions/setup-node@v2.1.2
         with:
           node-version: ${{ matrix.node }}
@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy
+      - name: Deploy to Github.io page
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

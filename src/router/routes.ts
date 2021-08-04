@@ -7,12 +7,12 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('src/pages/Start.vue') }]
   },
   {
-    path: '/screen1',
+    path: '/1',
     component: () => import('src/layouts/StepperLayout.vue'),
     children: [{ path: '', component: () => import('pages/Screen1.vue') }]
   },
   {
-    path: '/screen2',
+    path: '/2',
     component: () => import('src/layouts/StepperLayout.vue'),
     children: [{ path: '', component: () => import('pages/Screen2.vue') }]
   },

@@ -1,22 +1,52 @@
 <template>
   <div class="row">
     <div class="col">
-      <q-btn flat color="" label="Back" to="" />
+      <q-btn flat @click="navigatePrevious()" color="" label="Back" />
     </div>
     <div class="col" align="right">
       <q-btn-group flat>
         <q-btn flat color="" label="Finish" to="/finish" />
-        <q-btn color="grey-6" label="Next" />
+        <q-btn @click="navigateNext()" color="grey-6" label="Next" />
       </q-btn-group>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { useStep } from '../store'
+import { useRouter } from 'vue-router'
+
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'StepperActions'
+  name: 'StepperActions',
+
+  setup () {
+    const step = useStep()
+    const router = useRouter()
+
+    const navigateNext = () => {
+      step.next()
+      router.push({ path: '/' + step.step.value })
+    }
+
+    const navigatePrevious = () => {
+      step.previous()
+      router.push({ path: '/' + step.step.value })
+    }
+
+    const navigateTo = () => {
+      console.log(step.step.value)
+    }
+
+    return {
+      step,
+      navigateNext,
+      navigatePrevious,
+      navigateTo
+    }
+  }
+
 })
 </script>
 

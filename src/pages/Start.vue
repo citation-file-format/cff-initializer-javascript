@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <q-layout view="lHh lpr lFf" class="shadow-2 rounded-borders">
       <q-page-container>
-        <q-page padding>
+        <q-page padding align="middle">
           <h1>Start Page</h1>
           <q-btn color="grey-6" label="Continue" to="/1"/>
           <p v-for="n in 10" :key="n">

@@ -9,6 +9,7 @@
             </div>
             <div class="col-6">
               <router-view />
+              Step: {{ step.step.value }}
             </div>
             <div class="col-4">
               <Preview />
@@ -25,6 +26,7 @@ import Header from 'components/Header.vue'
 import Footer from 'components/Footer.vue'
 import Stepper from 'components/Stepper.vue'
 import Preview from 'components/Preview.vue'
+import { useStep } from '../store'
 
 import { defineComponent } from 'vue'
 
@@ -39,7 +41,10 @@ export default defineComponent({
   },
 
   setup () {
+    const step = useStep()
+
     return {
+      step
     }
   }
 })

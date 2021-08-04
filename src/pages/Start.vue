@@ -2,7 +2,7 @@
     <q-page-container>
       <q-page>
         <h1>Landing Page</h1>
-        <q-btn @click="step = 1" color="grey-6" label="Continue" to="/screen1"/>
+        <q-btn color="grey-6" label="Continue" to="/1"/>
       </q-page>
     </q-page-container>
 

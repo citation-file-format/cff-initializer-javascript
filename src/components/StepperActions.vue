@@ -27,12 +27,14 @@ export default defineComponent({
 
     const navigateNext = () => {
       step.next()
-      router.push({ path: '/' + step.step.value })
+      const targetRoute = `${String('/')}${String(step.step.value)}`
+      void router.push({ path: targetRoute })
     }
 
     const navigatePrevious = () => {
       step.previous()
-      router.push({ path: '/' + step.step.value })
+      const targetRoute = `${String('/')}${String(step.step.value)}`
+      void router.push({ path: targetRoute })
     }
 
     const navigateTo = () => {

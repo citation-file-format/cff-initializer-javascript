@@ -3,17 +3,17 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Index.vue') }]
+    component: () => import('src/layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('src/pages/Landing.vue') }]
   },
   {
     path: '/screen1',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('src/layouts/StepperLayout.vue'),
     children: [{ path: '', component: () => import('pages/Screen1.vue') }]
   },
   {
     path: '/screen2',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('src/layouts/StepperLayout.vue'),
     children: [{ path: '', component: () => import('pages/Screen2.vue') }]
   },
   // Always leave this as last one,

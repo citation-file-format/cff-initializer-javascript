@@ -3,7 +3,17 @@
     <Header />
     <q-page-container>
       <q-page>
-        <router-view />
+        <div class="row">
+            <div class="col-2">
+              <Stepper />
+            </div>
+            <div class="col-6">
+              <router-view />
+            </div>
+            <div class="col-4">
+              <Preview />
+            </div>
+        </div>
       </q-page>
     </q-page-container>
     <Footer />
@@ -13,6 +23,8 @@
 <script lang="ts">
 import Header from 'components/Header.vue'
 import Footer from 'components/Footer.vue'
+import Stepper from 'components/Stepper.vue'
+import Preview from 'components/Preview.vue'
 
 import { defineComponent } from 'vue'
 
@@ -21,7 +33,9 @@ export default defineComponent({
 
   components: {
     Header,
-    Footer
+    Footer,
+    Stepper,
+    Preview
   },
 
   setup () {

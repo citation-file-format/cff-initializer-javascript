@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <q-layout view="lHh lpr lFf" class="shadow-2 rounded-borders">
+    <q-layout view="lHh lpr lFf" class="rounded-borders">
       <q-page-container>
         <q-page padding align="middle">
           <h1>Finish Page</h1>

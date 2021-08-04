@@ -2,11 +2,9 @@
   <div class="q-pa-md">
 
     <q-stepper
-      v-model="step"
+      :modelValue="step.step"
+      @update:modelValue="step.goto"
       vertical
-      active-color="grey-6"
-      inactive-color="grey-6"
-      done-color="grey-6"
       animated
       header-nav
       flat
@@ -14,22 +12,21 @@
       inactive-icon="star"
     >
       <q-step
-        :name="0"
         title="Start"
         icon="star"
-        :done="step > 0"
+        :name="0"
+        :done="step.step > 0"
       >
         <q-stepper-navigation>
-          <q-btn @click="step = 1" color="grey-6" label="Continue" to="/screen2"/>
+          <q-btn @click="step.next()" color="grey-6" label="Continue" to="/screen2"/>
         </q-stepper-navigation>
       </q-step>
 
       <q-step
-        :name="2"
         title="Authors"
-        caption=""
         icon="done_all"
-        :done="step > 2"
+        :name="1"
+        :done="step.step > 1"
       >
         <q-stepper-navigation>
           <q-btn @click="step = 2" color="grey-6" label="Continue" to="/finish" />
@@ -47,18 +44,21 @@
       </q-step>
     </q-stepper>
 
-    Step: {{ step }}
+    Step: {{ step.step.value }}
 
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+
+import { useStep } from '../store'
 
 export default {
   setup () {
+    const step = useStep()
+
     return {
-      step: ref(0)
+      step
     }
   }
 }

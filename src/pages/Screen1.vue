@@ -4,16 +4,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import StepperActions from "components/StepperActions.vue";
+import { defineComponent } from 'vue'
+import StepperActions from 'components/StepperActions.vue'
 
 export default defineComponent({
-  name: "PageScreen1",
+  name: 'PageScreen1',
   components: {
     StepperActions
   },
-  setup() {
-    return {};
-  },
-});
+  setup () {
+    return {}
+  }
+})
 </script>

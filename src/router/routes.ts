@@ -4,7 +4,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('src/layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('src/pages/Landing.vue') }]
+    children: [{ path: '', component: () => import('src/pages/Start.vue') }]
   },
   {
     path: '/screen1',
@@ -15,6 +15,11 @@ const routes: RouteRecordRaw[] = [
     path: '/screen2',
     component: () => import('src/layouts/StepperLayout.vue'),
     children: [{ path: '', component: () => import('pages/Screen2.vue') }]
+  },
+  {
+    path: '/finish',
+    component: () => import('src/layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('src/pages/Finish.vue') }]
   },
   // Always leave this as last one,
   // but you can also remove it

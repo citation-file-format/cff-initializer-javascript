@@ -20,39 +20,26 @@
         :done="step > 0"
       >
         <q-stepper-navigation>
-          <q-btn @click="step = 1" color="grey-6" label="Continue" to="/screen1"/>
-        </q-stepper-navigation>
-      </q-step>
-
-      <q-step
-        :name="1"
-        title="Authors"
-        caption=""
-        icon="star"
-        :done="step > 1"
-      >
-        <q-stepper-navigation>
-          <q-btn @click="step = 2" color="grey-6" label="Continue" to="/screen2" />
-          <q-btn flat @click="step = 1" color="grey-6" label="Back" class="q-ml-sm" />
+          <q-btn @click="step = 1" color="grey-6" label="Continue" to="/screen2"/>
         </q-stepper-navigation>
       </q-step>
 
       <q-step
         :name="2"
-        title="Finish"
+        title="Authors"
         caption=""
         icon="done_all"
         :done="step > 2"
       >
         <q-stepper-navigation>
-          <q-btn @click="step = 2" color="grey-6" label="Continue" to="/screen2" />
+          <q-btn @click="step = 2" color="grey-6" label="Continue" to="/finish" />
           <q-btn flat @click="step = 1" color="grey-6" label="Back" class="q-ml-sm" />
         </q-stepper-navigation>
       </q-step>
 
       <q-step
         :name="100"
-        title="Advanced"
+        title="Finish"
         icon="expand_more"
         disable
       >

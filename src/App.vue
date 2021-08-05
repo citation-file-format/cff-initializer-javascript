@@ -2,9 +2,15 @@
   <router-view />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { provide } from 'vue'
+import store from './store/index'
 
-export default defineComponent({
-  name: 'App'
+export default ({
+  name: 'App',
+
+  setup () {
+    provide('store', store)
+  }
 })
+
 </script>

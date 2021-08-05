@@ -1,14 +1,33 @@
 <template>
   <div class="q-pa-md">
-    <q-layout view="lHh lpr lFf" class="rounded-borders">
+    <q-layout
+      view="lHh lpr lFf"
+      class="rounded-borders"
+    >
       <q-page-container>
-        <q-page padding align="middle">
+        <q-page
+          padding
+          align="middle"
+        >
           <h1>Finish Page</h1>
           <q-btn-group flat>
-            <q-btn v-on:click="step = 1" color="grey-6" label="Create another" to="/"/>
-            <q-btn v-on:click="step = 1" color="grey-6" label="Back to form" to="/"/>
+            <q-btn
+              v-on:click="step = 1"
+              color="grey-6"
+              label="Create another"
+              to="/"
+            />
+            <q-btn
+              v-on:click="step = 1"
+              color="grey-6"
+              label="Back to form"
+              to="/"
+            />
           </q-btn-group>
-          <p v-for="n in 10" :key="n">
+          <p
+            v-for="n in 10"
+            :key="n"
+          >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
           </p>
         </q-page>

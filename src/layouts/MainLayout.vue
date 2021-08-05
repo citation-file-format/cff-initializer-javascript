@@ -33,16 +33,4 @@ export default defineComponent({
 
 <style scoped>
 
-.col-2 {
-  border-style: solid;
-}
-
-.col-6 {
-  border-style: solid;
-}
-
-.col-4 {
-  border-style: solid;
-}
-
 </style>

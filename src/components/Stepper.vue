@@ -62,3 +62,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.q-stepper {
+  background-color: rgb(185, 180, 180);
+}
+
+</style>

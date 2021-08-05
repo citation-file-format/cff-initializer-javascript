@@ -1,20 +1,21 @@
 <template>
   <q-card>
     <q-card-section>
-      <pre>{{ JSON.stringify(store.state.cff, null, '\t') }}</pre>
+      <pre>{{ yaml }}</pre>
     </q-card-section>
   </q-card>
 </template>
 
 <script lang="ts">
-import { inject, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
+import { useCFF } from '../store/cff'
 
 export default defineComponent({
   name: 'Preview',
   setup () {
-    const store = inject('store')
+    const cff = useCFF()
     return {
-      store
+      yaml: cff.asYAML
     }
   }
 })

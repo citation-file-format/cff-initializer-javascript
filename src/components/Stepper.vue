@@ -1,11 +1,9 @@
 <template>
   <div class="q-pa-md">
 
-      <!-- :modelValue="step.step"
-      @update:modelValue="step.goto" -->
-
     <q-stepper
-      v-model="store.state.progress"
+      :modelValue="step.step"
+      @update:modelValue="updateStep"
       ref="stepper"
       vertical
       animated
@@ -18,16 +16,14 @@
         title="Start"
         icon="star"
         :name="1"
-        :done="store.state.progress > 1"
-        v-on:click="showStep"
+        :done="step.step.value > 1"
       />
-
+        <!-- v-on:click="updateStep" -->
       <q-step
         title="Authors"
         icon="done_all"
         :name="2"
-        :done="store.state.progress > 2"
-        v-on:click="showStep"
+        :done="step.step.value > 2"
       />
 
       <q-step
@@ -39,26 +35,29 @@
         This step won't show up because it is disabled.
       </q-step>
     </q-stepper>
-    Store-progress: {{ store.state.progress }}
+    Step: {{ step.step.value }}
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import { inject } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStep } from '../store/step'
 
 export default {
   setup () {
-    const store = inject('store')
+    const step = useStep()
+    const router = useRouter()
 
-    const showStep = () => {
-      console.log(store.state.progress)
+    const updateStep = (newStep: number) => {
+      step.goto(newStep)
+      const targetRoute = `/${step.step.value}`
+      return router.push({ path: targetRoute })
     }
 
     return {
-      store,
-      showStep
+      step,
+      updateStep
     }
   }
 }

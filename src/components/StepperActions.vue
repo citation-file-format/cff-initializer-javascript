@@ -1,20 +1,20 @@
 <template>
   <div class="row">
     <div class="col">
-      <q-btn flat @click="navigatePrevious()" color="" label="Back" />
+      <q-btn flat @click="navigatePrevious" color="" label="Back" />
     </div>
     <div class="col" align="right">
       <q-btn-group flat>
         <q-btn flat color="" label="Finish" to="/finish" />
-        <q-btn @click="navigateNext()" color="grey-6" label="Next" />
+        <q-btn @click="navigateNext" color="grey-6" label="Next" />
       </q-btn-group>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { useStep } from '../store'
 import { useRouter } from 'vue-router'
+import { useStep } from '../store/step'
 
 import { defineComponent } from 'vue'
 
@@ -27,18 +27,20 @@ export default defineComponent({
 
     const navigateNext = () => {
       step.next()
-      const targetRoute = `${String('/')}${String(step.step.value)}`
-      void router.push({ path: targetRoute })
+      const targetRoute = `/${step.step.value}`
+      return router.push({ path: targetRoute })
     }
 
     const navigatePrevious = () => {
       step.previous()
-      const targetRoute = `${String('/')}${String(step.step.value)}`
-      void router.push({ path: targetRoute })
+      const targetRoute = `/${step.step.value}`
+      return router.push({ path: targetRoute })
     }
 
-    const navigateTo = () => {
-      console.log(step.step.value)
+    const navigateTo = (newStep: number) => {
+      step.goto(newStep)
+      const targetRoute = `/${step.step.value}`
+      return router.push({ path: targetRoute })
     }
 
     return {

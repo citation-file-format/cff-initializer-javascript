@@ -1,7 +1,7 @@
 <template>
   <q-header class="bg-grey-4 text-black">
     <q-toolbar>
-      Store-progress: {{ store.state.progress }}
+      Step: {{ step.step.value }}
       <q-space ></q-space>
       <q-toolbar-title align="right">
           <q-btn-group flat>
@@ -15,16 +15,16 @@
 </template>
 
 <script lang="ts">
-import { inject, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
+import { useStep } from '../store/step'
 
 export default defineComponent({
   name: 'Header',
 
   setup () {
-    const store = inject('store')
-
+    const step = useStep()
     return {
-      store
+      step
     }
   }
 

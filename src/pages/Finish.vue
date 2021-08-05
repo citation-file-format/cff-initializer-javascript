@@ -1,16 +1,17 @@
 <template>
-  <div class="q-pa-md">
-    <q-layout
-      view="lHh lpr lFf"
-      class="rounded-borders"
-    >
-      <q-page-container>
-        <q-page
-          padding
-          align="middle"
-        >
-          <h1>Finish Page</h1>
-          <q-btn-group flat>
+    <div class="window-height window-width row justify-center items-center">
+    <q-card>
+      <q-card-title><h1>Finish Page</h1></q-card-title>
+      <q-card-main>
+          <p v-for="n in 10" :key="n">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+          </p>
+      </q-card-main>
+
+      <q-card-separator/>
+
+      <q-card-actions align="center">
+                  <q-btn-group flat>
             <q-btn
               v-on:click="step = 1"
               color="grey-6"
@@ -24,15 +25,8 @@
               to="/"
             />
           </q-btn-group>
-          <p
-            v-for="n in 10"
-            :key="n"
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-          </p>
-        </q-page>
-      </q-page-container>
-    </q-layout>
+      </q-card-actions>
+    </q-card>
   </div>
 </template>
 

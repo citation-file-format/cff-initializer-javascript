@@ -3,7 +3,7 @@
     <Header />
     <q-page-container>
       <q-page>
-        <div class="row">
+        <div class="row window-height">
           <div class="col-2">
             <Stepper />
           </div>

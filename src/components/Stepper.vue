@@ -3,7 +3,7 @@
 
     <q-stepper
       :modelValue="step.step"
-      @update:modelValue="updateStep"
+      v-on:update:modelValue="updateStep"
       ref="stepper"
       vertical
       animated

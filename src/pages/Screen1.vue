@@ -4,7 +4,7 @@
     <div class="q-gutter-md" style="max-width: 400px">
       <q-input
       :modelValue="title"
-      @update:modelValue="setTitle"
+      v-on:update:modelValue="setTitle"
       label="Title"
       :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
       />

@@ -28,7 +28,6 @@ const getters = {
 }
 
 export default {
-  // state: readonly(state),
   state,
   methods,
   getters

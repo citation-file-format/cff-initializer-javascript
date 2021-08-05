@@ -1,8 +1,13 @@
 <template>
   <h1>Screen1 Page</h1>
   <div class="q-pa-md">
-    <div class="q-gutter-md" style="max-width: 300px">
-      <q-input :modelValue="title" @update:modelValue="setTitle" label="Title" />
+    <div class="q-gutter-md" style="max-width: 400px">
+      <q-input
+      :modelValue="title"
+      @update:modelValue="setTitle"
+      label="Title"
+      :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+      />
     </div>
   </div>
   <StepperActions />

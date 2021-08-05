@@ -1,11 +1,16 @@
 <template>
   <h1>Screen1 Page</h1>
+  <div class="q-pa-md">
+    <div class="q-gutter-md" style="max-width: 300px">
+      <q-input v-model="store.state.cff.title" label="Title" />
+    </div>
+  </div>
   <StepperActions />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
+import { inject, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'PageScreen1',
@@ -13,7 +18,10 @@ export default defineComponent({
     StepperActions
   },
   setup () {
-    return {}
+    const store = inject('store')
+    return {
+      store
+    }
   }
 })
 </script>

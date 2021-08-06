@@ -9,7 +9,8 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "lint": "eslint --ext .js,.ts,.vue ./",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

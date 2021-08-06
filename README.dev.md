@@ -49,3 +49,19 @@ try to automatically fix linting issues with
 ```shell
 npm run lint -- --fix
 ```
+
+## tests
+
+We use Jest for unit tests.
+
+You can run the test with
+
+```shell
+npm run test:unit:ci
+```
+
+You can also use the Majestic web interface to run the unit tests in your browser.
+
+```shell
+npm run test:unit:ui
+```

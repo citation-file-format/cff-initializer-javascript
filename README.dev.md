@@ -49,3 +49,11 @@ try to automatically fix linting issues with
 ```shell
 npm run lint -- --fix
 ```
+
+## Tests
+
+To run unit tests (`src/**/*.jest.spec.ts`)
+
+```shell
+npm run test:unit
+```

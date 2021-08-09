@@ -28,11 +28,11 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PageLanding',
-  components: { },
-  setup () {
-    return {}
-  }
+    name: 'PageLanding',
+    components: { },
+    setup () {
+        return {}
+    }
 })
 </script>
 

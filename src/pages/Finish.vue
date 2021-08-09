@@ -37,10 +37,10 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PageFinish',
-  components: { },
-  setup () {
-    return {}
-  }
+    name: 'PageFinish',
+    components: { },
+    setup () {
+        return {}
+    }
 })
 </script>

@@ -23,27 +23,27 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'SideMenu',
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
+    name: 'SideMenu',
+    props: {
+        title: {
+            type: String,
+            required: true
+        },
 
-    caption: {
-      type: String,
-      default: ''
-    },
+        caption: {
+            type: String,
+            default: ''
+        },
 
-    link: {
-      type: String,
-      default: '#'
-    },
+        link: {
+            type: String,
+            default: '#'
+        },
 
-    icon: {
-      type: String,
-      default: ''
+        icon: {
+            type: String,
+            default: ''
+        }
     }
-  }
 })
 </script>

@@ -44,21 +44,21 @@ import { useRouter } from 'vue-router'
 import { useStep } from '../store/step'
 
 export default {
-  setup () {
-    const step = useStep()
-    const router = useRouter()
+    setup () {
+        const step = useStep()
+        const router = useRouter()
 
-    const updateStep = (newStep: number) => {
-      step.goto(newStep)
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
-    }
+        const updateStep = (newStep: number) => {
+            step.goto(newStep)
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
 
-    return {
-      step,
-      updateStep
+        return {
+            step,
+            updateStep
+        }
     }
-  }
 }
 </script>
 

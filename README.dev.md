@@ -57,3 +57,18 @@ To run linting on commit, you can install a git commit hook with
 ```shell
 npx husky install
 ```
+
+## Tests
+
+We use Jest for unit tests. To run unit tests (`src/**/*.jest.spec.ts`)
+
+You can run the test with
+
+```shell
+npm run test:unit:ci
+```
+
+You can also use the Majestic web interface to run the unit tests in your browser.
+
+```shell
+npm run test:unit:ui

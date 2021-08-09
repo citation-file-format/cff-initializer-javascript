@@ -35,14 +35,14 @@ import { defineComponent } from 'vue'
 import { useStep } from '../store/step'
 
 export default defineComponent({
-  name: 'Header',
+    name: 'Header',
 
-  setup () {
-    const step = useStep()
-    return {
-      step
+    setup () {
+        const step = useStep()
+        return {
+            step
+        }
     }
-  }
 
 })
 </script>

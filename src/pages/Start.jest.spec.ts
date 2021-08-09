@@ -8,13 +8,14 @@ import Start from './Start.vue'
 installQuasarPlugin()
 
 describe('Start', () => {
-  let wrapper: VueWrapper<any>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let wrapper: VueWrapper<any>
 
-  beforeEach(() => {
-    wrapper = shallowMount(Start)
-  })
+    beforeEach(() => {
+        wrapper = shallowMount(Start)
+    })
 
-  it('should mount without errors', () => {
-    expect(wrapper).toBeTruthy()
-  })
+    it('should mount without errors', () => {
+        expect(wrapper).toBeTruthy()
+    })
 })

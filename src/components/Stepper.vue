@@ -1,9 +1,8 @@
 <template>
   <div class="q-pa-md">
-
     <q-stepper
-      :modelValue="step.step"
-      @update:modelValue="updateStep"
+      :model-value="step.step"
+      v-on:update:modelValue="updateStep"
       ref="stepper"
       vertical
       animated
@@ -18,7 +17,7 @@
         :name="1"
         :done="step.step.value > 1"
       />
-        <!-- v-on:click="updateStep" -->
+      <!-- v-on:click="updateStep" -->
       <q-step
         title="Authors"
         icon="done_all"
@@ -45,21 +44,21 @@ import { useRouter } from 'vue-router'
 import { useStep } from '../store/step'
 
 export default {
-  setup () {
-    const step = useStep()
-    const router = useRouter()
+    setup () {
+        const step = useStep()
+        const router = useRouter()
 
-    const updateStep = (newStep: number) => {
-      step.goto(newStep)
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
-    }
+        const updateStep = (newStep: number) => {
+            step.goto(newStep)
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
 
-    return {
-      step,
-      updateStep
+        return {
+            step,
+            updateStep
+        }
     }
-  }
 }
 </script>
 

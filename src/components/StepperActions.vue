@@ -1,12 +1,29 @@
 <template>
   <div class="row">
     <div class="col">
-      <q-btn flat @click="navigatePrevious" color="" label="Back" />
+      <q-btn
+        flat
+        v-on:click="navigatePrevious"
+        color=""
+        label="Back"
+      />
     </div>
-    <div class="col" align="right">
+    <div
+      class="col"
+      align="right"
+    >
       <q-btn-group flat>
-        <q-btn flat color="" label="Finish" to="/finish" />
-        <q-btn @click="navigateNext" color="grey-6" label="Next" />
+        <q-btn
+          flat
+          color=""
+          label="Finish"
+          to="/finish"
+        />
+        <q-btn
+          v-on:click="navigateNext"
+          color="grey-6"
+          label="Next"
+        />
       </q-btn-group>
     </div>
   </div>
@@ -19,37 +36,37 @@ import { useStep } from '../store/step'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'StepperActions',
+    name: 'StepperActions',
 
-  setup () {
-    const step = useStep()
-    const router = useRouter()
+    setup () {
+        const step = useStep()
+        const router = useRouter()
 
-    const navigateNext = () => {
-      step.next()
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
+        const navigateNext = () => {
+            step.next()
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
+
+        const navigatePrevious = () => {
+            step.previous()
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
+
+        const navigateTo = (newStep: number) => {
+            step.goto(newStep)
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
+
+        return {
+            step,
+            navigateNext,
+            navigatePrevious,
+            navigateTo
+        }
     }
-
-    const navigatePrevious = () => {
-      step.previous()
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
-    }
-
-    const navigateTo = (newStep: number) => {
-      step.goto(newStep)
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
-    }
-
-    return {
-      step,
-      navigateNext,
-      navigatePrevious,
-      navigateTo
-    }
-  }
 
 })
 </script>

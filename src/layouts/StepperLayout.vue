@@ -3,16 +3,16 @@
     <Header />
     <q-page-container>
       <q-page>
-        <div class="row">
-            <div class="col-2">
-              <Stepper />
-            </div>
-            <div class="col-6">
-              <router-view />
-            </div>
-            <div class="col-4">
-              <Preview />
-            </div>
+        <div class="row window-height">
+          <div class="col-2">
+            <Stepper />
+          </div>
+          <div class="col-6">
+            <router-view />
+          </div>
+          <div class="col-4">
+            <Preview />
+          </div>
         </div>
       </q-page>
     </q-page-container>
@@ -29,19 +29,19 @@ import Preview from 'components/Preview.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout',
+    name: 'MainLayout',
 
-  components: {
-    Header,
-    Footer,
-    Stepper,
-    Preview
-  },
+    components: {
+        Header,
+        Footer,
+        Stepper,
+        Preview
+    },
 
-  setup () {
-    return {
+    setup () {
+        return {
+        }
     }
-  }
 })
 </script>
 

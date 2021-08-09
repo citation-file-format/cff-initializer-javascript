@@ -58,9 +58,9 @@ To run linting on commit, you can install a git commit hook with
 npx husky install
 ```
 
-## tests
+## Tests
 
-We use Jest for unit tests.
+We use Jest for unit tests. To run unit tests (`src/**/*.jest.spec.ts`)
 
 You can run the test with
 

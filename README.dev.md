@@ -59,7 +59,7 @@ npx husky install
 
 ## Tests
 
-We use Jest for unit tests. To run unit tests (`src/**/*.jest.spec.ts`)
+We use Jest for unit tests. To run unit tests (`test/jest/__tests__/**/*.jest.spec.ts`)
 
 You can run the test with
 

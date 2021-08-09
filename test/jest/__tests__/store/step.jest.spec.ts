@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from '@jest/globals'
 import * as vue from 'vue'
-import { useStep } from './step'
+import { useStep } from '../../../../src/store/step'
 
 describe('useStep', () => {
     let step: {

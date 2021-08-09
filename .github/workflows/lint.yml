@@ -1,4 +1,4 @@
-name: Build
+name: Lint
 
 on: [push, pull_request]
 
@@ -20,6 +20,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm clean-install
-    - run: npm run build
-
-
+    - run: npm run lint

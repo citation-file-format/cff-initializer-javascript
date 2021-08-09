@@ -1,9 +1,8 @@
 <template>
   <div class="q-pa-md">
-
     <q-stepper
-      :modelValue="step.step"
-      @update:modelValue="updateStep"
+      :model-value="step.step"
+      v-on:update:modelValue="updateStep"
       ref="stepper"
       vertical
       animated
@@ -18,7 +17,7 @@
         :name="1"
         :done="step.step.value > 1"
       />
-        <!-- v-on:click="updateStep" -->
+      <!-- v-on:click="updateStep" -->
       <q-step
         title="Authors"
         icon="done_all"

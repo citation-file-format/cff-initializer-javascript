@@ -51,3 +51,9 @@ try to automatically fix linting issues with
 ```shell
 npm run lint -- --fix
 ```
+
+To run linting on commit, you can install a git commit hook with
+
+```shell
+npx husky install
+```

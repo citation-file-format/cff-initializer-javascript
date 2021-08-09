@@ -1,12 +1,29 @@
 <template>
   <div class="row">
     <div class="col">
-      <q-btn flat @click="navigatePrevious" color="" label="Back" />
+      <q-btn
+        flat
+        v-on:click="navigatePrevious"
+        color=""
+        label="Back"
+      />
     </div>
-    <div class="col" align="right">
+    <div
+      class="col"
+      align="right"
+    >
       <q-btn-group flat>
-        <q-btn flat color="" label="Finish" to="/finish" />
-        <q-btn @click="navigateNext" color="grey-6" label="Next" />
+        <q-btn
+          flat
+          color=""
+          label="Finish"
+          to="/finish"
+        />
+        <q-btn
+          v-on:click="navigateNext"
+          color="grey-6"
+          label="Next"
+        />
       </q-btn-group>
     </div>
   </div>

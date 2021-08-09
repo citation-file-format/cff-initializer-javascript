@@ -1,4 +1,4 @@
-name: Build
+name: Test
 
 on: # rebuild any PRs and main branch changes
   pull_request:
@@ -9,7 +9,7 @@ on: # rebuild any PRs and main branch changes
 
 jobs:
 
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -27,7 +27,7 @@ jobs:
         cache: 'npm'
     - name: Run npm clean-install
       run: npm clean-install
-    - name: Run build
-      run: npm run build
+    - name: Run unit tests
+      run: npm run test:unit:ci
 
 

@@ -10,12 +10,12 @@ import { defineComponent } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
 
 export default defineComponent({
-  name: 'PageScreen2',
-  components: {
-    StepperActions
-  },
-  setup () {
-    return {}
-  }
+    name: 'PageScreen2',
+    components: {
+        StepperActions
+    },
+    setup () {
+        return {}
+    }
 })
 </script>

@@ -36,37 +36,37 @@ import { useStep } from '../store/step'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'StepperActions',
+    name: 'StepperActions',
 
-  setup () {
-    const step = useStep()
-    const router = useRouter()
+    setup () {
+        const step = useStep()
+        const router = useRouter()
 
-    const navigateNext = () => {
-      step.next()
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
+        const navigateNext = () => {
+            step.next()
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
+
+        const navigatePrevious = () => {
+            step.previous()
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
+
+        const navigateTo = (newStep: number) => {
+            step.goto(newStep)
+            const targetRoute = `/${step.step.value}`
+            return router.push({ path: targetRoute })
+        }
+
+        return {
+            step,
+            navigateNext,
+            navigatePrevious,
+            navigateTo
+        }
     }
-
-    const navigatePrevious = () => {
-      step.previous()
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
-    }
-
-    const navigateTo = (newStep: number) => {
-      step.goto(newStep)
-      const targetRoute = `/${step.step.value}`
-      return router.push({ path: targetRoute })
-    }
-
-    return {
-      step,
-      navigateNext,
-      navigatePrevious,
-      navigateTo
-    }
-  }
 
 })
 </script>

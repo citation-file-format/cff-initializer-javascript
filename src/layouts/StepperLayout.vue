@@ -29,19 +29,19 @@ import Preview from 'components/Preview.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout',
+    name: 'MainLayout',
 
-  components: {
-    Header,
-    Footer,
-    Stepper,
-    Preview
-  },
+    components: {
+        Header,
+        Footer,
+        Stepper,
+        Preview
+    },
 
-  setup () {
-    return {
+    setup () {
+        return {
+        }
     }
-  }
 })
 </script>
 

@@ -9,7 +9,6 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "lint": "eslint --ext .js,.ts,.vue ./",
-    "prepare": "husky install",
     "test:unit:ui": "majestic",
     "test:unit": "jest --updateSnapshot",
     "test:unit:ci": "jest --ci",

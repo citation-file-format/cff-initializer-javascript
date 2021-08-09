@@ -22,16 +22,16 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-  name: 'PageScreen1',
-  components: {
-    StepperActions
-  },
-  setup () {
-    const cff = useCFF()
-    return {
-      title: cff.title,
-      setTitle: cff.setTitle
+    name: 'PageScreen1',
+    components: {
+        StepperActions
+    },
+    setup () {
+        const cff = useCFF()
+        return {
+            title: cff.title,
+            setTitle: cff.setTitle
+        }
     }
-  }
 })
 </script>

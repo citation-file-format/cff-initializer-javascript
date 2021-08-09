@@ -17,17 +17,17 @@ import Footer from 'components/Footer.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout',
+    name: 'MainLayout',
 
-  components: {
-    Header,
-    Footer
-  },
+    components: {
+        Header,
+        Footer
+    },
 
-  setup () {
-    return {
+    setup () {
+        return {
+        }
     }
-  }
 })
 </script>
 

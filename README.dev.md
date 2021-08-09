@@ -4,6 +4,8 @@ We're developing the wireframes and interaction designs over at [https://www.fig
 
 `cffinit` is a Single Page App written in [TypeScript](https://www.typescriptlang.org/) using [Vue.js v3](https://v3.vuejs.org/) and [its composition API](https://v3.vuejs.org/api/composition-api.html).
 
+The notes about technology choices, design, personas can be found in [project-docs/](project-docs/) folder.
+
 ## Clone the repository
 
 ```shell
@@ -50,6 +52,12 @@ try to automatically fix linting issues with
 npm run lint -- --fix
 ```
 
+To run linting on commit, you can install a git commit hook with
+
+```shell
+npx husky install
+```
+
 ## tests
 
 We use Jest for unit tests.
@@ -64,4 +72,3 @@ You can also use the Majestic web interface to run the unit tests in your browse
 
 ```shell
 npm run test:unit:ui
-```

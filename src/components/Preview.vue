@@ -11,12 +11,12 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-  name: 'Preview',
-  setup () {
-    const cff = useCFF()
-    return {
-      yaml: cff.asYAML
+    name: 'Preview',
+    setup () {
+        const cff = useCFF()
+        return {
+            yaml: cff.asYAML
+        }
     }
-  }
 })
 </script>

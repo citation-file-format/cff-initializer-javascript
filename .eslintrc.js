@@ -72,6 +72,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'vue/v-on-style': ['error', 'longform'],
+    "indent": ["error", 4],
 
     // allow async-await
     'generator-star-spacing': 'off',

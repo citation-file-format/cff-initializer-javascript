@@ -11,7 +11,6 @@ The notes about technology choices, design, personas can be found in [project-do
 ```shell
 # clone this repository
 git clone https://github.com/citation-file-format/cffinit
-
 # change directory
 cd cffinit
 ```
@@ -21,7 +20,7 @@ cd cffinit
 The command below will install dependencies
 
 ```shell
-npm install
+npm clean-install
 ```
 
 ## start the development server
@@ -60,7 +59,7 @@ npx husky install
 
 ## Tests
 
-We use Jest for unit tests. To run unit tests (`src/**/*.jest.spec.ts`)
+We use Jest for unit tests. To run unit tests (`test/jest/__tests__/**/*.jest.spec.ts`)
 
 You can run the test with
 

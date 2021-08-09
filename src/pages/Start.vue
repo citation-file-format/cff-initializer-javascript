@@ -1,25 +1,37 @@
 <template>
   <div class="window-height window-width row justify-center items-center">
-    <q-card>
-      <q-card-title><h1>Start Page</h1></q-card-title>
-      <q-card-main>
+    <q-card
+      dark
+      bordered
+      class="bg-grey-9 my-card"
+    >
+      <q-card-section>
+        <div class="text-h6">
+          Start Page
+        </div>
+        <div class="text-subtitle2">
+          by John Doe
+        </div>
+      </q-card-section>
+
+      <q-separator
+        dark
+        inset
+      />
+
+      <q-card-section>
         <p
-          v-for="n in 10"
+          v-for="n in 5"
           :key="n"
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
         </p>
-      </q-card-main>
-
-      <q-card-separator />
-
-      <q-card-actions align="right">
         <q-btn
           color="grey-6"
-          label="Continue"
+          label="Get started"
           to="/1"
         />
-      </q-card-actions>
+      </q-card-section>
     </q-card>
   </div>
 </template>

@@ -1,38 +1,96 @@
 <template>
-  <div class="window-height window-width row justify-center items-center">
-    <q-card
-      dark
-      bordered
-      class="bg-grey-9 my-card"
-    >
-      <q-card-section>
-        <div class="text-h6">
-          Start Page
-        </div>
-        <div class="text-subtitle2">
-          by John Doe
-        </div>
-      </q-card-section>
-
-      <q-separator
-        dark
-        inset
-      />
-
-      <q-card-section>
-        <p
-          v-for="n in 5"
-          :key="n"
+  <div class="">
+    <div class="row">
+      <div class="col-6 q-pa-lg ">
+        <q-card
+          bordered
+          class="secondary"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-        </p>
-        <q-btn
-          color="grey-6"
-          label="Get started"
-          to="/1"
-        />
-      </q-card-section>
-    </q-card>
+          <q-skeleton
+            height="500px"
+            square
+          />
+
+          <q-card-section>
+            <q-skeleton
+              type="text"
+              class="text-subtitle1"
+            />
+            <q-skeleton
+              type="text"
+              width="50%"
+              class="text-subtitle1"
+            />
+            <q-skeleton
+              type="text"
+              class="text-caption"
+            />
+          </q-card-section>
+        </q-card>
+      </div>
+      <div class="col-6  q-pa-lg">
+        <q-card
+          bordered
+          class="secondary"
+          style="transform:rotate(20deg) translateX(150px) translateY(60px)"
+        >
+          <q-item>
+            <q-item-section avatar>
+              <q-skeleton
+                type="QAvatar"
+                animation="fade"
+              />
+            </q-item-section>
+
+            <q-item-section>
+              <q-item-label>
+                <q-skeleton
+                  type="text"
+                  animation="fade"
+                />
+              </q-item-label>
+              <q-item-label caption>
+                <q-skeleton
+                  type="text"
+                  animation="fade"
+                />
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-skeleton
+            height="350px"
+            square
+            animation="fade"
+          />
+
+          <q-card-section>
+            <q-skeleton
+              type="text"
+              class="text-subtitle2"
+              animation="fade"
+            />
+            <q-skeleton
+              type="text"
+              width="50%"
+              class="text-subtitle2"
+              animation="fade"
+            />
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
+
+    <div
+      class="row justify-center items-center q-pt-xl"
+    >
+      <q-btn
+        size="xl"
+        color="primary"
+        label="Get started"
+        to="/1"
+      />
+    </div>
   </div>
 </template>
 

@@ -31,8 +31,8 @@
       <div class="col-6  q-pa-lg">
         <q-card
           bordered
-          class="secondary"
-          style="transform:rotate(20deg) translateX(150px) translateY(60px)"
+          class="secondary rotated-card"
+          style="overflow: hidden"
         >
           <q-item>
             <q-item-section avatar>
@@ -59,7 +59,7 @@
           </q-item>
 
           <q-skeleton
-            height="350px"
+            height="400px"
             square
             animation="fade"
           />
@@ -107,5 +107,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+.rotated-card {
+    transform: rotate(20deg) translateX(150px) translateY(65px);
+    display: block;
+}
 
 </style>

@@ -1,12 +1,23 @@
 <template>
   <div class="window-height window-width row justify-center items-center">
-    <q-card dark bordered class="bg-grey-9 my-card">
+    <q-card
+      dark
+      bordered
+      class="bg-grey-9 my-card"
+    >
       <q-card-section>
-        <div class="text-h6">Start Page</div>
-        <div class="text-subtitle2">by John Doe</div>
+        <div class="text-h6">
+          Start Page
+        </div>
+        <div class="text-subtitle2">
+          by John Doe
+        </div>
       </q-card-section>
 
-      <q-separator dark inset />
+      <q-separator
+        dark
+        inset
+      />
 
       <q-card-section>
         <p

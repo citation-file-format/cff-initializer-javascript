@@ -2,6 +2,7 @@
   <div class="row action-buttons">
     <div class="col">
       <q-btn
+        no-caps
         flat
         v-on:click="navigatePrevious"
         color=""
@@ -14,12 +15,14 @@
     >
       <q-btn-group flat>
         <q-btn
+          no-caps
           flat
           color=""
           label="Finish"
           to="/finish"
         />
         <q-btn
+          no-caps
           v-on:click="navigateNext"
           color="grey-6"
           label="Next"

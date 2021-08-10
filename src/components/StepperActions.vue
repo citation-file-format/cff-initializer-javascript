@@ -9,7 +9,7 @@
       />
     </div>
     <div
-      class="col"
+      class="col q-mr-lg"
       align="right"
     >
       <q-btn-group flat>

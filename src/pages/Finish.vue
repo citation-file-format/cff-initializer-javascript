@@ -24,7 +24,7 @@
     </div>
 
     <div class="row">
-      <div class="col-6 q-pa-lg ">
+      <div class="col-6 q-pa-lg">
         <q-card
           flat
           class="secondary"
@@ -128,50 +128,23 @@
         </q-card>
       </div>
 
-      <div class="col-6  q-pa-lg">
+      <div class="col-6 q-pa-lg">
         <q-card
           flat
-          class="secondary q-mt-xl q-pt-xl"
+          class="secondary cff-card"
         >
-          <q-item>
-            <q-item-section>
-              <q-item-label>
-                <q-skeleton type="text" />
-              </q-item-label>
-              <q-item-label caption>
-                <q-skeleton type="text" />
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-skeleton
-            height="210px"
-            square
-          />
-
           <q-card-section>
             <q-skeleton
+              v-for="index in 11"
+              :key="index"
               type="text"
-              class="text-subtitle1"
-            />
-            <q-skeleton
-              type="text"
-              width="50%"
-              class="text-subtitle1"
-            />
-            <q-skeleton
-              type="text"
-              class="text-caption"
-            />
-            <q-skeleton
-              type="text"
-              class="text-caption"
+              class="text-h6"
             />
           </q-card-section>
 
           <q-card-actions
             align="center"
-            class="q-gutter-md q-mt-xl q-mb-2xl"
+            class="q-gutter-md q-mt-xl"
           >
             <q-btn
               color="primary"
@@ -202,6 +175,10 @@ export default defineComponent({
 
 .download-button {
     margin-top: 150px;
+}
+
+.cff-card {
+    margin-top: 100px;
 }
 
 </style>

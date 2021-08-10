@@ -1,14 +1,14 @@
 <template>
-  <q-layout view="hhh lpr fff">
+  <q-layout view="hHh LpR fFf">
     <q-page-container>
       <Header />
       <Stars />
-      <q-page>
-        <div class="row window-height">
+      <q-page padding>
+        <div class="row q-ml-lg q-mr-lg">
           <div class="col-2 bg-secondary">
             <Stepper />
           </div>
-          <div class="col-6 bg-secondary">
+          <div class="col-5 bg-secondary q-mr-lg form-page">
             <router-view />
           </div>
           <div class="col-4">
@@ -49,5 +49,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+.form-page {
+  border-left-style: solid;
+  border-left-width: 1px;
+}
 
 </style>

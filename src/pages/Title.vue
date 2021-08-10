@@ -1,21 +1,39 @@
 <template>
-  <h1>Title Page</h1>
   <div class="q-pa-md">
     <div
-      class="q-gutter-md"
-      style="max-width: 400px"
+      class="q-gutter-md title-field text-dark"
     >
+      <p class="q-mt-xl text-h5">
+        What is the title of the work?
+      </p>
       <q-input
         :model-value="title"
         v-on:update:modelValue="setTitle"
-        label="Title"
+        label="title"
+        outlined
+        standout
+        bg-color="white"
         :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
       />
+      <p class="q-mt-xl  text-h5">
+        What do you want citers to do with the information provided in your CITATION.cff file?
+      </p>
       <q-input
         :model-value="message"
         v-on:update:modelValue="setMessage"
-        label="Message"
+        label="message"
+        outlined
+        bg-color="white"
         :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+      />
+      <p class="q-mt-xl text-h5">
+        What type of work does this CITATION.cff describe?
+      </p>
+      <q-option-group
+        :options="typeOptions"
+        type="radio"
+        :model-value="type"
+        v-on:update:modelValue="setType"
       />
     </div>
   </div>
@@ -35,11 +53,27 @@ export default defineComponent({
     setup () {
         const cff = useCFF()
         return {
+            typeOptions: [
+                { label: 'Software', value: 'software' },
+                { label: 'Dataset', value: 'dataset' }
+            ],
             title: cff.title,
             message: cff.message,
+            type: cff.type,
             setTitle: cff.setTitle,
-            setMessage: cff.setMessage
+            setMessage: cff.setMessage,
+            setType: cff.setType
         }
     }
 })
 </script>
+
+<style scoped>
+
+.title-field {
+    margin-right: 120px;
+    min-width: 300px;
+    max-width: 700px;
+}
+
+</style>

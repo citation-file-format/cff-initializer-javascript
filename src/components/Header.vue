@@ -1,11 +1,11 @@
 <template>
-  <q-header class="bg-grey-4 text-black">
+  <q-header class="bg-grey-4 text-primary">
     <q-toolbar>
-      Step: {{ step.step.value }}
       <q-space />
       <q-toolbar-title align="right">
         <q-btn-group flat>
           <q-btn
+            no-caps
             flat
             color=""
             label="Report an issue"
@@ -15,11 +15,13 @@
             target="_blank"
           />
           <q-btn
+            no-caps
             flat
             color=""
             label="Documentation"
           />
           <q-btn
+            no-caps
             flat
             color=""
             label="About"

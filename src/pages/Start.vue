@@ -1,31 +1,55 @@
 <template>
   <div class="">
     <div class="row">
-      <div class="col-6 q-pa-lg ">
+      <div class="col-6 q-pa-lg">
         <q-card
-          bordered
-          class="secondary"
+          flat
+          class="secondary q-mt-xl"
         >
-          <q-skeleton
-            height="500px"
-            square
-          />
-
-          <q-card-section>
+          <div
+            class="text-primary q-gutter-md q-mb-xl"
+            align="left"
+            style="font-size: 2em"
+          >
             <q-skeleton
               type="text"
-              class="text-subtitle1"
+              width="100%"
+              class="text-h1"
             />
             <q-skeleton
               type="text"
               width="50%"
-              class="text-subtitle1"
+              class="text-h1"
             />
             <q-skeleton
               type="text"
-              class="text-caption"
+              width="50%"
+              class="text-h1"
             />
-          </q-card-section>
+            <q-skeleton
+              type="text"
+              width="50%"
+              class="text-h1"
+            />
+          </div>
+
+          <div
+            class="text-primary q-gutter-md"
+            style="font-size: 2em"
+          >
+            <q-icon
+              name="star"
+              size="xl"
+            />
+            <q-icon
+              name="star"
+              size="xl"
+            />
+            <q-icon
+              name="star"
+              size="xl"
+            />
+          </div>
         </q-card>
       </div>
       <div class="col-6  q-pa-lg">

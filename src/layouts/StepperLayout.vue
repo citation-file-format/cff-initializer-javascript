@@ -53,6 +53,7 @@ export default defineComponent({
 .form-page {
   border-left-style: solid;
   border-left-width: 1px;
+  min-height: 800px;
 }
 
 </style>

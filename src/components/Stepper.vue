@@ -10,10 +10,11 @@
       flat
       active-icon=""
       inactive-icon="star"
-      class="bg-secondary"
+      class="bg-secondary text-primary"
     >
       <q-step
         title="Start"
+        color="primary"
         icon="star"
         :name="1"
         :done="step.step.value > 1"
@@ -21,6 +22,7 @@
       <!-- v-on:click="updateStep" -->
       <q-step
         title="Authors"
+        color="primary"
         icon="done_all"
         :name="2"
         :done="step.step.value > 2"
@@ -29,6 +31,7 @@
       <q-step
         :name="100"
         title="Finish"
+        color="primary"
         icon="expand_more"
         disable
       >

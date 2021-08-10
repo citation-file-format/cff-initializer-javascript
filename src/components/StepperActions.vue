@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row action-buttons">
     <div class="col">
       <q-btn
         flat
@@ -71,4 +71,9 @@ export default defineComponent({
 })
 </script>
 
-<style></style>
+<style>
+.action-buttons {
+  margin-top: 100px;
+}
+
+</style>

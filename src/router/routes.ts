@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/1',
         component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('pages/Screen1.vue') }]
+        children: [{ path: '', component: () => import('src/pages/Title.vue') }]
     },
     {
         path: '/2',

@@ -1,5 +1,5 @@
 <template>
-  <h1>Screen1 Page</h1>
+  <h1>Title Page</h1>
   <div class="q-pa-md">
     <div
       class="q-gutter-md"
@@ -9,6 +9,12 @@
         :model-value="title"
         v-on:update:modelValue="setTitle"
         label="Title"
+        :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+      />
+      <q-input
+        :model-value="message"
+        v-on:update:modelValue="setMessage"
+        label="Message"
         :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
       />
     </div>
@@ -22,7 +28,7 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageScreen1',
+    name: 'PageTitle',
     components: {
         StepperActions
     },
@@ -30,7 +36,9 @@ export default defineComponent({
         const cff = useCFF()
         return {
             title: cff.title,
-            setTitle: cff.setTitle
+            message: cff.message,
+            setTitle: cff.setTitle,
+            setMessage: cff.setMessage
         }
     }
 })

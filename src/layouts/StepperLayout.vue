@@ -1,13 +1,14 @@
 <template>
   <q-layout view="hhh lpr fff">
-    <Header />
     <q-page-container>
+      <Header />
+      <Stars />
       <q-page>
         <div class="row window-height">
-          <div class="col-2">
+          <div class="col-2 bg-secondary">
             <Stepper />
           </div>
-          <div class="col-6">
+          <div class="col-6 bg-secondary">
             <router-view />
           </div>
           <div class="col-4">
@@ -15,14 +16,15 @@
           </div>
         </div>
       </q-page>
+      <Footer />
     </q-page-container>
-    <Footer />
   </q-layout>
 </template>
 
 <script lang="ts">
 import Header from 'components/Header.vue'
 import Footer from 'components/Footer.vue'
+import Stars from 'components/Stars.vue'
 import Stepper from 'components/Stepper.vue'
 import Preview from 'components/Preview.vue'
 
@@ -34,6 +36,7 @@ export default defineComponent({
     components: {
         Header,
         Footer,
+        Stars,
         Stepper,
         Preview
     },
@@ -46,13 +49,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-.col-2 {
-  background-color: rgb(185, 180, 180);
-}
-
-.col-6 {
-  background-color: rgb(185, 180, 180);
-}
 
 </style>

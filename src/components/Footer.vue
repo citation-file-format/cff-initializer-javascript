@@ -1,5 +1,5 @@
 <template>
-  <q-footer class="bg-grey-4 text-white">
+  <q-footer class="bg-grey-4 text-primary">
     <q-toolbar>
       <q-toolbar-title>
         <img src="~assets/nlesc-logo.svg">

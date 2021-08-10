@@ -1,7 +1,5 @@
 # Developer notes
 
-
-
 ## Technology stack
 
 - [Single Page App](https://en.wikipedia.org/wiki/Single-page_application): The `cffinit` app will be a SPA. So app feels like a native app and no server-side code needs to run.

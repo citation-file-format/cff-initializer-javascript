@@ -1,10 +1,24 @@
 # Developer notes
 
-We're developing the wireframes and interaction designs over at [https://www.figma.com/](https://www.figma.com/).
 
-`cffinit` is a Single Page App written in [TypeScript](https://www.typescriptlang.org/) using [Vue.js v3](https://v3.vuejs.org/) and [its composition API](https://v3.vuejs.org/api/composition-api.html).
 
-The notes about technology choices, design, personas can be found in [project-docs/](project-docs/) folder.
+## Technology stack
+
+- [Single Page App](https://en.wikipedia.org/wiki/Single-page_application): The `cffinit` app will be a SPA. So app feels like a native app and no server-side code needs to run.
+- [https://www.figma.com/](https://www.figma.com/): A vector graphics and prototyping editor used to developed the wireframes and interaction designs.
+- [npm CLI](https://docs.npmjs.com/cli/v7): Package manager command line interface shipped with NodeJS.
+- [TypeScript](https://www.typescriptlang.org/): Typed JavaScript language used for lowering maintenance cost.
+- [Vue.js v3](https://v3.vuejs.org/): A frontend JS framework for building user interfaces.
+- [Vue.js Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html): Is style of writing UI components to group logical concerns like state management.
+- [Quasar](https://quasar.dev/): A UI framework, a group of UI components, that follow [Material design guidelines](https://material.io/design) to make a coherent/pleasing user interface.
+- [Quasar CLI](https://quasar.dev/quasar-cli): Build and test infrastructure.
+- [GitHub pages](https://pages.github.com/): Hosting of static HTML files. The build app (in `docs` folder) is deployed on it.
+- [Husky](https://typicode.github.io/husky/#/): Automaticly runs checks before pushing changes to GitHub.
+- [Jest](https://jestjs.io/): Testing framework to run unit tests and perform test assertions.
+- [highlight.js]: To syntax highlight the YAML formatted file.
+- [ESLint](https://eslint.org/): To get constistent code style and prevent errors the industry standard linter ESLint is used.
+
+The notes about how we came to this technology stack, design and personas can be found in [project-docs/](project-docs/) folder.
 
 ## Clone the repository
 
@@ -71,3 +85,4 @@ You can also use the Majestic web interface to run the unit tests in your browse
 
 ```shell
 npm run test:unit:ui
+```

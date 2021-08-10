@@ -34,7 +34,6 @@
         This step won't show up because it is disabled.
       </q-step>
     </q-stepper>
-    Step: {{ step.step.value }}
   </div>
 </template>
 

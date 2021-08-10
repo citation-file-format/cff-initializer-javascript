@@ -9,6 +9,7 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "lint": "eslint --ext .js,.ts,.vue ./",
+    "lint-fix": "eslint --ext .js,.ts,.vue ./ --fix",
     "test:unit:ui": "majestic",
     "test:unit": "jest --updateSnapshot",
     "test:unit:ci": "jest --ci",

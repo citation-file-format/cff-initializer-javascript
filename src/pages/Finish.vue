@@ -117,12 +117,14 @@
               icon="chevron_left"
               label="Back to form"
               class="q-mr-xl"
+              v-on:click="$router.go(-1)"
             />
             <q-btn
               color="primary"
               icon="edit"
               label="Create another"
               class="q-ml-xl"
+              to="/1"
             />
           </q-card-actions>
         </q-card>

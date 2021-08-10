@@ -10,6 +10,7 @@
       flat
       active-icon=""
       inactive-icon="star"
+      class="bg-secondary"
     >
       <q-step
         title="Start"
@@ -62,9 +63,5 @@ export default {
 </script>
 
 <style scoped>
-
-.q-stepper {
-  background-color: rgb(185, 180, 180);
-}
 
 </style>

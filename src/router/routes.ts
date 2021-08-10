@@ -7,14 +7,24 @@ const routes: RouteRecordRaw[] = [
         children: [{ path: '', component: () => import('src/pages/Start.vue') }]
     },
     {
+        path: '/0',
+        component: () => import('src/layouts/MainLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/Start.vue') }]
+    },
+    {
         path: '/1',
         component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('pages/Screen1.vue') }]
+        children: [{ path: '', component: () => import('src/pages/Title.vue') }]
     },
     {
         path: '/2',
         component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('pages/Screen2.vue') }]
+        children: [{ path: '', component: () => import('src/pages/Authors.vue') }]
+    },
+    {
+        path: '/3',
+        component: () => import('src/layouts/MainLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/Finish.vue') }]
     },
     {
         path: '/finish',

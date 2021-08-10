@@ -1,5 +1,8 @@
 <template>
-  <q-card>
+  <q-card
+    flat
+    bordered
+  >
     <q-card-section>
       <pre>{{ yaml }}</pre>
     </q-card-section>

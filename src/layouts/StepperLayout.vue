@@ -4,7 +4,7 @@
       <Header />
       <Stars />
       <q-page padding>
-        <div class="row q-ml-lg q-mr-lg">
+        <div class="row q-ml-lg q-mr-lg justify-center">
           <div class="col-2 bg-secondary">
             <Stepper />
           </div>

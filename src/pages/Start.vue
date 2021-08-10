@@ -109,6 +109,7 @@
       class="row justify-center items-center q-pt-xl"
     >
       <q-btn
+        no-caps
         size="xl"
         color="primary"
         label="Get started"

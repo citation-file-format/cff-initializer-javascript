@@ -113,6 +113,7 @@
             class="q-gutter-md"
           >
             <q-btn
+              no-caps
               color="primary"
               icon="chevron_left"
               label="Back to form"
@@ -120,6 +121,7 @@
               v-on:click="$router.go(-1)"
             />
             <q-btn
+              no-caps
               color="primary"
               icon="edit"
               label="Create another"
@@ -149,6 +151,7 @@
             class="q-gutter-md q-mt-xl"
           >
             <q-btn
+              no-caps
               color="primary"
               icon="download"
               label="Download"

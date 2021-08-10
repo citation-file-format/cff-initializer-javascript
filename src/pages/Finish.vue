@@ -1,5 +1,28 @@
 <template>
   <div class="">
+    <div
+      align="center"
+      class="q-gutter-md"
+    >
+      <div
+        class="text-primary q-gutter-md"
+        style="font-size: 2em"
+      >
+        <q-icon
+          name="star"
+          size="xl"
+        />
+        <q-icon
+          name="star"
+          size="xl"
+        />
+        <q-icon
+          name="star"
+          size="xl"
+        />
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-6 q-pa-lg ">
         <q-card
@@ -18,10 +41,6 @@
           </q-card-section>
 
           <q-item>
-            <q-item-section avatar>
-              <q-skeleton type="QAvatar" />
-            </q-item-section>
-
             <q-item-section>
               <q-item-label>
                 <q-skeleton type="text" />
@@ -54,7 +73,7 @@
           </q-card-section>
 
           <div
-            class="text-primary q-gutter-md"
+            class="text-primary q-gutter-md q-mb-xl"
             align="center"
             style="font-size: 2em"
           >
@@ -72,12 +91,39 @@
             />
           </div>
 
+          <div
+            class="text-primary q-gutter-md q-mb-xl"
+            align="left"
+            style="font-size: 2em"
+          >
+            <q-skeleton
+              type="text"
+              width="50%"
+              class="text-subtitle1"
+            />
+            <q-skeleton
+              type="text"
+              width="50%"
+              class="text-subtitle1"
+            />
+          </div>
+
           <q-card-actions
             align="center"
             class="q-gutter-md"
           >
-            <q-skeleton type="QBtn" />
-            <q-skeleton type="QBtn" />
+            <q-btn
+              color="primary"
+              icon="chevron_left"
+              label="Back to form"
+              class="q-mr-xl"
+            />
+            <q-btn
+              color="primary"
+              icon="edit"
+              label="Create another"
+              class="q-ml-xl"
+            />
           </q-card-actions>
         </q-card>
       </div>
@@ -88,10 +134,6 @@
           class="secondary q-mt-xl q-pt-xl"
         >
           <q-item>
-            <q-item-section avatar>
-              <q-skeleton type="QAvatar" />
-            </q-item-section>
-
             <q-item-section>
               <q-item-label>
                 <q-skeleton type="text" />
@@ -103,7 +145,7 @@
           </q-item>
 
           <q-skeleton
-            height="200px"
+            height="210px"
             square
           />
 
@@ -121,29 +163,25 @@
               type="text"
               class="text-caption"
             />
+            <q-skeleton
+              type="text"
+              class="text-caption"
+            />
           </q-card-section>
 
           <q-card-actions
-            vertical
             align="center"
-            class="q-gutter-md"
-            size="xl"
+            class="q-gutter-md q-mt-xl q-mb-2xl"
           >
-            <q-skeleton type="QBtn" />
+            <q-btn
+              color="primary"
+              icon="download"
+              label="Download"
+              class="download-button"
+            />
           </q-card-actions>
         </q-card>
       </div>
-    </div>
-
-    <div
-      class="row justify-center items-center q-pt-xl"
-    >
-      <q-btn
-        size="xl"
-        color="primary"
-        label="Finish"
-        to="/1"
-      />
     </div>
   </div>
 </template>
@@ -161,5 +199,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+.download-button {
+    margin-top: 150px;
+}
 
 </style>

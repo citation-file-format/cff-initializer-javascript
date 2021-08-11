@@ -1,10 +1,32 @@
 # Implementation details of the design
 
 ## Sprint Goal (11 August 2021 - 24 August 2021):
-    - Plosh styling and layout
-    - Add YAML support
-    - Add higlighting for the preview
-    - Design the first version of the authors page
+
+### Milestone 3.1
+1. Add a placeholder Identifiers screen
+1. Create the screens below: update the router, update the stepper to add a step for the screen, do not spend too much time on styling, use Title screen as a starting point
+    1. Related
+    1. Abstract
+    1. Keywords
+    1. License
+    1. Version-specific
+1. Create Authors screen
+1. Create Identifiers screen
+1. Add the preview of the generated CFF on Finish page
+1. Add download functionality
+
+### Milestone 3.2
+1. Improve style of the app and all the pages
+1. Add text to Start page
+1. Add text to Finish page
+1. Work on validation
+1. Copy clipboard functionality
+
+1. Highlighting CFF preview 
+
+1. Importing Authors
+1. 
+
 
 ## Sprint Goal (28 July 2021 - 10 August 2021):
     1. Until Tuesday (3 August):

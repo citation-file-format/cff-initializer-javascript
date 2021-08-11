@@ -2,7 +2,9 @@
 
 ## Sprint Goal (11 August 2021 - 24 August 2021):
 
-### Milestone 3.1
+### Release today (11 August 2021): 2.0.0-alpha.0
+
+### Milestone 2.0.0-alpha.1
 1. Add a placeholder Identifiers screen
 1. Create the screens below: update the router, update the stepper to add a step for the screen, do not spend too much time on styling, use Title screen as a starting point
     1. Related
@@ -15,18 +17,16 @@
 1. Add the preview of the generated CFF on Finish page
 1. Add download functionality
 
-### Milestone 3.2
+### Milestone 2.0.0-alpha.2
+1. Copy clipboard functionality
 1. Improve style of the app and all the pages
 1. Add text to Start page
 1. Add text to Finish page
 1. Work on validation
-1. Copy clipboard functionality
 
+### Milestone ?
 1. Highlighting CFF preview 
-
 1. Importing Authors
-1. 
-
 
 ## Sprint Goal (28 July 2021 - 10 August 2021):
     1. Until Tuesday (3 August):

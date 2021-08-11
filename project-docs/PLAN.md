@@ -19,10 +19,10 @@
 
 ### Milestone 2.0.0-alpha.2
 1. Copy clipboard functionality
-1. Improve style of the app and all the pages
-1. Add text to Start page
-1. Add text to Finish page
+1. Add text to Start page and update the CFF example
+1. Add text to Finish page and the generated CFF
 1. Work on validation
+1. Fix obvious styling issues (needs grooming)
 
 ### Milestone ?
 1. Highlighting CFF preview 

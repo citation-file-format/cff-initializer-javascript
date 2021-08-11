@@ -137,14 +137,7 @@
           flat
           class="secondary cff-card"
         >
-          <q-card-section>
-            <q-skeleton
-              v-for="index in 11"
-              :key="index"
-              type="text"
-              class="text-h6"
-            />
-          </q-card-section>
+          <Preview />
 
           <q-card-actions
             align="center"
@@ -166,10 +159,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Preview from 'components/Preview.vue'
 
 export default defineComponent({
     name: 'PageFinish',
-    components: { },
+    components: {
+        Preview
+    },
     setup () {
         return {}
     }

@@ -72,6 +72,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'vue/v-on-style': ['error', 'longform'],
+    'vue/v-bind-style': ['error', 'longform'],
     'indent': ['error', 4],
 
     // allow async-await

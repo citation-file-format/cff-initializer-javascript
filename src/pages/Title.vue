@@ -1,43 +1,43 @@
 <template>
-  <div class="q-pa-md">
-    <div
-      class="q-gutter-md title-field text-dark"
-    >
-      <p class="q-mt-xl text-h5">
-        What is the title of the work?
-      </p>
-      <q-input
-        :model-value="title"
-        v-on:update:modelValue="setTitle"
-        label="title"
-        outlined
-        standout
-        bg-color="white"
-        :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
-      />
-      <p class="q-mt-xl  text-h5">
-        What do you want citers to do with the information provided in your CITATION.cff file?
-      </p>
-      <q-input
-        :model-value="message"
-        v-on:update:modelValue="setMessage"
-        label="message"
-        outlined
-        bg-color="white"
-        :rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
-      />
-      <p class="q-mt-xl text-h5">
-        What type of work does this CITATION.cff describe?
-      </p>
-      <q-option-group
-        :options="typeOptions"
-        type="radio"
-        :model-value="type"
-        v-on:update:modelValue="setType"
-      />
+    <div class="q-pa-md">
+        <div
+            class="q-gutter-md title-field text-dark"
+        >
+            <p class="q-mt-xl text-h5">
+                What is the title of the work?
+            </p>
+            <q-input
+                v-bind:model-value="title"
+                v-on:update:modelValue="setTitle"
+                label="title"
+                outlined
+                standout
+                bg-color="white"
+                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+            />
+            <p class="q-mt-xl  text-h5">
+                What do you want citers to do with the information provided in your CITATION.cff file?
+            </p>
+            <q-input
+                v-bind:model-value="message"
+                v-on:update:modelValue="setMessage"
+                label="message"
+                outlined
+                bg-color="white"
+                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+            />
+            <p class="q-mt-xl text-h5">
+                What type of work does this CITATION.cff describe?
+            </p>
+            <q-option-group
+                v-bind:options="typeOptions"
+                type="radio"
+                v-bind:model-value="type"
+                v-on:update:modelValue="setType"
+            />
+        </div>
     </div>
-  </div>
-  <StepperActions />
+    <StepperActions />
 </template>
 
 <script lang="ts">

@@ -1,13 +1,13 @@
 <template>
-  <q-layout view="hhh lpr fff">
-    <Header />
-    <q-page-container>
-      <q-page>
-        <router-view />
-      </q-page>
-    </q-page-container>
-    <Footer />
-  </q-layout>
+    <q-layout view="hhh lpr fff">
+        <Header />
+        <q-page-container>
+            <q-page>
+                <router-view />
+            </q-page>
+        </q-page-container>
+        <Footer />
+    </q-layout>
 </template>
 
 <script lang="ts">

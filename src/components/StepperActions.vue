@@ -1,35 +1,35 @@
 <template>
-  <div class="row action-buttons">
-    <div class="col">
-      <q-btn
-        no-caps
-        flat
-        v-on:click="navigatePrevious"
-        color=""
-        label="Back"
-      />
+    <div class="row action-buttons">
+        <div class="col">
+            <q-btn
+                no-caps
+                flat
+                v-on:click="navigatePrevious"
+                color=""
+                label="Back"
+            />
+        </div>
+        <div
+            class="col q-mr-lg"
+            align="right"
+        >
+            <q-btn-group flat>
+                <q-btn
+                    no-caps
+                    flat
+                    color=""
+                    label="Finish"
+                    to="/finish"
+                />
+                <q-btn
+                    no-caps
+                    v-on:click="navigateNext"
+                    color="grey-6"
+                    label="Next"
+                />
+            </q-btn-group>
+        </div>
     </div>
-    <div
-      class="col q-mr-lg"
-      align="right"
-    >
-      <q-btn-group flat>
-        <q-btn
-          no-caps
-          flat
-          color=""
-          label="Finish"
-          to="/finish"
-        />
-        <q-btn
-          no-caps
-          v-on:click="navigateNext"
-          color="grey-6"
-          label="Next"
-        />
-      </q-btn-group>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">

@@ -1,24 +1,24 @@
 <template>
-  <q-layout view="hHh LpR fFf">
-    <q-page-container>
-      <Header />
-      <Stars />
-      <q-page padding>
-        <div class="row q-ml-lg q-mr-lg justify-center">
-          <div class="col-2 bg-secondary">
-            <Stepper />
-          </div>
-          <div class="col-5 bg-secondary q-mr-lg form-page">
-            <router-view />
-          </div>
-          <div class="col-4">
-            <Preview />
-          </div>
-        </div>
-      </q-page>
-      <Footer />
-    </q-page-container>
-  </q-layout>
+    <q-layout view="hHh LpR fFf">
+        <q-page-container>
+            <Header />
+            <Stars />
+            <q-page padding>
+                <div class="row q-ml-lg q-mr-lg justify-center">
+                    <div class="col-2 bg-secondary">
+                        <Stepper />
+                    </div>
+                    <div class="col-5 bg-secondary q-mr-lg form-page">
+                        <router-view />
+                    </div>
+                    <div class="col-4">
+                        <Preview />
+                    </div>
+                </div>
+            </q-page>
+            <Footer />
+        </q-page-container>
+    </q-layout>
 </template>
 
 <script lang="ts">

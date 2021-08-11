@@ -1,4 +1,11 @@
 # Implementation details of the design
+
+## Sprint Goal (11 August 2021 - 24 August 2021):
+    - Plosh styling and layout
+    - Add YAML support
+    - Add higlighting for the preview
+    - Design the first version of the authors page
+
 ## Sprint Goal (28 July 2021 - 10 August 2021):
     1. Until Tuesday (3 August):
       - Fiddling with Vue.js 3.0 and Nuxt.js to decide what option we prefer

@@ -2,11 +2,16 @@ import { ref, computed } from 'vue'
 import yaml from 'js-yaml'
 
 type CFFType = 'software' | 'dataset'
+
 interface CFF {
-  'cff-version': string,
-  title?: string,
-  message?: string,
-  type: CFFType
+    'cff-version': string,
+    commit?: string,
+    // eslint-disable-next-line camelcase
+    date_released?: string,
+    message?: string,
+    title?: string,
+    type: CFFType,
+    version?: string
 }
 
 const cff = ref<CFF>({
@@ -16,18 +21,24 @@ const cff = ref<CFF>({
 
 export function useCFF () {
     return {
-        cff: computed(() => cff.value),
-        title: computed(() => cff.value.title),
-        message: computed(() => cff.value.message),
-        type: computed(() => cff.value.type),
-        setTitle: (newTitle: string) => { cff.value.title = newTitle },
-        setMessage: (newMessage: string) => { cff.value.message = newMessage },
-        setType: (newType: CFFType) => { cff.value.type = newType },
         asYAML: computed(() => {
             return yaml.dump(cff.value, {
                 replacer: hideEmptyKeys
             })
-        })
+        }),
+        cff: computed(() => cff.value),
+        commit: computed(() => cff.value.commit),
+        date_released: computed(() => cff.value.date_released),
+        message: computed(() => cff.value.message),
+        title: computed(() => cff.value.title),
+        type: computed(() => cff.value.type),
+        version: computed(() => cff.value.version),
+        setCommit: (newCommit: string) => { cff.value.commit = newCommit },
+        setDateReleased: (newDateReleased: string) => { cff.value.date_released = newDateReleased },
+        setMessage: (newMessage: string) => { cff.value.message = newMessage },
+        setTitle: (newTitle: string) => { cff.value.title = newTitle },
+        setType: (newType: CFFType) => { cff.value.type = newType },
+        setVersion: (newVersion: string) => { cff.value.version = newVersion }
     }
 }
 

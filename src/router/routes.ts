@@ -23,6 +23,11 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/3',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/VersionSpecific.vue') }]
+    },
+    {
+        path: '/4',
         component: () => import('src/layouts/MainLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Finish.vue') }]
     },

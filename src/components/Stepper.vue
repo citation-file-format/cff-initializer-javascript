@@ -19,13 +19,21 @@
                 v-bind:name="1"
                 v-bind:done="step.step.value > 1"
             />
-            <!-- v-on:click="updateStep" -->
+
             <q-step
                 title="Authors"
                 color="primary"
-                icon="done_all"
+                icon="star"
                 v-bind:name="2"
                 v-bind:done="step.step.value > 2"
+            />
+
+            <q-step
+                title="Version specific"
+                color="primary"
+                icon="star"
+                v-bind:name="3"
+                v-bind:done="step.step.value > 3"
             />
 
             <q-step

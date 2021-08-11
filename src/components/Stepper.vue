@@ -1,44 +1,44 @@
 <template>
-  <div class="q-pa-md">
-    <q-stepper
-      :model-value="step.step"
-      v-on:update:modelValue="updateStep"
-      ref="stepper"
-      vertical
-      animated
-      header-nav
-      flat
-      active-icon=""
-      inactive-icon="star"
-      class="bg-secondary text-primary"
-    >
-      <q-step
-        title="Start"
-        color="primary"
-        icon="star"
-        :name="1"
-        :done="step.step.value > 1"
-      />
-      <!-- v-on:click="updateStep" -->
-      <q-step
-        title="Authors"
-        color="primary"
-        icon="done_all"
-        :name="2"
-        :done="step.step.value > 2"
-      />
+    <div class="q-pa-md">
+        <q-stepper
+            v-bind:model-value="step.step"
+            v-on:update:modelValue="updateStep"
+            ref="stepper"
+            vertical
+            animated
+            header-nav
+            flat
+            active-icon=""
+            inactive-icon="star"
+            class="bg-secondary text-primary"
+        >
+            <q-step
+                title="Start"
+                color="primary"
+                icon="star"
+                v-bind:name="1"
+                v-bind:done="step.step.value > 1"
+            />
+            <!-- v-on:click="updateStep" -->
+            <q-step
+                title="Authors"
+                color="primary"
+                icon="done_all"
+                v-bind:name="2"
+                v-bind:done="step.step.value > 2"
+            />
 
-      <q-step
-        :name="100"
-        title="Finish"
-        color="primary"
-        icon="expand_more"
-        disable
-      >
-        This step won't show up because it is disabled.
-      </q-step>
-    </q-stepper>
-  </div>
+            <q-step
+                v-bind:name="100"
+                title="Finish"
+                color="primary"
+                icon="expand_more"
+                disable
+            >
+                This step won't show up because it is disabled.
+            </q-step>
+        </q-stepper>
+    </div>
 </template>
 
 <script lang="ts">

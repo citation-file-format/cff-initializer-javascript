@@ -1,8 +1,8 @@
 {
-  "name": "cffinitv2",
-  "version": "0.0.1",
+  "name": "cffinit",
+  "version": "2.0.0-alpha.1",
   "description": "CFF init page",
-  "productName": "CFFinit V2",
+  "productName": "cffinit",
   "author": "nlesc",
   "private": true,
   "scripts": {

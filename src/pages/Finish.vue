@@ -37,76 +37,31 @@
               />
               Congratulations
             </div>
-            <!-- <div class="text-subtitle2">by John Doe</div> -->
+            <p class="text-h5">
+              Now you have a CITATION.cff file and you get the credits you deserve.
+            </p>
           </q-card-section>
-
-          <q-item>
-            <q-item-section>
-              <q-item-label>
-                <q-skeleton type="text" />
-              </q-item-label>
-              <q-item-label caption>
-                <q-skeleton type="text" />
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-skeleton
-            height="200px"
-            square
-          />
 
           <q-card-section>
-            <q-skeleton
-              type="text"
-              class="text-subtitle1"
-            />
-            <q-skeleton
-              type="text"
-              width="50%"
-              class="text-subtitle1"
-            />
-            <q-skeleton
-              type="text"
-              class="text-caption"
-            />
+            <p>Share a reference to your software.</p>
+            <div
+              class="text-primary q-gutter-md q-mb-xl"
+              style="font-size: 2em"
+            >
+              <q-icon
+                name="ion-logo-twitter"
+                size="xl"
+              />
+              <q-icon
+                name="ion-logo-linkedin"
+                size="xl"
+              />
+              <q-icon
+                name="ion-logo-reddit"
+                size="xl"
+              />
+            </div>
           </q-card-section>
-
-          <div
-            class="text-primary q-gutter-md q-mb-xl"
-            align="center"
-            style="font-size: 2em"
-          >
-            <q-icon
-              name="ion-logo-twitter"
-              size="xl"
-            />
-            <q-icon
-              name="ion-logo-linkedin"
-              size="xl"
-            />
-            <q-icon
-              name="ion-logo-reddit"
-              size="xl"
-            />
-          </div>
-
-          <div
-            class="text-primary q-gutter-md q-mb-xl"
-            align="left"
-            style="font-size: 2em"
-          >
-            <q-skeleton
-              type="text"
-              width="50%"
-              class="text-subtitle1"
-            />
-            <q-skeleton
-              type="text"
-              width="50%"
-              class="text-subtitle1"
-            />
-          </div>
 
           <q-card-actions
             align="center"
@@ -137,7 +92,9 @@
           flat
           class="secondary cff-card"
         >
-          <Preview />
+          <q-card-section>
+            <Preview />
+          </q-card-section>
 
           <q-card-actions
             align="center"

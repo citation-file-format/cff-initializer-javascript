@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "quasar dev",
     "build": "quasar build",
-    "lint": "eslint --ext .js,.ts,.vue ./",
-    "lint-fix": "eslint --ext .js,.ts,.vue ./ --fix",
+    "lint": "eslint --ext .js,.ts,.vue --ignore-pattern node_modules ./",
+    "lint-fix": "eslint --ext .js,.ts,.vue --ignore-pattern node_modules ./ --fix",
     "test:unit:ui": "majestic",
     "test:unit": "jest --updateSnapshot",
     "test:unit:ci": "jest --ci",

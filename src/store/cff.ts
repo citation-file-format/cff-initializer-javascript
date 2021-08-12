@@ -10,12 +10,15 @@ type IdentifierType = {
 
 type CFFType = 'software' | 'dataset'
 
+type Keywords = Array<string>
+
 interface CFF {
     'cff-version': string,
     commit?: string,
     // eslint-disable-next-line camelcase
     date_released?: string,
     identifiers?: Array<IdentifierType>
+    keywords?: Keywords,
     message?: string,
     title?: string,
     type: CFFType,
@@ -46,6 +49,11 @@ const cff = ref<CFF>({
             value: 'custom identifiers',
             description: 'This is the description of the custom identifier'
         }
+    ],
+    keywords: [
+        'first keyword',
+        'second keyword',
+        'third'
     ]
 })
 
@@ -60,6 +68,7 @@ export function useCFF () {
         commit: computed(() => cff.value.commit),
         date_released: computed(() => cff.value.date_released),
         identifiers: computed(() => cff.value.identifiers),
+        keywords: computed(() => cff.value.keywords),
         message: computed(() => cff.value.message),
         title: computed(() => cff.value.title),
         type: computed(() => cff.value.type),
@@ -67,6 +76,7 @@ export function useCFF () {
         setCommit: (newCommit: string) => { cff.value.commit = newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.date_released = newDateReleased },
         setIdentifiers: (newIdentifiers: Array<any>) => { cff.value.identifiers = newIdentifiers },
+        setKeywords: (newKeywords: Keywords) => { cff.value.keywords = newKeywords },
         setMessage: (newMessage: string) => { cff.value.message = newMessage },
         setTitle: (newTitle: string) => { cff.value.title = newTitle },
         setType: (newType: CFFType) => { cff.value.type = newType },

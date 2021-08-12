@@ -26,13 +26,21 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Identifiers.vue') }]
     },
+    // 4 related resources
+    // 5 abstract
     {
-        path: '/4',
+        path: '/6',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/Keywords.vue') }]
+    },
+    // 7 license
+    {
+        path: '/8',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/VersionSpecific.vue') }]
     },
     {
-        path: '/5',
+        path: '/9',
         component: () => import('src/layouts/MainLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Finish.vue') }]
     },

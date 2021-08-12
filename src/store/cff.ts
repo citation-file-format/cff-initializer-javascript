@@ -3,11 +3,14 @@ import yaml from 'js-yaml'
 
 type CFFType = 'software' | 'dataset'
 
+type Keywords = Array<string>
+
 interface CFF {
     'cff-version': string,
     commit?: string,
     // eslint-disable-next-line camelcase
     date_released?: string,
+    keywords?: Keywords,
     message?: string,
     title?: string,
     type: CFFType,
@@ -16,7 +19,12 @@ interface CFF {
 
 const cff = ref<CFF>({
     'cff-version': '1.2.0',
-    type: 'software'
+    type: 'software',
+    keywords: [
+        'first keyword',
+        'second keyword',
+        'third'
+    ]
 })
 
 export function useCFF () {
@@ -29,12 +37,14 @@ export function useCFF () {
         cff: computed(() => cff.value),
         commit: computed(() => cff.value.commit),
         date_released: computed(() => cff.value.date_released),
+        keywords: computed(() => cff.value.keywords),
         message: computed(() => cff.value.message),
         title: computed(() => cff.value.title),
         type: computed(() => cff.value.type),
         version: computed(() => cff.value.version),
         setCommit: (newCommit: string) => { cff.value.commit = newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.date_released = newDateReleased },
+        setKeywords: (newKeywords: Keywords) => { cff.value.keywords = newKeywords },
         setMessage: (newMessage: string) => { cff.value.message = newMessage },
         setTitle: (newTitle: string) => { cff.value.title = newTitle },
         setType: (newType: CFFType) => { cff.value.type = newType },

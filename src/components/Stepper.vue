@@ -43,7 +43,15 @@
                 v-bind:name="4"
                 v-bind:done="step.step.value > 4"
             />
-            <!-- 5 abstract -->
+
+            <q-step
+                title="Abstract"
+                color="primary"
+                icon="star"
+                v-bind:name="5"
+                v-bind:done="step.step.value > 5"
+            />
+
             <q-step
                 title="Keywords"
                 color="primary"

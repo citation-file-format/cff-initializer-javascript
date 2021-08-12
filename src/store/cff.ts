@@ -11,14 +11,15 @@ type IdentifierType = {
 
 type CFFType = 'software' | 'dataset'
 
-type Keywords = Array<string>
+type KeywordsType = Array<string>
 
 interface CFF {
+    abstract?: string,
     'cff-version': string,
     commit?: string,
     date_released?: string,
-    identifiers?: Array<IdentifierType>
-    keywords?: Keywords,
+    identifiers?: Array<IdentifierType>,
+    keywords?: KeywordsType,
     message?: string,
     repository?: string,
     repository_artifact?: string,
@@ -31,43 +32,13 @@ interface CFF {
 
 const cff = ref<CFF>({
     'cff-version': '1.2.0',
-    type: 'software',
-    // this is just sample data that can be removed once we implement data binding for identifiers
-    identifiers: [
-        {
-            type: 'doi',
-            value: '10.0000/FIXME',
-            description: 'This is the description of the DOI'
-        },
-        {
-            type: 'swh',
-            value: 'some swh identifier'
-        },
-        {
-            type: 'url',
-            value: 'https://github.com/citation-file-format/cffinit',
-            description: 'This is the description of the URL'
-        },
-        {
-            type: 'other',
-            value: 'custom identifiers',
-            description: 'This is the description of the custom identifier'
-        }
-    ],
-    keywords: [
-        'first keyword',
-        'second keyword',
-        'third'
-    ]
+    type: 'software'
 })
 
 export function useCFF () {
     return {
-        asYAML: computed(() => {
-            return yaml.dump(cff.value, {
-                replacer: hideEmptyKeys
-            })
-        }),
+        abstract: computed(() => cff.value.abstract),
+        asYAML: computed(() => yaml.dump(cff.value)),
         cff: computed(() => cff.value),
         commit: computed(() => cff.value.commit),
         date_released: computed(() => cff.value.date_released),
@@ -81,10 +52,11 @@ export function useCFF () {
         type: computed(() => cff.value.type),
         url: computed(() => cff.value.url),
         version: computed(() => cff.value.version),
+        setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract },
         setCommit: (newCommit: string) => { cff.value.commit = newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.date_released = newDateReleased },
-        setIdentifiers: (newIdentifiers: Array<any>) => { cff.value.identifiers = newIdentifiers },
-        setKeywords: (newKeywords: Keywords) => { cff.value.keywords = newKeywords },
+        setIdentifiers: (newIdentifiers: Array<IdentifierType>) => { cff.value.identifiers = newIdentifiers },
+        setKeywords: (newKeywords: KeywordsType) => { cff.value.keywords = newKeywords },
         setMessage: (newMessage: string) => { cff.value.message = newMessage },
         setRepository: (newRepository: string) => { cff.value.repository = newRepository },
         setRepositoryArtifact: (newRepositoryArtifact: string) => { cff.value.repository_artifact = newRepositoryArtifact },
@@ -94,14 +66,4 @@ export function useCFF () {
         setUrl: (newUrl: string) => { cff.value.url = newUrl },
         setVersion: (newVersion: string) => { cff.value.version = newVersion }
     }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const hideEmptyKeys = (key: string, value: any) => {
-    console.log('hideEmptyKeys: ', key, value)
-    if (value === '') {
-        return undefined
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return value
 }

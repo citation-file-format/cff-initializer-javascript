@@ -29,11 +29,19 @@
             />
 
             <q-step
+                title="Keywords"
+                color="primary"
+                icon="star"
+                v-bind:name="6"
+                v-bind:done="step.step.value > 6"
+            />
+
+            <q-step
                 title="Version specific"
                 color="primary"
                 icon="star"
-                v-bind:name="3"
-                v-bind:done="step.step.value > 3"
+                v-bind:name="8"
+                v-bind:done="step.step.value > 8"
             />
 
             <q-step

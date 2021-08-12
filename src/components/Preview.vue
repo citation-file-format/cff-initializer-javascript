@@ -23,3 +23,9 @@ export default defineComponent({
     }
 })
 </script>
+
+<style scoped>
+pre {
+    overflow-x: auto;
+}
+</style>

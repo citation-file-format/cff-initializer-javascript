@@ -1,5 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ref, computed } from 'vue'
 import yaml from 'js-yaml'
+
+type IdentifierType = {
+    type: 'doi' | 'url' | 'swh' | 'other',
+    value: string,
+    description?: string
+}
 
 type CFFType = 'software' | 'dataset'
 
@@ -10,6 +17,7 @@ interface CFF {
     commit?: string,
     // eslint-disable-next-line camelcase
     date_released?: string,
+    identifiers?: Array<IdentifierType>
     keywords?: Keywords,
     message?: string,
     title?: string,
@@ -20,6 +28,28 @@ interface CFF {
 const cff = ref<CFF>({
     'cff-version': '1.2.0',
     type: 'software',
+    // this is just sample data that can be removed once we implement data binding for identifiers
+    identifiers: [
+        {
+            type: 'doi',
+            value: '10.0000/FIXME',
+            description: 'This is the description of the DOI'
+        },
+        {
+            type: 'swh',
+            value: 'some swh identifier'
+        },
+        {
+            type: 'url',
+            value: 'https://github.com/citation-file-format/cffinit',
+            description: 'This is the description of the URL'
+        },
+        {
+            type: 'other',
+            value: 'custom identifiers',
+            description: 'This is the description of the custom identifier'
+        }
+    ],
     keywords: [
         'first keyword',
         'second keyword',
@@ -37,6 +67,7 @@ export function useCFF () {
         cff: computed(() => cff.value),
         commit: computed(() => cff.value.commit),
         date_released: computed(() => cff.value.date_released),
+        identifiers: computed(() => cff.value.identifiers),
         keywords: computed(() => cff.value.keywords),
         message: computed(() => cff.value.message),
         title: computed(() => cff.value.title),
@@ -44,6 +75,7 @@ export function useCFF () {
         version: computed(() => cff.value.version),
         setCommit: (newCommit: string) => { cff.value.commit = newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.date_released = newDateReleased },
+        setIdentifiers: (newIdentifiers: Array<any>) => { cff.value.identifiers = newIdentifiers },
         setKeywords: (newKeywords: Keywords) => { cff.value.keywords = newKeywords },
         setMessage: (newMessage: string) => { cff.value.message = newMessage },
         setTitle: (newTitle: string) => { cff.value.title = newTitle },

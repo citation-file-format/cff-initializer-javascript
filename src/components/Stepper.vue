@@ -29,13 +29,22 @@
             />
 
             <q-step
+                title="Identifiers"
+                color="primary"
+                icon="star"
+                v-bind:name="3"
+                v-bind:done="step.step.value > 3"
+            />
+            <!-- 4 related resources -->
+            <!-- 5 abstract -->
+            <q-step
                 title="Keywords"
                 color="primary"
                 icon="star"
                 v-bind:name="6"
                 v-bind:done="step.step.value > 6"
             />
-
+            <!-- 7 license -->
             <q-step
                 title="Version specific"
                 color="primary"

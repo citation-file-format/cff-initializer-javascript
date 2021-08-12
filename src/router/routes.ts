@@ -21,7 +21,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Authors.vue') }]
     },
-    // 3 identifiers
+    {
+        path: '/3',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/Identifiers.vue') }]
+    },
     // 4 related resources
     // 5 abstract
     {

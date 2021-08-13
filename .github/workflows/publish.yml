@@ -4,9 +4,6 @@ on: # publish when main branch changes
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
 

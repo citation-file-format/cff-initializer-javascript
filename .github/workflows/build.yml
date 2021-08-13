@@ -29,7 +29,7 @@ jobs:
       run: npm clean-install
     - name: Run build
       run: npm run build
-    - name: Commit build
+    - name: Publish build
       if: matrix.node-version == '14.x'
       run: |
         git config --global user.name 'cffinit'

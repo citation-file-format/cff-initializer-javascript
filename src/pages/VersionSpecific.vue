@@ -3,7 +3,11 @@
         <div
             class="q-gutter-md title-field text-dark"
         >
-            <p class="q-mt-xl text-h5">
+            <p class="q-mt-xl page-title">
+                Version specific
+            </p>
+
+            <p class="question">
                 What is the commit identifier of the work?
             </p>
             <q-input
@@ -16,7 +20,7 @@
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
             />
 
-            <p class="q-mt-xl text-h5">
+            <p class="question">
                 What is the version of the work?
             </p>
             <q-input
@@ -29,7 +33,7 @@
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
             />
 
-            <p class="q-mt-xl text-h5">
+            <p class="question">
                 When was the version released?
             </p>
             <q-input

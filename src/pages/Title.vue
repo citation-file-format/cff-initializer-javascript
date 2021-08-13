@@ -3,7 +3,11 @@
         <div
             class="q-gutter-md title-field text-dark"
         >
-            <p class="q-mt-xl text-h5">
+            <p class="q-mt-xl page-title">
+                Start
+            </p>
+
+            <p class="question">
                 What is the title of the work?
             </p>
             <q-input
@@ -15,7 +19,7 @@
                 bg-color="white"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
             />
-            <p class="q-mt-xl  text-h5">
+            <p class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
             </p>
             <q-input
@@ -26,7 +30,7 @@
                 bg-color="white"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
             />
-            <p class="q-mt-xl text-h5">
+            <p class="question">
                 What type of work does this CITATION.cff describe?
             </p>
             <q-option-group

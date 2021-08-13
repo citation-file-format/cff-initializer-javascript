@@ -3,7 +3,11 @@
         <div
             class="q-gutter-md title-field text-dark"
         >
-            <p class="q-mt-xl text-h5">
+            <p class="q-mt-xl page-title">
+                Related resources
+            </p>
+
+            <p class="question">
                 The URL of a landing page/website for the work
             </p>
             <q-input
@@ -16,7 +20,7 @@
                 v-on:update:modelValue="setUrl"
             />
 
-            <p class="q-mt-xl text-h5">
+            <p class="question">
                 The URL of the work in a repository
             </p>
             <q-input
@@ -29,7 +33,7 @@
                 v-on:update:modelValue="setRepository"
             />
 
-            <p class="q-mt-xl text-h5">
+            <p class="question">
                 The URL of the work in a build artifact/binary repository
             </p>
             <q-input
@@ -42,7 +46,7 @@
                 v-on:update:modelValue="setRepositoryArtifact"
             />
 
-            <p class="q-mt-xl text-h5">
+            <p class="question">
                 The URL of the work in a source code repository
             </p>
             <q-input

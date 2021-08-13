@@ -6,13 +6,13 @@ on: # publish when main branch changes
       - main
 
 jobs:
-
   publish:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -22,12 +22,9 @@ jobs:
       run: npm clean-install
     - name: Run build
       run: npm run build
-    - name: Update docs folder
-      run: |
-        git config --global user.name 'cffinit'
-        git config --global user.email 'cffinit@users.noreply.github.com'
-        git add docs/
-        git commit -m "Update github.io page"
-        git push
-
-
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update github.io page
+        branch: main
+        file_pattern: docs/
+        commit_user_name: cffinit

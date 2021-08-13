@@ -3,17 +3,17 @@
 
 @font-face {
     font-family: 'Roboto';
-    src: url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    src: url('./fonts/Roboto/Roboto-Regular.ttf');
 }
 
 @font-face {
     font-family: 'Roboto Condensed';
-    src: url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+    src: url('./fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf');
 }
 
 @font-face {
     font-family: 'Roboto Mono';
-    src: url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+    src: url('./fonts/Roboto_Mono/static/RobotoMono-Regular.ttf');
 }
 
 

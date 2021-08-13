@@ -168,7 +168,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'PageFinish',
+    name: 'Finish',
     components: { },
     setup () {
         return {}

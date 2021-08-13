@@ -17,7 +17,7 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageKeywords',
+    name: 'Keywords',
     components: {
         StepperActions
     },

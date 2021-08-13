@@ -52,7 +52,7 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageVersionSpecific',
+    name: 'VersionSpecific',
     components: {
         StepperActions
     },

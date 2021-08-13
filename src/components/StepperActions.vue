@@ -77,7 +77,7 @@ export default defineComponent({
 <style>
 .action-buttons {
   height: 60px;
-  padding-bottom: 20px;;
+  padding-bottom: 20px;
 }
 
 </style>

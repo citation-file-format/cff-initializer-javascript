@@ -8,7 +8,7 @@
                     <div class="col-2 bg-secondary">
                         <Stepper />
                     </div>
-                    <div class="col-5 bg-secondary q-mr-lg form-page">
+                    <div class="col-5 bg-secondary q-mr-lg form-page col-flex">
                         <router-view />
                     </div>
                     <div class="col-4">
@@ -51,11 +51,16 @@ export default defineComponent({
 <style scoped>
 
 .form-page {
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-color: #c4c4c4;
-  min-height: 800px;
-  padding-left: 30px
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-color: #c4c4c4;
+    min-height: 800px;
+    padding-left: 30px
+}
+
+.col-flex {
+    display: flex;
+    flex-direction: column;
 }
 
 </style>

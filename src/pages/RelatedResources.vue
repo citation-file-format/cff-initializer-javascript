@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md">
+    <div class="q-pa-md col-flex">
         <div
             class="q-gutter-md title-field text-dark"
         >
@@ -11,52 +11,52 @@
                 The URL of a landing page/website for the work
             </p>
             <q-input
-                v-bind:model-value="url"
-                v-on:update:modelValue="setUrl"
+                bg-color="white"
                 label="url"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="url"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setUrl"
             />
 
             <p class="question">
                 The URL of the work in a repository
             </p>
             <q-input
-                v-bind:model-value="repository"
-                v-on:update:modelValue="setRepository"
+                bg-color="white"
                 label="repository"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="repository"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setRepository"
             />
 
             <p class="question">
                 The URL of the work in a build artifact/binary repository
             </p>
             <q-input
-                v-bind:model-value="repository_artifact"
-                v-on:update:modelValue="setRepositoryArtifact"
+                bg-color="white"
                 label="repository_artifact"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="repository_artifact"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setRepositoryArtifact"
             />
 
             <p class="question">
                 The URL of the work in a source code repository
             </p>
             <q-input
-                v-bind:model-value="repository_code"
-                v-on:update:modelValue="setRepositoryCode"
+                bg-color="white"
                 label="repository_code"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="repository_code"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setRepositoryCode"
             />
         </div>
     </div>
@@ -91,10 +91,13 @@ export default defineComponent({
 
 <style scoped>
 
+.col-flex {
+    flex: 1;
+}
 .title-field {
     margin-right: 120px;
-    min-width: 300px;
     max-width: 700px;
+    min-width: 300px;
 }
 
 </style>

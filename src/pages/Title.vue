@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md">
+    <div class="q-pa-md col-flex">
         <div
             class="q-gutter-md title-field text-dark"
         >
@@ -11,32 +11,32 @@
                 What is the title of the work?
             </p>
             <q-input
-                v-bind:model-value="title"
-                v-on:update:modelValue="setTitle"
+                bg-color="white"
                 label="title"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="title"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setTitle"
             />
             <p class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
             </p>
             <q-input
-                v-bind:model-value="message"
-                v-on:update:modelValue="setMessage"
+                bg-color="white"
                 label="message"
                 outlined
-                bg-color="white"
+                v-bind:model-value="message"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setMessage"
             />
             <p class="question">
                 What type of work does this CITATION.cff describe?
             </p>
             <q-option-group
-                v-bind:options="typeOptions"
                 type="radio"
                 v-bind:model-value="type"
+                v-bind:options="typeOptions"
                 v-on:update:modelValue="setType"
             />
         </div>
@@ -74,10 +74,13 @@ export default defineComponent({
 
 <style scoped>
 
+.col-flex {
+    flex: 1;
+}
 .title-field {
     margin-right: 120px;
-    min-width: 300px;
     max-width: 700px;
+    min-width: 300px;
 }
 
 </style>

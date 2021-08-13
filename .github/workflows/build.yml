@@ -32,7 +32,7 @@ jobs:
     - name: Commit build
       if: matrix.node-version == '14.x'
       run: |
-        git config --global user.name 'cffinit GitHub Action'
+        git config --global user.name 'cffinit'
         git config --global user.email 'cffinit@users.noreply.github.com'
         git add docs/
         git commit -m "Update github.io page"

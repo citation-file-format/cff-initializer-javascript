@@ -38,7 +38,7 @@
             </p>
             <q-input
                 bg-color="white"
-                label="date_released"
+                label="date-released"
                 outlined
                 standout
                 v-bind:model-value="date_released"

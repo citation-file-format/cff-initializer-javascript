@@ -5,7 +5,6 @@ on: # rebuild any PRs and main branch changes
   push:
     branches:
       - main
-      - 'releases/*'
 
 jobs:
 
@@ -29,12 +28,5 @@ jobs:
       run: npm clean-install
     - name: Run build
       run: npm run build
-    - name: Publish build
-      if: matrix.node-version == '14.x'
-      run: |
-        git config --global user.name 'cffinit'
-        git config --global user.email 'cffinit@users.noreply.github.com'
-        git add docs/
-        git commit -m "Update github.io page"
-        git push
+
 

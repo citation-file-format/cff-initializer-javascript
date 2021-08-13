@@ -29,5 +29,12 @@ jobs:
       run: npm clean-install
     - name: Run build
       run: npm run build
-
+    - name: Run build
+    - name: Commit build
+      if: matrix.node-version == '14.x'
+      run: |
+        git config --global user.name 'cffinit GitHub Action'
+        git config --global user.email 'cffinit@users.noreply.github.com'
+        git commit -am "Automated build update"
+        git push
 

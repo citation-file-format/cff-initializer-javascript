@@ -34,6 +34,7 @@ jobs:
       run: |
         git config --global user.name 'cffinit GitHub Action'
         git config --global user.email 'cffinit@users.noreply.github.com'
-        git commit -am "Automated build update"
+        git add docs/
+        git commit -m "Update github.io page"
         git push
 

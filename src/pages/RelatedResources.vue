@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md">
+    <div class="q-pa-md col-flex">
         <div
             class="q-gutter-md title-field text-dark"
         >
@@ -87,6 +87,9 @@ export default defineComponent({
 
 <style scoped>
 
+.col-flex {
+    flex: 1;
+}
 .title-field {
     margin-right: 120px;
     max-width: 700px;

@@ -38,12 +38,7 @@ const cff = ref<CFF>({
 export function useCFF () {
     return {
         abstract: computed(() => cff.value.abstract),
-        asYAML: computed(() => yaml.dump(cff.value, {
-            indent: 4,
-            lineWidth: 70,
-            quotingType: '"',
-            sortKeys: true
-        })),
+        asYAML: computed(() => yaml.dump(cff.value)),
         cff: computed(() => cff.value),
         commit: computed(() => cff.value.commit),
         date_released: computed(() => cff.value.date_released),

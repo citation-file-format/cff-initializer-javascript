@@ -7,39 +7,39 @@
                 What is the commit identifier of the work?
             </p>
             <q-input
-                v-bind:model-value="commit"
-                v-on:update:modelValue="setCommit"
+                bg-color="white"
                 label="commit"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="commit"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setCommit"
             />
 
             <p class="q-mt-xl text-h5">
                 What is the version of the work?
             </p>
             <q-input
-                v-bind:model-value="version"
-                v-on:update:modelValue="setVersion"
+                bg-color="white"
                 label="version"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="version"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setVersion"
             />
 
             <p class="q-mt-xl text-h5">
                 When was the version released?
             </p>
             <q-input
-                v-bind:model-value="date_released"
-                v-on:update:modelValue="setDateReleased"
+                bg-color="white"
                 label="date_released"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="date_released"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setDateReleased"
             />
         </div>
     </div>
@@ -77,8 +77,8 @@ export default defineComponent({
 }
 .title-field {
     margin-right: 120px;
-    min-width: 300px;
     max-width: 700px;
+    min-width: 300px;
 }
 
 </style>

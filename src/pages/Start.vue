@@ -3,33 +3,33 @@
         <div class="row">
             <div class="col-6 q-pa-lg">
                 <q-card
-                    flat
                     class="secondary q-mt-xl"
+                    flat
                 >
                     <div
-                        class="text-primary q-gutter-md q-mb-xl"
                         align="left"
+                        class="text-primary q-gutter-md q-mb-xl"
                         style="font-size: 2em"
                     >
                         <q-skeleton
+                            class="text-h1"
                             type="text"
                             width="100%"
-                            class="text-h1"
                         />
                         <q-skeleton
+                            class="text-h1"
                             type="text"
                             width="50%"
-                            class="text-h1"
                         />
                         <q-skeleton
+                            class="text-h1"
                             type="text"
                             width="50%"
-                            class="text-h1"
                         />
                         <q-skeleton
+                            class="text-h1"
                             type="text"
                             width="50%"
-                            class="text-h1"
                         />
                     </div>
 
@@ -61,44 +61,44 @@
                     <q-item>
                         <q-item-section avatar>
                             <q-skeleton
-                                type="QAvatar"
                                 animation="fade"
+                                type="QAvatar"
                             />
                         </q-item-section>
 
                         <q-item-section>
                             <q-item-label>
                                 <q-skeleton
-                                    type="text"
                                     animation="fade"
+                                    type="text"
                                 />
                             </q-item-label>
                             <q-item-label caption>
                                 <q-skeleton
-                                    type="text"
                                     animation="fade"
+                                    type="text"
                                 />
                             </q-item-label>
                         </q-item-section>
                     </q-item>
 
                     <q-skeleton
+                        animation="fade"
                         height="400px"
                         square
-                        animation="fade"
                     />
 
                     <q-card-section>
                         <q-skeleton
-                            type="text"
-                            class="text-subtitle2"
                             animation="fade"
+                            class="text-subtitle2"
+                            type="text"
                         />
                         <q-skeleton
+                            animation="fade"
+                            class="text-subtitle2"
                             type="text"
                             width="50%"
-                            class="text-subtitle2"
-                            animation="fade"
                         />
                     </q-card-section>
                 </q-card>
@@ -109,10 +109,10 @@
             class="row justify-center items-center q-pt-xl"
         >
             <q-btn
-                no-caps
-                size="xl"
                 color="primary"
                 label="Get started"
+                no-caps
+                size="xl"
                 to="/1"
             />
         </div>

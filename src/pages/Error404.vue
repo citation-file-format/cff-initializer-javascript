@@ -12,13 +12,13 @@
             </div>
 
             <q-btn
-                no-caps
                 class="q-mt-xl"
                 color="white"
-                text-color="blue"
-                unelevated
-                to="/"
                 label="Go Home"
+                no-caps
+                text-color="blue"
+                to="/"
+                unelevated
             />
         </div>
     </div>

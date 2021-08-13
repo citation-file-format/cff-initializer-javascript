@@ -38,8 +38,8 @@ export default defineComponent({
 }
 .title-field {
     margin-right: 120px;
-    min-width: 300px;
     max-width: 700px;
+    min-width: 300px;
 }
 
 </style>

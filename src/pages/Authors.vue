@@ -5,8 +5,8 @@
         </div>
 
         <q-card
-            flat
             class="secondary q-mt-xl q-pa-lg"
+            flat
         >
             <q-item>
                 <q-item-section>
@@ -26,17 +26,17 @@
 
             <q-card-section>
                 <q-skeleton
-                    type="text"
                     class="text-subtitle1"
+                    type="text"
                 />
                 <q-skeleton
+                    class="text-subtitle1"
                     type="text"
                     width="50%"
-                    class="text-subtitle1"
                 />
                 <q-skeleton
-                    type="text"
                     class="text-caption"
+                    type="text"
                 />
             </q-card-section>
         </q-card>

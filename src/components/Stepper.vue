@@ -59,7 +59,15 @@
                 v-bind:done="step.step.value > 6"
                 v-bind:name="6"
             />
-            <!-- 7 license -->
+
+            <q-step
+                title="License"
+                color="primary"
+                icon="star"
+                v-bind:name="7"
+                v-bind:done="step.step.value > 7"
+            />
+
             <q-step
                 color="primary"
                 icon="star"

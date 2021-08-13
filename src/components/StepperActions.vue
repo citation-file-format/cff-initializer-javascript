@@ -2,11 +2,11 @@
     <div class="row action-buttons">
         <div class="col">
             <q-btn
-                no-caps
-                flat
-                v-on:click="navigatePrevious"
                 color=""
+                flat
                 label="Back"
+                no-caps
+                v-on:click="navigatePrevious"
             />
         </div>
         <div
@@ -15,17 +15,17 @@
         >
             <q-btn-group flat>
                 <q-btn
-                    no-caps
-                    flat
                     color=""
+                    flat
                     label="Finish"
+                    no-caps
                     to="/finish"
                 />
                 <q-btn
-                    no-caps
-                    v-on:click="navigateNext"
                     color="grey-6"
                     label="Next"
+                    no-caps
+                    v-on:click="navigateNext"
                 />
             </q-btn-group>
         </div>
@@ -76,8 +76,8 @@ export default defineComponent({
 
 <style>
 .action-buttons {
-  margin-top: 100px;
-  padding-bottom: 20px;;
+    margin-top: 100px;
+    padding-bottom: 20px;;
 }
 
 </style>

@@ -22,11 +22,11 @@
 </template>
 
 <script lang="ts">
-import Header from 'components/Header.vue'
 import Footer from 'components/Footer.vue'
+import Header from 'components/Header.vue'
+import Preview from 'components/Preview.vue'
 import Stars from 'components/Stars.vue'
 import Stepper from 'components/Stepper.vue'
-import Preview from 'components/Preview.vue'
 
 import { defineComponent } from 'vue'
 
@@ -34,11 +34,11 @@ export default defineComponent({
     name: 'MainLayout',
 
     components: {
-        Header,
         Footer,
+        Header,
+        Preview,
         Stars,
-        Stepper,
-        Preview
+        Stepper
     },
 
     setup () {
@@ -51,11 +51,11 @@ export default defineComponent({
 <style scoped>
 
 .form-page {
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-color: #c4c4c4;
-  min-height: 800px;
-  padding-left: 30px
+    border-color: #c4c4c4;
+    border-left-style: solid;
+    border-left-width: 1px;
+    min-height: 800px;
+    padding-left: 30px
 }
 
 </style>

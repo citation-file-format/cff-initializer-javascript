@@ -4,8 +4,8 @@
         v-bind:to="link"
     >
         <q-item-section
-            v-if="icon"
             avatar
+            v-if="icon"
         >
             <q-icon v-bind:name="icon" />
         </q-item-section>

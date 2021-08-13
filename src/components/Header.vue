@@ -5,26 +5,26 @@
             <q-toolbar-title align="right">
                 <q-btn-group flat>
                     <q-btn
-                        no-caps
-                        flat
                         color=""
-                        label="Report an issue"
-                        icon-right="ion-logo-github"
-                        type="a"
+                        flat
                         href=""
+                        icon-right="ion-logo-github"
+                        label="Report an issue"
+                        no-caps
                         target="_blank"
+                        type="a"
                     />
                     <q-btn
-                        no-caps
-                        flat
                         color=""
+                        flat
                         label="Documentation"
+                        no-caps
                     />
                     <q-btn
-                        no-caps
-                        flat
                         color=""
+                        flat
                         label="About"
+                        no-caps
                     />
                 </q-btn-group>
             </q-toolbar-title>

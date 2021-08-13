@@ -26,8 +26,8 @@
         <div class="row">
             <div class="col-6 q-pa-lg">
                 <q-card
-                    flat
                     class="secondary"
+                    flat
                 >
                     <q-card-section>
                         <div class="text-h3">
@@ -58,23 +58,23 @@
 
                     <q-card-section>
                         <q-skeleton
-                            type="text"
                             class="text-subtitle1"
+                            type="text"
                         />
                         <q-skeleton
+                            class="text-subtitle1"
                             type="text"
                             width="50%"
-                            class="text-subtitle1"
                         />
                         <q-skeleton
-                            type="text"
                             class="text-caption"
+                            type="text"
                         />
                     </q-card-section>
 
                     <div
-                        class="text-primary q-gutter-md q-mb-xl"
                         align="center"
+                        class="text-primary q-gutter-md q-mb-xl"
                         style="font-size: 2em"
                     >
                         <q-icon
@@ -92,19 +92,19 @@
                     </div>
 
                     <div
-                        class="text-primary q-gutter-md q-mb-xl"
                         align="left"
+                        class="text-primary q-gutter-md q-mb-xl"
                         style="font-size: 2em"
                     >
                         <q-skeleton
+                            class="text-subtitle1"
                             type="text"
                             width="50%"
-                            class="text-subtitle1"
                         />
                         <q-skeleton
+                            class="text-subtitle1"
                             type="text"
                             width="50%"
-                            class="text-subtitle1"
                         />
                     </div>
 
@@ -113,19 +113,19 @@
                         class="q-gutter-md"
                     >
                         <q-btn
-                            no-caps
+                            class="q-mr-xl"
                             color="primary"
                             icon="chevron_left"
                             label="Back to form"
-                            class="q-mr-xl"
+                            no-caps
                             v-on:click="$router.go(-1)"
                         />
                         <q-btn
-                            no-caps
+                            class="q-ml-xl"
                             color="primary"
                             icon="edit"
                             label="Create another"
-                            class="q-ml-xl"
+                            no-caps
                             to="/1"
                         />
                     </q-card-actions>
@@ -134,15 +134,15 @@
 
             <div class="col-6 q-pa-lg">
                 <q-card
-                    flat
                     class="secondary cff-card"
+                    flat
                 >
                     <q-card-section>
                         <q-skeleton
-                            v-for="index in 11"
-                            v-bind:key="index"
-                            type="text"
                             class="text-h6"
+                            type="text"
+                            v-bind:key="index"
+                            v-for="index in 11"
                         />
                     </q-card-section>
 
@@ -151,11 +151,11 @@
                         class="q-gutter-md q-mt-xl"
                     >
                         <q-btn
-                            no-caps
+                            class="download-button"
                             color="primary"
                             icon="download"
                             label="Download"
-                            class="download-button"
+                            no-caps
                         />
                     </q-card-actions>
                 </q-card>

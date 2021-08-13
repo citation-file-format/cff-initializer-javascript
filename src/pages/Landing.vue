@@ -123,7 +123,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'PageStart',
+    name: 'PageLanding',
     components: { },
     setup () {
         return {}

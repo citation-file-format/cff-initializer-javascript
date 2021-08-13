@@ -1,24 +1,17 @@
 <template>
-    <div class="q-pa-md col-flex">
-        <div
-            class="q-gutter-md title-field text-dark"
-        >
-            <p class="q-mt-xl page-title">
-                Abstract
-            </p>
-
-            <p class="question">
-                What is the abstract of the work?
+    <div class="q-pa-md">
+        <div class="q-gutter-md title-field text-dark">
+            <p class="q-mt-xl text-h5">
+                What is the license of the work?
             </p>
             <q-input
-                bg-color="white"
-                label="abstract"
+                v-bind:model-value="license"
+                v-on:update:model-value="setLicense"
+                label="license"
                 outlined
                 standout
-                type="textarea"
-                v-bind:model-value="abstract"
+                bg-color="white"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
-                v-on:update:modelValue="setAbstract"
             />
         </div>
     </div>
@@ -31,29 +24,24 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'Abstract',
+    name: 'PageLicense',
     components: {
         StepperActions
     },
     setup () {
         const cff = useCFF()
         return {
-            abstract: cff.abstract,
-            setAbstract: cff.setAbstract
+            license: cff.license,
+            setLicense: cff.setLicense
         }
     }
 })
 </script>
 
 <style scoped>
-
-.col-flex {
-    flex: 1;
-}
 .title-field {
     margin-right: 120px;
     min-width: 300px;
     max-width: 700px;
 }
-
 </style>

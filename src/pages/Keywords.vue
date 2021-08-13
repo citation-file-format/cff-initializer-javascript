@@ -3,7 +3,7 @@
         <div
             class="q-gutter-md title-field text-dark"
         >
-            <p class="q-mt-xl text-h5">
+            <p class="q-mt-xl page-title">
                 Keywords
             </p>
         </div>

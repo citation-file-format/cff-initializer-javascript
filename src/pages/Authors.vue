@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="text-h4">
-            Authors page
+        <div class="page-title">
+            Authors
         </div>
 
         <q-card

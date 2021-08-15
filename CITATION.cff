@@ -1,0 +1,29 @@
+# YAML 1.2
+---
+authors:
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Spaaks
+    given-names: Jurriaan H.
+    orcid: "https://orcid.org/0000-0002-7064-4069"
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Verhoeven
+    given-names: Stefan
+    orcid: "https://orcid.org/0000-0002-5821-2060"
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Diblen
+    given-names: Faruk
+    orcid: "https://orcid.org/0000-0002-0989-929X"
+cff-version: "1.2.0"
+date-released: 2021-08-XX
+doi: FIXME
+keywords:
+  - cff
+  - citation
+license: Apache-2.0
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/citation-file-format"
+title: "cff initializer website v2"
+version: "2.0.0"

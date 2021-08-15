@@ -13,7 +13,7 @@ type CFFType = 'software' | 'dataset'
 
 type KeywordsType = Array<string>
 
-interface CFF {
+type CFF = {
     abstract?: string,
     'cff-version': string,
     commit?: string,

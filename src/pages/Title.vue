@@ -47,7 +47,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'PageTitle',
@@ -55,7 +55,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const cff = useCff()
         return {
             typeOptions: [
                 { label: 'Software', value: 'software' },

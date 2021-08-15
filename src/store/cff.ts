@@ -8,7 +8,7 @@ const cff = ref<CffType>({
     type: 'software'
 })
 
-export function useCFF () {
+export function useCff () {
     return {
         abstract: computed(() => cff.value.abstract),
         asYAML: computed(() => yaml.dump(cff.value)),

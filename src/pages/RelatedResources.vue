@@ -66,7 +66,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'PageRelatedResources',
@@ -74,7 +74,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const cff = useCff()
         return {
             repository: cff.repository,
             repository_artifact: cff.repository_artifact,

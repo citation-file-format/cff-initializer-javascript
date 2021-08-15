@@ -9,11 +9,11 @@ type IdentifierType = {
     description?: string
 }
 
-type CFFType = 'software' | 'dataset'
+type TypeType = 'software' | 'dataset'
 
 type KeywordsType = Array<string>
 
-type CFF = {
+type CffType = {
     abstract?: string,
     'cff-version': string,
     commit?: string,
@@ -26,12 +26,12 @@ type CFF = {
     repository_artifact?: string,
     repository_code?: string,
     title?: string,
-    type: CFFType,
+    type: TypeType,
     url?: string,
     version?: string
 }
 
-const cff = ref<CFF>({
+const cff = ref<CffType>({
     'cff-version': '1.2.0',
     type: 'software'
 })
@@ -65,7 +65,7 @@ export function useCFF () {
         setRepositoryArtifact: (newRepositoryArtifact: string) => { cff.value.repository_artifact = newRepositoryArtifact },
         setRepositoryCode: (newRepositoryCode: string) => { cff.value.repository_code = newRepositoryCode },
         setTitle: (newTitle: string) => { cff.value.title = newTitle },
-        setType: (newType: CFFType) => { cff.value.type = newType },
+        setType: (newType: TypeType) => { cff.value.type = newType },
         setUrl: (newUrl: string) => { cff.value.url = newUrl },
         setVersion: (newVersion: string) => { cff.value.version = newVersion }
     }

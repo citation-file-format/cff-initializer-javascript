@@ -4,21 +4,55 @@
         flat
     >
         <q-card-section>
-            <pre>{{ yaml }}</pre>
+            <pre>{{ cffstr }}</pre>
         </q-card-section>
     </q-card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useCff } from '../store/cff'
+import { defineComponent, computed } from 'vue'
+import { useCff } from 'src/store/cff'
+import yaml from 'js-yaml'
 
 export default defineComponent({
     name: 'Preview',
     setup () {
-        const cff = useCff()
+        const {
+            abstract,
+            cffVersion,
+            commit,
+            dateReleased,
+            identifiers,
+            keywords,
+            license,
+            message,
+            repository,
+            repositoryArtifact,
+            repositoryCode,
+            title,
+            type,
+            url,
+            version
+        } = useCff()
+
         return {
-            yaml: cff.asYAML
+            cffstr: computed(() => yaml.dump({
+                abstract: abstract.value,
+                cffVersion: cffVersion.value,
+                commit: commit.value,
+                dateReleased: dateReleased.value,
+                identifiers: identifiers.value,
+                keywords: keywords.value,
+                license: license.value,
+                message: message.value,
+                repository: repository.value,
+                repositoryArtifact: repositoryArtifact.value,
+                repositoryCode: repositoryCode.value,
+                title: title.value,
+                type: type.value,
+                url: url.value,
+                version: version.value
+            }))
         }
     }
 })

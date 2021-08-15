@@ -22,10 +22,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCff()
+        const { identifiers, setIdentifiers } = useCff()
         return {
-            identifiers: cff.identifiers,
-            setIdentifiers: cff.setIdentifiers
+            identifiers,
+            setIdentifiers
         }
     }
 })

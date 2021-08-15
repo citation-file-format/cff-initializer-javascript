@@ -36,10 +36,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCff()
+        const { abstract, setAbstract } = useCff()
         return {
-            abstract: cff.abstract,
-            setAbstract: cff.setAbstract
+            abstract,
+            setAbstract
         }
     }
 })

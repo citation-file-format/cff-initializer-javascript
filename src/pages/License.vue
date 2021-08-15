@@ -29,10 +29,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCff()
+        const { license, setLicense } = useCff()
         return {
-            license: cff.license,
-            setLicense: cff.setLicense
+            license,
+            setLicense
         }
     }
 })

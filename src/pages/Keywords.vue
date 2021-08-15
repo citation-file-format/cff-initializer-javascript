@@ -22,10 +22,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCff()
+        const { keywords, setKeywords } = useCff()
         return {
-            keywords: cff.keywords,
-            setKeywords: cff.setKeywords
+            keywords,
+            setKeywords
         }
     }
 })

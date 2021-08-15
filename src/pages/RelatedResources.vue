@@ -38,10 +38,10 @@
             </p>
             <q-input
                 bg-color="white"
-                label="repository_artifact"
+                label="repository-artifact"
                 outlined
                 standout
-                v-bind:model-value="repository_artifact"
+                v-bind:model-value="repositoryArtifact"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
@@ -51,10 +51,10 @@
             </p>
             <q-input
                 bg-color="white"
-                label="repository_code"
+                label="repository-code"
                 outlined
                 standout
-                v-bind:model-value="repository_code"
+                v-bind:model-value="repositoryCode"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
                 v-on:update:modelValue="setRepositoryCode"
             />
@@ -74,16 +74,19 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCff()
+        const {
+            repository, repositoryArtifact, repositoryCode, url,
+            setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
+        } = useCff()
         return {
-            repository: cff.repository,
-            repository_artifact: cff.repository_artifact,
-            repository_code: cff.repository_code,
-            url: cff.url,
-            setRepository: cff.setRepository,
-            setRepositoryArtifact: cff.setRepositoryArtifact,
-            setRepositoryCode: cff.setRepositoryCode,
-            setUrl: cff.setUrl
+            repository,
+            repositoryArtifact,
+            repositoryCode,
+            url,
+            setRepository,
+            setRepositoryArtifact,
+            setRepositoryCode,
+            setUrl
         }
     }
 })

@@ -38,10 +38,10 @@
             </p>
             <q-input
                 bg-color="white"
-                label="date_released"
+                label="date-released"
                 outlined
                 standout
-                v-bind:model-value="date_released"
+                v-bind:model-value="dateReleased"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
                 v-on:update:modelValue="setDateReleased"
             />
@@ -61,14 +61,14 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCff()
+        const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
         return {
-            commit: cff.commit,
-            date_released: cff.date_released,
-            version: cff.version,
-            setCommit: cff.setCommit,
-            setDateReleased: cff.setDateReleased,
-            setVersion: cff.setVersion
+            commit,
+            dateReleased,
+            version,
+            setCommit,
+            setDateReleased,
+            setVersion
         }
     }
 })

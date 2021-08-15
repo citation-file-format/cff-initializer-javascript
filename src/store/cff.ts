@@ -1,35 +1,7 @@
-/* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ref, computed } from 'vue'
 import yaml from 'js-yaml'
-
-type IdentifierType = {
-    type: 'doi' | 'url' | 'swh' | 'other',
-    value: string,
-    description?: string
-}
-
-type TypeType = 'software' | 'dataset'
-
-type KeywordsType = Array<string>
-
-type CffType = {
-    abstract?: string,
-    'cff-version': string,
-    commit?: string,
-    date_released?: string,
-    identifiers?: Array<IdentifierType>,
-    keywords?: KeywordsType,
-    license?: string,
-    message?: string,
-    repository?: string,
-    repository_artifact?: string,
-    repository_code?: string,
-    title?: string,
-    type: TypeType,
-    url?: string,
-    version?: string
-}
+import { CffType, IdentifierType, KeywordsType, TypeType } from '../types'
 
 const cff = ref<CffType>({
     'cff-version': '1.2.0',

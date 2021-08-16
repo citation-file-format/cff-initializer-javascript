@@ -1,44 +1,92 @@
 <template>
-  <div class="q-pa-md">
-    <q-stepper
-      :model-value="step.step"
-      v-on:update:modelValue="updateStep"
-      ref="stepper"
-      vertical
-      animated
-      header-nav
-      flat
-      active-icon=""
-      inactive-icon="star"
-      class="bg-secondary text-primary"
-    >
-      <q-step
-        title="Start"
-        color="primary"
-        icon="star"
-        :name="1"
-        :done="step.step.value > 1"
-      />
-      <!-- v-on:click="updateStep" -->
-      <q-step
-        title="Authors"
-        color="primary"
-        icon="done_all"
-        :name="2"
-        :done="step.step.value > 2"
-      />
+    <div class="q-pa-md">
+        <q-stepper
+            active-icon=""
+            animated
+            class="bg-secondary text-primary"
+            flat
+            header-nav
+            inactive-icon="star"
+            ref="stepper"
+            v-bind:model-value="step.step"
+            v-on:update:modelValue="updateStep"
+            vertical
+        >
+            <q-step
+                color="primary"
+                icon="star"
+                title="Start"
+                v-bind:done="step.step.value > 1"
+                v-bind:name="1"
+            />
 
-      <q-step
-        :name="100"
-        title="Finish"
-        color="primary"
-        icon="expand_more"
-        disable
-      >
-        This step won't show up because it is disabled.
-      </q-step>
-    </q-stepper>
-  </div>
+            <q-step
+                color="primary"
+                icon="star"
+                title="Authors"
+                v-bind:done="step.step.value > 2"
+                v-bind:name="2"
+            />
+
+            <q-step
+                color="primary"
+                icon="star"
+                title="Identifiers"
+                v-bind:done="step.step.value > 3"
+                v-bind:name="3"
+            />
+
+            <q-step
+                color="primary"
+                icon="star"
+                title="Related resources"
+                v-bind:done="step.step.value > 4"
+                v-bind:name="4"
+            />
+
+            <q-step
+                color="primary"
+                icon="star"
+                title="Abstract"
+                v-bind:done="step.step.value > 5"
+                v-bind:name="5"
+            />
+
+            <q-step
+                color="primary"
+                icon="star"
+                title="Keywords"
+                v-bind:done="step.step.value > 6"
+                v-bind:name="6"
+            />
+
+            <q-step
+                title="License"
+                color="primary"
+                icon="star"
+                v-bind:name="7"
+                v-bind:done="step.step.value > 7"
+            />
+
+            <q-step
+                color="primary"
+                icon="star"
+                title="Version specific"
+                v-bind:done="step.step.value > 8"
+                v-bind:name="8"
+            />
+
+            <q-step
+                color="primary"
+                disable
+                icon="expand_more"
+                title="Finish"
+                v-bind:name="100"
+            >
+                This step won't show up because it is disabled.
+            </q-step>
+        </q-stepper>
+    </div>
 </template>
 
 <script lang="ts">

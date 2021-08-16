@@ -23,6 +23,36 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/3',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/Identifiers.vue') }]
+    },
+    {
+        path: '/4',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/RelatedResources.vue') }]
+    },
+    {
+        path: '/5',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/Abstract.vue') }]
+    },
+    {
+        path: '/6',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/Keywords.vue') }]
+    },
+    {
+        path: '/7',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/License.vue') }]
+    },
+    {
+        path: '/8',
+        component: () => import('src/layouts/StepperLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/VersionSpecific.vue') }]
+    },
+    {
+        path: '/9',
         component: () => import('src/layouts/MainLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Finish.vue') }]
     },

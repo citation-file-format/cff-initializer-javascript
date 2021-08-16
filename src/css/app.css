@@ -1,1 +1,46 @@
 /* app global css */
+
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('./fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('./fonts/Roboto_Mono/static/RobotoMono-Regular.ttf');
+}
+
+
+p, body {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.page-title {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.question {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+pre, .mono {
+    font-family: 'Roboto Mono', sans-serif;
+}

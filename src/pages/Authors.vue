@@ -1,47 +1,47 @@
 <template>
-  <div>
-    <div class="text-h4">
-      Authors page
+    <div>
+        <div class="page-title">
+            Authors
+        </div>
+
+        <q-card
+            class="secondary q-mt-xl q-pa-lg"
+            flat
+        >
+            <q-item>
+                <q-item-section>
+                    <q-item-label>
+                        <q-skeleton type="text" />
+                    </q-item-label>
+                    <q-item-label caption>
+                        <q-skeleton type="text" />
+                    </q-item-label>
+                </q-item-section>
+            </q-item>
+
+            <q-skeleton
+                height="200px"
+                square
+            />
+
+            <q-card-section>
+                <q-skeleton
+                    class="text-subtitle1"
+                    type="text"
+                />
+                <q-skeleton
+                    class="text-subtitle1"
+                    type="text"
+                    width="50%"
+                />
+                <q-skeleton
+                    class="text-caption"
+                    type="text"
+                />
+            </q-card-section>
+        </q-card>
+        <StepperActions />
     </div>
-
-    <q-card
-      flat
-      class="secondary q-mt-xl q-pa-lg"
-    >
-      <q-item>
-        <q-item-section>
-          <q-item-label>
-            <q-skeleton type="text" />
-          </q-item-label>
-          <q-item-label caption>
-            <q-skeleton type="text" />
-          </q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-skeleton
-        height="200px"
-        square
-      />
-
-      <q-card-section>
-        <q-skeleton
-          type="text"
-          class="text-subtitle1"
-        />
-        <q-skeleton
-          type="text"
-          width="50%"
-          class="text-subtitle1"
-        />
-        <q-skeleton
-          type="text"
-          class="text-caption"
-        />
-      </q-card-section>
-    </q-card>
-    <StepperActions />
-  </div>
 </template>
 
 <script lang="ts">

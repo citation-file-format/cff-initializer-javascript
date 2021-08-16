@@ -1,35 +1,35 @@
 <template>
-  <div class="row action-buttons">
-    <div class="col">
-      <q-btn
-        no-caps
-        flat
-        v-on:click="navigatePrevious"
-        color=""
-        label="Back"
-      />
+    <div class="row action-buttons">
+        <div class="col">
+            <q-btn
+                color=""
+                flat
+                label="Back"
+                no-caps
+                v-on:click="navigatePrevious"
+            />
+        </div>
+        <div
+            class="col q-mr-lg"
+            align="right"
+        >
+            <q-btn-group flat>
+                <q-btn
+                    color=""
+                    flat
+                    label="Finish"
+                    no-caps
+                    to="/finish"
+                />
+                <q-btn
+                    color="grey-6"
+                    label="Next"
+                    no-caps
+                    v-on:click="navigateNext"
+                />
+            </q-btn-group>
+        </div>
     </div>
-    <div
-      class="col q-mr-lg"
-      align="right"
-    >
-      <q-btn-group flat>
-        <q-btn
-          no-caps
-          flat
-          color=""
-          label="Finish"
-          to="/finish"
-        />
-        <q-btn
-          no-caps
-          v-on:click="navigateNext"
-          color="grey-6"
-          label="Next"
-        />
-      </q-btn-group>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -76,8 +76,8 @@ export default defineComponent({
 
 <style>
 .action-buttons {
-  margin-top: 100px;
-  padding-bottom: 20px;;
+    height: 60px;
+    padding-bottom: 20px;
 }
 
 </style>

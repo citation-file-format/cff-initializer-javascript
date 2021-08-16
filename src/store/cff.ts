@@ -1,12 +1,34 @@
+/* eslint-disable camelcase */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ref, computed } from 'vue'
 import yaml from 'js-yaml'
 
+type IdentifierType = {
+    type: 'doi' | 'url' | 'swh' | 'other',
+    value: string,
+    description?: string
+}
+
 type CFFType = 'software' | 'dataset'
+
+type KeywordsType = Array<string>
+
 interface CFF {
-  'cff-version': string,
-  title?: string,
-  message?: string,
-  type: CFFType
+    abstract?: string,
+    'cff-version': string,
+    commit?: string,
+    date_released?: string,
+    identifiers?: Array<IdentifierType>,
+    keywords?: KeywordsType,
+    license?: string,
+    message?: string,
+    repository?: string,
+    repository_artifact?: string,
+    repository_code?: string,
+    title?: string,
+    type: CFFType,
+    url?: string,
+    version?: string
 }
 
 const cff = ref<CFF>({
@@ -16,27 +38,35 @@ const cff = ref<CFF>({
 
 export function useCFF () {
     return {
+        abstract: computed(() => cff.value.abstract),
+        asYAML: computed(() => yaml.dump(cff.value)),
         cff: computed(() => cff.value),
-        title: computed(() => cff.value.title),
+        commit: computed(() => cff.value.commit),
+        date_released: computed(() => cff.value.date_released),
+        identifiers: computed(() => cff.value.identifiers),
+        keywords: computed(() => cff.value.keywords),
+        license: computed(() => cff.value.license),
         message: computed(() => cff.value.message),
+        repository: computed(() => cff.value.repository),
+        repository_artifact: computed(() => cff.value.repository_artifact),
+        repository_code: computed(() => cff.value.repository_code),
+        title: computed(() => cff.value.title),
         type: computed(() => cff.value.type),
-        setTitle: (newTitle: string) => { cff.value.title = newTitle },
+        url: computed(() => cff.value.url),
+        version: computed(() => cff.value.version),
+        setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract },
+        setCommit: (newCommit: string) => { cff.value.commit = newCommit },
+        setDateReleased: (newDateReleased: string) => { cff.value.date_released = newDateReleased },
+        setIdentifiers: (newIdentifiers: Array<IdentifierType>) => { cff.value.identifiers = newIdentifiers },
+        setKeywords: (newKeywords: KeywordsType) => { cff.value.keywords = newKeywords },
+        setLicense: (newLicense: string) => { cff.value.license = newLicense },
         setMessage: (newMessage: string) => { cff.value.message = newMessage },
+        setRepository: (newRepository: string) => { cff.value.repository = newRepository },
+        setRepositoryArtifact: (newRepositoryArtifact: string) => { cff.value.repository_artifact = newRepositoryArtifact },
+        setRepositoryCode: (newRepositoryCode: string) => { cff.value.repository_code = newRepositoryCode },
+        setTitle: (newTitle: string) => { cff.value.title = newTitle },
         setType: (newType: CFFType) => { cff.value.type = newType },
-        asYAML: computed(() => {
-            return yaml.dump(cff.value, {
-                replacer: hideEmptyKeys
-            })
-        })
+        setUrl: (newUrl: string) => { cff.value.url = newUrl },
+        setVersion: (newVersion: string) => { cff.value.version = newVersion }
     }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const hideEmptyKeys = (key: string, value: any) => {
-    console.log('hideEmptyKeys: ', key, value)
-    if (value === '') {
-        return undefined
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return value
 }

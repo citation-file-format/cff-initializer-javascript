@@ -38,7 +38,7 @@
             </p>
             <q-input
                 bg-color="white"
-                label="date_released"
+                label="date-released"
                 outlined
                 standout
                 v-bind:model-value="date_released"
@@ -56,7 +56,7 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageVersionSpecific',
+    name: 'VersionSpecific',
     components: {
         StepperActions
     },

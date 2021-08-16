@@ -123,7 +123,7 @@ import { defineComponent } from 'vue'
 import Preview from 'components/Preview.vue'
 
 export default defineComponent({
-    name: 'PageFinish',
+    name: 'Finish',
     components: {
         Preview
     },

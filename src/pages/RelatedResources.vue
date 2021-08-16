@@ -38,7 +38,7 @@
             </p>
             <q-input
                 bg-color="white"
-                label="repository_artifact"
+                label="repository-artifact"
                 outlined
                 standout
                 v-bind:model-value="repository_artifact"
@@ -51,7 +51,7 @@
             </p>
             <q-input
                 bg-color="white"
-                label="repository_code"
+                label="repository-code"
                 outlined
                 standout
                 v-bind:model-value="repository_code"
@@ -69,7 +69,7 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageRelatedResources',
+    name: 'RelatedResources',
     components: {
         StepperActions
     },

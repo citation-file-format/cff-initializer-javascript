@@ -1,141 +1,86 @@
 <template>
-    <div class="">
-        <div class="row">
-            <div class="col-6 q-pa-lg">
-                <q-card
-                    class="secondary q-mt-xl"
-                    flat
-                >
-                    <div
-                        align="left"
-                        class="text-primary q-gutter-md q-mb-xl"
-                        style="font-size: 2em"
-                    >
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="100%"
-                        />
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="50%"
-                        />
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="50%"
-                        />
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="50%"
-                        />
-                    </div>
-
-                    <div
-                        class="text-primary q-gutter-md"
-                        style="font-size: 2em"
-                    >
-                        <q-icon
-                            name="star"
-                            size="xl"
-                        />
-                        <q-icon
-                            name="star"
-                            size="xl"
-                        />
-                        <q-icon
-                            name="star"
-                            size="xl"
-                        />
-                    </div>
-                </q-card>
-            </div>
-            <div class="col-6  q-pa-lg">
-                <q-card
-                    bordered
-                    class="secondary rotated-card"
-                    style="overflow: hidden"
-                >
-                    <q-item>
-                        <q-item-section avatar>
-                            <q-skeleton
-                                animation="fade"
-                                type="QAvatar"
-                            />
-                        </q-item-section>
-
-                        <q-item-section>
-                            <q-item-label>
-                                <q-skeleton
-                                    animation="fade"
-                                    type="text"
-                                />
-                            </q-item-label>
-                            <q-item-label caption>
-                                <q-skeleton
-                                    animation="fade"
-                                    type="text"
-                                />
-                            </q-item-label>
-                        </q-item-section>
-                    </q-item>
-
-                    <q-skeleton
-                        animation="fade"
-                        height="400px"
-                        square
-                    />
-
-                    <q-card-section>
-                        <q-skeleton
-                            animation="fade"
-                            class="text-subtitle2"
-                            type="text"
-                        />
-                        <q-skeleton
-                            animation="fade"
-                            class="text-subtitle2"
-                            type="text"
-                            width="50%"
-                        />
-                    </q-card-section>
-                </q-card>
-            </div>
-        </div>
-
+    <div class="q-pa-md col-flex">
         <div
-            class="row justify-center items-center q-pt-xl"
+            class="q-gutter-md title-field text-dark"
         >
-            <q-btn
-                color="primary"
-                label="Get started"
-                no-caps
-                size="xl"
-                to="/1"
+            <p class="q-mt-xl page-title">
+                Start
+            </p>
+
+            <p class="question">
+                What is the title of the work?
+            </p>
+            <q-input
+                bg-color="white"
+                label="title"
+                outlined
+                standout
+                v-bind:model-value="title"
+                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setTitle"
+            />
+            <p class="question">
+                What do you want citers to do with the information provided in your CITATION.cff file?
+            </p>
+            <q-input
+                bg-color="white"
+                label="message"
+                outlined
+                v-bind:model-value="message"
+                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:modelValue="setMessage"
+            />
+            <p class="question">
+                What type of work does this CITATION.cff describe?
+            </p>
+            <q-option-group
+                type="radio"
+                v-bind:model-value="type"
+                v-bind:options="typeOptions"
+                v-on:update:modelValue="setType"
             />
         </div>
     </div>
+    <StepperActions />
 </template>
 
 <script lang="ts">
+import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
+import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageStart',
-    components: { },
+    name: 'Start',
+    components: {
+        StepperActions
+    },
     setup () {
-        return {}
+        const cff = useCFF()
+        return {
+            typeOptions: [
+                { label: 'Software', value: 'software' },
+                { label: 'Dataset', value: 'dataset' }
+            ],
+            title: cff.title,
+            message: cff.message,
+            type: cff.type,
+            setTitle: cff.setTitle,
+            setMessage: cff.setMessage,
+            setType: cff.setType
+        }
     }
 })
 </script>
 
 <style scoped>
 
-.rotated-card {
-    transform: rotate(20deg) translateX(150px) translateY(65px);
-    display: block;
+.col-flex {
+    flex: 1;
+}
+.title-field {
+    margin-right: 120px;
+    max-width: 700px;
+    min-width: 300px;
 }
 
 </style>

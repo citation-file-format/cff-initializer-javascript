@@ -84,3 +84,7 @@ You can also use the Majestic web interface to run the unit tests in your browse
 ```shell
 npm run test:unit:ui
 ```
+
+## Making a release
+
+1. Review CITATION.cff and update it if needed

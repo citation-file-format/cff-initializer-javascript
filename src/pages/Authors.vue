@@ -4,49 +4,61 @@
             Authors
         </div>
 
-        <q-card
-            class="secondary q-mt-xl q-pa-lg"
-            flat
-        >
-            <q-item>
-                <q-item-section>
-                    <q-item-label>
-                        <q-skeleton type="text" />
-                    </q-item-label>
-                    <q-item-label caption>
-                        <q-skeleton type="text" />
-                    </q-item-label>
-                </q-item-section>
-            </q-item>
+        <div>
+            <q-card
+                v-for="(author, index) in authors"
+                v-bind:key="index"
+                flat
+                bordered
+                class="my-card bg-grey-1"
+            >
+                <q-card-section>
+                    <div class="row items-center no-wrap">
+                        <div class="col">
+                            <div class="text-subtitle1">
+                                {{ author.givenNames }} {{ author.familyNames }}
+                            </div>
+                            <div class="text-subtitle1">
+                                {{ author.email }}
+                            </div>
+                        </div>
 
-            <q-skeleton
-                height="200px"
-                square
-            />
+                        <div class="col-auto">
+                            <q-btn
+                                color="primary"
+                                round
+                                flat
+                                icon="edit"
+                                v-on:click="() => editingId = index"
+                            />
+                        </div>
+                    </div>
+                </q-card-section>
 
-            <q-card-section>
-                <q-skeleton
-                    class="text-subtitle1"
-                    type="text"
-                />
-                <q-skeleton
-                    class="text-subtitle1"
-                    type="text"
-                    width="50%"
-                />
-                <q-skeleton
-                    class="text-caption"
-                    type="text"
-                />
-            </q-card-section>
-        </q-card>
+                <q-card-section>
+                    {{ author.affiliation }} {{ author.orcid }} {{ index }} {{ editingId }}
+                </q-card-section>
+            </q-card>
+        </div>
+        <q-btn>Add author</q-btn>
+
         <StepperActions />
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
+
+type Author = {
+    givenNames?: string;
+    nameParticle?: string;
+    nameSuffix?: string;
+    orcid?: string;
+    familyNames?: string;
+    affiliation?: string;
+    email?: string;
+}
 
 export default defineComponent({
     name: 'Authors',
@@ -54,7 +66,25 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        return {}
+        const authors = ref<Author[]>([{
+            givenNames: 'Stefan',
+            familyNames: 'Verhoeven',
+            email: 'me@bla.com',
+            affiliation: 'NLeSC',
+            orcid: 'https://orcid/123434'
+        }, {
+            givenNames: 'Faruk',
+            familyNames: 'Diblen',
+            email: 'me@bla.com',
+            affiliation: 'NLeSC',
+            orcid: 'https://orcid/123434'
+        }])
+
+        const editingId = ref(-1)
+        return {
+            authors,
+            editingId
+        }
     }
 })
 </script>

@@ -5,42 +5,15 @@
         </div>
 
         <div>
-            <q-card
+            <AuthorViewCard
                 v-for="(author, index) in authors"
                 v-bind:key="index"
-                flat
-                bordered
-                class="my-card bg-grey-1"
-            >
-                <q-card-section>
-                    <div class="row items-center no-wrap">
-                        <div class="col">
-                            <div class="text-subtitle1">
-                                {{ author.givenNames }} {{ author.familyNames }}
-                            </div>
-                            <div class="text-subtitle1">
-                                {{ author.email }}
-                            </div>
-                        </div>
-
-                        <div class="col-auto">
-                            <q-btn
-                                color="primary"
-                                round
-                                flat
-                                icon="edit"
-                                v-on:click="() => editingId = index"
-                            />
-                        </div>
-                    </div>
-                </q-card-section>
-
-                <q-card-section>
-                    {{ author.affiliation }} {{ author.orcid }} {{ index }} {{ editingId }}
-                </q-card-section>
-            </q-card>
+                v-bind:index="index"
+                v-bind:author="author"
+                v-on:editPressed="() => editingId = index"
+            />
         </div>
-        <q-btn>Add author</q-btn>
+        <q-btn>Add author</q-btn> {{ editingId }}
 
         <StepperActions />
     </div>
@@ -49,21 +22,14 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
-
-type Author = {
-    givenNames?: string;
-    nameParticle?: string;
-    nameSuffix?: string;
-    orcid?: string;
-    familyNames?: string;
-    affiliation?: string;
-    email?: string;
-}
+import AuthorViewCard from 'components/AuthorViewCard.vue'
+import { Author } from 'src/types/author'
 
 export default defineComponent({
     name: 'Authors',
     components: {
-        StepperActions
+        StepperActions,
+        AuthorViewCard
     },
     setup () {
         const authors = ref<Author[]>([{

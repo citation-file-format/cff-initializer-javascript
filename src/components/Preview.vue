@@ -17,23 +17,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, Ref } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useCff } from 'src/store/cff'
-import { CffType } from 'src/types'
-import yaml from 'js-yaml'
-
-function toYamlString (obj: Ref<CffType>) {
-    const j: CffType = obj.value
-    // TODO de-duplicate yaml.dump() in ./Finish.vue
-    return yaml.dump(j)
-}
+import { toYamlString } from 'src/utils'
 
 export default defineComponent({
     name: 'Preview',
     setup () {
         const { data } = useCff()
 
-        const cffstr = computed(() => toYamlString(data))
+        const cffstr = computed(() => toYamlString(data.value))
         const copyToClipboard = async () => {
             await navigator.clipboard.writeText(cffstr.value)
         }

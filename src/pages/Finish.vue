@@ -156,6 +156,9 @@
                             icon="download"
                             label="Download"
                             no-caps
+                            type="a"
+                            download="CITATION.cff"
+                            v-bind:href="downloadUrl"
                         />
                     </q-card-actions>
                 </q-card>
@@ -165,13 +168,53 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed, unref } from 'vue'
+import { useCff } from 'src/store/cff'
+import yaml from 'js-yaml'
+
+type CffAsJson = Record<string, string | string[]>
+
+function toDownloadUrl (obj: CffAsJson) {
+    const getters = new Set([
+        'abstract',
+        'cffVersion',
+        'commit',
+        'dateReleased',
+        'identifiers',
+        'keywords',
+        'license',
+        'message',
+        'repository',
+        'repositoryArtifact',
+        'repositoryCode',
+        'title',
+        'type',
+        'url',
+        'version'
+    ])
+
+    const j: CffAsJson = {}
+    Object.entries(obj)
+        .filter((d: [string, string | string[]]) => getters.has(d[0]))
+        .forEach(([key, val]: [string, string | string[]]) => {
+            j[key] = unref(val)
+            // TODO also unref nested
+        })
+
+    // TODO de-duplicate yaml.dump() in ../components/Preview.vie
+    const body = yaml.dump(j)
+    return `data:text/vnd.yaml,${encodeURIComponent(body)}`
+}
 
 export default defineComponent({
     name: 'PageFinish',
     components: { },
     setup () {
-        return {}
+        const obj = useCff() as unknown as CffAsJson
+
+        return {
+            downloadUrl: computed(() => toDownloadUrl(obj))
+        }
     }
 })
 </script>

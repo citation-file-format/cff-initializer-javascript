@@ -122,14 +122,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, unref, Ref } from 'vue'
+import { defineComponent, computed, Ref } from 'vue'
 import yaml from 'js-yaml'
 import { useCff } from 'src/store/cff'
 import { CffType } from 'src/types'
 import Preview from 'components/Preview.vue'
 
 function toYamlString (obj: Ref<CffType>) {
-    const j: CffType = unref(obj)
+    const j: CffType = obj.value
     // TODO de-duplicate yaml.dump() in ../components/Preview.vue
     return yaml.dump(j)
 }

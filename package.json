@@ -22,6 +22,7 @@
     "dependencies": {
         "@quasar/extras": "^1.0.0",
         "core-js": "^3.6.5",
+        "deep-filter": "^1.0.2",
         "js-yaml": "^3.14.1",
         "kebabcase-keys": "^1.0.0",
         "quasar": "^2.0.0"

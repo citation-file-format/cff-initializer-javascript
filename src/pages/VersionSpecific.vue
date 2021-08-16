@@ -41,7 +41,7 @@
                 label="date-released"
                 outlined
                 standout
-                v-bind:model-value="date_released"
+                v-bind:model-value="dateReleased"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
                 v-on:update:modelValue="setDateReleased"
             />
@@ -53,7 +53,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'VersionSpecific',
@@ -61,14 +61,14 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
         return {
-            commit: cff.commit,
-            date_released: cff.date_released,
-            version: cff.version,
-            setCommit: cff.setCommit,
-            setDateReleased: cff.setDateReleased,
-            setVersion: cff.setVersion
+            commit,
+            dateReleased,
+            version,
+            setCommit,
+            setDateReleased,
+            setVersion
         }
     }
 })

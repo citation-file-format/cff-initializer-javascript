@@ -28,7 +28,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'Abstract',
@@ -36,10 +36,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const { abstract, setAbstract } = useCff()
         return {
-            abstract: cff.abstract,
-            setAbstract: cff.setAbstract
+            abstract,
+            setAbstract
         }
     }
 })

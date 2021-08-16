@@ -41,7 +41,7 @@
                 label="repository-artifact"
                 outlined
                 standout
-                v-bind:model-value="repository_artifact"
+                v-bind:model-value="repositoryArtifact"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
@@ -54,7 +54,7 @@
                 label="repository-code"
                 outlined
                 standout
-                v-bind:model-value="repository_code"
+                v-bind:model-value="repositoryCode"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
                 v-on:update:modelValue="setRepositoryCode"
             />
@@ -66,7 +66,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'RelatedResources',
@@ -74,16 +74,19 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const {
+            repository, repositoryArtifact, repositoryCode, url,
+            setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
+        } = useCff()
         return {
-            repository: cff.repository,
-            repository_artifact: cff.repository_artifact,
-            repository_code: cff.repository_code,
-            url: cff.url,
-            setRepository: cff.setRepository,
-            setRepositoryArtifact: cff.setRepositoryArtifact,
-            setRepositoryCode: cff.setRepositoryCode,
-            setUrl: cff.setUrl
+            repository,
+            repositoryArtifact,
+            repositoryCode,
+            url,
+            setRepository,
+            setRepositoryArtifact,
+            setRepositoryCode,
+            setUrl
         }
     }
 })

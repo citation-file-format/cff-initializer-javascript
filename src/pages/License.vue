@@ -25,7 +25,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'License',
@@ -33,10 +33,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const { license, setLicense } = useCff()
         return {
-            license: cff.license,
-            setLicense: cff.setLicense
+            license,
+            setLicense
         }
     }
 })

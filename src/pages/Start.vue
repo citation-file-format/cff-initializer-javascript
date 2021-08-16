@@ -47,7 +47,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'Start',
@@ -55,18 +55,18 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const { message, title, type, setMessage, setTitle, setType } = useCff()
         return {
+            message,
+            title,
+            type,
             typeOptions: [
                 { label: 'Software', value: 'software' },
                 { label: 'Dataset', value: 'dataset' }
             ],
-            title: cff.title,
-            message: cff.message,
-            type: cff.type,
-            setTitle: cff.setTitle,
-            setMessage: cff.setMessage,
-            setType: cff.setType
+            setMessage,
+            setTitle,
+            setType
         }
     }
 })

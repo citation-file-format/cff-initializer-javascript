@@ -14,7 +14,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'Identifiers',
@@ -22,10 +22,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const { identifiers, setIdentifiers } = useCff()
         return {
-            identifiers: cff.identifiers,
-            setIdentifiers: cff.setIdentifiers
+            identifiers,
+            setIdentifiers
         }
     }
 })

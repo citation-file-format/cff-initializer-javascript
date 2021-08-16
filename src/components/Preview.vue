@@ -67,7 +67,7 @@ export default defineComponent({
                 url: url.value,
                 version: version.value
             } as CffType
-            return yaml.dump(kebabcaseKeys(cff))
+            return yaml.dump(kebabcaseKeys(cff), { indent: 2, sortKeys: true })
         }
 
         return {

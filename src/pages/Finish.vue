@@ -103,16 +103,8 @@
                         align="center"
                         class="q-gutter-md q-mt-xl"
                     >
-                        <q-btn
+                        <DownloadButton
                             class="download-button"
-                            color="primary"
-                            icon="download"
-                            label="Download"
-                            size="xl"
-                            no-caps
-                            type="a"
-                            download="CITATION.cff"
-                            v-bind:href="downloadUrl"
                         />
                     </q-card-actions>
                 </q-card>
@@ -122,28 +114,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, Ref } from 'vue'
-import { useCff } from 'src/store/cff'
-import { CffType } from 'src/types'
+import { defineComponent } from 'vue'
 import Preview from 'components/Preview.vue'
-import { toYamlString } from 'src/utils'
-
-function toDownloadUrl (obj: Ref<CffType>) {
-    const body = toYamlString(obj.value)
-    return `data:text/vnd.yaml,${encodeURIComponent(body)}`
-}
+import DownloadButton from 'components/DownloadButton.vue'
 
 export default defineComponent({
     name: 'Finish',
     components: {
-        Preview
-    },
-    setup () {
-        const { data } = useCff()
-
-        return {
-            downloadUrl: computed(() => toDownloadUrl(data))
-        }
+        Preview,
+        DownloadButton
     }
 })
 </script>

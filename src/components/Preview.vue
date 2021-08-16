@@ -19,11 +19,14 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { defineComponent, computed } from 'vue'
 import { useCff } from 'src/store/cff'
 import yaml from 'js-yaml'
 import { CffType } from 'src/types'
 import kebabcaseKeys from 'kebabcase-keys'
+import deepfilter from 'deep-filter'
 
 export default defineComponent({
     name: 'Preview',
@@ -49,6 +52,18 @@ export default defineComponent({
         const copyToClipboard = async () => {
             await navigator.clipboard.writeText(makeCffstr())
         }
+        const notEmpty = (value: unknown, prop: unknown, subject: unknown) => {
+            // based on https://www.npmjs.com/package/deep-filter example
+            if (Array.isArray(value)) {
+                return value.length > 0
+            } else if (typeof value === 'object' && value !== null) {
+                return Object.keys(value).length > 0
+            } else if (typeof value === 'string') {
+                return value.length > 0
+            } else {
+                return value != null
+            }
+        }
         const makeCffstr = () => {
             const cff = {
                 abstract: abstract.value,
@@ -67,7 +82,10 @@ export default defineComponent({
                 url: url.value,
                 version: version.value
             } as CffType
-            return yaml.dump(kebabcaseKeys(cff), { indent: 2, sortKeys: true })
+            const filtered = deepfilter(cff, notEmpty)
+            const kebabed = kebabcaseKeys(filtered)
+
+            return yaml.dump(kebabed, { indent: 2, sortKeys: true })
         }
 
         return {

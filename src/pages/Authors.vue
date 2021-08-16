@@ -24,7 +24,6 @@
                 class="text-caption"
                 type="text"
             />
-
         </div>
     </div>
     <StepperActions />

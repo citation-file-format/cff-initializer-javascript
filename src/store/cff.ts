@@ -21,6 +21,7 @@ const cff = ref<CffType>({
 
 export function useCff () {
     return {
+        data: computed(() => cff.value),
         abstract: computed(() => cff.value.abstract),
         commit: computed(() => cff.value.commit),
         cffVersion: computed(() => cff.value.cffVersion),

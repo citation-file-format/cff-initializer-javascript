@@ -168,48 +168,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, unref } from 'vue'
+import { defineComponent, computed, unref, Ref } from 'vue'
 import { useCff } from 'src/store/cff'
 import yaml from 'js-yaml'
+import { CffType, IdentifierType, KeywordsType } from 'src/types'
 
-type CffAsJson = Record<string, string | string[]>
+type CffAsJson = Record<string, string | string[] | KeywordsType | IdentifierType[]>
 
-function toJsonObject (obj: CffAsJson) {
-    const getters = new Set([
-        'abstract',
-        'cffVersion',
-        'commit',
-        'dateReleased',
-        'identifiers',
-        'keywords',
-        'license',
-        'message',
-        'repository',
-        'repositoryArtifact',
-        'repositoryCode',
-        'title',
-        'type',
-        'url',
-        'version'
-    ])
-
+function toYamlString (obj: Ref<CffType>) {
     const j: CffAsJson = {}
-    Object.entries(obj)
-        .filter((d: [string, string | string[]]) => getters.has(d[0]))
-        .forEach(([key, val]: [string, string | string[]]) => {
+    Object.entries(unref(obj))
+        .forEach(([key, val]) => {
             j[key] = unref(val)
             // TODO also unref nested
         })
-    return j
-}
 
-function toYamlString (obj: CffAsJson) {
-    const j = toJsonObject(obj)
     // TODO de-duplicate yaml.dump() in ../components/Preview.vue
     return yaml.dump(j)
 }
 
-function toDownloadUrl (obj: CffAsJson) {
+function toDownloadUrl (obj: Ref<CffType>) {
     const body = toYamlString(obj)
     return `data:text/vnd.yaml,${encodeURIComponent(body)}`
 }
@@ -218,10 +196,10 @@ export default defineComponent({
     name: 'PageFinish',
     components: { },
     setup () {
-        const obj = useCff() as unknown as CffAsJson
+        const { data } = useCff()
 
         return {
-            downloadUrl: computed(() => toDownloadUrl(obj))
+            downloadUrl: computed(() => toDownloadUrl(data))
         }
     }
 })

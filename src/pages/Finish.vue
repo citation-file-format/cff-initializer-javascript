@@ -171,18 +171,10 @@
 import { defineComponent, computed, unref, Ref } from 'vue'
 import { useCff } from 'src/store/cff'
 import yaml from 'js-yaml'
-import { CffType, IdentifierType, KeywordsType } from 'src/types'
-
-type CffAsJson = Record<string, string | string[] | KeywordsType | IdentifierType[]>
+import { CffType } from 'src/types'
 
 function toYamlString (obj: Ref<CffType>) {
-    const j: CffAsJson = {}
-    Object.entries(unref(obj))
-        .forEach(([key, val]) => {
-            j[key] = unref(val)
-            // TODO also unref nested
-        })
-
+    const j: CffType = unref(obj)
     // TODO de-duplicate yaml.dump() in ../components/Preview.vue
     return yaml.dump(j)
 }

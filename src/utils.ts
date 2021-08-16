@@ -3,6 +3,7 @@ import { CffType } from './types'
 
 export function toYamlString (obj: CffType) {
     const j: CffType = obj
-    // TODO de-duplicate yaml.dump() in ../components/Preview.vue
+    // TODO camelCase to kebab
+    // TODO omit empty strings
     return yaml.dump(j)
 }

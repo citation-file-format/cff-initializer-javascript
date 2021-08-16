@@ -14,7 +14,7 @@
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCFF } from '../store/cff'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'Keywords',
@@ -22,10 +22,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCFF()
+        const { keywords, setKeywords } = useCff()
         return {
-            keywords: cff.keywords,
-            setKeywords: cff.setKeywords
+            keywords,
+            setKeywords
         }
     }
 })

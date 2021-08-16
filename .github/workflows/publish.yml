@@ -1,32 +1,30 @@
-name: Build
+name: Publish
 
-on: # rebuild any PRs and main branch changes
-  pull_request:
+on: # publish when main branch changes
   push:
     branches:
       - main
 
 jobs:
-
-  build:
-
+  publish:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '14'
         cache: 'npm'
     - name: Run npm clean-install
       run: npm clean-install
     - name: Run build
       run: npm run build
-
-
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update github.io page
+        branch: main
+        file_pattern: docs/
+        commit_user_name: cffinit

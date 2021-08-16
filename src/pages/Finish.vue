@@ -37,76 +37,34 @@
                             />
                             Congratulations
                         </div>
-                        <!-- <div class="text-subtitle2">by John Doe</div> -->
                     </q-card-section>
-
-                    <q-item>
-                        <q-item-section>
-                            <q-item-label>
-                                <q-skeleton type="text" />
-                            </q-item-label>
-                            <q-item-label caption>
-                                <q-skeleton type="text" />
-                            </q-item-label>
-                        </q-item-section>
-                    </q-item>
-
-                    <q-skeleton
-                        height="200px"
-                        square
-                    />
 
                     <q-card-section>
-                        <q-skeleton
-                            class="text-subtitle1"
-                            type="text"
-                        />
-                        <q-skeleton
-                            class="text-subtitle1"
-                            type="text"
-                            width="50%"
-                        />
-                        <q-skeleton
-                            class="text-caption"
-                            type="text"
-                        />
+                        <p class="text-h5">
+                            Now you have a CITATION.cff file and you get the credits you deserve.
+                        </p>
                     </q-card-section>
 
-                    <div
-                        align="center"
-                        class="text-primary q-gutter-md q-mb-xl"
-                        style="font-size: 2em"
-                    >
-                        <q-icon
-                            name="ion-logo-twitter"
-                            size="xl"
-                        />
-                        <q-icon
-                            name="ion-logo-linkedin"
-                            size="xl"
-                        />
-                        <q-icon
-                            name="ion-logo-reddit"
-                            size="xl"
-                        />
-                    </div>
-
-                    <div
-                        align="left"
-                        class="text-primary q-gutter-md q-mb-xl"
-                        style="font-size: 2em"
-                    >
-                        <q-skeleton
-                            class="text-subtitle1"
-                            type="text"
-                            width="50%"
-                        />
-                        <q-skeleton
-                            class="text-subtitle1"
-                            type="text"
-                            width="50%"
-                        />
-                    </div>
+                    <q-card-section>
+                        <p>Share a reference to your software.</p>
+                        <div
+                            class="text-primary q-gutter-md q-mb-xl"
+                            style="font-size: 2em"
+                        >
+                            <q-icon
+                                name="ion-logo-twitter"
+                                size="xl"
+                            />
+                            <q-icon
+                                name="ion-logo-linkedin"
+                                size="xl"
+                            />
+                            <q-icon
+                                name="ion-logo-reddit"
+                                size="xl"
+                            />
+                        </div>
+                    </q-card-section>
 
                     <q-card-actions
                         align="center"
@@ -138,12 +96,7 @@
                     flat
                 >
                     <q-card-section>
-                        <q-skeleton
-                            class="text-h6"
-                            type="text"
-                            v-bind:key="index"
-                            v-for="index in 11"
-                        />
+                        <Preview />
                     </q-card-section>
 
                     <q-card-actions
@@ -155,6 +108,7 @@
                             color="primary"
                             icon="download"
                             label="Download"
+                            size="xl"
                             no-caps
                         />
                     </q-card-actions>
@@ -166,10 +120,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Preview from 'components/Preview.vue'
 
 export default defineComponent({
-    name: 'PageFinish',
-    components: { },
+    name: 'Finish',
+    components: {
+        Preview
+    },
     setup () {
         return {}
     }

@@ -3,6 +3,13 @@
         bordered
         flat
     >
+        <q-btn
+            class="copy-button"
+            color=""
+            flat
+            label="Copy"
+            v-on:click="copyToClipboard"
+        />
         <q-card-section>
             <pre>{{ cffstr }}</pre>
         </q-card-section>
@@ -56,8 +63,14 @@ export default defineComponent({
             url: url.value,
             version: version.value
         } as CffType)
+
+        const copyToClipboard = async () => {
+            await navigator.clipboard.writeText(yaml.dump(cff))
+        }
+
         return {
-            cffstr: computed(() => yaml.dump(cff))
+            cffstr: computed(() => yaml.dump(cff)),
+            copyToClipboard
         }
     }
 })
@@ -67,4 +80,10 @@ export default defineComponent({
 pre {
     overflow-x: auto;
 }
+.copy-button {
+    margin-right: 0px;
+    margin-left: auto;
+    display: block;
+}
+
 </style>

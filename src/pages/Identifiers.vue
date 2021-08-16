@@ -17,7 +17,7 @@ import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageIdentifiers',
+    name: 'Identifiers',
     components: {
         StepperActions
     },

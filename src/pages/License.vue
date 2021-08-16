@@ -1,17 +1,21 @@
 <template>
-    <div class="q-pa-md">
+    <div class="q-pa-md col-flex">
         <div class="q-gutter-md title-field text-dark">
-            <p class="q-mt-xl text-h5">
+            <p class="page-title">
+                License
+            </p>
+
+            <p class="question">
                 What is the license of the work?
             </p>
             <q-input
-                v-bind:model-value="license"
-                v-on:update:model-value="setLicense"
+                bg-color="white"
                 label="license"
                 outlined
                 standout
-                bg-color="white"
+                v-bind:model-value="license"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-on:update:model-value="setLicense"
             />
         </div>
     </div>
@@ -24,7 +28,7 @@ import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageLicense',
+    name: 'License',
     components: {
         StepperActions
     },
@@ -39,6 +43,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.col-flex {
+    flex: 1;
+}
 .title-field {
     margin-right: 120px;
     min-width: 300px;

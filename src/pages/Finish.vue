@@ -174,7 +174,7 @@ import yaml from 'js-yaml'
 
 type CffAsJson = Record<string, string | string[]>
 
-function toDownloadUrl (obj: CffAsJson) {
+function toJsonObject (obj: CffAsJson) {
     const getters = new Set([
         'abstract',
         'cffVersion',
@@ -200,9 +200,17 @@ function toDownloadUrl (obj: CffAsJson) {
             j[key] = unref(val)
             // TODO also unref nested
         })
+    return j
+}
 
-    // TODO de-duplicate yaml.dump() in ../components/Preview.vie
-    const body = yaml.dump(j)
+function toYamlString (obj: CffAsJson) {
+    const j = toJsonObject(obj)
+    // TODO de-duplicate yaml.dump() in ../components/Preview.vue
+    return yaml.dump(j)
+}
+
+function toDownloadUrl (obj: CffAsJson) {
+    const body = toYamlString(obj)
     return `data:text/vnd.yaml,${encodeURIComponent(body)}`
 }
 

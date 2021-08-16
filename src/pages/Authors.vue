@@ -49,7 +49,7 @@ import { defineComponent } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
 
 export default defineComponent({
-    name: 'PageAuthors',
+    name: 'Authors',
     components: {
         StepperActions
     },

@@ -31,7 +31,7 @@ import { defineComponent } from 'vue'
 import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageTitle',
+    name: 'Abstract',
     components: {
         StepperActions
     },

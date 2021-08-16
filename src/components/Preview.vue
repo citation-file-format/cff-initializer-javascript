@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { defineComponent, computed } from 'vue'
 import { useCff } from 'src/store/cff'
 import yaml from 'js-yaml'
@@ -30,8 +30,8 @@ export default defineComponent({
     setup () {
         const {
             abstract,
-            cffVersion,
             commit,
+            cffVersion,
             dateReleased,
             identifiers,
             keywords,
@@ -46,30 +46,32 @@ export default defineComponent({
             version
         } = useCff()
 
-        const cff = kebabcaseKeys({
-            abstract: abstract.value,
-            cffVersion: cffVersion.value,
-            commit: commit.value,
-            dateReleased: dateReleased.value,
-            identifiers: identifiers.value,
-            keywords: keywords.value,
-            license: license.value,
-            message: message.value,
-            repository: repository.value,
-            repositoryArtifact: repositoryArtifact.value,
-            repositoryCode: repositoryCode.value,
-            title: title.value,
-            type: type.value,
-            url: url.value,
-            version: version.value
-        } as CffType)
-
         const copyToClipboard = async () => {
-            await navigator.clipboard.writeText(yaml.dump(cff))
+            await navigator.clipboard.writeText(makeCffstr())
+        }
+        const makeCffstr = () => {
+            const cff = {
+                abstract: abstract.value,
+                commit: commit.value,
+                cffVersion: cffVersion.value,
+                dateReleased: dateReleased.value,
+                identifiers: identifiers.value,
+                keywords: keywords.value,
+                license: license.value,
+                message: message.value,
+                repository: repository.value,
+                repositoryArtifact: repositoryArtifact.value,
+                repositoryCode: repositoryCode.value,
+                title: title.value,
+                type: type.value,
+                url: url.value,
+                version: version.value
+            } as CffType
+            return yaml.dump(kebabcaseKeys(cff))
         }
 
         return {
-            cffstr: computed(() => yaml.dump(cff)),
+            cffstr: computed(() => makeCffstr()),
             copyToClipboard
         }
     }

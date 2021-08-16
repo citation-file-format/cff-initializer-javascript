@@ -1,54 +1,52 @@
 import { ref, computed } from 'vue'
-import { CffType, IdentifierType, KeywordsType, TypeType } from '../types'
+import { IdentifiersType, KeywordsType, TypeType } from '../types'
 
-const cff = ref<CffType>({
-    abstract: '',
-    cffVersion: '1.2.0',
-    commit: '',
-    dateReleased: '',
-    identifiers: [],
-    keywords: [],
-    license: '',
-    message: '',
-    repository: '',
-    repositoryArtifact: '',
-    repositoryCode: '',
-    title: '',
-    type: 'software',
-    url: '',
-    version: ''
-})
+const abstract = ref('')
+const cffVersion = ref('1.2.0')
+const commit = ref('')
+const dateReleased = ref('')
+const identifiers = ref([] as IdentifiersType)
+const keywords = ref([] as KeywordsType)
+const license = ref('')
+const message = ref('')
+const repository = ref('')
+const repositoryArtifact = ref('')
+const repositoryCode = ref('')
+const title = ref('')
+const type = ref('software')
+const url = ref('')
+const version = ref('')
 
 export function useCff () {
     return {
-        abstract: computed(() => cff.value.abstract),
-        commit: computed(() => cff.value.commit),
-        cffVersion: computed(() => cff.value.cffVersion),
-        dateReleased: computed(() => cff.value.dateReleased),
-        identifiers: computed(() => cff.value.identifiers),
-        keywords: computed(() => cff.value.keywords),
-        license: computed(() => cff.value.license),
-        message: computed(() => cff.value.message),
-        repository: computed(() => cff.value.repository),
-        repositoryArtifact: computed(() => cff.value.repositoryArtifact),
-        repositoryCode: computed(() => cff.value.repositoryCode),
-        title: computed(() => cff.value.title),
-        type: computed(() => cff.value.type),
-        url: computed(() => cff.value.url),
-        version: computed(() => cff.value.version),
-        setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract },
-        setCommit: (newCommit: string) => { cff.value.commit = newCommit },
-        setDateReleased: (newDateReleased: string) => { cff.value.dateReleased = newDateReleased },
-        setIdentifiers: (newIdentifiers: Array<IdentifierType>) => { cff.value.identifiers = newIdentifiers },
-        setKeywords: (newKeywords: KeywordsType) => { cff.value.keywords = newKeywords },
-        setLicense: (newLicense: string) => { cff.value.license = newLicense },
-        setMessage: (newMessage: string) => { cff.value.message = newMessage },
-        setRepository: (newRepository: string) => { cff.value.repository = newRepository },
-        setRepositoryArtifact: (newRepositoryArtifact: string) => { cff.value.repositoryArtifact = newRepositoryArtifact },
-        setRepositoryCode: (newRepositoryCode: string) => { cff.value.repositoryCode = newRepositoryCode },
-        setTitle: (newTitle: string) => { cff.value.title = newTitle },
-        setType: (newType: TypeType) => { cff.value.type = newType },
-        setUrl: (newUrl: string) => { cff.value.url = newUrl },
-        setVersion: (newVersion: string) => { cff.value.version = newVersion }
+        abstract: computed(() => abstract.value),
+        commit: computed(() => commit.value),
+        cffVersion: computed(() => cffVersion.value),
+        dateReleased: computed(() => dateReleased.value),
+        identifiers: computed(() => identifiers.value),
+        keywords: computed(() => keywords.value),
+        license: computed(() => license.value),
+        message: computed(() => message.value),
+        repository: computed(() => repository.value),
+        repositoryArtifact: computed(() => repositoryArtifact.value),
+        repositoryCode: computed(() => repositoryCode.value),
+        title: computed(() => title.value),
+        type: computed(() => type.value),
+        url: computed(() => url.value),
+        version: computed(() => version.value),
+        setAbstract: (newAbstract: string) => { abstract.value = newAbstract },
+        setCommit: (newCommit: string) => { commit.value = newCommit },
+        setDateReleased: (newDateReleased: string) => { dateReleased.value = newDateReleased },
+        setIdentifiers: (newIdentifiers: IdentifiersType) => { identifiers.value = newIdentifiers },
+        setKeywords: (newKeywords: KeywordsType) => { keywords.value = newKeywords },
+        setLicense: (newLicense: string) => { license.value = newLicense },
+        setMessage: (newMessage: string) => { message.value = newMessage },
+        setRepository: (newRepository: string) => { repository.value = newRepository },
+        setRepositoryArtifact: (newRepositoryArtifact: string) => { repositoryArtifact.value = newRepositoryArtifact },
+        setRepositoryCode: (newRepositoryCode: string) => { repositoryCode.value = newRepositoryCode },
+        setTitle: (newTitle: string) => { title.value = newTitle },
+        setType: (newType: TypeType) => { type.value = newType },
+        setUrl: (newUrl: string) => { url.value = newUrl },
+        setVersion: (newVersion: string) => { version.value = newVersion }
     }
 }

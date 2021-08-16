@@ -1,60 +1,64 @@
 <template>
-    <div>
-        <div class="page-title">
-            Authors
-        </div>
-
-        <q-card
-            class="secondary q-mt-xl q-pa-lg"
-            flat
+    <div class="q-pa-md col-flex">
+        <div
+            class="q-gutter-md title-field text-dark"
         >
-            <q-item>
-                <q-item-section>
-                    <q-item-label>
-                        <q-skeleton type="text" />
-                    </q-item-label>
-                    <q-item-label caption>
-                        <q-skeleton type="text" />
-                    </q-item-label>
-                </q-item-section>
-            </q-item>
+            <p class="page-title">
+                Authors
+            </p>
 
             <q-skeleton
                 height="200px"
                 square
             />
+            <q-skeleton
+                class="text-subtitle1"
+                type="text"
+            />
+            <q-skeleton
+                class="text-subtitle1"
+                type="text"
+                width="50%"
+            />
+            <q-skeleton
+                class="text-caption"
+                type="text"
+            />
 
-            <q-card-section>
-                <q-skeleton
-                    class="text-subtitle1"
-                    type="text"
-                />
-                <q-skeleton
-                    class="text-subtitle1"
-                    type="text"
-                    width="50%"
-                />
-                <q-skeleton
-                    class="text-caption"
-                    type="text"
-                />
-            </q-card-section>
-        </q-card>
-        <StepperActions />
+        </div>
     </div>
+    <StepperActions />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
+import { defineComponent } from 'vue'
+import { useCFF } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageAuthors',
+    name: 'Authors',
     components: {
         StepperActions
     },
     setup () {
-        return {}
+        const cff = useCFF()
+        return {
+            identifiers: cff.identifiers,
+            setIdentifiers: cff.setIdentifiers
+        }
     }
 })
 </script>
+
+<style scoped>
+
+.col-flex {
+    flex: 1;
+}
+.title-field {
+    margin-right: 120px;
+    max-width: 700px;
+    min-width: 300px;
+}
+
+</style>

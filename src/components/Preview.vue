@@ -3,6 +3,13 @@
         bordered
         flat
     >
+        <q-btn
+            class="copy-button"
+            color=""
+            flat
+            label="Copy"
+            v-on:click="copyToClipboard"
+        />
         <q-card-section>
             <pre>{{ cffstr }}</pre>
         </q-card-section>
@@ -10,49 +17,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, unref, Ref } from 'vue'
 import { useCff } from 'src/store/cff'
+import { CffType } from 'src/types'
 import yaml from 'js-yaml'
+
+function toYamlString (obj: Ref<CffType>) {
+    const j: CffType = unref(obj)
+    // TODO de-duplicate yaml.dump() in ./Finish.vue
+    return yaml.dump(j)
+}
 
 export default defineComponent({
     name: 'Preview',
     setup () {
-        const {
-            abstract,
-            cffVersion,
-            commit,
-            dateReleased,
-            identifiers,
-            keywords,
-            license,
-            message,
-            repository,
-            repositoryArtifact,
-            repositoryCode,
-            title,
-            type,
-            url,
-            version
-        } = useCff()
+        const { data } = useCff()
+
+        const cffstr = computed(() => toYamlString(data))
+        const copyToClipboard = async () => {
+            await navigator.clipboard.writeText(cffstr.value)
+        }
 
         return {
-            cffstr: computed(() => yaml.dump({
-                abstract: abstract.value,
-                cffVersion: cffVersion.value,
-                commit: commit.value,
-                dateReleased: dateReleased.value,
-                identifiers: identifiers.value,
-                keywords: keywords.value,
-                license: license.value,
-                message: message.value,
-                repository: repository.value,
-                repositoryArtifact: repositoryArtifact.value,
-                repositoryCode: repositoryCode.value,
-                title: title.value,
-                type: type.value,
-                url: url.value,
-                version: version.value
-            }))
+            cffstr,
+            copyToClipboard
         }
     }
 })
@@ -62,4 +50,10 @@ export default defineComponent({
 pre {
     overflow-x: auto;
 }
+.copy-button {
+    margin-right: 0px;
+    margin-left: auto;
+    display: block;
+}
+
 </style>

@@ -28,3 +28,4 @@ jobs:
         branch: main
         file_pattern: docs/
         commit_user_name: cffinit
+        push_options: '--force'

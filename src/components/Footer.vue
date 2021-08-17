@@ -2,7 +2,9 @@
     <q-footer class="bg-grey-4 text-primary">
         <q-toolbar>
             <q-toolbar-title>
-                <img src="~assets/nlesc-logo.svg">
+                <a href="https://esciencecenter.nl">
+                    <img src="~assets/nlesc-logo.png">
+                </a>
             </q-toolbar-title>
         </q-toolbar>
     </q-footer>
@@ -16,6 +18,9 @@ export default defineComponent({
 })
 </script>
 
-<style>
-
+<style scoped>
+img {
+    height: 22px;
+    vertical-align: middle;
+}
 </style>

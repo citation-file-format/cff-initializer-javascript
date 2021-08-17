@@ -7,6 +7,6 @@ export function useStep () {
         step: computed(() => step.value),
         next: () => { step.value = step.value < 9 ? step.value + 1 : step.value },
         previous: () => { step.value = step.value > 1 ? step.value - 1 : step.value },
-        goto: (newStep: number) => { step.value = newStep }
+        goto: (newStep: number) => { step.value = newStep >= 1 && newStep <= 9 ? newStep : step.value }
     }
 }

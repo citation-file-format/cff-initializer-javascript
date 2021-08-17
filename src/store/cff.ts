@@ -53,6 +53,26 @@ export function useCff () {
         setTitle: (newTitle: string) => { cff.value.title = newTitle },
         setType: (newType: TypeType) => { cff.value.type = newType },
         setUrl: (newUrl: string) => { cff.value.url = newUrl },
-        setVersion: (newVersion: string) => { cff.value.version = newVersion }
+        setVersion: (newVersion: string) => { cff.value.version = newVersion },
+        reset: () => {
+            cff.value = {
+                abstract: '',
+                authors: [],
+                cffVersion: '1.2.0',
+                commit: '',
+                dateReleased: '',
+                identifiers: [],
+                keywords: [],
+                license: '',
+                message: '',
+                repository: '',
+                repositoryArtifact: '',
+                repositoryCode: '',
+                title: '',
+                type: 'software',
+                url: '',
+                version: ''
+            }
+        }
     }
 }

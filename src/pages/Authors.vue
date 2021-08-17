@@ -1,56 +1,59 @@
 <template>
-    <div>
-        <div class="page-title">
-            Authors
-        </div>
+    <div class="q-pa-md col-flex">
+        <div
+            class="q-gutter-md title-field text-dark"
+        >
+            <p class="page-title">
+                Authors
+            </p>
 
-        <div>
-            <AuthorViewCard
-                v-for="(author, index) in authors"
-                v-bind:key="index"
-                v-bind:index="index"
-                v-bind:author="author"
-                v-on:editPressed="() => editingId = index"
+            <q-skeleton
+                height="200px"
+                square
+            />
+            <q-skeleton
+                class="text-subtitle1"
+                type="text"
+            />
+            <q-skeleton
+                class="text-subtitle1"
+                type="text"
+                width="50%"
+            />
+            <q-skeleton
+                class="text-caption"
+                type="text"
             />
         </div>
-        <q-btn>Add author</q-btn> {{ editingId }}
-
-        <StepperActions />
     </div>
+    <StepperActions />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
-import AuthorViewCard from 'components/AuthorViewCard.vue'
-import { Author } from 'src/types/author'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: 'Authors',
     components: {
-        StepperActions,
-        AuthorViewCard
+        StepperActions
     },
     setup () {
-        const authors = ref<Author[]>([{
-            givenNames: 'Stefan',
-            familyNames: 'Verhoeven',
-            email: 'me@bla.com',
-            affiliation: 'NLeSC',
-            orcid: 'https://orcid/123434'
-        }, {
-            givenNames: 'Faruk',
-            familyNames: 'Diblen',
-            email: 'me@bla.com',
-            affiliation: 'NLeSC',
-            orcid: 'https://orcid/123434'
-        }])
-
-        const editingId = ref(-1)
         return {
-            authors,
-            editingId
         }
     }
 })
 </script>
+
+<style scoped>
+
+.col-flex {
+    flex: 1;
+}
+.title-field {
+    margin-right: 120px;
+    max-width: 700px;
+    min-width: 300px;
+}
+
+</style>

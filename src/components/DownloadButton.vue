@@ -12,23 +12,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, Ref } from 'vue'
-import { useCff } from 'src/store/cff'
-import { CffType } from 'src/types'
-import { toYamlString } from 'src/utils'
+import { defineComponent, computed } from 'vue'
+import { useCffstr } from 'src/store/cffstr'
 
-function toDownloadUrl (obj: Ref<CffType>) {
-    const body = toYamlString(obj.value)
+function toDownloadUrl (body: string) {
     return `data:text/vnd.yaml,${encodeURIComponent(body)}`
 }
 
 export default defineComponent({
     name: 'DownloadButton',
     setup () {
-        const { data } = useCff()
+        const cffstr = useCffstr()
 
         return {
-            downloadUrl: computed(() => toDownloadUrl(data))
+            downloadUrl: computed(() => toDownloadUrl(cffstr.value))
         }
     }
 })

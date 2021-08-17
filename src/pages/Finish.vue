@@ -103,13 +103,8 @@
                         align="center"
                         class="q-gutter-md q-mt-xl"
                     >
-                        <q-btn
+                        <DownloadButton
                             class="download-button"
-                            color="primary"
-                            icon="download"
-                            label="Download"
-                            size="xl"
-                            no-caps
                         />
                     </q-card-actions>
                 </q-card>
@@ -121,14 +116,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Preview from 'components/Preview.vue'
+import DownloadButton from 'components/DownloadButton.vue'
 
 export default defineComponent({
     name: 'Finish',
     components: {
-        Preview
-    },
-    setup () {
-        return {}
+        Preview,
+        DownloadButton
     }
 })
 </script>

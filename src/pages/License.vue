@@ -4,7 +4,6 @@
             <p class="page-title">
                 License
             </p>
-
             <p class="question">
                 What is the license of the work?
             </p>
@@ -33,10 +32,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { license, setLicense } = useCff()
+        const cff = useCff()
         return {
-            license,
-            setLicense
+            license: cff.license,
+            setLicense: cff.setLicense
         }
     }
 })
@@ -48,7 +47,8 @@ export default defineComponent({
 }
 .title-field {
     margin-right: 120px;
-    min-width: 300px;
     max-width: 700px;
+    min-width: 300px;
 }
+
 </style>

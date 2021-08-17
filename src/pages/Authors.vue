@@ -1,34 +1,35 @@
 <template>
-    <div>
-        <div class="page-title">
-            Authors
-        </div>
+    <div class="q-pa-md col-flex">
+        <div class="q-gutter-md title-field text-dark">
+            <p class="q-mt-xl page-title">
+                Authors
+            </p>
 
-        <div
-            v-for="(author, index) in authors"
-            v-bind:key="index"
-        >
-            <AuthorViewCard
-                v-if="editingId !== index"
-                v-bind:index="index"
-                v-bind:author="author"
-                v-on:editPressed="() => (editingId = index)"
-            />
-            <AuthorEditCard
-                v-else
-                v-bind:index="index"
-                v-bind="author"
-                v-on:update="setAuthorField"
-                v-on:closePressed="() => (editingId = -1)"
-                v-on:removePressed="removeAuthor"
-            />
+            <div
+                v-for="(author, index) in authors"
+                v-bind:key="index"
+            >
+                <AuthorViewCard
+                    v-if="editingId !== index"
+                    v-bind:index="index"
+                    v-bind:author="author"
+                    v-on:editPressed="() => (editingId = index)"
+                />
+                <AuthorEditCard
+                    v-else
+                    v-bind:index="index"
+                    v-bind="author"
+                    v-on:update="setAuthorField"
+                    v-on:closePressed="() => (editingId = -1)"
+                    v-on:removePressed="removeAuthor"
+                />
+            </div>
+            <q-btn v-on:click="addAuthor">
+                Add author
+            </q-btn>
         </div>
-        <q-btn v-on:click="addAuthor">
-            Add author
-        </q-btn>
-
-        <StepperActions />
     </div>
+    <StepperActions />
 </template>
 
 <script lang="ts">
@@ -74,3 +75,16 @@ export default defineComponent({
     }
 })
 </script>
+
+<style scoped>
+
+.col-flex {
+    flex: 1;
+}
+.title-field {
+    margin-right: 120px;
+    max-width: 700px;
+    min-width: 300px;
+}
+
+</style>

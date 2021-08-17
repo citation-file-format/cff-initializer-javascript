@@ -55,17 +55,17 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { title, message, type, setTitle, setMessage, setType } = useCff()
+        const { message, title, type, setMessage, setTitle, setType } = useCff()
         return {
+            message,
+            title,
+            type,
             typeOptions: [
                 { label: 'Software', value: 'software' },
                 { label: 'Dataset', value: 'dataset' }
             ],
-            title,
-            message,
-            type,
-            setTitle,
             setMessage,
+            setTitle,
             setType
         }
     }

@@ -1,8 +1,8 @@
-export type IdentifierType = {
+export type IdentifiersType = Array<{
     type: 'doi' | 'url' | 'swh' | 'other',
     value: string,
     description?: string
-}
+}>
 
 export type KeywordsType = Array<string>
 
@@ -13,7 +13,7 @@ export type CffType = {
     cffVersion?: string,
     commit?: string,
     dateReleased?: string,
-    identifiers?: Array<IdentifierType>,
+    identifiers?: IdentifiersType,
     keywords?: KeywordsType,
     license?: string,
     message?: string,

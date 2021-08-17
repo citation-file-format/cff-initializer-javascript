@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
-import { CffType, IdentifierType, KeywordsType, TypeType } from '../types'
+import { CffType, IdentifiersType, KeywordsType, TypeType } from '../types'
 
-const cff = ref<CffType>({
+const cff = ref({
     abstract: '',
     cffVersion: '1.2.0',
     commit: '',
@@ -17,7 +17,7 @@ const cff = ref<CffType>({
     type: 'software',
     url: '',
     version: ''
-})
+} as CffType)
 
 export function useCff () {
     return {
@@ -40,7 +40,7 @@ export function useCff () {
         setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract },
         setCommit: (newCommit: string) => { cff.value.commit = newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.dateReleased = newDateReleased },
-        setIdentifiers: (newIdentifiers: Array<IdentifierType>) => { cff.value.identifiers = newIdentifiers },
+        setIdentifiers: (newIdentifiers: IdentifiersType) => { cff.value.identifiers = newIdentifiers },
         setKeywords: (newKeywords: KeywordsType) => { cff.value.keywords = newKeywords },
         setLicense: (newLicense: string) => { cff.value.license = newLicense },
         setMessage: (newMessage: string) => { cff.value.message = newMessage },

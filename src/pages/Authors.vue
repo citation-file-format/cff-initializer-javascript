@@ -19,6 +19,7 @@
                 v-bind:index="index"
                 v-bind="author"
                 v-on:closePressed="() => (editingId = -1)"
+                v-on:update="setAuthorField"
             />
         </div>
         <q-btn>Add author</q-btn> {{ editingId }}
@@ -63,8 +64,11 @@ export default defineComponent({
         return {
             authors,
             editingId,
-            setGivenNames (newGivenNames: string) {
-                authors.value[editingId.value].givenNames = newGivenNames
+            setAuthorField (field: keyof Author, value: string) {
+                const author = { ...authors.value[editingId.value] }
+                author[field] = value
+                authors.value[editingId.value] = author
+                // setAuthors([authors.splice(editingId.value, 0, author)])
             }
         }
     }

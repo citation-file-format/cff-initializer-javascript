@@ -22,6 +22,8 @@
                                 'Please use minimum 3 characters',
                         ]"
                     />
+                </div>
+                <div class="col">
                     <q-input
                         bg-color="white"
                         label="Name particle"
@@ -38,6 +40,8 @@
                                 'Please use minimum 3 characters',
                         ]"
                     />
+                </div>
+                <div class="col">
                     <q-input
                         bg-color="white"
                         label="Family name(s)"
@@ -53,6 +57,8 @@
                                 'Please use minimum 3 characters',
                         ]"
                     />
+                </div>
+                <div class="col">
                     <q-input
                         bg-color="white"
                         label="Suffix"
@@ -69,6 +75,10 @@
                                 'Please use minimum 3 characters',
                         ]"
                     />
+                </div>
+            </div>
+            <div class="row items-center no-wrap">
+                <div class="col">
                     <q-input
                         bg-color="white"
                         label="Email"
@@ -84,6 +94,10 @@
                                 'Please use minimum 3 characters',
                         ]"
                     />
+                </div>
+            </div>
+            <div class="row items-center no-wrap">
+                <div class="col">
                     <q-input
                         bg-color="white"
                         label="Affiliation"
@@ -99,6 +113,8 @@
                                 'Please use minimum 3 characters',
                         ]"
                     />
+                </div>
+                <div class="col">
                     <q-input
                         bg-color="white"
                         label="Orcid"
@@ -115,28 +131,20 @@
                         ]"
                     />
                 </div>
-
-                <div class="col-auto">
-                    <!-- // TODO move to action bar -->
-                    <q-btn
-                        color="primary"
-                        round
-                        flat
-                        icon="remove"
-                        title="Remove"
-                        v-on:click="$emit('removePressed')"
-                    />
-                    <q-btn
-                        color="primary"
-                        round
-                        flat
-                        icon="close"
-                        title="Close"
-                        v-on:click="$emit('closePressed')"
-                    />
-                </div>
             </div>
         </q-card-section>
+        <q-card-actions>
+            <q-btn
+                icon="remove"
+                label="Remove"
+                v-on:click="$emit('removePressed')"
+            />
+            <q-btn
+                icon="close"
+                label="Close"
+                v-on:click="$emit('closePressed')"
+            />
+        </q-card-actions>
     </q-card>
 </template>
 

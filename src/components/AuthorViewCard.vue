@@ -8,7 +8,7 @@
             <div class="row items-center no-wrap">
                 <div class="col">
                     <div class="text-subtitle1">
-                        {{ author.givenNames }} {{ author.familyNames }}
+                        {{ author.givenNames }} {{ author.nameParticle }} {{ author.familyNames }} {{ author.nameSuffix }}
                     </div>
                     <div class="text-subtitle1">
                         {{ author.email }}
@@ -28,7 +28,7 @@
         </q-card-section>
 
         <q-card-section>
-            {{ author.affiliation }} {{ author.orcid }} {{ index }}
+            {{ author.affiliation }} {{ author.orcid }}
         </q-card-section>
     </q-card>
 </template>

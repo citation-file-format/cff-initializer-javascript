@@ -12,6 +12,7 @@ import deepfilter from 'deep-filter'
 export function useCffstr () {
     const {
         abstract,
+        authors,
         commit,
         cffVersion,
         dateReleased,
@@ -43,6 +44,7 @@ export function useCffstr () {
     const makeJavascriptObject = () => {
         const cff = {
             abstract: abstract.value,
+            authors: authors.value,
             commit: commit.value,
             cffVersion: cffVersion.value,
             dateReleased: dateReleased.value,
@@ -60,7 +62,7 @@ export function useCffstr () {
         } as CffType
         const filtered = deepfilter(cff, notEmpty)
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return kebabcaseKeys(filtered)
+        return kebabcaseKeys(filtered, { deep: true })
     }
 
     const makeCffstr = () => {

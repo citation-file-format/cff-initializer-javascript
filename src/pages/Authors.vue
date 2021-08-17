@@ -4,13 +4,21 @@
             Authors
         </div>
 
-        <div>
+        <div
+            v-for="(author, index) in authors"
+            v-bind:key="index"
+        >
             <AuthorViewCard
-                v-for="(author, index) in authors"
-                v-bind:key="index"
+                v-if="editingId !== index"
                 v-bind:index="index"
                 v-bind:author="author"
-                v-on:editPressed="() => editingId = index"
+                v-on:editPressed="() => (editingId = index)"
+            />
+            <AuthorEditCard
+                v-else
+                v-bind:index="index"
+                v-bind="author"
+                v-on:closePressed="() => (editingId = -1)"
             />
         </div>
         <q-btn>Add author</q-btn> {{ editingId }}
@@ -22,6 +30,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
+import AuthorEditCard from 'components/AuthorEditCard.vue'
 import AuthorViewCard from 'components/AuthorViewCard.vue'
 import { Author } from 'src/types/author'
 
@@ -29,27 +38,34 @@ export default defineComponent({
     name: 'Authors',
     components: {
         StepperActions,
+        AuthorEditCard,
         AuthorViewCard
     },
     setup () {
-        const authors = ref<Author[]>([{
-            givenNames: 'Stefan',
-            familyNames: 'Verhoeven',
-            email: 'me@bla.com',
-            affiliation: 'NLeSC',
-            orcid: 'https://orcid/123434'
-        }, {
-            givenNames: 'Faruk',
-            familyNames: 'Diblen',
-            email: 'me@bla.com',
-            affiliation: 'NLeSC',
-            orcid: 'https://orcid/123434'
-        }])
+        const authors = ref<Author[]>([
+            {
+                givenNames: 'Stefan',
+                familyNames: 'Verhoeven',
+                email: 'me@bla.com',
+                affiliation: 'NLeSC',
+                orcid: 'https://orcid/123434'
+            },
+            {
+                givenNames: 'Faruk',
+                familyNames: 'Diblen',
+                email: 'me@bla.com',
+                affiliation: 'NLeSC',
+                orcid: 'https://orcid/123434'
+            }
+        ])
 
         const editingId = ref(-1)
         return {
             authors,
-            editingId
+            editingId,
+            setGivenNames (newGivenNames: string) {
+                authors.value[editingId.value].givenNames = newGivenNames
+            }
         }
     }
 })

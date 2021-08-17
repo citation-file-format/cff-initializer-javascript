@@ -50,7 +50,7 @@ import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
-    name: 'PageStart',
+    name: 'Start',
     components: {
         StepperActions
     },

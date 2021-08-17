@@ -18,12 +18,18 @@ authors:
     orcid: "https://orcid.org/0000-0002-0989-929X"
 cff-version: "1.2.0"
 date-released: 2021-08-XX
-doi: FIXME
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.1404735
+    description: This the identifier used to uniquely identify the software as a concept (i.e., version-agnostic).
+  - type: doi
+    value: FIXME
+    description: This the identifier used to uniquely identify the version of the software.
 keywords:
   - cff
   - citation
 license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
-repository-code: "https://github.com/citation-file-format"
-title: "cff initializer website v2"
+repository-code: "https://github.com/citation-file-format/cff-initializer-javascript"
+title: "cffinit"
 version: "2.0.0"

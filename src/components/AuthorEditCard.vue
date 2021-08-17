@@ -34,11 +34,6 @@
                         v-on:update:modelValue="
                             $emit('update', 'nameParticle', $event)
                         "
-                        v-bind:rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                'Please use minimum 3 characters',
-                        ]"
                     />
                 </div>
                 <div class="col">

@@ -18,11 +18,14 @@
                 v-else
                 v-bind:index="index"
                 v-bind="author"
-                v-on:closePressed="() => (editingId = -1)"
                 v-on:update="setAuthorField"
+                v-on:closePressed="() => (editingId = -1)"
+                v-on:removePressed="removeAuthor"
             />
         </div>
-        <q-btn>Add author</q-btn> {{ editingId }}
+        <q-btn v-on:click="addAuthor">
+            Add author
+        </q-btn>
 
         <StepperActions />
     </div>
@@ -34,6 +37,7 @@ import StepperActions from 'components/StepperActions.vue'
 import AuthorEditCard from 'components/AuthorEditCard.vue'
 import AuthorViewCard from 'components/AuthorViewCard.vue'
 import { Author } from 'src/types/author'
+import { useCff } from 'src/store/cff'
 
 export default defineComponent({
     name: 'Authors',
@@ -43,23 +47,7 @@ export default defineComponent({
         AuthorViewCard
     },
     setup () {
-        const authors = ref<Author[]>([
-            {
-                givenNames: 'Stefan',
-                familyNames: 'Verhoeven',
-                email: 'me@bla.com',
-                affiliation: 'NLeSC',
-                orcid: 'https://orcid/123434'
-            },
-            {
-                givenNames: 'Faruk',
-                familyNames: 'Diblen',
-                email: 'me@bla.com',
-                affiliation: 'NLeSC',
-                orcid: 'https://orcid/123434'
-            }
-        ])
-
+        const { authors, setAuthors } = useCff()
         const editingId = ref(-1)
         return {
             authors,
@@ -68,7 +56,19 @@ export default defineComponent({
                 const author = { ...authors.value[editingId.value] }
                 author[field] = value
                 authors.value[editingId.value] = author
-                // setAuthors([authors.splice(editingId.value, 0, author)])
+                setAuthors(authors.value)
+            },
+            removeAuthor () {
+                const newAuthors = [...authors.value]
+                newAuthors.splice(editingId.value, 1)
+                setAuthors(newAuthors)
+                editingId.value = -1
+            },
+            addAuthor () {
+                const newAuthor: Author = {}
+                const newAuthors = [...authors.value, newAuthor]
+                setAuthors(newAuthors)
+                editingId.value = newAuthors.length - 1
             }
         }
     }

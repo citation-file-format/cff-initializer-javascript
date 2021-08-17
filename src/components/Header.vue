@@ -34,13 +34,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useStep } from '../store/step'
+import { useAppState } from '../store/app-state'
 
 export default defineComponent({
     name: 'Header',
 
     setup () {
-        const step = useStep()
+        const { step } = useAppState()
         return {
             step
         }

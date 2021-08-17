@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { useRouter } from 'vue-router'
-import { useStep } from '../store/step'
+import { useAppState } from '../store/app-state'
 
 import { defineComponent } from 'vue'
 
@@ -42,32 +42,24 @@ export default defineComponent({
     name: 'StepperActions',
 
     setup () {
-        const step = useStep()
+        const { step, incrementStep, decrementStep } = useAppState()
         const router = useRouter()
 
         const navigateNext = () => {
-            step.next()
-            const targetRoute = `/${step.step.value}`
+            incrementStep()
+            const targetRoute = `/${step.value}`
             return router.push({ path: targetRoute })
         }
 
         const navigatePrevious = () => {
-            step.previous()
-            const targetRoute = `/${step.step.value}`
-            return router.push({ path: targetRoute })
-        }
-
-        const navigateTo = (newStep: number) => {
-            step.goto(newStep)
-            const targetRoute = `/${step.step.value}`
+            decrementStep()
+            const targetRoute = `/${step.value}`
             return router.push({ path: targetRoute })
         }
 
         return {
-            step,
             navigateNext,
-            navigatePrevious,
-            navigateTo
+            navigatePrevious
         }
     }
 

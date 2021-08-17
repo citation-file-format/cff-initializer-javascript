@@ -33,6 +33,7 @@ export default defineComponent({
     setup () {
         const {
             abstract,
+            authors,
             commit,
             cffVersion,
             dateReleased,
@@ -67,6 +68,7 @@ export default defineComponent({
         const makeCffstr = () => {
             const cff = {
                 abstract: abstract.value,
+                authors: authors.value,
                 commit: commit.value,
                 cffVersion: cffVersion.value,
                 dateReleased: dateReleased.value,
@@ -83,7 +85,7 @@ export default defineComponent({
                 version: version.value
             } as CffType
             const filtered = deepfilter(cff, notEmpty)
-            const kebabed = kebabcaseKeys(filtered)
+            const kebabed = kebabcaseKeys(filtered, { deep: true })
 
             return yaml.dump(kebabed, { indent: 2, sortKeys: true })
         }

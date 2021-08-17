@@ -64,11 +64,6 @@
                         v-on:update:modelValue="
                             $emit('update', 'nameSuffix', $event)
                         "
-                        v-bind:rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                'Please use minimum 3 characters',
-                        ]"
                     />
                 </div>
             </div>

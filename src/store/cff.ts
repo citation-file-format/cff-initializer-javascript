@@ -1,6 +1,5 @@
-import { Author } from 'src/types/author'
 import { ref, computed } from 'vue'
-import { CffType, IdentifiersType, KeywordsType, TypeType } from '../types'
+import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from '../types'
 
 const cff = ref({
     abstract: '',
@@ -40,7 +39,7 @@ export function useCff () {
         url: computed(() => cff.value.url),
         version: computed(() => cff.value.version),
         setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract },
-        setAuthors: (newAuthors: Author[]) => { cff.value.authors = newAuthors },
+        setAuthors: (newAuthors: AuthorsType) => { cff.value.authors = newAuthors },
         setCommit: (newCommit: string) => { cff.value.commit = newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.dateReleased = newDateReleased },
         setIdentifiers: (newIdentifiers: IdentifiersType) => { cff.value.identifiers = newIdentifiers },

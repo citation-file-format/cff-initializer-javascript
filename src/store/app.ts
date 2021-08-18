@@ -1,17 +1,32 @@
 import { ref, computed } from 'vue'
 
 const state = ref({
-    step: 1,
-    showAdvanced: false
+    lastStep: 9,
+    showAdvanced: false,
+    step: 1
 })
 
-export function useAppState () {
+const firstStep = 1
+
+export function useApp () {
     return {
         showAdvanced: computed(() => state.value.showAdvanced),
         step: computed(() => state.value.step),
-        setStep: (newStep: number) => { state.value.step = newStep },
-        incrementStep: () => { state.value.step = state.value.step + 1 },
-        decrementStep: () => { state.value.step = state.value.step - 1 },
+        setStep: (newStep: number) => {
+            if (firstStep <= newStep && newStep <= state.value.lastStep) {
+                state.value.step = newStep
+            }
+        },
+        incrementStep: () => {
+            if (state.value.step < state.value.lastStep) {
+                state.value.step++
+            }
+        },
+        decrementStep: () => {
+            if (state.value.step > firstStep) {
+                state.value.step--
+            }
+        },
         setShowAdvanced: (newShowAdvanced: boolean) => { state.value.showAdvanced = newShowAdvanced }
     }
 }

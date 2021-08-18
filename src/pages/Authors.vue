@@ -37,7 +37,7 @@ import { defineComponent, ref } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
 import AuthorEditCard from 'components/AuthorEditCard.vue'
 import AuthorViewCard from 'components/AuthorViewCard.vue'
-import { Author } from 'src/types/author'
+import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
@@ -53,7 +53,7 @@ export default defineComponent({
         return {
             authors,
             editingId,
-            setAuthorField (field: keyof Author, value: string) {
+            setAuthorField (field: keyof AuthorType, value: string) {
                 const author = { ...authors.value[editingId.value] }
                 author[field] = value
                 authors.value[editingId.value] = author
@@ -66,7 +66,7 @@ export default defineComponent({
                 editingId.value = -1
             },
             addAuthor () {
-                const newAuthor: Author = {}
+                const newAuthor: AuthorType = {}
                 const newAuthors = [...authors.value, newAuthor]
                 setAuthors(newAuthors)
                 editingId.value = newAuthors.length - 1

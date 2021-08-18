@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { Author } from 'src/types/author'
+import { AuthorType } from 'src/types'
 
 export default defineComponent({
     name: 'AuthorViewCard',
@@ -45,7 +45,7 @@ export default defineComponent({
             required: true
         },
         author: {
-            type: Object as PropType<Author>,
+            type: Object as PropType<AuthorType>,
             required: true
         }
     },

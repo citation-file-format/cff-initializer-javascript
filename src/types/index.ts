@@ -1,4 +1,14 @@
-import { Author } from './author'
+export type AuthorType = {
+    givenNames?: string;
+    nameParticle?: string;
+    nameSuffix?: string;
+    orcid?: string;
+    familyNames?: string;
+    affiliation?: string;
+    email?: string;
+}
+
+export type AuthorsType = Array<AuthorType>
 
 export type IdentifiersType = Array<{
     type: 'doi' | 'url' | 'swh' | 'other',
@@ -12,7 +22,7 @@ export type TypeType = 'software' | 'dataset'
 
 export type CffType = {
     abstract?: string,
-    authors: Author[],
+    authors: AuthorsType,
     cffVersion?: string,
     commit?: string,
     dateReleased?: string,

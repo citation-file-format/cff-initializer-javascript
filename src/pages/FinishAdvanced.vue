@@ -76,7 +76,7 @@
                             icon="chevron_left"
                             label="Back to form"
                             no-caps
-                            v-on:click="$router.go(-1)"
+                            v-on:click="navigatePrevious"
                         />
                         <q-btn
                             class="q-ml-xl"
@@ -117,12 +117,19 @@
 import { defineComponent } from 'vue'
 import Preview from 'components/Preview.vue'
 import DownloadButton from 'components/DownloadButton.vue'
+import { useApp } from '../store/app'
 
 export default defineComponent({
-    name: 'Finish',
+    name: 'FinishAdvanced',
     components: {
         Preview,
         DownloadButton
+    },
+    setup () {
+        const { navigatePrevious } = useApp()
+        return {
+            navigatePrevious
+        }
     }
 })
 </script>

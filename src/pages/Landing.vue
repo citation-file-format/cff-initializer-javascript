@@ -113,7 +113,7 @@
                 label="Get started"
                 no-caps
                 size="xl"
-                to="/1"
+                to="/start"
             />
         </div>
     </div>

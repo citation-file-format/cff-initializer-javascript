@@ -16,7 +16,6 @@
                 color="primary"
                 icon=""
                 title="Start"
-                v-bind:done="false"
                 v-bind:name="1"
             />
 
@@ -24,7 +23,6 @@
                 color="primary"
                 icon=""
                 title="Authors"
-                v-bind:done="false"
                 v-bind:name="2"
             />
 
@@ -32,7 +30,6 @@
                 color="primary"
                 icon=""
                 title="Identifiers"
-                v-bind:done="false"
                 v-bind:name="3"
             />
 
@@ -40,7 +37,6 @@
                 color="primary"
                 icon=""
                 title="Related resources"
-                v-bind:done="false"
                 v-bind:name="4"
             />
 
@@ -48,7 +44,6 @@
                 color="primary"
                 icon=""
                 title="Abstract"
-                v-bind:done="false"
                 v-bind:name="5"
             />
 
@@ -56,7 +51,6 @@
                 color="primary"
                 icon=""
                 title="Keywords"
-                v-bind:done="false"
                 v-bind:name="6"
             />
 
@@ -64,7 +58,6 @@
                 color="primary"
                 icon=""
                 title="License"
-                v-bind:done="false"
                 v-bind:name="7"
             />
 
@@ -72,7 +65,6 @@
                 color="primary"
                 icon=""
                 title="Version specific"
-                v-bind:done="false"
                 v-bind:name="8"
             />
 
@@ -92,11 +84,11 @@
 <script lang="ts">
 
 import { useRouter } from 'vue-router'
-import { useAppState } from '../store/app-state'
+import { useApp } from '../store/app'
 
 export default {
     setup () {
-        const { step, setStep } = useAppState()
+        const { step, setStep } = useApp()
         const router = useRouter()
 
         const updateStep = (newStep: number) => {

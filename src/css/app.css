@@ -19,6 +19,7 @@
 
 p, body {
     font-family: 'Roboto Condensed', sans-serif;
+    overflow: hidden;
 }
 
 .page-title {

@@ -7,7 +7,6 @@
             flat
             header-nav
             inactive-icon=""
-            ref="stepper"
             v-bind:model-value="step"
             v-on:update:modelValue="updateStep"
             vertical

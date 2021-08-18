@@ -32,7 +32,7 @@
                             icon="chevron_left"
                             label="Back to form"
                             no-caps
-                            v-on:click="navigatePrevious"
+                            v-on:click="backToForm"
                         />
                         <q-btn
                             class="q-ml-xl"
@@ -84,16 +84,16 @@ export default defineComponent({
     },
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
-
-        const showAdvanced = async () => {
-            setShowAdvanced(true)
-            await setStepName('identifiers')
-        }
-
         return {
+            backToForm: async () => {
+                await setStepName('authors')
+            },
             setShowAdvanced,
             navigatePrevious,
-            showAdvanced
+            showAdvanced: async () => {
+                setShowAdvanced(true)
+                await setStepName('identifiers')
+            }
         }
     }
 })

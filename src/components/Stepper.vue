@@ -78,6 +78,7 @@
 
             <q-step
                 color="primary"
+                disable
                 icon=""
                 title="Finish"
                 v-bind:name="100"

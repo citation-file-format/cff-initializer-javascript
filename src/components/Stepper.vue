@@ -6,80 +6,71 @@
             class="bg-secondary text-primary"
             flat
             header-nav
-            inactive-icon="star"
-            ref="stepper"
-            v-bind:model-value="step.step"
+            inactive-icon=""
+            v-bind:model-value="step"
             v-on:update:modelValue="updateStep"
             vertical
         >
             <q-step
                 color="primary"
-                icon="star"
+                icon=""
                 title="Start"
-                v-bind:done="step.step.value > 1"
                 v-bind:name="1"
             />
 
             <q-step
                 color="primary"
-                icon="star"
+                icon=""
                 title="Authors"
-                v-bind:done="step.step.value > 2"
                 v-bind:name="2"
             />
 
             <q-step
                 color="primary"
-                icon="star"
+                icon=""
                 title="Identifiers"
-                v-bind:done="step.step.value > 3"
                 v-bind:name="3"
             />
 
             <q-step
                 color="primary"
-                icon="star"
+                icon=""
                 title="Related resources"
-                v-bind:done="step.step.value > 4"
                 v-bind:name="4"
             />
 
             <q-step
                 color="primary"
-                icon="star"
+                icon=""
                 title="Abstract"
-                v-bind:done="step.step.value > 5"
                 v-bind:name="5"
             />
 
             <q-step
                 color="primary"
-                icon="star"
+                icon=""
                 title="Keywords"
-                v-bind:done="step.step.value > 6"
                 v-bind:name="6"
             />
 
             <q-step
-                title="License"
                 color="primary"
-                icon="star"
+                icon=""
+                title="License"
                 v-bind:name="7"
-                v-bind:done="step.step.value > 7"
             />
 
             <q-step
                 color="primary"
-                icon="star"
+                icon=""
                 title="Version specific"
-                v-bind:done="step.step.value > 8"
                 v-bind:name="8"
             />
 
             <q-step
                 color="primary"
                 disable
-                icon="expand_more"
+                icon=""
                 title="Finish"
                 v-bind:name="100"
             >
@@ -92,16 +83,16 @@
 <script lang="ts">
 
 import { useRouter } from 'vue-router'
-import { useStep } from '../store/step'
+import { useApp } from '../store/app'
 
 export default {
     setup () {
-        const step = useStep()
+        const { step, setStep } = useApp()
         const router = useRouter()
 
         const updateStep = (newStep: number) => {
-            step.goto(newStep)
-            const targetRoute = `/${step.step.value}`
+            setStep(newStep)
+            const targetRoute = `/${step.value}`
             return router.push({ path: targetRoute })
         }
 

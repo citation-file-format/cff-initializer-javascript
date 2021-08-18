@@ -34,21 +34,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useAppState } from '../store/app-state'
 
 export default defineComponent({
-    name: 'Header',
-
-    setup () {
-        const { step } = useAppState()
-        return {
-            step
-        }
-    }
-
+    name: 'Header'
 })
 </script>
 
 <style>
-
 </style>

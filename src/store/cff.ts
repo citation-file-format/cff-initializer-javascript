@@ -71,7 +71,7 @@ export function useCff () {
                 type: 'software',
                 url: '',
                 version: ''
-            }
+            } as CffType
         }
     }
 }

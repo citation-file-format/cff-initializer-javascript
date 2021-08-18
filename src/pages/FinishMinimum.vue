@@ -83,11 +83,11 @@ export default defineComponent({
         Preview
     },
     setup () {
-        const { setShowAdvanced, navigatePrevious, navigateNext } = useApp()
+        const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
 
         const showAdvanced = async () => {
             setShowAdvanced(true)
-            await navigateNext()
+            await setStepName('identifiers')
         }
 
         return {

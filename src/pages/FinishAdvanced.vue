@@ -76,7 +76,7 @@
                             icon="chevron_left"
                             label="Back to form"
                             no-caps
-                            v-on:click="navigatePrevious"
+                            v-on:click="backToForm"
                         />
                         <q-btn
                             class="q-ml-xl"
@@ -127,7 +127,7 @@ export default defineComponent({
         DownloadButton
     },
     setup () {
-        const { navigatePrevious, setStepName, setShowAdvanced } = useApp()
+        const { setStepName, setShowAdvanced } = useApp()
         const { reset } = useCff()
 
         return {
@@ -136,7 +136,9 @@ export default defineComponent({
                 setShowAdvanced(false)
                 await setStepName('start')
             },
-            navigatePrevious
+            backToForm: async () => {
+                await setStepName('version-specific')
+            }
         }
     }
 })

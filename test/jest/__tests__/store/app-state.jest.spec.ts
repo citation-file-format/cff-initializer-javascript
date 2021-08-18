@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { beforeEach, describe, expect, it } from '@jest/globals'
-import { useAppState } from '../../../../src/store/app-state'
+import { useApp } from '../../../../src/store/app'
 
 describe('useAppState', () => {
-    const { step, setStep, decrementStep, incrementStep } = useAppState()
+    const { step, setStep, decrementStep, incrementStep } = useApp()
 
     beforeEach(() => {
         setStep(1)

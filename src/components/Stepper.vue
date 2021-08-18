@@ -16,7 +16,7 @@
                 color="primary"
                 icon=""
                 title="Start"
-                v-bind:done="step > 1"
+                v-bind:done="false"
                 v-bind:name="1"
             />
 
@@ -24,7 +24,7 @@
                 color="primary"
                 icon=""
                 title="Authors"
-                v-bind:done="step > 2"
+                v-bind:done="false"
                 v-bind:name="2"
             />
 
@@ -32,7 +32,7 @@
                 color="primary"
                 icon=""
                 title="Identifiers"
-                v-bind:done="step > 3"
+                v-bind:done="false"
                 v-bind:name="3"
             />
 
@@ -40,7 +40,7 @@
                 color="primary"
                 icon=""
                 title="Related resources"
-                v-bind:done="step > 4"
+                v-bind:done="false"
                 v-bind:name="4"
             />
 
@@ -48,7 +48,7 @@
                 color="primary"
                 icon=""
                 title="Abstract"
-                v-bind:done="step > 5"
+                v-bind:done="false"
                 v-bind:name="5"
             />
 
@@ -56,29 +56,28 @@
                 color="primary"
                 icon=""
                 title="Keywords"
-                v-bind:done="step > 6"
+                v-bind:done="false"
                 v-bind:name="6"
             />
 
             <q-step
-                title="License"
                 color="primary"
                 icon=""
+                title="License"
+                v-bind:done="false"
                 v-bind:name="7"
-                v-bind:done="step > 7"
             />
 
             <q-step
                 color="primary"
                 icon=""
                 title="Version specific"
-                v-bind:done="step > 8"
+                v-bind:done="false"
                 v-bind:name="8"
             />
 
             <q-step
                 color="primary"
-                disable
                 icon=""
                 title="Finish"
                 v-bind:name="100"

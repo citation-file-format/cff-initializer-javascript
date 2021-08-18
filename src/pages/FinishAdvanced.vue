@@ -84,7 +84,7 @@
                             icon="edit"
                             label="Create another"
                             no-caps
-                            to="/1"
+                            v-on:click="createAnother"
                         />
                     </q-card-actions>
                 </q-card>
@@ -118,6 +118,7 @@ import { defineComponent } from 'vue'
 import Preview from 'components/Preview.vue'
 import DownloadButton from 'components/DownloadButton.vue'
 import { useApp } from '../store/app'
+import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'FinishAdvanced',
@@ -126,8 +127,15 @@ export default defineComponent({
         DownloadButton
     },
     setup () {
-        const { navigatePrevious } = useApp()
+        const { navigatePrevious, setStepName, setShowAdvanced } = useApp()
+        const { reset } = useCff()
+
         return {
+            createAnother: async () => {
+                reset()
+                setShowAdvanced(false)
+                await setStepName('start')
+            },
             navigatePrevious
         }
     }

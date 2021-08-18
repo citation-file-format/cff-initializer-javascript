@@ -36,27 +36,28 @@ export function useApp () {
         lastStepIndex,
         showAdvanced: computed(() => state.value.showAdvanced),
         stepName,
-        setStepName: (newStepName: StepNameType) => {
+        setStepName: async (newStepName: StepNameType) => {
             state.value.stepIndex = stepNames.indexOf(newStepName)
+            await router.push({ path: `/${stepName.value}` })
         },
-        navigateNext: () => {
+        navigateNext: async () => {
             if (state.value.showAdvanced === true && stepName.value === 'authors') {
                 // extra increment to step past finish-minimum
                 state.value.stepIndex++
             }
             if (state.value.stepIndex < lastStepIndex.value) {
                 state.value.stepIndex++
-                return router.push({ path: `/${stepName.value}` })
+                await router.push({ path: `/${stepName.value}` })
             }
         },
-        navigatePrevious: () => {
+        navigatePrevious: async () => {
             if (state.value.showAdvanced === true && stepName.value === 'identifiers') {
                 // extra decrement to step past finish-minimum
                 state.value.stepIndex--
             }
             if (state.value.stepIndex > firstStepIndex) {
                 state.value.stepIndex--
-                return router.push({ path: `/${stepName.value}` })
+                await router.push({ path: `/${stepName.value}` })
             }
         },
         setShowAdvanced: (newShowAdvanced: boolean) => { state.value.showAdvanced = newShowAdvanced }

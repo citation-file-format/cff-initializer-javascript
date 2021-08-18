@@ -20,7 +20,7 @@
                     flat
                     label="Finish"
                     no-caps
-                    to="/finish"
+                    v-bind:to="showAdvanced === true ? '/finish-advanced' : '/finish-minimum'"
                 />
                 <q-btn
                     color="grey-6"
@@ -43,11 +43,12 @@ export default defineComponent({
     name: 'StepperActions',
 
     setup () {
-        const { cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()
+        const { showAdvanced, cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()
 
         return {
             cannotGoBack,
             cannotGoForward,
+            showAdvanced,
             navigateNext,
             navigatePrevious
         }

@@ -25,7 +25,6 @@
 import Footer from 'components/Footer.vue'
 import Header from 'components/Header.vue'
 import Preview from 'components/Preview.vue'
-import Stars from 'components/Stars.vue'
 import Stepper from 'components/Stepper.vue'
 
 import { defineComponent } from 'vue'
@@ -37,7 +36,6 @@ export default defineComponent({
         Footer,
         Header,
         Preview,
-        Stars,
         Stepper
     },
 

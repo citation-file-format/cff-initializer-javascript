@@ -4,7 +4,7 @@
 
 import { computed } from 'vue'
 import { useCff } from 'src/store/cff'
-import yaml from 'js-yaml'
+import * as yaml from 'js-yaml'
 import { CffType } from 'src/types'
 import kebabcaseKeys from 'kebabcase-keys'
 import deepfilter from 'deep-filter'

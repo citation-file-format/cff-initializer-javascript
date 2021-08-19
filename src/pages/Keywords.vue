@@ -25,6 +25,7 @@
                     <q-btn
                         icon="remove"
                         label="Remove"
+                        v-on:click="removeKeyword(index)"
                     />
                 </div>
             </div>
@@ -35,9 +36,9 @@
                     outlined
                     v-bind:model="newKeyword"
                     placeholder="Type a keyword"
-                    v-on:keyup.enter="addKeyword(newKeyword)"
+                    v-on:keyup.enter="addKeyword"
                 />
-                <q-btn v-on:click="addKeyword(newKeyword)">
+                <q-btn v-on:click="addKeyword">
                     Add keyword
                 </q-btn>
             </div>
@@ -60,17 +61,23 @@ export default defineComponent({
         const { keywords, setKeywords } = useCff()
         const newKeyword = ref('')
 
-        function addKeyword (keyword: string) {
-            console.log(keyword)
-            const newKeywords = [...keywords.value ? keywords.value : [], keyword]
+        function addKeyword () {
+            const newKeywords = [...keywords.value, newKeyword.value]
             console.log(newKeywords)
             setKeywords(newKeywords)
             newKeyword.value = ''
         }
+
+        function removeKeyword (index: number) {
+            const newKeywords = [...keywords.value]
+            newKeywords.splice(index, 1)
+            setKeywords(newKeywords)
+        }
         return {
             keywords,
             newKeyword,
-            addKeyword
+            addKeyword,
+            removeKeyword
         }
     }
 })

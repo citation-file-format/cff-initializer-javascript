@@ -27,7 +27,7 @@ export type CffType = {
     commit?: string,
     dateReleased?: string,
     identifiers?: IdentifiersType,
-    keywords?: KeywordsType,
+    keywords: KeywordsType,
     license?: string,
     message?: string,
     repository?: string,

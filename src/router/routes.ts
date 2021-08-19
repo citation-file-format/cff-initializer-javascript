@@ -7,65 +7,63 @@ const routes: RouteRecordRaw[] = [
         children: [{ path: '', component: () => import('src/pages/Landing.vue') }]
     },
     {
-        path: '/0',
+        path: '/landing',
         component: () => import('src/layouts/MainLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Landing.vue') }]
     },
     {
-        path: '/1',
+        path: '/start',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Start.vue') }]
     },
     {
-        path: '/2',
+        path: '/authors',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Authors.vue') }]
     },
     {
-        path: '/3',
+        path: '/finish-minimum',
+        component: () => import('src/layouts/MainLayout.vue'),
+        children: [{ path: '', component: () => import('src/pages/FinishMinimum.vue') }]
+    },
+    {
+        path: '/identifiers',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Identifiers.vue') }]
     },
     {
-        path: '/4',
+        path: '/related-resources',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/RelatedResources.vue') }]
     },
     {
-        path: '/5',
+        path: '/abstract',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Abstract.vue') }]
     },
     {
-        path: '/6',
+        path: '/keywords',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/Keywords.vue') }]
     },
     {
-        path: '/7',
+        path: '/license',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/License.vue') }]
     },
     {
-        path: '/8',
+        path: '/version-specific',
         component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/VersionSpecific.vue') }]
     },
     {
-        path: '/9',
+        path: '/finish-advanced',
         component: () => import('src/layouts/MainLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Finish.vue') }]
+        children: [{ path: '', component: () => import('src/pages/FinishAdvanced.vue') }]
     },
-    {
-        path: '/finish',
-        component: () => import('src/layouts/MainLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Finish.vue') }]
-    },
-    // Always leave this as last one,
-    // but you can also remove it
     {
         path: '/:catchAll(.*)*',
-        component: () => import('pages/Error404.vue')
+        component: () => import('src/pages/Error404.vue')
     }
 ]
 

@@ -10,10 +10,13 @@
             <div class="row items-center no-wrap">
                 <div class="col-11">
                     <div class="text-subtitle1">
-                        {{ author.givenNames }} {{ author.nameParticle }} {{ author.familyNames }} {{ author.nameSuffix }}
+                        {{ identifier.type }}
                     </div>
                     <div class="text-subtitle1">
-                        {{ author.email }}
+                        {{ identifier.value }}
+                    </div>
+                    <div class="text-subtitle1">
+                        {{ identifier.description }}
                     </div>
                 </div>
 
@@ -24,32 +27,27 @@
                         round
                         flat
                         icon="edit"
-                        title="Edit"
                         v-on:click="$emit('editPressed')"
                     />
                 </div>
             </div>
-        </q-card-section>
-
-        <q-card-section>
-            {{ author.affiliation }} {{ author.orcid }}
         </q-card-section>
     </q-card>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue'
-import { AuthorType } from 'src/types'
+import { IdentifierType } from 'src/types'
 
 export default defineComponent({
-    name: 'AuthorViewCard',
+    name: 'IdentifierViewCard',
     props: {
         index: {
             type: Number,
             required: true
         },
-        author: {
-            type: Object as PropType<AuthorType>,
+        identifier: {
+            type: Object as PropType<IdentifierType>,
             required: true
         }
     },

@@ -1,30 +1,63 @@
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+type StepNameType = 'start' | 'authors' | 'finish-minimum' | 'identifiers' | 'related-resources' |
+                    'abstract' | 'keywords' | 'license' | 'version-specific' | 'finish-advanced'
 
 const state = ref({
-    lastStep: 9,
     showAdvanced: false,
-    step: 1
+    stepIndex: 0
 })
 
-const firstStep = 1
+const stepNames = [
+    'start',
+    'authors',
+    'finish-minimum',
+    'identifiers',
+    'related-resources',
+    'abstract',
+    'keywords',
+    'license',
+    'version-specific',
+    'finish-advanced'
+] as Array<StepNameType>
+
+const firstStepIndex = 0
+
+const lastStepIndex = computed(() => state.value.showAdvanced ? stepNames.indexOf('finish-advanced') : stepNames.indexOf('finish-minimum'))
+const stepName = computed(() => stepNames[state.value.stepIndex])
 
 export function useApp () {
+    const router = useRouter()
+
     return {
+        cannotGoBack: computed(() => state.value.stepIndex === firstStepIndex),
+        cannotGoForward: computed(() => state.value.stepIndex === lastStepIndex.value),
+        lastStepIndex,
         showAdvanced: computed(() => state.value.showAdvanced),
-        step: computed(() => state.value.step),
-        setStep: (newStep: number) => {
-            if (firstStep <= newStep && newStep <= state.value.lastStep) {
-                state.value.step = newStep
+        stepName,
+        setStepName: async (newStepName: StepNameType) => {
+            state.value.stepIndex = stepNames.indexOf(newStepName)
+            await router.push({ path: `/${stepName.value}` })
+        },
+        navigateNext: async () => {
+            if (state.value.showAdvanced === true && stepName.value === 'authors') {
+                // extra increment to step past finish-minimum
+                state.value.stepIndex++
+            }
+            if (state.value.stepIndex < lastStepIndex.value) {
+                state.value.stepIndex++
+                await router.push({ path: `/${stepName.value}` })
             }
         },
-        incrementStep: () => {
-            if (state.value.step < state.value.lastStep) {
-                state.value.step++
+        navigatePrevious: async () => {
+            if (state.value.showAdvanced === true && stepName.value === 'identifiers') {
+                // extra decrement to step past finish-minimum
+                state.value.stepIndex--
             }
-        },
-        decrementStep: () => {
-            if (state.value.step > firstStep) {
-                state.value.step--
+            if (state.value.stepIndex > firstStepIndex) {
+                state.value.stepIndex--
+                await router.push({ path: `/${stepName.value}` })
             }
         },
         setShowAdvanced: (newShowAdvanced: boolean) => { state.value.showAdvanced = newShowAdvanced }

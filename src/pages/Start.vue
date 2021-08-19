@@ -69,7 +69,7 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            validateTitle: makeFieldValidator('/definitions/alias')
+            validateTitle: makeFieldValidator('/properties/title')
         }
     }
 })

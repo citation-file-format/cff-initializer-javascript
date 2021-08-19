@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md col-flex">
+    <div class="q-pa-md col-flex screen">
         <div
             class="q-gutter-md title-field text-dark"
         >
@@ -15,19 +15,11 @@
                 v-for="(keyword, index) in keywords"
                 v-bind:key="index"
             >
-                <div class="flex">
-                    <q-input
-                        bg-color="white"
-                        outlined
-                        v-bind:model="keyword"
-                        placeholder="Type a keyword"
-                    />
-                    <q-btn
-                        icon="remove"
-                        label="Remove"
-                        v-on:click="removeKeyword(index)"
-                    />
-                </div>
+                <KeywordEditCard
+                    v-bind:keyword="keyword"
+                    v-on:update="setKeyword(index, $event)"
+                    v-on:removePressed="removeKeyword(index)"
+                />
             </div>
 
             <q-btn v-on:click="addKeyword">
@@ -40,13 +32,15 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
+import KeywordEditCard from 'components/KeywordEditCard.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'Keywords',
     components: {
-        StepperActions
+        StepperActions,
+        KeywordEditCard
     },
     setup () {
         const { keywords, setKeywords } = useCff()
@@ -63,10 +57,17 @@ export default defineComponent({
             newKeywords.splice(index, 1)
             setKeywords(newKeywords)
         }
+
+        function setKeyword (index: number, newKeyword: string) {
+            const newKeywords = [...keywords.value]
+            newKeywords[index] = newKeyword
+            setKeywords(newKeywords)
+        }
         return {
             keywords,
             addKeyword,
-            removeKeyword
+            removeKeyword,
+            setKeyword
         }
     }
 })
@@ -82,5 +83,4 @@ export default defineComponent({
     max-width: 700px;
     min-width: 300px;
 }
-
 </style>

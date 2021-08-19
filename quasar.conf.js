@@ -93,6 +93,8 @@ module.exports = configure(function (ctx) {
                     secondary: '#efefef',
                     accent: '#9C27B0',
 
+                    formcard: '#efefef',
+
                     dark: '#333',
 
                     positive: '#21BA45',

@@ -95,10 +95,11 @@ This section describes how to make a release in 2 parts:
 ### (1/2) Preparation
 
 1. Verify that the information in `CITATION.cff` is correct
-1. By running `npm run lint` make sure the linter does not complain
-1. Run the unit tests with `npm run test:unit:ci`
-1. Make sure that github.io page is up to date
-1. Check whether the [Publish](https://github.com/citation-file-format/cffinit/actions/workflows/publish.yml) workflow worked recently and it was successful
+1. Make sure the version field in `package.json` is correct 
+3. By running `npm run lint` make sure the linter does not complain
+4. Run the unit tests with `npm run test:unit:ci`
+5. Make sure that github.io page is up to date
+6. Check whether the [Publish](https://github.com/citation-file-format/cffinit/actions/workflows/publish.yml) workflow worked recently and it was successful
 
 ### (2/2) GitHub
 

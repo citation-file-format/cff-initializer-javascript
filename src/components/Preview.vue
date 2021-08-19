@@ -7,7 +7,6 @@
             class="copy-button"
             color="primary"
             hover-color="negative"
-            size="lg"
             flat
             icon="content_copy"
             v-bind:ripple="false"

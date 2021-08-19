@@ -41,130 +41,24 @@
             />
         </div>
     </div>
-    <div>
-        <q-btn
-            label="Import from existing DOI"
-            v-on:click="importOpen = true"
-        />
-        <q-dialog
-            v-model="importOpen"
-            persistent
-        >
-            <q-card style="min-width: 350px">
-                <q-card-section>
-                    <div class="text-h6">
-                        DOI to import
-                    </div>
-                </q-card-section>
-
-                <q-card-section class="q-pt-none">
-                    <q-input
-                        dense
-                        v-model="doi2import"
-                        autofocus
-                        v-on:keyup.enter="importOpen = false"
-                    />
-                </q-card-section>
-
-                <q-card-actions
-                    align="right"
-                    class="text-primary"
-                >
-                    <q-btn
-                        flat
-                        label="Cancel"
-                        v-close-popup
-                    />
-                    <q-btn
-                        flat
-                        label="Import"
-                        v-close-popup
-                        v-on:click="importDoi"
-                    />
-                </q-card-actions>
-            </q-card>
-        </q-dialog>
-    </div>
+    <DoiImporter />
     <StepperActions />
 </template>
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { AuthorType } from '../types'
-import { defineComponent, ref } from 'vue'
+import DoiImporter from 'components/DoiImporter.vue'
+import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
-import { useQuasar } from 'quasar'
 
 export default defineComponent({
     name: 'Start',
     components: {
-        StepperActions
+        StepperActions,
+        DoiImporter
     },
     setup () {
-        const { message, title, type, setMessage, setTitle, setType, setAuthors, setKeywords, setUrl, setVersion, setDateReleased } = useCff()
-        const importOpen = ref(false)
-        const doi2import = ref('10.1038/s41589-020-00724-z')
-        const $q = useQuasar()
-
-        async function importDoi () {
-            const url = `https://doi.org/${doi2import.value}`
-            const res = await fetch(
-                url,
-                {
-                    headers: new Headers([
-                        ['Accept', 'application/vnd.citationstyles.csl+json']
-                    ])
-                }
-            )
-            type CslAuthor = {
-                    ORCID?: string,
-                    given: string,
-                    family: string,
-
-                }
-            type CslJson = {
-                title: string
-                author: CslAuthor[]
-                subject: string[]
-                categories: string[]
-                type: 'software' | 'dataset' | 'article'
-                URL?: string
-                'published-online': {
-                    'date-parts': number[][]
-                },
-                version?: string
-                publisher: 'Zenodo' | string
-            }
-            const body = await res.json() as CslJson
-            console.log(body)
-            setTitle(body.title)
-            if (body.type === 'software') {
-                setType(body.type)
-            } else if (body.type === 'dataset') {
-                setType(body.type)
-            }
-            const newAuthors: AuthorType[] = body.author.map((a) => {
-                const newAuthor: AuthorType = {
-                    givenNames: a.given,
-                    familyNames: a.family
-                }
-                if (a.ORCID) {
-                    newAuthor.orcid = a.ORCID
-                }
-                return newAuthor
-            })
-            setAuthors(newAuthors)
-            const newKeywords: string[] = []
-            setKeywords(newKeywords.concat(body.subject, body.categories))
-            if (body.URL) {
-                setUrl(body.URL)
-            }
-            if (body.version) {
-                setVersion(body.version)
-            }
-            setDateReleased(body['published-online']['date-parts'][0].join('-'))
-            $q.notify('DOI has been imported')
-        }
+        const { message, title, type, setMessage, setTitle, setType } = useCff()
 
         return {
             message,
@@ -176,10 +70,7 @@ export default defineComponent({
             ],
             setMessage,
             setTitle,
-            setType,
-            importOpen,
-            doi2import,
-            importDoi
+            setType
         }
     }
 })

@@ -1,4 +1,4 @@
-import { useQuasar } from 'quasar'
+import { Notify } from 'quasar'
 
 import { AuthorType } from './types'
 import { useCff } from './store/cff'
@@ -6,7 +6,6 @@ import { useCff } from './store/cff'
 export async function importDoi (doi: string) {
     const { setTitle, setType, setAbstract, setAuthors, setKeywords, setUrl, setVersion, setDateReleased } = useCff()
 
-    const $q = useQuasar()
     const url = `https://doi.org/${doi}`
     // TODO add progress bar
     const res = await fetch(
@@ -74,5 +73,5 @@ export async function importDoi (doi: string) {
     if (body.abstract) {
         setAbstract(body.abstract)
     }
-    $q.notify('DOI has been imported')
+    Notify.create(`DOI ${doi} has been imported. ${newAuthors.length} authors found.`)
 }

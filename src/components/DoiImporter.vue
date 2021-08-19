@@ -11,7 +11,7 @@
             <q-card style="min-width: 350px">
                 <q-card-section>
                     <div class="text-h6">
-                        DOI to import
+                        Import data from DOI
                     </div>
                 </q-card-section>
 
@@ -19,9 +19,11 @@
                     <q-input
                         dense
                         v-model="doi2import"
+                        label="DOI"
                         autofocus
                         v-on:keyup.enter="importOpen = false"
                     />
+                    <p>Replaces any data already present in form</p>
                 </q-card-section>
 
                 <q-card-actions

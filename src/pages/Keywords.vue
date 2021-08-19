@@ -6,6 +6,14 @@
             <p class="q-mt-xl page-title">
                 Keywords
             </p>
+
+            <p class="question">
+                What keywords describe the work?
+            </p>
+
+            <q-btn v-on:click="addKeyword">
+                Add keyword
+            </q-btn>
         </div>
     </div>
     <StepperActions />
@@ -23,9 +31,15 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
+
+        function addKeyword () {
+            const newKeyword = ''
+            const newKeywords = [...keywords.value ? keywords.value : [], newKeyword]
+            setKeywords(newKeywords)
+        }
         return {
             keywords,
-            setKeywords
+            addKeyword
         }
     }
 })

@@ -22,7 +22,7 @@
                     to="/finish"
                 />
                 <q-btn
-                    color="grey-6"
+                    color="primary"
                     label="Next"
                     no-caps
                     v-on:click="navigateNext"

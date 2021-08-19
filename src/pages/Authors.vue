@@ -4,30 +4,34 @@
             <p class="q-mt-xl page-title">
                 Authors
             </p>
-
-            <div
-                v-for="(author, index) in authors"
-                v-bind:key="index"
-            >
-                <AuthorViewCard
-                    v-if="editingId !== index"
-                    v-bind:index="index"
-                    v-bind:author="author"
-                    v-on:editPressed="() => (editingId = index)"
-                />
-                <AuthorEditCard
-                    v-else
-                    v-bind:index="index"
-                    v-bind="author"
-                    v-on:update="setAuthorField"
-                    v-on:closePressed="() => (editingId = -1)"
-                    v-on:removePressed="removeAuthor"
-                />
-            </div>
-            <q-btn v-on:click="addAuthor">
-                Add author
-            </q-btn>
         </div>
+        <div
+            v-for="(author, index) in authors"
+            v-bind:key="index"
+            class="q-mb-md"
+        >
+            <AuthorViewCard
+                v-if="editingId !== index"
+                v-bind:index="index"
+                v-bind:author="author"
+                v-on:editPressed="() => (editingId = index)"
+            />
+            <AuthorEditCard
+                v-else
+                v-bind:index="index"
+                v-bind="author"
+                v-on:update="setAuthorField"
+                v-on:closePressed="() => (editingId = -1)"
+                v-on:removePressed="removeAuthor"
+            />
+        </div>
+        <q-btn
+            no-caps
+            v-on:click="addAuthor"
+            color="primary"
+        >
+            Add author
+        </q-btn>
     </div>
     <StepperActions />
 </template>

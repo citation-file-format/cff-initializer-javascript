@@ -8,12 +8,11 @@ on: # publish when main branch changes
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.head_ref }}
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 14
       uses: actions/setup-node@v2
       with:
         node-version: '14'

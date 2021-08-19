@@ -11,9 +11,36 @@
                 What keywords describe the work?
             </p>
 
-            <q-btn v-on:click="addKeyword">
-                Add keyword
-            </q-btn>
+            <div
+                v-for="(keyword, index) in keywords"
+                v-bind:key="index"
+            >
+                <div class="flex">
+                    <q-input
+                        bg-color="white"
+                        outlined
+                        v-bind:model="keyword"
+                        placeholder="Type a keyword"
+                    />
+                    <q-btn
+                        icon="remove"
+                        label="Remove"
+                    />
+                </div>
+            </div>
+
+            <div class="flex">
+                <q-input
+                    bg-color="white"
+                    outlined
+                    v-bind:model="newKeyword"
+                    placeholder="Type a keyword"
+                    v-on:keyup.enter="addKeyword(newKeyword)"
+                />
+                <q-btn v-on:click="addKeyword(newKeyword)">
+                    Add keyword
+                </q-btn>
+            </div>
         </div>
     </div>
     <StepperActions />
@@ -21,7 +48,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
@@ -31,14 +58,18 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
+        const newKeyword = ref('')
 
-        function addKeyword () {
-            const newKeyword = ''
-            const newKeywords = [...keywords.value ? keywords.value : [], newKeyword]
+        function addKeyword (keyword: string) {
+            console.log(keyword)
+            const newKeywords = [...keywords.value ? keywords.value : [], keyword]
+            console.log(newKeywords)
             setKeywords(newKeywords)
+            newKeyword.value = ''
         }
         return {
             keywords,
+            newKeyword,
             addKeyword
         }
     }

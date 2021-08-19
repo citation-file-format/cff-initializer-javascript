@@ -27,7 +27,7 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateMessage]"
                 v-on:update:modelValue="setMessage"
             />
             <p class="question">
@@ -69,7 +69,8 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            validateTitle: makeFieldValidator('/properties/title')
+            validateTitle: makeFieldValidator('/properties/title'),
+            validateMessage: makeFieldValidator('/properties/message')
         }
     }
 })

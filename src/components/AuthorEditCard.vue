@@ -121,11 +121,7 @@
                         v-on:update:modelValue="
                             $emit('update', 'orcid', $event)
                         "
-                        v-bind:rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                'Please use minimum 3 characters',
-                        ]"
+                        v-bind:rules="[ validateOrcid ]"
                     />
                 </div>
             </div>
@@ -150,6 +146,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { makeFieldValidator } from '../validator'
 
 export default defineComponent({
     name: 'AuthorEditCard',
@@ -185,6 +182,11 @@ export default defineComponent({
         email: {
             type: String,
             default: ''
+        }
+    },
+    setup () {
+        return {
+            validateOrcid: makeFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

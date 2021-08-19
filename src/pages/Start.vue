@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { useValidator } from '../validator'
+import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -57,7 +57,6 @@ export default defineComponent({
     },
     setup () {
         const { message, title, type, setMessage, setTitle, setType } = useCff()
-        const { makeFieldValidator } = useValidator()
         return {
             message,
             title,

@@ -6,19 +6,14 @@ export const ajv = new Ajv()
 addFormats(ajv)
 ajv.addSchema(schema)
 
-export const useValidator = () => {
-    const makeFieldValidator = (subschema: string) => {
-        return (val: unknown) => {
-            const isValid = ajv.validate(`${schema.$id}#${subschema}`, val)
-            if (isValid) {
-                return true
-            } else {
-                const messages = ajv.errors?.map(e => e.message) as unknown as string[]
-                return messages.join(', ')
-            }
+export const makeFieldValidator = (subschema: string) => {
+    return (val: unknown) => {
+        const isValid = ajv.validate(`${schema.$id}#${subschema}`, val)
+        if (isValid) {
+            return true
+        } else {
+            const messages = ajv.errors?.map(e => e.message) as unknown as string[]
+            return messages.join(', ')
         }
-    }
-    return {
-        makeFieldValidator
     }
 }

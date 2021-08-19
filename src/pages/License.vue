@@ -13,7 +13,7 @@
                 outlined
                 standout
                 v-bind:model-value="license"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[ validate ]"
                 v-on:update:model-value="setLicense"
             />
         </div>
@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
+import { makeFieldValidator } from 'src/validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -35,7 +36,8 @@ export default defineComponent({
         const cff = useCff()
         return {
             license: cff.license,
-            setLicense: cff.setLicense
+            setLicense: cff.setLicense,
+            validate: makeFieldValidator('/properties/license')
         }
     }
 })

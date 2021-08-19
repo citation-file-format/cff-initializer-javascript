@@ -24,6 +24,7 @@
                         round
                         flat
                         icon="edit"
+                        title="Edit"
                         v-on:click="$emit('editPressed')"
                     />
                 </div>

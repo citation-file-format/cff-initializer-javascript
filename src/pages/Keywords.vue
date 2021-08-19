@@ -30,18 +30,9 @@
                 </div>
             </div>
 
-            <div class="flex">
-                <q-input
-                    bg-color="white"
-                    outlined
-                    v-bind:model="newKeyword"
-                    placeholder="Type a keyword"
-                    v-on:keyup.enter="addKeyword"
-                />
-                <q-btn v-on:click="addKeyword">
-                    Add keyword
-                </q-btn>
-            </div>
+            <q-btn v-on:click="addKeyword">
+                Add keyword
+            </q-btn>
         </div>
     </div>
     <StepperActions />
@@ -49,7 +40,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
@@ -59,13 +50,12 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
-        const newKeyword = ref('')
 
         function addKeyword () {
-            const newKeywords = [...keywords.value, newKeyword.value]
+            const newKeyword = ''
+            const newKeywords = [...keywords.value, newKeyword]
             console.log(newKeywords)
             setKeywords(newKeywords)
-            newKeyword.value = ''
         }
 
         function removeKeyword (index: number) {
@@ -75,7 +65,6 @@ export default defineComponent({
         }
         return {
             keywords,
-            newKeyword,
             addKeyword,
             removeKeyword
         }

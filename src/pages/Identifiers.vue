@@ -1,31 +1,99 @@
 <template>
     <div class="q-pa-md col-flex">
-        <div
-            class="q-gutter-md title-field text-dark"
-        >
-            <p class="page-title">
+        <div class="q-gutter-md title-field text-dark">
+            <p class="q-mt-xl page-title">
                 Identifiers
             </p>
         </div>
+
+        <div
+            v-for="(identifier, index) in identifiers"
+            v-bind:key="index"
+            class="q-mb-md"
+        >
+            <IdentifierViewCard
+                v-if="editingId !== index"
+                v-bind:index="index"
+                v-bind:identifier="identifier"
+                v-on:editPressed="() => (editingId = index)"
+            />
+            <IdentifierEditCard
+                v-else
+                v-bind:index="index"
+                v-bind="identifier"
+                v-on:updateType="setIdentifierTypeField"
+                v-on:updateValue="setIdentifierValueField"
+                v-on:updateDescription="setIdentifierDescriptionField"
+                v-on:closePressed="() => (editingId = -1)"
+                v-on:removePressed="removeIdentifier"
+            />
+        </div>
+        <q-btn
+            no-caps
+            v-on:click="addIdentifier"
+            color="primary"
+        >
+            Add identifier
+        </q-btn>
     </div>
     <StepperActions />
 </template>
 
 <script lang="ts">
+import { defineComponent, ref } from 'vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
-import { useCff } from '../store/cff'
+import IdentifierEditCard from 'components/IdentifierEditCard.vue'
+import IdentifierViewCard from 'components/IdentifierViewCard.vue'
+import { IdentifierType, IdentifierTypeType } from 'src/types'
+import { useCff } from 'src/store/cff'
 
 export default defineComponent({
     name: 'Identifiers',
     components: {
-        StepperActions
+        StepperActions,
+        IdentifierEditCard,
+        IdentifierViewCard
     },
     setup () {
         const { identifiers, setIdentifiers } = useCff()
+        const editingId = ref(-1)
         return {
             identifiers,
-            setIdentifiers
+            editingId,
+            setIdentifierTypeField (field: keyof IdentifierType, value: IdentifierTypeType) {
+                const identifier = { ...identifiers.value[editingId.value] }
+                identifier.type = value
+                identifiers.value[editingId.value] = identifier
+                setIdentifiers(identifiers.value)
+            },
+            setIdentifierValueField (field: keyof IdentifierType, value: string) {
+                const identifier = { ...identifiers.value[editingId.value] }
+                identifier.value = value
+                identifiers.value[editingId.value] = identifier
+                setIdentifiers(identifiers.value)
+            },
+            setIdentifierDescriptionField (field: keyof IdentifierType, value: string) {
+                const identifier = { ...identifiers.value[editingId.value] }
+                identifier.description = value
+                identifiers.value[editingId.value] = identifier
+                setIdentifiers(identifiers.value)
+            },
+            removeIdentifier () {
+                const newIdentifiers = [...identifiers.value]
+                newIdentifiers.splice(editingId.value, 1)
+                setIdentifiers(newIdentifiers)
+                editingId.value = -1
+            },
+            addIdentifier () {
+                const newIdentifier: IdentifierType = {
+                    type: 'doi',
+                    value: '',
+                    description: ''
+                }
+                const newIdentifiers = [...identifiers.value, newIdentifier]
+                setIdentifiers(newIdentifiers)
+                editingId.value = newIdentifiers.length - 1
+            }
         }
     }
 })

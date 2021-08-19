@@ -10,11 +10,14 @@ export type AuthorType = {
 
 export type AuthorsType = Array<AuthorType>
 
-export type IdentifiersType = Array<{
-    type: 'doi' | 'url' | 'swh' | 'other',
+export type IdentifierTypeType = 'doi' | 'url' | 'swh' | 'other'
+export type IdentifierType = {
+    type: IdentifierTypeType,
     value: string,
     description?: string
-}>
+}
+
+export type IdentifiersType = Array<IdentifierType>
 
 export type KeywordsType = Array<string>
 
@@ -26,7 +29,7 @@ export type CffType = {
     cffVersion?: string,
     commit?: string,
     dateReleased?: string,
-    identifiers?: IdentifiersType,
+    identifiers: IdentifiersType,
     keywords?: KeywordsType,
     license?: string,
     message?: string,

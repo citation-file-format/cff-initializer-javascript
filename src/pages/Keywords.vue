@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md col-flex screen">
+    <div class="q-pa-md col-flex">
         <div
             class="q-gutter-md title-field text-dark"
         >

@@ -130,7 +130,7 @@
                 </div>
             </div>
         </q-card-section>
-        <q-card-actions align="around">
+        <q-card-actions align="between">
             <q-btn
                 icon="delete"
                 color="negative"

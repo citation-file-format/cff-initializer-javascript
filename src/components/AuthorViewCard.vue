@@ -2,11 +2,13 @@
     <q-card
         flat
         bordered
-        class="my-card bg-grey-1"
+        class="bg-formcard"
+        v-on:mouseover="showEdit = true"
+        v-on:mouseleave="showEdit = false"
     >
         <q-card-section>
             <div class="row items-center no-wrap">
-                <div class="col">
+                <div class="col-11">
                     <div class="text-subtitle1">
                         {{ author.givenNames }} {{ author.nameParticle }} {{ author.familyNames }} {{ author.nameSuffix }}
                     </div>
@@ -15,8 +17,9 @@
                     </div>
                 </div>
 
-                <div class="col-auto">
+                <div class="col-1">
                     <q-btn
+                        v-if="showEdit"
                         color="primary"
                         round
                         flat
@@ -34,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import { AuthorType } from 'src/types'
 
 export default defineComponent({
@@ -47,6 +50,12 @@ export default defineComponent({
         author: {
             type: Object as PropType<AuthorType>,
             required: true
+        }
+    },
+    setup () {
+        const showEdit = ref(false)
+        return {
+            showEdit
         }
     },
     emits: ['editPressed']

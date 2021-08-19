@@ -7,98 +7,122 @@
             flat
             header-nav
             inactive-icon=""
-            v-bind:model-value="step"
-            v-on:update:modelValue="updateStep"
+            v-bind:model-value="stepName"
             vertical
         >
             <q-step
                 color="primary"
                 icon=""
+                name="start"
                 title="Start"
-                v-bind:name="1"
+                v-bind:order="0"
+                v-on:click="setStepName('start')"
             />
 
             <q-step
                 color="primary"
                 icon=""
+                name="authors"
                 title="Authors"
-                v-bind:name="2"
+                v-bind:order="1"
+                v-on:click="setStepName('authors')"
             />
 
             <q-step
                 color="primary"
                 icon=""
-                title="Identifiers"
-                v-bind:name="3"
-            />
-
-            <q-step
-                color="primary"
-                icon=""
-                title="Related resources"
-                v-bind:name="4"
-            />
-
-            <q-step
-                color="primary"
-                icon=""
-                title="Abstract"
-                v-bind:name="5"
-            />
-
-            <q-step
-                color="primary"
-                icon=""
-                title="Keywords"
-                v-bind:name="6"
-            />
-
-            <q-step
-                color="primary"
-                icon=""
-                title="License"
-                v-bind:name="7"
-            />
-
-            <q-step
-                color="primary"
-                icon=""
-                title="Version specific"
-                v-bind:name="8"
-            />
-
-            <q-step
-                color="primary"
-                disable
-                icon=""
+                name="finish-minimum"
                 title="Finish"
-                v-bind:name="100"
-            >
-                This step won't show up because it is disabled.
-            </q-step>
+                v-bind:order="2"
+                v-if="!showAdvanced"
+                v-on:click="setStepName('finish-minimum')"
+            />
+
+            <q-step
+                color="primary"
+                icon=""
+                name="identifiers"
+                title="Identifiers"
+                v-bind:order="3"
+                v-if="showAdvanced"
+                v-on:click="setStepName('identifiers')"
+            />
+
+            <q-step
+                color="primary"
+                icon=""
+                name="related-resources"
+                title="Related resources"
+                v-bind:order="4"
+                v-if="showAdvanced"
+                v-on:click="setStepName('related-resources')"
+            />
+
+            <q-step
+                color="primary"
+                icon=""
+                name="abstract"
+                title="Abstract"
+                v-bind:order="5"
+                v-if="showAdvanced"
+                v-on:click="setStepName('abstract')"
+            />
+
+            <q-step
+                color="primary"
+                icon=""
+                name="keywords"
+                title="Keywords"
+                v-bind:order="6"
+                v-if="showAdvanced"
+                v-on:click="setStepName('keywords')"
+            />
+
+            <q-step
+                color="primary"
+                icon=""
+                name="license"
+                title="License"
+                v-bind:order="7"
+                v-if="showAdvanced"
+                v-on:click="setStepName('license')"
+            />
+
+            <q-step
+                color="primary"
+                icon=""
+                name="version-specific"
+                title="Version specific"
+                v-bind:order="8"
+                v-if="showAdvanced"
+                v-on:click="setStepName('version-specific')"
+            />
+
+            <q-step
+                color="primary"
+                icon=""
+                name="finish-advanced"
+                title="Finish"
+                v-bind:order="9"
+                v-if="showAdvanced"
+                v-on:click="setStepName('finish-advanced')"
+            />
         </q-stepper>
     </div>
 </template>
 
 <script lang="ts">
 
-import { useRouter } from 'vue-router'
 import { useApp } from '../store/app'
 
 export default {
     setup () {
-        const { step, setStep } = useApp()
-        const router = useRouter()
-
-        const updateStep = (newStep: number) => {
-            setStep(newStep)
-            const targetRoute = `/${step.value}`
-            return router.push({ path: targetRoute })
-        }
+        const { showAdvanced, stepName, setStepName } = useApp()
 
         return {
-            step,
-            updateStep
+            showAdvanced,
+            stepName,
+            setStepName
         }
     }
 }

@@ -6,6 +6,7 @@
                 flat
                 label="Back"
                 no-caps
+                v-bind:disable="cannotGoBack"
                 v-on:click="navigatePrevious"
             />
         </div>
@@ -19,12 +20,13 @@
                     flat
                     label="Finish"
                     no-caps
-                    to="/finish"
+                    v-bind:to="showAdvanced === true ? '/finish-advanced' : '/finish-minimum'"
                 />
                 <q-btn
                     color="primary"
                     label="Next"
                     no-caps
+                    v-bind:disable="cannotGoForward"
                     v-on:click="navigateNext"
                 />
             </q-btn-group>
@@ -33,7 +35,6 @@
 </template>
 
 <script lang="ts">
-import { useRouter } from 'vue-router'
 import { useApp } from '../store/app'
 
 import { defineComponent } from 'vue'
@@ -42,22 +43,12 @@ export default defineComponent({
     name: 'StepperActions',
 
     setup () {
-        const { step, incrementStep, decrementStep } = useApp()
-        const router = useRouter()
-
-        const navigateNext = () => {
-            incrementStep()
-            const targetRoute = `/${step.value}`
-            return router.push({ path: targetRoute })
-        }
-
-        const navigatePrevious = () => {
-            decrementStep()
-            const targetRoute = `/${step.value}`
-            return router.push({ path: targetRoute })
-        }
+        const { showAdvanced, cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()
 
         return {
+            cannotGoBack,
+            cannotGoForward,
+            showAdvanced,
             navigateNext,
             navigatePrevious
         }

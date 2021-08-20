@@ -1,28 +1,5 @@
 <template>
     <div class="">
-        <div
-            align="center"
-            class="q-gutter-md"
-        >
-            <div
-                class="text-primary q-gutter-md"
-                style="font-size: 2em"
-            >
-                <q-icon
-                    name="star"
-                    size="xl"
-                />
-                <q-icon
-                    name="star"
-                    size="xl"
-                />
-                <q-icon
-                    name="star"
-                    size="xl"
-                />
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-6 q-pa-lg">
                 <q-card

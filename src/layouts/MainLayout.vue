@@ -1,5 +1,8 @@
 <template>
-    <q-layout view="hhh lpr fff" style="overflow: hidden">
+    <q-layout
+        view="hhh lpr fff"
+        style="overflow: hidden"
+    >
         <Header />
         <q-page-container>
             <q-page>

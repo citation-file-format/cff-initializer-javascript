@@ -29,7 +29,8 @@
                 outlined
                 standout
                 v-bind:model-value="version"
-                v-bind:rules="[validateVersion]"
+                v-bind:error="versionError.hasError"
+                v-bind:error-message="versionError.message"
                 v-on:update:modelValue="setVersion"
             />
 
@@ -84,6 +85,7 @@ import StepperActions from 'components/StepperActions.vue'
 import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useErrors } from '../store/errors'
 
 export default defineComponent({
     name: 'VersionSpecific',
@@ -91,6 +93,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        const { versionError } = useErrors()
         const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
         return {
             commit,
@@ -101,7 +104,8 @@ export default defineComponent({
             setVersion,
             validateCommit: makeFieldValidator('/properties/commit'),
             validateDateReleased: makeFieldValidator('/properties/date-released'),
-            validateVersion: makeFieldValidator('/properties/version')
+            validateVersion: makeFieldValidator('/properties/version'),
+            versionError
         }
     }
 })

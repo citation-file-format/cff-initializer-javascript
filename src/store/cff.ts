@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from '../types'
+import { validateOptionalRootField } from './errors'
 
 const cff = ref({
     abstract: '',
@@ -51,8 +52,14 @@ export function useCff () {
         setRepositoryCode: (newRepositoryCode: string) => { cff.value.repositoryCode = newRepositoryCode },
         setTitle: (newTitle: string) => { cff.value.title = newTitle },
         setType: (newType: TypeType) => { cff.value.type = newType },
-        setUrl: (newUrl: string) => { cff.value.url = newUrl },
-        setVersion: (newVersion: string) => { cff.value.version = newVersion },
+        setUrl: (newUrl: string) => {
+            validateOptionalRootField('url', newUrl)
+            cff.value.url = newUrl
+        },
+        setVersion: (newVersion: string) => {
+            validateOptionalRootField('version', newVersion)
+            cff.value.version = newVersion
+        },
         reset: () => {
             cff.value = {
                 abstract: '',

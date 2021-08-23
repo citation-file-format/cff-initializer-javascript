@@ -16,7 +16,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:rules="[validateUrl]"
+                v-bind:error="urlError.hasError"
+                v-bind:error-message="urlError.message"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -68,6 +69,7 @@ import StepperActions from 'components/StepperActions.vue'
 import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useErrors } from '../store/errors'
 
 export default defineComponent({
     name: 'RelatedResources',
@@ -79,6 +81,7 @@ export default defineComponent({
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
         } = useCff()
+        const { urlError } = useErrors()
         return {
             repository,
             repositoryArtifact,
@@ -88,7 +91,7 @@ export default defineComponent({
             setRepositoryArtifact,
             setRepositoryCode,
             setUrl,
-            validateUrl: makeFieldValidator('/definitions/url'),
+            urlError,
             validateRepository: makeFieldValidator('/definitions/url'),
             validateRepositoryArtifact: makeFieldValidator('/definitions/url'),
             validateRepositoryCode: makeFieldValidator('/definitions/url')

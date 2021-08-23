@@ -23,7 +23,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/finish-minimum',
-        component: () => import('src/layouts/MainLayout.vue'),
+        component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/FinishMinimum.vue') }]
     },
     {
@@ -58,8 +58,12 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/finish-advanced',
-        component: () => import('src/layouts/MainLayout.vue'),
+        component: () => import('src/layouts/StepperLayout.vue'),
         children: [{ path: '', component: () => import('src/pages/FinishAdvanced.vue') }]
+    },
+    {
+        path: '/404',
+        component: () => import('src/pages/Error404.vue')
     },
     {
         path: '/:catchAll(.*)*',

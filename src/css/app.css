@@ -21,12 +21,12 @@ p, body {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.page-title {
+.page-title, .finish-title {
     font-family: 'Roboto', sans-serif;
     color: #333;
     font-size: 1.4rem;
     font-weight: 400;
-    line-height: normal;
+    line-height: 1.2;
     letter-spacing: normal;
     margin-top: 60px;
     margin-bottom: 60px;
@@ -36,11 +36,20 @@ p, body {
     color: #333;
     font-size: 1.1rem;
     font-weight: 400;
-    line-height: normal;
+    line-height: 1.2;
     letter-spacing: normal;
     margin-top: 30px;
     margin-bottom: 0px;
 }
+.finish-paragraph {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: normal;
+}
+
 pre, .mono {
     font-family: 'Roboto Mono', sans-serif;
 }

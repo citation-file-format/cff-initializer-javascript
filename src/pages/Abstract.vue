@@ -1,12 +1,16 @@
 <template>
-    <div class="q-pa-md col-flex">
-        <div
-            class="q-gutter-md title-field text-dark"
-        >
-            <p class="q-mt-xl page-title">
+    <div id="metroline">
+        <Stepper />
+    </div>
+
+    <div id="form">
+        <div id="form-title">
+            <p class="page-title">
                 Abstract
             </p>
+        </div>
 
+        <div id="form-content">
             <p class="question">
                 What is the abstract of the work?
             </p>
@@ -21,11 +25,15 @@
                 v-on:update:modelValue="setAbstract"
             />
         </div>
+
+        <div id="form-button-bar">
+            <StepperActions />
+        </div>
     </div>
-    <StepperActions />
 </template>
 
 <script lang="ts">
+import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
@@ -34,6 +42,7 @@ import { useCff } from '../store/cff'
 export default defineComponent({
     name: 'Abstract',
     components: {
+        Stepper,
         StepperActions
     },
     setup () {
@@ -48,14 +57,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-.col-flex {
-    flex: 1;
-}
-.title-field {
-    margin-right: 120px;
-    min-width: 300px;
-    max-width: 700px;
-}
-
 </style>

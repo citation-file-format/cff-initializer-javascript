@@ -43,6 +43,8 @@ import { useCffstr } from 'src/store/cffstr'
 
 export default defineComponent({
     name: 'Preview',
+    components: {
+    },
     setup () {
         const cffstr = useCffstr()
         const showTooltip = ref(false)
@@ -67,15 +69,4 @@ export default defineComponent({
 pre {
     overflow-x: auto;
 }
-.copy-button {
-    margin-right: 0px;
-    margin-left: auto;
-    display: block;
-}
-
-.copy-button:hover {
-    background: white;
-    background-color: white;
-}
-
 </style>

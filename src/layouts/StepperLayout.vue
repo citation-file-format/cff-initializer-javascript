@@ -1,62 +1,145 @@
 <template>
-    <q-layout view="hHh LpR fFf">
-        <q-page-container>
+    <div id="header-outer">
+        <div id="header-inner">
             <Header />
-            <q-page padding>
-                <div class="row q-ml-lg q-mr-lg justify-center">
-                    <div class="col-2 bg-secondary">
-                        <Stepper />
-                    </div>
-                    <div class="col-5 bg-secondary q-mr-lg form-page col-flex">
-                        <router-view />
-                    </div>
-                    <div class="col-4">
-                        <Preview />
-                    </div>
-                </div>
-            </q-page>
+        </div>
+    </div>
+    <div id="middle">
+        <router-view />
+        <div id="preview">
+            <div id="preview-content">
+                <Preview />
+            </div>
+
+            <div id="preview-button-bar">
+                <DownloadButton />
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-outer">
+        <div id="footer-inner">
             <Footer />
-        </q-page-container>
-    </q-layout>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
-import Footer from 'components/Footer.vue'
 import Header from 'components/Header.vue'
 import Preview from 'components/Preview.vue'
-import Stepper from 'components/Stepper.vue'
-
+import DownloadButton from 'components/DownloadButton.vue'
+import Footer from 'components/Footer.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: 'MainLayout',
-
     components: {
-        Footer,
         Header,
         Preview,
-        Stepper
+        DownloadButton,
+        Footer
     },
-
     setup () {
         return {
         }
     }
 })
 </script>
-
-<style scoped>
-
-.col-flex {
-    display: flex;
-    flex-direction: column;
-}
-.form-page {
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-color: #c4c4c4;
-    min-height: 800px;
-    padding-left: 30px;
-}
-
+<style>
+    #app {
+        background-color: tan;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        row-gap: 10px;
+    }
+    #header-outer {
+        background-color: rosybrown;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #header-inner {
+        background-color: sandybrown;
+        max-height: 50px;
+        min-height: 50px;
+        width: 1900px;
+    }
+    #middle {
+        background-color: lightblue;
+        column-gap: 25px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 20px;
+    }
+    #metroline {
+        background-color: lightgreen;
+        flex-grow: 0.5;
+        max-height: 1000px;
+        max-width: 300px;
+        min-height: 500px;
+        min-width: 250px;
+        overflow: auto;
+    }
+    #form {
+        background-color: plum;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        max-width: 900px;
+        min-height: 400px;
+        min-width: 600px;
+    }
+    #form-title {
+        background-color: tomato;
+        height: 120px;
+    }
+    #form-content {
+        background-color: lightslategray;
+        flex-grow: 1;
+        max-height: 600px;
+        min-height: 580px;
+        overflow: auto
+    }
+    #form-button-bar {
+        background-color: khaki;
+        max-height: 80px;
+        min-height: 80px;
+    }
+    #preview {
+        background-color: limegreen;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0.5;
+        max-width: 600px;
+        min-height: 400px;
+        min-width: 400px;
+    }
+    #preview-content {
+        background-color: lightcoral;
+        flex-grow: 1;
+        max-height:720px;
+        min-height: 300px;
+        overflow: auto;
+    }
+    #preview-button-bar {
+        background-color: darkorange;
+        max-height: 80px;
+        min-height: 80px;
+    }
+    #footer-outer {
+        background-color: slateblue;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #footer-inner {
+        background-color: deepskyblue;
+        max-height: 50px;
+        min-height: 50px;
+        width: 1900px;
+    }
 </style>

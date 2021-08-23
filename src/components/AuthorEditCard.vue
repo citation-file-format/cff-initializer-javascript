@@ -29,7 +29,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameParticle', $event)
                     "
-                    v-bind:rules="[validatenNameParticle]"
+                    v-bind:rules="[validateNameParticle]"
                 />
                 <q-input
                     bg-color="white"
@@ -54,7 +54,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameSuffix', $event)
                     "
-                    v-bind:rules="[validateNmeSuffix]"
+                    v-bind:rules="[validateNameSuffix]"
                 />
             </div>
             <div class="q-gutter-md items-center no-wrap">
@@ -164,8 +164,8 @@ export default defineComponent({
     setup () {
         return {
             validateGivenNames: makeOptionalFieldValidator('/definitions/person/properties/given-names'),
-            validatenNameParticle: makeOptionalFieldValidator('/definitions/person/properties/name-particle'),
-            validateNmeSuffix: makeOptionalFieldValidator('/definitions/person/properties/name-suffix'),
+            validateNameParticle: makeOptionalFieldValidator('/definitions/person/properties/name-particle'),
+            validateNameSuffix: makeOptionalFieldValidator('/definitions/person/properties/name-suffix'),
             validateFamilyNames: makeOptionalFieldValidator('/definitions/person/properties/family-names'),
             validateAffiliation: makeOptionalFieldValidator('/definitions/person/properties/affiliation'),
             validateEmail: makeOptionalFieldValidator('/definitions/person/properties/email'),

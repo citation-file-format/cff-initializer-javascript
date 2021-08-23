@@ -46,12 +46,28 @@
                 v-bind:rules="[validateDateReleased]"
                 v-on:update:modelValue="setDateReleased"
             >
-                <template v-slot:append>
-                    <q-icon name="event" class="cursor-pointer">
-                        <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                            <q-date v-bind:model-value="dateReleased" v-on:update:modelValue="setDateReleased" mask="YYYY-MM-DD">
+                <template #append>
+                    <q-icon
+                        name="event"
+                        class="cursor-pointer"
+                    >
+                        <q-popup-proxy
+                            ref="qDateProxy"
+                            transition-show="scale"
+                            transition-hide="scale"
+                        >
+                            <q-date
+                                v-bind:model-value="dateReleased"
+                                v-on:update:modelValue="setDateReleased"
+                                mask="YYYY-MM-DD"
+                            >
                                 <div class="row items-center justify-end">
-                                    <q-btn v-close-popup label="Close" color="primary" flat />
+                                    <q-btn
+                                        v-close-popup
+                                        label="Close"
+                                        color="primary"
+                                        flat
+                                    />
                                 </div>
                             </q-date>
                         </q-popup-proxy>

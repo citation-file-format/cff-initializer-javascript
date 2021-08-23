@@ -38,9 +38,9 @@
             </p>
             <q-input
                 bg-color="white"
-                label="date-released"
                 outlined
                 standout
+                type="date"
                 v-bind:model-value="dateReleased"
                 v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
                 v-on:update:modelValue="setDateReleased"

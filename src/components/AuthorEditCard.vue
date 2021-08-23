@@ -16,11 +16,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'givenNames', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateGivenNames]"
                 />
                 <q-input
                     bg-color="white"
@@ -33,11 +29,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameParticle', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validatenNameParticle]"
                 />
                 <q-input
                     bg-color="white"
@@ -49,11 +41,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'familyNames', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateFamilyNames]"
                 />
                 <q-input
                     bg-color="white"
@@ -66,11 +54,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameSuffix', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateNmeSuffix]"
                 />
             </div>
             <div class="q-gutter-md items-center no-wrap">
@@ -80,15 +64,12 @@
                     outlined
                     standout
                     dense
+                    type="email"
                     v-bind:model-value="email"
                     v-on:update:modelValue="
                         $emit('update', 'email', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateEmail]"
                 />
             </div>
             <div class="q-gutter-md row items-center no-wrap">
@@ -103,11 +84,7 @@
                         v-on:update:modelValue="
                             $emit('update', 'affiliation', $event)
                         "
-                        v-bind:rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                'Please use minimum 3 characters',
-                        ]"
+                        v-bind:rules="[validateAffiliation]"
                     />
                 </div>
                 <div class="col">
@@ -186,6 +163,12 @@ export default defineComponent({
     },
     setup () {
         return {
+            validateGivenNames: makeFieldValidator('/definitions/person/properties/given-names'),
+            validatenNameParticle: makeFieldValidator('/definitions/person/properties/name-particle'),
+            validateNmeSuffix: makeFieldValidator('/definitions/person/properties/name-suffix'),
+            validateFamilyNames: makeFieldValidator('/definitions/person/properties/family-names'),
+            validateAffiliation: makeFieldValidator('/definitions/person/properties/affiliation'),
+            validateEmail: makeFieldValidator('/definitions/person/properties/email'),
             validateOrcid: makeFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
         }
     },

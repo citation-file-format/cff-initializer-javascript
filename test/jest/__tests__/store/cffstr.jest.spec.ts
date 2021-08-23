@@ -4,7 +4,7 @@ import { useCffstr } from '../../../../src/store/cffstr'
 
 describe('useCffstr', () => {
     const cff = useCff()
-    const cffstr = useCffstr()
+    const cffstr = useCffstr().asString
 
     beforeEach(() => {
         cff.reset()

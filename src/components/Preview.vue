@@ -32,7 +32,15 @@
             </q-tooltip>
         </q-btn>
         <q-card-section>
-            <pre>{{ cffstr }}</pre>
+            <pre>{{ asString }}</pre>
+        </q-card-section>
+        <q-separator />
+        <q-card-section>
+            <p>{{ isValid ? 'File is valid' : 'File is invalid' }}</p>
+            <p>Errors grouped by prop:</p>
+            <pre>{{ cffErrors }}</pre>
+            <p>Valid screens:</p>
+            <pre>{{ validScreens }}</pre>
         </q-card-section>
     </q-card>
 </template>
@@ -40,24 +48,30 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
+import { useFileValidator } from 'src/validator'
 
 export default defineComponent({
     name: 'Preview',
     setup () {
-        const cffstr = useCffstr()
+        const { asString } = useCffstr()
+        const { isValid, errors, cffErrors, validScreens } = useFileValidator()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
-            await navigator.clipboard.writeText(cffstr.value)
+            await navigator.clipboard.writeText(asString.value)
             showTooltip.value = true
             await new Promise(resolve => setTimeout(resolve, 3000))
             showTooltip.value = false
         }
 
         return {
-            cffstr,
+            asString,
             copyToClipboard,
-            showTooltip
+            showTooltip,
+            isValid,
+            errors,
+            cffErrors,
+            validScreens
         }
     }
 })

@@ -70,5 +70,8 @@ export function useCffstr () {
         return yaml.dump(kebabed, { indent: 2, sortKeys: true })
     }
 
-    return computed(() => makeCffstr())
+    return {
+        asString: computed(makeCffstr),
+        asObject: computed(makeJavascriptObject)
+    }
 }

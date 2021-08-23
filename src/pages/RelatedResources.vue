@@ -16,7 +16,7 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateUrl]"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -29,7 +29,7 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateRepository]"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -42,7 +42,7 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateRepositoryArtifact]"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
 
@@ -55,7 +55,7 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateRepositoryCode]"
                 v-on:update:modelValue="setRepositoryCode"
             />
         </div>
@@ -65,6 +65,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
+import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -86,7 +87,11 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl
+            setUrl,
+            validateUrl: makeFieldValidator('/definitions/url'),
+            validateRepository: makeFieldValidator('/definitions/url'),
+            validateRepositoryArtifact: makeFieldValidator('/definitions/url'),
+            validateRepositoryCode: makeFieldValidator('/definitions/url')
         }
     }
 })

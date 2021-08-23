@@ -13,7 +13,7 @@
                 outlined
                 standout
                 v-bind:model-value="license"
-                v-bind:rules="[ validate ]"
+                v-bind:rules="[ validateLicense ]"
                 v-on:update:model-value="setLicense"
             />
         </div>
@@ -37,7 +37,7 @@ export default defineComponent({
         return {
             license: cff.license,
             setLicense: cff.setLicense,
-            validate: makeFieldValidator('/properties/license')
+            validateLicense: makeFieldValidator('/definitions/license-enum')
         }
     }
 })

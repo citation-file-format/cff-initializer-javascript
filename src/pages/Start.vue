@@ -16,7 +16,7 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateTitle]"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -27,7 +27,7 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateMessage]"
                 v-on:update:modelValue="setMessage"
             />
             <p class="question">
@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
+import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -66,7 +67,9 @@ export default defineComponent({
             ],
             setMessage,
             setTitle,
-            setType
+            setType,
+            validateTitle: makeFieldValidator('/properties/title'),
+            validateMessage: makeFieldValidator('/properties/message')
         }
     }
 })

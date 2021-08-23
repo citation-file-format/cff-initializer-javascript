@@ -17,7 +17,7 @@
                 standout
                 type="textarea"
                 v-bind:model-value="abstract"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateAbstract]"
                 v-on:update:modelValue="setAbstract"
             />
         </div>
@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
+import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -39,7 +40,8 @@ export default defineComponent({
         const { abstract, setAbstract } = useCff()
         return {
             abstract,
-            setAbstract
+            setAbstract,
+            validateAbstract: makeFieldValidator('/properties/abstract')
         }
     }
 })

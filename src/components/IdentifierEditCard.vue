@@ -93,7 +93,7 @@ export default defineComponent({
         const valueValidators: Record<IdentifierTypeType, (val: unknown) => true | string > = {
             doi: makeFieldValidator('/definitions/identifier/anyOf/0/properties/value'),
             url: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
-            swh: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
+            swh: makeFieldValidator('/definitions/identifier/anyOf/2/properties/value'),
             other: makeFieldValidator('/definitions/identifier/anyOf/3/properties/value')
         }
         return {

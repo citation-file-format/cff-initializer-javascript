@@ -16,7 +16,7 @@
                 outlined
                 standout
                 v-bind:model-value="commit"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateCommit]"
                 v-on:update:modelValue="setCommit"
             />
 
@@ -29,7 +29,7 @@
                 outlined
                 standout
                 v-bind:model-value="version"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateVersion]"
                 v-on:update:modelValue="setVersion"
             />
 
@@ -41,10 +41,39 @@
                 label="date-released"
                 outlined
                 standout
+                today-btn="true"
                 v-bind:model-value="dateReleased"
-                v-bind:rules="[ val => val && val.length > 3 || 'Please use minimum 3 characters']"
+                v-bind:rules="[validateDateReleased]"
                 v-on:update:modelValue="setDateReleased"
-            />
+            >
+                <template #append>
+                    <q-icon
+                        name="event"
+                        class="cursor-pointer"
+                    >
+                        <q-popup-proxy
+                            ref="qDateProxy"
+                            transition-show="scale"
+                            transition-hide="scale"
+                        >
+                            <q-date
+                                v-bind:model-value="dateReleased"
+                                v-on:update:modelValue="setDateReleased"
+                                mask="YYYY-MM-DD"
+                            >
+                                <div class="row items-center justify-end">
+                                    <q-btn
+                                        v-close-popup
+                                        label="Close"
+                                        color="primary"
+                                        flat
+                                    />
+                                </div>
+                            </q-date>
+                        </q-popup-proxy>
+                    </q-icon>
+                </template>
+            </q-input>
         </div>
     </div>
     <StepperActions />
@@ -52,6 +81,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
+import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -68,7 +98,10 @@ export default defineComponent({
             version,
             setCommit,
             setDateReleased,
-            setVersion
+            setVersion,
+            validateCommit: makeFieldValidator('/properties/commit'),
+            validateDateReleased: makeFieldValidator('/properties/date-released'),
+            validateVersion: makeFieldValidator('/properties/version')
         }
     }
 })

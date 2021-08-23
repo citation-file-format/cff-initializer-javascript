@@ -10,6 +10,7 @@
                 v-on:update:modelValue="
                     $emit('update', $event)
                 "
+                v-bind:rules="[ validateKeyword ]"
             />
         </div><div class="col-1">
             <q-btn
@@ -24,6 +25,7 @@
 </template>
 
 <script lang="ts">
+import { makeFieldValidator } from 'src/validator'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -32,6 +34,11 @@ export default defineComponent({
         keyword: {
             type: String,
             default: ''
+        }
+    },
+    setup () {
+        return {
+            validateKeyword: makeFieldValidator('/properties/keywords/items')
         }
     },
     emits: ['removePressed', 'update']

@@ -32,7 +32,7 @@ import Footer from 'components/Footer.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'MainLayout',
+    name: 'StepperLayout',
     components: {
         Header,
         Preview,

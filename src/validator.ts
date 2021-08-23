@@ -17,3 +17,14 @@ export const makeFieldValidator = (subschema: string) => {
         }
     }
 }
+
+export const makeOptionalFieldValidator = (subschema: string) => {
+    const fn = makeFieldValidator(subschema)
+    return (val: unknown) => {
+        if (val === '') {
+            return true
+        } else {
+            return fn(val)
+        }
+    }
+}

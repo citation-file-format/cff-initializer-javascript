@@ -16,11 +16,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'givenNames', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateGivenNames]"
                 />
                 <q-input
                     bg-color="white"
@@ -33,11 +29,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameParticle', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validatenNameParticle]"
                 />
                 <q-input
                     bg-color="white"
@@ -49,11 +41,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'familyNames', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateFamilyNames]"
                 />
                 <q-input
                     bg-color="white"
@@ -66,11 +54,7 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameSuffix', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateNmeSuffix]"
                 />
             </div>
             <div class="q-gutter-md items-center no-wrap">
@@ -80,15 +64,12 @@
                     outlined
                     standout
                     dense
+                    type="email"
                     v-bind:model-value="email"
                     v-on:update:modelValue="
                         $emit('update', 'email', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[validateEmail]"
                 />
             </div>
             <div class="q-gutter-md row items-center no-wrap">
@@ -103,11 +84,7 @@
                         v-on:update:modelValue="
                             $emit('update', 'affiliation', $event)
                         "
-                        v-bind:rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                'Please use minimum 3 characters',
-                        ]"
+                        v-bind:rules="[validateAffiliation]"
                     />
                 </div>
                 <div class="col">
@@ -146,7 +123,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { makeFieldValidator } from '../validator'
+import { makeOptionalFieldValidator } from '../validator'
 
 export default defineComponent({
     name: 'AuthorEditCard',
@@ -186,7 +163,13 @@ export default defineComponent({
     },
     setup () {
         return {
-            validateOrcid: makeFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
+            validateGivenNames: makeOptionalFieldValidator('/definitions/person/properties/given-names'),
+            validatenNameParticle: makeOptionalFieldValidator('/definitions/person/properties/name-particle'),
+            validateNmeSuffix: makeOptionalFieldValidator('/definitions/person/properties/name-suffix'),
+            validateFamilyNames: makeOptionalFieldValidator('/definitions/person/properties/family-names'),
+            validateAffiliation: makeOptionalFieldValidator('/definitions/person/properties/affiliation'),
+            validateEmail: makeOptionalFieldValidator('/definitions/person/properties/email'),
+            validateOrcid: makeOptionalFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

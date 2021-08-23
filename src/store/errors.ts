@@ -72,6 +72,7 @@ const quasarError = (fieldName: keyof CffErrorsType) => {
 export function useErrors () {
     return {
         versionError: computed(quasarError('version')),
-        urlError: computed(quasarError('url'))
+        urlError: computed(quasarError('url')),
+        startScreenIsValid: computed(() => quasarError('title')(currentTitle).hasError || quasarError('message')(currentMessage).hasError)
     }
 }

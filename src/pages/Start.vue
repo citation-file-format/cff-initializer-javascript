@@ -40,6 +40,7 @@
                 v-on:update:modelValue="setType"
             />
         </div>
+        <pre> {{ startScreenIsValid }}</pre>
     </div>
     <StepperActions />
 </template>
@@ -49,6 +50,7 @@ import StepperActions from 'components/StepperActions.vue'
 import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useErrors } from '../store/errors'
 
 export default defineComponent({
     name: 'Start',
@@ -56,6 +58,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        const { startScreenIsValid } = useErrors()
         const { message, title, type, setMessage, setTitle, setType } = useCff()
         return {
             message,
@@ -69,7 +72,8 @@ export default defineComponent({
             setTitle,
             setType,
             validateTitle: makeFieldValidator('/properties/title'),
-            validateMessage: makeFieldValidator('/properties/message')
+            validateMessage: makeFieldValidator('/properties/message'),
+            startScreenIsValid
         }
     }
 })

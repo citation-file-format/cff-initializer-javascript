@@ -48,7 +48,6 @@ export default defineComponent({
         function addKeyword () {
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]
-            console.log(newKeywords)
             setKeywords(newKeywords)
         }
 

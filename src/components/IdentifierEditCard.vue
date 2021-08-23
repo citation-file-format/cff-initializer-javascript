@@ -27,11 +27,7 @@
                     v-on:update:modelValue="
                         $emit('updateValue', 'value', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[ validateValue ]"
                 />
             </div>
             <div class="q-gutter-md items-center no-wrap">
@@ -45,11 +41,7 @@
                     v-on:update:modelValue="
                         $emit('updateDescription', 'description', $event)
                     "
-                    v-bind:rules="[
-                        (val) =>
-                            (val && val.length > 3) ||
-                            'Please use minimum 3 characters',
-                    ]"
+                    v-bind:rules="[ validateDescription ]"
                 />
             </div>
         </q-card-section>
@@ -72,7 +64,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { IdentifierTypeType } from '../types'
+import { makeFieldValidator, makeOptionalFieldValidator } from '../validator'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
     name: 'IdentifierEditCard',
@@ -86,7 +80,7 @@ export default defineComponent({
             default: ''
         },
         value: {
-            type: String,
+            type: String as PropType<IdentifierTypeType>,
             default: ''
         },
         description: {
@@ -94,8 +88,17 @@ export default defineComponent({
             default: ''
         }
     },
-    setup () {
+    setup (props) {
+        // validating of value depends on type
+        const valueValidators: Record<IdentifierTypeType, (val: unknown) => true | string > = {
+            doi: makeFieldValidator('/definitions/identifier/anyOf/0/properties/value'),
+            url: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
+            swh: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
+            other: makeFieldValidator('/definitions/identifier/anyOf/3/properties/value')
+        }
         return {
+            validateValue: (val: string) => valueValidators[props.type as IdentifierTypeType](val),
+            validateDescription: makeOptionalFieldValidator('/definitions/identifier-description'),
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },

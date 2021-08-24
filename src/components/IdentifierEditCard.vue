@@ -46,6 +46,18 @@
                     v-bind:error-message="errors.description ? errors.description.join(', ') : ''"
                 />
             </div>
+            <div
+                class="errors"
+                v-if="errors.errors"
+            >
+                <p
+                    class="text-negative"
+                    v-for="(e, ei) in errors.errors"
+                    v-bind:key="ei"
+                >
+                    {{ e }}
+                </p>
+            </div>
         </q-card-section>
         <q-card-actions align="between">
             <q-btn
@@ -102,7 +114,13 @@ export default defineComponent({
                 } else {
                     return {}
                 }
-            })
+            }),
+            typeOptions: [
+                { label: 'DOI', value: 'doi' },
+                { label: 'URL', value: 'url' },
+                { label: 'Software Heritage', value: 'swh' },
+                { label: 'Other', value: 'other' }
+            ]
         }
     },
     emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription']

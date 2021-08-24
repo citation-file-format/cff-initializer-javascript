@@ -15,7 +15,7 @@
 
                         <p>CITATION.cff files are plain text files with human- and machine-readable citation information for software (and datasets). Code developers can include them in their repositories to let others know how to correctly cite their software.</p>
 
-                        <p>This webpage will guide you to take the necassary steps to generate your own CFF file.</p>
+                        <p>This webpage will guide you to take the necessary steps to generate your own CFF file.</p>
                     </div>
                 </q-card>
             </div>
@@ -57,7 +57,7 @@ export default defineComponent({
     cff-version: 1.2.0
     message: "If you use this software, please cite it as below."
     authors:
-    - family-names: John
+      - family-names: John
         given-names: Stephan
         orcid: https://orcid.org/0000-0003-4925-7248
     title: "My Research Software"

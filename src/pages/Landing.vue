@@ -11,96 +11,23 @@
                         class="text-primary q-gutter-md q-mb-xl"
                         style="font-size: 2em"
                     >
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="100%"
-                        />
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="50%"
-                        />
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="50%"
-                        />
-                        <q-skeleton
-                            class="text-h1"
-                            type="text"
-                            width="50%"
-                        />
-                    </div>
+                        <h2>Software Citations using Citation File Format</h2>
 
-                    <div
-                        class="text-primary q-gutter-md"
-                        style="font-size: 2em"
-                    >
-                        <q-icon
-                            name="star"
-                            size="xl"
-                        />
-                        <q-icon
-                            name="star"
-                            size="xl"
-                        />
-                        <q-icon
-                            name="star"
-                            size="xl"
-                        />
+                        <p>CITATION.cff files are plain text files with human- and machine-readable citation information for software (and datasets). Code developers can include them in their repositories to let others know how to correctly cite their software.</p>
+
+                        <p>This webpage will guide you to take the necassary steps to generate your own CFF file.</p>
                     </div>
                 </q-card>
             </div>
-            <div class="col-6  q-pa-lg">
+            <div class="col-5  q-pa-lg">
                 <q-card
                     bordered
                     class="secondary rotated-card"
                     style="overflow: hidden"
                 >
-                    <q-item>
-                        <q-item-section avatar>
-                            <q-skeleton
-                                animation="fade"
-                                type="QAvatar"
-                            />
-                        </q-item-section>
-
-                        <q-item-section>
-                            <q-item-label>
-                                <q-skeleton
-                                    animation="fade"
-                                    type="text"
-                                />
-                            </q-item-label>
-                            <q-item-label caption>
-                                <q-skeleton
-                                    animation="fade"
-                                    type="text"
-                                />
-                            </q-item-label>
-                        </q-item-section>
-                    </q-item>
-
-                    <q-skeleton
-                        animation="fade"
-                        height="400px"
-                        square
-                    />
-
-                    <q-card-section>
-                        <q-skeleton
-                            animation="fade"
-                            class="text-subtitle2"
-                            type="text"
-                        />
-                        <q-skeleton
-                            animation="fade"
-                            class="text-subtitle2"
-                            type="text"
-                            width="50%"
-                        />
-                    </q-card-section>
+                    <pre>
+                        {{ exampleCFF }}
+                    </pre>
                 </q-card>
             </div>
         </div>
@@ -126,7 +53,21 @@ export default defineComponent({
     name: 'Landing',
     components: { },
     setup () {
-        return {}
+        const exampleCFF = `
+    cff-version: 1.2.0
+    message: "If you use this software, please cite it as below."
+    authors:
+    - family-names: John
+        given-names: Stephan
+        orcid: https://orcid.org/0000-0003-4925-7248
+    title: "My Research Software"
+    version: 2.0.4
+    doi: 10.5281/zenodo.1234
+    date-released: 2021-08-11`
+
+        return {
+            exampleCFF
+        }
     }
 })
 </script>
@@ -134,7 +75,7 @@ export default defineComponent({
 <style scoped>
 
 .rotated-card {
-    transform: rotate(20deg) translateX(150px) translateY(65px);
+    transform: rotate(20deg) translateX(170px) translateY(185px);
     display: block;
 }
 

@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
-type StepNameType = 'start' | 'authors' | 'finish-minimum' | 'identifiers' | 'related-resources' |
+export type StepNameType = 'start' | 'authors' | 'finish-minimum' | 'identifiers' | 'related-resources' |
                     'abstract' | 'keywords' | 'license' | 'version-specific' | 'finish-advanced'
 
 const state = ref({
@@ -22,6 +22,15 @@ const stepNames = [
     'finish-advanced'
 ] as Array<StepNameType>
 
+const advancedStepNames = new Set([
+    'identifiers',
+    'related-resources',
+    'abstract',
+    'keywords',
+    'license',
+    'version-specific'
+])
+
 const firstStepIndex = 0
 
 const lastStepIndex = computed(() => state.value.showAdvanced ? stepNames.indexOf('finish-advanced') : stepNames.indexOf('finish-minimum'))
@@ -29,13 +38,18 @@ const stepName = computed(() => stepNames[state.value.stepIndex])
 
 export function useApp () {
     const router = useRouter()
-
     return {
         cannotGoBack: computed(() => state.value.stepIndex === firstStepIndex),
         cannotGoForward: computed(() => state.value.stepIndex === lastStepIndex.value),
         lastStepIndex,
         showAdvanced: computed(() => state.value.showAdvanced),
         stepName,
+        navigateDirect: (newStepName: StepNameType) => {
+            if (advancedStepNames.has(newStepName)) {
+                state.value.showAdvanced = true
+                state.value.stepIndex = stepNames.indexOf(newStepName)
+            }
+        },
         setStepName: async (newStepName: StepNameType) => {
             state.value.stepIndex = stepNames.indexOf(newStepName)
             await router.push({ path: `/${stepName.value}` })

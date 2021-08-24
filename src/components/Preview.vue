@@ -35,16 +35,24 @@
             <pre>{{ cffstr }}</pre>
         </q-card-section>
     </q-card>
+    <div class="row justify-center q-pt-md">
+        <p>
+            Your CITATION.cff is&nbsp;
+        </p>
+        <span v-if="isValid">valid</span>
+        <span v-else>invalid</span>
+    </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
+import { isValidCffFile } from 'src/validator'
 
 export default defineComponent({
     name: 'Preview',
     setup () {
-        const cffstr = useCffstr()
+        const { cffstr } = useCffstr()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
@@ -54,9 +62,12 @@ export default defineComponent({
             showTooltip.value = false
         }
 
+        const isValid = computed(isValidCffFile)
+
         return {
             cffstr,
             copyToClipboard,
+            isValid,
             showTooltip
         }
     }

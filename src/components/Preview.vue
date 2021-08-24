@@ -48,7 +48,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
-import { useFileValidator } from 'src/validator'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'Preview',

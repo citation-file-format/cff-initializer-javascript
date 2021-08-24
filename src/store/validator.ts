@@ -4,36 +4,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import Ajv, { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
-import schema from './schemas/1.2.0/schema.json'
-import { useCffstr } from './store/cffstr'
+import schema from '../schemas/1.2.0/schema.json'
+import { useCffstr } from './cffstr'
 import { computed, ref, watch } from 'vue'
 
 export const ajv = new Ajv({ allErrors: true })
 addFormats(ajv)
 ajv.addSchema(schema)
-
-export const makeFieldValidator = (subschema: string) => {
-    return (val: unknown) => {
-        const isValid = ajv.validate(`${schema.$id}#${subschema}`, val)
-        if (isValid) {
-            return true
-        } else {
-            const messages = ajv.errors?.map(e => e.message) as unknown as string[]
-            return messages.join(', ')
-        }
-    }
-}
-
-export const makeOptionalFieldValidator = (subschema: string) => {
-    const fn = makeFieldValidator(subschema)
-    return (val: unknown) => {
-        if (val === '') {
-            return true
-        } else {
-            return fn(val)
-        }
-    }
-}
 
 const isValid = ref(true)
 const errors = ref<ErrorObject<string, Record<string, unknown>, unknown>[]>([])

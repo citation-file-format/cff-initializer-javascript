@@ -17,7 +17,8 @@
                 standout
                 type="textarea"
                 v-bind:model-value="abstract"
-                v-bind:rules="[validateAbstract]"
+                v-bind:error="errors.abstract?.length > 0"
+                v-bind:error-message="errors.abstract ? errors.abstract.join(', ') : ''"
                 v-on:update:modelValue="setAbstract"
             />
         </div>
@@ -27,7 +28,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
+import { useFileValidator } from '../store/validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -38,10 +39,11 @@ export default defineComponent({
     },
     setup () {
         const { abstract, setAbstract } = useCff()
+        const { groupedErrors } = useFileValidator()
         return {
             abstract,
             setAbstract,
-            validateAbstract: makeFieldValidator('/properties/abstract')
+            errors: groupedErrors
         }
     }
 })

@@ -69,7 +69,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { useFileValidator } from '../validator'
+import { useFileValidator } from '../store/validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 

@@ -142,7 +142,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useFileValidator } from '../validator'
+import { useFileValidator } from '../store/validator'
 
 export default defineComponent({
     name: 'AuthorEditCard',

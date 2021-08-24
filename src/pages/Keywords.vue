@@ -21,7 +21,18 @@
                     v-on:removePressed="removeKeyword(index)"
                 />
             </div>
-
+            <div
+                class="errors"
+                v-if="errors.keywords?.length > 0"
+            >
+                <p
+                    class="text-negative"
+                    v-for="(e, ei) in errors.keywords"
+                    v-bind:key="ei"
+                >
+                    {{ e }}
+                </p>
+            </div>
             <q-btn v-on:click="addKeyword">
                 Add keyword
             </q-btn>
@@ -35,6 +46,7 @@ import StepperActions from 'components/StepperActions.vue'
 import KeywordEditCard from 'components/KeywordEditCard.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'Keywords',
@@ -44,6 +56,7 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
+        const { groupedErrors } = useFileValidator()
 
         function addKeyword () {
             const newKeyword = ''
@@ -66,7 +79,8 @@ export default defineComponent({
             keywords,
             addKeyword,
             removeKeyword,
-            setKeyword
+            setKeyword,
+            errors: groupedErrors
         }
     }
 })

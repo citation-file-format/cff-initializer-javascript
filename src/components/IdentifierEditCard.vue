@@ -27,7 +27,8 @@
                     v-on:update:modelValue="
                         $emit('updateValue', 'value', $event)
                     "
-                    v-bind:rules="[ validateValue ]"
+                    v-bind:error="errors.value?.length > 0"
+                    v-bind:error-message="errors.value ? errors.value.join(', ') : ''"
                 />
             </div>
             <div class="q-gutter-md items-center no-wrap">
@@ -41,7 +42,8 @@
                     v-on:update:modelValue="
                         $emit('updateDescription', 'description', $event)
                     "
-                    v-bind:rules="[ validateDescription ]"
+                    v-bind:error="errors.description?.length > 0"
+                    v-bind:error-message="errors.description ? errors.description.join(', ') : ''"
                 />
             </div>
         </q-card-section>
@@ -65,8 +67,8 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { makeFieldValidator, makeOptionalFieldValidator } from '../validator'
-import { defineComponent, PropType } from 'vue'
+import { useFileValidator } from '../store/validator'
+import { defineComponent, PropType, computed } from 'vue'
 
 export default defineComponent({
     name: 'IdentifierEditCard',
@@ -88,23 +90,16 @@ export default defineComponent({
             default: ''
         }
     },
-    setup (props) {
-        // validating of value depends on type
-        const valueValidators: Record<IdentifierTypeType, (val: unknown) => true | string > = {
-            doi: makeFieldValidator('/definitions/identifier/anyOf/0/properties/value'),
-            url: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
-            swh: makeFieldValidator('/definitions/identifier/anyOf/2/properties/value'),
-            other: makeFieldValidator('/definitions/identifier/anyOf/3/properties/value')
-        }
+    setup ({index}) {
+        const { groupedErrors } = useFileValidator()
         return {
-            validateValue: (val: string) => valueValidators[props.type as IdentifierTypeType](val),
-            validateDescription: makeOptionalFieldValidator('/definitions/identifier-description'),
-            typeOptions: [
-                { label: 'DOI', value: 'doi' },
-                { label: 'URL', value: 'url' },
-                { label: 'Software Heritage', value: 'swh' },
-                { label: 'Other', value: 'other' }
-            ]
+            errors: computed(() => {
+                if (groupedErrors.value.identifgiersList && groupedErrors.value.identifgiersList[index]) {
+                    return groupedErrors.value.identifgiersList[index]
+                } else {
+                    return {}
+                }
+            })
         }
     },
     emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription']

@@ -13,7 +13,8 @@
                 outlined
                 standout
                 v-bind:model-value="license"
-                v-bind:rules="[ validateLicense ]"
+                v-bind:error="errors.license?.length > 0"
+                v-bind:error-message="errors.license ? errors.license.join(', ') : ''"
                 v-on:update:model-value="setLicense"
             />
         </div>
@@ -23,7 +24,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from 'src/validator'
+import { useFileValidator } from 'src/store/validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -34,10 +35,11 @@ export default defineComponent({
     },
     setup () {
         const cff = useCff()
+        const { groupedErrors } = useFileValidator()
         return {
             license: cff.license,
             setLicense: cff.setLicense,
-            validateLicense: makeFieldValidator('/definitions/license-enum')
+            errors: groupedErrors
         }
     }
 })

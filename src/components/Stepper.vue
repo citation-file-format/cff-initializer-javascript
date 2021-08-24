@@ -120,7 +120,7 @@
 </template>
 
 <script lang="ts">
-import { useFileValidator } from 'src/validator'
+import { useFileValidator } from 'src/store/validator'
 
 import { useApp } from '../store/app'
 

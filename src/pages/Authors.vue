@@ -55,7 +55,7 @@ import AuthorEditCard from 'components/AuthorEditCard.vue'
 import AuthorViewCard from 'components/AuthorViewCard.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
-import { useFileValidator } from 'src/validator'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'Authors',

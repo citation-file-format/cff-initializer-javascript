@@ -46,7 +46,7 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, computed } from 'vue'
 import { AuthorType } from 'src/types'
-import { useFileValidator } from 'src/validator'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'AuthorViewCard',

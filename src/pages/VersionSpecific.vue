@@ -16,7 +16,8 @@
                 outlined
                 standout
                 v-bind:model-value="commit"
-                v-bind:rules="[validateCommit]"
+                v-bind:error="errors.commit?.length > 0"
+                v-bind:error-message="errors.commit ? errors.commit.join(', ') : ''"
                 v-on:update:modelValue="setCommit"
             />
 
@@ -29,7 +30,8 @@
                 outlined
                 standout
                 v-bind:model-value="version"
-                v-bind:rules="[validateVersion]"
+                v-bind:error="errors.version?.length > 0"
+                v-bind:error-message="errors.version ? errors.version.join(', ') : ''"
                 v-on:update:modelValue="setVersion"
             />
 
@@ -43,7 +45,8 @@
                 standout
                 today-btn="true"
                 v-bind:model-value="dateReleased"
-                v-bind:rules="[validateDateReleased]"
+                v-bind:error="errors['date-released']?.length > 0"
+                v-bind:error-message="errors['date-released'] ? errors['date-released'].join(', ') : ''"
                 v-on:update:modelValue="setDateReleased"
             >
                 <template #append>
@@ -81,7 +84,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
+import { useFileValidator } from '../store/validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -91,6 +94,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        const { groupedErrors } = useFileValidator()
         const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
         return {
             commit,
@@ -99,9 +103,7 @@ export default defineComponent({
             setCommit,
             setDateReleased,
             setVersion,
-            validateCommit: makeFieldValidator('/properties/commit'),
-            validateDateReleased: makeFieldValidator('/properties/date-released'),
-            validateVersion: makeFieldValidator('/properties/version')
+            errors: groupedErrors
         }
     }
 })

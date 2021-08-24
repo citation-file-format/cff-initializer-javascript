@@ -28,6 +28,18 @@
                 v-on:removePressed="removeIdentifier"
             />
         </div>
+        <div
+            class="errors"
+            v-if="errors.identifiers?.length > 0"
+        >
+            <p
+                class="text-negative"
+                v-for="(e, ei) in errors.identifiers"
+                v-bind:key="ei"
+            >
+                {{ e }}
+            </p>
+        </div>
         <q-btn
             no-caps
             v-on:click="addIdentifier"
@@ -46,6 +58,7 @@ import IdentifierEditCard from 'components/IdentifierEditCard.vue'
 import IdentifierViewCard from 'components/IdentifierViewCard.vue'
 import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'Identifiers',
@@ -57,6 +70,7 @@ export default defineComponent({
     setup () {
         const { identifiers, setIdentifiers } = useCff()
         const editingId = ref(-1)
+        const { groupedErrors } = useFileValidator()
         return {
             identifiers,
             editingId,
@@ -93,7 +107,8 @@ export default defineComponent({
                 const newIdentifiers = [...identifiers.value, newIdentifier]
                 setIdentifiers(newIdentifiers)
                 editingId.value = newIdentifiers.length - 1
-            }
+            },
+            errors: groupedErrors
         }
     }
 })

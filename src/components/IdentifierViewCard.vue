@@ -21,6 +21,12 @@
                 </div>
 
                 <div class="col-1">
+                    <q-icon
+                        v-if="hasErrors"
+                        color="negative"
+                        name="warning"
+                        title="Identifier is invalid"
+                    />
                     <q-btn
                         v-if="showEdit"
                         color="primary"
@@ -36,8 +42,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref, computed } from 'vue'
 import { IdentifierType } from 'src/types'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'IdentifierViewCard',
@@ -52,9 +59,11 @@ export default defineComponent({
         }
     },
     setup () {
+        const { groupedErrors } = useFileValidator()
         const showEdit = ref(false)
         return {
-            showEdit
+            showEdit,
+            hasErrors: computed(() => !!((groupedErrors.value.identifiersList && groupedErrors.value.identifiersList[index])))
         }
     },
     emits: ['editPressed']

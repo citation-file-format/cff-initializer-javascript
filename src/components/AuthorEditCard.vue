@@ -141,6 +141,8 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { defineComponent, computed } from 'vue'
 import { useFileValidator } from '../store/validator'
 
@@ -180,12 +182,12 @@ export default defineComponent({
             default: ''
         }
     },
-    setup ({ index }) {
+    setup (props) {
         const { groupedErrors } = useFileValidator()
         return {
             errors: computed(() => {
-                if (groupedErrors.value.authorsList && groupedErrors.value.authorsList[index]) {
-                    return groupedErrors.value.authorsList[index]
+                if (groupedErrors.value.authorsList && groupedErrors.value.authorsList[props.index]) {
+                    return groupedErrors.value.authorsList[props.index]
                 } else {
                     return {}
                 }

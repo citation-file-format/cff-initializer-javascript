@@ -60,12 +60,13 @@ export default defineComponent({
             required: true
         }
     },
-    setup ({ index }) {
+    setup (props) {
         const { groupedErrors } = useFileValidator()
         const showEdit = ref(false)
         return {
             showEdit,
-            hasErrors: computed(() => !!((groupedErrors.value.authorsList && groupedErrors.value.authorsList[index])))
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            hasErrors: computed(() => !!((groupedErrors.value.authorsList && groupedErrors.value.authorsList[props.index])))
         }
     },
     emits: ['editPressed']

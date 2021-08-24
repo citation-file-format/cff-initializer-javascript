@@ -66,6 +66,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { IdentifierTypeType } from '../types'
 import { useFileValidator } from '../store/validator'
 import { defineComponent, PropType, computed } from 'vue'
@@ -90,12 +91,14 @@ export default defineComponent({
             default: ''
         }
     },
-    setup ({ index }) {
+    setup (props) {
         const { groupedErrors } = useFileValidator()
         return {
             errors: computed(() => {
-                if (groupedErrors.value.identifgiersList && groupedErrors.value.identifgiersList[index]) {
-                    return groupedErrors.value.identifgiersList[index]
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                if (groupedErrors.value.identifiersList && groupedErrors.value.identifiersList[props.index]) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+                    return groupedErrors.value.identifiersList[props.index]
                 } else {
                     return {}
                 }

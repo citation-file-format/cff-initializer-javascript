@@ -63,6 +63,7 @@ export default defineComponent({
         const showEdit = ref(false)
         return {
             showEdit,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             hasErrors: computed(() => !!((groupedErrors.value.identifiersList && groupedErrors.value.identifiersList[props.index])))
         }
     },

@@ -37,10 +37,6 @@
         <q-separator />
         <q-card-section>
             <p>{{ isValid ? 'File is valid' : 'File is invalid' }}</p>
-            <p>Errors grouped by prop:</p>
-            <pre>{{ groupedErrors }}</pre>
-            <p>Valid screens:</p>
-            <pre>{{ validScreens }}</pre>
         </q-card-section>
     </q-card>
 </template>
@@ -54,7 +50,7 @@ export default defineComponent({
     name: 'Preview',
     setup () {
         const { asString } = useCffstr()
-        const { isValid, errors, groupedErrors, validScreens } = useFileValidator()
+        const { isValid } = useFileValidator()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
@@ -68,10 +64,7 @@ export default defineComponent({
             asString,
             copyToClipboard,
             showTooltip,
-            isValid,
-            errors,
-            groupedErrors,
-            validScreens
+            isValid
         }
     }
 })

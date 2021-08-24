@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -16,13 +18,14 @@ const isValid = ref(true)
 const errors = ref<ErrorObject<string, Record<string, unknown>, unknown>[]>([])
 
 function groupErrors (ajvErrors: ErrorObject<string, Record<string, unknown>, unknown>[]) {
-    const cffErrors = {}
+    const cffErrors: any = {}
     ajvErrors.forEach(e => {
         if (e.instancePath === '' && e.keyword === 'required') {
-            if (!cffErrors[e.params.missingProperty]) {
-                cffErrors[e.params.missingProperty] = []
+            const missing = e.params.missingProperty as string
+            if (!cffErrors[missing]) {
+                cffErrors[missing] = []
             }
-            cffErrors[e.params.missingProperty].push(e.message)
+            cffErrors[missing].push(e.message)
             return
         }
         const parts = e.instancePath.split('/')
@@ -84,7 +87,7 @@ function groupErrors (ajvErrors: ErrorObject<string, Record<string, unknown>, un
     return cffErrors
 }
 
-function validScreens (groupedErrors) {
+function validScreens (groupedErrors: any) {
     return {
         start: !(groupedErrors.value.title?.length || groupedErrors.value.message?.length || groupedErrors.value.type?.length),
         authors: !(groupedErrors.value.authors?.length || groupedErrors.value.identifiersList?.length),
@@ -97,7 +100,7 @@ function validScreens (groupedErrors) {
     }
 }
 
-function validateFile (cffAsObject) {
+function validateFile (cffAsObject: any) {
     isValid.value = ajv.validate(schema.$id, cffAsObject)
     console.log(isValid.value)
     console.log(ajv.errors)

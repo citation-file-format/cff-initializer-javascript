@@ -58,12 +58,12 @@ export default defineComponent({
             required: true
         }
     },
-    setup () {
+    setup (props) {
         const { groupedErrors } = useFileValidator()
         const showEdit = ref(false)
         return {
             showEdit,
-            hasErrors: computed(() => !!((groupedErrors.value.identifiersList && groupedErrors.value.identifiersList[index])))
+            hasErrors: computed(() => !!((groupedErrors.value.identifiersList && groupedErrors.value.identifiersList[props.index])))
         }
     },
     emits: ['editPressed']

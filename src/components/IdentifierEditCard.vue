@@ -90,7 +90,7 @@ export default defineComponent({
             default: ''
         }
     },
-    setup ({index}) {
+    setup ({ index }) {
         const { groupedErrors } = useFileValidator()
         return {
             errors: computed(() => {

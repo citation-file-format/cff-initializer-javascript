@@ -65,7 +65,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
+import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -88,10 +88,10 @@ export default defineComponent({
             setRepositoryArtifact,
             setRepositoryCode,
             setUrl,
-            validateUrl: makeFieldValidator('/definitions/url'),
-            validateRepository: makeFieldValidator('/definitions/url'),
-            validateRepositoryArtifact: makeFieldValidator('/definitions/url'),
-            validateRepositoryCode: makeFieldValidator('/definitions/url')
+            validateUrl: makeOptionalFieldValidator('/definitions/url'),
+            validateRepository: makeOptionalFieldValidator('/definitions/url'),
+            validateRepositoryArtifact: makeOptionalFieldValidator('/definitions/url'),
+            validateRepositoryCode: makeOptionalFieldValidator('/definitions/url')
         }
     }
 })

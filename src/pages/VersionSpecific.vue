@@ -81,7 +81,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
+import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -99,9 +99,9 @@ export default defineComponent({
             setCommit,
             setDateReleased,
             setVersion,
-            validateCommit: makeFieldValidator('/properties/commit'),
-            validateDateReleased: makeFieldValidator('/properties/date-released'),
-            validateVersion: makeFieldValidator('/properties/version')
+            validateCommit: makeOptionalFieldValidator('/properties/commit'),
+            validateDateReleased: makeOptionalFieldValidator('/properties/date-released'),
+            validateVersion: makeOptionalFieldValidator('/properties/version')
         }
     }
 })

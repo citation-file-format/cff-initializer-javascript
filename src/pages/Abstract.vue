@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
+import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -41,7 +41,7 @@ export default defineComponent({
         return {
             abstract,
             setAbstract,
-            validateAbstract: makeFieldValidator('/properties/abstract')
+            validateAbstract: makeOptionalFieldValidator('/properties/abstract')
         }
     }
 })

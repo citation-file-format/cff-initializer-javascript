@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from 'src/validator'
+import { makeOptionalFieldValidator } from 'src/validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -37,7 +37,7 @@ export default defineComponent({
         return {
             license: cff.license,
             setLicense: cff.setLicense,
-            validateLicense: makeFieldValidator('/definitions/license-enum')
+            validateLicense: makeOptionalFieldValidator('/definitions/license-enum')
         }
     }
 })

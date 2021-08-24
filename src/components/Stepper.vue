@@ -16,6 +16,7 @@
                 name="start"
                 title="Start"
                 v-bind:order="0"
+                v-bind:error="!validScreens.start.value"
                 v-on:click="setStepName('start')"
             />
 
@@ -55,6 +56,7 @@
                 title="Related resources"
                 v-bind:order="4"
                 v-if="showAdvanced"
+                v-bind:error="!validScreens['related-resources'].value"
                 v-on:click="setStepName('related-resources')"
             />
 
@@ -65,6 +67,7 @@
                 title="Abstract"
                 v-bind:order="5"
                 v-if="showAdvanced"
+                v-bind:error="!validScreens.abstract.value"
                 v-on:click="setStepName('abstract')"
             />
 
@@ -85,6 +88,7 @@
                 title="License"
                 v-bind:order="7"
                 v-if="showAdvanced"
+                v-bind:error="!validScreens.license.value"
                 v-on:click="setStepName('license')"
             />
 
@@ -108,21 +112,24 @@
                 v-on:click="setStepName('finish-advanced')"
             />
         </q-stepper>
+        <pre>{{ validScreens }}</pre>
     </div>
 </template>
 
 <script lang="ts">
 
 import { useApp } from '../store/app'
+import { useValidScreens } from '../store/screens'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-
+        const validScreens = useValidScreens()
         return {
             showAdvanced,
             stepName,
-            setStepName
+            setStepName,
+            validScreens
         }
     }
 }

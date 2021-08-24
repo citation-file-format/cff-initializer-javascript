@@ -22,7 +22,7 @@ function toDownloadUrl (body: string) {
 export default defineComponent({
     name: 'DownloadButton',
     setup () {
-        const cffstr = useCffstr()
+        const { cffstr } = useCffstr()
 
         return {
             downloadUrl: computed(() => toDownloadUrl(cffstr.value))

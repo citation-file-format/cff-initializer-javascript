@@ -15,6 +15,7 @@
                 icon=""
                 name="start"
                 title="Start"
+                v-bind:error="!validScreens.start"
                 v-bind:order="0"
                 v-on:click="setStepName('start')"
             />
@@ -26,6 +27,7 @@
                 title="Authors"
                 v-bind:order="1"
                 v-on:click="setStepName('authors')"
+                v-bind:error="!validScreens.authors"
             />
 
             <q-step
@@ -46,6 +48,7 @@
                 v-bind:order="3"
                 v-if="showAdvanced"
                 v-on:click="setStepName('identifiers')"
+                v-bind:error="!validScreens.identifiers"
             />
 
             <q-step
@@ -56,6 +59,7 @@
                 v-bind:order="4"
                 v-if="showAdvanced"
                 v-on:click="setStepName('related-resources')"
+                v-bind:error="!validScreens['related-resources']"
             />
 
             <q-step
@@ -66,6 +70,7 @@
                 v-bind:order="5"
                 v-if="showAdvanced"
                 v-on:click="setStepName('abstract')"
+                v-bind:error="!validScreens.abstract"
             />
 
             <q-step
@@ -76,6 +81,7 @@
                 v-bind:order="6"
                 v-if="showAdvanced"
                 v-on:click="setStepName('keywords')"
+                v-bind:error="!validScreens.keywords"
             />
 
             <q-step
@@ -86,6 +92,7 @@
                 v-bind:order="7"
                 v-if="showAdvanced"
                 v-on:click="setStepName('license')"
+                v-bind:error="!validScreens.license"
             />
 
             <q-step
@@ -96,6 +103,7 @@
                 v-bind:order="8"
                 v-if="showAdvanced"
                 v-on:click="setStepName('version-specific')"
+                v-bind:error="!validScreens['version-specific']"
             />
 
             <q-step
@@ -112,17 +120,20 @@
 </template>
 
 <script lang="ts">
+import { useFileValidator } from 'src/validator'
 
 import { useApp } from '../store/app'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
+        const { validScreens } = useFileValidator()
 
         return {
             showAdvanced,
             stepName,
-            setStepName
+            setStepName,
+            validScreens
         }
     }
 }

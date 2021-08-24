@@ -16,7 +16,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:rules="[validateTitle]"
+                v-bind:error="errors.title?.length > 0"
+                v-bind:error-message="errors.title ? errors.title.join(', ') : ''"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -27,7 +28,8 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:rules="[validateMessage]"
+                v-bind:error="errors.message?.length > 0"
+                v-bind:error-message="errors.message ? errors.message.join(', ') : ''"
                 v-on:update:modelValue="setMessage"
             />
             <p class="question">
@@ -37,6 +39,8 @@
                 type="radio"
                 v-bind:model-value="type"
                 v-bind:options="typeOptions"
+                v-bind:error="errors.type?.length > 0"
+                v-bind:error-message="errors.type ? errors.type.join(', ') : ''"
                 v-on:update:modelValue="setType"
             />
         </div>
@@ -46,7 +50,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
+import { useFileValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -57,6 +61,7 @@ export default defineComponent({
     },
     setup () {
         const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const { groupedErrors } = useFileValidator()
         return {
             message,
             title,
@@ -68,8 +73,7 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            validateTitle: makeFieldValidator('/properties/title'),
-            validateMessage: makeFieldValidator('/properties/message')
+            errors: groupedErrors
         }
     }
 })

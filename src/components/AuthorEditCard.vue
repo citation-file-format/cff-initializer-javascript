@@ -16,7 +16,8 @@
                     v-on:update:modelValue="
                         $emit('update', 'givenNames', $event)
                     "
-                    v-bind:rules="[validateGivenNames]"
+                    v-bind:error="errors['given-names']?.length > 0"
+                    v-bind:error-message="errors['given-names'] ? errors['given-names'].join(', ') : ''"
                 />
                 <q-input
                     bg-color="white"
@@ -29,7 +30,8 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameParticle', $event)
                     "
-                    v-bind:rules="[validateNameParticle]"
+                    v-bind:error="errors['name-particle']?.length > 0"
+                    v-bind:error-message="errors['name-particle'] ? errors['name-particle'].join(', ') : ''"
                 />
                 <q-input
                     bg-color="white"
@@ -41,7 +43,8 @@
                     v-on:update:modelValue="
                         $emit('update', 'familyNames', $event)
                     "
-                    v-bind:rules="[validateFamilyNames]"
+                    v-bind:error="errors['family-names']?.length > 0"
+                    v-bind:error-message="errors['family-names'] ? errors['family-names'].join(', ') : ''"
                 />
                 <q-input
                     bg-color="white"
@@ -54,7 +57,8 @@
                     v-on:update:modelValue="
                         $emit('update', 'nameSuffix', $event)
                     "
-                    v-bind:rules="[validateNameSuffix]"
+                    v-bind:error="errors['name-suffix']?.length > 0"
+                    v-bind:error-message="errors['name-suffix'] ? errors['name-suffix'].join(', ') : ''"
                 />
             </div>
             <div class="q-gutter-md items-center no-wrap">
@@ -69,7 +73,8 @@
                     v-on:update:modelValue="
                         $emit('update', 'email', $event)
                     "
-                    v-bind:rules="[validateEmail]"
+                    v-bind:error="errors.email?.length > 0"
+                    v-bind:error-message="errors.emai ? errors.email.join(', ') : ''"
                 />
             </div>
             <div class="q-gutter-md row items-center no-wrap">
@@ -84,7 +89,8 @@
                         v-on:update:modelValue="
                             $emit('update', 'affiliation', $event)
                         "
-                        v-bind:rules="[validateAffiliation]"
+                        v-bind:error="errors.affiliation?.length > 0"
+                        v-bind:error-message="errors.affiliation ? errors.affiliation.join(', ') : ''"
                     />
                 </div>
                 <div class="col">
@@ -98,9 +104,22 @@
                         v-on:update:modelValue="
                             $emit('update', 'orcid', $event)
                         "
-                        v-bind:rules="[ validateOrcid ]"
+                        v-bind:error="errors.orcid?.length > 0"
+                        v-bind:error-message="errors.orcid ? errors.orcid.join(', ') : ''"
                     />
                 </div>
+            </div>
+            <div
+                class="errors"
+                v-if="errors.errors"
+            >
+                <p
+                    class="text-negative"
+                    v-for="(e, ei) in errors.errors"
+                    v-bind:key="ei"
+                >
+                    {{ e }}
+                </p>
             </div>
         </q-card-section>
         <q-card-actions align="between">
@@ -122,8 +141,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { makeOptionalFieldValidator } from '../validator'
+import { defineComponent, computed } from 'vue'
+import { useFileValidator } from '../validator'
 
 export default defineComponent({
     name: 'AuthorEditCard',
@@ -161,15 +180,16 @@ export default defineComponent({
             default: ''
         }
     },
-    setup () {
+    setup ({ index }) {
+        const { groupedErrors } = useFileValidator()
         return {
-            validateGivenNames: makeOptionalFieldValidator('/definitions/person/properties/given-names'),
-            validateNameParticle: makeOptionalFieldValidator('/definitions/person/properties/name-particle'),
-            validateNameSuffix: makeOptionalFieldValidator('/definitions/person/properties/name-suffix'),
-            validateFamilyNames: makeOptionalFieldValidator('/definitions/person/properties/family-names'),
-            validateAffiliation: makeOptionalFieldValidator('/definitions/person/properties/affiliation'),
-            validateEmail: makeOptionalFieldValidator('/definitions/person/properties/email'),
-            validateOrcid: makeOptionalFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
+            errors: computed(() => {
+                if (groupedErrors.value.authorsList && groupedErrors.value.authorsList[index]) {
+                    return groupedErrors.value.authorsList[index]
+                } else {
+                    return {}
+                }
+            })
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

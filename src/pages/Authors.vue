@@ -25,6 +25,18 @@
                 v-on:removePressed="removeAuthor"
             />
         </div>
+        <div
+            class="errors"
+            v-if="errors.authors?.length > 0"
+        >
+            <p
+                class="text-negative"
+                v-for="(e, ei) in errors.authors"
+                v-bind:key="ei"
+            >
+                {{ e }}
+            </p>
+        </div>
         <q-btn
             no-caps
             v-on:click="addAuthor"
@@ -43,6 +55,7 @@ import AuthorEditCard from 'components/AuthorEditCard.vue'
 import AuthorViewCard from 'components/AuthorViewCard.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
+import { useFileValidator } from 'src/validator'
 
 export default defineComponent({
     name: 'Authors',
@@ -53,6 +66,7 @@ export default defineComponent({
     },
     setup () {
         const { authors, setAuthors } = useCff()
+        const { groupedErrors } = useFileValidator()
         const editingId = ref(-1)
         return {
             authors,
@@ -74,7 +88,8 @@ export default defineComponent({
                 const newAuthors = [...authors.value, newAuthor]
                 setAuthors(newAuthors)
                 editingId.value = newAuthors.length - 1
-            }
+            },
+            errors: groupedErrors
         }
     }
 })

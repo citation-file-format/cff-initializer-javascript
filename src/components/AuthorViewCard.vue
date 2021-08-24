@@ -18,6 +18,12 @@
                 </div>
 
                 <div class="col-1">
+                    <q-icon
+                        v-if="hasErrors"
+                        color="negative"
+                        name="warning"
+                        title="Author is invalid"
+                    />
                     <q-btn
                         v-if="showEdit"
                         color="primary"
@@ -38,8 +44,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref, computed } from 'vue'
 import { AuthorType } from 'src/types'
+import { useFileValidator } from 'src/validator'
 
 export default defineComponent({
     name: 'AuthorViewCard',
@@ -53,10 +60,12 @@ export default defineComponent({
             required: true
         }
     },
-    setup () {
+    setup ({ index }) {
+        const { groupedErrors } = useFileValidator()
         const showEdit = ref(false)
         return {
-            showEdit
+            showEdit,
+            hasErrors: computed(() => !!((groupedErrors.value.authorsList && groupedErrors.value.authorsList[index])))
         }
     },
     emits: ['editPressed']

@@ -16,7 +16,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:rules="[validateUrl]"
+                v-bind:error="errors.url?.length > 0"
+                v-bind:error-message="errors.url ? errors.url.join(', ') : ''"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -29,7 +30,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:rules="[validateRepository]"
+                v-bind:error="errors.repository?.length > 0"
+                v-bind:error-message="errors.repository ? errors.repository.join(', ') : ''"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -42,7 +44,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:rules="[validateRepositoryArtifact]"
+                v-bind:error="errors['repository-artifact']?.length > 0"
+                v-bind:error-message="errors['repository-artifact'] ? errors['repository-artifact'].join(', ') : ''"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
 
@@ -55,7 +58,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:rules="[validateRepositoryCode]"
+                v-bind:error="errors['repository-code']?.length > 0"
+                v-bind:error-message="errors['repository-code'] ? errors['repository-code'].join(', ') : ''"
                 v-on:update:modelValue="setRepositoryCode"
             />
         </div>
@@ -65,7 +69,7 @@
 
 <script lang="ts">
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
+import { useFileValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -79,6 +83,7 @@ export default defineComponent({
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
         } = useCff()
+        const { groupedErrors } = useFileValidator()
         return {
             repository,
             repositoryArtifact,
@@ -88,10 +93,7 @@ export default defineComponent({
             setRepositoryArtifact,
             setRepositoryCode,
             setUrl,
-            validateUrl: makeFieldValidator('/definitions/url'),
-            validateRepository: makeFieldValidator('/definitions/url'),
-            validateRepositoryArtifact: makeFieldValidator('/definitions/url'),
-            validateRepositoryCode: makeFieldValidator('/definitions/url')
+            errors: groupedErrors
         }
     }
 })

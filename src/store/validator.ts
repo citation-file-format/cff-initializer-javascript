@@ -84,6 +84,7 @@ function groupErrors (ajvErrors: ErrorObject<string, Record<string, unknown>, un
             }
         }
     })
+    console.log(cffErrors)
     return cffErrors
 }
 
@@ -102,10 +103,7 @@ function validScreens (groupedErrors: any) {
 
 function validateFile (cffAsObject: any) {
     isValid.value = ajv.validate(schema.$id, cffAsObject)
-    console.log(isValid.value)
-    console.log(ajv.errors)
     if (ajv.errors) {
-        console.log(ajv.errors.length)
         errors.value = ajv.errors
     } else {
         errors.value = []

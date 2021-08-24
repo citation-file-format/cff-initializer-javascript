@@ -45,10 +45,13 @@ export function useApp () {
         showAdvanced: computed(() => state.value.showAdvanced),
         stepName,
         navigateDirect: (newStepName: StepNameType) => {
+            if (!stepNames.includes(newStepName)) {
+                return
+            }
             if (advancedStepNames.has(newStepName)) {
                 state.value.showAdvanced = true
-                state.value.stepIndex = stepNames.indexOf(newStepName)
             }
+            state.value.stepIndex = stepNames.indexOf(newStepName)
         },
         setStepName: async (newStepName: StepNameType) => {
             state.value.stepIndex = stepNames.indexOf(newStepName)

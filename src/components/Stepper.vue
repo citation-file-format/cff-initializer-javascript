@@ -112,7 +112,6 @@
                 v-on:click="setStepName('finish-advanced')"
             />
         </q-stepper>
-        <pre>{{ validScreens }}</pre>
     </div>
 </template>
 

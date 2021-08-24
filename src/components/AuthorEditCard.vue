@@ -74,7 +74,7 @@
                         $emit('update', 'email', $event)
                     "
                     v-bind:error="errors.email?.length > 0"
-                    v-bind:error-message="errors.emai ? errors.email.join(', ') : ''"
+                    v-bind:error-message="errors.email ? errors.email.join(', ') : ''"
                 />
             </div>
             <div class="q-gutter-md row items-center no-wrap">

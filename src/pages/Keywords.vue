@@ -25,7 +25,11 @@
                 />
             </div>
 
-            <q-btn v-on:click="addKeyword">
+            <q-btn
+                color="primary"
+                no-caps
+                v-on:click="addKeyword"
+            >
                 Add keyword
             </q-btn>
         </div>
@@ -79,6 +83,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-</style>

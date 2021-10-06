@@ -1,4 +1,5 @@
 <template>
+    <span class="spacer" />
     <q-btn-group flat>
         <q-btn
             color=""
@@ -34,4 +35,7 @@ export default defineComponent({
 </script>
 
 <style>
+.spacer {
+    flex-grow: 1;
+}
 </style>

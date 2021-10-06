@@ -1,5 +1,120 @@
 /* app global css */
 
+#app {
+    background-color: tan;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 10px;
+}
+#header-outer {
+    background-color: rosybrown;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#header-inner {
+    background-color: sandybrown;
+    display: flex;
+    flex-direction: row;
+    max-height: 50px;
+    min-height: 50px;
+    width: 1900px;
+}
+#middle {
+    background-color: lightblue;
+    column-gap: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 20px;
+}
+#metroline {
+    background-color: lightgreen;
+    flex-grow: 0.5;
+    max-height: 1000px;
+    max-width: 300px;
+    min-height: 500px;
+    min-width: 250px;
+    overflow: auto;
+}
+#form {
+    background-color: plum;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 900px;
+    min-height: 400px;
+    min-width: 600px;
+}
+#form-title {
+    background-color: tomato;
+    height: 120px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#form-content {
+    background-color: lightslategray;
+    flex-grow: 1;
+    max-height: 600px;
+    min-height: 580px;
+    overflow: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+
+}
+#form-button-bar {
+    align-items: center;
+    background-color: khaki;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    
+    max-height: 80px;
+    min-height: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#preview {
+    background-color: limegreen;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.5;
+    max-width: 600px;
+    min-height: 400px;
+    min-width: 400px;
+}
+#preview-content {
+    background-color: lightcoral;
+    flex-grow: 1;
+    max-height:720px;
+    min-height: 300px;
+    overflow: auto;
+}
+#preview-button-bar {
+    align-items: center;
+    background-color: darkorange;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-height: 80px;
+    min-height: 80px;
+}
+#footer-outer {
+    background-color: slateblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#footer-inner {
+    background-color: deepskyblue;
+    max-height: 50px;
+    min-height: 50px;
+    width: 1900px;
+}
+
 
 @font-face {
     font-family: 'Roboto';
@@ -39,7 +154,7 @@ p, body {
     line-height: 1.2;
     letter-spacing: normal;
     margin-top: 30px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 .finish-paragraph {
     font-family: 'Roboto Condensed', sans-serif;
@@ -53,3 +168,4 @@ p, body {
 pre, .mono {
     font-family: 'Roboto Mono', sans-serif;
 }
+

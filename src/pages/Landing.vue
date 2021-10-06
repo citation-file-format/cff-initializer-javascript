@@ -11,11 +11,15 @@
                         class="text-primary q-gutter-md q-mb-xl"
                         style="font-size: 2em"
                     >
-                        <h2>Software Citations using Citation File Format</h2>
+                        <h2>Software Citation using the<br>Citation File Format</h2>
 
-                        <p>CITATION.cff files are plain text files with human- and machine-readable citation information for software (and datasets). Code developers can include them in their repositories to let others know how to correctly cite their software.</p>
+                        <p>
+                            <button class="code-button">
+                                <code>CITATION.cff</code>
+                            </button>
+                        files are plain text files with human- and machine-readable citation information for software (and datasets). Code developers can include them in their source code repositories to let others know how to correctly cite their software.</p>
 
-                        <p>This webpage will guide you to take the necassary steps to generate your own CFF file.</p>
+                        <p>This website will help you generate your own Citation File Format file.</p>
                     </div>
                 </q-card>
             </div>
@@ -58,8 +62,8 @@ export default defineComponent({
     message: "If you use this software, please cite it as below."
     authors:
     - family-names: John
-        given-names: Stephan
-        orcid: https://orcid.org/0000-0003-4925-7248
+      given-names: Stephan
+      orcid: https://orcid.org/0000-0003-4925-7248
     title: "My Research Software"
     version: 2.0.4
     doi: 10.5281/zenodo.1234
@@ -75,8 +79,12 @@ export default defineComponent({
 <style scoped>
 
 .rotated-card {
-    transform: rotate(20deg) translateX(170px) translateY(185px);
+    transform: rotate(12deg) translateX(170px) translateY(185px);
     display: block;
+}
+
+.code-button {
+    border: 0;
 }
 
 </style>

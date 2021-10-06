@@ -1,37 +1,30 @@
 <template>
-    <div class="row action-buttons">
-        <div class="col">
-            <q-btn
-                color=""
-                flat
-                label="Back"
-                no-caps
-                v-bind:disable="cannotGoBack"
-                v-on:click="navigatePrevious"
-            />
-        </div>
-        <div
-            class="col q-mr-lg"
-            align="right"
-        >
-            <q-btn-group flat>
-                <q-btn
-                    color=""
-                    flat
-                    label="Finish"
-                    no-caps
-                    v-bind:to="showAdvanced === true ? '/finish-advanced' : '/finish-minimum'"
-                />
-                <q-btn
-                    color="primary"
-                    label="Next"
-                    no-caps
-                    v-bind:disable="cannotGoForward"
-                    v-on:click="navigateNext"
-                />
-            </q-btn-group>
-        </div>
-    </div>
+    <q-btn
+        color=""
+        flat
+        label="Back"
+        no-caps
+        v-bind:disable="cannotGoBack"
+        v-on:click="navigatePrevious"
+    />
+    <span class="spacer" />
+
+    <q-btn-group flat>
+        <q-btn
+            color=""
+            flat
+            label="Finish"
+            no-caps
+            v-bind:to="showAdvanced === true ? '/finish-advanced' : '/finish-minimum'"
+        />
+        <q-btn
+            color="primary"
+            label="Next"
+            no-caps
+            v-bind:disable="cannotGoForward"
+            v-on:click="navigateNext"
+        />
+    </q-btn-group>
 </template>
 
 <script lang="ts">
@@ -58,9 +51,7 @@ export default defineComponent({
 </script>
 
 <style>
-.action-buttons {
-    height: 60px;
-    padding-bottom: 20px;
+.spacer {
+    flex-grow: 1;
 }
-
 </style>

@@ -1,46 +1,55 @@
 <template>
-    <div class="q-pa-md col-flex">
-        <div class="q-gutter-md title-field text-dark">
-            <p class="q-mt-xl page-title">
+    <div id="metroline">
+        <Stepper />
+    </div>
+    <div id="form">
+        <div id="form-title">
+            <h1 class="page-title">
                 Identifiers
-            </p>
+            </h1>
         </div>
 
-        <div
-            v-for="(identifier, index) in identifiers"
-            v-bind:key="index"
-            class="q-mb-md"
-        >
-            <IdentifierViewCard
-                v-if="editingId !== index"
-                v-bind:index="index"
-                v-bind:identifier="identifier"
-                v-on:editPressed="() => (editingId = index)"
-            />
-            <IdentifierEditCard
-                v-else
-                v-bind:index="index"
-                v-bind="identifier"
-                v-on:updateType="setIdentifierTypeField"
-                v-on:updateValue="setIdentifierValueField"
-                v-on:updateDescription="setIdentifierDescriptionField"
-                v-on:closePressed="() => (editingId = -1)"
-                v-on:removePressed="removeIdentifier"
-            />
+        <div id="form-content">
+            <div
+                v-for="(identifier, index) in identifiers"
+                v-bind:key="index"
+                class="q-mb-md"
+            >
+                <IdentifierViewCard
+                    v-if="editingId !== index"
+                    v-bind:index="index"
+                    v-bind:identifier="identifier"
+                    v-on:editPressed="() => (editingId = index)"
+                />
+                <IdentifierEditCard
+                    v-else
+                    v-bind:index="index"
+                    v-bind="identifier"
+                    v-on:updateType="setIdentifierTypeField"
+                    v-on:updateValue="setIdentifierValueField"
+                    v-on:updateDescription="setIdentifierDescriptionField"
+                    v-on:closePressed="() => (editingId = -1)"
+                    v-on:removePressed="removeIdentifier"
+                />
+            </div>
+            <q-btn
+                no-caps
+                v-on:click="addIdentifier"
+                color="primary"
+            >
+                Add identifier
+            </q-btn>
         </div>
-        <q-btn
-            no-caps
-            v-on:click="addIdentifier"
-            color="primary"
-        >
-            Add identifier
-        </q-btn>
+
+        <div id="form-button-bar">
+            <StepperActions />
+        </div>
     </div>
-    <StepperActions />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import IdentifierEditCard from 'components/IdentifierEditCard.vue'
 import IdentifierViewCard from 'components/IdentifierViewCard.vue'
@@ -50,6 +59,7 @@ import { useCff } from 'src/store/cff'
 export default defineComponent({
     name: 'Identifiers',
     components: {
+        Stepper,
         StepperActions,
         IdentifierEditCard,
         IdentifierViewCard
@@ -100,14 +110,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-.col-flex {
-    flex: 1;
-}
-.title-field {
-    margin-right: 120px;
-    max-width: 700px;
-    min-width: 300px;
-}
-
 </style>

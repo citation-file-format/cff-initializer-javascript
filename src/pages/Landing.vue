@@ -21,7 +21,7 @@
                             to let others know how to correctly cite their software.
                         </p>
 
-                        <p>This website will help you generate your own Citation File Format file.</p>
+                        <p>This website will help you generate your own <a href="https://citation-file-format.github.io">Citation File Format</a> file.</p>
                     </div>
                 </q-card>
             </div>
@@ -81,7 +81,7 @@ export default defineComponent({
 <style scoped>
 
 .rotated-card {
-    transform: rotate(12deg) translateX(170px) translateY(185px);
+    transform: rotate(12deg) translateX(120px) translateY(185px);
     display: block;
 }
 

@@ -8,7 +8,11 @@ const cff = ref({
     commit: '',
     dateReleased: '',
     identifiers: [],
-    keywords: [],
+    keywords: [
+        '',
+        '',
+        ''
+    ],
     license: '',
     message: '',
     repository: '',

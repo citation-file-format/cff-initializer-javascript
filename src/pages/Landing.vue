@@ -17,7 +17,9 @@
                             <button class="code-button">
                                 <code>CITATION.cff</code>
                             </button>
-                        files are plain text files with human- and machine-readable citation information for software (and datasets). Code developers can include them in their source code repositories to let others know how to correctly cite their software.</p>
+                            files are plain text files with human- and machine-readable citation information for software (and datasets). Code developers can include them in their source code repositories git push
+                            to let others know how to correctly cite their software.
+                        </p>
 
                         <p>This website will help you generate your own Citation File Format file.</p>
                     </div>

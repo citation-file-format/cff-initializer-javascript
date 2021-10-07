@@ -28,6 +28,7 @@
         />
 
         <q-step
+            active-icon="navigate_next"
             color="primary"
             icon=""
             name="finish-minimum"
@@ -98,6 +99,7 @@
         />
 
         <q-step
+            active-icon="navigate_next"
             color="primary"
             icon=""
             name="finish-advanced"

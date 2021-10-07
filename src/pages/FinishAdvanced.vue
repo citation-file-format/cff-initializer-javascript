@@ -42,7 +42,7 @@
                 <q-btn
                     class="q-ml-xl"
                     color="primary"
-                    icon="edit"
+                    icon="refresh"
                     label="Create another"
                     no-caps
                     v-on:click="createAnother"

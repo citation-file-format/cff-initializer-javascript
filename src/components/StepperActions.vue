@@ -2,7 +2,7 @@
     <q-btn
         color=""
         flat
-        label="Back"
+        label="Previous"
         no-caps
         v-bind:disable="cannotGoBack"
         v-on:click="navigatePrevious"

@@ -40,17 +40,9 @@
                 class="q-gutter-md"
             >
                 <q-btn
-                    class="q-mr-xl"
-                    color="primary"
-                    icon="chevron_left"
-                    label="Back to form"
-                    no-caps
-                    v-on:click="backToForm"
-                />
-                <q-btn
                     class="q-ml-xl"
                     color="primary"
-                    icon="edit"
+                    icon="refresh"
                     label="Create another"
                     no-caps
                     v-on:click="createAnother"

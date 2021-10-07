@@ -18,17 +18,9 @@
                 class="q-gutter-md"
             >
                 <q-btn
-                    class="q-mr-xl"
-                    color="primary"
-                    icon="chevron_left"
-                    label="Back to form"
-                    no-caps
-                    v-on:click="backToForm"
-                />
-                <q-btn
                     class="q-ml-xl"
                     color="primary"
-                    icon="edit"
+                    icon="workspace_premium"
                     label="Show advanced"
                     no-caps
                     to="/identifiers"
@@ -58,9 +50,6 @@ export default defineComponent({
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
         return {
-            backToForm: async () => {
-                await setStepName('authors')
-            },
             setShowAdvanced,
             navigatePrevious,
             showAdvanced: async () => {

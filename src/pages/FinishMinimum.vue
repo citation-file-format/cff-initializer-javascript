@@ -20,7 +20,7 @@
                 <q-btn
                     class="q-ml-xl"
                     color="primary"
-                    icon="edit"
+                    icon="workspace_premium"
                     label="Show advanced"
                     no-caps
                     to="/identifiers"

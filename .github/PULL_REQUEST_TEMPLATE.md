@@ -23,6 +23,6 @@ npm run dev
 # go to localhost:8080, see if the app works correctly
 npm run lint
 npm run test:unit:ci
-``
+```
 
 -->

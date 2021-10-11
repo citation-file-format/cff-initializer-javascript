@@ -23,8 +23,6 @@ npm run dev
 # go to localhost:8080, see if the app works correctly
 npm run lint
 npm run test:unit:ci
-npm run test:unit:ui
-# go to localhost:4000, click 'run tests' there
 ``
 
 -->

@@ -3,71 +3,71 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
-        component: () => import('src/layouts/MainLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Landing.vue') }]
+        component: () => import('src/components/LayoutLanding.vue'),
+        children: [{ path: '', component: () => import('src/components/Landing.vue') }]
     },
     {
         path: '/landing',
-        component: () => import('src/layouts/MainLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Landing.vue') }]
+        component: () => import('src/components/LayoutLanding.vue'),
+        children: [{ path: '', component: () => import('src/components/Landing.vue') }]
     },
     {
         path: '/start',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Start.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenStart.vue') }]
     },
     {
         path: '/authors',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Authors.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenAuthors.vue') }]
     },
     {
         path: '/finish-minimum',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/FinishMinimum.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenFinishMinimum.vue') }]
     },
     {
         path: '/identifiers',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Identifiers.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenIdentifiers.vue') }]
     },
     {
         path: '/related-resources',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/RelatedResources.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenRelatedResources.vue') }]
     },
     {
         path: '/abstract',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Abstract.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenAbstract.vue') }]
     },
     {
         path: '/keywords',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/Keywords.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenKeywords.vue') }]
     },
     {
         path: '/license',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/License.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenLicense.vue') }]
     },
     {
         path: '/version-specific',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/VersionSpecific.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenVersionSpecific.vue') }]
     },
     {
         path: '/finish-advanced',
-        component: () => import('src/layouts/StepperLayout.vue'),
-        children: [{ path: '', component: () => import('src/pages/FinishAdvanced.vue') }]
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenFinishAdvanced.vue') }]
     },
     {
         path: '/404',
-        component: () => import('src/pages/Error404.vue')
+        component: () => import('src/components/Error404.vue')
     },
     {
         path: '/:catchAll(.*)*',
-        component: () => import('src/pages/Error404.vue')
+        component: () => import('src/components/Error404.vue')
     }
 ]
 

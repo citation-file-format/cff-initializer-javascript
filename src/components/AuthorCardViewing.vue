@@ -42,7 +42,7 @@ import { defineComponent, PropType, ref } from 'vue'
 import { AuthorType } from 'src/types'
 
 export default defineComponent({
-    name: 'AuthorViewCard',
+    name: 'AuthorCardViewing',
     props: {
         index: {
             type: Number,

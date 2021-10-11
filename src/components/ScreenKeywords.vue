@@ -18,7 +18,7 @@
                 v-for="(keyword, index) in keywords"
                 v-bind:key="index"
             >
-                <KeywordEditCard
+                <KeywordCardEditing
                     v-bind:keyword="keyword"
                     v-on:update="setKeyword(index, $event)"
                     v-on:removePressed="removeKeyword(index)"
@@ -43,16 +43,16 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import KeywordEditCard from 'components/KeywordEditCard.vue'
+import KeywordCardEditing from 'components/KeywordCardEditing.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
-    name: 'Keywords',
+    name: 'ScreenKeywords',
     components: {
         Stepper,
         StepperActions,
-        KeywordEditCard
+        KeywordCardEditing
     },
     setup () {
         const { keywords, setKeywords } = useCff()

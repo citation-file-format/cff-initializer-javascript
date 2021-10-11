@@ -40,7 +40,7 @@ import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
-    name: 'Abstract',
+    name: 'ScreenAbstract',
     components: {
         Stepper,
         StepperActions

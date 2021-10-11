@@ -64,7 +64,7 @@ import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 
 export default defineComponent({
-    name: 'FinishAdvanced',
+    name: 'ScreenFinishAdvanced',
     components: {
         Stepper,
         StepperActions

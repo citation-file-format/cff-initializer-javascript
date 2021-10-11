@@ -11,3 +11,20 @@ Refs: #ISSUE_NUMBER
 
 
 ## Instructions to review the pull request
+
+<!--
+
+```shell
+cd $(mktemp -d --tmpdir cffinit-pr.XXXXXX)
+git clone https://github.com/citation-file-format/cffinit .
+git checkout <this branch>
+npm clean-install
+npm run dev
+# go to localhost:8080, see if the app works correctly
+npm run lint
+npm run test:unit:ci
+npm run test:unit:ui
+# go to localhost:4000, click 'run tests' there
+``
+
+-->

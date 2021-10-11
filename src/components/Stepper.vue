@@ -56,7 +56,7 @@
             title="Related resources"
             v-bind:order="4"
             v-if="showAdvanced"
-            v-bind:error="!validScreens['related-resources'].value"
+            v-bind:error="!validScreens.relatedResources.value"
             v-on:click="setStepName('related-resources')"
         />
 
@@ -99,7 +99,7 @@
             title="Version specific"
             v-bind:order="8"
             v-if="showAdvanced"
-            v-bind:error="!validScreens['version-specific'].value"
+            v-bind:error="!validScreens.versionSpecific.value"
             v-on:click="setStepName('version-specific')"
         />
 

@@ -51,7 +51,7 @@ export function useValidScreens () {
             value: license,
             required: false
         }])),
-        'related-resources': computed(() => screenValidator([{
+        relatedResources: computed(() => screenValidator([{
             subschema: '/definitions/url',
             value: url,
             required: false
@@ -68,7 +68,7 @@ export function useValidScreens () {
             value: repositoryCode,
             required: false
         }])),
-        'version-specific': computed(() => screenValidator([{
+        versionSpecific: computed(() => screenValidator([{
             subschema: '/properties/commit',
             value: commit,
             required: false

@@ -4,7 +4,7 @@
         <q-btn
             color=""
             flat
-            href=""
+            href="https://github.com/citation-file-format/cff-initializer-javascript/issues"
             icon-right="ion-logo-github"
             label="Report an issue"
             no-caps
@@ -14,14 +14,11 @@
         <q-btn
             color=""
             flat
+            href="https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md"
             label="Documentation"
             no-caps
-        />
-        <q-btn
-            color=""
-            flat
-            label="About"
-            no-caps
+            target="_blank"
+            type="a"
         />
     </q-btn-group>
 </template>

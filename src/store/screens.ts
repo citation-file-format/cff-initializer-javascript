@@ -17,14 +17,11 @@ function screenValidator (request: validatorRequestType[]): boolean {
             } else {
                 validator = makeOptionalFieldValidator(subschema)
             }
-            const vr = validator(value.value)
-            console.log({ subschema, v: value.value, vr })
-            return vr
+            return validator(value.value)
         }
     ).every(
         (v) => v === true
     )
-    console.log(r)
     return r
 }
 

@@ -50,7 +50,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 .spacer {
     flex-grow: 1;
 }

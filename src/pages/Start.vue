@@ -66,6 +66,7 @@ export default defineComponent({
     },
     setup () {
         const { message, title, type, setMessage, setTitle, setType } = useCff()
+
         return {
             message,
             title,

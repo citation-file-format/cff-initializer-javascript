@@ -27,7 +27,7 @@ function screenValidator (request: validatorRequestType[]): boolean {
 
 export function useValidScreens () {
     const {
-        title, message, abstract, license, url,
+        title, message, abstract, keywords, license, url,
         repository, repositoryArtifact, repositoryCode,
         commit, version, dateReleased
     } = useCff()
@@ -44,6 +44,11 @@ export function useValidScreens () {
         abstract: computed(() => screenValidator([{
             subschema: '/properties/abstract',
             value: abstract,
+            required: false
+        }])),
+        keywords: computed(() => screenValidator([{
+            subschema: '/properties/keywords',
+            value: keywords,
             required: false
         }])),
         license: computed(() => screenValidator([{

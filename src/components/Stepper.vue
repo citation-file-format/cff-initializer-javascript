@@ -99,6 +99,7 @@
             title="Version specific"
             v-bind:order="8"
             v-if="showAdvanced"
+            v-bind:error="!validScreens['version-specific'].value"
             v-on:click="setStepName('version-specific')"
         />
 

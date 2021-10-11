@@ -5,7 +5,7 @@
         class="bg-formcard"
     >
         <q-card-section>
-            <div class="q-gutter-md row items-center no-wrap">
+            <div class="q-gutter-xl row items-center no-wrap">
                 <q-input
                     bg-color="white"
                     label="Given name(s)"

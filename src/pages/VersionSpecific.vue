@@ -1,12 +1,15 @@
 <template>
-    <div class="q-pa-md col-flex">
-        <div
-            class="q-gutter-md title-field text-dark"
-        >
-            <p class="q-mt-xl page-title">
+    <div id="metroline">
+        <Stepper />
+    </div>
+    <div id="form">
+        <div id="form-title">
+            <h1 class="page-title">
                 Version specific
-            </p>
+            </h1>
+        </div>
 
+        <div id="form-content">
             <p class="question">
                 What is the commit identifier of the work?
             </p>
@@ -75,11 +78,15 @@
                 </template>
             </q-input>
         </div>
+
+        <div id="form-button-bar">
+            <StepperActions />
+        </div>
     </div>
-    <StepperActions />
 </template>
 
 <script lang="ts">
+import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
@@ -88,6 +95,7 @@ import { useCff } from '../store/cff'
 export default defineComponent({
     name: 'VersionSpecific',
     components: {
+        Stepper,
         StepperActions
     },
     setup () {
@@ -108,14 +116,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-.col-flex {
-    flex: 1;
-}
-.title-field {
-    margin-right: 120px;
-    max-width: 700px;
-    min-width: 300px;
-}
-
 </style>

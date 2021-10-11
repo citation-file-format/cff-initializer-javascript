@@ -1,13 +1,7 @@
 <template>
-    <q-footer class="bg-grey-4 text-primary">
-        <q-toolbar>
-            <q-toolbar-title>
-                <a href="https://esciencecenter.nl">
-                    <img src="~assets/nlesc-logo.png">
-                </a>
-            </q-toolbar-title>
-        </q-toolbar>
-    </q-footer>
+    <a href="https://esciencecenter.nl">
+        <img src="~assets/nlesc-logo.png">
+    </a>
 </template>
 
 <script lang="ts">

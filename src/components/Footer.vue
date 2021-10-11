@@ -1,5 +1,8 @@
 <template>
-    <a href="https://esciencecenter.nl">
+    <a
+        href="https://esciencecenter.nl"
+        target="_blank"
+    >
         <img src="~assets/nlesc-logo.png">
     </a>
 </template>

@@ -5,6 +5,10 @@
     --bgcolor: #303030;
 }
 
+body {
+    background-color: var(--bgcolor);
+}
+
 #app {
     background-color: var(--bgcolor, tan);
     box-sizing: border-box;

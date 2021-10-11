@@ -40,7 +40,7 @@ import { defineComponent, PropType, ref } from 'vue'
 import { IdentifierType } from 'src/types'
 
 export default defineComponent({
-    name: 'IdentifierViewCard',
+    name: 'IdentifierCardViewing',
     props: {
         index: {
             type: Number,

@@ -15,13 +15,13 @@
                 v-bind:key="index"
                 class="q-mb-md"
             >
-                <IdentifierViewCard
+                <IdentifierCardViewing
                     v-if="editingId !== index"
                     v-bind:index="index"
                     v-bind:identifier="identifier"
                     v-on:editPressed="() => (editingId = index)"
                 />
-                <IdentifierEditCard
+                <IdentifierCardEditing
                     v-else
                     v-bind:index="index"
                     v-bind="identifier"
@@ -51,18 +51,18 @@
 import { defineComponent, ref } from 'vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import IdentifierEditCard from 'components/IdentifierEditCard.vue'
-import IdentifierViewCard from 'components/IdentifierViewCard.vue'
+import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
+import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
-    name: 'Identifiers',
+    name: 'ScreenIdentifiers',
     components: {
         Stepper,
         StepperActions,
-        IdentifierEditCard,
-        IdentifierViewCard
+        IdentifierCardEditing,
+        IdentifierCardViewing
     },
     setup () {
         const { identifiers, setIdentifiers } = useCff()

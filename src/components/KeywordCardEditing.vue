@@ -29,7 +29,7 @@ import { makeFieldValidator } from 'src/validator'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'KeywordEditCard',
+    name: 'KeywordCardEditing',
     props: {
         keyword: {
             type: String,

@@ -69,7 +69,7 @@ import { makeFieldValidator, makeOptionalFieldValidator } from '../validator'
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
-    name: 'IdentifierEditCard',
+    name: 'IdentifierCardEditing',
     props: {
         index: {
             type: Number,

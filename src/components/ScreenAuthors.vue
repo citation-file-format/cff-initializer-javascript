@@ -15,13 +15,13 @@
                 v-bind:key="index"
                 class="q-mb-md"
             >
-                <AuthorViewCard
+                <AuthorCardViewing
                     v-if="editingId !== index"
                     v-bind:index="index"
                     v-bind:author="author"
                     v-on:editPressed="() => (editingId = index)"
                 />
-                <AuthorEditCard
+                <AuthorCardEditing
                     v-else
                     v-bind:index="index"
                     v-bind="author"
@@ -49,18 +49,18 @@
 import { defineComponent, ref } from 'vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import AuthorEditCard from 'components/AuthorEditCard.vue'
-import AuthorViewCard from 'components/AuthorViewCard.vue'
+import AuthorCardEditing from 'components/AuthorCardEditing.vue'
+import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
-    name: 'Authors',
+    name: 'ScreenAuthors',
     components: {
         Stepper,
         StepperActions,
-        AuthorEditCard,
-        AuthorViewCard
+        AuthorCardEditing,
+        AuthorCardViewing
     },
     setup () {
         const { authors, setAuthors } = useCff()

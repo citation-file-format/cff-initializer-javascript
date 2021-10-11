@@ -20,7 +20,7 @@
     justify-content: center;
 }
 #header-inner {
-    background-color: deeppink;
+    background-color: purple;
     color: white;
     display: flex;
     flex-direction: row;
@@ -116,8 +116,13 @@
 }
 #footer-inner {
     background-color: deepskyblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-height: 50px;
     min-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 1900px;
 }
 

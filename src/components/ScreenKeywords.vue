@@ -33,8 +33,12 @@
                 Add keyword
             </q-btn>
 
-            <div class="text-negative screen-error" v-if="keywordErrors.hasError"> {{ keywordErrors.message }} </div>
-
+            <div
+                class="text-negative screen-error"
+                v-if="keywordErrors.hasError"
+            >
+                {{ keywordErrors.message }}
+            </div>
         </div>
 
         <div id="form-button-bar">

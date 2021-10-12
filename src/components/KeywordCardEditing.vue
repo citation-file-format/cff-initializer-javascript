@@ -9,7 +9,7 @@
                 placeholder="Type a keyword"
                 v-on:update:modelValue="
                     $emit('update', $event)
-                "           
+                "
             />
         </div><div class="col-1">
             <q-btn
@@ -32,7 +32,7 @@ export default defineComponent({
         keyword: {
             type: String,
             default: ''
-        }        
+        }
     },
     emits: ['removePressed', 'update']
 })

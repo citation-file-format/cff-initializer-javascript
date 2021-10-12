@@ -77,7 +77,7 @@
             name="keywords"
             title="Keywords"
             v-bind:order="6"
-            v-bind:error="screenErrors.keywords.value"            
+            v-bind:error="screenErrors.keywords.value"
             v-if="showAdvanced"
             v-on:click="setStepName('keywords')"
         />

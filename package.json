@@ -1,9 +1,9 @@
 {
     "name": "cffinit",
-    "version": "2.0.0-alpha.1",
-    "description": "CFF init page",
+    "version": "2.0.0-alpha.3",
+    "description": "Web form to assist people in creating a CITATION.cff file for their projects.",
     "productName": "cffinit",
-    "author": "nlesc",
+    "author": "Netherlands eScience Center",
     "private": true,
     "scripts": {
         "dev": "quasar dev",

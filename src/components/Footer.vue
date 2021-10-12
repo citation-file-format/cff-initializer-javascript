@@ -16,8 +16,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+a {
+    text-decoration: none;
+    display: flex;
+}
 img {
     height: 22px;
-    vertical-align: middle;
 }
 </style>

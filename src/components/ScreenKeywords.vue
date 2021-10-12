@@ -17,6 +17,7 @@
                 <q-btn
                     color="primary"
                     no-caps
+                    style="width: max-content"
                     v-on:click="addKeyword"
                 >
                     Add keyword

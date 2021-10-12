@@ -69,12 +69,11 @@ body {
     background-color: var(--fgcolor, lightslategray);
     flex-grow: 1;
     max-height: 600px;
-    min-height: 580px;
+    min-height: 600px;
     overflow: auto;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 30px;
-
 }
 #form-button-bar {
     align-items: center;

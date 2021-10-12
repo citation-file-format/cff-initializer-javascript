@@ -13,24 +13,24 @@
             <p class="question">
                 What keywords describe the work?
             </p>
-
-            <div class="keywords">
-                <Keyword
-                    v-bind:key="index"
-                    v-bind:keyword="keyword"
-                    v-for="(keyword, index) in keywords"
-                    v-on:removePressed="removeKeyword(index)"
-                    v-on:update="setKeyword(index, $event)"
-                />
+            <div style="display: flex; flex-direction: column-reverse">
+                <q-btn
+                    color="primary"
+                    no-caps
+                    v-on:click="addKeyword"
+                >
+                    Add keyword
+                </q-btn>
+                <div class="keywords">
+                    <Keyword
+                        v-bind:key="index"
+                        v-bind:keyword="keyword"
+                        v-for="(keyword, index) in keywords"
+                        v-on:removePressed="removeKeyword(index)"
+                        v-on:update="setKeyword(index, $event)"
+                    />
+                </div>
             </div>
-
-            <q-btn
-                color="primary"
-                no-caps
-                v-on:click="addKeyword"
-            >
-                Add keyword
-            </q-btn>
         </div>
 
         <div id="form-button-bar">

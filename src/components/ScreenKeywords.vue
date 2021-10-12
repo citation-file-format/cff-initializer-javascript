@@ -14,14 +14,13 @@
                 What keywords describe the work?
             </p>
 
-            <div
-                v-for="(keyword, index) in keywords"
-                v-bind:key="index"
-            >
-                <KeywordCardEditing
+            <div class="keywords">
+                <Keyword
+                    v-bind:key="index"
                     v-bind:keyword="keyword"
-                    v-on:update="setKeyword(index, $event)"
+                    v-for="(keyword, index) in keywords"
                     v-on:removePressed="removeKeyword(index)"
+                    v-on:update="setKeyword(index, $event)"
                 />
             </div>
 
@@ -43,7 +42,7 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import KeywordCardEditing from 'components/KeywordCardEditing.vue'
+import Keyword from 'components/Keyword.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -52,7 +51,7 @@ export default defineComponent({
     components: {
         Stepper,
         StepperActions,
-        KeywordCardEditing
+        Keyword
     },
     setup () {
         const { keywords, setKeywords } = useCff()

@@ -1,6 +1,7 @@
-import { makeOptionalFieldValidator } from '../validator'
+import { makeFieldValidator, makeOptionalFieldValidator } from '../validator'
 import { computed, ComputedRef } from 'vue'
 import { useCff } from './cff'
+import { AuthorsType, AuthorType } from 'src/types'
 
 type CffErrorType = {
     hasError: boolean,
@@ -36,6 +37,34 @@ export function getErrorAndMessage (result: string | true) {
         hasError,
         message
     }
+}
+
+function validateAuthors (authors: ComputedRef<AuthorsType>) {
+    console.log(authors)
+    const authorFieldValidators: Record<keyof AuthorType, (v: unknown) => string | true > = {
+        givenNames: makeOptionalFieldValidator('/definitions/person/properties/given-names'),
+        nameParticle: makeOptionalFieldValidator('/definitions/person/properties/name-particle'),
+        nameSuffix: makeOptionalFieldValidator('/definitions/person/properties/name-suffix'),
+        familyNames: makeOptionalFieldValidator('/definitions/person/properties/family-names'),
+        affiliation: makeOptionalFieldValidator('/definitions/person/properties/affiliation'),
+        email: makeOptionalFieldValidator('/definitions/person/properties/email'),
+        orcid: makeOptionalFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
+    }
+    const authorValidator = (author: AuthorType) => {
+        Object.entries(author).map(([k, v]) => authorFieldValidators[k](v))
+    }
+    const items = authors.value.map(authorValidator).map(getErrorAndMessage)
+    console.log(items)
+    return {
+        // hasError,
+        // message,
+        items
+    }
+}
+
+export function useAuthorsErrors () {
+    const { authors } = useCff()
+    return computed(() => validateAuthors(authors))
 }
 
 export function validateKeywords (keywords: ComputedRef<Array<string>>) {

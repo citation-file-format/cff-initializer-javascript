@@ -9,7 +9,9 @@ ajv.addSchema(schema)
 
 export const isValidCffFile = () => {
     const { jsObject } = useCffstr()
-    return ajv.validate(`${schema.$id}`, jsObject.value)
+    const isValid = ajv.validate(`${schema.$id}`, jsObject.value)
+    console.log([jsObject.value, JSON.stringify(ajv.errors)])
+    return isValid
 }
 
 export const makeFieldValidator = (subschema: string) => {

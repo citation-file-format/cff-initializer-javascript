@@ -69,7 +69,8 @@
                     v-on:update:modelValue="
                         $emit('update', 'email', $event)
                     "
-                    v-bind:rules="[validateEmail]"
+                    v-bind:error="errors.email.hasError"
+                    v-bind:error-message="errors.email.message"
                 />
             </div>
             <div class="q-gutter-md row items-center no-wrap">
@@ -159,6 +160,17 @@ export default defineComponent({
         email: {
             type: String,
             default: ''
+        },
+        errors: {
+            type: Object,
+            default: () => {
+                return {
+                    email: {
+                        hasError: false,
+                        message: ''
+                    }
+                }
+            }
         }
     },
     setup () {

@@ -25,6 +25,7 @@
                     v-else
                     v-bind:index="index"
                     v-bind="author"
+                    v-bind:errors="authorErrors.items[index]"
                     v-on:update="setAuthorField"
                     v-on:closePressed="() => (editingId = -1)"
                     v-on:removePressed="removeAuthor"
@@ -53,6 +54,7 @@ import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
+import { useAuthorsErrors } from 'src/store/errors'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -65,6 +67,7 @@ export default defineComponent({
     setup () {
         const { authors, setAuthors } = useCff()
         const editingId = ref(-1)
+        const authorErrors = useAuthorsErrors()
         return {
             authors,
             editingId,
@@ -85,7 +88,8 @@ export default defineComponent({
                 const newAuthors = [...authors.value, newAuthor]
                 setAuthors(newAuthors)
                 editingId.value = newAuthors.length - 1
-            }
+            },
+            authorErrors
         }
     }
 })

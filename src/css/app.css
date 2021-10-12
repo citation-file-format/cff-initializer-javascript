@@ -130,7 +130,6 @@ body {
     width: 1900px;
 }
 
-
 @font-face {
     font-family: 'Roboto';
     src: url('./fonts/Roboto/Roboto-Regular.ttf');
@@ -184,3 +183,6 @@ pre, .mono {
     font-family: 'Roboto Mono', sans-serif;
 }
 
+.screen-error {
+    padding-top: 10px;
+}

@@ -1,5 +1,5 @@
 import { makeOptionalFieldValidator } from '../validator'
-import { computed, ComputedRef, ref } from 'vue'
+import { computed, ComputedRef } from 'vue'
 // import { AuthorType, IdentifierType } from 'src/types'
 import { useCff } from './cff'
 
@@ -30,44 +30,21 @@ type CffErrorsSimpleRootType = {
     // version: CffErrorType
 }
 
-type CffErrorsType = CffErrorsSimpleRootType & {
-    //     keywords: KeywordsErrorType,
-    //     identifiers: IdentifiersErrorType,
-    //     authors: AuthorsErrorType,
-}
-
-const errors = ref<CffErrorsType>({
-    // abstract: false,
-    // authors: [],
-    // cffVersion: false,
-    // commit: false,
-    // dateReleased: false,
-    // identifiers: [],
-    // keywords: [],
-    // license: false,
-    // message: false,
-    repository: { hasError: false, message: '' },
-    'repository-artifact': { hasError: false, message: '' },
-    'repository-code': { hasError: false, message: '' },
-    // title: false,
-    // type: false,
-    url: { hasError: false, message: '' }
-    // version: false
-})
+// type CffErrorsType = CffErrorsSimpleRootType & {
+//     //     keywords: KeywordsErrorType,
+//     //     identifiers: IdentifiersErrorType,
+//     //     authors: AuthorsErrorType,
+// }
 
 export function validateOptionalRootField (fieldName: keyof CffErrorsSimpleRootType, newValue: ComputedRef<unknown>) {
     const fn = makeOptionalFieldValidator(`/properties/${fieldName}`)
-
     const result = fn(newValue.value)
-
-    errors.value[fieldName].hasError = result !== true
-
-    if (result === true) {
-        errors.value[fieldName].message = ''
-    } else {
-        errors.value[fieldName].message = result
+    const hasError = result !== true
+    const message = hasError ? result : ''
+    return {
+        hasError,
+        message
     }
-    return errors.value[fieldName]
 }
 
 export function useFieldErrors () {

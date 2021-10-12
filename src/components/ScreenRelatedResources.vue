@@ -19,7 +19,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:rules="[validateUrl]"
+                v-bind:error="urlError.hasError"
+                v-bind:error-message="urlError.message"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -32,7 +33,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:rules="[validateRepository]"
+                v-bind:error="repositoryError.hasError"
+                v-bind:error-message="repositoryError.message"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -45,7 +47,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:rules="[validateRepositoryArtifact]"
+                v-bind:error="repositoryArtifactError.hasError"
+                v-bind:error-message="repositoryArtifactError.message"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
 
@@ -58,7 +61,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:rules="[validateRepositoryCode]"
+                v-bind:error="repositoryCodeError.hasError"
+                v-bind:error-message="repositoryCodeError.message"
                 v-on:update:modelValue="setRepositoryCode"
             />
         </div>
@@ -75,6 +79,7 @@ import StepperActions from 'components/StepperActions.vue'
 import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useFieldErrors } from 'src/store/errors'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -87,16 +92,28 @@ export default defineComponent({
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
         } = useCff()
+
+        const {
+            url: urlError,
+            repository: repositoryError,
+            repositoryArtifact: repositoryArtifactError,
+            repositoryCode: repositoryCodeError
+        } = useFieldErrors()
+
         return {
             repository,
             repositoryArtifact,
             repositoryCode,
             url,
+            urlError,
+            repositoryError,
+            repositoryArtifactError,
+            repositoryCodeError,
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
             setUrl,
-            validateUrl: makeOptionalFieldValidator('/definitions/url'),
+            // validateUrl: makeOptionalFieldValidator('/definitions/url'),
             validateRepository: makeOptionalFieldValidator('/definitions/url'),
             validateRepositoryArtifact: makeOptionalFieldValidator('/definitions/url'),
             validateRepositoryCode: makeOptionalFieldValidator('/definitions/url')

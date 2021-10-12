@@ -56,7 +56,7 @@
             title="Related resources"
             v-bind:order="4"
             v-if="showAdvanced"
-            v-bind:error="!validScreens.relatedResources.value"
+            v-bind:error="screenErrors.relatedResources.value"
             v-on:click="setStepName('related-resources')"
         />
 
@@ -120,16 +120,19 @@
 
 import { useApp } from '../store/app'
 import { useValidScreens } from '../store/screens'
+import { useScreenErrors } from '../store/errors'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
         const validScreens = useValidScreens()
+        const screenErrors = useScreenErrors()
         return {
             showAdvanced,
             stepName,
             setStepName,
-            validScreens
+            validScreens,
+            screenErrors
         }
     }
 }

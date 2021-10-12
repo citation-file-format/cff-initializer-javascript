@@ -1,21 +1,31 @@
 /* app global css */
 
+:root {
+    --fgcolor: #efefef;
+    --bgcolor: #303030;
+}
+
+body {
+    background-color: var(--bgcolor);
+}
+
 #app {
-    background-color: tan;
+    background-color: var(--bgcolor, tan);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    row-gap: 10px;
+    row-gap: 7px;
 }
 #header-outer {
-    background-color: rosybrown;
+    background-color: var(--bgcolor, rosybrown);
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 #header-inner {
-    background-color: sandybrown;
+    background-color: purple;
+    color: white;
     display: flex;
     flex-direction: row;
     max-height: 50px;
@@ -23,8 +33,8 @@
     width: 1900px;
 }
 #middle {
-    background-color: lightblue;
-    column-gap: 25px;
+    background-color: var(--bgcolor, lightblue);
+    column-gap: 12px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -32,7 +42,7 @@
     row-gap: 20px;
 }
 #metroline {
-    background-color: lightgreen;
+    background-color: var(--fgcolor, lightgreen);
     flex-grow: 0.5;
     max-height: 1000px;
     max-width: 300px;
@@ -41,7 +51,7 @@
     overflow: auto;
 }
 #form {
-    background-color: plum;
+    background-color: var(--fgcolor, plum);
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -50,13 +60,13 @@
     min-width: 600px;
 }
 #form-title {
-    background-color: tomato;
+    background-color: var(--fgcolor, tomato);
     height: 120px;
     padding-left: 30px;
     padding-right: 30px;
 }
 #form-content {
-    background-color: lightslategray;
+    background-color: var(--fgcolor, lightslategray);
     flex-grow: 1;
     max-height: 600px;
     min-height: 580px;
@@ -68,7 +78,7 @@
 }
 #form-button-bar {
     align-items: center;
-    background-color: khaki;
+    background-color: var(--fgcolor, khaki);
     display: flex;
     flex-direction: row;
     justify-content: center;    
@@ -78,7 +88,7 @@
     padding-right: 30px;
 }
 #preview {
-    background-color: limegreen;
+    background-color: var(--fgcolor,limegreen);
     display: flex;
     flex-direction: column;
     flex-grow: 0.5;
@@ -87,7 +97,7 @@
     min-width: 400px;
 }
 #preview-content {
-    background-color: lightcoral;
+    background-color: var(--fgcolor, lightcoral);
     flex-grow: 1;
     max-height:720px;
     min-height: 300px;
@@ -95,7 +105,7 @@
 }
 #preview-button-bar {
     align-items: center;
-    background-color: darkorange;
+    background-color: var(--fgcolor, darkorange);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -103,15 +113,20 @@
     min-height: 80px;
 }
 #footer-outer {
-    background-color: slateblue;
+    background-color: var(--bgcolor, slateblue);
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 #footer-inner {
     background-color: deepskyblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-height: 50px;
     min-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 1900px;
 }
 

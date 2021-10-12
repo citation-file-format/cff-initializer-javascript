@@ -1,6 +1,6 @@
 <template>
     <a href="https://esciencecenter.nl">
-        <img src="~assets/nlesc-logo.png">
+        <img src="~assets/nlesc-logo.svg">
     </a>
 </template>
 
@@ -13,8 +13,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+a {
+    text-decoration: none;
+    display: flex;
+}
 img {
     height: 22px;
-    vertical-align: middle;
 }
 </style>

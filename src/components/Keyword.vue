@@ -46,7 +46,7 @@ export default defineComponent({
 .keyword {
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 }
 .keyword-input {
     flex-grow: 1.0;

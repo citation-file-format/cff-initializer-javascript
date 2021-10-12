@@ -3,7 +3,7 @@
         href="https://esciencecenter.nl"
         target="_blank"
     >
-        <img src="~assets/nlesc-logo.png">
+        <img src="~assets/nlesc-logo.svg">
     </a>
 </template>
 

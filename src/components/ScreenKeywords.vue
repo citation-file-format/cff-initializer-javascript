@@ -32,6 +32,9 @@
             >
                 Add keyword
             </q-btn>
+
+            <div class="text-negative screen-error" v-if="keywordErrors.hasError"> {{ keywordErrors.message }} </div>
+
         </div>
 
         <div id="form-button-bar">
@@ -47,6 +50,8 @@ import KeywordCardEditing from 'components/KeywordCardEditing.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
+import { useKeywordErrors } from 'src/store/errors'
+
 export default defineComponent({
     name: 'ScreenKeywords',
     components: {
@@ -56,6 +61,8 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
+
+        const keywordErrors = useKeywordErrors()
 
         function addKeyword () {
             const newKeyword = ''
@@ -76,6 +83,7 @@ export default defineComponent({
         }
         return {
             keywords,
+            keywordErrors,
             addKeyword,
             removeKeyword,
             setKeyword

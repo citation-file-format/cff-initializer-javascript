@@ -1,18 +1,11 @@
 import { makeOptionalFieldValidator } from '../validator'
 import { computed, ComputedRef } from 'vue'
-// import { AuthorType, IdentifierType } from 'src/types'
 import { useCff } from './cff'
-
-// type CffErrorType = false | string
 
 type CffErrorType = {
     hasError: boolean,
     message: string
 }
-
-// type AuthorsErrorType = Array<Record<keyof AuthorType, CffErrorType>>
-// type IdentifiersErrorType = Array<Record<keyof IdentifierType, CffErrorType>>
-// type KeywordsErrorType = Array<CffErrorType>
 
 type CffErrorsSimpleRootType = {
     // abstract: CffErrorType,
@@ -30,21 +23,43 @@ type CffErrorsSimpleRootType = {
     // version: CffErrorType
 }
 
-// type CffErrorsType = CffErrorsSimpleRootType & {
-//     //     keywords: KeywordsErrorType,
-//     //     identifiers: IdentifiersErrorType,
-//     //     authors: AuthorsErrorType,
-// }
-
 export function validateOptionalRootField (fieldName: keyof CffErrorsSimpleRootType, newValue: ComputedRef<unknown>) {
     const fn = makeOptionalFieldValidator(`/properties/${fieldName}`)
     const result = fn(newValue.value)
+    return getErrorAndMessage(result)
+}
+
+export function getErrorAndMessage (result: string | true) {
     const hasError = result !== true
     const message = hasError ? result : ''
     return {
         hasError,
         message
     }
+}
+
+export function validateKeywords (keywords: ComputedRef<Array<string>>) {
+    // we can only check the duplicate items but cannot validate minItems and minLength
+    if (hasDuplicates(keywords.value.filter(d => d !== ''))) {
+        return {
+            hasError: true,
+            message: 'must NOT have duplicate keywords.'
+        }
+    } else {
+        return {
+            hasError: false,
+            message: ''
+        }
+    }
+}
+
+export function useKeywordErrors () {
+    const { keywords } = useCff()
+    return computed(() => validateKeywords(keywords))
+}
+
+function hasDuplicates (items: Array<string>) {
+    return (new Set(items)).size !== items.length
 }
 
 export function useFieldErrors () {
@@ -59,7 +74,10 @@ export function useFieldErrors () {
 
 export function useScreenErrors () {
     const { url, repository, repositoryArtifact, repositoryCode } = useFieldErrors()
+    const keywordErrors = useKeywordErrors()
+
     return {
-        relatedResources: computed(() => url.value.hasError || repository.value.hasError || repositoryArtifact.value.hasError || repositoryCode.value.hasError)
+        relatedResources: computed(() => url.value.hasError || repository.value.hasError || repositoryArtifact.value.hasError || repositoryCode.value.hasError),
+        keywords: computed(() => keywordErrors.value.hasError)
     }
 }

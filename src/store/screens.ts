@@ -27,8 +27,7 @@ function screenValidator (request: validatorRequestType[]): boolean {
 
 export function useValidScreens () {
     const {
-        title, message, abstract, license, url,
-        repository, repositoryArtifact, repositoryCode,
+        title, message, abstract, license,
         commit, version, dateReleased
     } = useCff()
     return {
@@ -49,23 +48,6 @@ export function useValidScreens () {
         license: computed(() => screenValidator([{
             subschema: '/properties/license',
             value: license,
-            required: false
-        }])),
-        relatedResources: computed(() => screenValidator([{
-            subschema: '/definitions/url',
-            value: url,
-            required: false
-        }, {
-            subschema: '/definitions/url',
-            value: repository,
-            required: false
-        }, {
-            subschema: '/definitions/url',
-            value: repositoryArtifact,
-            required: false
-        }, {
-            subschema: '/definitions/url',
-            value: repositoryCode,
             required: false
         }])),
         versionSpecific: computed(() => screenValidator([{

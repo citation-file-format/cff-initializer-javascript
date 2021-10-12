@@ -95,13 +95,17 @@ body {
     max-width: 600px;
     min-height: 400px;
     min-width: 400px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
 }
 #preview-content {
     background-color: var(--fgcolor, lightcoral);
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     max-height:720px;
     min-height: 300px;
-    overflow: auto;
 }
 #preview-button-bar {
     align-items: center;

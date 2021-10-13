@@ -13,6 +13,7 @@
                     label="given-names"
                     outlined
                     standout
+                    title="The person's given names."
                     v-bind:model-value="givenNames"
                     v-bind:rules="[validateGivenNames]"
                     v-on:update:modelValue="$emit('update', 'givenNames', $event)"
@@ -38,6 +39,7 @@
                     label="family-names"
                     outlined
                     standout
+                    title="The person's family names."
                     v-bind:model-value="familyNames"
                     v-bind:rules="[validateFamilyNames]"
                     v-on:update:modelValue="$emit('update', 'familyNames', $event)"
@@ -63,6 +65,7 @@
                     label="email"
                     outlined
                     standout
+                    title="The person's email address."
                     type="email"
                     v-bind:model-value="email"
                     v-bind:rules="[validateEmail]"
@@ -77,6 +80,7 @@
                     label="affiliation"
                     outlined
                     standout
+                    title="The person's affiliation."
                     v-bind:model-value="affiliation"
                     v-bind:rules="[validateAffiliation]"
                     v-on:update:modelValue="$emit('update', 'affiliation', $event)"
@@ -88,6 +92,7 @@
                     label="orcid"
                     outlined
                     standout
+                    title="The person's ORCID identifier."
                     v-bind:model-value="orcid"
                     v-bind:rules="[ validateOrcid ]"
                     v-on:update:modelValue="$emit('update', 'orcid', $event)"

@@ -93,7 +93,6 @@ import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
-
 export default defineComponent({
     name: 'ScreenVersionSpecific',
     components: {

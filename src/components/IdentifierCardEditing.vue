@@ -45,18 +45,18 @@
                 />
             </div>
         </q-card-section>
-        <q-card-actions align="between">
+        <q-card-actions align="right">
             <q-btn
-                icon="delete"
                 color="negative"
-                label="Remove"
                 dense
+                icon="delete"
+                label="Remove"
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
-                icon="close"
-                label="Close"
                 dense
+                icon="done"
+                label="Done"
                 v-on:click="$emit('closePressed')"
             />
         </q-card-actions>

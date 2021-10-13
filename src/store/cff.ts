@@ -3,7 +3,7 @@ import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from '.
 
 const cff = ref({
     abstract: '',
-    authors: [],
+    authors: [{}],
     cffVersion: '1.2.0',
     commit: '',
     dateReleased: '',
@@ -60,7 +60,7 @@ export function useCff () {
         reset: () => {
             cff.value = {
                 abstract: '',
-                authors: [],
+                authors: [{}],
                 cffVersion: '1.2.0',
                 commit: '',
                 dateReleased: '',

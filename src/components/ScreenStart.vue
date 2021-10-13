@@ -26,10 +26,11 @@
             <p class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
             </p>
-            <q-input
+            <q-select
                 bg-color="white"
                 label="message"
                 outlined
+                v-bind:options="messages"
                 v-bind:model-value="message"
                 v-bind:rules="[validateMessage]"
                 v-on:update:modelValue="setMessage"
@@ -66,9 +67,17 @@ export default defineComponent({
     },
     setup () {
         const { message, title, type, setMessage, setTitle, setType } = useCff()
-
+        const messages = [
+            'If you use this software, please cite it using the metadata from this file.',
+            'Please cite this software using these metadata.',
+            'Please cite this software using the metadata from \'preferred-citation\'.',
+            'If you use this dataset, please cite it using the metadata from this file.',
+            'Please cite this dataset using these metadata.',
+            'Please cite this dataset using the metadata from \'preferred-citation\'.'
+        ]
         return {
             message,
+            messages,
             title,
             type,
             typeOptions: [

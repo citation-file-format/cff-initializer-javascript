@@ -7,7 +7,7 @@ const cff = ref({
     cffVersion: '1.2.0',
     commit: '',
     dateReleased: '',
-    identifiers: [{}],
+    identifiers: [],
     keywords: [
         '',
         '',
@@ -64,7 +64,7 @@ export function useCff () {
                 cffVersion: '1.2.0',
                 commit: '',
                 dateReleased: '',
-                identifiers: [{}],
+                identifiers: [],
                 keywords: [
                     '',
                     '',

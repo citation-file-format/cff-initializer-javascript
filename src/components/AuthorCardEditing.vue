@@ -5,116 +5,107 @@
         class="bg-formcard"
     >
         <q-card-section>
-            <div class="q-gutter-xl row items-center no-wrap">
+            <div class="q-gutter-xs row no-wrap">
                 <q-input
                     bg-color="white"
-                    label="Given name(s)"
+                    class="col"
+                    dense
+                    label="given-names"
                     outlined
                     standout
-                    dense
                     v-bind:model-value="givenNames"
-                    v-on:update:modelValue="
-                        $emit('update', 'givenNames', $event)
-                    "
                     v-bind:rules="[validateGivenNames]"
+                    v-on:update:modelValue="$emit('update', 'givenNames', $event)"
                 />
+            </div>
+            <div class="q-gutter-xs row no-wrap">
                 <q-input
                     bg-color="white"
-                    label="Name particle"
+                    class="col-3"
+                    dense
+                    label="name-particle"
+                    outlined
+                    standout
                     title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
-                    outlined
-                    standout
-                    dense
                     v-bind:model-value="nameParticle"
-                    v-on:update:modelValue="
-                        $emit('update', 'nameParticle', $event)
-                    "
                     v-bind:rules="[validateNameParticle]"
+                    v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
                 />
                 <q-input
                     bg-color="white"
-                    label="Family name(s)"
+                    class="col"
+                    dense
+                    label="family-names"
                     outlined
                     standout
-                    dense
                     v-bind:model-value="familyNames"
-                    v-on:update:modelValue="
-                        $emit('update', 'familyNames', $event)
-                    "
                     v-bind:rules="[validateFamilyNames]"
+                    v-on:update:modelValue="$emit('update', 'familyNames', $event)"
                 />
                 <q-input
                     bg-color="white"
-                    label="Suffix"
+                    class="col-3"
+                    dense
+                    label="name-suffix"
                     outlined
                     standout
-                    dense
                     title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
                     v-bind:model-value="nameSuffix"
-                    v-on:update:modelValue="
-                        $emit('update', 'nameSuffix', $event)
-                    "
                     v-bind:rules="[validateNameSuffix]"
+                    v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
                 />
             </div>
-            <div class="q-gutter-md items-center no-wrap">
+            <div class="q-gutter-xs row no-wrap">
                 <q-input
                     bg-color="white"
-                    label="Email"
+                    class="col"
+                    dense
+                    label="email"
                     outlined
                     standout
-                    dense
                     type="email"
                     v-bind:model-value="email"
-                    v-on:update:modelValue="
-                        $emit('update', 'email', $event)
-                    "
                     v-bind:rules="[validateEmail]"
+                    v-on:update:modelValue="$emit('update', 'email', $event)"
                 />
             </div>
-            <div class="q-gutter-md row items-center no-wrap">
-                <div class="col">
-                    <q-input
-                        bg-color="white"
-                        label="Affiliation"
-                        outlined
-                        standout
-                        dense
-                        v-bind:model-value="affiliation"
-                        v-on:update:modelValue="
-                            $emit('update', 'affiliation', $event)
-                        "
-                        v-bind:rules="[validateAffiliation]"
-                    />
-                </div>
-                <div class="col">
-                    <q-input
-                        bg-color="white"
-                        label="Orcid"
-                        outlined
-                        standout
-                        dense
-                        v-bind:model-value="orcid"
-                        v-on:update:modelValue="
-                            $emit('update', 'orcid', $event)
-                        "
-                        v-bind:rules="[ validateOrcid ]"
-                    />
-                </div>
+            <div class="q-gutter-xs row no-wrap">
+                <q-input
+                    bg-color="white"
+                    class="col"
+                    dense
+                    label="affiliation"
+                    outlined
+                    standout
+                    v-bind:model-value="affiliation"
+                    v-bind:rules="[validateAffiliation]"
+                    v-on:update:modelValue="$emit('update', 'affiliation', $event)"
+                />
+                <q-input
+                    bg-color="white"
+                    class="col"
+                    dense
+                    label="orcid"
+                    outlined
+                    standout
+                    v-bind:model-value="orcid"
+                    v-bind:rules="[ validateOrcid ]"
+                    v-on:update:modelValue="$emit('update', 'orcid', $event)"
+                />
             </div>
         </q-card-section>
         <q-card-actions align="between">
             <q-btn
-                icon="delete"
                 color="negative"
-                label="Remove"
                 dense
+                icon="delete"
+                label="Remove"
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
+                dense
                 icon="done"
                 label="Done"
-                dense
                 v-on:click="$emit('closePressed')"
             />
         </q-card-actions>

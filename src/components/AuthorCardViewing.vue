@@ -1,44 +1,34 @@
 <template>
     <q-card
-        flat
         bordered
         class="bg-formcard"
-        v-on:mouseover="showEdit = true"
-        v-on:mouseleave="showEdit = false"
+        flat
+        style="display: flex; flex-direction: row"
     >
-        <q-card-section>
-            <div class="row items-center no-wrap">
-                <div class="col-11">
-                    <div class="text-subtitle1">
-                        {{ author.givenNames }} {{ author.nameParticle }} {{ author.familyNames }} {{ author.nameSuffix }}
-                    </div>
-                    <div class="text-subtitle1">
-                        {{ author.email }}
-                    </div>
-                </div>
-
-                <div class="col-1">
-                    <q-btn
-                        v-if="showEdit"
-                        color="primary"
-                        round
-                        flat
-                        icon="edit"
-                        title="Edit"
-                        v-on:click="$emit('editPressed')"
-                    />
-                </div>
-            </div>
-        </q-card-section>
-
-        <q-card-section>
-            {{ author.affiliation }} {{ author.orcid }}
-        </q-card-section>
+        <div style="flex-grow: 1.0">
+            <ul>
+                <li>{{ author.givenNames }} {{ author.nameParticle }} {{ author.familyNames }} {{ author.nameSuffix }}</li>
+                <li>{{ author.email }}</li>
+                <li>{{ author.affiliation }} {{ author.orcid }}</li>
+            </ul>
+        </div>
+        <div>
+            <q-btn
+                class="edit-button"
+                color="primary"
+                flat
+                hover-color="negative"
+                icon="edit"
+                title="Edit"
+                v-bind:ripple="false"
+                v-on:click="$emit('editPressed')"
+            />
+        </div>
     </q-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { AuthorType } from 'src/types'
 
 export default defineComponent({
@@ -53,12 +43,25 @@ export default defineComponent({
             required: true
         }
     },
-    setup () {
-        const showEdit = ref(false)
-        return {
-            showEdit
-        }
-    },
     emits: ['editPressed']
 })
 </script>
+<style scoped>
+ul {
+    padding-inline-start: 20px;
+}
+li {
+    list-style: none;
+    list-style-position: inside;
+}
+.edit-button {
+    background-color: white;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+</style>

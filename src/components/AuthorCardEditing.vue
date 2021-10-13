@@ -1,5 +1,9 @@
 <template>
-    <div style="padding:20px; border: 1px solid #ccc; border-radius: 5px; background-color: #ffffff">
+    <q-card
+        flat
+        bordered
+        class="bg-formcard q-pa-md"
+    >
         <div class="row">
             <q-input
                 bg-color="white"
@@ -108,7 +112,7 @@
                 v-on:click="$emit('closePressed')"
             />
         </q-card-actions>
-    </div>
+    </q-card>
 </template>
 
 <script lang="ts">

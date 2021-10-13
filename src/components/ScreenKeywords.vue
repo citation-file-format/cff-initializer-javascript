@@ -13,25 +13,23 @@
             <p class="question">
                 What keywords describe the work?
             </p>
-            <div style="display: flex; flex-direction: column-reverse">
-                <q-btn
-                    color="primary"
-                    no-caps
-                    style="width: max-content"
-                    v-on:click="addKeyword"
-                >
-                    Add keyword
-                </q-btn>
-                <div class="keywords">
-                    <Keyword
-                        v-bind:key="index"
-                        v-bind:keyword="keyword"
-                        v-for="(keyword, index) in keywords"
-                        v-on:removePressed="removeKeyword(index)"
-                        v-on:update="setKeyword(index, $event)"
-                    />
-                </div>
+            <div class="keywords">
+                <Keyword
+                    v-bind:key="index"
+                    v-bind:keyword="keyword"
+                    v-for="(keyword, index) in keywords"
+                    v-on:removePressed="removeKeyword(index)"
+                    v-on:update="setKeyword(index, $event)"
+                />
             </div>
+            <q-btn
+                color="primary"
+                no-caps
+                style="width: max-content"
+                v-on:click="addKeyword"
+            >
+                Add keyword
+            </q-btn>
         </div>
 
         <div id="form-button-bar">
@@ -83,3 +81,12 @@ export default defineComponent({
     }
 })
 </script>
+<style scoped>
+.keywords {
+    display: flex;
+    flex-direction:
+    column-reverse;
+    max-height: 80%;
+    overflow-y: auto;
+}
+</style>

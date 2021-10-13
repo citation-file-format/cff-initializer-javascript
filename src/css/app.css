@@ -69,7 +69,6 @@ body {
     flex-grow: 1;
     max-height: 600px;
     min-height: 600px;
-    overflow: auto;
     padding-bottom: 30px;
 }
 #form-button-bar {

@@ -66,7 +66,7 @@ export default defineComponent({
     },
     setup () {
         const { identifiers, setIdentifiers } = useCff()
-        const editingId = ref(-1)
+        const editingId = ref(0)
         return {
             identifiers,
             editingId,

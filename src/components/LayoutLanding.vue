@@ -1,5 +1,8 @@
 <template>
-    <q-layout view="hhh lpr fff">
+    <q-layout
+        class="bg-white"
+        view="hhh lpr fff"
+    >
         <Header />
         <q-page-container>
             <q-page>
@@ -32,5 +35,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.bg-white {
+    background-color: white;
+}
 </style>

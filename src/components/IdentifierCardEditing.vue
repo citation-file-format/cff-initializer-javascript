@@ -54,8 +54,8 @@
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
-                icon="close"
-                label="Close"
+                icon="done"
+                label="Done"
                 dense
                 v-on:click="$emit('closePressed')"
             />

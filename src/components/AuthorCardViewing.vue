@@ -20,7 +20,6 @@
                 hover-color="negative"
                 icon="edit"
                 title="Edit"
-                v-bind:ripple="false"
                 v-on:click="$emit('editPressed')"
             />
         </div>
@@ -63,5 +62,4 @@ li {
     margin-top: 5px;
     padding: 10px;
 }
-
 </style>

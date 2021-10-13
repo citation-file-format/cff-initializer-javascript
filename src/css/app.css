@@ -45,7 +45,7 @@ body {
     background-color: var(--fgcolor, lightgreen);
     flex-grow: 0.5;
     max-height: 1000px;
-    max-width: 300px;
+    max-width: 250px;
     min-height: 500px;
     min-width: 250px;
     overflow: auto;

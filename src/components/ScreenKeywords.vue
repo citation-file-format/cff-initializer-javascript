@@ -84,8 +84,7 @@ export default defineComponent({
 <style scoped>
 .keywords {
     display: flex;
-    flex-direction:
-    column-reverse;
+    flex-direction: column-reverse;
     max-height: 80%;
     overflow-y: auto;
 }

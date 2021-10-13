@@ -64,7 +64,7 @@ export default defineComponent({
     },
     setup () {
         const { authors, setAuthors } = useCff()
-        const editingId = ref(-1)
+        const editingId = ref(0)
         return {
             authors,
             editingId,

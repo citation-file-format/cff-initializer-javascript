@@ -43,36 +43,32 @@ body {
 }
 #metroline {
     background-color: var(--fgcolor, lightgreen);
-    flex-grow: 0.5;
     max-height: 1000px;
-    max-width: 300px;
     min-height: 500px;
-    min-width: 250px;
+    width: 250px;
     overflow: auto;
 }
 #form {
     background-color: var(--fgcolor, plum);
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    max-width: 900px;
+    flex-grow: 0.5;
+    max-width: 800px;
     min-height: 400px;
-    min-width: 600px;
+    min-width: 800px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
 }
 #form-title {
     background-color: var(--fgcolor, tomato);
     height: 120px;
-    padding-left: 30px;
-    padding-right: 30px;
 }
 #form-content {
     background-color: var(--fgcolor, lightslategray);
     flex-grow: 1;
     max-height: 600px;
     min-height: 600px;
-    overflow: auto;
-    padding-left: 30px;
-    padding-right: 30px;
     padding-bottom: 30px;
 }
 #form-button-bar {
@@ -83,8 +79,6 @@ body {
     justify-content: center;    
     max-height: 80px;
     min-height: 80px;
-    padding-left: 30px;
-    padding-right: 30px;
 }
 #preview {
     background-color: var(--fgcolor,limegreen);
@@ -93,7 +87,7 @@ body {
     flex-grow: 0.5;
     max-width: 600px;
     min-height: 400px;
-    min-width: 400px;
+    min-width: 600px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -159,9 +153,7 @@ p, body {
     color: #333;
     font-size: 1.4rem;
     font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: normal;
-    margin-top: 60px;
+    margin-top: 10px;
     margin-bottom: 60px;
 }
 .question {
@@ -169,10 +161,8 @@ p, body {
     color: #333;
     font-size: 1.1rem;
     font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: normal;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 12px;
+    margin-bottom: 7px;
 }
 .finish-paragraph {
     font-family: 'Roboto Condensed', sans-serif;

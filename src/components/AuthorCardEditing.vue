@@ -2,119 +2,113 @@
     <q-card
         flat
         bordered
-        class="bg-formcard"
+        class="bg-formcard q-pa-md"
     >
-        <q-card-section>
-            <div class="q-gutter-xl row items-center no-wrap">
-                <q-input
-                    bg-color="white"
-                    label="Given name(s)"
-                    outlined
-                    standout
-                    dense
-                    v-bind:model-value="givenNames"
-                    v-on:update:modelValue="
-                        $emit('update', 'givenNames', $event)
-                    "
-                    v-bind:rules="[validateGivenNames]"
-                />
-                <q-input
-                    bg-color="white"
-                    label="Name particle"
-                    title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
-                    outlined
-                    standout
-                    dense
-                    v-bind:model-value="nameParticle"
-                    v-on:update:modelValue="
-                        $emit('update', 'nameParticle', $event)
-                    "
-                    v-bind:rules="[validateNameParticle]"
-                />
-                <q-input
-                    bg-color="white"
-                    label="Family name(s)"
-                    outlined
-                    standout
-                    dense
-                    v-bind:model-value="familyNames"
-                    v-on:update:modelValue="
-                        $emit('update', 'familyNames', $event)
-                    "
-                    v-bind:rules="[validateFamilyNames]"
-                />
-                <q-input
-                    bg-color="white"
-                    label="Suffix"
-                    outlined
-                    standout
-                    dense
-                    title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
-                    v-bind:model-value="nameSuffix"
-                    v-on:update:modelValue="
-                        $emit('update', 'nameSuffix', $event)
-                    "
-                    v-bind:rules="[validateNameSuffix]"
-                />
-            </div>
-            <div class="q-gutter-md items-center no-wrap">
-                <q-input
-                    bg-color="white"
-                    label="Email"
-                    outlined
-                    standout
-                    dense
-                    type="email"
-                    v-bind:model-value="email"
-                    v-on:update:modelValue="
-                        $emit('update', 'email', $event)
-                    "
-                    v-bind:rules="[validateEmail]"
-                />
-            </div>
-            <div class="q-gutter-md row items-center no-wrap">
-                <div class="col">
-                    <q-input
-                        bg-color="white"
-                        label="Affiliation"
-                        outlined
-                        standout
-                        dense
-                        v-bind:model-value="affiliation"
-                        v-on:update:modelValue="
-                            $emit('update', 'affiliation', $event)
-                        "
-                        v-bind:rules="[validateAffiliation]"
-                    />
-                </div>
-                <div class="col">
-                    <q-input
-                        bg-color="white"
-                        label="Orcid"
-                        outlined
-                        standout
-                        dense
-                        v-bind:model-value="orcid"
-                        v-on:update:modelValue="
-                            $emit('update', 'orcid', $event)
-                        "
-                        v-bind:rules="[ validateOrcid ]"
-                    />
-                </div>
-            </div>
-        </q-card-section>
-        <q-card-actions align="between">
-            <q-btn
-                icon="delete"
-                color="negative"
-                label="Remove"
+        <div class="row">
+            <q-input
+                bg-color="white"
+                class="col"
                 dense
+                label="given-names"
+                outlined
+                standout
+                title="The person's given names."
+                v-bind:model-value="givenNames"
+                v-bind:rules="[validateGivenNames]"
+                v-on:update:modelValue="$emit('update', 'givenNames', $event)"
+            />
+        </div>
+        <div class="row">
+            <q-input
+                bg-color="white"
+                class="col-3"
+                dense
+                label="name-particle"
+                outlined
+                standout
+                title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
+                v-bind:model-value="nameParticle"
+                v-bind:rules="[validateNameParticle]"
+                v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
+            />
+            <q-input
+                bg-color="white"
+                class="col"
+                dense
+                label="family-names"
+                outlined
+                standout
+                title="The person's family names."
+                v-bind:model-value="familyNames"
+                v-bind:rules="[validateFamilyNames]"
+                v-on:update:modelValue="$emit('update', 'familyNames', $event)"
+            />
+            <q-input
+                bg-color="white"
+                class="col-3"
+                dense
+                label="name-suffix"
+                outlined
+                standout
+                title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
+                v-bind:model-value="nameSuffix"
+                v-bind:rules="[validateNameSuffix]"
+                v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
+            />
+        </div>
+        <div class="row">
+            <q-input
+                bg-color="white"
+                class="col"
+                dense
+                label="email"
+                outlined
+                standout
+                title="The person's email address."
+                type="email"
+                v-bind:model-value="email"
+                v-bind:rules="[validateEmail]"
+                v-on:update:modelValue="$emit('update', 'email', $event)"
+            />
+        </div>
+        <div class="row">
+            <q-input
+                bg-color="white"
+                class="col"
+                dense
+                label="affiliation"
+                outlined
+                standout
+                title="The person's affiliation."
+                v-bind:model-value="affiliation"
+                v-bind:rules="[validateAffiliation]"
+                v-on:update:modelValue="$emit('update', 'affiliation', $event)"
+            />
+            <q-input
+                bg-color="white"
+                class="col"
+                dense
+                label="orcid"
+                outlined
+                standout
+                title="The person's ORCID identifier."
+                v-bind:model-value="orcid"
+                v-bind:rules="[ validateOrcid ]"
+                v-on:update:modelValue="$emit('update', 'orcid', $event)"
+            />
+        </div>
+        <q-card-actions align="right">
+            <q-btn
+                color="negative"
+                dense
+                icon="delete"
+                label="Remove"
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
+                dense
                 icon="done"
                 label="Done"
-                dense
                 v-on:click="$emit('closePressed')"
             />
         </q-card-actions>
@@ -175,3 +169,10 @@ export default defineComponent({
     emits: ['closePressed', 'removePressed', 'update']
 })
 </script>
+<style scoped>
+.row {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+</style>

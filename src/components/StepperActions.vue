@@ -4,12 +4,15 @@
         flat
         label="Previous"
         no-caps
-        v-bind:disable="cannotGoBack"
+        v-bind:class="cannotGoBack ? 'hidden' : ''"
         v-on:click="navigatePrevious"
     />
     <span class="spacer" />
 
-    <q-btn-group flat>
+    <q-btn-group
+        flat
+        v-bind:class="cannotGoForward ? 'hidden' : ''"
+    >
         <q-btn
             color=""
             flat
@@ -21,7 +24,6 @@
             color="primary"
             label="Next"
             no-caps
-            v-bind:disable="cannotGoForward"
             v-on:click="navigateNext"
         />
     </q-btn-group>
@@ -38,6 +40,8 @@ export default defineComponent({
     setup () {
         const { showAdvanced, cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()
 
+        console.info(cannotGoBack.value)
+
         return {
             cannotGoBack,
             cannotGoForward,
@@ -53,5 +57,8 @@ export default defineComponent({
 <style scoped>
 .spacer {
     flex-grow: 1;
+}
+.hidden {
+    display: none;
 }
 </style>

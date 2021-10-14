@@ -4,31 +4,48 @@
     </div>
     <div id="form">
         <div id="form-title">
-            <h1 class="finish-title">
+            <h1
+                class="finish-title"
+                v-if="isValid"
+            >
                 Congratulations
+            </h1>
+            <h1
+                class="finish-title"
+                v-else
+            >
+                Uh-oh!
             </h1>
         </div>
 
         <div id="form-content">
-            <p class="finish-paragraph">
-                You now have a minimal CITATION.cff file. You can now download your CITATION.cff file, or add some more properties.
-            </p>
-            <q-card-actions
-                align="center"
-                class="q-gutter-md"
-            >
-                <q-btn
-                    class="q-ml-xl"
-                    color="primary"
-                    icon="workspace_premium"
-                    label="Show advanced"
-                    no-caps
-                    to="/identifiers"
-                    v-on:click="showAdvanced"
-                />
-            </q-card-actions>
+            <div v-if="isValid">
+                <p class="finish-paragraph">
+                    You now have a minimal CITATION.cff file.
+                </p>
+                <p class="finish-paragraph">
+                    Download your CITATION.cff file or add some more properties using the buttons below.
+                </p>
+                <div class="row">
+                    <DownloadButton class="col-4 q-ma-lg" />
+                    <q-btn
+                        class="col-4 q-ma-lg"
+                        color="primary"
+                        icon="workspace_premium"
+                        label="Show advanced"
+                        no-caps
+                        size="xl"
+                        to="/identifiers"
+                        v-on:click="showAdvanced"
+                    />
+                </div>
+            </div>
+            <div v-else>
+                <p class="finish-paragraph">
+                    Your CITATION.cff is not valid just yet. Go back to the form to make some changes.
+                </p>
+            </div>
         </div>
-
         <div id="form-button-bar">
             <StepperActions />
         </div>
@@ -36,20 +53,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useApp } from '../store/app'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
+import { isValidCffFile } from 'src/validator'
+import DownloadButton from 'components/DownloadButton.vue'
 
 export default defineComponent({
     name: 'ScreenFinishMinimum',
     components: {
+        DownloadButton,
         Stepper,
         StepperActions
     },
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
         return {
+            isValid: computed(isValidCffFile),
             setShowAdvanced,
             navigatePrevious,
             showAdvanced: async () => {
@@ -62,4 +83,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.row {
+    display:flex;
+    flex-direction: row;
+    justify-content: center
+}
 </style>

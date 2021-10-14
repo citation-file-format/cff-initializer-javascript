@@ -67,7 +67,7 @@ export default defineComponent({
     },
     setup () {
         const { message, title, type, setMessage, setTitle, setType } = useCff()
-        const messages = [
+        const messagesOptions = [
             'If you use this software, please cite it using the metadata from this file.',
             'Please cite this software using these metadata.',
             'Please cite this software using the metadata from \'preferred-citation\'.',

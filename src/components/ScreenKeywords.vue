@@ -14,14 +14,16 @@
                 What keywords describe the work?
             </p>
             <div class="scroll-to-bottom-container">
-                <Keyword
-                    class="q-mr-lg scroll-to-bottom-item"
-                    v-bind:key="index"
-                    v-bind:keyword="keyword"
-                    v-for="(keyword, index) in keywords"
-                    v-on:removePressed="removeKeyword(index)"
-                    v-on:update="setKeyword(index, $event)"
-                />
+                <div>
+                    <Keyword
+                        class="q-mr-lg"
+                        v-bind:key="index"
+                        v-bind:keyword="keyword"
+                        v-for="(keyword, index) in keywords"
+                        v-on:removePressed="removeKeyword(index)"
+                        v-on:update="setKeyword(index, $event)"
+                    />
+                </div>
             </div>
             <q-btn
                 class="q-mt-md q-mb-md"
@@ -85,11 +87,9 @@ export default defineComponent({
 </script>
 <style scoped>
 .scroll-to-bottom-container {
-    scroll-snap-type: y mandatory;
+    display: flex;
+    flex-direction: column-reverse;
     max-height: 450px;
     overflow-y: auto;
-}
-.scroll-to-bottom-item {
-    scroll-snap-align: start;
 }
 </style>

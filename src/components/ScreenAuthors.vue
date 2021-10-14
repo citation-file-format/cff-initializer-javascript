@@ -11,25 +11,27 @@
 
         <div id="form-content">
             <div class="scroll-to-bottom-container">
-                <div
-                    class="q-mb-md q-mr-lg scroll-to-bottom-item"
-                    v-bind:key="index"
-                    v-for="(author, index) in authors"
-                >
-                    <AuthorCardViewing
-                        v-if="editingId !== index"
-                        v-bind:index="index"
-                        v-bind:author="author"
-                        v-on:editPressed="() => (editingId = index)"
-                    />
-                    <AuthorCardEditing
-                        v-else
-                        v-bind:index="index"
-                        v-bind="author"
-                        v-on:update="setAuthorField"
-                        v-on:closePressed="() => (editingId = -1)"
-                        v-on:removePressed="removeAuthor"
-                    />
+                <div>
+                    <div
+                        class="q-mb-md q-mr-lg"
+                        v-bind:key="index"
+                        v-for="(author, index) in authors"
+                    >
+                        <AuthorCardViewing
+                            v-if="editingId !== index"
+                            v-bind:index="index"
+                            v-bind:author="author"
+                            v-on:editPressed="() => (editingId = index)"
+                        />
+                        <AuthorCardEditing
+                            v-else
+                            v-bind:index="index"
+                            v-bind="author"
+                            v-on:update="setAuthorField"
+                            v-on:closePressed="() => (editingId = -1)"
+                            v-on:removePressed="removeAuthor"
+                        />
+                    </div>
                 </div>
             </div>
             <q-btn
@@ -96,11 +98,9 @@ export default defineComponent({
 
 <style scoped>
 .scroll-to-bottom-container {
-    scroll-snap-type: y mandatory;
+    display: flex;
+    flex-direction: column-reverse;
     max-height: 450px;
     overflow-y: auto;
-}
-.scroll-to-bottom-item {
-    scroll-snap-align: start;
 }
 </style>

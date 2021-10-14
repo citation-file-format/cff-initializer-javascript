@@ -11,27 +11,29 @@
 
         <div id="form-content">
             <div class="scroll-to-bottom-container">
-                <div
-                    v-for="(identifier, index) in identifiers"
-                    v-bind:key="index"
-                    class="q-mb-md q-mr-lg scroll-to-bottom-item"
-                >
-                    <IdentifierCardViewing
-                        v-if="editingId !== index"
-                        v-bind:index="index"
-                        v-bind:identifier="identifier"
-                        v-on:editPressed="() => (editingId = index)"
-                    />
-                    <IdentifierCardEditing
-                        v-else
-                        v-bind:index="index"
-                        v-bind="identifier"
-                        v-on:updateType="setIdentifierTypeField"
-                        v-on:updateValue="setIdentifierValueField"
-                        v-on:updateDescription="setIdentifierDescriptionField"
-                        v-on:closePressed="() => (editingId = -1)"
-                        v-on:removePressed="removeIdentifier"
-                    />
+                <div>
+                    <div
+                        v-for="(identifier, index) in identifiers"
+                        v-bind:key="index"
+                        class="q-mb-md q-mr-lg"
+                    >
+                        <IdentifierCardViewing
+                            v-if="editingId !== index"
+                            v-bind:index="index"
+                            v-bind:identifier="identifier"
+                            v-on:editPressed="() => (editingId = index)"
+                        />
+                        <IdentifierCardEditing
+                            v-else
+                            v-bind:index="index"
+                            v-bind="identifier"
+                            v-on:updateType="setIdentifierTypeField"
+                            v-on:updateValue="setIdentifierValueField"
+                            v-on:updateDescription="setIdentifierDescriptionField"
+                            v-on:closePressed="() => (editingId = -1)"
+                            v-on:removePressed="removeIdentifier"
+                        />
+                    </div>
                 </div>
             </div>
             <q-btn
@@ -114,11 +116,9 @@ export default defineComponent({
 
 <style scoped>
 .scroll-to-bottom-container {
-    scroll-snap-type: y mandatory;
+    display: flex;
+    flex-direction: column-reverse;
     max-height: 450px;
     overflow-y: auto;
-}
-.scroll-to-bottom-item {
-    scroll-snap-align: start;
 }
 </style>

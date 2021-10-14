@@ -13,12 +13,13 @@
             <p class="question">
                 What is the license of the work?
             </p>
-            <q-input
+            <q-select
                 bg-color="white"
                 label="license"
                 outlined
                 standout
                 v-bind:model-value="license"
+                v-bind:options="licenses"
                 v-bind:rules="[ validateLicense ]"
                 v-on:update:model-value="setLicense"
             />
@@ -31,11 +32,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+import { makeOptionalFieldValidator } from 'src/validator'
+import { useCff } from '../store/cff'
+import schema from '../schemas/1.2.0/schema.json'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { makeOptionalFieldValidator } from 'src/validator'
-import { defineComponent } from 'vue'
-import { useCff } from '../store/cff'
 
 export default defineComponent({
     name: 'ScreenLicense',
@@ -47,6 +49,7 @@ export default defineComponent({
         const cff = useCff()
         return {
             license: cff.license,
+            licenses: schema.definitions['license-enum'].enum,
             setLicense: cff.setLicense,
             validateLicense: makeOptionalFieldValidator('/definitions/license-enum')
         }

@@ -10,30 +10,33 @@
         </div>
 
         <div id="form-content">
-            <div
-                v-for="(author, index) in authors"
-                v-bind:key="index"
-                class="q-mb-md"
-            >
-                <AuthorCardViewing
-                    v-if="editingId !== index"
-                    v-bind:index="index"
-                    v-bind:author="author"
-                    v-on:editPressed="() => (editingId = index)"
-                />
-                <AuthorCardEditing
-                    v-else
-                    v-bind:index="index"
-                    v-bind="author"
-                    v-on:update="setAuthorField"
-                    v-on:closePressed="() => (editingId = -1)"
-                    v-on:removePressed="removeAuthor"
-                />
+            <div class="scroll-to-bottom-container">
+                <div
+                    class="q-mb-md q-mr-lg scroll-to-bottom-item"
+                    v-bind:key="index"
+                    v-for="(author, index) in authors"
+                >
+                    <AuthorCardViewing
+                        v-if="editingId !== index"
+                        v-bind:index="index"
+                        v-bind:author="author"
+                        v-on:editPressed="() => (editingId = index)"
+                    />
+                    <AuthorCardEditing
+                        v-else
+                        v-bind:index="index"
+                        v-bind="author"
+                        v-on:update="setAuthorField"
+                        v-on:closePressed="() => (editingId = -1)"
+                        v-on:removePressed="removeAuthor"
+                    />
+                </div>
             </div>
             <q-btn
+                class="q-mt-md q-mb-md"
+                color="primary"
                 no-caps
                 v-on:click="addAuthor"
-                color="primary"
             >
                 Add author
             </q-btn>
@@ -92,4 +95,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.scroll-to-bottom-container {
+    scroll-snap-type: y mandatory;
+    max-height: 450px;
+    overflow-y: auto;
+}
+.scroll-to-bottom-item {
+    scroll-snap-align: start;
+}
 </style>

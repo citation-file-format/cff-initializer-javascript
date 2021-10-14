@@ -13,8 +13,9 @@
             <p class="question">
                 What keywords describe the work?
             </p>
-            <div class="keywords">
+            <div class="scroll-to-bottom-container">
                 <Keyword
+                    class="q-mr-lg scroll-to-bottom-item"
                     v-bind:key="index"
                     v-bind:keyword="keyword"
                     v-for="(keyword, index) in keywords"
@@ -23,6 +24,7 @@
                 />
             </div>
             <q-btn
+                class="q-mt-md q-mb-md"
                 color="primary"
                 no-caps
                 style="width: max-content"
@@ -82,10 +84,12 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.keywords {
-    display: flex;
-    flex-direction: column-reverse;
-    max-height: 80%;
+.scroll-to-bottom-container {
+    scroll-snap-type: y mandatory;
+    max-height: 450px;
     overflow-y: auto;
+}
+.scroll-to-bottom-item {
+    scroll-snap-align: start;
 }
 </style>

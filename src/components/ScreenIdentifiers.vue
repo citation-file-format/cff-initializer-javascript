@@ -10,32 +10,35 @@
         </div>
 
         <div id="form-content">
-            <div
-                v-for="(identifier, index) in identifiers"
-                v-bind:key="index"
-                class="q-mb-md"
-            >
-                <IdentifierCardViewing
-                    v-if="editingId !== index"
-                    v-bind:index="index"
-                    v-bind:identifier="identifier"
-                    v-on:editPressed="() => (editingId = index)"
-                />
-                <IdentifierCardEditing
-                    v-else
-                    v-bind:index="index"
-                    v-bind="identifier"
-                    v-on:updateType="setIdentifierTypeField"
-                    v-on:updateValue="setIdentifierValueField"
-                    v-on:updateDescription="setIdentifierDescriptionField"
-                    v-on:closePressed="() => (editingId = -1)"
-                    v-on:removePressed="removeIdentifier"
-                />
+            <div class="scroll-to-bottom-container">
+                <div
+                    v-for="(identifier, index) in identifiers"
+                    v-bind:key="index"
+                    class="q-mb-md q-mr-lg scroll-to-bottom-item"
+                >
+                    <IdentifierCardViewing
+                        v-if="editingId !== index"
+                        v-bind:index="index"
+                        v-bind:identifier="identifier"
+                        v-on:editPressed="() => (editingId = index)"
+                    />
+                    <IdentifierCardEditing
+                        v-else
+                        v-bind:index="index"
+                        v-bind="identifier"
+                        v-on:updateType="setIdentifierTypeField"
+                        v-on:updateValue="setIdentifierValueField"
+                        v-on:updateDescription="setIdentifierDescriptionField"
+                        v-on:closePressed="() => (editingId = -1)"
+                        v-on:removePressed="removeIdentifier"
+                    />
+                </div>
             </div>
             <q-btn
+                class="q-mt-md q-mb-md"
+                color="primary"
                 no-caps
                 v-on:click="addIdentifier"
-                color="primary"
             >
                 Add identifier
             </q-btn>
@@ -110,4 +113,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.scroll-to-bottom-container {
+    scroll-snap-type: y mandatory;
+    max-height: 450px;
+    overflow-y: auto;
+}
+.scroll-to-bottom-item {
+    scroll-snap-align: start;
+}
 </style>

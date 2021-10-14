@@ -44,6 +44,7 @@
                 label="date-released"
                 outlined
                 standout
+                style="width: 33.33%"
                 today-btn="true"
                 v-bind:model-value="dateReleased"
                 v-bind:rules="[validateDateReleased]"
@@ -60,7 +61,7 @@
                             transition-hide="scale"
                         >
                             <q-date
-                                v-bind:model-value="dateReleased"
+                                v-bind:model-value="dateReleased === '' ? initializeDate() : dateReleased"
                                 v-on:update:modelValue="setDateReleased"
                                 mask="YYYY-MM-DD"
                             >
@@ -99,10 +100,18 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        const initializeDate = () => {
+            const today = new Date()
+            const y = today.getFullYear()
+            const m = ('0' + (today.getMonth() + 1).toString()).slice(-2)
+            const d = ('0' + today.getDate().toString()).slice(-2)
+            return `${y}-${m}-${d}`
+        }
         const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
         return {
             commit,
             dateReleased,
+            initializeDate,
             version,
             setCommit,
             setDateReleased,

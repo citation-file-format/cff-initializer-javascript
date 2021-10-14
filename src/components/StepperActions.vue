@@ -39,9 +39,6 @@ export default defineComponent({
 
     setup () {
         const { showAdvanced, cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()
-
-        console.info(cannotGoBack.value)
-
         return {
             cannotGoBack,
             cannotGoForward,

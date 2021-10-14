@@ -10,32 +10,38 @@
         </div>
 
         <div id="form-content">
-            <div
-                v-for="(identifier, index) in identifiers"
-                v-bind:key="index"
-                class="q-mb-md"
-            >
-                <IdentifierCardViewing
-                    v-if="editingId !== index"
-                    v-bind:index="index"
-                    v-bind:identifier="identifier"
-                    v-on:editPressed="() => (editingId = index)"
-                />
-                <IdentifierCardEditing
-                    v-else
-                    v-bind:index="index"
-                    v-bind="identifier"
-                    v-on:updateType="setIdentifierTypeField"
-                    v-on:updateValue="setIdentifierValueField"
-                    v-on:updateDescription="setIdentifierDescriptionField"
-                    v-on:closePressed="() => (editingId = -1)"
-                    v-on:removePressed="removeIdentifier"
-                />
+            <div class="scroll-to-bottom-container">
+                <span class="bottom" />
+                <div>
+                    <div
+                        class="q-mb-md q-mr-lg"
+                        v-bind:key="index"
+                        v-for="(identifier, index) in identifiers"
+                    >
+                        <IdentifierCardViewing
+                            v-if="editingId !== index"
+                            v-bind:index="index"
+                            v-bind:identifier="identifier"
+                            v-on:editPressed="() => (editingId = index)"
+                        />
+                        <IdentifierCardEditing
+                            v-else
+                            v-bind:index="index"
+                            v-bind="identifier"
+                            v-on:updateType="setIdentifierTypeField"
+                            v-on:updateValue="setIdentifierValueField"
+                            v-on:updateDescription="setIdentifierDescriptionField"
+                            v-on:closePressed="() => (editingId = -1)"
+                            v-on:removePressed="removeIdentifier"
+                        />
+                    </div>
+                </div>
             </div>
             <q-btn
+                class="q-mt-md q-mb-md"
+                color="primary"
                 no-caps
                 v-on:click="addIdentifier"
-                color="primary"
             >
                 Add identifier
             </q-btn>
@@ -103,6 +109,10 @@ export default defineComponent({
                 const newIdentifiers = [...identifiers.value, newIdentifier]
                 setIdentifiers(newIdentifiers)
                 editingId.value = newIdentifiers.length - 1
+                setTimeout(() => {
+                    // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
+                    document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+                }, 100)
             }
         }
     }
@@ -110,4 +120,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.scroll-to-bottom-container {
+    display: flex;
+    flex-direction: column-reverse;
+    max-height: 450px;
+    overflow-y: auto;
+}
 </style>

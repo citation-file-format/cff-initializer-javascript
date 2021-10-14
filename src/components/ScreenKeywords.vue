@@ -13,16 +13,21 @@
             <p class="question">
                 What keywords describe the work?
             </p>
-            <div class="keywords">
-                <Keyword
-                    v-bind:key="index"
-                    v-bind:keyword="keyword"
-                    v-for="(keyword, index) in keywords"
-                    v-on:removePressed="removeKeyword(index)"
-                    v-on:update="setKeyword(index, $event)"
-                />
+            <div class="scroll-to-bottom-container">
+                <span class="bottom" />
+                <div>
+                    <Keyword
+                        class="q-mr-lg"
+                        v-bind:key="index"
+                        v-bind:keyword="keyword"
+                        v-for="(keyword, index) in keywords"
+                        v-on:removePressed="removeKeyword(index)"
+                        v-on:update="setKeyword(index, $event)"
+                    />
+                </div>
             </div>
             <q-btn
+                class="q-mt-md q-mb-md"
                 color="primary"
                 no-caps
                 style="width: max-content"
@@ -59,6 +64,10 @@ export default defineComponent({
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]
             setKeywords(newKeywords)
+            setTimeout(() => {
+                // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
+                document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+            }, 100)
         }
 
         function removeKeyword (index: number) {
@@ -82,10 +91,10 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.keywords {
+.scroll-to-bottom-container {
     display: flex;
     flex-direction: column-reverse;
-    max-height: 80%;
+    max-height: 450px;
     overflow-y: auto;
 }
 </style>

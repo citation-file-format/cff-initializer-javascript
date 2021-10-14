@@ -10,30 +10,36 @@
         </div>
 
         <div id="form-content">
-            <div
-                v-for="(author, index) in authors"
-                v-bind:key="index"
-                class="q-mb-md"
-            >
-                <AuthorCardViewing
-                    v-if="editingId !== index"
-                    v-bind:index="index"
-                    v-bind:author="author"
-                    v-on:editPressed="() => (editingId = index)"
-                />
-                <AuthorCardEditing
-                    v-else
-                    v-bind:index="index"
-                    v-bind="author"
-                    v-on:update="setAuthorField"
-                    v-on:closePressed="() => (editingId = -1)"
-                    v-on:removePressed="removeAuthor"
-                />
+            <div class="scroll-to-bottom-container">
+                <span class="bottom" />
+                <div>
+                    <div
+                        class="q-mb-md q-mr-lg"
+                        v-bind:key="index"
+                        v-for="(author, index) in authors"
+                    >
+                        <AuthorCardViewing
+                            v-if="editingId !== index"
+                            v-bind:index="index"
+                            v-bind:author="author"
+                            v-on:editPressed="() => (editingId = index)"
+                        />
+                        <AuthorCardEditing
+                            v-else
+                            v-bind:index="index"
+                            v-bind="author"
+                            v-on:update="setAuthorField"
+                            v-on:closePressed="() => (editingId = -1)"
+                            v-on:removePressed="removeAuthor"
+                        />
+                    </div>
+                </div>
             </div>
             <q-btn
+                class="q-mt-md q-mb-md"
+                color="primary"
                 no-caps
                 v-on:click="addAuthor"
-                color="primary"
             >
                 Add author
             </q-btn>
@@ -85,6 +91,10 @@ export default defineComponent({
                 const newAuthors = [...authors.value, newAuthor]
                 setAuthors(newAuthors)
                 editingId.value = newAuthors.length - 1
+                setTimeout(() => {
+                    // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
+                    document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+                }, 100)
             }
         }
     }
@@ -92,4 +102,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.scroll-to-bottom-container {
+    display: flex;
+    flex-direction: column-reverse;
+    max-height: 450px;
+    overflow-y: auto;
+}
 </style>

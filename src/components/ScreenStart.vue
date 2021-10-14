@@ -30,7 +30,7 @@
                 bg-color="white"
                 label="message"
                 outlined
-                v-bind:options="messages"
+                v-bind:options="messageOptions"
                 v-bind:model-value="message"
                 v-bind:rules="[validateMessage]"
                 v-on:update:modelValue="setMessage"

@@ -11,11 +11,12 @@
 
         <div id="form-content">
             <div class="scroll-to-bottom-container">
+                <span class="bottom" />
                 <div>
                     <div
-                        v-for="(identifier, index) in identifiers"
-                        v-bind:key="index"
                         class="q-mb-md q-mr-lg"
+                        v-bind:key="index"
+                        v-for="(identifier, index) in identifiers"
                     >
                         <IdentifierCardViewing
                             v-if="editingId !== index"
@@ -108,6 +109,10 @@ export default defineComponent({
                 const newIdentifiers = [...identifiers.value, newIdentifier]
                 setIdentifiers(newIdentifiers)
                 editingId.value = newIdentifiers.length - 1
+                setTimeout(() => {
+                    // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
+                    document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+                }, 100)
             }
         }
     }

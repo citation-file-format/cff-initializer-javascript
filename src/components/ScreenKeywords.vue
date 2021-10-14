@@ -14,9 +14,11 @@
                 What keywords describe the work?
             </p>
             <div class="scroll-to-bottom-container">
+                <span class="bottom" />
                 <div>
                     <Keyword
                         class="q-mr-lg"
+                        v-bind:class="keywords.length - 1 == index ? 'last' : ''"
                         v-bind:key="index"
                         v-bind:keyword="keyword"
                         v-for="(keyword, index) in keywords"
@@ -63,6 +65,10 @@ export default defineComponent({
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]
             setKeywords(newKeywords)
+            setTimeout(() => {
+                // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
+                document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+            }, 100)
         }
 
         function removeKeyword (index: number) {

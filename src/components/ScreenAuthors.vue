@@ -11,6 +11,7 @@
 
         <div id="form-content">
             <div class="scroll-to-bottom-container">
+                <span class="bottom" />
                 <div>
                     <div
                         class="q-mb-md q-mr-lg"
@@ -90,6 +91,10 @@ export default defineComponent({
                 const newAuthors = [...authors.value, newAuthor]
                 setAuthors(newAuthors)
                 editingId.value = newAuthors.length - 1
+                setTimeout(() => {
+                    // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
+                    document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+                }, 100)
             }
         }
     }

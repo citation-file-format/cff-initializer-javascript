@@ -18,7 +18,6 @@
                 <div>
                     <Keyword
                         class="q-mr-lg"
-                        v-bind:class="keywords.length - 1 == index ? 'last' : ''"
                         v-bind:key="index"
                         v-bind:keyword="keyword"
                         v-for="(keyword, index) in keywords"

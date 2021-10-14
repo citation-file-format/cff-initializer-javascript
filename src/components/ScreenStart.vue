@@ -77,7 +77,7 @@ export default defineComponent({
         ]
         return {
             message,
-            messages,
+            messageOptions,
             title,
             type,
             typeOptions: [

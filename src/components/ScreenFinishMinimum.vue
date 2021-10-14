@@ -21,10 +21,7 @@
         <div id="form-content">
             <div v-if="isValid">
                 <p class="finish-paragraph">
-                    You now have a minimal CITATION.cff file.
-                </p>
-                <p class="finish-paragraph">
-                    Download your CITATION.cff file or add some more properties using the buttons below.
+                    You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, or continue adding more properties.
                 </p>
                 <div class="row">
                     <DownloadButton class="col-4 q-ma-lg" />

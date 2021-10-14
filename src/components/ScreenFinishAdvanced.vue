@@ -21,7 +21,7 @@
         <div id="form-content">
             <div v-if="isValid">
                 <p class="finish-paragraph">
-                    Download your CITATION.cff file or reset the form to start over using the buttons below.
+                    Use the buttons below to download your CITATION.cff file, or reset the form to start over.
                 </p>
                 <div class="row">
                     <DownloadButton class="col-4 q-ma-lg" />
@@ -110,7 +110,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.download-button {
-    margin-top: 150px;
+.row {
+    display:flex;
+    flex-direction: row;
+    justify-content: center
 }
 </style>

@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
@@ -73,7 +73,7 @@ export default defineComponent({
     setup () {
         const { identifiers, setIdentifiers } = useCff()
         const editingId = ref(-1)
-        const addIdentifier = () => {
+        const addIdentifier = async () => {
             const newIdentifier: IdentifierType = {
                 type: 'doi',
                 value: '',
@@ -82,16 +82,18 @@ export default defineComponent({
             const newIdentifiers = [...identifiers.value, newIdentifier]
             setIdentifiers(newIdentifiers)
             editingId.value = newIdentifiers.length - 1
-            setTimeout(() => {
-                // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
-                document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
-            }, 100)
+            // await the DOM update that resulted from updating the identifiers list
+            await nextTick()
+            scrollToBottom()
         }
         const removeIdentifier = () => {
             const newIdentifiers = [...identifiers.value]
             newIdentifiers.splice(editingId.value, 1)
             setIdentifiers(newIdentifiers)
             editingId.value = -1
+        }
+        const scrollToBottom = () => {
+            document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
         }
         const setIdentifierDescriptionField = (field: keyof IdentifierType, value: string) => {
             const identifier = { ...identifiers.value[editingId.value] }

@@ -14,7 +14,7 @@
                 </div>
 
                 <div id="preview-button-bar">
-                    <DownloadButton />
+                    <DownloadButton v-if="isNotFinish" />
                 </div>
             </div>
         </div>
@@ -32,7 +32,8 @@ import Header from 'components/Header.vue'
 import Preview from 'components/Preview.vue'
 import DownloadButton from 'components/DownloadButton.vue'
 import Footer from 'components/Footer.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
     name: 'StepperLayout',
@@ -44,6 +45,10 @@ export default defineComponent({
     },
     setup () {
         return {
+            isNotFinish: computed(() => {
+                const currentPath = useRoute().path
+                return currentPath !== '/finish-minimum' && currentPath !== '/finish-advanced'
+            })
         }
     }
 })

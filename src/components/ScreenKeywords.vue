@@ -69,7 +69,6 @@ export default defineComponent({
             // await the DOM update that resulted from updating the keywords list
             await nextTick()
             scrollToBottom()
-            setTimeout(scrollToBottom, 100)
         }
         const removeKeyword = (index: number) => {
             const newKeywords = [...keywords.value]

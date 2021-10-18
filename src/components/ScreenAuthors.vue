@@ -76,7 +76,7 @@ export default defineComponent({
             const newAuthors = [...authors.value, newAuthor]
             setAuthors(newAuthors)
             editingId.value = newAuthors.length - 1
-            // await the DOM update that resulted from updating the keywords list
+            // await the DOM update that resulted from updating the authors list
             await nextTick()
             scrollToBottom()
         }

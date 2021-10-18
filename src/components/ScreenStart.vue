@@ -20,7 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:rules="[validateTitle]"
+                v-bind:error="errors.fields.title.hasError"
+                v-bind:error-message="errors.fields.title.message"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -31,7 +32,8 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:rules="[validateMessage]"
+                v-bind:error="errors.fields.message.hasError"
+                v-bind:error-message="errors.fields.message.message"
                 v-on:update:modelValue="setMessage"
             />
             <p class="question">
@@ -54,9 +56,9 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useScreenErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -66,6 +68,7 @@ export default defineComponent({
     },
     setup () {
         const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const { start: errors } = useScreenErrors()
 
         return {
             message,
@@ -78,8 +81,7 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            validateTitle: makeFieldValidator('/properties/title'),
-            validateMessage: makeFieldValidator('/properties/message')
+            errors
         }
     }
 })

@@ -37,6 +37,19 @@
             >
                 Add author
             </q-btn>
+
+            <div
+                class="text-negative screen-error"
+                v-if="groupedErrors.authors"
+            >
+                <div
+                    v-for="(error, index) in groupedErrors.authors"
+                    v-bind:key="index"
+                    class="q-mb-md"
+                >
+                    {{ error }}
+                </div>
+            </div>
         </div>
 
         <div id="form-button-bar">
@@ -53,6 +66,7 @@ import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -65,6 +79,9 @@ export default defineComponent({
     setup () {
         const { authors, setAuthors } = useCff()
         const editingId = ref(0)
+
+        const { errors, validScreens, groupedErrors } = useFileValidator()
+
         return {
             authors,
             editingId,
@@ -85,7 +102,10 @@ export default defineComponent({
                 const newAuthors = [...authors.value, newAuthor]
                 setAuthors(newAuthors)
                 editingId.value = newAuthors.length - 1
-            }
+            },
+            groupedErrors,
+            errors,
+            validScreens
         }
     }
 })

@@ -15,7 +15,7 @@
             name="start"
             title="Start"
             v-bind:order="0"
-            v-bind:error="!validScreens.start.value"
+            v-bind:error="startScreenErrors.isValid"
             v-on:click="setStepName('start')"
         />
 
@@ -120,16 +120,20 @@
 
 import { useApp } from '../store/app'
 import { useValidScreens } from '../store/screens'
+import { useScreenErrors } from 'src/store/validator'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
         const validScreens = useValidScreens()
+        const { start: startScreenErrors } = useScreenErrors()
+
         return {
             showAdvanced,
             stepName,
             setStepName,
-            validScreens
+            validScreens,
+            startScreenErrors
         }
     }
 }

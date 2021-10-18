@@ -37,15 +37,35 @@
     />
     <div class="validation-msg">
         <p>
-            Your CITATION.cff is {{ isValid ? "valid" : "not valid" }}
+            Your CITATION.cff is {{ isValidFile ? "valid" : "not valid" }}
         </p>
+        <p>
+            ------------------------------
+        </p>
+        <div
+            v-for="(error, index) in groupedErrors"
+            v-bind:key="index"
+            class="q-mb-md"
+        >
+            {{ error }}
+        </div>
+        <p>
+            ------------------------------
+        </p>
+        <div
+            v-for="(error, index) in errors"
+            v-bind:key="index"
+            class="q-mb-md"
+        >
+            {{ error }}
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
-import { isValidCffFile } from 'src/validator'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'Preview',
@@ -54,6 +74,7 @@ export default defineComponent({
     setup () {
         const { cffstr } = useCffstr()
         const showTooltip = ref(false)
+        const { isValidFile, groupedErrors, errors } = useFileValidator()
 
         const copyToClipboard = async () => {
             await navigator.clipboard.writeText(cffstr.value)
@@ -62,13 +83,13 @@ export default defineComponent({
             showTooltip.value = false
         }
 
-        const isValid = computed(isValidCffFile)
-
         return {
             cffstr,
             copyToClipboard,
-            isValid,
-            showTooltip
+            isValidFile,
+            showTooltip,
+            groupedErrors,
+            errors
         }
     }
 })

@@ -1,5 +1,11 @@
 /* app global css */
 
+@media only screen and (min-width: 2090px) and (min-height: 1039px) {
+    body {
+        transform: scale(1.1);
+    }
+}
+
 :root {
     --fgcolor: #efefef;
     --bgcolor: #303030;

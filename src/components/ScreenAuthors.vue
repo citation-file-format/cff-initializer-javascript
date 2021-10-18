@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
@@ -71,31 +71,36 @@ export default defineComponent({
     setup () {
         const { authors, setAuthors } = useCff()
         const editingId = ref(0)
+        const addAuthor = async () => {
+            const newAuthor: AuthorType = {}
+            const newAuthors = [...authors.value, newAuthor]
+            setAuthors(newAuthors)
+            editingId.value = newAuthors.length - 1
+            // await the DOM update that resulted from updating the keywords list
+            await nextTick()
+            scrollToBottom()
+        }
+        const scrollToBottom = () => {
+            document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+        }
+        const removeAuthor = () => {
+            const newAuthors = [...authors.value]
+            newAuthors.splice(editingId.value, 1)
+            setAuthors(newAuthors)
+            editingId.value = -1
+        }
+        const setAuthorField = (field: keyof AuthorType, value: string) => {
+            const author = { ...authors.value[editingId.value] }
+            author[field] = value
+            authors.value[editingId.value] = author
+            setAuthors(authors.value)
+        }
         return {
+            addAuthor,
             authors,
             editingId,
-            setAuthorField (field: keyof AuthorType, value: string) {
-                const author = { ...authors.value[editingId.value] }
-                author[field] = value
-                authors.value[editingId.value] = author
-                setAuthors(authors.value)
-            },
-            removeAuthor () {
-                const newAuthors = [...authors.value]
-                newAuthors.splice(editingId.value, 1)
-                setAuthors(newAuthors)
-                editingId.value = -1
-            },
-            addAuthor () {
-                const newAuthor: AuthorType = {}
-                const newAuthors = [...authors.value, newAuthor]
-                setAuthors(newAuthors)
-                editingId.value = newAuthors.length - 1
-                setTimeout(() => {
-                    // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
-                    document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
-                }, 100)
-            }
+            removeAuthor,
+            setAuthorField
         }
     }
 })

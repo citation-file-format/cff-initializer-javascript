@@ -59,11 +59,9 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
-
         const scrollToBottom = () => {
             document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
         }
-
         const addKeyword = async () => {
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]
@@ -73,22 +71,19 @@ export default defineComponent({
             scrollToBottom()
             setTimeout(scrollToBottom, 100)
         }
-
         const removeKeyword = (index: number) => {
             const newKeywords = [...keywords.value]
             newKeywords.splice(index, 1)
             setKeywords(newKeywords)
         }
-
         const setKeyword = (index: number, newKeyword: string) => {
             const newKeywords = [...keywords.value]
             newKeywords[index] = newKeyword
             setKeywords(newKeywords)
         }
-
         return {
-            keywords,
             addKeyword,
+            keywords,
             removeKeyword,
             setKeyword
         }

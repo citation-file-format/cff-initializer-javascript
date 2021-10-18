@@ -60,27 +60,29 @@ export default defineComponent({
     setup () {
         const { keywords, setKeywords } = useCff()
 
-        function addKeyword () {
+        const scrollToBottom = () => {
+            document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
+        }
+
+        const addKeyword = () => {
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]
             setKeywords(newKeywords)
-            setTimeout(() => {
-                // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
-                document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
-            }, 100)
+            setTimeout(scrollToBottom, 100)
         }
 
-        function removeKeyword (index: number) {
+        const removeKeyword = (index: number) => {
             const newKeywords = [...keywords.value]
             newKeywords.splice(index, 1)
             setKeywords(newKeywords)
         }
 
-        function setKeyword (index: number, newKeyword: string) {
+        const setKeyword = (index: number, newKeyword: string) => {
             const newKeywords = [...keywords.value]
             newKeywords[index] = newKeyword
             setKeywords(newKeywords)
         }
+
         return {
             keywords,
             addKeyword,

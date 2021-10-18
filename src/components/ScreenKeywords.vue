@@ -47,7 +47,7 @@
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, nextTick } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
@@ -64,10 +64,13 @@ export default defineComponent({
             document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
         }
 
-        const addKeyword = () => {
+        const addKeyword = async () => {
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]
             setKeywords(newKeywords)
+            // await the DOM update that resulted from updating the keywords list
+            await nextTick()
+            scrollToBottom()
             setTimeout(scrollToBottom, 100)
         }
 

@@ -111,7 +111,7 @@ export default defineComponent({
 
 <style scoped>
 .row {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: center
 }

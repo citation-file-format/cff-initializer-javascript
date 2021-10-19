@@ -2,7 +2,7 @@
     <q-card
         flat
         bordered
-        class="bg-formcard q-pa-md"
+        v-bind:class="['bg-formcard', 'q-pa-md', fieldErrors.item ? 'card-error' : '']"
     >
         <div class="row">
             <q-input
@@ -14,7 +14,8 @@
                 standout
                 title="The person's given names."
                 v-bind:model-value="givenNames"
-                v-bind:rules="[validateGivenNames]"
+                v-bind:error="fieldErrors.givenNames.length > 0"
+                v-bind:error-message="fieldErrors.givenNames"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
             />
         </div>
@@ -28,7 +29,8 @@
                 standout
                 title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
                 v-bind:model-value="nameParticle"
-                v-bind:rules="[validateNameParticle]"
+                v-bind:error="fieldErrors.nameParticle.length > 0"
+                v-bind:error-message="fieldErrors.nameParticle"
                 v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
             />
             <q-input
@@ -40,7 +42,8 @@
                 standout
                 title="The person's family names."
                 v-bind:model-value="familyNames"
-                v-bind:rules="[validateFamilyNames]"
+                v-bind:error="fieldErrors.familyNames.length > 0"
+                v-bind:error-message="fieldErrors.familyNames"
                 v-on:update:modelValue="$emit('update', 'familyNames', $event)"
             />
             <q-input
@@ -52,7 +55,8 @@
                 standout
                 title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
                 v-bind:model-value="nameSuffix"
-                v-bind:rules="[validateNameSuffix]"
+                v-bind:error="fieldErrors.nameSuffix.length > 0"
+                v-bind:error-message="fieldErrors.nameSuffix"
                 v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
             />
         </div>
@@ -67,7 +71,8 @@
                 title="The person's email address."
                 type="email"
                 v-bind:model-value="email"
-                v-bind:rules="[validateEmail]"
+                v-bind:error="fieldErrors.email.length > 0"
+                v-bind:error-message="fieldErrors.email"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
         </div>
@@ -81,7 +86,8 @@
                 standout
                 title="The person's affiliation."
                 v-bind:model-value="affiliation"
-                v-bind:rules="[validateAffiliation]"
+                v-bind:error="fieldErrors.affiliation.length > 0"
+                v-bind:error-message="fieldErrors.affiliation"
                 v-on:update:modelValue="$emit('update', 'affiliation', $event)"
             />
             <q-input
@@ -93,10 +99,20 @@
                 standout
                 title="The person's ORCID identifier."
                 v-bind:model-value="orcid"
-                v-bind:rules="[ validateOrcid ]"
+                v-bind:error="fieldErrors.orcid.length > 0"
+                v-bind:error-message="fieldErrors.orcid"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
             />
         </div>
+
+        <q-banner
+            v-if="fieldErrors.item"
+            class="bg-secondary text-negative"
+            style="margin-top: 50px; margin-bottom: 20px;"
+        >
+            {{ fieldErrors.item }}
+        </q-banner>
+
         <q-card-actions align="right">
             <q-btn
                 color="negative"
@@ -117,7 +133,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { makeOptionalFieldValidator } from '../validator'
 
 export default defineComponent({
     name: 'AuthorCardEditing',
@@ -153,17 +168,14 @@ export default defineComponent({
         email: {
             type: String,
             default: ''
+        },
+        fieldErrors: {
+            type: Object as any,
+            default: {}
         }
     },
     setup () {
         return {
-            validateGivenNames: makeOptionalFieldValidator('/definitions/person/properties/given-names'),
-            validateNameParticle: makeOptionalFieldValidator('/definitions/person/properties/name-particle'),
-            validateNameSuffix: makeOptionalFieldValidator('/definitions/person/properties/name-suffix'),
-            validateFamilyNames: makeOptionalFieldValidator('/definitions/person/properties/family-names'),
-            validateAffiliation: makeOptionalFieldValidator('/definitions/person/properties/affiliation'),
-            validateEmail: makeOptionalFieldValidator('/definitions/person/properties/email'),
-            validateOrcid: makeOptionalFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

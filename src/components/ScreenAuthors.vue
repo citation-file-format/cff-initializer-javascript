@@ -22,12 +22,14 @@
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:author="author"
+                            v-bind:field-errors="myAuthorScreenErrors.fields[index]"
                             v-on:editPressed="() => (editingId = index)"
                         />
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
                             v-bind="author"
+                            v-bind:field-errors="myAuthorScreenErrors.fields[index]"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"

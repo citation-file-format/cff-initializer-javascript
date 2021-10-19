@@ -8,7 +8,9 @@ import Ajv, { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
 import schema from '../schemas/1.2.0/schema.json'
 import { useCffstr } from './cffstr'
+import { useCff } from './cff'
 import { computed, ref, watch } from 'vue'
+import { AuthorsType } from '../types'
 
 export const ajv = new Ajv({ allErrors: true })
 addFormats(ajv)
@@ -18,6 +20,8 @@ const isValidFile = ref(true)
 const errors = ref<ErrorObject<string, Record<string, unknown>, unknown>[]>([])
 
 function getMyErrorsMessageByPath (myPath: string):string {
+    console.log('ajvErrors: ', errors.value)
+
     return errors.value.map((error) => {
         return {
             instancePath: error.instancePath,
@@ -38,6 +42,33 @@ function getMyErrorsMessageByPath (myPath: string):string {
     }).join(', ')
 }
 
+function myAuthorsErrorMessages (authors: AuthorsType) {
+    const authorErrors = authors.map((author, index) => {
+        console.log(index, author)
+        const instancePath = `/authors/${index}`
+        const itemError = getMyErrorsMessageByPath(instancePath)
+        const orcidError = getMyErrorsMessageByPath(instancePath + '/orcid')
+        const emailError = getMyErrorsMessageByPath(instancePath + '/email')
+        const affiliationError = getMyErrorsMessageByPath(instancePath + '/affiliation')
+        const givenNamesError = getMyErrorsMessageByPath(instancePath + '/givenNames')
+        const nameParticleError = getMyErrorsMessageByPath(instancePath + '/nameParticle')
+        const nameSuffixError = getMyErrorsMessageByPath(instancePath + '/nameSuffix')
+        const familyNamesError = getMyErrorsMessageByPath(instancePath + '/familyNames')
+        return {
+            item: itemError,
+            orcid: orcidError,
+            email: emailError,
+            affiliation: affiliationError,
+            givenNames: givenNamesError,
+            nameParticle: nameParticleError,
+            nameSuffix: nameSuffixError,
+            familyNames: familyNamesError
+        }
+    })
+    console.log('authorErrors: ', authorErrors)
+    return authorErrors
+}
+
 function validateFile (jsObject: any) {
     isValidFile.value = ajv.validate(schema.$id, jsObject)
     if (ajv.errors) {
@@ -49,6 +80,7 @@ function validateFile (jsObject: any) {
 
 export function useFileValidator () {
     const { jsObject } = useCffstr()
+    const { authors } = useCff()
     validateFile(jsObject.value)
     watch(jsObject, (newObject) => validateFile(newObject))
     return {
@@ -66,6 +98,12 @@ export function useFileValidator () {
                 repository: getMyErrorsMessageByPath('/repository'),
                 repositoryArtifact: getMyErrorsMessageByPath('/repository-artifact'),
                 repositoryCode: getMyErrorsMessageByPath('/repository-code')
+            }
+        }),
+        myAuthorScreenErrors: computed(() => {
+            return {
+                otherErrors: getMyErrorsMessageByPath('/authors'),
+                fields: myAuthorsErrorMessages(authors.value)
             }
         })
     }

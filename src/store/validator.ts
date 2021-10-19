@@ -9,6 +9,7 @@ import addFormats from 'ajv-formats'
 import schema from '../schemas/1.2.0/schema.json'
 import { useCffstr } from './cffstr'
 import { computed, ref, watch } from 'vue'
+import { useCff } from './cff'
 
 export const ajv = new Ajv({ allErrors: true })
 addFormats(ajv)
@@ -25,16 +26,16 @@ type CffErrorType = {
 
 type fieldErrorType = Record<string, CffErrorType>
 
-type fieldArrayErrorType = {
+export type fieldArrayErrorType = {
     fields: Record<string, CffErrorType>,
     errors: Array<CffErrorType>
-}[]
+}
 
 type screenErrorType = {
     message: string,
     isValid: boolean,
     fields: fieldErrorType,
-    items: fieldArrayErrorType
+    items: fieldArrayErrorType[]
 }
 
 // const screenErrors = useScreenErrors ()
@@ -47,7 +48,7 @@ type screenErrorType = {
 
 function groupErrors (ajvErrors: ErrorObject<string, Record<string, unknown>, unknown>[]) {
     const cffErrors: any = {}
-    console.log('ajvErrors:', ajvErrors)
+    // console.log('ajvErrors:', ajvErrors)
     ajvErrors.forEach(e => {
         // find all missing required fields
         if (e.instancePath === '' && e.keyword === 'required') {
@@ -120,7 +121,7 @@ function groupErrors (ajvErrors: ErrorObject<string, Record<string, unknown>, un
         //     }
         // }
     })
-    console.log('cffErrors:', cffErrors)
+    // console.log('cffErrors:', cffErrors)
     return cffErrors
 }
 
@@ -158,6 +159,15 @@ function initializeFields (fieldNames: string[]):fieldErrorType {
     return fields
 }
 
+function initializeFieldsArray (fieldNames: string[]):fieldArrayErrorType {
+    const fields:fieldErrorType = initializeFields(fieldNames)
+    const errors:CffErrorType[] = []
+    return {
+        fields,
+        errors
+    }
+}
+
 function setFieldErrorValues (fields: fieldErrorType, groupedErrors: Record<string, string[]>) {
     let screenHasError = false
     Object.entries(fields).forEach(([fieldName, error]) => {
@@ -168,6 +178,43 @@ function setFieldErrorValues (fields: fieldErrorType, groupedErrors: Record<stri
         }
     })
     return screenHasError
+}
+
+function setFieldsArrayErrorValues (fields: fieldArrayErrorType[], groupedErrors: Record<string, string[]>) {
+    let screenHasError = false
+    let message = ''
+    if (groupedErrors.authorsList) { // authorlist will be present only if one author (field) has an issue
+        groupedErrors.authorsList.forEach((authorErrors, authorIndex) => { // loop over authors
+            Object.entries(authorErrors).forEach(([fieldName, error]) => { // catch global errors
+                screenHasError = true
+                for (const [key, value] of Object.entries(authorErrors)) {
+                    if (key === 'errors') {
+                        message = Object.values(value).join(', ')
+                    }
+                }
+            })
+
+            Object.entries(fields).forEach(([authorId, authorFields]) => { // check errors for each field
+                Object.entries(authorFields.fields).forEach(([fieldName, error]) => { // record error for each field
+                    const fieldHasError = Object.prototype.hasOwnProperty.call(authorErrors, fieldName)
+                    if (fieldHasError) {
+                        screenHasError = true
+                        authorFields.fields[fieldName].hasError = true
+                        for (const [key, value] of Object.entries(authorErrors)) {
+                            if (key === fieldName) {
+                                authorFields.fields[fieldName].message = Object.values(value).join(', ')
+                            }
+                        }
+                    }
+                })
+            })
+        })
+    }
+
+    return {
+        screenHasError,
+        message
+    }
 }
 
 function getStartScreenErrors (groupedErrors: Record<string, string[]>):screenErrorType {
@@ -182,10 +229,30 @@ function getStartScreenErrors (groupedErrors: Record<string, string[]>):screenEr
     }
 }
 
+function getAuthorsScreenErrors (groupedErrors: Record<string, string[]>):screenErrorType {
+    const { authors } = useCff()
+    // validate email for a single author
+    // validate all the fields of a single author
+    // validate multiple authors: duplicate errors and also not having an author at all
+
+    // const fields:fieldErrorType = any[]
+    const fieldNames = ['givenNames', 'nameParticle', 'nameSuffix', 'orcid', 'familyNames', 'affiliation', 'email']
+    const items:fieldArrayErrorType[] = authors.value.map(() => initializeFieldsArray(fieldNames))
+    const { screenHasError, message } = setFieldsArrayErrorValues(items, groupedErrors)
+
+    return {
+        message: message,
+        isValid: screenHasError,
+        fields: {},
+        items
+    }
+}
+
 export function useScreenErrors () {
     const groupedErrors = computed(() => groupErrors(errors.value))
     return {
-        start: computed(() => getStartScreenErrors(groupedErrors.value))
+        start: computed(() => getStartScreenErrors(groupedErrors.value)),
+        authors: computed(() => getAuthorsScreenErrors(groupedErrors.value))
         // authors: !(groupedErrors.value.authors?.length || groupedErrors.value.identifiersList?.length),
         // identifiers: !(groupedErrors.value.identifiers?.length || groupedErrors.value.authorsList?.length),
         // 'related-resources': !(groupedErrors.value.url?.length || groupedErrors.value.repository?.length || groupedErrors.value['repository-artifact']?.length || groupedErrors.value['repository-code']?.length),

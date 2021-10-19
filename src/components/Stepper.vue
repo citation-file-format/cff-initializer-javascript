@@ -25,6 +25,7 @@
             name="authors"
             title="Authors"
             v-bind:order="1"
+            v-bind:error="authorsScreenErrors.isValid"
             v-on:click="setStepName('authors')"
         />
 
@@ -126,14 +127,15 @@ export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
         const validScreens = useValidScreens()
-        const { start: startScreenErrors } = useScreenErrors()
+        const { start: startScreenErrors, authors: authorsScreenErrors } = useScreenErrors()
 
         return {
             showAdvanced,
             stepName,
             setStepName,
             validScreens,
-            startScreenErrors
+            startScreenErrors,
+            authorsScreenErrors
         }
     }
 }

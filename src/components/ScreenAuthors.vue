@@ -25,6 +25,7 @@
                     v-else
                     v-bind:index="index"
                     v-bind="author"
+                    v-bind:field-errors="errorsFIXME.items[index].fields"
                     v-on:update="setAuthorField"
                     v-on:closePressed="() => (editingId = -1)"
                     v-on:removePressed="removeAuthor"
@@ -47,7 +48,11 @@
                     v-bind:key="index"
                     class="q-mb-md"
                 >
-                    {{ error }}
+                    <!-- {{ error }} -->
+                    {{ errorsFIXME.message }}
+                    {{ '========================='}}
+                    <br />
+                    {{ errorsFIXME }}
                 </div>
             </div>
         </div>
@@ -66,7 +71,7 @@ import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
-import { useFileValidator } from 'src/store/validator'
+import { useFileValidator, useScreenErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -81,6 +86,7 @@ export default defineComponent({
         const editingId = ref(0)
 
         const { errors, validScreens, groupedErrors } = useFileValidator()
+        const { authors: errorsFIXME } = useScreenErrors()
 
         return {
             authors,
@@ -105,7 +111,8 @@ export default defineComponent({
             },
             groupedErrors,
             errors,
-            validScreens
+            validScreens,
+            errorsFIXME
         }
     }
 })

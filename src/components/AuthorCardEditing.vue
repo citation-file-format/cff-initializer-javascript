@@ -14,7 +14,8 @@
                 standout
                 title="The person's given names."
                 v-bind:model-value="givenNames"
-                v-bind:rules="[validateGivenNames]"
+                v-bind:error="fieldErrors.givenNames.hasError"
+                v-bind:error-message="fieldErrors.givenNames.message"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
             />
         </div>
@@ -28,7 +29,8 @@
                 standout
                 title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
                 v-bind:model-value="nameParticle"
-                v-bind:rules="[validateNameParticle]"
+                v-bind:error="fieldErrors.nameParticle.hasError"
+                v-bind:error-message="fieldErrors.nameParticle.message"
                 v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
             />
             <q-input
@@ -40,7 +42,8 @@
                 standout
                 title="The person's family names."
                 v-bind:model-value="familyNames"
-                v-bind:rules="[validateFamilyNames]"
+                v-bind:error="fieldErrors.familyNames.hasError"
+                v-bind:error-message="fieldErrors.familyNames.message"
                 v-on:update:modelValue="$emit('update', 'familyNames', $event)"
             />
             <q-input
@@ -52,7 +55,8 @@
                 standout
                 title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
                 v-bind:model-value="nameSuffix"
-                v-bind:rules="[validateNameSuffix]"
+                v-bind:error="fieldErrors.nameSuffix.hasError"
+                v-bind:error-message="fieldErrors.nameSuffix.message"
                 v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
             />
         </div>
@@ -66,8 +70,8 @@
                 standout
                 title="The person's email address."
                 type="email"
-                v-bind:model-value="email"
-                v-bind:rules="[validateEmail]"
+                v-bind:error="fieldErrors.email.hasError"
+                v-bind:error-message="fieldErrors.email.message"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
         </div>
@@ -81,7 +85,8 @@
                 standout
                 title="The person's affiliation."
                 v-bind:model-value="affiliation"
-                v-bind:rules="[validateAffiliation]"
+                v-bind:error="fieldErrors.affiliation.hasError"
+                v-bind:error-message="fieldErrors.affiliation.message"
                 v-on:update:modelValue="$emit('update', 'affiliation', $event)"
             />
             <q-input
@@ -93,10 +98,16 @@
                 standout
                 title="The person's ORCID identifier."
                 v-bind:model-value="orcid"
-                v-bind:rules="[ validateOrcid ]"
+                v-bind:error="fieldErrors.orcid.hasError"
+                v-bind:error-message="fieldErrors.orcid.message"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
             />
         </div>
+
+        <!-- <div>
+            {{ fieldErrors }}
+        </div> -->
+
         <q-card-actions align="right">
             <q-btn
                 color="negative"
@@ -116,6 +127,7 @@
 </template>
 
 <script lang="ts">
+// import { fieldArrayErrorType } from 'src/store/validator'
 import { defineComponent } from 'vue'
 import { makeOptionalFieldValidator } from '../validator'
 
@@ -153,6 +165,10 @@ export default defineComponent({
         email: {
             type: String,
             default: ''
+        },
+        fieldErrors: {
+            type: Object as any,
+            required: true
         }
     },
     setup () {

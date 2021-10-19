@@ -28,11 +28,15 @@
             </p>
             <q-select
                 bg-color="white"
+                fill-input
+                hide-selected
                 label="message"
                 outlined
+                use-input
                 v-bind:options="messageOptions"
                 v-bind:model-value="message"
                 v-bind:rules="[validateMessage]"
+                v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             />
             <p class="question">

@@ -45,6 +45,10 @@
             </q-btn>
         </div>
 
+        <div>
+            {{ myAuthorScreenErrors.otherErrors }}
+        </div>
+
         <div id="form-button-bar">
             <StepperActions />
         </div>
@@ -60,6 +64,7 @@ import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -93,12 +98,14 @@ export default defineComponent({
             authors.value[editingId.value] = author
             setAuthors(authors.value)
         }
+        const { myAuthorScreenErrors } = useFileValidator()
         return {
             addAuthor,
             authors,
             editingId,
             removeAuthor,
-            setAuthorField
+            setAuthorField,
+            myAuthorScreenErrors
         }
     }
 })

@@ -19,7 +19,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:rules="[validateUrl]"
+                v-bind:error="myRelatedResourcesScreenErrors.url.length > 0"
+                v-bind:error-message="myRelatedResourcesScreenErrors.url"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -32,7 +33,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:rules="[validateRepository]"
+                v-bind:error="myRelatedResourcesScreenErrors.repository.length > 0"
+                v-bind:error-message="myRelatedResourcesScreenErrors.repository"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -45,7 +47,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:rules="[validateRepositoryArtifact]"
+                v-bind:error="myRelatedResourcesScreenErrors.repositoryArtifact.length > 0"
+                v-bind:error-message="myRelatedResourcesScreenErrors.repositoryArtifact"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
 
@@ -58,7 +61,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:rules="[validateRepositoryCode]"
+                v-bind:error="myRelatedResourcesScreenErrors.repositoryCode.length > 0"
+                v-bind:error-message="myRelatedResourcesScreenErrors.repositoryCode"
                 v-on:update:modelValue="setRepositoryCode"
             />
         </div>
@@ -75,6 +79,7 @@ import StepperActions from 'components/StepperActions.vue'
 import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -87,6 +92,7 @@ export default defineComponent({
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
         } = useCff()
+        const { myRelatedResourcesScreenErrors } = useFileValidator()
         return {
             repository,
             repositoryArtifact,
@@ -96,10 +102,7 @@ export default defineComponent({
             setRepositoryArtifact,
             setRepositoryCode,
             setUrl,
-            validateUrl: makeOptionalFieldValidator('/definitions/url'),
-            validateRepository: makeOptionalFieldValidator('/definitions/url'),
-            validateRepositoryArtifact: makeOptionalFieldValidator('/definitions/url'),
-            validateRepositoryCode: makeOptionalFieldValidator('/definitions/url')
+            myRelatedResourcesScreenErrors
         }
     }
 })

@@ -59,6 +59,7 @@ import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
+import { scrollToBottom } from '../scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -79,9 +80,6 @@ export default defineComponent({
             // await the DOM update that resulted from updating the authors list
             await nextTick()
             scrollToBottom()
-        }
-        const scrollToBottom = () => {
-            document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
         }
         const removeAuthor = () => {
             const newAuthors = [...authors.value]

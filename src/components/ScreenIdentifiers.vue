@@ -61,6 +61,7 @@ import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
 import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
+import { scrollToBottom } from '../scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',
@@ -91,9 +92,6 @@ export default defineComponent({
             newIdentifiers.splice(editingId.value, 1)
             setIdentifiers(newIdentifiers)
             editingId.value = -1
-        }
-        const scrollToBottom = () => {
-            document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
         }
         const setIdentifierDescriptionField = (field: keyof IdentifierType, value: string) => {
             const identifier = { ...identifiers.value[editingId.value] }

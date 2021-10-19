@@ -49,6 +49,7 @@ import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
 import { defineComponent, nextTick } from 'vue'
 import { useCff } from '../store/cff'
+import { scrollToBottom } from '../scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenKeywords',
@@ -59,9 +60,6 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
-        const scrollToBottom = () => {
-            document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
-        }
         const addKeyword = async () => {
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]

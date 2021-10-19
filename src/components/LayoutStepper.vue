@@ -1,29 +1,31 @@
 <template>
-    <div id="app">
-        <span class="spacer" />
-        <div id="header-outer">
-            <div id="header-inner">
-                <Header />
-            </div>
-        </div>
-        <div id="middle">
-            <router-view />
-            <div id="preview">
-                <div id="preview-content">
-                    <Preview />
+    <div class="scale-container">
+        <div id="app">
+            <span class="spacer" />
+            <div id="header-outer">
+                <div id="header-inner">
+                    <Header />
                 </div>
+            </div>
+            <div id="middle">
+                <router-view />
+                <div id="preview">
+                    <div id="preview-content">
+                        <Preview />
+                    </div>
 
-                <div id="preview-button-bar">
-                    <DownloadButton />
+                    <div id="preview-button-bar">
+                        <DownloadButton />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="footer-outer">
-            <div id="footer-inner">
-                <Footer />
+            <div id="footer-outer">
+                <div id="footer-inner">
+                    <Footer />
+                </div>
             </div>
+            <span class="spacer" />
         </div>
-        <span class="spacer" />
     </div>
 </template>
 

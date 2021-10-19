@@ -47,8 +47,9 @@
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, nextTick } from 'vue'
 import { useCff } from '../store/cff'
+import { scrollToBottom } from '../scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenKeywords',
@@ -59,31 +60,27 @@ export default defineComponent({
     },
     setup () {
         const { keywords, setKeywords } = useCff()
-
-        function addKeyword () {
+        const addKeyword = async () => {
             const newKeyword = ''
             const newKeywords = [...keywords.value, newKeyword]
             setKeywords(newKeywords)
-            setTimeout(() => {
-                // FIXME shouldn't have to use a timeout but it seems the DOM doesn't update in time
-                document.getElementsByClassName('bottom')[0].scrollIntoView({ behavior: 'smooth' })
-            }, 100)
+            // await the DOM update that resulted from updating the keywords list
+            await nextTick()
+            scrollToBottom()
         }
-
-        function removeKeyword (index: number) {
+        const removeKeyword = (index: number) => {
             const newKeywords = [...keywords.value]
             newKeywords.splice(index, 1)
             setKeywords(newKeywords)
         }
-
-        function setKeyword (index: number, newKeyword: string) {
+        const setKeyword = (index: number, newKeyword: string) => {
             const newKeywords = [...keywords.value]
             newKeywords[index] = newKeyword
             setKeywords(newKeywords)
         }
         return {
-            keywords,
             addKeyword,
+            keywords,
             removeKeyword,
             setKeyword
         }

@@ -170,8 +170,8 @@ export default defineComponent({
             default: ''
         },
         fieldErrors: {
-            type: Object as any,
-            default: {}
+            type: Object as never,
+            default: () => null
         }
     },
     setup () {

@@ -43,8 +43,8 @@ export default defineComponent({
             required: true
         },
         fieldErrors: {
-            type: Object as any,
-            default: {}
+            type: Object as never,
+            default: () => null
         }
     },
     emits: ['editPressed']

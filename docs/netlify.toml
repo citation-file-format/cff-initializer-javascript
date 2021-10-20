@@ -1,6 +1,0 @@
-[[redirects]]
-  from = "/cffinit"
-  to = "/"
-  status = 301
-  force = true
-  query = {path = ":path"}

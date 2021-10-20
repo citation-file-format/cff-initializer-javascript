@@ -67,9 +67,8 @@ export function useCffstr () {
 
     const makeCffstr = () => {
         const kebabed = makeJavascriptObject()
-        return yaml.dump(kebabed, { indent: 2, sortKeys: true })
+        return yaml.dump(kebabed, { indent: 2, sortKeys: true, lineWidth: 53 })
     }
-
     return {
         jsObject: computed(makeJavascriptObject),
         cffstr: computed(makeCffstr)

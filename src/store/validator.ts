@@ -19,7 +19,7 @@ ajv.addSchema(schema)
 const isValidFile = ref(true)
 const errors = ref<ErrorObject<string, Record<string, unknown>, unknown>[]>([])
 
-function getMyErrorsMessageByPath (myPath: string):string {
+function getErrorsMessageByPath (myPath: string):string {
     console.log('ajvErrors: ', errors.value)
 
     return errors.value.map((error) => {
@@ -42,18 +42,17 @@ function getMyErrorsMessageByPath (myPath: string):string {
     }).join(', ')
 }
 
-function myAuthorsErrorMessages (authors: AuthorsType) {
+function authorsErrorMessages (authors: AuthorsType) {
     const authorErrors = authors.map((author, index) => {
-        console.log(index, author)
         const instancePath = `/authors/${index}`
-        const itemError = getMyErrorsMessageByPath(instancePath)
-        const orcidError = getMyErrorsMessageByPath(instancePath + '/orcid')
-        const emailError = getMyErrorsMessageByPath(instancePath + '/email')
-        const affiliationError = getMyErrorsMessageByPath(instancePath + '/affiliation')
-        const givenNamesError = getMyErrorsMessageByPath(instancePath + '/givenNames')
-        const nameParticleError = getMyErrorsMessageByPath(instancePath + '/nameParticle')
-        const nameSuffixError = getMyErrorsMessageByPath(instancePath + '/nameSuffix')
-        const familyNamesError = getMyErrorsMessageByPath(instancePath + '/familyNames')
+        const itemError = getErrorsMessageByPath(instancePath)
+        const orcidError = getErrorsMessageByPath(instancePath + '/orcid')
+        const emailError = getErrorsMessageByPath(instancePath + '/email')
+        const affiliationError = getErrorsMessageByPath(instancePath + '/affiliation')
+        const givenNamesError = getErrorsMessageByPath(instancePath + '/givenNames')
+        const nameParticleError = getErrorsMessageByPath(instancePath + '/nameParticle')
+        const nameSuffixError = getErrorsMessageByPath(instancePath + '/nameSuffix')
+        const familyNamesError = getErrorsMessageByPath(instancePath + '/familyNames')
         return {
             item: itemError,
             orcid: orcidError,
@@ -65,7 +64,7 @@ function myAuthorsErrorMessages (authors: AuthorsType) {
             familyNames: familyNamesError
         }
     })
-    console.log('authorErrors: ', authorErrors)
+    // console.log('authorErrors: ', authorErrors)
     return authorErrors
 }
 
@@ -86,24 +85,35 @@ export function useFileValidator () {
     return {
         isValidFile: computed(() => isValidFile.value),
         errors: computed(() => errors.value),
-        myRootErrors: computed(() => getMyErrorsMessageByPath('')),
-        myLicenseScreenErrors: computed(() => {
+        myRootErrors: computed(() => getErrorsMessageByPath('')),
+        abstractScreenErrors: computed(() => {
             return {
-                license: getMyErrorsMessageByPath('/license')
+                abstract: getErrorsMessageByPath('/abstract')
             }
         }),
-        myRelatedResourcesScreenErrors: computed(() => {
+        startScreenErrors: computed(() => {
             return {
-                url: getMyErrorsMessageByPath('/url'),
-                repository: getMyErrorsMessageByPath('/repository'),
-                repositoryArtifact: getMyErrorsMessageByPath('/repository-artifact'),
-                repositoryCode: getMyErrorsMessageByPath('/repository-code')
+                title: getErrorsMessageByPath('/title'),
+                message: getErrorsMessageByPath('/message')
             }
         }),
-        myAuthorScreenErrors: computed(() => {
+        licenseScreenErrors: computed(() => {
             return {
-                otherErrors: getMyErrorsMessageByPath('/authors'),
-                fields: myAuthorsErrorMessages(authors.value)
+                license: getErrorsMessageByPath('/license')
+            }
+        }),
+        relatedResourcesScreenErrors: computed(() => {
+            return {
+                url: getErrorsMessageByPath('/url'),
+                repository: getErrorsMessageByPath('/repository'),
+                repositoryArtifact: getErrorsMessageByPath('/repository-artifact'),
+                repositoryCode: getErrorsMessageByPath('/repository-code')
+            }
+        }),
+        authorScreenErrors: computed(() => {
+            return {
+                otherErrors: getErrorsMessageByPath('/authors'),
+                fields: authorsErrorMessages(authors.value)
             }
         })
     }

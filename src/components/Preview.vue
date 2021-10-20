@@ -40,9 +40,12 @@
             Your CITATION.cff is {{ isValid ? "valid" : "not valid" }}
         </p>
     </div>
-    <div>
-        Global errors: {{ myRootErrors }}
-    </div>
+    <q-banner
+        v-if="myRootErrors"
+        class="bg-warning text-negative red-border"
+    >
+        {{ myRootErrors }}
+    </q-banner>
 </template>
 
 <script lang="ts">

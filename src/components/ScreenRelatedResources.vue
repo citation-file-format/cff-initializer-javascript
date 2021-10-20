@@ -19,8 +19,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:error="myRelatedResourcesScreenErrors.url.length > 0"
-                v-bind:error-message="myRelatedResourcesScreenErrors.url"
+                v-bind:error="relatedResourcesScreenErrors.url.length > 0"
+                v-bind:error-message="relatedResourcesScreenErrors.url"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -33,8 +33,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="myRelatedResourcesScreenErrors.repository.length > 0"
-                v-bind:error-message="myRelatedResourcesScreenErrors.repository"
+                v-bind:error="relatedResourcesScreenErrors.repository.length > 0"
+                v-bind:error-message="relatedResourcesScreenErrors.repository"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -47,8 +47,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:error="myRelatedResourcesScreenErrors.repositoryArtifact.length > 0"
-                v-bind:error-message="myRelatedResourcesScreenErrors.repositoryArtifact"
+                v-bind:error="relatedResourcesScreenErrors.repositoryArtifact.length > 0"
+                v-bind:error-message="relatedResourcesScreenErrors.repositoryArtifact"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
 
@@ -61,8 +61,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:error="myRelatedResourcesScreenErrors.repositoryCode.length > 0"
-                v-bind:error-message="myRelatedResourcesScreenErrors.repositoryCode"
+                v-bind:error="relatedResourcesScreenErrors.repositoryCode.length > 0"
+                v-bind:error-message="relatedResourcesScreenErrors.repositoryCode"
                 v-on:update:modelValue="setRepositoryCode"
             />
         </div>
@@ -91,7 +91,7 @@ export default defineComponent({
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
         } = useCff()
-        const { myRelatedResourcesScreenErrors } = useFileValidator()
+        const { relatedResourcesScreenErrors } = useFileValidator()
         return {
             repository,
             repositoryArtifact,
@@ -101,7 +101,7 @@ export default defineComponent({
             setRepositoryArtifact,
             setRepositoryCode,
             setUrl,
-            myRelatedResourcesScreenErrors
+            relatedResourcesScreenErrors
         }
     }
 })

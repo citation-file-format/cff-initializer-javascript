@@ -2,7 +2,7 @@
     <q-card
         flat
         bordered
-        v-bind:class="['bg-formcard', 'q-pa-md', fieldErrors.item ? 'card-error' : '']"
+        v-bind:class="['bg-formcard', 'q-pa-md', fieldErrors.item ? 'red-border' : '']"
     >
         <div class="row">
             <q-input
@@ -107,8 +107,8 @@
 
         <q-banner
             v-if="fieldErrors.item"
-            class="bg-secondary text-negative"
-            style="margin-top: 50px; margin-bottom: 20px;"
+            class="bg-warning text-negative red-border"
+            style="margin-top: 40px; margin-bottom: 10px;"
         >
             {{ fieldErrors.item }}
         </q-banner>

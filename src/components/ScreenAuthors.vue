@@ -22,14 +22,14 @@
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:author="author"
-                            v-bind:field-errors="myAuthorScreenErrors.fields[index]"
+                            v-bind:field-errors="authorScreenErrors.fields[index]"
                             v-on:editPressed="() => (editingId = index)"
                         />
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
                             v-bind="author"
-                            v-bind:field-errors="myAuthorScreenErrors.fields[index]"
+                            v-bind:field-errors="authorScreenErrors.fields[index]"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"
@@ -47,9 +47,12 @@
             </q-btn>
         </div>
 
-        <div>
-            {{ myAuthorScreenErrors.otherErrors }}
-        </div>
+        <q-banner
+            v-if="authorScreenErrors.otherErrors"
+            class="bg-warning text-negative red-border"
+        >
+            {{ authorScreenErrors.otherErrors }}
+        </q-banner>
 
         <div id="form-button-bar">
             <StepperActions />
@@ -100,14 +103,14 @@ export default defineComponent({
             authors.value[editingId.value] = author
             setAuthors(authors.value)
         }
-        const { myAuthorScreenErrors } = useFileValidator()
+        const { authorScreenErrors } = useFileValidator()
         return {
             addAuthor,
             authors,
             editingId,
             removeAuthor,
             setAuthorField,
-            myAuthorScreenErrors
+            authorScreenErrors
         }
     }
 })

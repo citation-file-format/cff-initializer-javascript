@@ -187,6 +187,7 @@ pre, .mono {
 }
 
 
-.card-error {
+.red-border {
     border-color: #C10015;
+    border-width: 2px;
 }

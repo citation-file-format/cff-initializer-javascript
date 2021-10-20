@@ -20,7 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:rules="[validateTitle]"
+                v-bind:error="startScreenErrors.title.length > 0"
+                v-bind:error-message="startScreenErrors.title"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -35,7 +36,8 @@
                 use-input
                 v-bind:options="messageOptions"
                 v-bind:model-value="message"
-                v-bind:rules="[validateMessage]"
+                v-bind:error="startScreenErrors.message.length > 0"
+                v-bind:error-message="startScreenErrors.message"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             />
@@ -62,6 +64,7 @@ import StepperActions from 'components/StepperActions.vue'
 import { makeFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -79,6 +82,9 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
+
+        const { startScreenErrors } = useFileValidator()
+
         return {
             message,
             messageOptions,
@@ -92,7 +98,8 @@ export default defineComponent({
             setTitle,
             setType,
             validateTitle: makeFieldValidator('/properties/title'),
-            validateMessage: makeFieldValidator('/properties/message')
+            validateMessage: makeFieldValidator('/properties/message'),
+            startScreenErrors
         }
     }
 })

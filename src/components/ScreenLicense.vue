@@ -21,15 +21,11 @@
                 use-input
                 v-bind:model-value="license"
                 v-bind:options="options"
-                v-bind:error="myLicenseScreenErrors.license.length > 0"
-                v-bind:error-message="myLicenseScreenErrors.license"
+                v-bind:error="licenseScreenErrors.license.length > 0"
+                v-bind:error-message="licenseScreenErrors.license"
                 v-on:filter="filterFn"
                 v-on:update:model-value="setLicense"
             />
-        </div>
-
-        <div>
-            {{ myLicenseScreenErrors }}
         </div>
 
         <div id="form-button-bar">
@@ -54,7 +50,7 @@ export default defineComponent({
     },
     setup () {
         const cff = useCff()
-        const { myLicenseScreenErrors } = useFileValidator()
+        const { licenseScreenErrors } = useFileValidator()
 
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
@@ -78,7 +74,7 @@ export default defineComponent({
                     options.value = licenses.filter(v => v.toLowerCase().indexOf(needle) > -1)
                 })
             },
-            myLicenseScreenErrors
+            licenseScreenErrors
         }
     }
 })

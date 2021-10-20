@@ -21,8 +21,8 @@
                 standout
                 type="textarea"
                 v-bind:model-value="abstract"
-                v-bind:error="abstractScreenErrors.abstract.length > 0"
-                v-bind:error-message="abstractScreenErrors.abstract"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setAbstract"
             />
         </div>
@@ -38,8 +38,6 @@ import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
-import { useFileValidator } from 'src/store/validator'
-
 export default defineComponent({
     name: 'ScreenAbstract',
     components: {
@@ -48,12 +46,9 @@ export default defineComponent({
     },
     setup () {
         const { abstract, setAbstract } = useCff()
-        const { abstractScreenErrors } = useFileValidator()
-
         return {
             abstract,
-            setAbstract,
-            abstractScreenErrors
+            setAbstract
         }
     }
 })

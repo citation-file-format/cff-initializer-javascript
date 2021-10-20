@@ -20,8 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:error="startScreenErrors.title.length > 0"
-                v-bind:error-message="startScreenErrors.title"
+                v-bind:error="titleError.hasError"
+                v-bind:error-message="titleError.messages.join(', ')"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -36,8 +36,8 @@
                 use-input
                 v-bind:options="messageOptions"
                 v-bind:model-value="message"
-                v-bind:error="startScreenErrors.message.length > 0"
-                v-bind:error-message="startScreenErrors.message"
+                v-bind:error="messageError.hasError"
+                v-bind:error-message="messageError.messages.join(', ')"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             />
@@ -52,6 +52,18 @@
             />
         </div>
 
+        <q-banner
+            v-if="screenError.hasError"
+            class="bg-warning text-negative"
+        >
+            <div
+                v-bind:key="index"
+                v-for="(screenMessage, index) in screenError.messages"
+            >
+                {{ screenMessage }}
+            </div>
+        </q-banner>
+
         <div id="form-button-bar">
             <StepperActions />
         </div>
@@ -61,10 +73,9 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
-import { useFileValidator } from 'src/store/validator'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -82,9 +93,6 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
-
-        const { startScreenErrors } = useFileValidator()
-
         return {
             message,
             messageOptions,
@@ -97,9 +105,9 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            validateTitle: makeFieldValidator('/properties/title'),
-            validateMessage: makeFieldValidator('/properties/message'),
-            startScreenErrors
+            messageError: computed(() => getMyErrors('', ['message'])),
+            titleError: computed(() => getMyErrors('', ['title'])),
+            screenError: computed(() => getMyErrors('', ['message', 'title']))
         }
     }
 })

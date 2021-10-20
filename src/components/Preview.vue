@@ -40,19 +40,12 @@
             Your CITATION.cff is {{ isValid ? "valid" : "not valid" }}
         </p>
     </div>
-    <q-banner
-        v-if="myRootErrors"
-        class="bg-warning text-negative red-border"
-    >
-        {{ myRootErrors }}
-    </q-banner>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
 import { isValidCffFile } from 'src/validator'
-import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'Preview',
@@ -71,14 +64,11 @@ export default defineComponent({
 
         const isValid = computed(isValidCffFile)
 
-        const { myRootErrors } = useFileValidator()
-
         return {
             cffstr,
             copyToClipboard,
             isValid,
-            showTooltip,
-            myRootErrors
+            showTooltip
         }
     }
 })

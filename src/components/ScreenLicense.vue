@@ -21,8 +21,8 @@
                 use-input
                 v-bind:model-value="license"
                 v-bind:options="options"
-                v-bind:error="licenseScreenErrors.license.length > 0"
-                v-bind:error-message="licenseScreenErrors.license"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:filter="filterFn"
                 v-on:update:model-value="setLicense"
             />
@@ -40,7 +40,6 @@ import { useCff } from '../store/cff'
 import schema from '../schemas/1.2.0/schema.json'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenLicense',
@@ -50,8 +49,6 @@ export default defineComponent({
     },
     setup () {
         const cff = useCff()
-        const { licenseScreenErrors } = useFileValidator()
-
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
 
@@ -73,8 +70,7 @@ export default defineComponent({
                     const needle = val.toLowerCase()
                     options.value = licenses.filter(v => v.toLowerCase().indexOf(needle) > -1)
                 })
-            },
-            licenseScreenErrors
+            }
         }
     }
 })

@@ -19,8 +19,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:error="relatedResourcesScreenErrors.url.length > 0"
-                v-bind:error-message="relatedResourcesScreenErrors.url"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -33,8 +33,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="relatedResourcesScreenErrors.repository.length > 0"
-                v-bind:error-message="relatedResourcesScreenErrors.repository"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -47,8 +47,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:error="relatedResourcesScreenErrors.repositoryArtifact.length > 0"
-                v-bind:error-message="relatedResourcesScreenErrors.repositoryArtifact"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
 
@@ -61,8 +61,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:error="relatedResourcesScreenErrors.repositoryCode.length > 0"
-                v-bind:error-message="relatedResourcesScreenErrors.repositoryCode"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepositoryCode"
             />
         </div>
@@ -78,7 +78,6 @@ import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
-import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -91,7 +90,6 @@ export default defineComponent({
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
         } = useCff()
-        const { relatedResourcesScreenErrors } = useFileValidator()
         return {
             repository,
             repositoryArtifact,
@@ -100,8 +98,7 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl,
-            relatedResourcesScreenErrors
+            setUrl
         }
     }
 })

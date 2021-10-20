@@ -21,15 +21,15 @@
                         <AuthorCardViewing
                             v-if="editingId !== index"
                             v-bind:index="index"
-                            v-bind:author="author"
-                            v-bind:field-errors="authorScreenErrors.fields[index]"
+                            v-bind="false"
+                            v-bind:field-errors="''"
                             v-on:editPressed="() => (editingId = index)"
                         />
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
-                            v-bind="author"
-                            v-bind:field-errors="authorScreenErrors.fields[index]"
+                            v-bind="false"
+                            v-bind:field-errors="''"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"
@@ -47,13 +47,6 @@
             </q-btn>
         </div>
 
-        <q-banner
-            v-if="authorScreenErrors.otherErrors"
-            class="bg-warning text-negative red-border"
-        >
-            {{ authorScreenErrors.otherErrors }}
-        </q-banner>
-
         <div id="form-button-bar">
             <StepperActions />
         </div>
@@ -69,7 +62,6 @@ import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
-import { useFileValidator } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -103,14 +95,12 @@ export default defineComponent({
             authors.value[editingId.value] = author
             setAuthors(authors.value)
         }
-        const { authorScreenErrors } = useFileValidator()
         return {
             addAuthor,
             authors,
             editingId,
             removeAuthor,
-            setAuthorField,
-            authorScreenErrors
+            setAuthorField
         }
     }
 })

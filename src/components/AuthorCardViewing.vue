@@ -1,8 +1,7 @@
 <template>
     <q-card
         bordered
-        class="bg-formcard"
-        v-bind:class="['bg-formcard', fieldErrors.item ? 'card-error' : '']"
+        v-bind:class="['bg-formcard']"
         flat
         style="display: flex; flex-direction: row"
     >
@@ -41,10 +40,6 @@ export default defineComponent({
         author: {
             type: Object as PropType<AuthorType>,
             required: true
-        },
-        fieldErrors: {
-            type: Object as never,
-            default: () => null
         }
     },
     emits: ['editPressed']

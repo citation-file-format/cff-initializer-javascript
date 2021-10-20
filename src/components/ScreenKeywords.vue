@@ -21,6 +21,8 @@
                         v-bind:key="index"
                         v-bind:keyword="keyword"
                         v-for="(keyword, index) in keywords"
+                        v-on:moveDown="moveDown(index)"
+                        v-on:moveUp="moveUp(index)"
                         v-on:removePressed="removeKeyword(index)"
                         v-on:update="setKeyword(index, $event)"
                     />
@@ -68,6 +70,18 @@ export default defineComponent({
             await nextTick()
             scrollToBottom()
         }
+        const moveDown = (index: number) => {
+            if (index === keywords.value.length - 1) return
+            const newKeywords = [...keywords.value]
+            newKeywords[index] = newKeywords.splice(index + 1, 1, newKeywords[index])[0]
+            setKeywords(newKeywords)
+        }
+        const moveUp = (index: number) => {
+            if (index === 0) return
+            const newKeywords = [...keywords.value]
+            newKeywords[index] = newKeywords.splice(index - 1, 1, newKeywords[index])[0]
+            setKeywords(newKeywords)
+        }
         const removeKeyword = (index: number) => {
             const newKeywords = [...keywords.value]
             newKeywords.splice(index, 1)
@@ -81,6 +95,8 @@ export default defineComponent({
         return {
             addKeyword,
             keywords,
+            moveDown,
+            moveUp,
             removeKeyword,
             setKeyword
         }

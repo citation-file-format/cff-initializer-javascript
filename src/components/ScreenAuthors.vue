@@ -23,8 +23,8 @@
                             v-bind:index="index"
                             v-bind:author="author"
                             v-on:editPressed="() => (editingId = index)"
-                            v-on:moveDown="moveDown(index)"
-                            v-on:moveUp="moveUp(index)"
+                            v-on:moveDown="moveDown(index, authors, setAuthors)"
+                            v-on:moveUp="moveUp(index, authors, setAuthors)"
                         />
                         <AuthorCardEditing
                             v-else
@@ -60,6 +60,7 @@ import StepperActions from 'components/StepperActions.vue'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
+import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 
@@ -83,18 +84,6 @@ export default defineComponent({
             await nextTick()
             scrollToBottom()
         }
-        const moveDown = (index: number) => {
-            if (index === authors.value.length - 1) return
-            const newAuthors = [...authors.value]
-            newAuthors[index] = newAuthors.splice(index + 1, 1, newAuthors[index])[0]
-            setAuthors(newAuthors)
-        }
-        const moveUp = (index: number) => {
-            if (index === 0) return
-            const newAuthors = [...authors.value]
-            newAuthors[index] = newAuthors.splice(index - 1, 1, newAuthors[index])[0]
-            setAuthors(newAuthors)
-        }
         const removeAuthor = () => {
             const newAuthors = [...authors.value]
             newAuthors.splice(editingId.value, 1)
@@ -115,7 +104,8 @@ export default defineComponent({
             moveDown,
             moveUp,
             removeAuthor,
-            setAuthorField
+            setAuthorField,
+            setAuthors
         }
     }
 })

@@ -21,8 +21,8 @@
                         v-bind:key="index"
                         v-bind:keyword="keyword"
                         v-for="(keyword, index) in keywords"
-                        v-on:moveDown="moveDown(index)"
-                        v-on:moveUp="moveUp(index)"
+                        v-on:moveDown="moveDown(index, keywords, setKeywords)"
+                        v-on:moveUp="moveUp(index, keywords, setKeywords)"
                         v-on:removePressed="removeKeyword(index)"
                         v-on:update="setKeyword(index, $event)"
                     />
@@ -50,6 +50,7 @@ import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
 import { defineComponent, nextTick } from 'vue'
+import { moveDown, moveUp } from '../updown'
 import { useCff } from '../store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 
@@ -70,18 +71,6 @@ export default defineComponent({
             await nextTick()
             scrollToBottom()
         }
-        const moveDown = (index: number) => {
-            if (index === keywords.value.length - 1) return
-            const newKeywords = [...keywords.value]
-            newKeywords[index] = newKeywords.splice(index + 1, 1, newKeywords[index])[0]
-            setKeywords(newKeywords)
-        }
-        const moveUp = (index: number) => {
-            if (index === 0) return
-            const newKeywords = [...keywords.value]
-            newKeywords[index] = newKeywords.splice(index - 1, 1, newKeywords[index])[0]
-            setKeywords(newKeywords)
-        }
         const removeKeyword = (index: number) => {
             const newKeywords = [...keywords.value]
             newKeywords.splice(index, 1)
@@ -98,7 +87,8 @@ export default defineComponent({
             moveDown,
             moveUp,
             removeKeyword,
-            setKeyword
+            setKeyword,
+            setKeywords
         }
     }
 })

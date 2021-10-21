@@ -21,15 +21,13 @@
                         <AuthorCardViewing
                             v-if="editingId !== index"
                             v-bind:index="index"
-                            v-bind="false"
-                            v-bind:field-errors="''"
+                            v-bind:author="author"
                             v-on:editPressed="() => (editingId = index)"
                         />
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
-                            v-bind="false"
-                            v-bind:field-errors="''"
+                            v-bind="author"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"
@@ -37,6 +35,7 @@
                     </div>
                 </div>
             </div>
+
             <q-btn
                 class="q-mt-md q-mb-md"
                 color="primary"
@@ -47,6 +46,18 @@
             </q-btn>
         </div>
 
+        <q-banner
+            v-if="authorsErrors.hasError"
+            class="bg-warning text-negative"
+        >
+            <div
+                v-bind:key="index"
+                v-for="(screenMessage, index) in authorsErrors.messages"
+            >
+                {{ screenMessage }}
+            </div>
+        </q-banner>
+
         <div id="form-button-bar">
             <StepperActions />
         </div>
@@ -54,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue'
+import { computed, defineComponent, nextTick, ref } from 'vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
@@ -62,6 +73,7 @@ import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -75,8 +87,13 @@ export default defineComponent({
         const { authors, setAuthors } = useCff()
         const editingId = ref(0)
         const addAuthor = async () => {
+            let newAuthors:AuthorType[]
             const newAuthor: AuthorType = {}
-            const newAuthors = [...authors.value, newAuthor]
+            if (authors.value === undefined) {
+                newAuthors = [newAuthor]
+            } else {
+                newAuthors = [...authors.value, newAuthor]
+            }
             setAuthors(newAuthors)
             editingId.value = newAuthors.length - 1
             // await the DOM update that resulted from updating the authors list
@@ -84,23 +101,37 @@ export default defineComponent({
             scrollToBottom()
         }
         const removeAuthor = () => {
-            const newAuthors = [...authors.value]
-            newAuthors.splice(editingId.value, 1)
-            setAuthors(newAuthors)
-            editingId.value = -1
+            if (authors.value !== undefined) {
+                const newAuthors = [...authors.value]
+                newAuthors.splice(editingId.value, 1)
+                setAuthors(newAuthors)
+                editingId.value = -1
+                if (Array.isArray(newAuthors) && newAuthors.length === 0) {
+                    setAuthors(undefined)
+                }
+            }
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
-            const author = { ...authors.value[editingId.value] }
-            author[field] = value
-            authors.value[editingId.value] = author
-            setAuthors(authors.value)
+            if (authors.value !== undefined) {
+                const author = { ...authors.value[editingId.value] }
+                author[field] = value === '' ? undefined : value
+                authors.value[editingId.value] = author
+                setAuthors(authors.value)
+            }
         }
         return {
             addAuthor,
             authors,
             editingId,
             removeAuthor,
-            setAuthorField
+            setAuthorField,
+            authorsErrors: computed(() => {
+                return {
+                    ...getMyErrors('/authors'), // all author related errors
+                    ...getMyErrors('', ['authors']) // at least one author is required
+                }
+            })
+            // authorsErrors: computed(() => authors.value.map((author, index) => { return getMyErrors(`/authors/${index}`) }))
         }
     }
 })

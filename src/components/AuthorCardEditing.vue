@@ -14,8 +14,8 @@
                 standout
                 title="The person's given names."
                 v-bind:model-value="givenNames"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="givenNamesError.hasError"
+                v-bind:error-message="givenNamesError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
             />
         </div>
@@ -29,8 +29,8 @@
                 standout
                 title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
                 v-bind:model-value="nameParticle"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="nameParticleError.hasError"
+                v-bind:error-message="nameParticleError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
             />
             <q-input
@@ -42,8 +42,8 @@
                 standout
                 title="The person's family names."
                 v-bind:model-value="familyNames"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="familyNamesError.hasError"
+                v-bind:error-message="familyNamesError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'familyNames', $event)"
             />
             <q-input
@@ -55,8 +55,8 @@
                 standout
                 title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
                 v-bind:model-value="nameSuffix"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="nameSuffixError.hasError"
+                v-bind:error-message="nameSuffixError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
             />
         </div>
@@ -71,8 +71,8 @@
                 title="The person's email address."
                 type="email"
                 v-bind:model-value="email"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="emailError.hasError"
+                v-bind:error-message="emailError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
         </div>
@@ -86,8 +86,8 @@
                 standout
                 title="The person's affiliation."
                 v-bind:model-value="affiliation"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="affiliationError.hasError"
+                v-bind:error-message="affiliationError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'affiliation', $event)"
             />
             <q-input
@@ -99,8 +99,8 @@
                 standout
                 title="The person's ORCID identifier."
                 v-bind:model-value="orcid"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="orcidError.hasError"
+                v-bind:error-message="orcidError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
             />
         </div>
@@ -124,7 +124,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { computed, defineComponent } from 'vue'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'AuthorCardEditing',
@@ -141,15 +143,15 @@ export default defineComponent({
             type: String,
             default: ''
         },
+        familyNames: {
+            type: String,
+            default: ''
+        },
         nameSuffix: {
             type: String,
             default: ''
         },
-        orcid: {
-            type: String,
-            default: ''
-        },
-        familyNames: {
+        email: {
             type: String,
             default: ''
         },
@@ -157,13 +159,20 @@ export default defineComponent({
             type: String,
             default: ''
         },
-        email: {
+        orcid: {
             type: String,
             default: ''
         }
     },
-    setup () {
+    setup (props) {
         return {
+            givenNamesError: computed(() => getMyErrors(`/authors/${props.index}/given-names`)),
+            nameParticleError: computed(() => getMyErrors(`/authors/${props.index}/name-particle`)),
+            familyNamesError: computed(() => getMyErrors(`/authors/${props.index}/family-names`)),
+            nameSuffixError: computed(() => getMyErrors(`/authors/${props.index}/name-suffix`)),
+            emailError: computed(() => getMyErrors(`/authors/${props.index}/email`)),
+            affiliationError: computed(() => getMyErrors(`/authors/${props.index}/affiliation`)),
+            orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`))
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

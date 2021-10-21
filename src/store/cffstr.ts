@@ -31,16 +31,19 @@ export function useCffstr () {
 
     const notEmpty = (value: unknown, prop: unknown, subject: unknown) => {
         // based on https://www.npmjs.com/package/deep-filter example
-        if (Array.isArray(value)) {
-            return value.length > 0
-        } else if (typeof value === 'object' && value !== null) {
-            return Object.keys(value).length > 0
-        } else if (typeof value === 'string') {
-            return value.length > 0
-        } else {
-            return value != null
-        }
+        // if (Array.isArray(value)) {
+        //     return value.length > 0
+        // } else if (typeof value === 'object' && value !== null) {
+        //     return Object.keys(value).length > 0
+        // } else if (typeof value === 'string') {
+        //     return value.length > 0
+        // } else {
+        //     return value != null
+        // }
+
+        return value !== undefined
     }
+
     const makeJavascriptObject = () => {
         const cff = {
             abstract: abstract.value,

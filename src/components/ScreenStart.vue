@@ -50,19 +50,19 @@
                 v-bind:options="typeOptions"
                 v-on:update:modelValue="setType"
             />
-        </div>
 
-        <q-banner
-            v-if="screenError.hasError"
-            class="bg-warning text-negative"
-        >
-            <div
-                v-bind:key="index"
-                v-for="(screenMessage, index) in screenError.messages"
+            <q-banner
+                v-if="screenError.hasError"
+                class="bg-warning text-negative"
             >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
+                <div
+                    v-bind:key="index"
+                    v-for="(screenMessage, index) in screenError.messages"
+                >
+                    {{ screenMessage }}
+                </div>
+            </q-banner>
+        </div>
 
         <div id="form-button-bar">
             <StepperActions />

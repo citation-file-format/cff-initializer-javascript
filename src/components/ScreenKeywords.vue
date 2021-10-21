@@ -61,22 +61,34 @@ export default defineComponent({
     setup () {
         const { keywords, setKeywords } = useCff()
         const addKeyword = async () => {
+            let newKeywords:string[]
             const newKeyword = ''
-            const newKeywords = [...keywords.value, newKeyword]
+            if (keywords.value === undefined) {
+                newKeywords = [newKeyword]
+            } else {
+                newKeywords = [...keywords.value, newKeyword]
+            }
             setKeywords(newKeywords)
             // await the DOM update that resulted from updating the keywords list
             await nextTick()
             scrollToBottom()
         }
         const removeKeyword = (index: number) => {
-            const newKeywords = [...keywords.value]
-            newKeywords.splice(index, 1)
-            setKeywords(newKeywords)
+            if (keywords.value !== undefined) {
+                const newKeywords = [...keywords.value]
+                newKeywords.splice(index, 1)
+                setKeywords(newKeywords)
+                if (Array.isArray(newKeywords) && newKeywords.length === 0) {
+                    setKeywords(undefined)
+                }
+            }
         }
         const setKeyword = (index: number, newKeyword: string) => {
-            const newKeywords = [...keywords.value]
-            newKeywords[index] = newKeyword
-            setKeywords(newKeywords)
+            if (keywords.value !== undefined) {
+                const newKeywords = [...keywords.value]
+                newKeywords[index] = newKeyword
+                setKeywords(newKeywords)
+            }
         }
         return {
             addKeyword,

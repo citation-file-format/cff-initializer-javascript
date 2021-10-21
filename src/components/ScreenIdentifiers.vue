@@ -75,12 +75,17 @@ export default defineComponent({
         const { identifiers, setIdentifiers } = useCff()
         const editingId = ref(-1)
         const addIdentifier = async () => {
+            let newIdentifiers:IdentifierType[]
             const newIdentifier: IdentifierType = {
                 type: 'doi',
                 value: '',
-                description: ''
+                description: undefined
             }
-            const newIdentifiers = [...identifiers.value, newIdentifier]
+            if (identifiers.value === undefined) {
+                newIdentifiers = [newIdentifier]
+            } else {
+                newIdentifiers = [...identifiers.value, newIdentifier]
+            }
             setIdentifiers(newIdentifiers)
             editingId.value = newIdentifiers.length - 1
             // await the DOM update that resulted from updating the identifiers list
@@ -88,28 +93,39 @@ export default defineComponent({
             scrollToBottom()
         }
         const removeIdentifier = () => {
-            const newIdentifiers = [...identifiers.value]
-            newIdentifiers.splice(editingId.value, 1)
-            setIdentifiers(newIdentifiers)
-            editingId.value = -1
+            if (identifiers.value !== undefined) {
+                const newIdentifiers = [...identifiers.value]
+                newIdentifiers.splice(editingId.value, 1)
+                setIdentifiers(newIdentifiers)
+                editingId.value = -1
+                if (Array.isArray(newIdentifiers) && newIdentifiers.length === 0) {
+                    setIdentifiers(undefined)
+                }
+            }
         }
         const setIdentifierDescriptionField = (field: keyof IdentifierType, value: string) => {
-            const identifier = { ...identifiers.value[editingId.value] }
-            identifier.description = value
-            identifiers.value[editingId.value] = identifier
-            setIdentifiers(identifiers.value)
+            if (identifiers.value !== undefined) {
+                const identifier = { ...identifiers.value[editingId.value] }
+                identifier.description = value === '' ? undefined : value
+                identifiers.value[editingId.value] = identifier
+                setIdentifiers(identifiers.value)
+            }
         }
         const setIdentifierTypeField = (field: keyof IdentifierType, value: IdentifierTypeType) => {
-            const identifier = { ...identifiers.value[editingId.value] }
-            identifier.type = value
-            identifiers.value[editingId.value] = identifier
-            setIdentifiers(identifiers.value)
+            if (identifiers.value !== undefined) {
+                const identifier = { ...identifiers.value[editingId.value] }
+                identifier.type = value
+                identifiers.value[editingId.value] = identifier
+                setIdentifiers(identifiers.value)
+            }
         }
         const setIdentifierValueField = (field: keyof IdentifierType, value: string) => {
-            const identifier = { ...identifiers.value[editingId.value] }
-            identifier.value = value
-            identifiers.value[editingId.value] = identifier
-            setIdentifiers(identifiers.value)
+            if (identifiers.value !== undefined) {
+                const identifier = { ...identifiers.value[editingId.value] }
+                identifier.value = value
+                identifiers.value[editingId.value] = identifier
+                setIdentifiers(identifiers.value)
+            }
         }
         return {
             addIdentifier,

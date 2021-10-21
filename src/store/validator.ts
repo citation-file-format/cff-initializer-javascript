@@ -8,12 +8,16 @@ type messageErrorType = {
 
 export function getMyErrors (myPath: string, fieldNames?: string[]):messageErrorType {
     const { errors } = useErrors()
+    console.log('ajvErrors: ', errors.value)
     const messages = errors.value.filter((item) => {
         return item.instancePath === myPath
     }).filter((item) => {
         if (fieldNames !== undefined && item.keyword === 'required') {
             return fieldNames.includes(item.params.missingProperty as string)
         }
+        // if (fieldNames !== undefined && item.keyword === 'uniqueItems') {
+        //     return fieldNames.includes(item.params.missingProperty as string)
+        // }
         return true
     }).map((item) => {
         return item.message

@@ -10,12 +10,15 @@
         vertical
     >
         <q-step
-            color="primary"
+            color="isValidScreenStart.hasError ? 'negative' : 'primary'"
+            error-color="negative"
+            error-icon="warning"
             icon=""
             name="start"
             title="Start"
+            v-bind:active-icon="isValidScreenStart.hasError ? 'warning' : 'edit'"
+            v-bind:error="isValidScreenStart.hasError"
             v-bind:order="0"
-            v-bind:error="!validScreens.start.value"
             v-on:click="setStepName('start')"
         />
 
@@ -56,7 +59,6 @@
             title="Related resources"
             v-bind:order="4"
             v-if="showAdvanced"
-            v-bind:error="!validScreens.relatedResources.value"
             v-on:click="setStepName('related-resources')"
         />
 
@@ -67,7 +69,6 @@
             title="Abstract"
             v-bind:order="5"
             v-if="showAdvanced"
-            v-bind:error="!validScreens.abstract.value"
             v-on:click="setStepName('abstract')"
         />
 
@@ -88,7 +89,6 @@
             title="License"
             v-bind:order="7"
             v-if="showAdvanced"
-            v-bind:error="!validScreens.license.value"
             v-on:click="setStepName('license')"
         />
 
@@ -99,7 +99,6 @@
             title="Version specific"
             v-bind:order="8"
             v-if="showAdvanced"
-            v-bind:error="!validScreens.versionSpecific.value"
             v-on:click="setStepName('version-specific')"
         />
 
@@ -119,17 +118,17 @@
 <script lang="ts">
 
 import { useApp } from '../store/app'
-import { useValidScreens } from '../store/screens'
+import { getMyErrors } from 'src/store/validator'
+import { computed } from 'vue'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-        const validScreens = useValidScreens()
         return {
-            showAdvanced,
-            stepName,
+            isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
             setStepName,
-            validScreens
+            showAdvanced,
+            stepName
         }
     }
 }

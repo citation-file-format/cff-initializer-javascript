@@ -23,6 +23,8 @@
                             v-bind:index="index"
                             v-bind:identifier="identifier"
                             v-on:editPressed="() => (editingId = index)"
+                            v-on:moveDown="moveDown(index, identifiers, setIdentifiers)"
+                            v-on:moveUp="moveUp(index, identifiers, setIdentifiers)"
                         />
                         <IdentifierCardEditing
                             v-else
@@ -62,6 +64,7 @@ import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { moveDown, moveUp } from '../updown'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',
@@ -115,10 +118,13 @@ export default defineComponent({
             addIdentifier,
             editingId,
             identifiers,
+            moveDown,
+            moveUp,
             removeIdentifier,
             setIdentifierDescriptionField,
             setIdentifierTypeField,
-            setIdentifierValueField
+            setIdentifierValueField,
+            setIdentifiers
         }
     }
 })

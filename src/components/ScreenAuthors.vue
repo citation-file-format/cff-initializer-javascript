@@ -18,53 +18,22 @@
                         v-bind:key="index"
                         v-for="(author, index) in authors"
                     >
-                        <!-- position, margin, sizes, etc. -->
-                        <div class="arrows">
-                            <q-btn
-                                color="gray"
-                                disabled
-                                icon="ion-arrow-up"
-                                round
-                                v-if="index == 0"
-                            />
-                            <q-btn
-                                v-if="index > 0"
-                                round
-                                color="blue"
-                                icon="ion-arrow-up"
-                                v-on:click="moveUp(index)"
-                            />
-                            <q-btn
-                                color="gray"
-                                disabled
-                                icon="ion-arrow-down"
-                                round
-                                v-if="index == authors.length - 1"
-                            />
-                            <q-btn
-                                color="blue"
-                                icon="ion-arrow-down"
-                                round
-                                v-if="index < authors.length - 1"
-                                v-on:click="moveDown(index)"
-                            />
-                        </div>
-                        <div>
-                            <AuthorCardViewing
-                                v-if="editingId !== index"
-                                v-bind:index="index"
-                                v-bind:author="author"
-                                v-on:editPressed="() => (editingId = index)"
-                            />
-                            <AuthorCardEditing
-                                v-else
-                                v-bind:index="index"
-                                v-bind="author"
-                                v-on:update="setAuthorField"
-                                v-on:closePressed="() => (editingId = -1)"
-                                v-on:removePressed="removeAuthor"
-                            />
-                        </div>
+                        <AuthorCardViewing
+                            v-if="editingId !== index"
+                            v-bind:index="index"
+                            v-bind:author="author"
+                            v-on:editPressed="() => (editingId = index)"
+                            v-on:moveDown="moveDown(index)"
+                            v-on:moveUp="moveUp(index)"
+                        />
+                        <AuthorCardEditing
+                            v-else
+                            v-bind:index="index"
+                            v-bind="author"
+                            v-on:update="setAuthorField"
+                            v-on:closePressed="() => (editingId = -1)"
+                            v-on:removePressed="removeAuthor"
+                        />
                     </div>
                 </div>
             </div>
@@ -115,11 +84,13 @@ export default defineComponent({
             scrollToBottom()
         }
         const moveDown = (index: number) => {
+            if (index === authors.value.length - 1) return
             const newAuthors = [...authors.value]
             newAuthors[index] = newAuthors.splice(index + 1, 1, newAuthors[index])[0]
             setAuthors(newAuthors)
         }
         const moveUp = (index: number) => {
+            if (index === 0) return
             const newAuthors = [...authors.value]
             newAuthors[index] = newAuthors.splice(index - 1, 1, newAuthors[index])[0]
             setAuthors(newAuthors)

@@ -93,6 +93,8 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
+        // const validator = getMyErrors()
+
         return {
             message,
             messageOptions,

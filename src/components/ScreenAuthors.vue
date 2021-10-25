@@ -75,6 +75,17 @@ import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { getMyErrors } from 'src/store/validator'
 
+export const authorsErrors = () => {
+    const results = [
+        getMyErrors('', ['authors']),
+        getMyErrors('/authors')
+    ]
+    return {
+        hasError: results.some(result => result.hasError),
+        messages: results.map(result => result.messages.join(', '))
+    }
+}
+
 export default defineComponent({
     name: 'ScreenAuthors',
     components: {
@@ -125,16 +136,7 @@ export default defineComponent({
             editingId,
             removeAuthor,
             setAuthorField,
-            authorsErrors: computed(() => {
-                const results = [
-                    getMyErrors('', ['authors']),
-                    getMyErrors('/authors')
-                ]
-                return {
-                    hasError: results.some(result => result.hasError),
-                    messages: results.map(result => result.messages.join(', '))
-                }
-            })
+            authorsErrors: computed(authorsErrors)
         }
     }
 })

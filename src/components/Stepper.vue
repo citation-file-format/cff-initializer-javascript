@@ -23,11 +23,15 @@
         />
 
         <q-step
-            color="primary"
+            color="isValidScreenAuthors.hasError ? 'negative' : 'primary'"
+            error-color="negative"
+            error-icon="warning"
             icon=""
             name="authors"
             title="Authors"
             v-bind:order="1"
+            v-bind:active-icon="isValidScreenAuthors.hasError ? 'warning' : 'edit'"
+            v-bind:error="isValidScreenAuthors.hasError"
             v-on:click="setStepName('authors')"
         />
 
@@ -120,12 +124,14 @@
 import { useApp } from '../store/app'
 import { getMyErrors } from 'src/store/validator'
 import { computed } from 'vue'
+import { authorsErrors } from './ScreenAuthors.vue'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
         return {
             isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
+            isValidScreenAuthors: computed(authorsErrors),
             setStepName,
             showAdvanced,
             stepName

@@ -2,7 +2,7 @@
     <q-card
         flat
         bordered
-        v-bind:class="['bg-formcard', 'q-pa-md']"
+        v-bind:class="['bg-formcard', 'q-pa-md', authorErrors.hasError ? 'red-border' : '']"
     >
         <div class="row">
             <q-input
@@ -105,6 +105,18 @@
             />
         </div>
 
+        <q-banner
+            v-if="authorErrors.hasError"
+            class="bg-warning text-negative"
+        >
+            <div
+                v-bind:key="authindex"
+                v-for="(screenMessage, authindex) in authorErrors.messages"
+            >
+                {{ screenMessage }}
+            </div>
+        </q-banner>
+
         <q-card-actions align="right">
             <q-btn
                 color="negative"
@@ -172,7 +184,8 @@ export default defineComponent({
             nameSuffixError: computed(() => getMyErrors(`/authors/${props.index}/name-suffix`)),
             emailError: computed(() => getMyErrors(`/authors/${props.index}/email`)),
             affiliationError: computed(() => getMyErrors(`/authors/${props.index}/affiliation`)),
-            orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`))
+            orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`)),
+            authorErrors: computed(() => getMyErrors(`/authors/${props.index}`))
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

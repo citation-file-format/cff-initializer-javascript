@@ -30,10 +30,21 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
         return true
     }
 
+    const hideEntityErrorProblems = (item: ErrorObject) => {
+        if (item.instancePath.startsWith('/authors/') && item.keyword === 'anyOf') {
+            return false
+        }
+        if (item.instancePath.startsWith('/authors/') && item.keyword === 'required' && item.params.missingProperty === 'name') {
+            return false
+        }
+        return true
+    }
+
     const messages = errors.value
         .filter(checkForInstancePath)
         .filter(checkForArrayProblems)
         .filter(checkForObjectProblems)
+        .filter(hideEntityErrorProblems)
         .map((item) => {
             return item.message
         }) as string[]
@@ -42,6 +53,6 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
 
     return {
         hasError: messages.length > 0,
-        messages: messages
+        messages: [...new Set(messages)]
     }
 }

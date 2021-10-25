@@ -1,7 +1,7 @@
 <template>
     <q-card
         bordered
-        v-bind:class="['bg-formcard']"
+        v-bind:class="['bg-formcard', authorErrors.hasError ? 'red-border' : '']"
         flat
         style="display: flex; flex-direction: row"
     >
@@ -27,8 +27,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { AuthorType } from 'src/types'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'AuthorCardViewing',
@@ -40,6 +41,11 @@ export default defineComponent({
         author: {
             type: Object as PropType<AuthorType>,
             required: true
+        }
+    },
+    setup (props) {
+        return {
+            authorErrors: computed(() => getMyErrors(`/authors/${props.index}`))
         }
     },
     emits: ['editPressed']

@@ -26,19 +26,35 @@
             <p class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
             </p>
-            <q-select
+            <q-input
                 bg-color="white"
-                fill-input
-                hide-selected
                 label="message"
                 outlined
-                use-input
-                v-bind:options="messageOptions"
                 v-bind:model-value="message"
                 v-bind:rules="[validateMessage]"
-                v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
-            />
+            >
+                <template #append>
+                    <q-btn-dropdown
+                        class="dropdown"
+                        flat
+                    >
+                        <q-list>
+                            <q-item
+                                clickable
+                                v-bind:key="messageOption"
+                                v-close-popup
+                                v-for="messageOption in messageOptions"
+                                v-on:click="setMessage(messageOption)"
+                            >
+                                <q-item-section>
+                                    <q-item-label>{{ messageOption }}</q-item-label>
+                                </q-item-section>
+                            </q-item>
+                        </q-list>
+                    </q-btn-dropdown>
+                </template>
+            </q-input>
             <p class="question">
                 What type of work does this CITATION.cff describe?
             </p>
@@ -99,4 +115,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.dropdown {
+    height: 100%;
+}
 </style>

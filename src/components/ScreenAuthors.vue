@@ -126,12 +126,15 @@ export default defineComponent({
             removeAuthor,
             setAuthorField,
             authorsErrors: computed(() => {
+                const results = [
+                    getMyErrors('', ['authors']),
+                    getMyErrors('/authors')
+                ]
                 return {
-                    ...getMyErrors('/authors'), // all author related errors
-                    ...getMyErrors('', ['authors']) // at least one author is required
+                    hasError: results.some(result => result.hasError),
+                    messages: results.map(result => result.messages.join(', '))
                 }
             })
-            // authorsErrors: computed(() => authors.value.map((author, index) => { return getMyErrors(`/authors/${index}`) }))
         }
     }
 })

@@ -23,6 +23,8 @@
                             v-bind:index="index"
                             v-bind:author="author"
                             v-on:editPressed="() => (editingId = index)"
+                            v-on:moveDown="moveDown(index, authors, setAuthors)"
+                            v-on:moveUp="moveUp(index, authors, setAuthors)"
                         />
                         <AuthorCardEditing
                             v-else
@@ -58,6 +60,7 @@ import StepperActions from 'components/StepperActions.vue'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
+import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 
@@ -93,12 +96,16 @@ export default defineComponent({
             authors.value[editingId.value] = author
             setAuthors(authors.value)
         }
+
         return {
             addAuthor,
             authors,
             editingId,
+            moveDown,
+            moveUp,
             removeAuthor,
-            setAuthorField
+            setAuthorField,
+            setAuthors
         }
     }
 })

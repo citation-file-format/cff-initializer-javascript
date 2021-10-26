@@ -13,7 +13,7 @@
                         class="q-gutter-md q-mb-xl"
                         style="font-size: 1.3rem"
                     >
-                        <h3>Generate your software <br> citation files with easy</h3>
+                        <h3>Generate your software <br> citation files with ease</h3>
                         <p>
                             <code class="decoration">CITATION.cff</code>
                             files are plain text files with human- and machine-readable citation information for software (and datasets).

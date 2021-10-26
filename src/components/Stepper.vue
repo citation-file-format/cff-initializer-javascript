@@ -104,22 +104,12 @@
         />
 
         <q-step
-            color="primary"
-            icon=""
-            name="preferred-citation"
-            title="Preferred citation"
-            v-bind:order="9"
-            v-if="showAdvanced"
-            v-on:click="setStepName('preferred-citation')"
-        />
-
-        <q-step
             active-icon="navigate_next"
             color="primary"
             icon=""
             name="finish-advanced"
             title="Finish"
-            v-bind:order="10"
+            v-bind:order="9"
             v-if="showAdvanced"
             v-on:click="setStepName('finish-advanced')"
         />

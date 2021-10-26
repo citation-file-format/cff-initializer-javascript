@@ -33,8 +33,8 @@
                             v-bind:index="index"
                             v-bind:identifier="identifier"
                             v-on:editPressed="() => (editingId = index)"
-                            v-on:moveDown="moveDown(index, identifiers, setIdentifiers)"
-                            v-on:moveUp="moveUp(index, identifiers, setIdentifiers)"
+                            v-on:moveDown="moveIdentifierDown(index)"
+                            v-on:moveUp="moveIdentifierUp(index)"
                         />
                         <IdentifierCardEditing
                             v-else
@@ -124,17 +124,29 @@ export default defineComponent({
             identifiers.value[editingId.value] = identifier
             setIdentifiers(identifiers.value)
         }
+        const moveIdentifierUp = (index: number) => {
+            moveUp(index, identifiers.value, setIdentifiers)
+            if (editingId.value === index - 1) {
+                editingId.value = editingId.value + 1
+            }
+        }
+        const moveIdentifierDown = (index: number) => {
+            moveDown(index, identifiers.value, setIdentifiers)
+            if (editingId.value === index + 1) {
+                editingId.value = editingId.value - 1
+            }
+        }
+
         return {
             addIdentifier,
             editingId,
             identifiers,
-            moveDown,
-            moveUp,
+            moveIdentifierUp,
+            moveIdentifierDown,
             removeIdentifier,
             setIdentifierDescriptionField,
             setIdentifierTypeField,
-            setIdentifierValueField,
-            setIdentifiers
+            setIdentifierValueField
         }
     }
 })

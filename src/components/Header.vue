@@ -1,5 +1,7 @@
 <template>
-    <img src="~assets/cff-logo.svg">
+    <router-link to="/">
+        <img src="~assets/cff-logo.svg">
+    </router-link>
     <span class="spacer" />
     <q-btn-group flat>
         <q-btn

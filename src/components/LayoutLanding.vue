@@ -7,7 +7,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-xs-12 q-pa-lg">
+                <div class="col-sm-6 col-xs-12 q-pa-lg slide-in-from-left-animation">
                     <div
                         align="left"
                         class="q-gutter-md q-mb-xl"
@@ -21,14 +21,13 @@
                         <p>Code developers can include them in their source code repositories to let others know how to correctly cite their software.</p>
                     </div>
                 </div>
-
                 <img
-                    class="col-sm-6 col-xs-12 q-pa-lg illustration"
+                    class="col-sm-6 col-xs-12 q-pa-lg illustration slide-from-right-animation"
                     src="~assets/landing-image.webp"
                 >
             </div>
             <div class="row justify-center items-center q-pt-xl">
-                <div class="column items-center">
+                <div class="column items-center slide-up-animation">
                     <div style="font-size: 1.2rem">
                         Generate your
                         <a
@@ -120,6 +119,16 @@ export default defineComponent({
     .illustration {
         transform: translate(110px, -50px);
     }
+
+    .slide-from-right-animation{
+        animation: 800ms ease 0s 1 slideInFromRight;
+    }
+    .slide-in-from-left-animation{
+        animation: 800ms ease 0s 1 slideInFromLeft;
+    }
+    .slide-up-animation{
+        animation: 800ms ease 0s 1 slideUpAnimation;
+    }
 }
 a.document{
     color: var(--primary);
@@ -134,6 +143,40 @@ a.document:hover{
     width:100%;
 
     border-radius:10px
+}
+
+/* Entry animations */
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translate(130px, -50px);
+        opacity:0
+    }
+    100% {
+        transform: translate(110px,-50px);
+        opacity:1
+    }
+}
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-20px);
+        opacity:0
+    }
+    100% {
+        transform: translateX(0);
+        opacity:1
+    }
+}
+
+@keyframes slideUpAnimation {
+    0% {
+        transform: translateY(20px);
+        opacity:0
+    }
+    100% {
+        transform: translateY(0);
+        opacity:1
+    }
 }
 
 </style>

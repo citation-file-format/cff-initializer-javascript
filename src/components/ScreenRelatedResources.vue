@@ -11,6 +11,19 @@
 
         <div id="form-content">
             <p class="question">
+                The URL of the work in a source code repository
+            </p>
+            <q-input
+                bg-color="white"
+                label="repository-code"
+                outlined
+                standout
+                v-bind:model-value="repositoryCode"
+                v-bind:rules="[validateRepositoryCode]"
+                v-on:update:modelValue="setRepositoryCode"
+            />
+
+            <p class="question">
                 The URL of a landing page/website for the work
             </p>
             <q-input
@@ -47,19 +60,6 @@
                 v-bind:model-value="repositoryArtifact"
                 v-bind:rules="[validateRepositoryArtifact]"
                 v-on:update:modelValue="setRepositoryArtifact"
-            />
-
-            <p class="question">
-                The URL of the work in a source code repository
-            </p>
-            <q-input
-                bg-color="white"
-                label="repository-code"
-                outlined
-                standout
-                v-bind:model-value="repositoryCode"
-                v-bind:rules="[validateRepositoryCode]"
-                v-on:update:modelValue="setRepositoryCode"
             />
         </div>
 

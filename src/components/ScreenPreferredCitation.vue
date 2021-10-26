@@ -14,13 +14,11 @@
                 Do you have a reference to another work that should be cited instead of the software or dataset itself?
             </p>
             <p class="question">
-                This form does not (yet) support entering a preferred citation, instead you have to download the file and edit it yourself. The
-                <a
-                    href="https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#preferred-citation"
-                    target="_blank"
-                >
-                    schema guide
-                </a> has some examples.
+                This form does not (yet) support entering a preferred citation. 
+                To make it easier you can select one of the examples below, 
+                the selected example will be added as a comment to the YAML file, which you can later uncomment and adjust to your work.
+                
+                <button>TODO example </button>
             </p>
         </div>
 

@@ -99,6 +99,20 @@
         </div>
         <q-card-actions align="right">
             <q-btn
+                color="blue"
+                dense
+                icon="ion-arrow-up"
+                tabindex="-1"
+                v-on:click="$emit('moveUp')"
+            />
+            <q-btn
+                color="blue"
+                dense
+                icon="ion-arrow-down"
+                tabindex="-1"
+                v-on:click="$emit('moveDown')"
+            />
+            <q-btn
                 color="negative"
                 dense
                 icon="delete"
@@ -166,7 +180,7 @@ export default defineComponent({
             validateOrcid: makeOptionalFieldValidator('/definitions/person/properties/orcid') // or /definitions/orcid ?
         }
     },
-    emits: ['closePressed', 'removePressed', 'update']
+    emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown']
 })
 </script>
 <style scoped>

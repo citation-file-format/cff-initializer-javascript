@@ -33,6 +33,8 @@
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"
+                            v-on:moveDown="moveAuthorDown(index)"
+                            v-on:moveUp="moveAuthorUp(index)"
                         />
                     </div>
                 </div>
@@ -98,13 +100,17 @@ export default defineComponent({
         }
         const moveAuthorUp = (index: number) => {
             moveUp(index, authors.value, setAuthors)
-            if (editingId.value === index - 1) {
+            if (editingId.value === index && index > 0) {
+                editingId.value = editingId.value - 1
+            } else if (editingId.value === index - 1) {
                 editingId.value = editingId.value + 1
             }
         }
         const moveAuthorDown = (index: number) => {
             moveDown(index, authors.value, setAuthors)
-            if (editingId.value === index + 1) {
+            if (editingId.value === index && index < authors.value.length - 1) {
+                editingId.value = editingId.value + 1
+            } else if (editingId.value === index + 1) {
                 editingId.value = editingId.value - 1
             }
         }

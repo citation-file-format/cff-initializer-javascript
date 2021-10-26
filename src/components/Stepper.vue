@@ -95,7 +95,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="preferred-citation"
             title="Preferred citation"

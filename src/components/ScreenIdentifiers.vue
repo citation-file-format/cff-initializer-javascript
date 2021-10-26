@@ -45,6 +45,8 @@
                             v-on:updateDescription="setIdentifierDescriptionField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeIdentifier"
+                            v-on:moveDown="moveIdentifierDown(index)"
+                            v-on:moveUp="moveIdentifierUp(index)"
                         />
                     </div>
                 </div>
@@ -126,13 +128,17 @@ export default defineComponent({
         }
         const moveIdentifierUp = (index: number) => {
             moveUp(index, identifiers.value, setIdentifiers)
-            if (editingId.value === index - 1) {
+            if (editingId.value === index && index > 0) {
+                editingId.value = editingId.value - 1
+            } else if (editingId.value === index - 1) {
                 editingId.value = editingId.value + 1
             }
         }
         const moveIdentifierDown = (index: number) => {
             moveDown(index, identifiers.value, setIdentifiers)
-            if (editingId.value === index + 1) {
+            if (editingId.value === index && index < identifiers.value.length - 1) {
+                editingId.value = editingId.value + 1
+            } else if (editingId.value === index + 1) {
                 editingId.value = editingId.value - 1
             }
         }

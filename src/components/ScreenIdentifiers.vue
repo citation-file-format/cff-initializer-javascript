@@ -10,6 +10,16 @@
         </div>
 
         <div id="form-content">
+            <p class="question">
+                What persistent identifiers are available for the work?
+                See
+                <a
+                    href="https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsidentifier"
+                    target="_blank"
+                >
+                    schema guide
+                </a> for examples.
+            </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>

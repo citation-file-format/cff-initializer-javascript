@@ -96,10 +96,10 @@ export default defineComponent({
 }
 
 .header-image{
-    margin-top:40px;
+    margin-top: 40px;
     padding: 10px 20px;
     width: 500px;
-    border-radius:  5px 30px 30px 5px;
+    border-radius: 5px 30px 30px 5px;
     background: #F7F7FA;
     box-shadow: 87.041px 34.8164px 58.0273px rgba(53, 104, 212, 0.08);
 }
@@ -119,7 +119,6 @@ export default defineComponent({
     .illustration {
         transform: translate(110px, -50px);
     }
-
     .slide-from-right-animation{
         animation: 1500ms ease 0s 1 slideInFromRight;
     }
@@ -130,17 +129,19 @@ export default defineComponent({
         animation: 1500ms ease 0s 1 slideUpAnimation;
     }
 }
+
 a.document{
     color: var(--primary);
     text-decoration: none
+
 }
 a.document:hover{
     text-decoration: underline
 }
 .start-button{
     margin-top: 15px;
-    max-width: 250px;
-    width:100%;
+    padding: 0px 40px;
+    /*width:100%;*/
 
     border-radius:10px
 }

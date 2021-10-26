@@ -26,7 +26,7 @@
                     src="~assets/landing-image.webp"
                 >
             </div>
-            <div class="row justify-center items-center q-pt-xl">
+            <div class="row justify-center items-center q-pt-md q-mb-xl">
                 <div class="column items-center slide-up-animation">
                     <div style="font-size: 1.2rem">
                         Generate your
@@ -121,13 +121,13 @@ export default defineComponent({
     }
 
     .slide-from-right-animation{
-        animation: 800ms ease 0s 1 slideInFromRight;
+        animation: 1500ms ease 0s 1 slideInFromRight;
     }
     .slide-in-from-left-animation{
-        animation: 800ms ease 0s 1 slideInFromLeft;
+        animation: 500ms ease 0s 1 slideInFromLeft;
     }
     .slide-up-animation{
-        animation: 800ms ease 0s 1 slideUpAnimation;
+        animation: 1500ms ease 0s 1 slideUpAnimation;
     }
 }
 a.document{

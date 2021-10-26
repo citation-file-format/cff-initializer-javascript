@@ -67,11 +67,10 @@ export function useCffstr () {
 
     const makeCffstr = () => {
         const kebabed = makeJavascriptObject()
-        const yamlString = yaml.dump(kebabed, { indent: 2, sortKeys: true })
+        const yamlString = yaml.dump(kebabed, { indent: 2, sortKeys: true, lineWidth: 53 })
         const generatedBy = '# This CFF file was generated with cffinit at\n# https://bit.ly/cffinit.\n'
         return yamlString + generatedBy
     }
-
     return {
         jsObject: computed(makeJavascriptObject),
         cffstr: computed(makeCffstr)

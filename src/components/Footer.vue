@@ -39,5 +39,6 @@ footer{
 .container{
     max-width: 1919px;
     width: 100%;
+    display:flex;
 }
 </style>

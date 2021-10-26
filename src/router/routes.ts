@@ -57,6 +57,11 @@ const routes: RouteRecordRaw[] = [
         children: [{ path: '', component: () => import('src/components/ScreenVersionSpecific.vue') }]
     },
     {
+        path: '/preferred-citation',
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenPreferredCitation.vue') }]
+    },
+    {
         path: '/finish-advanced',
         component: () => import('src/components/LayoutStepper.vue'),
         children: [{ path: '', component: () => import('src/components/ScreenFinishAdvanced.vue') }]

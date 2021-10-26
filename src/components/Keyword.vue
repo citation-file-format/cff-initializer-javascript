@@ -12,10 +12,25 @@
             />
         </div>
         <q-btn
-            class="remove-keyword-btn"
+            class="keyword-btn"
+            color="blue"
+            icon="ion-arrow-up"
+            tabindex="-1"
+            v-on:click="$emit('moveUp')"
+        />
+        <q-btn
+            class="keyword-btn"
+            color="blue"
+            icon="ion-arrow-down"
+            tabindex="-1"
+            v-on:click="$emit('moveDown')"
+        />
+        <q-btn
+            class="keyword-btn"
             color="negative"
             dense
             icon="delete"
+            tabindex="-1"
             title="Remove"
             v-on:click="$emit('removePressed')"
         />
@@ -39,7 +54,7 @@ export default defineComponent({
             validateKeyword: makeFieldValidator('/properties/keywords/items')
         }
     },
-    emits: ['removePressed', 'update']
+    emits: ['moveDown', 'moveUp', 'removePressed', 'update']
 })
 </script>
 <style scoped>
@@ -51,9 +66,9 @@ export default defineComponent({
 .keyword-input {
     flex-grow: 1.0;
 }
-.remove-keyword-btn {
+.keyword-btn {
     height: 40px;
-    margin-left: 20px;
+    margin-left: 10px;
     width: 40px;
 }
 </style>

@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 export type StepNameType = 'start' | 'authors' | 'finish-minimum' | 'identifiers' | 'related-resources' |
-                    'abstract' | 'keywords' | 'license' | 'version-specific' | 'finish-advanced'
+                    'abstract' | 'keywords' | 'license' | 'version-specific' | 'preferred-citation' | 'finish-advanced'
 
 const state = ref({
     showAdvanced: false,
@@ -19,6 +19,7 @@ const stepNames = [
     'keywords',
     'license',
     'version-specific',
+    'preferred-citation',
     'finish-advanced'
 ] as Array<StepNameType>
 

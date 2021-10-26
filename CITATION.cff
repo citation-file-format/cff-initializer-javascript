@@ -27,7 +27,7 @@ authors:
     given-names: Abel
     orcid: "https://orcid.org/0000-0003-4451-281X"
 cff-version: "1.2.0"
-date-released: 2021-08-19
+date-released: 2021-10-20
 identifiers:
   - type: doi
     value: 10.5281/zenodo.1404735

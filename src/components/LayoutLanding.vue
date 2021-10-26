@@ -39,7 +39,7 @@
                     </div>
                     <q-btn
                         color="primary start-button"
-                        label="Create CFF"
+                        label="Create"
                         icon="mdi-plus"
                         no-caps
                         size="xl"

@@ -23,8 +23,8 @@
                             v-bind:index="index"
                             v-bind:author="author"
                             v-on:editPressed="() => (editingId = index)"
-                            v-on:moveDown="moveDown(index, authors, setAuthors)"
-                            v-on:moveUp="moveUp(index, authors, setAuthors)"
+                            v-on:moveDown="moveAuthorDown(index)"
+                            v-on:moveUp="moveAuthorUp(index)"
                         />
                         <AuthorCardEditing
                             v-else
@@ -96,16 +96,27 @@ export default defineComponent({
             authors.value[editingId.value] = author
             setAuthors(authors.value)
         }
+        const moveAuthorUp = (index: number) => {
+            moveUp(index, authors.value, setAuthors)
+            if (editingId.value === index - 1) {
+                editingId.value = editingId.value + 1
+            }
+        }
+        const moveAuthorDown = (index: number) => {
+            moveDown(index, authors.value, setAuthors)
+            if (editingId.value === index + 1) {
+                editingId.value = editingId.value - 1
+            }
+        }
 
         return {
             addAuthor,
             authors,
             editingId,
-            moveDown,
-            moveUp,
+            moveAuthorDown,
+            moveAuthorUp,
             removeAuthor,
-            setAuthorField,
-            setAuthors
+            setAuthorField
         }
     }
 })

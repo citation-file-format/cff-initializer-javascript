@@ -116,8 +116,7 @@ export default defineComponent({
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,
-            setAuthorField,
-            setAuthors
+            setAuthorField
         }
     }
 })

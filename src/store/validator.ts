@@ -9,8 +9,6 @@ type messageErrorType = {
 
 export function getMyErrors (myPath: string, fieldNames?: string[]):messageErrorType {
     const { errors } = useErrors()
-    console.log('ajvErrors: ', errors.value)
-
     const checkForInstancePath = (item: ErrorObject) => {
         return item.instancePath === myPath
     }
@@ -64,8 +62,6 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
         .map((item) => {
             return item.message
         }) as string[]
-
-    console.log('messages:', messages)
 
     return {
         hasError: messages.length > 0,

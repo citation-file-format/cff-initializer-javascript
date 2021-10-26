@@ -7,7 +7,8 @@
                 outlined
                 placeholder="Type a keyword"
                 v-bind:model-value="keyword"
-                v-bind:rules="[ validateKeyword ]"
+                v-bind:error="FIXME.hasError"
+                v-bind:error-message="FIXME.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
             />
         </div>
@@ -23,7 +24,6 @@
 </template>
 
 <script lang="ts">
-import { makeFieldValidator } from 'src/validator'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -36,7 +36,7 @@ export default defineComponent({
     },
     setup () {
         return {
-            validateKeyword: makeFieldValidator('/properties/keywords/items')
+            FIXME: { hasError: false, messages: [] }
         }
     },
     emits: ['removePressed', 'update']

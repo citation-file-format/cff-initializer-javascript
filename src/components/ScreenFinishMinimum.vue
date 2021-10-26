@@ -6,7 +6,7 @@
         <div id="form-title">
             <h1
                 class="finish-title"
-                v-if="isValid"
+                v-if="isValidCFF"
             >
                 Congratulations
             </h1>
@@ -19,7 +19,7 @@
         </div>
 
         <div id="form-content">
-            <div v-if="isValid">
+            <div v-if="isValidCFF">
                 <p class="finish-paragraph">
                     You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, or continue adding more properties.
                 </p>
@@ -54,7 +54,7 @@ import { defineComponent, computed } from 'vue'
 import { useApp } from '../store/app'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { isValidCffFile } from 'src/validator'
+import { useErrors } from 'src/store/errors'
 import DownloadButton from 'components/DownloadButton.vue'
 
 export default defineComponent({
@@ -66,8 +66,9 @@ export default defineComponent({
     },
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
+        const { errors } = useErrors()
         return {
-            isValid: computed(isValidCffFile),
+            isValidCFF: computed(() => errors.value.length === 0),
             setShowAdvanced,
             navigatePrevious,
             showAdvanced: async () => {

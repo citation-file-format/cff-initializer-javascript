@@ -19,7 +19,8 @@
                 outlined
                 standout
                 v-bind:model-value="commit"
-                v-bind:rules="[validateCommit]"
+                v-bind:error="FIXME.hasError"
+                v-bind:error-message="FIXME.messages.join(', ')"
                 v-on:update:modelValue="setCommit"
             />
 
@@ -32,7 +33,8 @@
                 outlined
                 standout
                 v-bind:model-value="version"
-                v-bind:rules="[validateVersion]"
+                v-bind:error="FIXME.hasError"
+                v-bind:error-message="FIXME.messages.join(', ')"
                 v-on:update:modelValue="setVersion"
             />
 
@@ -47,7 +49,8 @@
                 style="width: 33.33%"
                 today-btn="true"
                 v-bind:model-value="dateReleased"
-                v-bind:rules="[validateDateReleased]"
+                v-bind:error="FIXME.hasError"
+                v-bind:error-message="FIXME.messages.join(', ')"
                 v-on:update:modelValue="setDateReleased"
             >
                 <template #append>
@@ -89,7 +92,6 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -116,9 +118,7 @@ export default defineComponent({
             setCommit,
             setDateReleased,
             setVersion,
-            validateCommit: makeOptionalFieldValidator('/properties/commit'),
-            validateDateReleased: makeOptionalFieldValidator('/properties/date-released'),
-            validateVersion: makeOptionalFieldValidator('/properties/version')
+            FIXME: { hasError: false, messages: [] }
         }
     }
 })

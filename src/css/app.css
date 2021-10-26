@@ -1,4 +1,5 @@
 /* app global css */
+@import './utility-classes.css';
 
 @media only screen and (min-width: 2090px) and (min-height: 1039px) {
     .scale-container {
@@ -11,7 +12,9 @@
 
 :root {
     --fgcolor: #efefef;
-    --bgcolor: #303030;
+    --bgcolor: #F4F4F4;
+    --primary: #3E7BFA;
+    --footer-background: #B3C5DB;
 }
 
 body {
@@ -24,7 +27,6 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    row-gap: 7px;
 }
 #header-outer {
     background-color: var(--bgcolor, rosybrown);
@@ -33,13 +35,13 @@ body {
     justify-content: center;
 }
 #header-inner {
-    background-color: purple;
-    color: white;
+    background-color: white;
+    color: #1C1C28;
+    box-shadow: 0px 1px 0px #C5C5C5;
     display: flex;
     flex-direction: row;
-    max-height: 50px;
-    min-height: 50px;
-    width: 1900px;
+    width: 100%;
+    max-width: 1919px;
 }
 #middle {
     background-color: var(--bgcolor, lightblue);
@@ -85,7 +87,7 @@ body {
     background-color: var(--fgcolor, khaki);
     display: flex;
     flex-direction: row;
-    justify-content: center;    
+    justify-content: center;
     max-height: 80px;
     min-height: 80px;
 }
@@ -117,23 +119,6 @@ body {
     justify-content: center;
     max-height: 80px;
     min-height: 80px;
-}
-#footer-outer {
-    background-color: var(--bgcolor, slateblue);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-#footer-inner {
-    background-color: deepskyblue;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-height: 50px;
-    min-height: 50px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 1900px;
 }
 
 

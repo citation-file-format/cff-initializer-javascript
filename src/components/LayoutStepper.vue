@@ -1,12 +1,12 @@
 <template>
     <div class="scale-container">
         <div id="app">
-            <span class="spacer" />
             <div id="header-outer">
                 <div id="header-inner">
                     <Header />
                 </div>
             </div>
+            <span class="spacer" />
             <div id="middle">
                 <router-view />
                 <div id="preview">
@@ -19,12 +19,8 @@
                     </div>
                 </div>
             </div>
-            <div id="footer-outer">
-                <div id="footer-inner">
-                    <Footer />
-                </div>
-            </div>
             <span class="spacer" />
+            <Footer />
         </div>
     </div>
 </template>

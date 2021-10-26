@@ -2,7 +2,7 @@
     <q-stepper
         active-icon=""
         animated
-        class="bg-secondary text-primary"
+        class="full-height"
         flat
         header-nav
         inactive-icon=""
@@ -10,7 +10,6 @@
         vertical
     >
         <q-step
-            color="primary"
             icon=""
             name="start"
             title="Start"
@@ -20,7 +19,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="authors"
             title="Authors"
@@ -30,7 +28,6 @@
 
         <q-step
             active-icon="navigate_next"
-            color="primary"
             icon=""
             name="finish-minimum"
             title="Finish"
@@ -40,7 +37,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="identifiers"
             title="Identifiers"
@@ -50,7 +46,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="related-resources"
             title="Related resources"
@@ -61,7 +56,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="abstract"
             title="Abstract"
@@ -72,7 +66,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="keywords"
             title="Keywords"
@@ -82,7 +75,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="license"
             title="License"
@@ -93,7 +85,6 @@
         />
 
         <q-step
-            color="primary"
             icon=""
             name="version-specific"
             title="Version specific"
@@ -115,7 +106,6 @@
 
         <q-step
             active-icon="navigate_next"
-            color="primary"
             icon=""
             name="finish-advanced"
             title="Finish"

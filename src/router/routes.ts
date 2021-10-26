@@ -3,13 +3,11 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
-        component: () => import('src/components/LayoutLanding.vue'),
-        children: [{ path: '', component: () => import('src/components/Landing.vue') }]
+        component: () => import('src/components/LayoutLanding.vue')
     },
     {
         path: '/landing',
-        component: () => import('src/components/LayoutLanding.vue'),
-        children: [{ path: '', component: () => import('src/components/Landing.vue') }]
+        component: () => import('src/components/LayoutLanding.vue')
     },
     {
         path: '/start',

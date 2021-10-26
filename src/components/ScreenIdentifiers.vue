@@ -32,6 +32,7 @@
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:identifier="identifier"
+                            v-bind:num-identifiers="identifiers.length"
                             v-on:editPressed="() => (editingId = index)"
                             v-on:moveDown="moveIdentifierDown(index)"
                             v-on:moveUp="moveIdentifierUp(index)"
@@ -40,6 +41,7 @@
                             v-else
                             v-bind:index="index"
                             v-bind="identifier"
+                            v-bind:num-identifiers="identifiers.length"
                             v-on:updateType="setIdentifierTypeField"
                             v-on:updateValue="setIdentifierValueField"
                             v-on:updateDescription="setIdentifierDescriptionField"

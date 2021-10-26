@@ -14,6 +14,7 @@
         <q-btn
             class="keyword-btn"
             color="blue"
+            v-bind:disable="index == 0"
             icon="ion-arrow-up"
             tabindex="-1"
             v-on:click="$emit('moveUp')"
@@ -21,6 +22,7 @@
         <q-btn
             class="keyword-btn"
             color="blue"
+            v-bind:disable="index == numKeywords - 1"
             icon="ion-arrow-down"
             tabindex="-1"
             v-on:click="$emit('moveDown')"
@@ -47,6 +49,14 @@ export default defineComponent({
         keyword: {
             type: String,
             default: ''
+        },
+        index: {
+            type: Number,
+            required: true
+        },
+        numKeywords: {
+            type: Number,
+            default: 0
         }
     },
     setup () {

@@ -22,6 +22,7 @@
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:author="author"
+                            v-bind:num-authors="authors.length"
                             v-on:editPressed="() => (editingId = index)"
                             v-on:moveDown="moveAuthorDown(index)"
                             v-on:moveUp="moveAuthorUp(index)"
@@ -29,6 +30,7 @@
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
+                            v-bind:num-authors="authors.length"
                             v-bind="author"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"

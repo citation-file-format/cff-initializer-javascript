@@ -24,17 +24,33 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
     }
 
     const checkForObjectProblems = (item: ErrorObject) => {
+        // const keywords = ['required', 'additionalProperties']
         if (fieldNames !== undefined && item.keyword === 'required') {
             return fieldNames.includes(item.params.missingProperty as string)
+        }
+        if (fieldNames !== undefined && item.keyword === 'additionalProperties') {
+            return fieldNames.includes(item.params.additionalProperty as string)
         }
         return true
     }
 
     const hideEntityErrorProblems = (item: ErrorObject) => {
+        const additionalPropertyList = [
+            'affiliation',
+            'email',
+            'family-names',
+            'given-names',
+            'name-particle',
+            'name-suffix',
+            'orcid'
+        ]
         if (item.instancePath.startsWith('/authors/') && item.keyword === 'anyOf') {
             return false
         }
         if (item.instancePath.startsWith('/authors/') && item.keyword === 'required' && item.params.missingProperty === 'name') {
+            return false
+        }
+        if (item.instancePath.startsWith('/authors/') && item.keyword === 'additionalProperties' && additionalPropertyList.includes(item.params.additionalProperty)) {
             return false
         }
         return true

@@ -73,18 +73,7 @@ import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
-import { getMyErrors } from 'src/store/validator'
-
-export const authorsErrors = () => {
-    const results = [
-        getMyErrors('', ['authors']),
-        getMyErrors('/authors')
-    ]
-    return {
-        hasError: results.some(result => result.hasError),
-        messages: results.map(result => result.messages.join(', '))
-    }
-}
+import { authorsErrors } from 'src/authors-errors'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -136,7 +125,7 @@ export default defineComponent({
             editingId,
             removeAuthor,
             setAuthorField,
-            authorsErrors: computed(authorsErrors)
+            authorsErrors: computed(() => authorsErrors(authors.value))
         }
     }
 })

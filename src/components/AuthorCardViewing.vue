@@ -29,7 +29,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 import { AuthorType } from 'src/types'
-import { getMyErrors } from 'src/store/validator'
+import { authorErrors } from 'src/author-errors'
 
 export default defineComponent({
     name: 'AuthorCardViewing',
@@ -45,7 +45,7 @@ export default defineComponent({
     },
     setup (props) {
         return {
-            authorErrors: computed(() => getMyErrors(`/authors/${props.index}`))
+            authorErrors: computed(() => authorErrors(props.index))
         }
     },
     emits: ['editPressed']

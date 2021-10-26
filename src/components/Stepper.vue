@@ -10,20 +10,19 @@
         vertical
     >
         <q-step
-            color="isValidScreenStart.hasError ? 'negative' : 'primary'"
             error-color="negative"
             error-icon="warning"
             icon=""
             name="start"
             title="Start"
             v-bind:active-icon="isValidScreenStart.hasError ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenStart.hasError ? 'negative' : 'primary'"
             v-bind:error="isValidScreenStart.hasError"
             v-bind:order="0"
             v-on:click="setStepName('start')"
         />
 
         <q-step
-            color="isValidScreenAuthors.hasError ? 'negative' : 'primary'"
             error-color="negative"
             error-icon="warning"
             icon=""
@@ -31,6 +30,7 @@
             title="Authors"
             v-bind:order="1"
             v-bind:active-icon="isValidScreenAuthors.hasError ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenAuthors.hasError ? 'negative' : 'primary'"
             v-bind:error="isValidScreenAuthors.hasError"
             v-on:click="setStepName('authors')"
         />
@@ -124,14 +124,16 @@
 import { useApp } from '../store/app'
 import { getMyErrors } from 'src/store/validator'
 import { computed } from 'vue'
-import { authorsErrors } from './ScreenAuthors.vue'
+import { useCff } from 'src/store/cff'
+import { authorsErrors } from 'src/authors-errors'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
+        const { authors } = useCff()
         return {
             isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
-            isValidScreenAuthors: computed(authorsErrors),
+            isValidScreenAuthors: computed(() => authorsErrors(authors.value)),
             setStepName,
             showAdvanced,
             stepName

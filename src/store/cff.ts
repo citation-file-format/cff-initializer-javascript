@@ -3,7 +3,7 @@ import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from '.
 
 const cffInitialValue = {
     abstract: undefined,
-    authors: [{}],
+    authors: [],
     cffVersion: '1.2.0',
     commit: undefined,
     dateReleased: undefined,

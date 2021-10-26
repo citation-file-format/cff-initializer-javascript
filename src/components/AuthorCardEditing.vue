@@ -106,7 +106,7 @@
         </div>
 
         <q-banner
-            v-if="authorErrors.hasError"
+            v-if="authorErrors.hasError && authorErrors.messages.length > 0"
             class="bg-warning text-negative"
         >
             <div
@@ -139,6 +139,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { computed, defineComponent } from 'vue'
 import { getMyErrors } from 'src/store/validator'
+import { authorErrors } from 'src/author-errors'
 
 export default defineComponent({
     name: 'AuthorCardEditing',
@@ -185,7 +186,7 @@ export default defineComponent({
             emailError: computed(() => getMyErrors(`/authors/${props.index}/email`)),
             affiliationError: computed(() => getMyErrors(`/authors/${props.index}/affiliation`)),
             orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`)),
-            authorErrors: computed(() => getMyErrors(`/authors/${props.index}`))
+            authorErrors: computed(() => authorErrors(props.index))
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

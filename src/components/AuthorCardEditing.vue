@@ -101,6 +101,7 @@
             <q-btn
                 color="blue"
                 dense
+                v-bind:disable="index == 0"
                 icon="ion-arrow-up"
                 tabindex="-1"
                 v-on:click="$emit('moveUp')"
@@ -108,6 +109,7 @@
             <q-btn
                 color="blue"
                 dense
+                v-bind:disable="index >= numAuthors - 1"
                 icon="ion-arrow-down"
                 tabindex="-1"
                 v-on:click="$emit('moveDown')"
@@ -167,6 +169,10 @@ export default defineComponent({
         email: {
             type: String,
             default: ''
+        },
+        numAuthors: {
+            type: Number,
+            default: 0
         }
     },
     setup () {

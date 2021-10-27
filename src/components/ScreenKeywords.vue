@@ -20,6 +20,8 @@
                         class="q-mr-lg"
                         v-bind:key="index"
                         v-bind:keyword="keyword"
+                        v-bind:index="index"
+                        v-bind:num-keywords="keywords.length"
                         v-for="(keyword, index) in keywords"
                         v-on:moveDown="moveDown(index, keywords, setKeywords)"
                         v-on:moveUp="moveUp(index, keywords, setKeywords)"

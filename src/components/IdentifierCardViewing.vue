@@ -13,7 +13,23 @@
         </div>
         <div>
             <q-btn
-                class="edit-button"
+                class="identifier-button"
+                color="blue"
+                v-bind:disable="index == 0"
+                icon="ion-arrow-up"
+                tabindex="-1"
+                v-on:click="$emit('moveUp')"
+            />
+            <q-btn
+                class="identifier-button"
+                color="blue"
+                v-bind:disable="index >= numIdentifiers - 1"
+                icon="ion-arrow-down"
+                tabindex="-1"
+                v-on:click="$emit('moveDown')"
+            />
+            <q-btn
+                class="identifier-button"
                 color="primary"
                 flat
                 hover-color="negative"
@@ -39,9 +55,13 @@ export default defineComponent({
         identifier: {
             type: Object as PropType<IdentifierType>,
             required: true
+        },
+        numIdentifiers: {
+            type: Number,
+            default: 0
         }
     },
-    emits: ['editPressed']
+    emits: ['editPressed', 'moveDown', 'moveUp']
 })
 </script>
 <style scoped>
@@ -52,7 +72,7 @@ li {
     list-style: none;
     list-style-position: inside;
 }
-.edit-button {
+.identifier-button {
     background-color: white;
     border: 1px solid #ccc;
     margin-bottom: 5px;

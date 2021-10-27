@@ -13,10 +13,27 @@
             />
         </div>
         <q-btn
-            class="remove-keyword-btn"
+            class="keyword-btn"
+            color="blue"
+            v-bind:disable="index == 0"
+            icon="ion-arrow-up"
+            tabindex="-1"
+            v-on:click="$emit('moveUp')"
+        />
+        <q-btn
+            class="keyword-btn"
+            color="blue"
+            v-bind:disable="index == numKeywords - 1"
+            icon="ion-arrow-down"
+            tabindex="-1"
+            v-on:click="$emit('moveDown')"
+        />
+        <q-btn
+            class="keyword-btn"
             color="negative"
             dense
             icon="delete"
+            tabindex="-1"
             title="Remove"
             v-on:click="$emit('removePressed')"
         />
@@ -32,6 +49,14 @@ export default defineComponent({
         keyword: {
             type: String,
             default: ''
+        },
+        index: {
+            type: Number,
+            required: true
+        },
+        numKeywords: {
+            type: Number,
+            default: 0
         }
     },
     setup () {
@@ -39,7 +64,7 @@ export default defineComponent({
             FIXME: { hasError: false, messages: [] }
         }
     },
-    emits: ['removePressed', 'update']
+    emits: ['moveDown', 'moveUp', 'removePressed', 'update']
 })
 </script>
 <style scoped>
@@ -51,9 +76,9 @@ export default defineComponent({
 .keyword-input {
     flex-grow: 1.0;
 }
-.remove-keyword-btn {
+.keyword-btn {
     height: 40px;
-    margin-left: 20px;
+    margin-left: 10px;
     width: 40px;
 }
 </style>

@@ -20,7 +20,11 @@
                         class="q-mr-lg"
                         v-bind:key="index"
                         v-bind:keyword="keyword"
+                        v-bind:index="index"
+                        v-bind:num-keywords="keywords.length"
                         v-for="(keyword, index) in keywords"
+                        v-on:moveDown="moveDown(index, keywords, setKeywords)"
+                        v-on:moveUp="moveUp(index, keywords, setKeywords)"
                         v-on:removePressed="removeKeyword(index)"
                         v-on:update="setKeyword(index, $event)"
                     />
@@ -48,6 +52,7 @@ import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
 import { defineComponent, nextTick } from 'vue'
+import { moveDown, moveUp } from '../updown'
 import { useCff } from '../store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 
@@ -93,8 +98,11 @@ export default defineComponent({
         return {
             addKeyword,
             keywords,
+            moveDown,
+            moveUp,
             removeKeyword,
-            setKeyword
+            setKeyword,
+            setKeywords
         }
     }
 })

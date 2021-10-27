@@ -45,6 +45,22 @@
         </q-card-section>
         <q-card-actions align="right">
             <q-btn
+                dense
+                color="blue"
+                v-bind:disable="index == 0"
+                icon="ion-arrow-up"
+                tabindex="-1"
+                v-on:click="$emit('moveUp')"
+            />
+            <q-btn
+                dense
+                color="blue"
+                v-bind:disable="index >= numIdentifiers - 1"
+                icon="ion-arrow-down"
+                tabindex="-1"
+                v-on:click="$emit('moveDown')"
+            />
+            <q-btn
                 color="negative"
                 dense
                 icon="delete"
@@ -83,6 +99,10 @@ export default defineComponent({
         description: {
             type: String,
             default: ''
+        },
+        numIdentifiers: {
+            type: Number,
+            default: 0
         }
     },
     setup (props) {
@@ -104,6 +124,6 @@ export default defineComponent({
             ]
         }
     },
-    emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription']
+    emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription', 'moveUp', 'moveDown']
 })
 </script>

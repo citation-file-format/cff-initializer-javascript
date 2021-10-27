@@ -14,7 +14,23 @@
         </div>
         <div>
             <q-btn
-                class="edit-button"
+                class="author-button"
+                color="blue"
+                v-bind:disable="index == 0"
+                icon="ion-arrow-up"
+                tabindex="-1"
+                v-on:click="$emit('moveUp')"
+            />
+            <q-btn
+                class="author-button"
+                color="blue"
+                v-bind:disable="index >= numAuthors - 1"
+                icon="ion-arrow-down"
+                tabindex="-1"
+                v-on:click="$emit('moveDown')"
+            />
+            <q-btn
+                class="author-button"
                 color="primary"
                 flat
                 hover-color="negative"
@@ -41,6 +57,10 @@ export default defineComponent({
         author: {
             type: Object as PropType<AuthorType>,
             required: true
+        },
+        numAuthors: {
+            type: Number,
+            default: 0
         }
     },
     setup (props) {
@@ -48,7 +68,7 @@ export default defineComponent({
             authorErrors: computed(() => authorErrors(props.index))
         }
     },
-    emits: ['editPressed']
+    emits: ['editPressed', 'moveDown', 'moveUp']
 })
 </script>
 <style scoped>
@@ -59,7 +79,7 @@ li {
     list-style: none;
     list-style-position: inside;
 }
-.edit-button {
+.author-button {
     background-color: white;
     border: 1px solid #ccc;
     margin-bottom: 5px;

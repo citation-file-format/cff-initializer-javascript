@@ -119,6 +119,22 @@
 
         <q-card-actions align="right">
             <q-btn
+                color="blue"
+                dense
+                v-bind:disable="index == 0"
+                icon="ion-arrow-up"
+                tabindex="-1"
+                v-on:click="$emit('moveUp')"
+            />
+            <q-btn
+                color="blue"
+                dense
+                v-bind:disable="index >= numAuthors - 1"
+                icon="ion-arrow-down"
+                tabindex="-1"
+                v-on:click="$emit('moveDown')"
+            />
+            <q-btn
                 color="negative"
                 dense
                 icon="delete"
@@ -175,6 +191,10 @@ export default defineComponent({
         orcid: {
             type: String,
             default: ''
+        },
+        numAuthors: {
+            type: Number,
+            default: 0
         }
     },
     setup (props) {
@@ -189,7 +209,7 @@ export default defineComponent({
             authorErrors: computed(() => authorErrors(props.index))
         }
     },
-    emits: ['closePressed', 'removePressed', 'update']
+    emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown']
 })
 </script>
 <style scoped>

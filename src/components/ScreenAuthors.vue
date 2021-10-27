@@ -22,15 +22,21 @@
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:author="author"
+                            v-bind:num-authors="authors.length"
                             v-on:editPressed="() => (editingId = index)"
+                            v-on:moveDown="moveAuthorDown(index)"
+                            v-on:moveUp="moveAuthorUp(index)"
                         />
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
+                            v-bind:num-authors="authors.length"
                             v-bind="author"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"
+                            v-on:moveDown="moveAuthorDown(index)"
+                            v-on:moveUp="moveAuthorUp(index)"
                         />
                     </div>
                 </div>
@@ -71,6 +77,7 @@ import StepperActions from 'components/StepperActions.vue'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
+import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { authorsErrors } from 'src/authors-errors'
@@ -119,10 +126,29 @@ export default defineComponent({
                 setAuthors(authors.value)
             }
         }
+        const moveAuthorUp = (index: number) => {
+            moveUp(index, authors.value, setAuthors)
+            if (editingId.value === index && index > 0) {
+                editingId.value = editingId.value - 1
+            } else if (editingId.value === index - 1) {
+                editingId.value = editingId.value + 1
+            }
+        }
+        const moveAuthorDown = (index: number) => {
+            moveDown(index, authors.value, setAuthors)
+            if (editingId.value === index && index < authors.value.length - 1) {
+                editingId.value = editingId.value + 1
+            } else if (editingId.value === index + 1) {
+                editingId.value = editingId.value - 1
+            }
+        }
+
         return {
             addAuthor,
             authors,
             editingId,
+            moveAuthorDown,
+            moveAuthorUp,
             removeAuthor,
             setAuthorField,
             authorsErrors: computed(() => authorsErrors(authors.value))

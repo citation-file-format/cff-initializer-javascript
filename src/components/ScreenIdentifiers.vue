@@ -10,6 +10,16 @@
         </div>
 
         <div id="form-content">
+            <p class="question">
+                What persistent identifiers are available for the work?
+                See
+                <a
+                    href="https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsidentifier"
+                    target="_blank"
+                >
+                    schema guide
+                </a> for examples.
+            </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>
@@ -22,17 +32,23 @@
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:identifier="identifier"
+                            v-bind:num-identifiers="identifiers.length"
                             v-on:editPressed="() => (editingId = index)"
+                            v-on:moveDown="moveIdentifierDown(index)"
+                            v-on:moveUp="moveIdentifierUp(index)"
                         />
                         <IdentifierCardEditing
                             v-else
                             v-bind:index="index"
                             v-bind="identifier"
+                            v-bind:num-identifiers="identifiers.length"
                             v-on:updateType="setIdentifierTypeField"
                             v-on:updateValue="setIdentifierValueField"
                             v-on:updateDescription="setIdentifierDescriptionField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeIdentifier"
+                            v-on:moveDown="moveIdentifierDown(index)"
+                            v-on:moveUp="moveIdentifierUp(index)"
                         />
                     </div>
                 </div>
@@ -62,6 +78,7 @@ import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { moveDown, moveUp } from '../updown'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',
@@ -127,10 +144,29 @@ export default defineComponent({
                 setIdentifiers(identifiers.value)
             }
         }
+        const moveIdentifierUp = (index: number) => {
+            moveUp(index, identifiers.value, setIdentifiers)
+            if (editingId.value === index && index > 0) {
+                editingId.value = editingId.value - 1
+            } else if (editingId.value === index - 1) {
+                editingId.value = editingId.value + 1
+            }
+        }
+        const moveIdentifierDown = (index: number) => {
+            moveDown(index, identifiers.value, setIdentifiers)
+            if (editingId.value === index && index < identifiers.value.length - 1) {
+                editingId.value = editingId.value + 1
+            } else if (editingId.value === index + 1) {
+                editingId.value = editingId.value - 1
+            }
+        }
+
         return {
             addIdentifier,
             editingId,
             identifiers,
+            moveIdentifierUp,
+            moveIdentifierDown,
             removeIdentifier,
             setIdentifierDescriptionField,
             setIdentifierTypeField,

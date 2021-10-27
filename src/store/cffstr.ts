@@ -30,7 +30,7 @@ export function useCffstr () {
     } = useCff()
 
     const notEmpty = (value: unknown, prop: unknown, subject: unknown) => {
-        return value !== undefined
+        return value !== undefined && value !== null
     }
 
     const makeJavascriptObject = () => {

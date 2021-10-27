@@ -16,6 +16,7 @@
             <q-select
                 bg-color="white"
                 label="license"
+                clearable
                 outlined
                 standout
                 use-input
@@ -23,7 +24,7 @@
                 v-bind:options="options"
                 v-bind:error="false"
                 v-bind:error-message="''"
-                v-on:filter="filterFn"
+                v-on:filter="licenseFilterFunction"
                 v-on:update:model-value="setLicense"
             />
         </div>
@@ -48,17 +49,16 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const cff = useCff()
+        const { license, setLicense } = useCff()
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
 
         return {
-            license: cff.license,
-            licenses: licenses,
+            license,
+            licenses,
             options,
-            setLicense: cff.setLicense,
-
-            filterFn (val: string, update: (a:unknown) => void) {
+            setLicense,
+            licenseFilterFunction (val: string, update: (a: unknown) => void) {
                 if (val === '') {
                     update(() => {
                         options.value = licenses

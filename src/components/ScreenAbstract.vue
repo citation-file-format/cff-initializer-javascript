@@ -15,7 +15,9 @@
                 What is the abstract of the work?
             </p>
             <q-input
+                autogrow
                 bg-color="white"
+                input-style="min-height: 100px; max-height: 444px"
                 label="abstract"
                 outlined
                 standout

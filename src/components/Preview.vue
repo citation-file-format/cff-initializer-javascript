@@ -30,7 +30,7 @@
         </q-btn>
     </div>
     <textarea
-        class="cffstr"
+        v-bind:class="['cffstr', isValidCFF ? '' : 'error']"
         readonly="true"
         v-bind:value="cffstr"
         wrap="hard"
@@ -118,4 +118,9 @@ export default defineComponent({
     padding-top: 20px;
     text-align: center;
 }
+.error {
+    border-color: #C10015 !important;
+    border-width: 2px !important;
+}
+
 </style>

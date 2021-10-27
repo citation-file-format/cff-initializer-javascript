@@ -11,7 +11,7 @@
 
 :root {
     --fgcolor: #efefef;
-    --bgcolor: #303030;
+    --bgcolor: #ddd;
 }
 
 body {
@@ -24,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    row-gap: 7px;
+    row-gap: 20px;
 }
 #header-outer {
     background-color: var(--bgcolor, rosybrown);

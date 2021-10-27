@@ -22,7 +22,6 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
     }
 
     const checkForObjectProblems = (item: ErrorObject) => {
-        // const keywords = ['required', 'additionalProperties']
         if (fieldNames !== undefined && item.keyword === 'required') {
             return fieldNames.includes(item.params.missingProperty as string)
         }

@@ -57,15 +57,18 @@
         />
 
         <q-step
-            color="primary"
+            error-color="negative"
+            error-icon="warning"
             icon=""
             name="related-resources"
             title="Related resources"
+            v-bind:active-icon="isValidScreenRelatedResources.hasError ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenRelatedResources.hasError ? 'negative' : 'primary'"
+            v-bind:error="isValidScreenRelatedResources.hasError"
             v-bind:order="4"
             v-if="showAdvanced"
             v-on:click="setStepName('related-resources')"
         />
-
         <q-step
             color="primary"
             icon=""
@@ -129,6 +132,7 @@ import { getMyErrors } from 'src/store/validator'
 import { computed } from 'vue'
 import { useCff } from 'src/store/cff'
 import { authorsErrors } from 'src/authors-errors'
+import { relatedResourcesErrors } from 'src/related-resources-errors'
 
 export default {
     setup () {
@@ -138,6 +142,7 @@ export default {
             isValidScreenAuthors: computed(() => authorsErrors(authors.value)),
             isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
             isValidScreenVersionSpecific: computed(() => getMyErrors('/date-released')),
+            isValidScreenRelatedResources: computed(relatedResourcesErrors),
             setStepName,
             showAdvanced,
             stepName

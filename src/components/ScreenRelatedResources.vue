@@ -19,7 +19,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:rules="[validateRepositoryCode]"
+                v-bind:error="repositoryCodeError.hasError"
+                v-bind:error-message="repositoryCodeError.messages.join(', ')"
                 v-on:update:modelValue="setRepositoryCode"
             />
 
@@ -32,8 +33,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="urlError.hasError"
+                v-bind:error-message="urlError.messages.join(', ')"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -46,8 +47,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryError.hasError"
+                v-bind:error-message="repositoryError.messages.join(', ')"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -60,22 +61,9 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryArtifactError.hasError"
+                v-bind:error-message="repositoryArtifactError.messages.join(', ')"
                 v-on:update:modelValue="setRepositoryArtifact"
-            />
-            <p class="question">
-                The URL of the work in a source code repository
-            </p>
-            <q-input
-                bg-color="white"
-                label="repository-code"
-                outlined
-                standout
-                v-bind:model-value="repositoryCode"
-                v-bind:error="false"
-                v-bind:error-message="''"
-                v-on:update:modelValue="setRepositoryCode"
             />
         </div>
 
@@ -88,8 +76,9 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -110,7 +99,11 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl
+            setUrl,
+            repositoryError: computed(() => getMyErrors('/repository')),
+            repositoryArtifactError: computed(() => getMyErrors('/repository-artifact')),
+            repositoryCodeError: computed(() => getMyErrors('/repository-code')),
+            urlError: computed(() => getMyErrors('/url'))
         }
     }
 })

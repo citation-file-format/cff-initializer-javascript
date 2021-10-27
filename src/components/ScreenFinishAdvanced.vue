@@ -35,31 +35,6 @@
                         v-on:click="createAnother"
                     />
                 </div>
-
-                <p
-                    class="finish-paragraph"
-                    style="margin-top: 120px"
-                >
-                    Share a reference to your software.
-                </p>
-
-                <div
-                    class="text-primary q-gutter-md q-mb-xl"
-                    style="font-size: 2em"
-                >
-                    <q-icon
-                        name="ion-logo-twitter"
-                        size="xl"
-                    />
-                    <q-icon
-                        name="ion-logo-linkedin"
-                        size="xl"
-                    />
-                    <q-icon
-                        name="ion-logo-reddit"
-                        size="xl"
-                    />
-                </div>
             </div>
             <div v-else>
                 <p class="finish-paragraph">

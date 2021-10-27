@@ -145,6 +145,7 @@ export default defineComponent({
             }
         }
         const moveIdentifierUp = (index: number) => {
+            if (identifiers.value === undefined) return
             moveUp(index, identifiers.value, setIdentifiers)
             if (editingId.value === index && index > 0) {
                 editingId.value = editingId.value - 1
@@ -153,6 +154,7 @@ export default defineComponent({
             }
         }
         const moveIdentifierDown = (index: number) => {
+            if (identifiers.value === undefined) return
             moveDown(index, identifiers.value, setIdentifiers)
             if (editingId.value === index && index < identifiers.value.length - 1) {
                 editingId.value = editingId.value + 1

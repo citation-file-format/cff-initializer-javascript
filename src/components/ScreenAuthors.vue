@@ -127,6 +127,7 @@ export default defineComponent({
             }
         }
         const moveAuthorUp = (index: number) => {
+            if (authors.value === undefined) return
             moveUp(index, authors.value, setAuthors)
             if (editingId.value === index && index > 0) {
                 editingId.value = editingId.value - 1
@@ -135,6 +136,7 @@ export default defineComponent({
             }
         }
         const moveAuthorDown = (index: number) => {
+            if (authors.value === undefined) return
             moveDown(index, authors.value, setAuthors)
             if (editingId.value === index && index < authors.value.length - 1) {
                 editingId.value = editingId.value + 1

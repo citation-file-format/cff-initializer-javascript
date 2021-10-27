@@ -105,7 +105,7 @@ export default defineComponent({
             default: 0
         }
     },
-    setup (props) {
+    setup () {
         // validating of value depends on type
         // const valueValidators: Record<IdentifierTypeType, (val: unknown) => true | string > = {
         //     doi: makeFieldValidator('/definitions/identifier/anyOf/0/properties/value'),

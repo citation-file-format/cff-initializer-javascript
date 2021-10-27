@@ -28,10 +28,10 @@
             icon=""
             name="authors"
             title="Authors"
-            v-bind:order="1"
             v-bind:active-icon="isValidScreenAuthors.hasError ? 'warning' : 'edit'"
             v-bind:color="isValidScreenAuthors.hasError ? 'negative' : 'primary'"
             v-bind:error="isValidScreenAuthors.hasError"
+            v-bind:order="1"
             v-on:click="setStepName('authors')"
         />
 
@@ -97,15 +97,18 @@
         />
 
         <q-step
-            color="primary"
+            error-color="negative"
+            error-icon="warning"
             icon=""
             name="version-specific"
             title="Version specific"
+            v-bind:active-icon="isValidScreenVersionSpecific.hasError ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenVersionSpecific.hasError ? 'negative' : 'primary'"
+            v-bind:error="isValidScreenVersionSpecific.hasError"
             v-bind:order="8"
             v-if="showAdvanced"
             v-on:click="setStepName('version-specific')"
         />
-
         <q-step
             active-icon="navigate_next"
             color="primary"
@@ -132,8 +135,9 @@ export default {
         const { showAdvanced, stepName, setStepName } = useApp()
         const { authors } = useCff()
         return {
-            isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
             isValidScreenAuthors: computed(() => authorsErrors(authors.value)),
+            isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
+            isValidScreenVersionSpecific: computed(() => getMyErrors('/date-released')),
             setStepName,
             showAdvanced,
             stepName

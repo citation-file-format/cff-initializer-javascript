@@ -19,8 +19,6 @@
                 outlined
                 standout
                 v-bind:model-value="commit"
-                v-bind:error="FIXME.hasError"
-                v-bind:error-message="FIXME.messages.join(', ')"
                 v-on:update:modelValue="setCommit"
             />
 
@@ -33,8 +31,6 @@
                 outlined
                 standout
                 v-bind:model-value="version"
-                v-bind:error="FIXME.hasError"
-                v-bind:error-message="FIXME.messages.join(', ')"
                 v-on:update:modelValue="setVersion"
             />
 
@@ -49,8 +45,8 @@
                 style="width: 33.33%"
                 today-btn="true"
                 v-bind:model-value="dateReleased"
-                v-bind:error="FIXME.hasError"
-                v-bind:error-message="FIXME.messages.join(', ')"
+                v-bind:error="dateError.hasError"
+                v-bind:error-message="dateError.messages.join(', ')"
                 v-on:update:modelValue="setDateReleased"
             >
                 <template #append>
@@ -92,8 +88,9 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenVersionSpecific',
@@ -118,7 +115,7 @@ export default defineComponent({
             setCommit,
             setDateReleased,
             setVersion,
-            FIXME: { hasError: false, messages: [] }
+            dateError: computed(() => getMyErrors('/date-released'))
         }
     }
 })

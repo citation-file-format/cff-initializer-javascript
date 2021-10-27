@@ -12,7 +12,7 @@ describe('useCffstr', () => {
     })
     describe('initial content', () => {
         it('should only have fields with defaults', () => {
-            const expected = 'cff-version: 1.2.0\ntype: software\n' + generatedBy
+            const expected = 'authors: []\ncff-version: 1.2.0\ntype: software\n' + generatedBy
             expect(cffstr.value).toEqual(expected)
         })
     })
@@ -23,7 +23,7 @@ describe('useCffstr', () => {
         })
 
         it('should have title', () => {
-            const expected = 'cff-version: 1.2.0\ntitle: sometitle\ntype: software\n' + generatedBy
+            const expected = 'authors: []\ncff-version: 1.2.0\ntitle: sometitle\ntype: software\n' + generatedBy
             expect(cffstr.value).toEqual(expected)
         })
     })
@@ -34,7 +34,7 @@ describe('useCffstr', () => {
         })
 
         it('should have a keyword', () => {
-            const expected = 'cff-version: 1.2.0\nkeywords:\n  - keyword1\ntype: software\n' + generatedBy
+            const expected = 'authors: []\ncff-version: 1.2.0\nkeywords:\n  - keyword1\ntype: software\n' + generatedBy
             expect(cffstr.value).toEqual(expected)
         })
     })
@@ -44,8 +44,8 @@ describe('useCffstr', () => {
             cff.setIdentifiers([{ type: 'doi', value: '10.5281/zenodo.5171937' }])
         })
 
-        it('should have a keyword', () => {
-            const expected = 'cff-version: 1.2.0\nidentifiers:\n  - type: doi\n    value: 10.5281/zenodo.5171937\ntype: software\n' + generatedBy
+        it('should have a identifier', () => {
+            const expected = 'authors: []\ncff-version: 1.2.0\nidentifiers:\n  - type: doi\n    value: 10.5281/zenodo.5171937\ntype: software\n' + generatedBy
             expect(cffstr.value).toEqual(expected)
         })
     })

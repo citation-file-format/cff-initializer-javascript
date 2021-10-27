@@ -21,7 +21,8 @@
                 use-input
                 v-bind:model-value="license"
                 v-bind:options="options"
-                v-bind:rules="[ validateLicense ]"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:filter="filterFn"
                 v-on:update:model-value="setLicense"
             />
@@ -35,7 +36,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { makeOptionalFieldValidator } from 'src/validator'
 import { useCff } from '../store/cff'
 import schema from '../schemas/1.2.0/schema.json'
 import Stepper from 'components/Stepper.vue'
@@ -57,7 +57,7 @@ export default defineComponent({
             licenses: licenses,
             options,
             setLicense: cff.setLicense,
-            validateLicense: makeOptionalFieldValidator('/definitions/license-enum'),
+
             filterFn (val: string, update: (a:unknown) => void) {
                 if (val === '') {
                     update(() => {

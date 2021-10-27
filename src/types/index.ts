@@ -8,7 +8,7 @@ export type AuthorType = {
     email?: string;
 }
 
-export type AuthorsType = Array<AuthorType>
+export type AuthorsType = Array<AuthorType> | undefined
 
 export type IdentifierTypeType = 'doi' | 'url' | 'swh' | 'other'
 export type IdentifierType = {
@@ -17,27 +17,27 @@ export type IdentifierType = {
     description?: string
 }
 
-export type IdentifiersType = Array<IdentifierType>
+export type IdentifiersType = Array<IdentifierType> | undefined
 
-export type KeywordsType = Array<string>
+export type KeywordsType = Array<string> | undefined
 
 export type TypeType = 'software' | 'dataset'
 
 export type CffType = {
     abstract?: string,
-    authors: AuthorsType,
-    cffVersion?: string,
+    authors?: AuthorsType,
+    cffVersion: string,
     commit?: string,
     dateReleased?: string,
-    keywords: KeywordsType,
-    identifiers: IdentifiersType,
+    keywords?: KeywordsType,
+    identifiers?: IdentifiersType,
     license?: string,
     message?: string,
     repository?: string,
     repositoryArtifact?: string,
     repositoryCode?: string,
     title?: string,
-    type?: TypeType,
+    type: TypeType,
     url?: string,
     version?: string
 }

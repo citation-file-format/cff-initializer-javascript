@@ -20,7 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:rules="[validateTitle]"
+                v-bind:error="titleError.hasError"
+                v-bind:error-message="titleError.messages.join(', ')"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -31,7 +32,9 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:rules="[validateMessage]"
+                v-bind:error="messageError.hasError"
+                v-bind:error-message="messageError.messages.join(', ')"
+                v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             >
                 <template #append>
@@ -64,6 +67,18 @@
                 v-bind:options="typeOptions"
                 v-on:update:modelValue="setType"
             />
+
+            <q-banner
+                v-if="screenError.hasError"
+                class="bg-warning text-negative"
+            >
+                <div
+                    v-bind:key="index"
+                    v-for="(screenMessage, index) in screenError.messages"
+                >
+                    {{ screenMessage }}
+                </div>
+            </q-banner>
         </div>
 
         <div id="form-button-bar">
@@ -75,9 +90,9 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { makeFieldValidator } from '../validator'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -107,8 +122,9 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            validateTitle: makeFieldValidator('/properties/title'),
-            validateMessage: makeFieldValidator('/properties/message')
+            messageError: computed(() => getMyErrors('', ['message'])),
+            titleError: computed(() => getMyErrors('', ['title'])),
+            screenError: computed(() => getMyErrors('', ['message', 'title']))
         }
     }
 })

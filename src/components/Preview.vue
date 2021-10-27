@@ -37,7 +37,7 @@
     />
     <div class="validation-msg">
         <p>
-            Your CITATION.cff is {{ isValid ? "valid" : "not valid" }}
+            Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}
         </p>
     </div>
 </template>
@@ -45,7 +45,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
-import { isValidCffFile } from 'src/validator'
+import { useErrors } from 'src/store/errors'
 
 export default defineComponent({
     name: 'Preview',
@@ -53,6 +53,7 @@ export default defineComponent({
     },
     setup () {
         const { cffstr } = useCffstr()
+        const { errors } = useErrors()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
@@ -62,12 +63,12 @@ export default defineComponent({
             showTooltip.value = false
         }
 
-        const isValid = computed(isValidCffFile)
+        const isValidCFF = computed(() => errors.value.length === 0)
 
         return {
             cffstr,
             copyToClipboard,
-            isValid,
+            isValidCFF,
             showTooltip
         }
     }

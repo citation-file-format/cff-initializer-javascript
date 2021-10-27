@@ -32,7 +32,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:rules="[validateUrl]"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -45,7 +46,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:rules="[validateRepository]"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -58,8 +60,22 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:rules="[validateRepositoryArtifact]"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepositoryArtifact"
+            />
+            <p class="question">
+                The URL of the work in a source code repository
+            </p>
+            <q-input
+                bg-color="white"
+                label="repository-code"
+                outlined
+                standout
+                v-bind:model-value="repositoryCode"
+                v-bind:error="false"
+                v-bind:error-message="''"
+                v-on:update:modelValue="setRepositoryCode"
             />
         </div>
 
@@ -72,7 +88,6 @@
 <script lang="ts">
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { makeOptionalFieldValidator } from '../validator'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
@@ -95,11 +110,7 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl,
-            validateUrl: makeOptionalFieldValidator('/definitions/url'),
-            validateRepository: makeOptionalFieldValidator('/definitions/url'),
-            validateRepositoryArtifact: makeOptionalFieldValidator('/definitions/url'),
-            validateRepositoryCode: makeOptionalFieldValidator('/definitions/url')
+            setUrl
         }
     }
 })

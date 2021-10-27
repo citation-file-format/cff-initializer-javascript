@@ -27,7 +27,6 @@
                     v-on:update:modelValue="
                         $emit('updateValue', 'value', $event)
                     "
-                    v-bind:rules="[ validateValue ]"
                 />
             </div>
             <div class="q-gutter-md items-center no-wrap">
@@ -41,7 +40,6 @@
                     v-on:update:modelValue="
                         $emit('updateDescription', 'description', $event)
                     "
-                    v-bind:rules="[ validateDescription ]"
                 />
             </div>
         </q-card-section>
@@ -81,7 +79,6 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { makeFieldValidator, makeOptionalFieldValidator } from '../validator'
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
@@ -108,17 +105,17 @@ export default defineComponent({
             default: 0
         }
     },
-    setup (props) {
+    setup () {
         // validating of value depends on type
-        const valueValidators: Record<IdentifierTypeType, (val: unknown) => true | string > = {
-            doi: makeFieldValidator('/definitions/identifier/anyOf/0/properties/value'),
-            url: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
-            swh: makeFieldValidator('/definitions/identifier/anyOf/2/properties/value'),
-            other: makeFieldValidator('/definitions/identifier/anyOf/3/properties/value')
-        }
+        // const valueValidators: Record<IdentifierTypeType, (val: unknown) => true | string > = {
+        //     doi: makeFieldValidator('/definitions/identifier/anyOf/0/properties/value'),
+        //     url: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
+        //     swh: makeFieldValidator('/definitions/identifier/anyOf/2/properties/value'),
+        //     other: makeFieldValidator('/definitions/identifier/anyOf/3/properties/value')
+        // }
         return {
-            validateValue: (val: string) => valueValidators[props.type as IdentifierTypeType](val),
-            validateDescription: makeOptionalFieldValidator('/definitions/identifier-description'),
+        //     validateValue: (val: string) => valueValidators[props.type as IdentifierTypeType](val),
+        //     validateDescription: makeOptionalFieldValidator('/definitions/identifier-description'),
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },

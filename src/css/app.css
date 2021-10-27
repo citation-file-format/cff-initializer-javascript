@@ -85,7 +85,7 @@ body {
     background-color: var(--fgcolor, khaki);
     display: flex;
     flex-direction: row;
-    justify-content: center;    
+    justify-content: center;
     max-height: 80px;
     min-height: 80px;
 }
@@ -186,3 +186,8 @@ pre, .mono {
     font-family: 'Roboto Mono', sans-serif;
 }
 
+
+.red-border {
+    border-color: #C10015;
+    border-width: 2px;
+}

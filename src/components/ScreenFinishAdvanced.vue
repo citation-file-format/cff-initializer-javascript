@@ -6,7 +6,7 @@
         <div id="form-title">
             <h1
                 class="finish-title"
-                v-if="isValid"
+                v-if="isValidCFF"
             >
                 Congratulations
             </h1>
@@ -19,7 +19,7 @@
         </div>
 
         <div id="form-content">
-            <div v-if="isValid">
+            <div v-if="isValidCFF">
                 <p class="finish-paragraph">
                     Use the buttons below to download your CITATION.cff file, or reset the form to start over.
                 </p>
@@ -80,7 +80,7 @@ import { useApp } from '../store/app'
 import { useCff } from '../store/cff'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { isValidCffFile } from 'src/validator'
+import { useErrors } from 'src/store/errors'
 import DownloadButton from 'components/DownloadButton.vue'
 
 export default defineComponent({
@@ -93,9 +93,10 @@ export default defineComponent({
     setup () {
         const { setStepName, setShowAdvanced } = useApp()
         const { reset } = useCff()
+        const { errors } = useErrors()
 
         return {
-            isValid: computed(isValidCffFile),
+            isValidCFF: computed(() => errors.value.length === 0),
             createAnother: async () => {
                 reset()
                 setShowAdvanced(false)

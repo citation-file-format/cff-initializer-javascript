@@ -47,10 +47,14 @@
         />
 
         <q-step
-            color="primary"
+            error-color="negative"
+            error-icon="warning"
             icon=""
             name="identifiers"
             title="Identifiers"
+            v-bind:active-icon="isValidScreenIdentifiers.hasError ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenIdentifiers.hasError ? 'negative' : 'primary'"
+            v-bind:error="isValidScreenIdentifiers.hasError"
             v-bind:order="3"
             v-if="showAdvanced"
             v-on:click="setStepName('identifiers')"
@@ -133,16 +137,18 @@ import { computed } from 'vue'
 import { useCff } from 'src/store/cff'
 import { authorsErrors } from 'src/authors-errors'
 import { relatedResourcesErrors } from 'src/related-resources-errors'
+import { identifiersErrors } from 'src/identifiers-errors'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-        const { authors } = useCff()
+        const { authors, identifiers } = useCff()
         return {
             isValidScreenAuthors: computed(() => authorsErrors(authors.value)),
+            isValidScreenIdentifiers: computed(() => identifiersErrors(identifiers.value)),
+            isValidScreenRelatedResources: computed(relatedResourcesErrors),
             isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
             isValidScreenVersionSpecific: computed(() => getMyErrors('/date-released')),
-            isValidScreenRelatedResources: computed(relatedResourcesErrors),
             setStepName,
             showAdvanced,
             stepName

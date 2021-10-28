@@ -7,8 +7,8 @@
                 outlined
                 placeholder="Type a keyword"
                 v-bind:model-value="keyword"
-                v-bind:error="FIXME.hasError"
-                v-bind:error-message="FIXME.messages.join(', ')"
+                v-bind:error="keywordError.hasError"
+                v-bind:error-message="keywordError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
             />
         </div>
@@ -41,7 +41,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'KeywordCard',
@@ -59,9 +60,9 @@ export default defineComponent({
             default: 0
         }
     },
-    setup () {
+    setup (props) {
         return {
-            FIXME: { hasError: false, messages: [] }
+            keywordError: computed(() => getMyErrors(`/keywords/${props.index}`))
         }
     },
     emits: ['moveDown', 'moveUp', 'removePressed', 'update']

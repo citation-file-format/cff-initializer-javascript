@@ -43,7 +43,6 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { getMyErrors } from 'src/store/validator'
-import { useErrors } from 'src/store/errors'
 
 export default defineComponent({
     name: 'KeywordCard',
@@ -62,12 +61,8 @@ export default defineComponent({
         }
     },
     setup (props) {
-        const { errors } = useErrors()
         return {
-            keywordError: computed(() => {
-                console.log(errors.value)
-                return getMyErrors(`/keywords/${props.index}`)
-            })
+            keywordError: computed(() => getMyErrors(`/keywords/${props.index}`))
         }
     },
     emits: ['moveDown', 'moveUp', 'removePressed', 'update']

@@ -41,6 +41,18 @@
             </q-btn>
         </div>
 
+        <q-banner
+            v-if="keywordsErrors.hasError"
+            class="bg-warning text-negative"
+        >
+            <div
+                v-bind:key="index"
+                v-for="(screenMessage, index) in keywordsErrors.messages"
+            >
+                {{ screenMessage }}
+            </div>
+        </q-banner>
+
         <div id="form-button-bar">
             <StepperActions />
         </div>
@@ -51,10 +63,11 @@
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
-import { defineComponent, nextTick } from 'vue'
+import { computed, defineComponent, nextTick } from 'vue'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from '../store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenKeywords',
@@ -102,7 +115,8 @@ export default defineComponent({
             moveUp,
             removeKeyword,
             setKeyword,
-            setKeywords
+            setKeywords,
+            keywordsErrors: computed(() => getMyErrors('/keywords'))
         }
     }
 })

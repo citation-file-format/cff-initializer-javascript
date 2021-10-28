@@ -47,10 +47,14 @@
         />
 
         <q-step
-            color="primary"
+            error-color="negative"
+            error-icon="warning"
             icon=""
             name="identifiers"
             title="Identifiers"
+            v-bind:active-icon="isValidScreenIdentifiers.hasError ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenIdentifiers.hasError ? 'negative' : 'primary'"
+            v-bind:error="isValidScreenIdentifiers.hasError"
             v-bind:order="3"
             v-if="showAdvanced"
             v-on:click="setStepName('identifiers')"
@@ -80,10 +84,14 @@
         />
 
         <q-step
-            color="primary"
+            error-color="negative"
+            error-icon="warning"
             icon=""
             name="keywords"
             title="Keywords"
+            v-bind:active-icon="isValidScreenKeywords.hasError ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenKeywords.hasError ? 'negative' : 'primary'"
+            v-bind:error="isValidScreenKeywords.hasError"
             v-bind:order="6"
             v-if="showAdvanced"
             v-on:click="setStepName('keywords')"
@@ -133,16 +141,20 @@ import { computed } from 'vue'
 import { useCff } from 'src/store/cff'
 import { authorsErrors } from 'src/authors-errors'
 import { relatedResourcesErrors } from 'src/related-resources-errors'
+import { identifiersErrors } from 'src/identifiers-errors'
+import { keywordsErrors } from 'src/keywords-errors'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-        const { authors } = useCff()
+        const { authors, identifiers, keywords } = useCff()
         return {
             isValidScreenAuthors: computed(() => authorsErrors(authors.value)),
-            isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
-            isValidScreenVersionSpecific: computed(() => getMyErrors('/date-released')),
+            isValidScreenIdentifiers: computed(() => identifiersErrors(identifiers.value)),
             isValidScreenRelatedResources: computed(relatedResourcesErrors),
+            isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
+            isValidScreenKeywords: computed(() => keywordsErrors(keywords.value)),
+            isValidScreenVersionSpecific: computed(() => getMyErrors('/date-released')),
             setStepName,
             showAdvanced,
             stepName

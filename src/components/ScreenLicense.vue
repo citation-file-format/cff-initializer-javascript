@@ -17,6 +17,9 @@
                 bg-color="white"
                 label="license"
                 clearable
+                fill-input
+                hide-selected
+                input-debounce="0"
                 outlined
                 standout
                 use-input
@@ -26,7 +29,15 @@
                 v-bind:error-message="''"
                 v-on:filter="licenseFilterFunction"
                 v-on:update:model-value="setLicense"
-            />
+            >
+                <template #no-option>
+                    <q-item>
+                        <q-item-section class="text-grey">
+                            No results
+                        </q-item-section>
+                    </q-item>
+                </template>
+            </q-select>
         </div>
 
         <div id="form-button-bar">
@@ -38,6 +49,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useCff } from '../store/cff'
+import { QSelect } from 'quasar'
 import schema from '../schemas/1.2.0/schema.json'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
@@ -58,17 +70,20 @@ export default defineComponent({
             licenses,
             options,
             setLicense,
-            licenseFilterFunction (val: string, update: (a: unknown) => void) {
-                if (val === '') {
-                    update(() => {
-                        options.value = licenses
-                    })
-                    return
-                }
-
+            licenseFilterFunction (val: string, update: (a: unknown, b: unknown) => void) {
                 update(() => {
-                    const needle = val.toLowerCase()
-                    options.value = licenses.filter(v => v.toLowerCase().indexOf(needle) > -1)
+                    if (val === '') {
+                        options.value = licenses
+                    } else {
+                        const needle = val.toLowerCase()
+                        options.value = licenses.filter(v => v.toLowerCase().indexOf(needle) > -1)
+                    }
+                },
+                (ref: QSelect) => {
+                    if (val !== '' && ref.options !== undefined && ref.options.length > 0) {
+                        ref.setOptionIndex(-1)
+                        ref.moveOptionSelection(1, true)
+                    }
                 })
             }
         }

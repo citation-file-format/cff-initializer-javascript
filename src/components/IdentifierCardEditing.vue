@@ -2,13 +2,15 @@
     <q-card
         flat
         bordered
-        class="bg-formcard"
+        v-bind:class="['bg-formcard', 'q-pa-md', identifierErrors.hasError ? 'red-border' : '']"
     >
         <q-card-section>
             <div class="row items-center no-wrap">
                 <q-option-group
                     inline
                     type="radio"
+                    v-bind:error="typeError.hasError"
+                    v-bind:error-message="typeError.messages.join(', ')"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
                     v-on:update:modelValue="
@@ -23,6 +25,8 @@
                     outlined
                     standout
                     dense
+                    v-bind:error="valueError.hasError"
+                    v-bind:error-message="valueError.messages.join(', ')"
                     v-bind:model-value="value"
                     v-on:update:modelValue="
                         $emit('updateValue', 'value', $event)
@@ -36,6 +40,8 @@
                     outlined
                     standout
                     dense
+                    v-bind:error="descriptionError.hasError"
+                    v-bind:error-message="descriptionError.messages.join(', ')"
                     v-bind:model-value="description"
                     v-on:update:modelValue="
                         $emit('updateDescription', 'description', $event)
@@ -79,7 +85,9 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
+import { getMyErrors } from 'src/store/validator'
+import { identifierErrors } from 'src/identifier-errors'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -105,23 +113,18 @@ export default defineComponent({
             default: 0
         }
     },
-    setup () {
-        // validating of value depends on type
-        // const valueValidators: Record<IdentifierTypeType, (val: unknown) => true | string > = {
-        //     doi: makeFieldValidator('/definitions/identifier/anyOf/0/properties/value'),
-        //     url: makeFieldValidator('/definitions/identifier/anyOf/1/properties/value'),
-        //     swh: makeFieldValidator('/definitions/identifier/anyOf/2/properties/value'),
-        //     other: makeFieldValidator('/definitions/identifier/anyOf/3/properties/value')
-        // }
+    setup (props) {
         return {
-        //     validateValue: (val: string) => valueValidators[props.type as IdentifierTypeType](val),
-        //     validateDescription: makeOptionalFieldValidator('/definitions/identifier-description'),
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },
                 { label: 'Software Heritage', value: 'swh' },
                 { label: 'Other', value: 'other' }
-            ]
+            ],
+            typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
+            valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
+            descriptionError: computed(() => getMyErrors(`/identifiers/${props.index}/description`)),
+            identifierErrors: computed(() => identifierErrors(props.index))
         }
     },
     emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription', 'moveUp', 'moveDown']

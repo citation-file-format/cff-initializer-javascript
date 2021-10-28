@@ -12,6 +12,7 @@
 :root {
     --fgcolor: #efefef;
     --bgcolor: #ddd;
+    --primary: #3E7BFA;
 }
 
 body {

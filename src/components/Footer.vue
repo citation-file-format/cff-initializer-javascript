@@ -1,10 +1,12 @@
 <template>
-    <a
-        href="https://esciencecenter.nl"
-        target="_blank"
-    >
-        <img src="~assets/nlesc-logo.svg">
-    </a>
+    <div id="logo">
+        <a
+            href="https://esciencecenter.nl"
+            target="_blank"
+        >
+            <img src="~assets/nlesc-logo.svg">
+        </a>
+    </div>
 </template>
 
 <script lang="ts">

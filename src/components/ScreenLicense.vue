@@ -27,7 +27,15 @@
                 v-bind:error-message="''"
                 v-on:filter="licenseFilterFunction"
                 v-on:update:model-value="setLicense"
-            />
+            >
+                <template #no-option>
+                    <q-item>
+                        <q-item-section class="text-grey">
+                            No results
+                        </q-item-section>
+                    </q-item>
+                </template>
+            </q-select>
         </div>
 
         <div id="form-button-bar">

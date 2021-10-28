@@ -8,14 +8,16 @@
                 </div>
             </div>
             <div id="middle">
-                <router-view />
-                <div id="preview">
-                    <div id="preview-content">
-                        <Preview />
-                    </div>
+                <div class="wrapper">
+                    <router-view />
+                    <div id="preview">
+                        <div id="preview-content">
+                            <Preview />
+                        </div>
 
-                    <div id="preview-button-bar">
-                        <DownloadButton v-if="isNotFinish" />
+                        <div id="preview-button-bar">
+                            <DownloadButton v-if="isNotFinish" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -24,6 +26,7 @@
                     <Footer />
                 </div>
             </div>
+
             <span class="spacer" />
         </div>
     </div>
@@ -58,5 +61,9 @@ export default defineComponent({
 <style scoped>
 .spacer {
     flex-grow: 1.0;
+}
+.wrapper{
+    display: flex;
+    box-shadow: 0px 8px 22px -6px rgba(24, 39, 75, 0.12), 0px 14px 64px -4px rgba(24, 39, 75, 0.12);
 }
 </style>

@@ -61,19 +61,19 @@
             >
                 Add identifier
             </q-btn>
-        </div>
 
-        <q-banner
-            v-if="identifiersErrors.hasError"
-            class="bg-warning text-negative"
-        >
-            <div
-                v-bind:key="index"
-                v-for="(screenMessage, index) in identifiersErrors.messages"
+            <q-banner
+                v-if="identifiersErrors.hasError"
+                class="bg-warning text-negative"
             >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
+                <div
+                    v-bind:key="index"
+                    v-for="(screenMessage, index) in identifiersErrors.messages"
+                >
+                    {{ screenMessage }}
+                </div>
+            </q-banner>
+        </div>
 
         <div id="form-button-bar">
             <StepperActions />

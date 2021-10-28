@@ -50,19 +50,19 @@
             >
                 Add author
             </q-btn>
-        </div>
 
-        <q-banner
-            v-if="authorsErrors.hasError"
-            class="bg-warning text-negative"
-        >
-            <div
-                v-bind:key="index"
-                v-for="(screenMessage, index) in authorsErrors.messages"
+            <q-banner
+                v-if="authorsErrors.hasError"
+                class="bg-warning text-negative"
             >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
+                <div
+                    v-bind:key="index"
+                    v-for="(screenMessage, index) in authorsErrors.messages"
+                >
+                    {{ screenMessage }}
+                </div>
+            </q-banner>
+        </div>
 
         <div id="form-button-bar">
             <StepperActions />

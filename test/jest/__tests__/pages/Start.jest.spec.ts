@@ -2,17 +2,17 @@ import { beforeEach, describe, expect, it } from '@jest/globals'
 import { installQuasarPlugin } from '@quasar/quasar-app-extension-testing-unit-jest'
 import { shallowMount, VueWrapper } from '@vue/test-utils'
 
-import Start from '../../../../src/components/Landing.vue'
+import LayoutLanding from '../../../../src/components/LayoutLanding.vue'
 
 // Specify here Quasar config you'll need to test your component
 installQuasarPlugin()
 
-describe('Start', () => {
+describe('LayoutLanding', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let wrapper: VueWrapper<any>
 
     beforeEach(() => {
-        wrapper = shallowMount(Start)
+        wrapper = shallowMount(LayoutLanding)
     })
 
     it('should mount without errors', () => {

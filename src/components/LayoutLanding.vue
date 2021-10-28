@@ -58,7 +58,7 @@ import Footer from 'components/Footer.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'MainLayout',
+    name: 'LayoutLanding',
 
     components: {
         Footer

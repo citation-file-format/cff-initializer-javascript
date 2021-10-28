@@ -96,6 +96,7 @@ export default defineComponent({
 }
 
 .header-image{
+    display: flex;
     margin-top: 40px;
     padding: 10px 20px;
     width: 500px;

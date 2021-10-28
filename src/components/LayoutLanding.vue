@@ -23,7 +23,7 @@
                 </div>
                 <img
                     class="col-sm-6 col-xs-12 q-pa-lg illustration slide-from-right-animation"
-                    src="~assets/landing-image.webp"
+                    src="~assets/landing-image.svg"
                 >
             </div>
             <div class="row justify-center items-center q-pt-md q-mb-xl">

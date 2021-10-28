@@ -39,19 +39,19 @@
             >
                 Add keyword
             </q-btn>
-        </div>
 
-        <q-banner
-            v-if="keywordsErrors.hasError"
-            class="bg-warning text-negative"
-        >
-            <div
-                v-bind:key="index"
-                v-for="(screenMessage, index) in keywordsErrors.messages"
+            <q-banner
+                v-if="keywordsErrors.hasError"
+                class="bg-warning text-negative"
             >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
+                <div
+                    v-bind:key="index"
+                    v-for="(screenMessage, index) in keywordsErrors.messages"
+                >
+                    {{ screenMessage }}
+                </div>
+            </q-banner>
+        </div>
 
         <div id="form-button-bar">
             <StepperActions />

@@ -17,6 +17,7 @@
                 bg-color="white"
                 label="license"
                 clearable
+                input-debounce="0"
                 outlined
                 standout
                 use-input

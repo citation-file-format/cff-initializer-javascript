@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it } from '@jest/globals'
-import { useCff } from '../../../../src/store/cff'
-import { useCffstr } from '../../../../src/store/cffstr'
+import { useCff } from 'src/store/cff'
+import { useCffstr } from 'src/store/cffstr'
 
 describe('useCffstr', () => {
     const cff = useCff()
-    const generatedBy = '# This CFF file was generated with cffinit at\n# https://bit.ly/cffinit.\n'
+    const generatedBy = '# This CITATION.cff file was generated with cffinit.\n# Visit https://bit.ly/cffinit to generate yours today!\n\n'
     const { cffstr } = useCffstr()
 
     beforeEach(() => {
@@ -12,7 +12,7 @@ describe('useCffstr', () => {
     })
     describe('initial content', () => {
         it('should only have fields with defaults', () => {
-            const expected = 'authors: []\ncff-version: 1.2.0\ntype: software\n' + generatedBy
+            const expected = generatedBy + 'authors: []\ncff-version: 1.2.0\ntype: software\n'
             expect(cffstr.value).toEqual(expected)
         })
     })
@@ -23,7 +23,7 @@ describe('useCffstr', () => {
         })
 
         it('should have title', () => {
-            const expected = 'authors: []\ncff-version: 1.2.0\ntitle: sometitle\ntype: software\n' + generatedBy
+            const expected = generatedBy + 'authors: []\ncff-version: 1.2.0\ntitle: sometitle\ntype: software\n'
             expect(cffstr.value).toEqual(expected)
         })
     })
@@ -34,7 +34,7 @@ describe('useCffstr', () => {
         })
 
         it('should have a keyword', () => {
-            const expected = 'authors: []\ncff-version: 1.2.0\nkeywords:\n  - keyword1\ntype: software\n' + generatedBy
+            const expected = generatedBy + 'authors: []\ncff-version: 1.2.0\nkeywords:\n  - keyword1\ntype: software\n'
             expect(cffstr.value).toEqual(expected)
         })
     })
@@ -45,7 +45,7 @@ describe('useCffstr', () => {
         })
 
         it('should have a identifier', () => {
-            const expected = 'authors: []\ncff-version: 1.2.0\nidentifiers:\n  - type: doi\n    value: 10.5281/zenodo.5171937\ntype: software\n' + generatedBy
+            const expected = generatedBy + 'authors: []\ncff-version: 1.2.0\nidentifiers:\n  - type: doi\n    value: 10.5281/zenodo.5171937\ntype: software\n'
             expect(cffstr.value).toEqual(expected)
         })
     })

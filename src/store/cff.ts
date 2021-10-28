@@ -1,26 +1,28 @@
 import { ref, computed } from 'vue'
 import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from '../types'
 
-const cffInitialValue = {
-    abstract: undefined,
-    authors: [],
-    cffVersion: '1.2.0',
-    commit: undefined,
-    dateReleased: undefined,
-    identifiers: undefined,
-    keywords: undefined,
-    license: undefined,
-    message: undefined,
-    repository: undefined,
-    repositoryArtifact: undefined,
-    repositoryCode: undefined,
-    title: undefined,
-    type: 'software',
-    url: undefined,
-    version: undefined
+const getInitialData = () => {
+    return {
+        abstract: undefined,
+        authors: [],
+        cffVersion: '1.2.0',
+        commit: undefined,
+        dateReleased: undefined,
+        identifiers: undefined,
+        keywords: undefined,
+        license: undefined,
+        message: undefined,
+        repository: undefined,
+        repositoryArtifact: undefined,
+        repositoryCode: undefined,
+        title: undefined,
+        type: 'software',
+        url: undefined,
+        version: undefined
+    } as CffType
 }
 
-const cff = ref(cffInitialValue as CffType)
+const cff = ref(getInitialData())
 
 export function useCff () {
     return {
@@ -56,7 +58,7 @@ export function useCff () {
         setUrl: (newUrl: string) => { cff.value.url = newUrl === '' ? undefined : newUrl },
         setVersion: (newVersion: string) => { cff.value.version = newVersion === '' ? undefined : newVersion },
         reset: () => {
-            cff.value = cffInitialValue as CffType
+            cff.value = getInitialData()
         }
     }
 }

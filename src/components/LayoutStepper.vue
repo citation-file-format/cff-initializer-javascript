@@ -63,6 +63,9 @@ export default defineComponent({
     flex-grow: 1.0;
 }
 .wrapper{
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 20px;
     display: flex;
     box-shadow: 0px 8px 22px -6px rgba(24, 39, 75, 0.12), 0px 14px 64px -4px rgba(24, 39, 75, 0.12);
 }

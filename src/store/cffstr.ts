@@ -35,22 +35,22 @@ export function useCffstr () {
 
     const makeJavascriptObject = () => {
         const cff = {
-            abstract: abstract.value,
-            authors: authors.value,
-            commit: commit.value,
             cffVersion: cffVersion.value,
-            dateReleased: dateReleased.value,
-            identifiers: identifiers.value,
-            keywords: keywords.value,
-            license: license.value,
+            title: title.value,
             message: message.value,
+            type: type.value,
+            authors: authors.value,
+            identifiers: identifiers.value,
+            repositoryCode: repositoryCode.value,
+            url: url.value,
             repository: repository.value,
             repositoryArtifact: repositoryArtifact.value,
-            repositoryCode: repositoryCode.value,
-            title: title.value,
-            type: type.value,
-            url: url.value,
-            version: version.value
+            abstract: abstract.value,
+            keywords: keywords.value,
+            license: license.value,
+            commit: commit.value,
+            version: version.value,
+            dateReleased: dateReleased.value
         } as CffType
         const filtered = deepfilter(cff, notEmpty)
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -59,7 +59,7 @@ export function useCffstr () {
 
     const makeCffstr = () => {
         const kebabed = makeJavascriptObject()
-        const yamlString = yaml.dump(kebabed, { indent: 2, sortKeys: true, lineWidth: 53 })
+        const yamlString = yaml.dump(kebabed, { indent: 2, lineWidth: 53 })
         const generatedBy = '# This CITATION.cff file was generated with cffinit.\n# Visit https://bit.ly/cffinit to generate yours today!\n\n'
         return generatedBy + yamlString
     }

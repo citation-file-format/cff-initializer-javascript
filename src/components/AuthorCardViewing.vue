@@ -15,7 +15,7 @@
         <div>
             <q-btn
                 class="author-button"
-                color="blue"
+                flat
                 v-bind:disable="index == 0"
                 icon="ion-arrow-up"
                 tabindex="-1"
@@ -23,7 +23,7 @@
             />
             <q-btn
                 class="author-button"
-                color="blue"
+                flat
                 v-bind:disable="index >= numAuthors - 1"
                 icon="ion-arrow-down"
                 tabindex="-1"

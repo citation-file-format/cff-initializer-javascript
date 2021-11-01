@@ -52,7 +52,6 @@
         <q-card-actions align="right">
             <q-btn
                 dense
-                color="blue"
                 v-bind:disable="index == 0"
                 icon="ion-arrow-up"
                 tabindex="-1"
@@ -60,7 +59,6 @@
             />
             <q-btn
                 dense
-                color="blue"
                 v-bind:disable="index >= numIdentifiers - 1"
                 icon="ion-arrow-down"
                 tabindex="-1"

@@ -119,7 +119,6 @@
 
         <q-card-actions align="right">
             <q-btn
-                color="blue"
                 dense
                 v-bind:disable="index == 0"
                 icon="ion-arrow-up"
@@ -127,7 +126,6 @@
                 v-on:click="$emit('moveUp')"
             />
             <q-btn
-                color="blue"
                 dense
                 v-bind:disable="index >= numAuthors - 1"
                 icon="ion-arrow-down"

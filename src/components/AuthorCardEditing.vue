@@ -155,7 +155,7 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { computed, defineComponent, onMounted, ref, nextTick } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { authorErrors } from 'src/author-errors'
 

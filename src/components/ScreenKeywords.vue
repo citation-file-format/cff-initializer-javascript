@@ -41,7 +41,7 @@
             </q-btn>
 
             <q-banner
-                v-if="keywordsErrors.hasError"
+                v-if="keywordsErrors.messages.length > 0"
                 class="bg-warning text-negative"
             >
                 <div

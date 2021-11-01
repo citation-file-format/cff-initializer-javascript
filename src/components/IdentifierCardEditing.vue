@@ -2,7 +2,7 @@
     <q-card
         flat
         bordered
-        v-bind:class="['bg-formcard', 'q-pa-md', identifierErrors.hasError ? 'red-border' : '']"
+        class="bg-formcard q-pa-md"
     >
         <q-card-section>
             <div class="row items-center no-wrap">

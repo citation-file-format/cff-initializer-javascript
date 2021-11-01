@@ -23,6 +23,15 @@
                 <p class="finish-paragraph">
                     Use the buttons below to download your CITATION.cff file, or reset the form to start over.
                 </p>
+                <div
+                    class="flex"
+                    style="justify-content:center"
+                >
+                    <img
+                        src="~assets/trophy.svg"
+                        style="width:400px"
+                    >
+                </div>
                 <div class="row">
                     <DownloadButton class="col-4 q-ma-lg" />
                     <q-btn

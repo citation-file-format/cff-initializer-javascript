@@ -23,6 +23,15 @@
                 <p class="finish-paragraph">
                     You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, or continue adding more properties.
                 </p>
+                <div
+                    class="flex"
+                    style="justify-content:center"
+                >
+                    <img
+                        src="~assets/hands.svg"
+                        style="width:400px"
+                    >
+                </div>
                 <div class="row">
                     <DownloadButton class="col-4 q-ma-lg" />
                     <q-btn
@@ -41,6 +50,15 @@
                 <p class="finish-paragraph">
                     Your CITATION.cff is not valid just yet. Go back to the form to make some changes.
                 </p>
+                <div
+                    class="flex"
+                    style="justify-content:center"
+                >
+                    <img
+                        src="~assets/warning-sign.svg"
+                        style="width:400px"
+                    >
+                </div>
             </div>
         </div>
         <div id="form-button-bar">

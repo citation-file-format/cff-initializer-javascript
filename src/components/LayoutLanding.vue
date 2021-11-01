@@ -48,21 +48,28 @@
                 </div>
             </div>
         </div>
-        <Footer />
+        <div class="footer">
+            <div class="footer-container">
+                <a
+                    href="https://esciencecenter.nl"
+                    target="_blank"
+                    class="flex"
+                >
+                    <img
+                        class="logo-footer"
+                        src="~assets/nlesc-logo.svg"
+                    >
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import Footer from 'components/Footer.vue'
-
 import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: 'LayoutLanding',
-
-    components: {
-        Footer
-    },
 
     setup () {
         return {
@@ -76,7 +83,6 @@ export default defineComponent({
     display: flex;
     flex-direction:column;
     align-items: center;
-    width: 100vw;
     min-height: 100vh;
     overflow: hidden;
 }
@@ -116,6 +122,25 @@ export default defineComponent({
     transform: translate(0px,0px);
 
 }
+
+.footer{
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    padding: 12px 8px;
+    background: #B3C5DB;
+}
+
+.footer-container{
+    width:100%;
+    max-width: 1919px;
+}
+
+.logo-footer{
+    height:26px
+}
+
 @media (min-width:768px) {
     .illustration {
         transform: translate(110px, -50px);

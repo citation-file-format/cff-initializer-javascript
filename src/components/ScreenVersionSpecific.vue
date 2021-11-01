@@ -39,6 +39,7 @@
             </p>
             <q-input
                 bg-color="white"
+                hint="YYYY-MM-DD"
                 label="date-released"
                 outlined
                 standout

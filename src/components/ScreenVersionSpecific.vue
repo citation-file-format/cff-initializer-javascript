@@ -39,7 +39,7 @@
             </p>
             <q-input
                 bg-color="white"
-                hint="YYYY-MM-DD"
+                hint="Format: YYYY-MM-DD"
                 label="date-released"
                 mask="####-##-##"
                 outlined

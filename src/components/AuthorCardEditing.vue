@@ -94,7 +94,7 @@
                 bg-color="white"
                 class="col"
                 dense
-                hint="https://orcid.org/0000-0000-0000-0000"
+                hint="Format: https://orcid.org/0000-0000-0000-0000"
                 label="orcid"
                 outlined
                 standout

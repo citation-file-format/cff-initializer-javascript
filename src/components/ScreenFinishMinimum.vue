@@ -29,7 +29,7 @@
                         class="col-4 q-ma-lg"
                         color="primary"
                         icon="workspace_premium"
-                        label="Show advanced"
+                        label="Add more"
                         no-caps
                         size="xl"
                         to="/identifiers"

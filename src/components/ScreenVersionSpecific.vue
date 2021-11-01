@@ -41,6 +41,7 @@
                 bg-color="white"
                 hint="YYYY-MM-DD"
                 label="date-released"
+                mask="####-##-##"
                 outlined
                 standout
                 style="width: 33.33%"

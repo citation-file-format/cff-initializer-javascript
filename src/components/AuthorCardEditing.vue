@@ -6,6 +6,7 @@
     >
         <div class="row">
             <q-input
+                tabindex="1"
                 bg-color="white"
                 class="col"
                 dense
@@ -17,6 +18,7 @@
                 v-bind:error="givenNamesError.hasError"
                 v-bind:error-message="givenNamesError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
+                ref="givenNamesRef"
             />
         </div>
         <div class="row">
@@ -153,7 +155,7 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, ref, nextTick } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { authorErrors } from 'src/author-errors'
 
@@ -198,7 +200,12 @@ export default defineComponent({
         }
     },
     setup (props) {
+        const givenNamesRef = ref<HTMLElement | null>(null)
+        onMounted(() => {
+            givenNamesRef.value?.focus()
+        })
         return {
+            givenNamesRef,
             givenNamesError: computed(() => getMyErrors(`/authors/${props.index}/given-names`)),
             nameParticleError: computed(() => getMyErrors(`/authors/${props.index}/name-particle`)),
             familyNamesError: computed(() => getMyErrors(`/authors/${props.index}/family-names`)),
@@ -207,6 +214,7 @@ export default defineComponent({
             affiliationError: computed(() => getMyErrors(`/authors/${props.index}/affiliation`)),
             orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`)),
             authorErrors: computed(() => authorErrors(props.index))
+
         }
     },
     emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown']

@@ -18,6 +18,7 @@
             flat
             label="Finish"
             no-caps
+            v-bind:class="!showAdvanced ? 'hidden' : ''"
             v-bind:to="showAdvanced === true ? '/finish-advanced' : '/finish-minimum'"
         />
         <q-btn

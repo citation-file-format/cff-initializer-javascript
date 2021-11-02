@@ -100,7 +100,7 @@ module.exports = configure(function () {
                     positive: '#21BA45',
                     negative: '#C10015',
                     info: '#31CCEC',
-                    warning: '#f9e3a4'
+                    warning: '#F9E3A4'
 
                 }
             },

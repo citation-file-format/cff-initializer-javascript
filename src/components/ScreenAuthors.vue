@@ -81,7 +81,6 @@ import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { authorsErrors } from 'src/authors-errors'
-import { useErrors } from 'src/store/errors'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -93,7 +92,6 @@ export default defineComponent({
     },
     setup () {
         const { authors, setAuthors } = useCff()
-        const { errors } = useErrors()
         const editingId = ref(0)
         const addAuthor = async () => {
             let newAuthors:AuthorType[]
@@ -155,12 +153,7 @@ export default defineComponent({
             moveAuthorUp,
             removeAuthor,
             setAuthorField,
-            authorsErrors: computed(() => {
-                console.log(errors.value)
-                const ff = authorsErrors(authors.value)
-                console.log(ff)
-                return ff
-            })
+            authorsErrors: computed(() => authorsErrors(authors.value))
         }
     }
 })

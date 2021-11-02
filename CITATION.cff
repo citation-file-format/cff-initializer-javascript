@@ -1,52 +1,48 @@
-# YAML 1.2
----
 authors:
-  -
-    affiliation: "Netherlands eScience Center"
+  - affiliation: Netherlands eScience Center
     family-names: Spaaks
     given-names: Jurriaan H.
-    orcid: "https://orcid.org/0000-0002-7064-4069"
-  -
-    affiliation: "Netherlands eScience Center"
+    orcid: https://orcid.org/0000-0002-7064-4069
+  - affiliation: Netherlands eScience Center
     family-names: Verhoeven
     given-names: Stefan
-    orcid: "https://orcid.org/0000-0002-5821-2060"
-  -
-    affiliation: "Netherlands eScience Center"
+    orcid: https://orcid.org/0000-0002-5821-2060
+  - affiliation: Netherlands eScience Center
     family-names: Diblen
     given-names: Faruk
-    orcid: "https://orcid.org/0000-0002-0989-929X"
-  -
-    affiliation: "German Aerospace Center"
+    orcid: https://orcid.org/0000-0002-0989-929X
+  - affiliation: German Aerospace Center
     family-names: Druskat
     given-names: Stephan
-    orcid: "https://orcid.org/0000-0003-4925-7248"
-  -
-    affiliation: "Netherlands eScience Center"
+    orcid: https://orcid.org/0000-0003-4925-7248
+  - affiliation: Netherlands eScience Center
     family-names: Soares Siqueira
     given-names: Abel
-    orcid: "https://orcid.org/0000-0003-4451-281X"
-  -
-    affiliation: "Netherlands eScience Center"
+    orcid: https://orcid.org/0000-0003-4451-281X
+  - affiliation: Netherlands eScience Center
     family-names: Garcia Gonzalez
     given-names: Jesus
-    orcid: "https://orcid.org/0000-0002-2170-3253"
-cff-version: "1.2.0"
+    orcid: https://orcid.org/0000-0002-2170-3253
+cff-version: 1.2.0
 date-released: 2021-11-02
 identifiers:
   - type: doi
-    value: 10.0000/FIXME
-    description: This is the identifier used to uniquely identify the version of the software.
+    value: 10.5281/zenodo.5638837
+    description: >-
+      This is the identifier used to uniquely identify the version of the
+      software.
   - type: doi
     value: 10.5281/zenodo.1404735
-    description: This is the identifier used to uniquely identify the software as a concept (i.e., version-agnostic).
+    description: >-
+      This is the identifier used to uniquely identify the software as a concept
+      (i.e., version-agnostic).
 keywords:
   - citation
   - CITATION.cff
-  - credit  
-  - "research software engineering"  
+  - credit
+  - research software engineering
 license: Apache-2.0
-message: "If you use this software, please cite it using these metadata."
-repository-code: "https://github.com/citation-file-format/cff-initializer-javascript"
-title: "cffinit"
-version: "2.0.0"
+message: If you use this software, please cite it using these metadata.
+repository-code: https://github.com/citation-file-format/cff-initializer-javascript
+title: cffinit
+version: 2.0.0

@@ -35,6 +35,9 @@ cff-version: "1.2.0"
 date-released: 2021-11-02
 identifiers:
   - type: doi
+    value: 10.0000/FIXME
+    description: This is the identifier used to uniquely identify the version of the software.
+  - type: doi
     value: 10.5281/zenodo.1404735
     description: This is the identifier used to uniquely identify the software as a concept (i.e., version-agnostic).
 keywords:

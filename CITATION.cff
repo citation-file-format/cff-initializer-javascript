@@ -26,8 +26,13 @@ authors:
     family-names: Soares Siqueira
     given-names: Abel
     orcid: "https://orcid.org/0000-0003-4451-281X"
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Garcia Gonzalez
+    given-names: Jesus
+    orcid: "https://orcid.org/0000-0002-2170-3253"
 cff-version: "1.2.0"
-date-released: 2021-10-20
+date-released: 2021-11-02
 identifiers:
   - type: doi
     value: 10.5281/zenodo.1404735
@@ -41,4 +46,4 @@ license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/citation-file-format/cff-initializer-javascript"
 title: "cffinit"
-version: "2.0.0-alpha.4"
+version: "2.0.0"

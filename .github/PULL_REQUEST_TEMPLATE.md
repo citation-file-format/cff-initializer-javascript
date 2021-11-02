@@ -16,7 +16,7 @@ Refs: #ISSUE_NUMBER
 
 ```shell
 cd $(mktemp -d --tmpdir cffinit-pr.XXXXXX)
-git clone https://github.com/citation-file-format/cffinit .
+git clone https://github.com/citation-file-format/cff-initializer-javascript .
 git checkout <this branch>
 npm clean-install
 npm run dev

@@ -67,18 +67,6 @@
                 v-bind:options="typeOptions"
                 v-on:update:modelValue="setType"
             />
-
-            <q-banner
-                v-if="screenError.hasError"
-                class="bg-warning text-negative"
-            >
-                <div
-                    v-bind:key="index"
-                    v-for="(screenMessage, index) in screenError.messages"
-                >
-                    {{ screenMessage }}
-                </div>
-            </q-banner>
         </div>
 
         <div id="form-button-bar">
@@ -123,8 +111,7 @@ export default defineComponent({
             setTitle,
             setType,
             messageError: computed(() => getMyErrors('', ['message'])),
-            titleError: computed(() => getMyErrors('', ['title'])),
-            screenError: computed(() => getMyErrors('', ['message', 'title']))
+            titleError: computed(() => getMyErrors('', ['title']))
         }
     }
 })

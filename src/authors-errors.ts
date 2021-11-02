@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { AuthorsType } from 'src/types'
 import { messageErrorType, getMyErrors } from 'src/store/validator'
 import { authorErrors } from 'src/author-errors'
@@ -11,8 +9,12 @@ export const authorsErrors = (authors:AuthorsType) => {
     ]
     const myChildrenErrors = authors?.map((_, index) => authorErrors(index))
     const errors = myChildrenErrors === undefined ? myErrors : [...myErrors, ...myChildrenErrors]
+    let allMessages = [] as string[]
+    errors.forEach(error => {
+        allMessages = allMessages.concat(error.messages)
+    })
     return {
         hasError: errors.some(error => error.hasError),
-        messages: errors.map(error => error.messages).flat(1)
+        messages: allMessages
     } as messageErrorType
 }

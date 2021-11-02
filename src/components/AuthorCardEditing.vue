@@ -2,7 +2,7 @@
     <q-card
         flat
         bordered
-        v-bind:class="['bg-formcard', 'q-pa-md', authorErrors.hasError ? 'red-border' : '']"
+        class="bg-formcard q-pa-md"
     >
         <div class="row">
             <q-input
@@ -106,7 +106,7 @@
         </div>
 
         <q-banner
-            v-if="authorErrors.hasError && authorErrors.messages.length > 0"
+            v-if="authorErrors.messages.length > 0"
             class="bg-warning text-negative"
         >
             <div

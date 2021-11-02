@@ -52,7 +52,7 @@
             </q-btn>
 
             <q-banner
-                v-if="authorsErrors.hasError"
+                v-if="authorsErrors.messages.length > 0"
                 class="bg-warning text-negative"
             >
                 <div

@@ -1,4 +1,4 @@
-import { getMyErrors } from 'src/store/validator'
+import { messageErrorType, getMyErrors } from 'src/store/validator'
 
 export const authorErrors = (index:number) => {
     const myErrors = [
@@ -17,5 +17,5 @@ export const authorErrors = (index:number) => {
     return {
         hasError: errors.some(result => result.hasError),
         messages: errors[0].hasError ? errors[0].messages : []
-    }
+    } as messageErrorType
 }

@@ -2,7 +2,7 @@
 import { useErrors } from './errors'
 import { ErrorObject } from 'ajv'
 
-type messageErrorType = {
+export type messageErrorType = {
     hasError: boolean,
     messages: string[]
 }

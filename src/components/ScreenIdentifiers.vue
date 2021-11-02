@@ -63,7 +63,7 @@
             </q-btn>
 
             <q-banner
-                v-if="identifiersErrors.hasError"
+                v-if="identifiersErrors.messages.length > 0"
                 class="bg-warning text-negative"
             >
                 <div

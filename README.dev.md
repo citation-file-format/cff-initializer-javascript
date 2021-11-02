@@ -22,7 +22,7 @@ The notes about how we came to this technology stack, design and personas can be
 
 ```shell
 # clone this repository
-git clone https://github.com/citation-file-format/cffinit
+git clone https://github.com/citation-file-format/cff-initializer-javascript
 # change directory
 cd cffinit
 ```
@@ -99,8 +99,8 @@ This section describes how to make a release in 2 parts:
 3. By running `npm run lint` make sure the linter does not complain
 4. Run the unit tests with `npm run test:unit:ci`
 5. Make sure that github.io page is up to date
-6. Check whether the [Publish](https://github.com/citation-file-format/cffinit/actions/workflows/publish.yml) workflow worked recently and it was successful
+6. Check whether the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow worked recently and it was successful
 
 ### (2/2) GitHub
 
-Make a [release on GitHub](https://github.com/citation-file-format/cffinit/releases/new).
+Make a [release on GitHub](https://github.com/citation-file-format/cff-initializer-javascript/releases/new).

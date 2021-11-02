@@ -2,7 +2,7 @@
     <q-card
         flat
         bordered
-        v-bind:class="['bg-formcard', 'q-pa-md', authorErrors.hasError ? 'red-border' : '']"
+        class="bg-formcard q-pa-md"
     >
         <div class="row">
             <q-input
@@ -17,6 +17,7 @@
                 v-bind:error="givenNamesError.hasError"
                 v-bind:error-message="givenNamesError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
+                ref="givenNamesRef"
             />
         </div>
         <div class="row">
@@ -94,6 +95,7 @@
                 bg-color="white"
                 class="col"
                 dense
+                hint="Format: https://orcid.org/0000-0000-0000-0000"
                 label="orcid"
                 outlined
                 standout
@@ -106,7 +108,7 @@
         </div>
 
         <q-banner
-            v-if="authorErrors.hasError && authorErrors.messages.length > 0"
+            v-if="authorErrors.messages.length > 0"
             class="bg-warning text-negative"
         >
             <div
@@ -153,7 +155,7 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { authorErrors } from 'src/author-errors'
 
@@ -198,7 +200,12 @@ export default defineComponent({
         }
     },
     setup (props) {
+        const givenNamesRef = ref<HTMLElement | null>(null)
+        onMounted(() => {
+            givenNamesRef.value?.focus()
+        })
         return {
+            givenNamesRef,
             givenNamesError: computed(() => getMyErrors(`/authors/${props.index}/given-names`)),
             nameParticleError: computed(() => getMyErrors(`/authors/${props.index}/name-particle`)),
             familyNamesError: computed(() => getMyErrors(`/authors/${props.index}/family-names`)),
@@ -207,6 +214,7 @@ export default defineComponent({
             affiliationError: computed(() => getMyErrors(`/authors/${props.index}/affiliation`)),
             orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`)),
             authorErrors: computed(() => authorErrors(props.index))
+
         }
     },
     emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown']

@@ -24,7 +24,6 @@
                     Use the buttons below to download your CITATION.cff file, or reset the form to start over.
                 </p>
                 <div class="row">
-                    <DownloadButton class="col-4 q-ma-lg" />
                     <q-btn
                         class="col-4 q-ma-lg"
                         color="primary"
@@ -34,6 +33,7 @@
                         size="xl"
                         v-on:click="createAnother"
                     />
+                    <DownloadButton class="col-4 q-ma-lg" />
                 </div>
             </div>
             <div v-else>

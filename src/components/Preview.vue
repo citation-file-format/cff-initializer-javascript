@@ -36,7 +36,7 @@
         wrap="hard"
     />
     <div class="validation-msg">
-        <p>
+        <p v-bind:class="isValidCFF ? '' : 'invalid'">
             Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}
         </p>
     </div>
@@ -122,5 +122,7 @@ export default defineComponent({
     border-color: #C10015 !important;
     border-width: 2px !important;
 }
-
+.invalid {
+    color: var(--q-negative);
+}
 </style>

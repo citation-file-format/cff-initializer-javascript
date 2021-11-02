@@ -5,9 +5,9 @@
 
     <div id="form">
         <div id="form-title">
-            <p class="page-title">
+            <h1 class="page-title">
                 Abstract
-            </p>
+            </h1>
         </div>
 
         <div id="form-content">

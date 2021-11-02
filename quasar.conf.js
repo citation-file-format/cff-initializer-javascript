@@ -53,7 +53,7 @@ module.exports = configure(function () {
         // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
         build: {
             vueRouterMode: 'hash', // available values: 'hash', 'history'
-            publicPath: 'cffinit',
+            publicPath: 'cff-initializer-javascript',
             // transpile: false,
             distDir: 'docs',
 

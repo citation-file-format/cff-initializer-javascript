@@ -6,7 +6,6 @@
     >
         <div class="row">
             <q-input
-                tabindex="1"
                 bg-color="white"
                 class="col"
                 dense

@@ -12,6 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What keywords describe the work?
+                <SchemaInfoIcon section="keywords" />
             </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
@@ -60,6 +61,7 @@
 </template>
 
 <script lang="ts">
+import SchemaInfoIcon from 'components/SchemaInfoIcon.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
@@ -72,6 +74,7 @@ import { getMyErrors } from 'src/store/validator'
 export default defineComponent({
     name: 'ScreenKeywords',
     components: {
+        SchemaInfoIcon,
         Stepper,
         StepperActions,
         Keyword

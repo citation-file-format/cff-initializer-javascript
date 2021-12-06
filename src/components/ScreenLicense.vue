@@ -12,6 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What is the license of the work?
+                <SchemaInfoIcon section="license" />
             </p>
             <q-select
                 bg-color="white"
@@ -51,12 +52,14 @@ import { defineComponent, ref } from 'vue'
 import { useCff } from '../store/cff'
 import { QSelect } from 'quasar'
 import schema from '../schemas/1.2.0/schema.json'
+import SchemaInfoIcon from 'components/SchemaInfoIcon.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 
 export default defineComponent({
     name: 'ScreenLicense',
     components: {
+        SchemaInfoIcon,
         Stepper,
         StepperActions
     },

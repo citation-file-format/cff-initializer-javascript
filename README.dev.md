@@ -1,4 +1,6 @@
-# Developer notes
+# Developer documentation
+
+If you are looking for user documentation, go [here](README.md).
 
 ## Technology stack
 
@@ -18,22 +20,35 @@
 
 The notes about how we came to this technology stack, design and personas can be found in [project-docs/](project-docs/) folder.
 
-## Clone the repository
+## Prerequisites
 
-```shell
-# clone this repository
-git clone https://github.com/citation-file-format/cff-initializer-javascript
-# change directory
-cd cffinit
-```
+- Relevant issues:
+  - ...
+- Hardware requirements
 
-## install dependencies
+## Code editor
 
-The command below will install dependencies
+1. Do we need an editor plugin?
+1. How to see it in your editor
+
+### Virtual environments
+
+1. What different flavors of dependencies are there?
+1. Creating and deleting a virtual environment
+1. How to install dependencies, e.g. runtime, development, publishing
+1. How to clear caches
+1. See what's installed
+
+### Build and runtime dependencies
+
+1. Versions of these tools
+
+The command below will install npm dependencies
 
 ```shell
 npm clean-install
 ```
+
 
 ## start the development server
 
@@ -51,7 +66,49 @@ The command below will build the application and save the output in `docs/` fold
 npm run build
 ```
 
-## linting the code
+## Debugging
+
+- Relevant issues:
+  - ...
+- Stepping through the code
+- Inspection of variables
+- Evaluating expressions
+
+## Tests
+
+- Relevant issues:
+  - ...
+- Additional package requirements
+- What types of tests are there (unit tests, live tests, cli tests)?
+- What tests are there?
+- What is the strategy/philosophy for testing in the project? For example, TDD or BDD; testing of public v. private functions, etc.
+- What testing concepts are used: mocks, fixtures, contracts, scenarios, features, etc.
+- Directory naming / file structure patterns: e.g. file naming schemes, predefined directory tree layouts, test classes v. test functions, etc.
+- Coverage calculation and where to see the results of static analysis
+
+We use Jest for unit tests. To run unit tests (`test/jest/__tests__/**/*.jest.spec.ts`)
+
+You can run the test with
+
+```shell
+npm run test:unit:ci
+```
+
+You can also use the Majestic web interface to run the unit tests in your browser.
+
+```shell
+npm run test:unit:ui
+```
+
+## Linting and formatting
+
+- Relevant issues:
+  - ...
+- What linters are being used in the project
+- How to run them
+- Where the configuration is coming from
+- How to enable linting tools in the editor
+- How to configure git pre-commit hooks
 
 ```shell
 npm run lint
@@ -67,22 +124,6 @@ To run linting on commit, you can install a git commit hook with
 
 ```shell
 npx husky install
-```
-
-## Tests
-
-We use Jest for unit tests. To run unit tests (`test/jest/__tests__/**/*.jest.spec.ts`)
-
-You can run the test with
-
-```shell
-npm run test:unit:ci
-```
-
-You can also use the Majestic web interface to run the unit tests in your browser.
-
-```shell
-npm run test:unit:ui
 ```
 
 ## Making a release
@@ -105,3 +146,8 @@ This section describes how to make a release in 2 parts:
 ### (2/2) GitHub
 
 Make a [release on GitHub](https://github.com/citation-file-format/cff-initializer-javascript/releases/new).
+
+## References
+
+- Links to documentation or tutorials related to
+technologies/tools we use in the project

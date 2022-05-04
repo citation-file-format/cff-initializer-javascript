@@ -18,7 +18,7 @@ If you are looking for user documentation, go [here](README.md).
 
 ## Virtual environments
 
-[nvm](https://github.com/nvm-sh/nvm) or (nvs)[https://github.com/jasongin/nvs] can be used to manage node versions.
+[nvm](https://github.com/nvm-sh/nvm) or [nvs](https://github.com/jasongin/nvs) can be used to manage node versions.
 
 ## Installing the dependencies
 
@@ -52,7 +52,6 @@ npm run build
 - Inspection of variables
 - Evaluating expressions
 
-- [Vue.js devtools - Beta](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg?hl=en)
 - [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 ## Tests

@@ -46,27 +46,18 @@ The command below will build the application and save the output in `docs/` fold
 npm run build
 ```
 
-## Debugging
+## Debugging (TODO)
 
-- Relevant issues:
-  - ...
 - Stepping through the code
 - Inspection of variables
 - Evaluating expressions
 
+- [Vue.js devtools - Beta](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg?hl=en)
+- [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+
 ## Tests
 
-- Relevant issues:
-  - ...
-- Additional package requirements
-- What types of tests are there (unit tests, live tests, cli tests)?
-- What tests are there?
-- What is the strategy/philosophy for testing in the project? For example, TDD or BDD; testing of public v. private functions, etc.
-- What testing concepts are used: mocks, fixtures, contracts, scenarios, features, etc.
-- Directory naming / file structure patterns: e.g. file naming schemes, predefined directory tree layouts, test classes v. test functions, etc.
-- Coverage calculation and where to see the results of static analysis
-
-We use Jest for unit tests. To run unit tests (`test/jest/__tests__/**/*.jest.spec.ts`)
+We use `Jest` for unit tests. The unit tests can be found under `test/jest/__tests__/` folder.
 
 You can run the test with
 
@@ -81,14 +72,6 @@ npm run test:unit:ui
 ```
 
 ## Linting and formatting
-
-- Relevant issues:
-  - ...
-- What linters are being used in the project
-- How to run them
-- Where the configuration is coming from
-- How to enable linting tools in the editor
-- How to configure git pre-commit hooks
 
 ```shell
 npm run lint
@@ -141,3 +124,4 @@ Links to documentation or tutorials related to technologies/tools we use in the 
 - [Husky](https://typicode.github.io/husky/#/): Automaticly runs checks before pushing changes to GitHub.
 - [Jest](https://jestjs.io/): Testing framework to run unit tests and perform test assertions.
 - [ESLint](https://eslint.org/): To get constistent code style and prevent errors the industry standard linter ESLint is used.
+- [Majestic Web UI](https://github.com/Raathigesh/majestic): Web UI for unit tests using Jest

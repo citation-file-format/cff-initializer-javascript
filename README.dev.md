@@ -4,29 +4,23 @@ If you are looking for user documentation, go [here](README.md).
 
 ## Prerequisites
 
-- Relevant issues:
-  - ...
-- Hardware requirements
-
 - [npm CLI](https://docs.npmjs.com/cli/v7): Package manager command line interface shipped with NodeJS.
-
 
 ## Code editor
 
-1. Do we need an editor plugin?
-1. How to see it in your editor
+- VSCode extensions: https://code.visualstudio.com/
+  - https://marketplace.visualstudio.com/items?itemName=Vue.volar
+  - https://marketplace.visualstudio.com/items?itemName=octref.vetur
+  - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- WebStorm: https://www.jetbrains.com/webstorm/
+- Atom: https://atom.io/
+- Vim
 
-### Virtual environments
+## Virtual environments
 
-1. What different flavors of dependencies are there?
-1. Creating and deleting a virtual environment
-1. How to install dependencies, e.g. runtime, development, publishing
-1. How to clear caches
-1. See what's installed
+[nvm](https://github.com/nvm-sh/nvm) or (nvs)[https://github.com/jasongin/nvs] can be used to manage node versions.
 
-### Build and runtime dependencies
-
-1. Versions of these tools
+## Installing the dependencies
 
 The command below will install npm dependencies
 
@@ -34,8 +28,9 @@ The command below will install npm dependencies
 npm clean-install
 ```
 
+## Starting the development server
 
-## start the development server
+You can start the development server by running
 
 ```shell
 npm run dev
@@ -43,9 +38,9 @@ npm run dev
 
 Use a browser to navigate to [localhost:8080](http://localhost:8080/) to see the website.
 
-## build the application
+## Building the application
 
-The command below will build the application and save the output in `docs/` folder.
+The command below will build the application and save the output in `docs/` folder. This is what we serve in the demo page.
 
 ```shell
 npm run build

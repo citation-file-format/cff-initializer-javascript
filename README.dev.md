@@ -46,11 +46,7 @@ The command below will build the application and save the output in `docs/` fold
 npm run build
 ```
 
-## Debugging (TODO)
-
-- Stepping through the code
-- Inspection of variables
-- Evaluating expressions
+## Debugging
 
 - [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 

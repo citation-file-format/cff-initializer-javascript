@@ -75,7 +75,8 @@ module.exports = configure(function () {
             // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
             chainWebpack (/* chain */) {
                 //
-            }
+            },
+            devtool: 'source-map'
         },
 
         // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer

@@ -48,7 +48,20 @@ npm run build
 
 ## Debugging
 
-- [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+1. Before you can launch the debugger, the app must be running. Start the development server by running
+
+    ```shell
+    npm run dev
+    ```
+
+2. Run the debugger
+Select "CFFinit: chrome" in the dropdown on the title bar of the debug and run pane. Then click the green “Start Debugging” button in the “Run and Debug” pane(or press F5).
+
+1. Set breakpoints and control step over/in/out etc.
+
+
+**Note:** You can also launch the built-in Chrome debugger and it will stay in sync. This might be useful if you also have the [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) installed.
+
 
 ## Tests
 
@@ -95,7 +108,7 @@ This section describes how to make a release in 2 parts:
 
 1. Verify that the information in `CITATION.cff` is correct
 2. Generate an updated version of `.zenodo.json` if needed using `cffconvert`
-3. Make sure the version field in `package.json` is correct 
+3. Make sure the version field in `package.json` is correct
 4. By running `npm run lint` make sure the linter does not complain
 5. Run the unit tests with `npm run test:unit:ci`
 6. Make sure that github.io page is up to date

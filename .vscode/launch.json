@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "CFFinit: chrome",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "url": "http://localhost:8080/cff-initializer-javascript/",
+            "webRoot": "${workspaceFolder}/src",
+            "breakOnLoad": true,
+            "sourceMapPathOverrides": {
+                "webpack://cffinit/./src/*": "${webRoot}/*"
+            }
+        }
+    ]
+}

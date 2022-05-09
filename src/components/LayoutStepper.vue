@@ -38,7 +38,7 @@ import { defineComponent, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
-    name: 'StepperLayout',
+    name: 'LayoutStepper',
     components: {
         Header,
         Preview,

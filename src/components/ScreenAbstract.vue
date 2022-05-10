@@ -1,6 +1,6 @@
 <template>
     <div id="metroline">
-        <Stepper />
+        <ComponentStepper />
     </div>
 
     <div id="form">
@@ -30,21 +30,21 @@
         </div>
 
         <div id="form-button-bar">
-            <StepperActions />
+            <ComponentStepperActions />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import ComponentStepper from 'components/ComponentStepper.vue'
+import ComponentStepperActions from 'components/ComponentStepperActions.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 export default defineComponent({
     name: 'ScreenAbstract',
     components: {
-        Stepper,
-        StepperActions
+        ComponentStepper,
+        ComponentStepperActions
     },
     setup () {
         const { abstract, setAbstract } = useCff()

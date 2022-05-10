@@ -48,12 +48,12 @@
                 </div>
             </div>
         </div>
-        <Footer />
+        <ComponentFooter />
     </div>
 </template>
 
 <script lang="ts">
-import Footer from 'components/Footer.vue'
+import ComponentFooter from 'components/ComponentFooter.vue'
 
 import { defineComponent } from 'vue'
 
@@ -61,7 +61,7 @@ export default defineComponent({
     name: 'LayoutLanding',
 
     components: {
-        Footer
+        ComponentFooter
     },
 
     setup () {

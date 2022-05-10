@@ -1,6 +1,6 @@
 <template>
     <div id="metroline">
-        <Stepper />
+        <ComponentStepper />
     </div>
     <div id="form">
         <div id="form-title">
@@ -18,7 +18,7 @@
                         v-bind:key="index"
                         v-for="(author, index) in authors"
                     >
-                        <AuthorCardViewing
+                        <ComponentAuthorCardView
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:author="author"
@@ -27,7 +27,7 @@
                             v-on:moveDown="moveAuthorDown(index)"
                             v-on:moveUp="moveAuthorUp(index)"
                         />
-                        <AuthorCardEditing
+                        <ComponentAuthorCardEdit
                             v-else
                             v-bind:index="index"
                             v-bind:num-authors="authors.length"
@@ -65,17 +65,17 @@
         </div>
 
         <div id="form-button-bar">
-            <StepperActions />
+            <ComponentStepperActions />
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, ref } from 'vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
-import AuthorCardEditing from 'components/AuthorCardEditing.vue'
-import AuthorCardViewing from 'components/AuthorCardViewing.vue'
+import ComponentStepper from 'components/ComponentStepper.vue'
+import ComponentStepperActions from 'components/ComponentStepperActions.vue'
+import ComponentAuthorCardEdit from 'components/ComponentAuthorCardEdit.vue'
+import ComponentAuthorCardView from 'components/ComponentAuthorCardView.vue'
 import { AuthorType } from 'src/types'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
@@ -85,10 +85,10 @@ import { authorsErrors } from 'src/authors-errors'
 export default defineComponent({
     name: 'ScreenAuthors',
     components: {
-        Stepper,
-        StepperActions,
-        AuthorCardEditing,
-        AuthorCardViewing
+        ComponentStepper,
+        ComponentStepperActions,
+        ComponentAuthorCardEdit,
+        ComponentAuthorCardView
     },
     setup () {
         const { authors, setAuthors } = useCff()

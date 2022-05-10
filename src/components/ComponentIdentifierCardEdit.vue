@@ -90,7 +90,7 @@ import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
 
 export default defineComponent({
-    name: 'IdentifierCardEditing',
+    name: 'ComponentIdentifierCardEdit',
     props: {
         index: {
             type: Number,

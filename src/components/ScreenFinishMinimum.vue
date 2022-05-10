@@ -1,6 +1,6 @@
 <template>
     <div id="metroline">
-        <Stepper />
+        <ComponentStepper />
     </div>
     <div id="form">
         <div id="form-title">
@@ -24,7 +24,7 @@
                     You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, or continue adding more properties.
                 </p>
                 <div class="row">
-                    <DownloadButton class="col-4 q-ma-lg" />
+                    <ComponentDownloadButton class="col-4 q-ma-lg" />
                     <q-btn
                         class="col-4 q-ma-lg"
                         color="primary"
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div id="form-button-bar">
-            <StepperActions />
+            <ComponentStepperActions />
         </div>
     </div>
 </template>
@@ -52,17 +52,17 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useApp } from '../store/app'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import ComponentStepper from 'components/ComponentStepper.vue'
+import ComponentStepperActions from 'components/ComponentStepperActions.vue'
 import { useErrors } from 'src/store/errors'
-import DownloadButton from 'components/DownloadButton.vue'
+import ComponentDownloadButton from 'components/ComponentDownloadButton.vue'
 
 export default defineComponent({
     name: 'ScreenFinishMinimum',
     components: {
-        DownloadButton,
-        Stepper,
-        StepperActions
+        ComponentDownloadButton,
+        ComponentStepper,
+        ComponentStepperActions
     },
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()

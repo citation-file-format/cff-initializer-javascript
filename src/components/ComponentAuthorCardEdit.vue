@@ -160,7 +160,7 @@ import { getMyErrors } from 'src/store/validator'
 import { authorErrors } from 'src/author-errors'
 
 export default defineComponent({
-    name: 'AuthorCardEditing',
+    name: 'ComponentAuthorCardEdit',
     props: {
         index: {
             type: Number,

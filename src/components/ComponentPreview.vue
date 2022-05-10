@@ -48,7 +48,7 @@ import { useCffstr } from 'src/store/cffstr'
 import { useErrors } from 'src/store/errors'
 
 export default defineComponent({
-    name: 'Preview',
+    name: 'ComponentPreview',
     components: {
     },
     setup () {

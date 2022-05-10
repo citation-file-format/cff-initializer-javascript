@@ -1,14 +1,38 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "CFFinit: chrome",
-            "type": "pwa-chrome",
+            "name": "debug in chrome",
+            "type": "chrome",
             "request": "launch",
             "url": "http://localhost:8080/cff-initializer-javascript/",
             "webRoot": "${workspaceFolder}/src",
+            "reAttach": true,
+            "reloadOnAttach": true,
             "breakOnLoad": true,
             "sourceMapPathOverrides": {
                 "webpack://cffinit/./src/*": "${webRoot}/*"
+            },
+            "reloadOnChange": {
+                "watch": "${workspaceFolder}/**/*.ts",
+                "ignore": "**/node_modules/**"
+            }
+        },
+        {
+            "name": "debug in firefox",
+            "type": "firefox",
+            "request": "launch",
+            "url": "http://localhost:8080/cff-initializer-javascript/",
+            "webRoot": "${workspaceFolder}/src",
+            "reAttach": true,
+            "reloadOnAttach": true,
+            "breakOnLoad": true,
+            "sourceMapPathOverrides": {
+                "webpack://cffinit/./src/*": "${webRoot}/*"
+            },
+            "reloadOnChange": {
+                "watch": "${workspaceFolder}/**/*.ts",
+                "ignore": "**/node_modules/**"
             }
         }
     ]

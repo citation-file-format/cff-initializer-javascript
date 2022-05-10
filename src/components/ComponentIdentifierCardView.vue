@@ -47,7 +47,7 @@ import { IdentifierType } from 'src/types'
 import { identifierErrors } from 'src/identifier-errors'
 
 export default defineComponent({
-    name: 'IdentifierCardViewing',
+    name: 'ComponentIdentifierCardView',
     props: {
         index: {
             type: Number,

@@ -1,6 +1,6 @@
 <template>
     <div id="metroline">
-        <Stepper />
+        <ComponentStepper />
     </div>
     <div id="form">
         <div id="form-title">
@@ -33,7 +33,7 @@
                         size="xl"
                         v-on:click="createAnother"
                     />
-                    <DownloadButton class="col-4 q-ma-lg" />
+                    <ComponentDownloadButton class="col-4 q-ma-lg" />
                 </div>
             </div>
             <div v-else>
@@ -44,7 +44,7 @@
         </div>
 
         <div id="form-button-bar">
-            <StepperActions />
+            <ComponentStepperActions />
         </div>
     </div>
 </template>
@@ -53,17 +53,17 @@
 import { defineComponent, computed } from 'vue'
 import { useApp } from '../store/app'
 import { useCff } from '../store/cff'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import ComponentStepper from 'components/ComponentStepper.vue'
+import ComponentStepperActions from 'components/ComponentStepperActions.vue'
 import { useErrors } from 'src/store/errors'
-import DownloadButton from 'components/DownloadButton.vue'
+import ComponentDownloadButton from 'components/ComponentDownloadButton.vue'
 
 export default defineComponent({
     name: 'ScreenFinishAdvanced',
     components: {
-        DownloadButton,
-        Stepper,
-        StepperActions
+        ComponentDownloadButton,
+        ComponentStepper,
+        ComponentStepperActions
     },
     setup () {
         const { setStepName, setShowAdvanced } = useApp()

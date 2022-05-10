@@ -45,7 +45,7 @@ import { computed, defineComponent } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
-    name: 'KeywordCard',
+    name: 'ComponentKeywordCard',
     props: {
         keyword: {
             type: String,

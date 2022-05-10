@@ -36,7 +36,7 @@ import { useApp } from '../store/app'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'StepperActions',
+    name: 'ComponentStepperActions',
 
     setup () {
         const { showAdvanced, cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()

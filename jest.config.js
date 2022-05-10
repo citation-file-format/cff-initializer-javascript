@@ -1,4 +1,4 @@
-const esModules = ['quasar/lang', 'lodash-es'].join('|')
+const esModules = ['quasar', 'quasar/lang', 'lodash-es'].join('|')
 
 /* eslint-env node */
 module.exports = {
@@ -8,8 +8,15 @@ module.exports = {
         // See https://github.com/vuejs/vue-jest/issues/175
         'vue-jest': {
             pug: { doctype: 'html' }
+        },
+        // Remove if using `const enums`
+        // See https://huafu.github.io/ts-jest/user/config/isolatedModules#example
+        'ts-jest': {
+            isolatedModules: true
         }
     },
+    // Jest assumes we are testing in node environment, specify jsdom environment instead
+    testEnvironment: 'jsdom',
     // noStackTrace: true,
     // bail: true,
     // cache: false,
@@ -48,10 +55,13 @@ module.exports = {
     // See https://github.com/vuejs/vue-jest/issues/188#issuecomment-620750728
     moduleFileExtensions: ['vue', 'js', 'jsx', 'json', 'ts', 'tsx'],
     moduleNameMapper: {
+        '^quasar$': 'quasar/dist/quasar.esm.prod.js',
         '^~/(.*)$': '<rootDir>/$1',
         '^src/(.*)$': '<rootDir>/src/$1',
         '^app/(.*)$': '<rootDir>/$1',
         '^components/(.*)$': '<rootDir>/src/components/$1',
+        '^layouts/(.*)$': '<rootDir>/src/layouts/$1',
+        '^pages/(.*)$': '<rootDir>/src/pages/$1',
         '^assets/(.*)$': '<rootDir>/src/assets/$1',
         '^boot/(.*)$': '<rootDir>/src/boot/$1',
         '.*css$': '@quasar/quasar-app-extension-testing-unit-jest/stub.css'

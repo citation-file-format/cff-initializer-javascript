@@ -61,11 +61,11 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/404',
-        component: () => import('src/components/Error404.vue')
+        component: () => import('src/components/ScreenError404.vue')
     },
     {
         path: '/:catchAll(.*)*',
-        component: () => import('src/components/Error404.vue')
+        component: () => import('src/components/ScreenError404.vue')
     }
 ]
 

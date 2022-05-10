@@ -1,7 +1,10 @@
 {
   "recommendations": [
     "dbaeumer.vscode-eslint",
-    "Vue.volar"
+    "editorconfig.editorconfig",
+    "johnsoncodehk.volar",
+    "wayou.vscode-todo-highlight",
+    "firefox-devtools.vscode-firefox-debug"
   ],
   "unwantedRecommendations": [
     "octref.vetur",

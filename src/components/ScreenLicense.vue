@@ -1,6 +1,6 @@
 <template>
     <div id="metroline">
-        <Stepper />
+        <ComponentStepper />
     </div>
     <div id="form">
         <div id="form-title">
@@ -41,7 +41,7 @@
         </div>
 
         <div id="form-button-bar">
-            <StepperActions />
+            <ComponentStepperActions />
         </div>
     </div>
 </template>
@@ -51,14 +51,14 @@ import { defineComponent, ref } from 'vue'
 import { useCff } from '../store/cff'
 import { QSelect } from 'quasar'
 import schema from '../schemas/1.2.0/schema.json'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import ComponentStepper from 'components/ComponentStepper.vue'
+import ComponentStepperActions from 'components/ComponentStepperActions.vue'
 
 export default defineComponent({
     name: 'ScreenLicense',
     components: {
-        Stepper,
-        StepperActions
+        ComponentStepper,
+        ComponentStepperActions
     },
     setup () {
         const { license, setLicense } = useCff()

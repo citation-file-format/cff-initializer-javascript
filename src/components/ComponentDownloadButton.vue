@@ -20,7 +20,7 @@ function toDownloadUrl (body: string) {
 }
 
 export default defineComponent({
-    name: 'DownloadButton',
+    name: 'ComponentDownloadButton',
     setup () {
         const { cffstr } = useCffstr()
 

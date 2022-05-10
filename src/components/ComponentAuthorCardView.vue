@@ -48,7 +48,7 @@ import { AuthorType } from 'src/types'
 import { authorErrors } from 'src/author-errors'
 
 export default defineComponent({
-    name: 'AuthorCardViewing',
+    name: 'ComponentAuthorCardView',
     props: {
         index: {
             type: Number,

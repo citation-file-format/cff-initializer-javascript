@@ -1,6 +1,6 @@
 <template>
     <div id="metroline">
-        <Stepper />
+        <ComponentStepper />
     </div>
     <div id="form">
         <div id="form-title">
@@ -28,7 +28,7 @@
                         v-bind:key="index"
                         v-for="(identifier, index) in identifiers"
                     >
-                        <IdentifierCardViewing
+                        <ComponentIdentifierCardView
                             v-if="editingId !== index"
                             v-bind:index="index"
                             v-bind:identifier="identifier"
@@ -37,7 +37,7 @@
                             v-on:moveDown="moveIdentifierDown(index)"
                             v-on:moveUp="moveIdentifierUp(index)"
                         />
-                        <IdentifierCardEditing
+                        <ComponentIdentifierCardEdit
                             v-else
                             v-bind:index="index"
                             v-bind="identifier"
@@ -76,17 +76,17 @@
         </div>
 
         <div id="form-button-bar">
-            <StepperActions />
+            <ComponentStepperActions />
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, ref } from 'vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
-import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
-import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
+import ComponentStepper from 'components/ComponentStepper.vue'
+import ComponentStepperActions from 'components/ComponentStepperActions.vue'
+import ComponentIdentifierCardEdit from 'components/ComponentIdentifierCardEdit.vue'
+import ComponentIdentifierCardView from 'components/ComponentIdentifierCardView.vue'
 import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
@@ -96,10 +96,10 @@ import { identifiersErrors } from 'src/identifiers-errors'
 export default defineComponent({
     name: 'ScreenIdentifiers',
     components: {
-        Stepper,
-        StepperActions,
-        IdentifierCardEditing,
-        IdentifierCardViewing
+        ComponentStepper,
+        ComponentStepperActions,
+        ComponentIdentifierCardEdit,
+        ComponentIdentifierCardView
     },
     setup () {
         const { identifiers, setIdentifiers } = useCff()

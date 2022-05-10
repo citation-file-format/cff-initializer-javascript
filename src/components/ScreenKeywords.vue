@@ -1,6 +1,6 @@
 <template>
     <div id="metroline">
-        <Stepper />
+        <ComponentStepper />
     </div>
     <div id="form">
         <div id="form-title">
@@ -16,7 +16,7 @@
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>
-                    <Keyword
+                    <ComponentKeywordCard
                         class="q-mr-lg"
                         v-bind:key="index"
                         v-bind:keyword="keyword"
@@ -54,15 +54,15 @@
         </div>
 
         <div id="form-button-bar">
-            <StepperActions />
+            <ComponentStepperActions />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
-import Keyword from 'components/Keyword.vue'
+import ComponentStepper from 'components/ComponentStepper.vue'
+import ComponentStepperActions from 'components/ComponentStepperActions.vue'
+import ComponentKeywordCard from 'components/ComponentKeywordCard.vue'
 import { computed, defineComponent, nextTick } from 'vue'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from '../store/cff'
@@ -72,9 +72,9 @@ import { getMyErrors } from 'src/store/validator'
 export default defineComponent({
     name: 'ScreenKeywords',
     components: {
-        Stepper,
-        StepperActions,
-        Keyword
+        ComponentStepper,
+        ComponentStepperActions,
+        ComponentKeywordCard
     },
     setup () {
         const { keywords, setKeywords } = useCff()

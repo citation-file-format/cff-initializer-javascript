@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 Who are the author(s) of the work?
-                <SchemaInfoIcon section="authors" />
+                <SchemaInfoIcon anchor="#authors" />
             </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />

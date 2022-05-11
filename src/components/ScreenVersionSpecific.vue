@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What is the commit identifier of the work?
-                <SchemaInfoIcon section="commit" />
+                <SchemaInfoIcon anchor="#commit" />
             </p>
             <q-input
                 bg-color="white"
@@ -25,7 +25,7 @@
 
             <p class="question">
                 What is the version of the work?
-                <SchemaInfoIcon section="version" />
+                <SchemaInfoIcon anchor="#version" />
             </p>
             <q-input
                 bg-color="white"
@@ -38,7 +38,7 @@
 
             <p class="question">
                 When was the version released?
-                <SchemaInfoIcon section="date-released" />
+                <SchemaInfoIcon anchor="#date-released" />
             </p>
             <q-input
                 bg-color="white"

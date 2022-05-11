@@ -13,7 +13,7 @@
         <div id="form-content">
             <p class="question">
                 What is the abstract of the work?
-                <SchemaInfoIcon section="abstract" />
+                <SchemaInfoIcon anchor="#abstract" />
             </p>
             <q-input
                 autogrow

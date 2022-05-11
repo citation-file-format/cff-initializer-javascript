@@ -13,7 +13,7 @@
         <div id="form-content">
             <p class="question">
                 What is the title of the work?
-                <SchemaInfoIcon section="title" />
+                <SchemaInfoIcon anchor="#title" />
             </p>
             <q-input
                 bg-color="white"
@@ -27,7 +27,7 @@
             />
             <p class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
-                <SchemaInfoIcon section="message" />
+                <SchemaInfoIcon anchor="#message" />
             </p>
             <q-input
                 bg-color="white"
@@ -62,7 +62,7 @@
             </q-input>
             <p class="question">
                 What type of work does this CITATION.cff describe?
-                <SchemaInfoIcon section="type" />
+                <SchemaInfoIcon anchor="#type" />
             </p>
             <q-option-group
                 type="radio"

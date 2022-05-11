@@ -1,5 +1,5 @@
 <template>
-    <a v-bind:href="'https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#' + section">
+    <a v-bind:href="'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md' + anchor">
         <q-icon name="ion-information-circle-outline" />
     </a>
 </template>
@@ -10,7 +10,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     name: 'SchemaInfoIcon',
     props: {
-        section: {
+        anchor: {
             type: String,
             required: true
         }

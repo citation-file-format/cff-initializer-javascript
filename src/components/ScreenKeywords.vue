@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What keywords describe the work?
-                <SchemaInfoIcon section="keywords" />
+                <SchemaInfoIcon anchor="#keywords" />
             </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />

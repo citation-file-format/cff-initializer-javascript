@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What persistent identifiers are available for the work?
-                <SchemaInfoIcon section="identifiers" />
+                <SchemaInfoIcon anchor="#identifiers" />
             </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />

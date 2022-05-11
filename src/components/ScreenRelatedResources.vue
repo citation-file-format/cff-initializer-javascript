@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What is the URL of the work in a source code repository?
-                <SchemaInfoIcon section="repository-code" />
+                <SchemaInfoIcon anchor="#repository-code" />
             </p>
             <q-input
                 bg-color="white"
@@ -27,7 +27,7 @@
 
             <p class="question">
                 What is the URL of a landing page/website for the work?
-                <SchemaInfoIcon section="url" />
+                <SchemaInfoIcon anchor="#url" />
             </p>
             <q-input
                 bg-color="white"
@@ -42,7 +42,7 @@
 
             <p class="question">
                 What is the URL of the work in a repository?
-                <SchemaInfoIcon section="repository" />
+                <SchemaInfoIcon anchor="#repository" />
             </p>
             <q-input
                 bg-color="white"
@@ -57,7 +57,7 @@
 
             <p class="question">
                 What is the URL of the work in a build artifact/binary repository?
-                <SchemaInfoIcon section="repository-artifact" />
+                <SchemaInfoIcon anchor="#repository-artifact" />
             </p>
             <q-input
                 bg-color="white"

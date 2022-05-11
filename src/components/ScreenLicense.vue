@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What is the license of the work?
-                <SchemaInfoIcon section="license" />
+                <SchemaInfoIcon anchor="#license" />
             </p>
             <q-select
                 bg-color="white"

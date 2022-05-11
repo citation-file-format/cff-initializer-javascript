@@ -1,6 +1,10 @@
 <template>
     <a v-bind:href="'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md' + anchor">
-        <q-icon name="ion-information-circle-outline" />
+        <q-icon
+            name="ion-information-circle-outline"
+            size="24px"
+            color="primary"
+        />
         <q-tooltip
             anchor="center middle"
             class="bg-primary text-body2 text-white"

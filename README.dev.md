@@ -84,6 +84,22 @@ To run linting on commit, you can install a git commit hook with
 npx husky install
 ```
 
+## Publishing
+
+This app is published using [GitHub pages](https://github.com/citation-file-format/cff-initializer-javascript/settings/pages) automatically by the [Publish workflow](.github/workflows/publish.yml).
+The way this works is:
+
+- After a commit is pushed to `main`, the workflow runs.
+- The workflow builds the app (using the `npm run build` command) into the folder `./dist`.
+- The GitHub action `peaceiris/actions-gh-pages@v3` pushes the contents of `./dist` to the branch [gh-pages](https://github.com/citation-file-format/cff-initializer-javascript/tree/gh-pages).
+- The `gh-pages` content is served by GitHub into <https://citation-file-format.github.io/cff-initializer-javascript/#/>
+
+For this to work, a few things have to be set up:
+
+- A `gh-pages` has to exist before the action is run (click on the branches dropdown, write `gh-pages` and click "Create").
+- After `gh-pages` is created, select it as the source for deployment of [GitHub pages](https://github.com/citation-file-format/cff-initializer-javascript/settings/pages).
+- Enable write permissions for `secrets.GITHUB_TOKEN` on workflows (see, e.g. [this post](https://github.com/peaceiris/actions-gh-pages/issues/744#issuecomment-1119685318)). This is done on [Settings -> Actions -> General -> Workflow permissions](https://github.com/citation-file-format/cff-initializer-javascript/settings/actions).
+
 ## Making a release
 
 This section describes how to make a release in 2 parts:
@@ -95,7 +111,7 @@ This section describes how to make a release in 2 parts:
 
 1. Verify that the information in `CITATION.cff` is correct
 2. Generate an updated version of `.zenodo.json` if needed using `cffconvert`
-3. Make sure the version field in `package.json` is correct 
+3. Make sure the version field in `package.json` is correct
 4. By running `npm run lint` make sure the linter does not complain
 5. Run the unit tests with `npm run test:unit:ci`
 6. Make sure that github.io page is up to date

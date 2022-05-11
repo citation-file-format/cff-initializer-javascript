@@ -12,6 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What is the commit identifier of the work?
+                <SchemaGuideLink anchor="#commit" />
             </p>
             <q-input
                 bg-color="white"
@@ -24,6 +25,7 @@
 
             <p class="question">
                 What is the version of the work?
+                <SchemaGuideLink anchor="#version" />
             </p>
             <q-input
                 bg-color="white"
@@ -36,6 +38,7 @@
 
             <p class="question">
                 When was the version released?
+                <SchemaGuideLink anchor="#date-released" />
             </p>
             <q-input
                 bg-color="white"
@@ -88,6 +91,7 @@
 </template>
 
 <script lang="ts">
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { computed, defineComponent } from 'vue'
@@ -97,6 +101,7 @@ import { getMyErrors } from 'src/store/validator'
 export default defineComponent({
     name: 'ScreenVersionSpecific',
     components: {
+        SchemaGuideLink,
         Stepper,
         StepperActions
     },

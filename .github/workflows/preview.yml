@@ -1,0 +1,59 @@
+name: Preview
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  preview:
+    if: github.repository_owner == 'citation-file-format'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Use Node.js 14
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        cache: 'npm'
+    - name: Run npm clean-install
+      run: npm clean-install
+    - name: Run build on PR
+      run: |
+        if [[ ${{ github.event_name }} == "pull_request" ]]; then
+            export PUBLICPATH=PR${{ github.event.number }}
+        else
+            export PUBLICPATH=main
+        fi
+        echo "PUBLICPATH=$PUBLICPATH" >> $GITHUB_ENV
+        sed -i "s|publicPath: 'cff-initializer-javascript'|publicPath: '$PUBLICPATH'|" quasar.conf.js
+        npm run build
+    - name: Deploy to gh-preview
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-preview
+        destination_dir: "${{ env.PUBLICPATH }}"
+        publish_dir: ./dist
+        user_name: 'cffinit[bot]'
+        user_email: 'cffinit[bot]@users.noreply.github.com'
+        commit_message: ':robot: Create preview of ${{ env.PUBLICPATH }}'
+  pr_comment:
+    if: github.event_name == 'pull_request' && github.repository_owner == 'citation-file-format'
+    needs: preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Comment PR'
+        uses: actions/github-script@0.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
+            github.issues.createComment({ issue_number, owner, repo, body: 'Once the build has completed, you can preview your PR at this URL: https://cffinit.netlify.app/PR${{ github.event.number }}/' });
+

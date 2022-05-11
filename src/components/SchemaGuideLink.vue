@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'SchemaInfoIcon',
+    name: 'SchemaGuideLink',
     props: {
         anchor: {
             type: String,

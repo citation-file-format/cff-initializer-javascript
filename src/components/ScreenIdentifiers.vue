@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What persistent identifiers are available for the work?
-                <SchemaInfoIcon anchor="#identifiers" />
+                <SchemaGuideLink anchor="#identifiers" />
             </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
@@ -77,7 +77,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, ref } from 'vue'
-import SchemaInfoIcon from 'components/SchemaInfoIcon.vue'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
@@ -91,7 +91,7 @@ import { identifiersErrors } from 'src/identifiers-errors'
 export default defineComponent({
     name: 'ScreenIdentifiers',
     components: {
-        SchemaInfoIcon,
+        SchemaGuideLink,
         Stepper,
         StepperActions,
         IdentifierCardEditing,

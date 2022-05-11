@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 What is the URL of the work in a source code repository?
-                <SchemaInfoIcon anchor="#repository-code" />
+                <SchemaGuideLink anchor="#repository-code" />
             </p>
             <q-input
                 bg-color="white"
@@ -27,7 +27,7 @@
 
             <p class="question">
                 What is the URL of a landing page/website for the work?
-                <SchemaInfoIcon anchor="#url" />
+                <SchemaGuideLink anchor="#url" />
             </p>
             <q-input
                 bg-color="white"
@@ -42,7 +42,7 @@
 
             <p class="question">
                 What is the URL of the work in a repository?
-                <SchemaInfoIcon anchor="#repository" />
+                <SchemaGuideLink anchor="#repository" />
             </p>
             <q-input
                 bg-color="white"
@@ -57,7 +57,7 @@
 
             <p class="question">
                 What is the URL of the work in a build artifact/binary repository?
-                <SchemaInfoIcon anchor="#repository-artifact" />
+                <SchemaGuideLink anchor="#repository-artifact" />
             </p>
             <q-input
                 bg-color="white"
@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import SchemaInfoIcon from 'components/SchemaInfoIcon.vue'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { computed, defineComponent } from 'vue'
@@ -88,7 +88,7 @@ import { getMyErrors } from 'src/store/validator'
 export default defineComponent({
     name: 'ScreenRelatedResources',
     components: {
-        SchemaInfoIcon,
+        SchemaGuideLink,
         Stepper,
         StepperActions
     },

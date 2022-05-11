@@ -13,7 +13,7 @@
         <div id="form-content">
             <p class="question">
                 What is the title of the work?
-                <SchemaInfoIcon anchor="#title" />
+                <SchemaGuideLink anchor="#title" />
             </p>
             <q-input
                 bg-color="white"
@@ -27,7 +27,7 @@
             />
             <p class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
-                <SchemaInfoIcon anchor="#message" />
+                <SchemaGuideLink anchor="#message" />
             </p>
             <q-input
                 bg-color="white"
@@ -62,7 +62,7 @@
             </q-input>
             <p class="question">
                 What type of work does this CITATION.cff describe?
-                <SchemaInfoIcon anchor="#type" />
+                <SchemaGuideLink anchor="#type" />
             </p>
             <q-option-group
                 type="radio"
@@ -79,7 +79,7 @@
 </template>
 
 <script lang="ts">
-import SchemaInfoIcon from 'components/SchemaInfoIcon.vue'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { computed, defineComponent } from 'vue'
@@ -89,7 +89,7 @@ import { getMyErrors } from 'src/store/validator'
 export default defineComponent({
     name: 'ScreenStart',
     components: {
-        SchemaInfoIcon,
+        SchemaGuideLink,
         Stepper,
         StepperActions
     },

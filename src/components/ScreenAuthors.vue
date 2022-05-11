@@ -12,7 +12,7 @@
         <div id="form-content">
             <p class="question">
                 Who are the author(s) of the work?
-                <SchemaInfoIcon anchor="#authors" />
+                <SchemaGuideLink anchor="#authors" />
             </p>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
@@ -76,7 +76,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, ref } from 'vue'
-import SchemaInfoIcon from 'components/SchemaInfoIcon.vue'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
@@ -90,7 +90,7 @@ import { authorsErrors } from 'src/authors-errors'
 export default defineComponent({
     name: 'ScreenAuthors',
     components: {
-        SchemaInfoIcon,
+        SchemaGuideLink,
         Stepper,
         StepperActions,
         AuthorCardEditing,

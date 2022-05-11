@@ -13,7 +13,7 @@
         <div id="form-content">
             <p class="question">
                 What is the abstract of the work?
-                <SchemaInfoIcon anchor="#abstract" />
+                <SchemaGuideLink anchor="#abstract" />
             </p>
             <q-input
                 autogrow
@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import SchemaInfoIcon from 'components/SchemaInfoIcon.vue'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
@@ -45,7 +45,7 @@ import { useCff } from '../store/cff'
 export default defineComponent({
     name: 'ScreenAbstract',
     components: {
-        SchemaInfoIcon,
+        SchemaGuideLink,
         Stepper,
         StepperActions
     },

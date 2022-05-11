@@ -55,7 +55,7 @@ module.exports = configure(function () {
             vueRouterMode: 'hash', // available values: 'hash', 'history'
             publicPath: 'cff-initializer-javascript',
             // transpile: false,
-            distDir: 'docs',
+            distDir: 'dist',
 
             // Add dependencies for transpiling with Babel (Array of string/regex)
             // (from node_modules, which are by default not transpiled).

@@ -32,3 +32,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 node_modules
+
+# Build files
+docs

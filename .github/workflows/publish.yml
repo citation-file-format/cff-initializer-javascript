@@ -21,10 +21,11 @@ jobs:
       run: npm clean-install
     - name: Run build
       run: npm run build
-    - uses: stefanzweifel/git-auto-commit-action@v4
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        commit_message: Update github.io page
-        branch: main
-        file_pattern: docs/
-        commit_user_name: cffinit
-        push_options: '--force'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        user_name: 'cffinit[bot]'
+        user_email: 'cffinit[bot]@users.noreply.github.com'
+        commit_message: ':robot: Update github.io page'

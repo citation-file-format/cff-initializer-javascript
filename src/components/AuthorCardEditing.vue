@@ -5,6 +5,12 @@
         class="bg-formcard q-pa-md"
     >
         <div class="row">
+            <q-label class="text-dark">
+                The person's given names
+                <SchemaGuideLink anchor="#definitionspersongiven-names" />
+            </q-label>
+        </div>
+        <div class="row">
             <q-input
                 bg-color="white"
                 class="col"
@@ -21,6 +27,11 @@
             />
         </div>
         <div class="row">
+            <q-label class="text-dark">
+                The person's last names, split into parts
+            </q-label>
+        </div>
+        <div class="row">
             <q-input
                 bg-color="white"
                 class="col-3"
@@ -33,7 +44,12 @@
                 v-bind:error="nameParticleError.hasError"
                 v-bind:error-message="nameParticleError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
-            />
+            >
+                <SchemaGuideLink
+                    anchor="#definitionspersonname-particle"
+                    class="q-pt-sm"
+                />
+            </q-input>
             <q-input
                 bg-color="white"
                 class="col"
@@ -46,7 +62,12 @@
                 v-bind:error="familyNamesError.hasError"
                 v-bind:error-message="familyNamesError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'familyNames', $event)"
-            />
+            >
+                <SchemaGuideLink
+                    anchor="#definitionspersonfamily-names"
+                    class="q-pt-sm"
+                />
+            </q-input>
             <q-input
                 bg-color="white"
                 class="col-3"
@@ -59,7 +80,18 @@
                 v-bind:error="nameSuffixError.hasError"
                 v-bind:error-message="nameSuffixError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
-            />
+            >
+                <SchemaGuideLink
+                    anchor="#definitionspersonname-suffix"
+                    class="q-pt-sm"
+                />
+            </q-input>
+        </div>
+        <div class="row">
+            <q-label class="text-dark">
+                The person's email address
+                <SchemaGuideLink anchor="#definitionsperson-email" />
+            </q-label>
         </div>
         <div class="row">
             <q-input
@@ -76,6 +108,16 @@
                 v-bind:error-message="emailError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
+        </div>
+        <div class="row">
+            <q-label class="text-dark col">
+                The person's affiliation
+                <SchemaGuideLink anchor="#definitionsperson-affiliation" />
+            </q-label>
+            <q-label class="text-dark col">
+                The person's ORCID
+                <SchemaGuideLink anchor="#definitionsperson-orcid" />
+            </q-label>
         </div>
         <div class="row">
             <q-input
@@ -158,6 +200,7 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { authorErrors } from 'src/author-errors'
+import SchemaGuideLink from './SchemaGuideLink.vue'
 
 export default defineComponent({
     name: 'AuthorCardEditing',
@@ -214,10 +257,10 @@ export default defineComponent({
             affiliationError: computed(() => getMyErrors(`/authors/${props.index}/affiliation`)),
             orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`)),
             authorErrors: computed(() => authorErrors(props.index))
-
         }
     },
-    emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown']
+    emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown'],
+    components: { SchemaGuideLink }
 })
 </script>
 <style scoped>

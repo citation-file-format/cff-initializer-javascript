@@ -94,9 +94,20 @@ The way this works is:
 - The GitHub action `peaceiris/actions-gh-pages@v3` pushes the contents of `./dist` to the branch [gh-pages](https://github.com/citation-file-format/cff-initializer-javascript/tree/gh-pages).
 - The `gh-pages` content is served by GitHub into <https://citation-file-format.github.io/cff-initializer-javascript/#/>
 
-For this to work, a few things have to be set up:
+For this to work, a few things have to be set up for first time use:
 
-- A `gh-pages` has to exist before the action is run (click on the branches dropdown, write `gh-pages` and click "Create").
+- A `gh-pages` has to exist before the action is run. You can create an orphan branch to have a clean history with the following commands:
+
+```bash
+git checkout --orphan gh-pages
+git rm -rf .
+# git rm other files and folders if necessary
+touch index.html
+git add index.html
+git commit -m "gh-pages created"
+git push origin gh-pages
+```
+
 - After `gh-pages` is created, select it as the source for deployment of [GitHub pages](https://github.com/citation-file-format/cff-initializer-javascript/settings/pages).
 - Enable write permissions for `secrets.GITHUB_TOKEN` on workflows (see, e.g. [this post](https://github.com/peaceiris/actions-gh-pages/issues/744#issuecomment-1119685318)). This is done on [Settings -> Actions -> General -> Workflow permissions](https://github.com/citation-file-format/cff-initializer-javascript/settings/actions).
 

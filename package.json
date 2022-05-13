@@ -22,9 +22,11 @@
     "dependencies": {
         "@quasar/extras": "^1.0.0",
         "ajv": "^8.6.2",
+        "ajv-errors": "^3.0.0",
         "ajv-formats": "^2.1.1",
         "core-js": "^3.6.5",
         "deep-filter": "^1.0.2",
+        "deepmerge-json": "^1.3.2",
         "js-yaml": "^3.14.1",
         "kebabcase-keys": "^1.0.0",
         "quasar": "^2.0.0"

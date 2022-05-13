@@ -1,0 +1,61 @@
+{
+    "errorMessage": {
+        "required": {
+            "authors": "Needs at least 1 author",
+            "message": "Message can't be blank",
+            "title": "Title can't be blank"
+        }
+    },
+    "definitions": {
+        "date": {
+            "errorMessage": "Format: YYYY-MM-DD"
+        },
+        "doi": {
+            "errorMessage": "Format: 10.XXXX/yyyy"
+        },
+        "email": {
+            "errorMessage": "Format: user@domain.suffix"
+        },
+        "orcid": {
+            "errorMessage": "Format: https://orcid.org/0000-0000-0000-0000"
+        },
+        "repository": {
+            "errorMessage": "Format: https://www.example.com (http, ftp, and sftp are also valid)"
+        },
+        "repository-code": {
+            "errorMessage": "Format: https://www.example.com (http, ftp, and sftp are also valid)"
+        },
+        "repository-articaft": {
+            "errorMessage": "Format: https://www.example.com (http, ftp, and sftp are also valid)"
+        },
+        "swh-identifier": {
+            "errorMessage": "Format: swh:1:xxx:hash"
+        },
+        "url": {
+            "errorMessage": "Format: https://www.example.com (http, ftp, and sftp are also valid)"
+        }
+    },
+    "properties": {
+        "authors": {
+            "errorMessage": {
+                "minItems": "Needs at least 1 author",
+                "uniqueItems": "Each author must be unique"
+            }
+        },
+        "keywords": {
+            "items": {
+                "errorMessage": {
+                    "minLength": "Keyword must be at least 1 characters long"
+                }
+            },
+            "errorMessage": {
+                "uniqueItems": "Each keyword must be unique"
+            }
+        },
+        "identifiers": {
+            "errorMessage": {
+                "uniqueItems": "Each identifier must be unique"
+            }
+        }
+    }
+}

@@ -28,7 +28,11 @@ export function getMyErrors (myPath: string, fieldNames?: string[], schemaPathSu
         return true
     }
 
-    const checkForObjectProblems = (item: ErrorObject) => {
+    const checkForObjectProblems = (item: ErrorObject): boolean => {
+        // Check if the error is an errorMessage wrapper and if it is, checkForObjectProblems of any of its children
+        if (fieldNames !== undefined && item.keyword === 'errorMessage') {
+            return (item.params.errors as ErrorObject[]).some(checkForObjectProblems)
+        }
         if (fieldNames !== undefined && item.keyword === 'required') {
             return fieldNames.includes(item.params.missingProperty as string)
         }

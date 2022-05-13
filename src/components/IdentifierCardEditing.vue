@@ -94,7 +94,6 @@
 import { IdentifierTypeType } from '../types'
 import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
-import { identifierErrors } from 'src/identifier-errors'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
@@ -152,8 +151,7 @@ export default defineComponent({
             valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`, [], props.type)),
             descriptionError: computed(() =>
                 getMyErrors(`/identifiers/${props.index}/description`)
-            ),
-            identifierErrors: computed(() => identifierErrors(props.index))
+            )
         }
     },
     emits: [

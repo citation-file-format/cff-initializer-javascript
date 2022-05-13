@@ -40,6 +40,25 @@
             Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}
         </p>
     </div>
+
+    <q-list
+        dense
+        bordered
+        class="rounded-borders"
+        v-if="!isValidCFF"
+    >
+        <q-item
+            clickable
+            v-ripple
+            v-for="(error, key) in errorMessages"
+            v-bind:key="key"
+            v-bind:to="error.route"
+        >
+            <q-item-section>
+                {{ error.msg }}
+            </q-item-section>
+        </q-item>
+    </q-list>
 </template>
 
 <script lang="ts">
@@ -64,10 +83,30 @@ export default defineComponent({
         }
 
         const isValidCFF = computed(() => errors.value.length === 0)
+        const errorMessages = computed(() => {
+            console.log(errors.value)
+            const errorMsgs = [] as { msg: string, route: string }[]
+            for (const error of errors.value) {
+                let path = error.instancePath
+                if (path === '') {
+                    path = '/start'
+                }
+                let msg = 'no information'
+                if (error.message) {
+                    msg = error.message
+                }
+                errorMsgs.push({
+                    msg: `at '${path}': ${msg} | ${error.schemaPath}`,
+                    route: path
+                })
+            }
+            return errorMsgs
+        })
 
         return {
             cffstr,
             copyToClipboard,
+            errorMessages,
             isValidCFF,
             showTooltip
         }

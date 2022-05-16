@@ -5,7 +5,7 @@
         class="bg-formcard q-pa-md"
     >
         <q-card-section>
-            <div class="row items-center no-wrap">
+            <div class="items-center no-wrap">
                 <q-option-group
                     inline
                     type="radio"
@@ -18,7 +18,11 @@
                     "
                 />
             </div>
-            <div class="q-gutter-md items-center no-wrap">
+            <div class="q-gutter-md q-mt-md items-center no-wrap">
+                <p class="question">
+                    What is the value of the {{getLinkLabel}}?
+                    <SchemaGuideLink :anchor="getLinkUrl" />
+                </p>
                 <q-input
                     bg-color="white"
                     label="Value"
@@ -33,7 +37,11 @@
                     "
                 />
             </div>
-            <div class="q-gutter-md items-center no-wrap">
+            <div class="q-gutter-md q-mt-md items-center no-wrap">
+                <p class="question">
+                    What is the description for the {{getLinkLabel}}?
+                    <SchemaGuideLink anchor="#definitionsidentifier-description" />
+                </p>
                 <q-input
                     bg-color="white"
                     label="Description"
@@ -84,10 +92,12 @@
 </template>
 
 <script lang="ts">
+import {ref} from 'vue'
 import { IdentifierTypeType } from '../types'
 import { computed, defineComponent, PropType } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
+import SchemaGuideLink from "components/SchemaGuideLink.vue";
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -113,7 +123,18 @@ export default defineComponent({
             default: 0
         }
     },
+    components: {
+        SchemaGuideLink
+    },
     setup (props) {
+
+        const linkInfo: any = {
+            doi: { linkLabel: 'DOI', linkUrl: '#definitionsdoi' },
+            url: { linkLabel: 'URL', linkUrl: '#definitionsurl' },
+            swh: { linkLabel: 'Software Heritage identifier', linkUrl: '#definitionsswh-identifier' },
+            other: { linkLabel: 'identifier', linkUrl: '#definitionsidentifier-description' }
+        }
+
         return {
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
@@ -121,12 +142,26 @@ export default defineComponent({
                 { label: 'Software Heritage', value: 'swh' },
                 { label: 'Other', value: 'other' }
             ],
+            getLinkLabel: computed(() => {
+                return linkInfo[props.type].linkLabel
+            }),
+            getLinkUrl: computed(() => {
+                return linkInfo[props.type].linkUrl
+            }),
             typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
             valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
             descriptionError: computed(() => getMyErrors(`/identifiers/${props.index}/description`)),
-            identifierErrors: computed(() => identifierErrors(props.index))
+            identifierErrors: computed(() => identifierErrors(props.index)),
+            SchemaGuideLink
         }
     },
     emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription', 'moveUp', 'moveDown']
 })
 </script>
+<style scoped>
+.row {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+</style>

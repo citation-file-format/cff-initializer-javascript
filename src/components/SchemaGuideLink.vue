@@ -10,11 +10,13 @@
             color="primary"
         />
         <q-tooltip
-            anchor="center middle"
+            anchor="center right"
             class="bg-primary text-body2 text-white"
-            self="top left"
+            self="center left"
+            transition-show="scale"
+            transition-hide="scale"
         >
-            Click to access specific documentation
+            Click the icon to access specific documentation
         </q-tooltip>
     </a>
 </template>

@@ -12,7 +12,7 @@
 
         <div id="form-content">
             <p class="question">
-                What is the abstract of the work?
+                Please provide a description of the work
                 <SchemaGuideLink anchor="#abstract" />
             </p>
             <q-input

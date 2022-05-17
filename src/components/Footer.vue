@@ -1,11 +1,19 @@
 <template>
-    <div id="logo">
-        <a
-            href="https://esciencecenter.nl"
-            target="_blank"
+    <div class="row">
+        <div
+            id="logo"
+            class="col"
         >
-            <img src="~assets/nlesc-logo.svg">
-        </a>
+            <a
+                href="https://esciencecenter.nl"
+                target="_blank"
+            >
+                <img src="~assets/nlesc-logo.svg">
+            </a>
+        </div>
+        <span class="col text-right text-white text-body1 text-bold">
+            Version 2.0.0
+        </span>
     </div>
 </template>
 

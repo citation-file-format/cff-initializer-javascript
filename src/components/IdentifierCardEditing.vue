@@ -137,11 +137,7 @@ export default defineComponent({
                 { label: 'Software Heritage', value: 'swh' },
                 { label: 'Other', value: 'other' }
             ],
-            getLinkLabel: computed(() => {
-                // console.log("label props:", props.type);
-                // return "Label"
-                return linkInfo[props.type].linkLabel
-            }),
+            label: computed(() => linkInfo[props.type].label),
             getLinkUrl: computed(() => {
                 // let reallyString = <string>props.type;
                 // console.log("url props:", props.type);

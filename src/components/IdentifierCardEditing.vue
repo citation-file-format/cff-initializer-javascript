@@ -18,7 +18,7 @@
             </div>
             <div class="q-gutter-md q-mt-md items-center no-wrap">
                 <p class="question">
-                    What is the value of the {{ getLinkLabel }}?
+                    What is the value of the {{ label }}?
                     <SchemaGuideLink v-bind:anchor="anchor" />
                 </p>
                 <q-input
@@ -35,7 +35,7 @@
             </div>
             <div class="q-gutter-md q-mt-md items-center no-wrap">
                 <p class="question">
-                    What is the description for the {{ getLinkLabel }}?
+                    What is the description for the {{ label }}?
                     <SchemaGuideLink anchor="#definitionsidentifier-description" />
                 </p>
                 <q-input
@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import { IdentifierTypeType, linkInfoType } from '../types'
+import { IdentifierTypeType } from '../types'
 import { computed, defineComponent, PropType } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
@@ -100,11 +100,11 @@ export default defineComponent({
             required: true
         },
         type: {
-            type: String,
+            type: String as PropType<IdentifierTypeType>,
             default: ''
         },
         value: {
-            type: String as PropType<IdentifierTypeType>,
+            type: String,
             default: ''
         },
         description: {
@@ -120,14 +120,14 @@ export default defineComponent({
         SchemaGuideLink
     },
     setup (props) {
-        const linkInfo: linkInfoType = {
-            doi: { linkLabel: 'DOI', linkUrl: '#definitionsdoi' },
-            url: { linkLabel: 'URL', linkUrl: '#definitionsurl' },
+        const linkInfo = {
+            doi: { label: 'DOI', anchor: '#definitionsdoi' },
+            url: { label: 'URL', anchor: '#definitionsurl' },
             swh: {
-                linkLabel: 'Software Heritage identifier',
-                linkUrl: '#definitionsswh-identifier'
+                label: 'Software Heritage identifier',
+                anchor: '#definitionsswh-identifier'
             },
-            other: { linkLabel: 'identifier', linkUrl: '#definitionsidentifier' }
+            other: { label: 'identifier', anchor: '#definitionsidentifier' }
         }
 
         return {

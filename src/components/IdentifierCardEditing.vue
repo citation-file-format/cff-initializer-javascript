@@ -19,7 +19,7 @@
             <div class="q-gutter-md q-mt-md items-center no-wrap">
                 <p class="question">
                     What is the value of the {{ getLinkLabel }}?
-                    <SchemaGuideLink v-bind:anchor="getLinkUrl" />
+                    <SchemaGuideLink v-bind:anchor="anchor" />
                 </p>
                 <q-input
                     bg-color="white"

@@ -138,13 +138,7 @@ export default defineComponent({
                 { label: 'Other', value: 'other' }
             ],
             label: computed(() => linkInfo[props.type].label),
-            getLinkUrl: computed(() => {
-                // let reallyString = <string>props.type;
-                // console.log("url props:", props.type);
-                // console.log("reallyString:", reallyString);
-                // return "Url"
-                return linkInfo[props.type].linkUrl
-            }),
+            anchor: computed(() => linkInfo[props.type].anchor),
             typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
             valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
             descriptionError: computed(() =>

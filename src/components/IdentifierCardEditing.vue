@@ -16,11 +16,13 @@
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
                 />
             </div>
-            <div class="q-gutter-md q-mt-md items-center no-wrap">
-                <p class="question">
-                    What is the value of the {{ label }}?
-                    <SchemaGuideLink v-bind:anchor="anchor" />
-                </p>
+            <div class="q-mt-md items-center no-wrap">
+                <div class="row">
+                    <q-label class="text-dark">
+                        What is the value of the {{ label }}?
+                        <SchemaGuideLink v-bind:anchor="anchor" />
+                    </q-label>
+                </div>
                 <q-input
                     bg-color="white"
                     label="Value"
@@ -33,11 +35,13 @@
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                 />
             </div>
-            <div class="q-gutter-md q-mt-md items-center no-wrap">
-                <p class="question">
-                    What is the description for the {{ label }}?
-                    <SchemaGuideLink anchor="#definitionsidentifier-description" />
-                </p>
+            <div class="q-mt-md items-center no-wrap">
+                <div class="row">
+                    <q-label class="text-dark">
+                        What is the description for the {{ label }}?
+                        <SchemaGuideLink anchor="#definitionsidentifier-description" />
+                    </q-label>
+                </div>
                 <q-input
                     bg-color="white"
                     label="Description"

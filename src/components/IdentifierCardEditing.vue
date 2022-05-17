@@ -127,7 +127,7 @@ export default defineComponent({
                 linkLabel: 'Software Heritage identifier',
                 linkUrl: '#definitionsswh-identifier'
             },
-            other: { linkLabel: 'identifier', linkUrl: '#definitionsidentifier-description' }
+            other: { linkLabel: 'identifier', linkUrl: '#definitionsidentifier' }
         }
 
         return {

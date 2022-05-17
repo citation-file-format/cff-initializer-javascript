@@ -90,7 +90,7 @@ import { IdentifierTypeType, linkInfoType } from '../types'
 import { computed, defineComponent, PropType } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',

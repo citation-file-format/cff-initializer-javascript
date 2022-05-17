@@ -111,6 +111,24 @@ git push origin gh-pages
 - After `gh-pages` is created, select it as the source for deployment of [GitHub pages](https://github.com/citation-file-format/cff-initializer-javascript/settings/pages).
 - Enable write permissions for `secrets.GITHUB_TOKEN` on workflows (see, e.g. [this post](https://github.com/peaceiris/actions-gh-pages/issues/744#issuecomment-1119685318)). This is done on [Settings -> Actions -> General -> Workflow permissions](https://github.com/citation-file-format/cff-initializer-javascript/settings/actions).
 
+## Previewing
+
+This is app is previewed using [Netlify](https://netlify.com) automatically by the [Preview workflow](.github/workflows/preview.yml).
+The main branch is previewed into <https://cffinit.netlify.app/main> and each Pull Request is previewing into a `https://cffinit.netlify.app/PRXXX` page.
+The way this works is:
+
+- The branch `gh-preview` is served by Netlify. There is a folder `main` and several folders `PRXXX` in that branch.
+- After a Pull Request or a push to `main` is created, the workflow runs.
+- The workflow changes the `publicPath` configuration in <quasar.conf.js> to reflect the folder `main` or `PRXXX`.
+  - This is stored in a environment variable `PUBLICPATH` to be used later.
+  - We use `sed` with a `-i` to replace the value in-place.
+- The workflow builds the app (using the `npm run build` command) into a folder `./dist`.
+- The GitHub action `peaceiris/actions-gh-pages@v3` pushes the contents of `./dist` to the branch [gh-preview](https://github.com/citation-file-format/cff-initializer-javascript/tree/gh-preview) in the indicated path.
+- After the push is complete, we create a comment on the pull request (if applicable) with the link to the preview page.
+
+For this to work, you need a `gh-preview` branch to exist and to enable write permissions for `secrets.GITHUB_TOKEN`.
+See the section on [Publishing](#publishing) for details on how to do this.
+
 ## Making a release
 
 This section describes how to make a release in 2 parts:

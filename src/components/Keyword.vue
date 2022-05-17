@@ -10,6 +10,7 @@
                 v-bind:error="keywordError.hasError"
                 v-bind:error-message="keywordError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
+                ref="keywordRef"
             />
         </div>
         <q-btn
@@ -41,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
@@ -61,7 +62,12 @@ export default defineComponent({
         }
     },
     setup (props) {
+        const keywordRef = ref<HTMLElement | null>(null)
+        onMounted(() => {
+            keywordRef.value?.focus()
+        })
         return {
+            keywordRef,
             keywordError: computed(() => getMyErrors(`/keywords/${props.index}`))
         }
     },

@@ -33,6 +33,7 @@
                     v-bind:error-message="valueError.messages.join(', ')"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
+                    ref="valueRef"
                 />
             </div>
             <div class="q-mt-md items-center no-wrap">
@@ -91,7 +92,7 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
@@ -133,8 +134,12 @@ export default defineComponent({
             },
             other: { label: 'identifier', anchor: '#definitionsidentifier' }
         }
-
+        const valueRef = ref<HTMLElement | null>(null)
+        onMounted(() => {
+            valueRef.value?.focus()
+        })
         return {
+            valueRef,
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },

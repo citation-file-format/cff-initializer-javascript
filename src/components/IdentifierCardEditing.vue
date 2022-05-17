@@ -144,8 +144,7 @@ export default defineComponent({
             descriptionError: computed(() =>
                 getMyErrors(`/identifiers/${props.index}/description`)
             ),
-            identifierErrors: computed(() => identifierErrors(props.index)),
-            SchemaGuideLink
+            identifierErrors: computed(() => identifierErrors(props.index))
         }
     },
     emits: [

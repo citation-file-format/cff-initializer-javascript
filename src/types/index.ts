@@ -21,6 +21,8 @@ export type IdentifiersType = Array<IdentifierType> | undefined
 
 export type KeywordsType = Array<string> | undefined
 
+export type linkInfoType = Record<string, Record<string, string>>
+
 export type TypeType = 'software' | 'dataset'
 
 export type CffType = {

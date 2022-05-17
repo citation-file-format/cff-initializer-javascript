@@ -13,15 +13,13 @@
                     v-bind:error-message="typeError.messages.join(', ')"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
-                    v-on:update:modelValue="
-                        $emit('updateType', 'type', $event)
-                    "
+                    v-on:update:modelValue="$emit('updateType', 'type', $event)"
                 />
             </div>
             <div class="q-gutter-md q-mt-md items-center no-wrap">
                 <p class="question">
-                    What is the value of the {{getLinkLabel}}?
-                    <SchemaGuideLink :anchor="getLinkUrl" />
+                    What is the value of the {{ getLinkLabel }}?
+                    <SchemaGuideLink v-bind:anchor="getLinkUrl" />
                 </p>
                 <q-input
                     bg-color="white"
@@ -32,14 +30,12 @@
                     v-bind:error="valueError.hasError"
                     v-bind:error-message="valueError.messages.join(', ')"
                     v-bind:model-value="value"
-                    v-on:update:modelValue="
-                        $emit('updateValue', 'value', $event)
-                    "
+                    v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                 />
             </div>
             <div class="q-gutter-md q-mt-md items-center no-wrap">
                 <p class="question">
-                    What is the description for the {{getLinkLabel}}?
+                    What is the description for the {{ getLinkLabel }}?
                     <SchemaGuideLink anchor="#definitionsidentifier-description" />
                 </p>
                 <q-input
@@ -51,9 +47,7 @@
                     v-bind:error="descriptionError.hasError"
                     v-bind:error-message="descriptionError.messages.join(', ')"
                     v-bind:model-value="description"
-                    v-on:update:modelValue="
-                        $emit('updateDescription', 'description', $event)
-                    "
+                    v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
             </div>
         </q-card-section>
@@ -92,12 +86,11 @@
 </template>
 
 <script lang="ts">
-import {ref} from 'vue'
-import { IdentifierTypeType } from '../types'
+import { IdentifierTypeType, linkInfoType } from '../types'
 import { computed, defineComponent, PropType } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
-import SchemaGuideLink from "components/SchemaGuideLink.vue";
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -127,11 +120,13 @@ export default defineComponent({
         SchemaGuideLink
     },
     setup (props) {
-
-        const linkInfo: any = {
+        const linkInfo: linkInfoType = {
             doi: { linkLabel: 'DOI', linkUrl: '#definitionsdoi' },
             url: { linkLabel: 'URL', linkUrl: '#definitionsurl' },
-            swh: { linkLabel: 'Software Heritage identifier', linkUrl: '#definitionsswh-identifier' },
+            swh: {
+                linkLabel: 'Software Heritage identifier',
+                linkUrl: '#definitionsswh-identifier'
+            },
             other: { linkLabel: 'identifier', linkUrl: '#definitionsidentifier-description' }
         }
 
@@ -143,25 +138,41 @@ export default defineComponent({
                 { label: 'Other', value: 'other' }
             ],
             getLinkLabel: computed(() => {
+                // console.log("label props:", props.type);
+                // return "Label"
                 return linkInfo[props.type].linkLabel
             }),
             getLinkUrl: computed(() => {
+                // let reallyString = <string>props.type;
+                // console.log("url props:", props.type);
+                // console.log("reallyString:", reallyString);
+                // return "Url"
                 return linkInfo[props.type].linkUrl
             }),
             typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
             valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
-            descriptionError: computed(() => getMyErrors(`/identifiers/${props.index}/description`)),
+            descriptionError: computed(() =>
+                getMyErrors(`/identifiers/${props.index}/description`)
+            ),
             identifierErrors: computed(() => identifierErrors(props.index)),
             SchemaGuideLink
         }
     },
-    emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription', 'moveUp', 'moveDown']
+    emits: [
+        'closePressed',
+        'removePressed',
+        'updateType',
+        'updateValue',
+        'updateDescription',
+        'moveUp',
+        'moveDown'
+    ]
 })
 </script>
 <style scoped>
 .row {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 }
 </style>

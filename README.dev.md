@@ -119,7 +119,7 @@ The way this works is:
 
 - The branch `gh-preview` is served by Netlify. There is a folder `main` and several folders `PRXXX` in that branch.
 - After a Pull Request or a push to `main` is created, the workflow runs.
-- The workflow changes the `publicPath` configuration in <quasar.conf.js> to reflect the folder `main` or `PRXXX`.
+- The workflow changes the `publicPath` configuration in [quasar.conf.js](quasar.conf.js) to reflect the folder `main` or `PRXXX`.
   - This is stored in a environment variable `PUBLICPATH` to be used later.
   - We use `sed` with a `-i` to replace the value in-place.
 - The workflow builds the app (using the `npm run build` command) into a folder `./dist`.

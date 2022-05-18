@@ -7,10 +7,17 @@ export type messageErrorType = {
     messages: string[]
 }
 
-export function getMyErrors (myPath: string, fieldNames?: string[]):messageErrorType {
+export function getMyErrors (myPath: string, fieldNames?: string[], schemaPathSubstring?: string):messageErrorType {
     const { errors } = useErrors()
     const checkForInstancePath = (item: ErrorObject) => {
         return item.instancePath === myPath
+    }
+
+    const checkForSchemaPath = (item: ErrorObject) => {
+        if (schemaPathSubstring) {
+            return item.schemaPath.includes(schemaPathSubstring)
+        }
+        return true
     }
 
     const checkForArrayProblems = (item: ErrorObject) => {
@@ -55,6 +62,7 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
 
     const messages = errors.value
         .filter(checkForInstancePath)
+        .filter(checkForSchemaPath)
         .filter(checkForArrayProblems)
         .filter(checkForObjectProblems)
         .filter(hideEntityErrorProblems)

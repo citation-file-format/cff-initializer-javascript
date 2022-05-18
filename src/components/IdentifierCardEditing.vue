@@ -149,7 +149,7 @@ export default defineComponent({
             label: computed(() => linkInfo[props.type].label),
             anchor: computed(() => linkInfo[props.type].anchor),
             typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
-            valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
+            valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`, [], props.type)),
             descriptionError: computed(() =>
                 getMyErrors(`/identifiers/${props.index}/description`)
             ),

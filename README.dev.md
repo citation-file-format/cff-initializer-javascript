@@ -132,7 +132,10 @@ This section describes how to make a release in 2 parts:
 
 ### (2/2) GitHub
 
-Make a [release on GitHub](https://github.com/citation-file-format/cff-initializer-javascript/releases/new).
+1. Make a [release on GitHub](https://github.com/citation-file-format/cff-initializer-javascript/releases/new).
+2. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly by the GitHub release.
+3. Go to Zenodo, log in, inspect the draft release. If all looks good, click "Publish" in Zenodo's frontend.
+
 
 ## References
 

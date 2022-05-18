@@ -5,7 +5,7 @@
         class="bg-formcard q-pa-md"
     >
         <q-card-section>
-            <div class="row items-center no-wrap">
+            <div class="items-center no-wrap">
                 <q-option-group
                     inline
                     type="radio"
@@ -13,12 +13,16 @@
                     v-bind:error-message="typeError.messages.join(', ')"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
-                    v-on:update:modelValue="
-                        $emit('updateType', 'type', $event)
-                    "
+                    v-on:update:modelValue="$emit('updateType', 'type', $event)"
                 />
             </div>
-            <div class="q-gutter-md items-center no-wrap">
+            <div class="q-mt-md items-center no-wrap">
+                <div class="row">
+                    <q-label class="text-dark">
+                        What is the value of the {{ label }}?
+                        <SchemaGuideLink v-bind:anchor="anchor" />
+                    </q-label>
+                </div>
                 <q-input
                     bg-color="white"
                     label="Value"
@@ -28,12 +32,16 @@
                     v-bind:error="valueError.hasError"
                     v-bind:error-message="valueError.messages.join(', ')"
                     v-bind:model-value="value"
-                    v-on:update:modelValue="
-                        $emit('updateValue', 'value', $event)
-                    "
+                    v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                 />
             </div>
-            <div class="q-gutter-md items-center no-wrap">
+            <div class="q-mt-md items-center no-wrap">
+                <div class="row">
+                    <q-label class="text-dark">
+                        What is the description for the {{ label }}?
+                        <SchemaGuideLink anchor="#definitionsidentifier-description" />
+                    </q-label>
+                </div>
                 <q-input
                     bg-color="white"
                     label="Description"
@@ -43,9 +51,7 @@
                     v-bind:error="descriptionError.hasError"
                     v-bind:error-message="descriptionError.messages.join(', ')"
                     v-bind:model-value="description"
-                    v-on:update:modelValue="
-                        $emit('updateDescription', 'description', $event)
-                    "
+                    v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
             </div>
         </q-card-section>
@@ -88,6 +94,7 @@ import { IdentifierTypeType } from '../types'
 import { computed, defineComponent, PropType } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -97,11 +104,11 @@ export default defineComponent({
             required: true
         },
         type: {
-            type: String,
+            type: String as PropType<IdentifierTypeType>,
             default: ''
         },
         value: {
-            type: String as PropType<IdentifierTypeType>,
+            type: String,
             default: ''
         },
         description: {
@@ -113,7 +120,20 @@ export default defineComponent({
             default: 0
         }
     },
+    components: {
+        SchemaGuideLink
+    },
     setup (props) {
+        const linkInfo = {
+            doi: { label: 'DOI', anchor: '#definitionsdoi' },
+            url: { label: 'URL', anchor: '#definitionsurl' },
+            swh: {
+                label: 'Software Heritage identifier',
+                anchor: '#definitionsswh-identifier'
+            },
+            other: { label: 'identifier', anchor: '#definitionsidentifier' }
+        }
+
         return {
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
@@ -121,12 +141,31 @@ export default defineComponent({
                 { label: 'Software Heritage', value: 'swh' },
                 { label: 'Other', value: 'other' }
             ],
+            label: computed(() => linkInfo[props.type].label),
+            anchor: computed(() => linkInfo[props.type].anchor),
             typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
             valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
-            descriptionError: computed(() => getMyErrors(`/identifiers/${props.index}/description`)),
+            descriptionError: computed(() =>
+                getMyErrors(`/identifiers/${props.index}/description`)
+            ),
             identifierErrors: computed(() => identifierErrors(props.index))
         }
     },
-    emits: ['closePressed', 'removePressed', 'updateType', 'updateValue', 'updateDescription', 'moveUp', 'moveDown']
+    emits: [
+        'closePressed',
+        'removePressed',
+        'updateType',
+        'updateValue',
+        'updateDescription',
+        'moveUp',
+        'moveDown'
+    ]
 })
 </script>
+<style scoped>
+.row {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+</style>

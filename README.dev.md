@@ -122,7 +122,7 @@ This section describes how to make a release in 2 parts:
 
 1. Verify that the information in `CITATION.cff` is correct
 2. Generate an updated version of `.zenodo.json` if needed using `cffconvert`
-3. Make sure the version field in `package.json` is correct
+3. Make sure the version field in `package.json` and `package-lock.json` are correct
 4. Update the version in the [landing page footer](src/components/LayoutLanding.vue).
 5. Update the version in the [app footer](src/components/Footer.vue).
 6. By running `npm run lint` make sure the linter does not complain

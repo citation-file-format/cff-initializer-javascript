@@ -48,7 +48,7 @@
                 </div>
             </div>
             <span class="text-right text-black text-body1 text-bold">
-                Version 2.0.0
+                Version 2.0.1
             </span>
         </div>
     </div>

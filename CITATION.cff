@@ -24,7 +24,7 @@ authors:
     given-names: Jesus
     orcid: https://orcid.org/0000-0002-2170-3253
 cff-version: 1.2.0
-date-released: 2022-05-18
+date-released: 2022-05-19
 identifiers:
   - type: doi
     value: 10.5281/zenodo.5638837

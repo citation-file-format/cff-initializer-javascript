@@ -7,8 +7,8 @@
                 outlined
                 placeholder="Type a keyword"
                 v-bind:model-value="keyword"
-                v-bind:error="keywordError.hasError"
-                v-bind:error-message="keywordError.messages.join(', ')"
+                v-bind:error="keywordError != null"
+                v-bind:error-message="keywordError"
                 v-on:update:modelValue="$emit('update', $event)"
                 ref="keywordRef"
             />
@@ -68,7 +68,7 @@ export default defineComponent({
         })
         return {
             keywordRef,
-            keywordError: computed(() => getMyErrors(`/keywords/${props.index}`))
+            keywordError: computed(() => getMyErrors({ instancePath: `/keywords/${props.index}` }))
         }
     },
     emits: ['moveDown', 'moveUp', 'removePressed', 'update']

@@ -1,17 +1,16 @@
-import { messageErrorType, getMyErrors } from 'src/store/validator'
+import { getMyErrorsArray } from 'src/store/validator'
+import { useCff } from 'src/store/cff'
 
-export const identifierErrors = (index:number) => {
-    const myErrors = [
-        getMyErrors(`/identifiers/${index}`)
-    ]
-    const myChildrenErrors = [
-        getMyErrors(`/identifiers/${index}/type`),
-        getMyErrors(`/identifiers/${index}/value`),
-        getMyErrors(`/identifiers/${index}/description`)
-    ]
-    const errors = [...myErrors, ...myChildrenErrors]
-    return {
-        hasError: errors.some(result => result.hasError),
-        messages: errors[0].hasError ? errors[0].messages : []
-    } as messageErrorType
+export const identifierHasErrors = (index:number): boolean => {
+    const { identifiers } = useCff()
+    console.log(index)
+    if (identifiers.value) {
+        const errors = getMyErrorsArray([
+            { instancePath: `/identifiers/${index}/type` },
+            { schemaPath: `#/definitions/${identifiers.value[index].type}/pattern` }
+        ])
+        return errors.length > 0
+    } else {
+        return true
+    }
 }

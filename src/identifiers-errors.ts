@@ -1,21 +1,18 @@
 import { IdentifiersType } from 'src/types'
-import { messageErrorType, getMyErrors } from 'src/store/validator'
-import { identifierErrors } from 'src/identifier-errors'
+import { messageErrorType, getMyErrorsArray } from 'src/store/validator'
+import { identifierHasErrors } from 'src/identifier-errors'
 
 export const identifiersErrors = (identifiers: IdentifiersType) => {
-    const myErrors = [
-        getMyErrors('', ['identifiers']),
-        getMyErrors('/identifiers')
-    ]
-    const myChildrenErrors = identifiers?.map((_, index) => identifierErrors(index))
-    const errors = myChildrenErrors === undefined ? myErrors : [...myErrors, ...myChildrenErrors]
-    let allMessages = [] as string[]
-    errors.forEach(error => {
-        allMessages = allMessages.concat(error.messages)
-    })
+    const allMessages = getMyErrorsArray([
+        { instancePath: '/identifiers' }
+    ])
+    let myChildrenErrors = false
+    if (identifiers) {
+        myChildrenErrors = identifiers.some((_, index) => identifierHasErrors(index))
+    }
 
     return {
-        hasError: errors.some(error => error.hasError),
+        hasError: allMessages.length > 0 || myChildrenErrors,
         messages: allMessages
     } as messageErrorType
 }

@@ -43,7 +43,7 @@ export function useCff () {
         url: computed(() => cff.value.url),
         version: computed(() => cff.value.version),
         setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract === '' ? undefined : newAbstract },
-        setAuthors: (newAuthors: AuthorsType) => { cff.value.authors = newAuthors === [] ? undefined : newAuthors },
+        setAuthors: (newAuthors: AuthorsType) => { cff.value.authors = newAuthors },
         setCommit: (newCommit: string) => { cff.value.commit = newCommit === '' ? undefined : newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.dateReleased = newDateReleased === '' ? undefined : newDateReleased },
         setIdentifiers: (newIdentifiers: IdentifiersType) => { cff.value.identifiers = newIdentifiers === [] ? undefined : newIdentifiers },

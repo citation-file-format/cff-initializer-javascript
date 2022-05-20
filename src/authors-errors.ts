@@ -1,20 +1,19 @@
 import { AuthorsType } from 'src/types'
-import { messageErrorType, getMyErrors } from 'src/store/validator'
-import { authorErrors } from 'src/author-errors'
+import { messageErrorType, getMyErrorsArray } from 'src/store/validator'
+import { authorHasErrors } from 'src/author-errors'
 
 export const authorsErrors = (authors:AuthorsType) => {
-    const myErrors = [
-        getMyErrors('', ['authors']),
-        getMyErrors('/authors')
-    ]
-    const myChildrenErrors = authors?.map((_, index) => authorErrors(index))
-    const errors = myChildrenErrors === undefined ? myErrors : [...myErrors, ...myChildrenErrors]
-    let allMessages = [] as string[]
-    errors.forEach(error => {
-        allMessages = allMessages.concat(error.messages)
-    })
+    const allMessages = getMyErrorsArray([
+        { params: { missingProperty: 'authors' } },
+        { instancePath: '/authors' }
+    ])
+    let myChildrenErrors = false
+    if (authors) {
+        myChildrenErrors = authors.some((_, index) => authorHasErrors(index))
+    }
+
     return {
-        hasError: errors.some(error => error.hasError),
+        hasError: allMessages.length > 0 || myChildrenErrors,
         messages: allMessages
     } as messageErrorType
 }

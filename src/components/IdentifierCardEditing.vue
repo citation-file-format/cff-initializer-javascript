@@ -9,8 +9,8 @@
                 <q-option-group
                     inline
                     type="radio"
-                    v-bind:error="typeError.hasError"
-                    v-bind:error-message="typeError.messages.join(', ')"
+                    v-bind:error="typeError != null"
+                    v-bind:error-message="typeError"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
@@ -29,8 +29,8 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="valueError.hasError"
-                    v-bind:error-message="valueError.messages.join(', ')"
+                    v-bind:error="valueError != null"
+                    v-bind:error-message="valueError"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                     ref="valueRef"
@@ -49,8 +49,8 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="descriptionError.hasError"
-                    v-bind:error-message="descriptionError.messages.join(', ')"
+                    v-bind:error="descriptionError != null"
+                    v-bind:error-message="descriptionError"
                     v-bind:model-value="description"
                     v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
@@ -94,7 +94,6 @@
 import { IdentifierTypeType } from '../types'
 import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
-import { identifierErrors } from 'src/identifier-errors'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
@@ -128,7 +127,7 @@ export default defineComponent({
         const linkInfo = {
             doi: { label: 'DOI', anchor: '#definitionsdoi' },
             url: { label: 'URL', anchor: '#definitionsurl' },
-            swh: {
+            'swh-identifier': {
                 label: 'Software Heritage identifier',
                 anchor: '#definitionsswh-identifier'
             },
@@ -143,17 +142,16 @@ export default defineComponent({
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },
-                { label: 'Software Heritage', value: 'swh' },
+                { label: 'Software Heritage', value: 'swh-identifier' },
                 { label: 'Other', value: 'other' }
             ],
             label: computed(() => linkInfo[props.type].label),
             anchor: computed(() => linkInfo[props.type].anchor),
-            typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
-            valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
+            typeError: computed(() => getMyErrors({ instancePath: `/identifiers/${props.index}/type` })),
+            valueError: computed(() => getMyErrors({ schemaPath: `#/definitions/${props.type}/pattern` })),
             descriptionError: computed(() =>
-                getMyErrors(`/identifiers/${props.index}/description`)
-            ),
-            identifierErrors: computed(() => identifierErrors(props.index))
+                getMyErrors({ instancePath: `/identifiers/${props.index}/description` })
+            )
         }
     },
     emits: [

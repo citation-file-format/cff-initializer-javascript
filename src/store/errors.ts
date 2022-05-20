@@ -11,16 +11,15 @@ ajv.addSchema(schema)
 
 type ajvErrorType = ErrorObject<string, Record<string, unknown>, unknown>
 const { jsObject } = useCffstr()
+const errors = computed(() => {
+    ajv.validate(schema.$id, jsObject.value)
+    if (ajv.errors) {
+        return ajv.errors
+    } else {
+        return [] as ajvErrorType[]
+    }
+})
 
 export function useErrors () {
-    return {
-        errors: computed(() => {
-            ajv.validate(schema.$id, jsObject.value)
-            if (ajv.errors) {
-                return ajv.errors
-            } else {
-                return [] as ajvErrorType[]
-            }
-        })
-    }
+    return { errors }
 }

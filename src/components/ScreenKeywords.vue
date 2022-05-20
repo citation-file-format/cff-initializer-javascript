@@ -42,15 +42,10 @@
             </q-btn>
 
             <q-banner
-                v-if="keywordsErrors.messages.length > 0"
+                v-if="keywordsErrors != null"
                 class="bg-warning text-negative"
             >
-                <div
-                    v-bind:key="index"
-                    v-for="(screenMessage, index) in keywordsErrors.messages"
-                >
-                    {{ screenMessage }}
-                </div>
+                {{ keywordsErrors }}
             </q-banner>
         </div>
 
@@ -119,7 +114,7 @@ export default defineComponent({
             removeKeyword,
             setKeyword,
             setKeywords,
-            keywordsErrors: computed(() => getMyErrors('/keywords'))
+            keywordsErrors: computed(() => getMyErrors({ instancePath: '/keywords' }))
         }
     }
 })

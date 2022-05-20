@@ -15,9 +15,9 @@
             icon=""
             name="start"
             title="Start"
-            v-bind:active-icon="isValidScreenStart.hasError ? 'warning' : 'edit'"
-            v-bind:color="isValidScreenStart.hasError ? 'negative' : 'primary'"
-            v-bind:error="isValidScreenStart.hasError"
+            v-bind:active-icon="isValidScreenStart ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenStart ? 'negative' : 'primary'"
+            v-bind:error="isValidScreenStart"
             v-bind:order="0"
             v-on:click="setStepName('start')"
         />
@@ -113,9 +113,9 @@
             icon=""
             name="version-specific"
             title="Version specific"
-            v-bind:active-icon="isValidScreenVersionSpecific.hasError ? 'warning' : 'edit'"
-            v-bind:color="isValidScreenVersionSpecific.hasError ? 'negative' : 'primary'"
-            v-bind:error="isValidScreenVersionSpecific.hasError"
+            v-bind:active-icon="isValidScreenVersionSpecific ? 'warning' : 'edit'"
+            v-bind:color="isValidScreenVersionSpecific ? 'negative' : 'primary'"
+            v-bind:error="isValidScreenVersionSpecific"
             v-bind:order="8"
             v-if="showAdvanced"
             v-on:click="setStepName('version-specific')"
@@ -136,7 +136,7 @@
 <script lang="ts">
 
 import { useApp } from '../store/app'
-import { getMyErrors } from 'src/store/validator'
+import { getMyErrors, getMyErrorsArray } from 'src/store/validator'
 import { computed } from 'vue'
 import { useCff } from 'src/store/cff'
 import { authorsErrors } from 'src/authors-errors'
@@ -152,9 +152,12 @@ export default {
             isValidScreenAuthors: computed(() => authorsErrors(authors.value)),
             isValidScreenIdentifiers: computed(() => identifiersErrors(identifiers.value)),
             isValidScreenRelatedResources: computed(relatedResourcesErrors),
-            isValidScreenStart: computed(() => getMyErrors('', ['message', 'title'])),
+            isValidScreenStart: computed(() => getMyErrorsArray([
+                { params: { missingProperty: 'title' } },
+                { params: { missingProperty: 'message' } }
+            ]).length > 0),
             isValidScreenKeywords: computed(() => keywordsErrors(keywords.value)),
-            isValidScreenVersionSpecific: computed(() => getMyErrors('/date-released')),
+            isValidScreenVersionSpecific: computed(() => getMyErrors({ instancePath: '/date-released' }) !== null),
             setStepName,
             showAdvanced,
             stepName

@@ -50,8 +50,8 @@
                 style="width: 33.33%"
                 today-btn="true"
                 v-bind:model-value="dateReleased"
-                v-bind:error="dateError.hasError"
-                v-bind:error-message="dateError.messages.join(', ')"
+                v-bind:error="dateError != null"
+                v-bind:error-message="dateError"
                 v-on:update:modelValue="setDateReleased"
             >
                 <template #append>
@@ -122,7 +122,7 @@ export default defineComponent({
             setCommit,
             setDateReleased,
             setVersion,
-            dateError: computed(() => getMyErrors('/date-released'))
+            dateError: computed(() => getMyErrors({ instancePath: '/date-released' }))
         }
     }
 })

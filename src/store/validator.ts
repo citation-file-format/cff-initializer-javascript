@@ -7,63 +7,43 @@ export type messageErrorType = {
     messages: string[]
 }
 
-export function getMyErrors (myPath: string, fieldNames?: string[]):messageErrorType {
+type ErrorMatch = {
+    instancePath?: string,
+    schemaPath?: string,
+    params?: Record<string, string>
+}
+
+function isMatch (error: ErrorObject, matchParams: ErrorMatch): boolean {
+    let found = true
+    if (matchParams.instancePath) {
+        found = found && error.instancePath === matchParams.instancePath
+    }
+    if (matchParams.schemaPath) {
+        found = found && error.schemaPath === matchParams.schemaPath
+    }
+    if (matchParams.params && error.params) {
+        for (const key in matchParams.params) {
+            found = found && error.params[key] === matchParams.params[key]
+        }
+    }
+    return found
+}
+
+export function getMyErrors (matchParams: ErrorMatch): string | null {
     const { errors } = useErrors()
-    const checkForInstancePath = (item: ErrorObject) => {
-        return item.instancePath === myPath
+
+    for (const error of errors.value) {
+        if (isMatch(error, matchParams)) {
+            return error.message as string
+        }
     }
 
-    const checkForArrayProblems = (item: ErrorObject) => {
-        const keywords = ['uniqueItems', 'minItems']
-        if (fieldNames !== undefined && keywords.includes(item.keyword)) {
-            return false
-        }
-        return true
-    }
+    return null
+}
 
-    const checkForObjectProblems = (item: ErrorObject) => {
-        if (fieldNames !== undefined && item.keyword === 'required') {
-            return fieldNames.includes(item.params.missingProperty as string)
-        }
-        if (fieldNames !== undefined && item.keyword === 'additionalProperties') {
-            return fieldNames.includes(item.params.additionalProperty as string)
-        }
-        return true
+export function getMyErrorsArray (matchArray: ErrorMatch[]): string[] {
+    function notNull<T> (value: T | null): value is T {
+        return value !== null
     }
-
-    const hideEntityErrorProblems = (item: ErrorObject) => {
-        const additionalPropertyList = [
-            'affiliation',
-            'email',
-            'family-names',
-            'given-names',
-            'name-particle',
-            'name-suffix',
-            'orcid'
-        ]
-        if (item.instancePath.startsWith('/authors/') && item.keyword === 'anyOf') {
-            return false
-        }
-        if (item.instancePath.startsWith('/authors/') && item.keyword === 'required' && item.params.missingProperty === 'name') {
-            return false
-        }
-        if (item.instancePath.startsWith('/authors/') && item.keyword === 'additionalProperties' && additionalPropertyList.includes(item.params.additionalProperty)) {
-            return false
-        }
-        return true
-    }
-
-    const messages = errors.value
-        .filter(checkForInstancePath)
-        .filter(checkForArrayProblems)
-        .filter(checkForObjectProblems)
-        .filter(hideEntityErrorProblems)
-        .map((item) => {
-            return item.message
-        }) as string[]
-
-    return {
-        hasError: messages.length > 0,
-        messages: [...new Set(messages)]
-    }
+    return matchArray.map(match => getMyErrors(match)).filter(notNull)
 }

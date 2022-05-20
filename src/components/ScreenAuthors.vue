@@ -119,9 +119,6 @@ export default defineComponent({
                 newAuthors.splice(editingId.value, 1)
                 setAuthors(newAuthors)
                 editingId.value = -1
-                if (Array.isArray(newAuthors) && newAuthors.length === 0) {
-                    setAuthors(undefined)
-                }
             }
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {

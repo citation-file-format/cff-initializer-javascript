@@ -21,8 +21,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:error="titleError.hasError"
-                v-bind:error-message="titleError.messages.join(', ')"
+                v-bind:error="titleError != null"
+                v-bind:error-message="titleError"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -34,8 +34,8 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:error="messageError.hasError"
-                v-bind:error-message="messageError.messages.join(', ')"
+                v-bind:error="messageError != null"
+                v-bind:error-message="messageError"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             >
@@ -115,8 +115,8 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            messageError: computed(() => getMyErrors('', ['message'])),
-            titleError: computed(() => getMyErrors('', ['title']))
+            messageError: computed(() => getMyErrors({ params: { missingProperty: 'message' } })),
+            titleError: computed(() => getMyErrors({ params: { missingProperty: 'title' } }))
         }
     }
 })

@@ -1,21 +1,15 @@
-import { messageErrorType, getMyErrors } from 'src/store/validator'
+import { getMyErrorsArray } from 'src/store/validator'
 
-export const authorErrors = (index:number) => {
-    const myErrors = [
-        getMyErrors(`/authors/${index}`)
-    ]
-    const myChildrenErrors = [
-        getMyErrors(`/authors/${index}/given-names`),
-        getMyErrors(`/authors/${index}/name-particle`),
-        getMyErrors(`/authors/${index}/family-names`),
-        getMyErrors(`/authors/${index}/name-suffix`),
-        getMyErrors(`/authors/${index}/email`),
-        getMyErrors(`/authors/${index}/affiliation`),
-        getMyErrors(`/authors/${index}/orcid`)
-    ]
-    const errors = [...myErrors, ...myChildrenErrors]
-    return {
-        hasError: errors.some(result => result.hasError),
-        messages: errors[0].hasError ? errors[0].messages : []
-    } as messageErrorType
+export const authorHasErrors = (index:number): boolean => {
+    const errors = getMyErrorsArray([
+        { instancePath: `/authors/${index}/given-names` },
+        { instancePath: `/authors/${index}/name-particle` },
+        { instancePath: `/authors/${index}/family-names` },
+        { instancePath: `/authors/${index}/name-suffix` },
+        { instancePath: `/authors/${index}/email` },
+        { instancePath: `/authors/${index}/affiliation` },
+        { instancePath: `/authors/${index}/orcid` }
+    ])
+
+    return errors.length > 0
 }

@@ -20,8 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:error="repositoryCodeError.hasError"
-                v-bind:error-message="repositoryCodeError.messages.join(', ')"
+                v-bind:error="repositoryCodeError != null"
+                v-bind:error-message="repositoryCodeError"
                 v-on:update:modelValue="setRepositoryCode"
             />
 
@@ -35,8 +35,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:error="urlError.hasError"
-                v-bind:error-message="urlError.messages.join(', ')"
+                v-bind:error="urlError != null"
+                v-bind:error-message="urlError"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -50,8 +50,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="repositoryError.hasError"
-                v-bind:error-message="repositoryError.messages.join(', ')"
+                v-bind:error="repositoryError != null"
+                v-bind:error-message="repositoryError"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -65,8 +65,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:error="repositoryArtifactError.hasError"
-                v-bind:error-message="repositoryArtifactError.messages.join(', ')"
+                v-bind:error="repositoryArtifactError != null"
+                v-bind:error-message="repositoryArtifactError"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
         </div>
@@ -106,10 +106,10 @@ export default defineComponent({
             setRepositoryArtifact,
             setRepositoryCode,
             setUrl,
-            repositoryError: computed(() => getMyErrors('/repository')),
-            repositoryArtifactError: computed(() => getMyErrors('/repository-artifact')),
-            repositoryCodeError: computed(() => getMyErrors('/repository-code')),
-            urlError: computed(() => getMyErrors('/url'))
+            repositoryError: computed(() => getMyErrors({ instancePath: '/repository' })),
+            repositoryArtifactError: computed(() => getMyErrors({ instancePath: '/repository-artifact' })),
+            repositoryCodeError: computed(() => getMyErrors({ instancePath: '/repository-code' })),
+            urlError: computed(() => getMyErrors({ instancePath: '/url' }))
         }
     }
 })

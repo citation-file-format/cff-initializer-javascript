@@ -12,6 +12,6 @@ export const identifierErrors = (index:number) => {
     const errors = [...myErrors, ...myChildrenErrors]
     return {
         hasError: errors.some(result => result.hasError),
-        messages: errors[0].hasError ? errors[0].messages : []
+        messages: []
     } as messageErrorType
 }

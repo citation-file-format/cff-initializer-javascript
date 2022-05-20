@@ -57,12 +57,12 @@
             </q-btn>
 
             <q-banner
-                v-if="false"
+                v-if="errorMessages.length > 0"
                 class="bg-warning text-negative"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in []"
+                    v-for="(screenMessage, index) in errorMessages"
                 >
                     {{ screenMessage }}
                 </div>
@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue'
+import { computed, defineComponent, nextTick, ref } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
@@ -86,6 +86,7 @@ import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { moveDown, moveUp } from '../updown'
+import { identifiersErrors } from 'src/identifiers-errors'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',
@@ -180,7 +181,8 @@ export default defineComponent({
             removeIdentifier,
             setIdentifierDescriptionField,
             setIdentifierTypeField,
-            setIdentifierValueField
+            setIdentifierValueField,
+            errorMessages: computed(() => identifiersErrors(identifiers.value).messages)
         }
     }
 })

@@ -20,8 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryCodeError != null"
+                v-bind:error-message="repositoryCodeError"
                 v-on:update:modelValue="setRepositoryCode"
             />
 
@@ -35,8 +35,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="urlError != null"
+                v-bind:error-message="urlError"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -50,8 +50,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryError != null"
+                v-bind:error-message="repositoryError"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -65,8 +65,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryArtifactError != null"
+                v-bind:error-message="repositoryArtifactError"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
         </div>
@@ -81,8 +81,9 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { getMatchingError } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -104,10 +105,15 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl
+            setUrl,
+            repositoryError: computed(() => getMatchingError({ instancePath: '/repository' })),
+            repositoryArtifactError: computed(() => getMatchingError({ instancePath: '/repository-artifact' })),
+            repositoryCodeError: computed(() => getMatchingError({ instancePath: '/repository-code' })),
+            urlError: computed(() => getMatchingError({ instancePath: '/url' }))
         }
     }
 })
+
 </script>
 
 <style scoped>

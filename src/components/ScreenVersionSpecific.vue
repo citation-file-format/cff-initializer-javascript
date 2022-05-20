@@ -50,8 +50,8 @@
                 style="width: 33.33%"
                 today-btn="true"
                 v-bind:model-value="dateReleased"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="dateError != null"
+                v-bind:error-message="dateError"
                 v-on:update:modelValue="setDateReleased"
             >
                 <template #append>
@@ -94,7 +94,8 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { getMatchingError } from 'src/store/validator'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
 
 export default defineComponent({
@@ -120,7 +121,8 @@ export default defineComponent({
             version,
             setCommit,
             setDateReleased,
-            setVersion
+            setVersion,
+            dateError: computed(() => getMatchingError({ instancePath: '/date-released' }))
         }
     }
 })

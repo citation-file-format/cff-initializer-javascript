@@ -21,8 +21,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="titleError != null"
+                v-bind:error-message="titleError"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -34,8 +34,8 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="messageError != null"
+                v-bind:error-message="messageError"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             >
@@ -82,8 +82,9 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { getMatchingError } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -113,7 +114,9 @@ export default defineComponent({
             ],
             setMessage,
             setTitle,
-            setType
+            setType,
+            messageError: computed(() => getMatchingError({ params: { missingProperty: 'message' } })),
+            titleError: computed(() => getMatchingError({ params: { missingProperty: 'title' } }))
         }
     }
 })

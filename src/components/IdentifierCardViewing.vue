@@ -1,7 +1,7 @@
 <template>
     <q-card
         bordered
-        v-bind:class="['bg-formcard', false ? 'red-border' : '']"
+        v-bind:class="['bg-formcard', identifierHasErrors ? 'red-border' : '']"
         flat
         style="display: flex; flex-direction: row"
     >
@@ -42,8 +42,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { IdentifierType } from 'src/types'
+import { identifierHasErrors } from 'src/identifiers-errors'
 
 export default defineComponent({
     name: 'IdentifierCardViewing',
@@ -59,6 +60,11 @@ export default defineComponent({
         numIdentifiers: {
             type: Number,
             default: 0
+        }
+    },
+    setup (props) {
+        return {
+            identifierHasErrors: computed(() => identifierHasErrors(props.index))
         }
     },
     emits: ['editPressed', 'moveDown', 'moveUp']

@@ -56,12 +56,12 @@
             </q-btn>
 
             <q-banner
-                v-if="false"
+                v-if="errorMessages.length > 0"
                 class="bg-warning text-negative"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in []"
+                    v-for="(screenMessage, index) in errorMessages"
                 >
                     {{ screenMessage }}
                 </div>
@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue'
+import { computed, defineComponent, nextTick, ref } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
@@ -85,6 +85,7 @@ import { AuthorType } from 'src/types'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { authorsErrors } from 'src/authors-errors'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -118,9 +119,6 @@ export default defineComponent({
                 newAuthors.splice(editingId.value, 1)
                 setAuthors(newAuthors)
                 editingId.value = -1
-                if (Array.isArray(newAuthors) && newAuthors.length === 0) {
-                    setAuthors(undefined)
-                }
             }
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
@@ -157,7 +155,8 @@ export default defineComponent({
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,
-            setAuthorField
+            setAuthorField,
+            errorMessages: computed(() => authorsErrors(authors.value).messages)
         }
     }
 })

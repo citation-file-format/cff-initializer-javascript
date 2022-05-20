@@ -8,7 +8,7 @@ export type AuthorType = {
     email?: string;
 }
 
-export type AuthorsType = Array<AuthorType> | undefined
+export type AuthorsType = Array<AuthorType>
 
 export type IdentifierTypeType = 'doi' | 'url' | 'swh' | 'other'
 export type IdentifierType = {
@@ -25,7 +25,7 @@ export type TypeType = 'software' | 'dataset'
 
 export type CffType = {
     abstract?: string,
-    authors?: AuthorsType,
+    authors: AuthorsType,
     cffVersion: string,
     commit?: string,
     dateReleased?: string,

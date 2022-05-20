@@ -20,8 +20,6 @@
                 standout
                 title="The person's given names."
                 v-bind:model-value="givenNames"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
                 ref="givenNamesRef"
             />
@@ -41,8 +39,6 @@
                 standout
                 title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
                 v-bind:model-value="nameParticle"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
             >
                 <SchemaGuideLink
@@ -59,8 +55,6 @@
                 standout
                 title="The person's family names."
                 v-bind:model-value="familyNames"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'familyNames', $event)"
             >
                 <SchemaGuideLink
@@ -77,8 +71,6 @@
                 standout
                 title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
                 v-bind:model-value="nameSuffix"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
             >
                 <SchemaGuideLink
@@ -104,8 +96,8 @@
                 title="The person's email address."
                 type="email"
                 v-bind:model-value="email"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="emailError != null"
+                v-bind:error-message="emailError"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
         </div>
@@ -129,8 +121,6 @@
                 standout
                 title="The person's affiliation."
                 v-bind:model-value="affiliation"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'affiliation', $event)"
             />
             <q-input
@@ -143,23 +133,11 @@
                 standout
                 title="The person's ORCID identifier."
                 v-bind:model-value="orcid"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="orcidError != null"
+                v-bind:error-message="orcidError"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
             />
         </div>
-
-        <q-banner
-            v-if="false"
-            class="bg-warning text-negative"
-        >
-            <div
-                v-bind:key="authindex"
-                v-for="(screenMessage, authindex) in []"
-            >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
 
         <q-card-actions align="right">
             <q-btn
@@ -197,7 +175,8 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { getMatchingError } from 'src/store/validator'
 import SchemaGuideLink from './SchemaGuideLink.vue'
 
 export default defineComponent({
@@ -246,7 +225,9 @@ export default defineComponent({
             givenNamesRef.value?.focus()
         })
         return {
-            givenNamesRef
+            givenNamesRef,
+            emailError: computed(() => getMatchingError({ instancePath: `/authors/${props.index}/email` })),
+            orcidError: computed(() => getMatchingError({ instancePath: `/authors/${props.index}/orcid` }))
         }
     },
     emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown'],

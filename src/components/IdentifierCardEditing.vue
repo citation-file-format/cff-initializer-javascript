@@ -9,8 +9,6 @@
                 <q-option-group
                     inline
                     type="radio"
-                    v-bind:error="false"
-                    v-bind:error-message="''"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
@@ -29,8 +27,8 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="false"
-                    v-bind:error-message="''"
+                    v-bind:error="valueError != null"
+                    v-bind:error-message="valueError"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                     ref="valueRef"
@@ -49,8 +47,6 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="false"
-                    v-bind:error-message="''"
                     v-bind:model-value="description"
                     v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
@@ -93,6 +89,7 @@
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
 import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
+import { getMatchingError } from 'src/store/validator'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
@@ -124,13 +121,14 @@ export default defineComponent({
     },
     setup (props) {
         const linkInfo = {
-            doi: { label: 'DOI', anchor: '#definitionsdoi' },
-            url: { label: 'URL', anchor: '#definitionsurl' },
+            doi: { label: 'DOI', anchor: '#definitionsdoi', type: 'doi' },
+            url: { label: 'URL', anchor: '#definitionsurl', type: 'url' },
             swh: {
                 label: 'Software Heritage identifier',
-                anchor: '#definitionsswh-identifier'
+                anchor: '#definitionsswh-identifier',
+                type: 'swh-identifier'
             },
-            other: { label: 'identifier', anchor: '#definitionsidentifier' }
+            other: { label: 'identifier', anchor: '#definitionsidentifier', type: 'other' }
         }
         const valueRef = ref<HTMLElement | null>(null)
         onMounted(() => {
@@ -145,7 +143,11 @@ export default defineComponent({
                 { label: 'Other', value: 'other' }
             ],
             label: computed(() => linkInfo[props.type].label),
-            anchor: computed(() => linkInfo[props.type].anchor)
+            anchor: computed(() => linkInfo[props.type].anchor),
+            valueError: computed(() => getMatchingError({
+                instancePath: `/identifiers/${props.index}/value`,
+                schemaPath: `#/definitions/${linkInfo[props.type].type}/pattern`
+            }))
         }
     },
     emits: [

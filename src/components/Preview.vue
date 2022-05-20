@@ -30,21 +30,22 @@
         </q-btn>
     </div>
     <textarea
-        v-bind:class="['cffstr', true ? '' : 'error']"
+        v-bind:class="['cffstr', isValidCff ? '' : 'error']"
         readonly="true"
         v-bind:value="cffstr"
         wrap="hard"
     />
     <div class="validation-msg">
-        <p v-bind:class="true ? '' : 'invalid'">
-            Your CITATION.cff is {{ true ? "valid" : "not valid" }}
+        <p v-bind:class="isValidCff ? '' : 'invalid'">
+            Your CITATION.cff is {{ isValidCff ? "valid" : "not valid" }}
         </p>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
+import { useErrors } from 'src/store/errors'
 
 export default defineComponent({
     name: 'Preview',
@@ -52,6 +53,7 @@ export default defineComponent({
     },
     setup () {
         const { cffstr } = useCffstr()
+        const { errors } = useErrors()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
@@ -60,10 +62,12 @@ export default defineComponent({
             await new Promise(resolve => setTimeout(resolve, 3000))
             showTooltip.value = false
         }
+        const isValidCff = computed(() => errors.value.length === 0)
 
         return {
             cffstr,
             copyToClipboard,
+            isValidCff,
             showTooltip
         }
     }

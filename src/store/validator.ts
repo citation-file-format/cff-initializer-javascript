@@ -59,11 +59,28 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
         .filter(checkForObjectProblems)
         .filter(hideEntityErrorProblems)
         .map((item) => {
-            return item.message
-        }) as string[]
+            return mappedMessage(item.message as string)
+        })
 
     return {
         hasError: messages.length > 0,
         messages: [...new Set(messages)]
     }
+}
+
+const messages: Record<string, string> = {
+    'must have required property \'title\'': 'Title is required',
+    'must have required property \'message\'': 'Message is required',
+    'must NOT have fewer than 1 items': 'At least one author is required',
+    'must match pattern "^[\\S]+@[\\S]+\\.[\\S]{2,}$"': 'Format: user@domain.suffix',
+    'must match pattern "https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}"': 'Format: https://orcid.org/0000-0000-0000-0000'
+}
+
+function mappedMessage (message: string) {
+    if (messages[message] !== undefined) {
+        return messages[message]
+    } else {
+        console.log(message)
+    }
+    return message
 }

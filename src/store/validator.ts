@@ -73,7 +73,10 @@ const messages: Record<string, string> = {
     'must have required property \'message\'': 'Message is required',
     'must NOT have fewer than 1 items': 'At least one author is required',
     'must match pattern "^[\\S]+@[\\S]+\\.[\\S]{2,}$"': 'Format: user@domain.suffix',
-    'must match pattern "https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}"': 'Format: https://orcid.org/0000-0000-0000-0000'
+    'must match pattern "https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}"': 'Format: https://orcid.org/0000-0000-0000-0000',
+    'must match a schema in anyOf': 'Has errors',
+    'must match pattern "^10\\.\\d{4,9}(\\.\\d+)?/[A-Za-z0-9:/_;\\-\\.\\(\\)\\[\\]\\\\]+$"': 'Format: 10.xxxx/yyyy',
+    'must match pattern "^(https|http|ftp|sftp)://.+"': 'Format: https://www.example.com (or http, ftp, sftp)'
 }
 
 function mappedMessage (message: string) {

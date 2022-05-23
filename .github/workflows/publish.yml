@@ -2,8 +2,8 @@ name: Publish
 
 on: # publish when main branch changes
   push:
-    branches:
-      - main
+    tags:
+      - '*'
 
 jobs:
   publish:

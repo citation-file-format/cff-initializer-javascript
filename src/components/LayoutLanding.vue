@@ -47,7 +47,7 @@
                     />
                 </div>
             </div>
-            <span class="text-right text-black text-body1 text-bold">
+            <span class="text-right text-black text-body1">
                 Version 2.0.1
             </span>
         </div>

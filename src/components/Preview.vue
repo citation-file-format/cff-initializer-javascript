@@ -51,7 +51,7 @@ export default defineComponent({
     components: {
     },
     setup () {
-        const { cffstr } = useCffObject()
+        const { cffstr, errors } = useCffObject()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
@@ -61,7 +61,7 @@ export default defineComponent({
             showTooltip.value = false
         }
 
-        const isValidCFF = computed(() => true)
+        const isValidCFF = computed(() => errors.value.length === 0)
 
         return {
             cffstr,

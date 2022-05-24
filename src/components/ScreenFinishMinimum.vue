@@ -55,6 +55,7 @@ import { useApp } from 'src/composables/app'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
 import DownloadButton from 'src/components/DownloadButton.vue'
+import { useCffObject } from 'src/composables/cffobject'
 
 export default defineComponent({
     name: 'ScreenFinishMinimum',
@@ -65,8 +66,9 @@ export default defineComponent({
     },
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
+        const { errors } = useCffObject()
         return {
-            isValidCFF: computed(() => true),
+            isValidCFF: computed(() => errors.value.length === 0),
             setShowAdvanced,
             navigatePrevious,
             showAdvanced: async () => {

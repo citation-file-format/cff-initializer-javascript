@@ -9,8 +9,6 @@
                 <q-option-group
                     inline
                     type="radio"
-                    v-bind:error="typeError.hasError"
-                    v-bind:error-message="typeError.messages.join(', ')"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
@@ -18,19 +16,18 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <p class="text-dark">
                         What is the value of the {{ label }}?
                         <SchemaGuideLink v-bind:anchor="anchor" />
-                    </q-label>
+                    </p>
                 </div>
                 <q-input
+                    autofocus
                     bg-color="white"
                     label="Value"
                     outlined
                     standout
                     dense
-                    v-bind:error="valueError.hasError"
-                    v-bind:error-message="valueError.messages.join(', ')"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                     ref="valueRef"
@@ -38,10 +35,10 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <p class="text-dark">
                         What is the description for the {{ label }}?
                         <SchemaGuideLink anchor="#definitionsidentifier-description" />
-                    </q-label>
+                    </p>
                 </div>
                 <q-input
                     bg-color="white"
@@ -49,8 +46,6 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="descriptionError.hasError"
-                    v-bind:error-message="descriptionError.messages.join(', ')"
                     v-bind:model-value="description"
                     v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
@@ -92,9 +87,7 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
-import { getMyErrors } from 'src/store/validator'
-import { identifierErrors } from 'src/identifier-errors'
+import { computed, defineComponent, PropType } from 'vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
@@ -134,12 +127,7 @@ export default defineComponent({
             },
             other: { label: 'identifier', anchor: '#definitionsidentifier' }
         }
-        const valueRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            valueRef.value?.focus()
-        })
         return {
-            valueRef,
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },
@@ -147,13 +135,7 @@ export default defineComponent({
                 { label: 'Other', value: 'other' }
             ],
             label: computed(() => linkInfo[props.type].label),
-            anchor: computed(() => linkInfo[props.type].anchor),
-            typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
-            valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
-            descriptionError: computed(() =>
-                getMyErrors(`/identifiers/${props.index}/description`)
-            ),
-            identifierErrors: computed(() => identifierErrors(props.index))
+            anchor: computed(() => linkInfo[props.type].anchor)
         }
     },
     emits: [

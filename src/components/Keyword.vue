@@ -7,8 +7,6 @@
                 outlined
                 placeholder="Type a keyword"
                 v-bind:model-value="keyword"
-                v-bind:error="keywordError.hasError"
-                v-bind:error-message="keywordError.messages.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
                 ref="keywordRef"
             />
@@ -42,11 +40,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
-import { getMyErrors } from 'src/store/validator'
+import { defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
-    name: 'KeywordCard',
+    name: 'Keyword',
     props: {
         keyword: {
             type: String,
@@ -61,14 +58,13 @@ export default defineComponent({
             default: 0
         }
     },
-    setup (props) {
+    setup () {
         const keywordRef = ref<HTMLElement | null>(null)
         onMounted(() => {
             keywordRef.value?.focus()
         })
         return {
-            keywordRef,
-            keywordError: computed(() => getMyErrors(`/keywords/${props.index}`))
+            keywordRef
         }
     },
     emits: ['moveDown', 'moveUp', 'removePressed', 'update']

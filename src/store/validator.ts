@@ -7,57 +7,39 @@ export type messageErrorType = {
     messages: string[]
 }
 
-export function getMyErrors (myPath: string, fieldNames?: string[]):messageErrorType {
+interface NamedParameters {
+    instancePath?: string | undefined,
+    schemaPath?: string | undefined,
+    param: string | undefined
+}
+
+export function getMyErrors ({ instancePath = undefined, schemaPath = undefined, param = undefined }: NamedParameters): messageErrorType {
     const { errors } = useErrors()
-    const checkForInstancePath = (item: ErrorObject) => {
-        return item.instancePath === myPath
+    const omitAnyOtherInstancePaths = (item: ErrorObject) => {
+        return instancePath !== undefined && item.instancePath === instancePath
     }
-
-    const checkForArrayProblems = (item: ErrorObject) => {
-        const keywords = ['uniqueItems', 'minItems']
-        if (fieldNames !== undefined && keywords.includes(item.keyword)) {
-            return false
+    const omitAnyOtherSchemaPaths = (item: ErrorObject) => {
+        return schemaPath !== undefined && item.schemaPath === schemaPath
+    }
+    const omitNonMatchingParams = (item: ErrorObject) => {
+        if (param === undefined) {
+            return true
+        }
+        if (item.keyword === 'required') {
+            return param === item.params.missingProperty
+        }
+        if (item.keyword === 'minItems') {
+            return param === item.params.limit
         }
         return true
     }
 
-    const checkForObjectProblems = (item: ErrorObject) => {
-        if (fieldNames !== undefined && item.keyword === 'required') {
-            return fieldNames.includes(item.params.missingProperty as string)
-        }
-        if (fieldNames !== undefined && item.keyword === 'additionalProperties') {
-            return fieldNames.includes(item.params.additionalProperty as string)
-        }
-        return true
-    }
-
-    const hideEntityErrorProblems = (item: ErrorObject) => {
-        const additionalPropertyList = [
-            'affiliation',
-            'email',
-            'family-names',
-            'given-names',
-            'name-particle',
-            'name-suffix',
-            'orcid'
-        ]
-        if (item.instancePath.startsWith('/authors/') && item.keyword === 'anyOf') {
-            return false
-        }
-        if (item.instancePath.startsWith('/authors/') && item.keyword === 'required' && item.params.missingProperty === 'name') {
-            return false
-        }
-        if (item.instancePath.startsWith('/authors/') && item.keyword === 'additionalProperties' && additionalPropertyList.includes(item.params.additionalProperty)) {
-            return false
-        }
-        return true
-    }
+    console.info(errors.value)
 
     const messages = errors.value
-        .filter(checkForInstancePath)
-        .filter(checkForArrayProblems)
-        .filter(checkForObjectProblems)
-        .filter(hideEntityErrorProblems)
+        .filter(omitAnyOtherInstancePaths)
+        .filter(omitAnyOtherSchemaPaths)
+        .filter(omitNonMatchingParams)
         .map((item) => {
             return item.message
         }) as string[]

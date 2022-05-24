@@ -54,18 +54,6 @@
             >
                 Add author
             </q-btn>
-
-            <q-banner
-                v-if="authorsErrors.messages.length > 0"
-                class="bg-warning text-negative"
-            >
-                <div
-                    v-bind:key="index"
-                    v-for="(screenMessage, index) in authorsErrors.messages"
-                >
-                    {{ screenMessage }}
-                </div>
-            </q-banner>
         </div>
 
         <div id="form-button-bar">
@@ -75,7 +63,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, nextTick, ref } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
@@ -85,7 +73,6 @@ import { AuthorType } from 'src/types'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
-import { authorsErrors } from 'src/authors-errors'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -158,8 +145,7 @@ export default defineComponent({
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,
-            setAuthorField,
-            authorsErrors: computed(() => authorsErrors(authors.value))
+            setAuthorField
         }
     }
 })

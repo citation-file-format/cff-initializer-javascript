@@ -10,6 +10,7 @@
         vertical
     >
         <q-step
+            color="primary"
             error-color="negative"
             error-icon="warning"
             icon=""
@@ -20,6 +21,7 @@
         />
 
         <q-step
+            color="primary"
             error-color="negative"
             error-icon="warning"
             icon=""
@@ -41,6 +43,7 @@
         />
 
         <q-step
+            color="primary"
             error-color="negative"
             error-icon="warning"
             icon=""
@@ -52,6 +55,7 @@
         />
 
         <q-step
+            color="primary"
             error-color="negative"
             error-icon="warning"
             icon=""
@@ -72,6 +76,7 @@
         />
 
         <q-step
+            color="primary"
             error-color="negative"
             error-icon="warning"
             icon=""
@@ -93,6 +98,7 @@
         />
 
         <q-step
+            color="primary"
             error-color="negative"
             error-icon="warning"
             icon=""
@@ -103,8 +109,8 @@
             v-on:click="setStepName('version-specific')"
         />
         <q-step
-            active-icon="navigate_next"
             color="primary"
+            active-icon="navigate_next"
             icon=""
             name="finish-advanced"
             title="Finish"
@@ -117,7 +123,7 @@
 
 <script lang="ts">
 
-import { useApp } from '../store/app'
+import { useApp } from 'src/composables/app'
 
 export default {
     setup () {

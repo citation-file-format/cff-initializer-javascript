@@ -64,15 +64,15 @@
 
 <script lang="ts">
 import { defineComponent, nextTick, ref } from 'vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
-import AuthorCardEditing from 'components/AuthorCardEditing.vue'
-import AuthorCardViewing from 'components/AuthorCardViewing.vue'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import Stepper from 'src/components/Stepper.vue'
+import StepperActions from 'src/components/StepperActions.vue'
+import AuthorCardEditing from 'src/components/AuthorCardEditing.vue'
+import AuthorCardViewing from 'src/components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
-import { moveDown, moveUp } from '../updown'
-import { useCff } from 'src/store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
+import { moveDown, moveUp } from 'src/updown'
+import { useCffObject } from 'src/composables/cffobject'
+import { scrollToBottom } from 'src/scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -84,7 +84,7 @@ export default defineComponent({
         AuthorCardViewing
     },
     setup () {
-        const { authors, setAuthors } = useCff()
+        const { authors, setAuthors } = useCffObject()
         const editingId = ref(0)
         const addAuthor = async () => {
             let newAuthors:AuthorType[]

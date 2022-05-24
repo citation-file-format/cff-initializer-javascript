@@ -75,11 +75,11 @@
 </template>
 
 <script lang="ts">
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import Stepper from 'src/components/Stepper.vue'
+import StepperActions from 'src/components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCff } from '../store/cff'
+import { useCffObject } from 'src/composables/cffobject'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -89,7 +89,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const { message, title, type, setMessage, setTitle, setType } = useCffObject()
         const messageOptions = [
             'If you use this software, please cite it using the metadata from this file.',
             'Please cite this software using these metadata.',

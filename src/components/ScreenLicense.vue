@@ -49,12 +49,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useCff } from '../store/cff'
+import { useCffObject } from 'src/composables/cffobject'
 import { QSelect } from 'quasar'
-import schema from '../schemas/1.2.0/schema.json'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import schema from 'src/schemas/1.2.0/schema.json'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import Stepper from 'src/components/Stepper.vue'
+import StepperActions from 'src/components/StepperActions.vue'
 
 export default defineComponent({
     name: 'ScreenLicense',
@@ -64,7 +64,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { license, setLicense } = useCff()
+        const { license, setLicense } = useCffObject()
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
 

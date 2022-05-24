@@ -30,10 +30,10 @@
 </template>
 
 <script lang="ts">
-import Header from 'components/Header.vue'
-import Preview from 'components/Preview.vue'
-import DownloadButton from 'components/DownloadButton.vue'
-import Footer from 'components/Footer.vue'
+import Header from 'src/components/Header.vue'
+import Preview from 'src/components/Preview.vue'
+import DownloadButton from 'src/components/DownloadButton.vue'
+import Footer from 'src/components/Footer.vue'
 import { defineComponent, computed } from 'vue'
 import { useRoute } from 'vue-router'
 

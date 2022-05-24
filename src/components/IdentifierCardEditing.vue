@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import { IdentifierTypeType } from '../types'
+import { IdentifierTypeType } from 'src/types'
 import { computed, defineComponent, PropType } from 'vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 

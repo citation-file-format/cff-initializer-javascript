@@ -1,14 +1,13 @@
 import { beforeEach, describe, expect, it } from '@jest/globals'
-import { useCff } from 'src/store/cff'
-import { useCffstr } from 'src/store/cffstr'
+import { useCffObject } from 'src/composables/cffobject'
 
 describe('useCffstr', () => {
-    const cff = useCff()
+    const { reset, cffstr, setTitle, setKeywords, setIdentifiers } = useCffObject()
+
     const generatedBy = '# This CITATION.cff file was generated with cffinit.\n# Visit https://bit.ly/cffinit to generate yours today!\n\n'
-    const { cffstr } = useCffstr()
 
     beforeEach(() => {
-        cff.reset()
+        reset()
     })
     describe('initial content', () => {
         it('should only have fields with defaults', () => {
@@ -19,7 +18,7 @@ describe('useCffstr', () => {
 
     describe('with title', () => {
         beforeEach(() => {
-            cff.setTitle('sometitle')
+            setTitle('sometitle')
         })
 
         it('should have title', () => {
@@ -30,7 +29,7 @@ describe('useCffstr', () => {
 
     describe('with keyword', () => {
         beforeEach(() => {
-            cff.setKeywords(['keyword1'])
+            setKeywords(['keyword1'])
         })
 
         it('should have a keyword', () => {
@@ -41,7 +40,7 @@ describe('useCffstr', () => {
 
     describe('with identifier', () => {
         beforeEach(() => {
-            cff.setIdentifiers([{ type: 'doi', value: '10.5281/zenodo.5171937' }])
+            setIdentifiers([{ type: 'doi', value: '10.5281/zenodo.5171937' }])
         })
 
         it('should have a identifier', () => {

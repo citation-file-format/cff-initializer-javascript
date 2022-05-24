@@ -49,14 +49,14 @@
 </template>
 
 <script lang="ts">
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
-import Keyword from 'components/Keyword.vue'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import Stepper from 'src/components/Stepper.vue'
+import StepperActions from 'src/components/StepperActions.vue'
+import Keyword from 'src/components/Keyword.vue'
 import { defineComponent, nextTick } from 'vue'
-import { moveDown, moveUp } from '../updown'
-import { useCff } from '../store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
+import { moveDown, moveUp } from 'src/updown'
+import { useCffObject } from 'src/composables/cffobject'
+import { scrollToBottom } from 'src/scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenKeywords',
@@ -67,7 +67,7 @@ export default defineComponent({
         Keyword
     },
     setup () {
-        const { keywords, setKeywords } = useCff()
+        const { keywords, setKeywords } = useCffObject()
         const addKeyword = async () => {
             let newKeywords:string[]
             const newKeyword = ''

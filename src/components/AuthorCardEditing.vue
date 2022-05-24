@@ -173,7 +173,7 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { defineComponent } from 'vue'
-import SchemaGuideLink from './SchemaGuideLink.vue'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
     name: 'AuthorCardEditing',

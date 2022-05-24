@@ -13,7 +13,6 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useCffstr } from 'src/store/cffstr'
 
 function toDownloadUrl (body: string) {
     return `data:text/vnd.yaml,${encodeURIComponent(body)}`
@@ -22,7 +21,7 @@ function toDownloadUrl (body: string) {
 export default defineComponent({
     name: 'DownloadButton',
     setup () {
-        const { cffstr } = useCffstr()
+        const cffstr = computed(() => 'temporarily unavailable')
 
         return {
             downloadUrl: computed(() => toDownloadUrl(cffstr.value))

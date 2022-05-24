@@ -59,12 +59,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'LayoutLanding',
-
-    setup () {
-        return {
-        }
-    }
+    name: 'LayoutLanding'
 })
 </script>
 

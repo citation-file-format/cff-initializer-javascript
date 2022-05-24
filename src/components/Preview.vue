@@ -44,16 +44,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import { useCffstr } from 'src/store/cffstr'
-import { useErrors } from 'src/store/errors'
+import { useCffObject } from 'src/composables/cffobject'
 
 export default defineComponent({
     name: 'Preview',
     components: {
     },
     setup () {
-        const { cffstr } = useCffstr()
-        const { errors } = useErrors()
+        const { cffstr } = useCffObject()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
@@ -63,7 +61,7 @@ export default defineComponent({
             showTooltip.value = false
         }
 
-        const isValidCFF = computed(() => errors.value.length === 0)
+        const isValidCFF = computed(() => true)
 
         return {
             cffstr,

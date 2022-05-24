@@ -20,7 +20,8 @@ export default defineComponent({
     setup () {
         const toDownloadUrl = () => {
             const { cffstr } = useCffObject()
-            return `data:text/vnd.yaml,${encodeURIComponent(cffstr.value)}`
+            const encoded = encodeURIComponent(cffstr.value)
+            return `data:text/vnd.yaml,${encoded}`
         }
         return {
             downloadUrl: computed(toDownloadUrl)

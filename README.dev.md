@@ -89,7 +89,7 @@ npx husky install
 This app is published using [GitHub pages](https://github.com/citation-file-format/cff-initializer-javascript/settings/pages) automatically by the [Publish workflow](.github/workflows/publish.yml).
 The way this works is:
 
-- After a commit is pushed to `main`, the workflow runs.
+- After a new tag is created, the workflow runs.
 - The workflow builds the app (using the `npm run build` command) into the folder `./dist`.
 - The GitHub action `peaceiris/actions-gh-pages@v3` pushes the contents of `./dist` to the branch [gh-pages](https://github.com/citation-file-format/cff-initializer-javascript/tree/gh-pages).
 - The `gh-pages` content is served by GitHub into <https://citation-file-format.github.io/cff-initializer-javascript/#/>
@@ -146,14 +146,13 @@ This section describes how to make a release in 2 parts:
 6. By running `npm run lint` make sure the linter does not complain
 7. Run the unit tests with `npm run test:unit:ci`
 8. Make sure that github.io page is up to date
-9. Check whether the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow worked recently and it was successful
 
 ### (2/2) GitHub
 
 1. Make a [release on GitHub](https://github.com/citation-file-format/cff-initializer-javascript/releases/new).
 2. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly by the GitHub release.
 3. Go to Zenodo, log in, inspect the draft release. If all looks good, click "Publish" in Zenodo's frontend.
-
+4. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow ran for the new tag and it was successful.
 
 ## References
 

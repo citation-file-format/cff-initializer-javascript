@@ -56,7 +56,7 @@ const validate = () => {
     }
 }
 
-export function useCffObject () {
+export const useCffObject = () => {
     return {
         abstract: computed(() => data.value.abstract),
         authors: computed(() => data.value.authors),

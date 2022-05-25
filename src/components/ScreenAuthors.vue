@@ -97,7 +97,7 @@ export default defineComponent({
         AuthorCardViewing
     },
     setup () {
-        const { authors, setAuthors, errors: ajvErrors } = useCff()
+        const { authors, setAuthors, errors } = useCff()
         const editingId = ref(0)
         const addAuthor = async () => {
             let newAuthors:AuthorType[]
@@ -153,7 +153,7 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
-        const authorsErrors = computed(() => authorsQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message))
+        const authorsErrors = computed(() => authorsQueries.filter(byError(errors.value)).map(query => query.replace.message))
 
         return {
             addAuthor,

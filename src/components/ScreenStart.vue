@@ -76,6 +76,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ErrorObject } from 'ajv'
 import { useCff } from 'src/composables/cff'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
@@ -89,7 +90,12 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const byQuery = (queries: ErrorObject[]) => {
+            return (error: ErrorObject): boolean => {
+                return queries.map(query => query.instancePath).includes(error.instancePath)
+            }
+        }
+        const { message, title, type, setMessage, setTitle, setType, errors } = useCff()
         const messageOptions = [
             'If you use this software, please cite it using the metadata from this file.',
             'Please cite this software using these metadata.',
@@ -98,6 +104,34 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
+        const queries = [{
+            instancePath: '',
+            schemaPath: '#/required',
+            keyword: 'required',
+            params: {
+                missingProperty: 'message'
+            },
+            message: 'must have required property \'message\''
+        },
+        {
+            instancePath: '',
+            schemaPath: '#/required',
+            keyword: 'required',
+            params: {
+                missingProperty: 'title'
+            },
+            message: 'must have required property \'title\''
+        },
+        {
+            instancePath: '/authors',
+            schemaPath: '#/properties/authors/minItems',
+            keyword: 'minItems',
+            params: {
+                limit: 1
+            },
+            message: 'must NOT have fewer than 1 items'
+        }]
+        console.info(errors.value.filter(byQuery(queries)))
         return {
             message,
             messageOptions,

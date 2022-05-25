@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { ref, computed } from 'vue'
 import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from 'src/types'
-import kebabcaseKeys from 'kebabcase-keys'
-import deepfilter from 'deep-filter'
+import { ref, computed } from 'vue'
 import * as yaml from 'js-yaml'
-import schema from 'src/schemas/1.2.0/schema.json'
-import Ajv, { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
+import Ajv, { ErrorObject } from 'ajv'
+import deepfilter from 'deep-filter'
+import kebabcaseKeys from 'kebabcase-keys'
+import schema from 'src/schemas/1.2.0/schema.json'
 
 const reset = () => ({
     cffVersion: '1.2.0',
@@ -43,19 +43,6 @@ const stringified = () => {
     const headerstr = '# This CITATION.cff file was generated with cffinit.\n# Visit https://bit.ly/cffinit to generate yours today!\n\n'
     const yamlstr = yaml.dump(kebabed(), { indent: 2, lineWidth: 53 })
     return `${headerstr}${yamlstr}`
-}
-
-const validate = () => {
-    type ajvErrorType = ErrorObject<string, Record<string, unknown>, unknown>
-    const ajv = new Ajv({ allErrors: true })
-    addFormats(ajv)
-    ajv.addSchema(schema)
-    ajv.validate(schema.$id, kebabed())
-    if (ajv.errors) {
-        return ajv.errors
-    } else {
-        return [] as ajvErrorType[]
-    }
 }
 
 export const useCff = () => {
@@ -95,5 +82,18 @@ export const useCff = () => {
         setUrl: (newUrl: string) => (data.value.url = newUrl === '' ? undefined : newUrl),
         setVersion: (newVersion: string) => (data.value.version = newVersion === '' ? undefined : newVersion),
         reset: () => (data.value = reset())
+    }
+}
+
+const validate = () => {
+    type ajvErrorType = ErrorObject<string, Record<string, unknown>, unknown>
+    const ajv = new Ajv({ allErrors: true })
+    addFormats(ajv)
+    ajv.addSchema(schema)
+    ajv.validate(schema.$id, kebabed())
+    if (ajv.errors) {
+        return ajv.errors
+    } else {
+        return [] as ajvErrorType[]
     }
 }

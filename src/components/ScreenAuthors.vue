@@ -56,12 +56,12 @@
             </q-btn>
 
             <q-banner
-                v-if="errors.authors.length > 0"
+                v-if="authorsErrors.length > 0"
                 class="bg-warning text-negative"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in errors.authors"
+                    v-for="(screenMessage, index) in authorsErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -114,26 +114,27 @@ export default defineComponent({
             scrollToBottom()
         }
         const removeAuthor = () => {
-            if (authors.value !== undefined) {
-                const newAuthors = [...authors.value]
-                newAuthors.splice(editingId.value, 1)
-                setAuthors(newAuthors)
-                editingId.value = -1
-                if (Array.isArray(newAuthors) && newAuthors.length === 0) {
-                    setAuthors(undefined)
-                }
+            if (authors.value === undefined) {
+                return
             }
+            const newAuthors = [...authors.value]
+            newAuthors.splice(editingId.value, 1)
+            setAuthors(newAuthors)
+            editingId.value = -1
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
-            if (authors.value !== undefined) {
-                const author = { ...authors.value[editingId.value] }
-                author[field] = value === '' ? undefined : value
-                authors.value[editingId.value] = author
-                setAuthors(authors.value)
+            if (authors.value === undefined) {
+                return
             }
+            const author = { ...authors.value[editingId.value] }
+            author[field] = value === '' ? undefined : value
+            authors.value[editingId.value] = author
+            setAuthors(authors.value)
         }
         const moveAuthorUp = (index: number) => {
-            if (authors.value === undefined) return
+            if (authors.value === undefined) {
+                return
+            }
             moveUp(index, authors.value, setAuthors)
             if (editingId.value === index && index > 0) {
                 editingId.value = editingId.value - 1
@@ -142,7 +143,9 @@ export default defineComponent({
             }
         }
         const moveAuthorDown = (index: number) => {
-            if (authors.value === undefined) return
+            if (authors.value === undefined) {
+                return
+            }
             moveDown(index, authors.value, setAuthors)
             if (editingId.value === index && index < authors.value.length - 1) {
                 editingId.value = editingId.value + 1
@@ -150,15 +153,13 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
-        const errors = computed(() => ({
-            authors: authorsQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message)
-        }))
+        const authorsErrors = computed(() => authorsQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message))
 
         return {
             addAuthor,
             authors,
+            authorsErrors,
             editingId,
-            errors,
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,

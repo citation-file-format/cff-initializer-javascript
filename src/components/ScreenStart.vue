@@ -20,8 +20,8 @@
                 label="title"
                 outlined
                 standout
-                v-bind:error="errors.title.length > 0"
-                v-bind:error-message="errors.title.join(', ')"
+                v-bind:error="titleErrors.length > 0"
+                v-bind:error-message="titleErrors.join(', ')"
                 v-bind:model-value="title"
                 v-on:update:modelValue="setTitle"
             />
@@ -33,8 +33,8 @@
                 bg-color="white"
                 label="message"
                 outlined
-                v-bind:error="errors.message.length > 0"
-                v-bind:error-message="errors.message.join(', ')"
+                v-bind:error="messageErrors.length > 0"
+                v-bind:error-message="messageErrors.join(', ')"
                 v-bind:model-value="message"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
@@ -94,7 +94,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { message, title, type, setMessage, setTitle, setType, errors: ajvErrors } = useCff()
+        const { message, title, type, setMessage, setTitle, setType, errors } = useCff()
         const messageOptions = [
             'If you use this software, please cite it using the metadata from this file.',
             'Please cite this software using these metadata.',
@@ -103,16 +103,15 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
-        const errors = computed(() => ({
-            message: messageQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message),
-            title: titleQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message)
-        }))
-        console.info(ajvErrors.value)
+        const messageErrors = computed(() => messageQueries.filter(byError(errors.value)).map(query => query.replace.message))
+        const titleErrors = computed(() => titleQueries.filter(byError(errors.value)).map(query => query.replace.message))
+        console.info(errors.value)
         return {
-            errors,
             message,
+            messageErrors,
             messageOptions,
             title,
+            titleErrors,
             type,
             typeOptions: [
                 { label: 'Software', value: 'software' },

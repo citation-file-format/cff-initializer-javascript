@@ -45,6 +45,19 @@ const stringified = () => {
     return `${headerstr}${yamlstr}`
 }
 
+const validate = () => {
+    type ajvErrorType = ErrorObject<string, Record<string, unknown>, unknown>
+    const ajv = new Ajv({ allErrors: true })
+    addFormats(ajv)
+    ajv.addSchema(schema)
+    ajv.validate(schema.$id, kebabed())
+    if (ajv.errors) {
+        return ajv.errors
+    } else {
+        return [] as ajvErrorType[]
+    }
+}
+
 export const useCff = () => {
     return {
         abstract: computed(() => data.value.abstract),
@@ -82,18 +95,5 @@ export const useCff = () => {
         setUrl: (newUrl: string) => (data.value.url = newUrl === '' ? undefined : newUrl),
         setVersion: (newVersion: string) => (data.value.version = newVersion === '' ? undefined : newVersion),
         reset: () => (data.value = reset())
-    }
-}
-
-const validate = () => {
-    type ajvErrorType = ErrorObject<string, Record<string, unknown>, unknown>
-    const ajv = new Ajv({ allErrors: true })
-    addFormats(ajv)
-    ajv.addSchema(schema)
-    ajv.validate(schema.$id, kebabed())
-    if (ajv.errors) {
-        return ajv.errors
-    } else {
-        return [] as ajvErrorType[]
     }
 }

@@ -20,6 +20,8 @@
                 label="title"
                 outlined
                 standout
+                v-bind:error="errors.title.length > 0"
+                v-bind:error-message="errors.title.join(', ')"
                 v-bind:model-value="title"
                 v-on:update:modelValue="setTitle"
             />
@@ -31,6 +33,8 @@
                 bg-color="white"
                 label="message"
                 outlined
+                v-bind:error="errors.message.length > 0"
+                v-bind:error-message="errors.message.join(', ')"
                 v-bind:model-value="message"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
@@ -75,9 +79,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ErrorObject } from 'ajv'
+import { computed, defineComponent } from 'vue'
 import { useCff } from 'src/composables/cff'
+import { byError, messageQueries, titleQueries } from 'src/error-querying'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
@@ -90,12 +94,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const byQuery = (queries: ErrorObject[]) => {
-            return (error: ErrorObject): boolean => {
-                return queries.map(query => query.instancePath).includes(error.instancePath)
-            }
-        }
-        const { message, title, type, setMessage, setTitle, setType, errors } = useCff()
+        const { message, title, type, setMessage, setTitle, setType, errors: ajvErrors } = useCff()
         const messageOptions = [
             'If you use this software, please cite it using the metadata from this file.',
             'Please cite this software using these metadata.',
@@ -104,35 +103,13 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
-        const queries = [{
-            instancePath: '',
-            schemaPath: '#/required',
-            keyword: 'required',
-            params: {
-                missingProperty: 'message'
-            },
-            message: 'must have required property \'message\''
-        },
-        {
-            instancePath: '',
-            schemaPath: '#/required',
-            keyword: 'required',
-            params: {
-                missingProperty: 'title'
-            },
-            message: 'must have required property \'title\''
-        },
-        {
-            instancePath: '/authors',
-            schemaPath: '#/properties/authors/minItems',
-            keyword: 'minItems',
-            params: {
-                limit: 1
-            },
-            message: 'must NOT have fewer than 1 items'
-        }]
-        console.info(errors.value.filter(byQuery(queries)))
+        const errors = computed(() => ({
+            message: messageQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message),
+            title: titleQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message)
+        }))
+        console.info(ajvErrors.value)
         return {
+            errors,
             message,
             messageOptions,
             title,

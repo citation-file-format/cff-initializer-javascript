@@ -54,6 +54,18 @@
             >
                 Add author
             </q-btn>
+
+            <q-banner
+                v-if="errors.authors.length > 0"
+                class="bg-warning text-negative"
+            >
+                <div
+                    v-bind:key="index"
+                    v-for="(screenMessage, index) in errors.authors"
+                >
+                    {{ screenMessage }}
+                </div>
+            </q-banner>
         </div>
 
         <div id="form-button-bar">
@@ -64,7 +76,8 @@
 
 <script lang="ts">
 import { AuthorType } from 'src/types'
-import { defineComponent, nextTick, ref } from 'vue'
+import { byError, authorsQueries } from 'src/error-querying'
+import { computed, defineComponent, nextTick, ref } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/composables/cff'
@@ -84,7 +97,7 @@ export default defineComponent({
         AuthorCardViewing
     },
     setup () {
-        const { authors, setAuthors } = useCff()
+        const { authors, setAuthors, errors: ajvErrors } = useCff()
         const editingId = ref(0)
         const addAuthor = async () => {
             let newAuthors:AuthorType[]
@@ -137,11 +150,15 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
+        const errors = computed(() => ({
+            authors: authorsQueries.filter(byError(ajvErrors.value)).map(query => query.replace.message)
+        }))
 
         return {
             addAuthor,
             authors,
             editingId,
+            errors,
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,

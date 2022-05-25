@@ -54,18 +54,29 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
     }
 
     const translateMessages = (item: ErrorObject) => {
-        console.log(item)
         if (item.params.missingProperty && item.keyword === 'required') {
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             item.message = `The ${item.params.missingProperty} field is required`
-        }
-        if (item.keyword === 'format') {
+        } else if (item.keyword === 'format') {
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             item.message = `Wrong ${item.params.format} format, please see the documentation.`
-        }
-        if (item.keyword === 'pattern') {
+        } else if (item.keyword === 'pattern') {
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = ''
+            item.message = `The input should follow this pattern: ${item.params.pattern}`
+        } else if (item.keyword === 'minItems') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `At least ${item.params.limit} ${item.instancePath.replace('/', '')} is needed.`
+        } else if (item.keyword === 'minLength') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
+        } else if (item.keyword === 'anyOf') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
+        } else if (item.keyword === 'uniqueItems') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `There are duplicate ${item.instancePath.split('/').pop()}.`
+        } else {
+            console.log(item)
         }
         return item
     }

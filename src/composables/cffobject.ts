@@ -10,22 +10,22 @@ import Ajv, { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
 
 const initialData = {
-    abstract: undefined,
-    authors: [],
     cffVersion: '1.2.0',
-    commit: undefined,
-    dateReleased: undefined,
-    identifiers: undefined,
-    keywords: undefined,
-    license: undefined,
+    title: undefined,
     message: undefined,
+    type: 'software',
+    authors: [],
+    identifiers: undefined,
+    repositoryCode: undefined,
+    url: undefined,
     repository: undefined,
     repositoryArtifact: undefined,
-    repositoryCode: undefined,
-    title: undefined,
-    type: 'software',
-    url: undefined,
-    version: undefined
+    abstract: undefined,
+    keywords: undefined,
+    license: undefined,
+    commit: undefined,
+    version: undefined,
+    dateReleased: undefined
 } as CffType
 
 const data = ref(initialData)

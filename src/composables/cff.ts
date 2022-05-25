@@ -10,7 +10,6 @@ import Ajv, { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
 
 const reset = () => ({
-    // not sure why I can't do data.value = initialData
     cffVersion: '1.2.0',
     title: undefined,
     message: undefined,

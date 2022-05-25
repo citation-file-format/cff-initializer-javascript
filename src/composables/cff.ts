@@ -40,7 +40,9 @@ const kebabed = () => {
 }
 
 const stringified = () => {
-    return yaml.dump(kebabed(), { indent: 2, lineWidth: 53 })
+    const headerstr = '# This CITATION.cff file was generated with cffinit.\n# Visit https://bit.ly/cffinit to generate yours today!\n\n'
+    const yamlstr = yaml.dump(kebabed(), { indent: 2, lineWidth: 53 })
+    return `${headerstr}${yamlstr}`
 }
 
 const validate = () => {

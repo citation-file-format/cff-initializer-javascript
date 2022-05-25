@@ -1,14 +1,15 @@
 import { beforeEach, describe, expect, it } from '@jest/globals'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 
-describe('useCffstr', () => {
-    const { reset, cffstr, setTitle, setKeywords, setIdentifiers } = useCffObject()
+describe('useCffObject', () => {
+    const { reset, cffstr, setTitle, setKeywords, setIdentifiers } = useCff()
 
     const generatedBy = '# This CITATION.cff file was generated with cffinit.\n# Visit https://bit.ly/cffinit to generate yours today!\n\n'
 
     beforeEach(() => {
         reset()
     })
+
     describe('initial content', () => {
         it('should only have fields with defaults', () => {
             const expected = generatedBy + 'cff-version: 1.2.0\ntype: software\nauthors: []\n'

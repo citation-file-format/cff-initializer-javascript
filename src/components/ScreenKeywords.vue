@@ -55,7 +55,7 @@ import StepperActions from 'src/components/StepperActions.vue'
 import Keyword from 'src/components/Keyword.vue'
 import { defineComponent, nextTick } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 
 export default defineComponent({
@@ -67,7 +67,7 @@ export default defineComponent({
         Keyword
     },
     setup () {
-        const { keywords, setKeywords } = useCffObject()
+        const { keywords, setKeywords } = useCff()
         const addKeyword = async () => {
             let newKeywords:string[]
             const newKeyword = ''

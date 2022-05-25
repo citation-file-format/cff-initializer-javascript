@@ -93,7 +93,7 @@ import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 
 export default defineComponent({
     name: 'ScreenVersionSpecific',
@@ -110,7 +110,7 @@ export default defineComponent({
             const d = ('0' + today.getDate().toString()).slice(-2)
             return `${y}-${m}-${d}`
         }
-        const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCffObject()
+        const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
         return {
             commit,
             dateReleased,

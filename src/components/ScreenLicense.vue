@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 import { QSelect } from 'quasar'
 import schema from 'src/schemas/1.2.0/schema.json'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
@@ -64,7 +64,7 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { license, setLicense } = useCffObject()
+        const { license, setLicense } = useCff()
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
 

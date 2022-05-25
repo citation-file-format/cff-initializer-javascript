@@ -44,14 +44,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 
 export default defineComponent({
     name: 'Preview',
     components: {
     },
     setup () {
-        const { cffstr, errors } = useCffObject()
+        const { cffstr, errors } = useCff()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {

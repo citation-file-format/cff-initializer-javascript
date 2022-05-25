@@ -71,7 +71,7 @@ import StepperActions from 'src/components/StepperActions.vue'
 import IdentifierCardEditing from 'src/components/IdentifierCardEditing.vue'
 import IdentifierCardViewing from 'src/components/IdentifierCardViewing.vue'
 import { IdentifierType, IdentifierTypeType } from 'src/types'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { moveDown, moveUp } from 'src/updown'
 
@@ -85,7 +85,7 @@ export default defineComponent({
         IdentifierCardViewing
     },
     setup () {
-        const { identifiers, setIdentifiers } = useCffObject()
+        const { identifiers, setIdentifiers } = useCff()
         const editingId = ref(-1)
         const addIdentifier = async () => {
             let newIdentifiers:IdentifierType[]

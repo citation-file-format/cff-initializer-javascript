@@ -13,13 +13,13 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 
 export default defineComponent({
     name: 'DownloadButton',
     setup () {
         const toDownloadUrl = () => {
-            const { cffstr } = useCffObject()
+            const { cffstr } = useCff()
             const encoded = encodeURIComponent(cffstr.value)
             return `data:text/vnd.yaml,${encoded}`
         }

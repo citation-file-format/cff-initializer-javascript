@@ -74,7 +74,7 @@ import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -87,7 +87,7 @@ export default defineComponent({
         const {
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
-        } = useCffObject()
+        } = useCff()
         return {
             repository,
             repositoryArtifact,

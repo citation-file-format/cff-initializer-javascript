@@ -71,7 +71,7 @@ import AuthorCardEditing from 'src/components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'src/components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import { moveDown, moveUp } from 'src/updown'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 
 export default defineComponent({
@@ -84,7 +84,7 @@ export default defineComponent({
         AuthorCardViewing
     },
     setup () {
-        const { authors, setAuthors } = useCffObject()
+        const { authors, setAuthors } = useCff()
         const editingId = ref(0)
         const addAuthor = async () => {
             let newAuthors:AuthorType[]

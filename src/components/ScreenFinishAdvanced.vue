@@ -52,7 +52,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useApp } from 'src/composables/app'
-import { useCffObject } from 'src/composables/cffobject'
+import { useCff } from 'src/composables/cff'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
 import DownloadButton from 'src/components/DownloadButton.vue'
@@ -66,7 +66,7 @@ export default defineComponent({
     },
     setup () {
         const { setStepName, setShowAdvanced } = useApp()
-        const { errors, reset } = useCffObject()
+        const { errors, reset } = useCff()
 
         return {
             isValidCFF: computed(() => errors.value.length === 0),

@@ -1,7 +1,7 @@
 import { ErrorObject } from 'ajv'
 
 type ErrorQueryFind = {
-    [key: string]: undefined | string | Record<string, string>
+    [key: string]: string
     instancePath: string
     message: string
     schemaPath: string

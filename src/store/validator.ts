@@ -53,11 +53,29 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
         return true
     }
 
+    const translateMessages = (item: ErrorObject) => {
+        console.log(item)
+        if (item.params.missingProperty && item.keyword === 'required') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `The ${item.params.missingProperty} field is required`
+        }
+        if (item.keyword === 'format') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `Wrong ${item.params.format} format, please see the documentation.`
+        }
+        if (item.keyword === 'pattern') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = ''
+        }
+        return item
+    }
+
     const messages = errors.value
         .filter(checkForInstancePath)
         .filter(checkForArrayProblems)
         .filter(checkForObjectProblems)
         .filter(hideEntityErrorProblems)
+        .map(translateMessages)
         .map((item) => {
             return item.message
         }) as string[]

@@ -9,7 +9,8 @@ import schema from 'src/schemas/1.2.0/schema.json'
 import Ajv, { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
 
-const initialData = {
+const reset = () => ({
+    // not sure why I can't do data.value = initialData
     cffVersion: '1.2.0',
     title: undefined,
     message: undefined,
@@ -26,9 +27,9 @@ const initialData = {
     commit: undefined,
     version: undefined,
     dateReleased: undefined
-} as CffType
+} as CffType)
 
-const data = ref(initialData)
+const data = ref(reset())
 
 const kebabed = () => {
     const notEmpty = (value: unknown) => {
@@ -94,6 +95,6 @@ export const useCff = () => {
         setType: (newType: TypeType) => (data.value.type = newType),
         setUrl: (newUrl: string) => (data.value.url = newUrl === '' ? undefined : newUrl),
         setVersion: (newVersion: string) => (data.value.version = newVersion === '' ? undefined : newVersion),
-        reset: () => (data.value = initialData)
+        reset: () => (data.value = reset())
     }
 }

@@ -49,8 +49,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useCff } from 'src/composables/cff'
 import { QSelect } from 'quasar'
+import { useCff } from 'src/composables/cff'
 import schema from 'src/schemas/1.2.0/schema.json'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'

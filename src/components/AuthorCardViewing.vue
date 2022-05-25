@@ -42,8 +42,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
 import { AuthorType } from 'src/types'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
     name: 'AuthorCardViewing',

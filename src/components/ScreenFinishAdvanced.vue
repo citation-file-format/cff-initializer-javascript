@@ -53,9 +53,9 @@
 import { defineComponent, computed } from 'vue'
 import { useApp } from 'src/composables/app'
 import { useCff } from 'src/composables/cff'
+import DownloadButton from 'src/components/DownloadButton.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
-import DownloadButton from 'src/components/DownloadButton.vue'
 
 export default defineComponent({
     name: 'ScreenFinishAdvanced',

@@ -63,16 +63,16 @@
 </template>
 
 <script lang="ts">
+import { AuthorType } from 'src/types'
 import { defineComponent, nextTick, ref } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
+import { scrollToBottom } from 'src/scroll-to-bottom'
+import { useCff } from 'src/composables/cff'
+import AuthorCardEditing from 'src/components/AuthorCardEditing.vue'
+import AuthorCardViewing from 'src/components/AuthorCardViewing.vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
-import AuthorCardEditing from 'src/components/AuthorCardEditing.vue'
-import AuthorCardViewing from 'src/components/AuthorCardViewing.vue'
-import { AuthorType } from 'src/types'
-import { moveDown, moveUp } from 'src/updown'
-import { useCff } from 'src/composables/cff'
-import { scrollToBottom } from 'src/scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenAuthors',

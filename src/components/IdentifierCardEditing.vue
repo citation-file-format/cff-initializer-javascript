@@ -86,8 +86,8 @@
 </template>
 
 <script lang="ts">
-import { IdentifierTypeType } from 'src/types'
 import { computed, defineComponent, PropType } from 'vue'
+import { IdentifierTypeType } from 'src/types'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({

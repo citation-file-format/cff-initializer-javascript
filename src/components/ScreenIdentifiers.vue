@@ -65,15 +65,15 @@
 
 <script lang="ts">
 import { defineComponent, nextTick, ref } from 'vue'
+import { IdentifierType, IdentifierTypeType } from 'src/types'
+import { moveDown, moveUp } from 'src/updown'
+import { scrollToBottom } from 'src/scroll-to-bottom'
+import { useCff } from 'src/composables/cff'
+import IdentifierCardEditing from 'src/components/IdentifierCardEditing.vue'
+import IdentifierCardViewing from 'src/components/IdentifierCardViewing.vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
-import IdentifierCardEditing from 'src/components/IdentifierCardEditing.vue'
-import IdentifierCardViewing from 'src/components/IdentifierCardViewing.vue'
-import { IdentifierType, IdentifierTypeType } from 'src/types'
-import { useCff } from 'src/composables/cff'
-import { scrollToBottom } from 'src/scroll-to-bottom'
-import { moveDown, moveUp } from 'src/updown'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',

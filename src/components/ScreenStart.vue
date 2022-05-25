@@ -75,11 +75,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+import { useCff } from 'src/composables/cff'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
-import { defineComponent } from 'vue'
-import { useCff } from 'src/composables/cff'
 
 export default defineComponent({
     name: 'ScreenStart',

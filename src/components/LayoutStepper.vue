@@ -30,12 +30,12 @@
 </template>
 
 <script lang="ts">
-import Header from 'src/components/Header.vue'
-import Preview from 'src/components/Preview.vue'
-import DownloadButton from 'src/components/DownloadButton.vue'
-import Footer from 'src/components/Footer.vue'
 import { defineComponent, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import DownloadButton from 'src/components/DownloadButton.vue'
+import Footer from 'src/components/Footer.vue'
+import Header from 'src/components/Header.vue'
+import Preview from 'src/components/Preview.vue'
 
 export default defineComponent({
     name: 'LayoutStepper',

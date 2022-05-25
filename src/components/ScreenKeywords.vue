@@ -49,14 +49,14 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, nextTick } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
+import { scrollToBottom } from 'src/scroll-to-bottom'
+import { useCff } from 'src/composables/cff'
+import Keyword from 'src/components/Keyword.vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import Stepper from 'src/components/Stepper.vue'
 import StepperActions from 'src/components/StepperActions.vue'
-import Keyword from 'src/components/Keyword.vue'
-import { defineComponent, nextTick } from 'vue'
-import { moveDown, moveUp } from 'src/updown'
-import { useCff } from 'src/composables/cff'
-import { scrollToBottom } from 'src/scroll-to-bottom'
 
 export default defineComponent({
     name: 'ScreenKeywords',

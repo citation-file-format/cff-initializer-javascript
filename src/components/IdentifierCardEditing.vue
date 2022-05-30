@@ -167,7 +167,6 @@ export default defineComponent({
                 const myErrors = getMyErrors(`/identifiers/${props.index}/value`).messages.filter(checkForInstancePath)
                     .map((item) => {
                         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                        // aaa
                         return item.schemaPath.startsWith(`#/definitions/${props.type}`) ? `${props.type} ${item?.message}` : null
                     }).filter((e) => { return e })
                 return {

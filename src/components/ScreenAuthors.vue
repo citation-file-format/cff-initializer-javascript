@@ -86,7 +86,6 @@ import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { authorsErrors } from 'src/authors-errors'
-import { ErrorObject } from 'ajv'
 
 export default defineComponent({
     name: 'ScreenAuthors',

@@ -85,7 +85,6 @@ import StepperActions from 'components/StepperActions.vue'
 import { computed, defineComponent, onMounted } from 'vue'
 import { useCff } from '../store/cff'
 import { getMyErrors } from 'src/store/validator'
-import { ErrorObject } from 'ajv'
 
 export default defineComponent({
     name: 'ScreenStart',

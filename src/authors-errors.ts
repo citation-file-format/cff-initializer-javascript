@@ -1,6 +1,7 @@
 import { AuthorsType } from 'src/types'
 import { messageErrorType, getMyErrors } from 'src/store/validator'
 import { authorErrors } from 'src/author-errors'
+import { ErrorObject } from 'ajv'
 
 export const authorsErrors = (authors:AuthorsType) => {
     const myErrors = [
@@ -9,7 +10,7 @@ export const authorsErrors = (authors:AuthorsType) => {
     ]
     const myChildrenErrors = authors?.map((_, index) => authorErrors(index))
     const errors = myChildrenErrors === undefined ? myErrors : [...myErrors, ...myChildrenErrors]
-    let allMessages = [] as string[]
+    let allMessages = [] as ErrorObject[]
     errors.forEach(error => {
         allMessages = allMessages.concat(error.messages)
     })

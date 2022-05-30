@@ -34,7 +34,17 @@
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                     ref="valueRef"
-                />
+                >
+                    <template
+                        #append
+                    >
+                        <q-icon
+                            name="close"
+                            v-on:click="$emit('updateValue', 'value', '')"
+                            class="cursor-pointer"
+                        />
+                    </template>
+                </q-input>
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
@@ -96,6 +106,7 @@ import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 import { getMyErrors } from 'src/store/validator'
 import { identifierErrors } from 'src/identifier-errors'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import { ErrorObject } from 'ajv'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -138,6 +149,9 @@ export default defineComponent({
         onMounted(() => {
             valueRef.value?.focus()
         })
+        const checkForInstancePath = (item: ErrorObject) => {
+            return item
+        }
         return {
             valueRef,
             typeOptions: [
@@ -149,7 +163,25 @@ export default defineComponent({
             label: computed(() => linkInfo[props.type].label),
             anchor: computed(() => linkInfo[props.type].anchor),
             typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
-            valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
+            valueError: computed(() => {
+                const allErrors = getMyErrors(`/identifiers/${props.index}/value`).messages.filter(checkForInstancePath)
+                console.log('allErrors:', allErrors)
+                const selectError = allErrors.map((item) => {
+                    if (item.schemaPath.startsWith(`#/definitions/${props.type}/`)) {
+                        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                        return `${props.type} ${item.message}`
+                    } else {
+                        return null
+                    }
+                    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                    // return `${item.message}`
+                }).filter((e) => { return e })
+                console.log('selectError:', selectError)
+                return {
+                    hasError: selectError.length > 0,
+                    messages: selectError
+                }
+            }),
             descriptionError: computed(() =>
                 getMyErrors(`/identifiers/${props.index}/description`)
             ),

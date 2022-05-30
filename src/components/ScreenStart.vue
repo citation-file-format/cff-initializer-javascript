@@ -82,7 +82,7 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 import { useCff } from '../store/cff'
 import { getMyErrors } from 'src/store/validator'
 
@@ -94,6 +94,9 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        onMounted(() => {
+            console.log('mounted in the composition api!')
+        })
         const { message, title, type, setMessage, setTitle, setType } = useCff()
         const messageOptions = [
             'If you use this software, please cite it using the metadata from this file.',
@@ -116,7 +119,10 @@ export default defineComponent({
             setTitle,
             setType,
             messageError: computed(() => getMyErrors('', ['message'])),
-            titleError: computed(() => getMyErrors('', ['title']))
+            titleError: computed(() => {
+                console.log(getMyErrors('', ['title']))
+                return getMyErrors('', ['title'])
+            })
         }
     }
 })

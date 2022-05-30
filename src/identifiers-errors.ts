@@ -1,6 +1,20 @@
 import { IdentifiersType } from 'src/types'
 import { messageErrorType, getMyErrorsArray } from 'src/store/validator'
-import { identifierHasErrors } from 'src/identifier-errors'
+import { useCff } from 'src/store/cff'
+
+export const identifierHasErrors = (index:number): boolean => {
+    const { identifiers } = useCff()
+    console.log(index)
+    if (identifiers.value) {
+        const errors = getMyErrorsArray([
+            { instancePath: `/identifiers/${index}/type` },
+            { schemaPath: `#/definitions/${identifiers.value[index].type}/pattern` }
+        ])
+        return errors.length > 0
+    } else {
+        return true
+    }
+}
 
 export const identifiersErrors = (identifiers: IdentifiersType) => {
     const allMessages = getMyErrorsArray([

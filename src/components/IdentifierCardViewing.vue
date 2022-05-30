@@ -44,7 +44,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 import { IdentifierType } from 'src/types'
-import { identifierHasErrors } from 'src/identifier-errors'
+import { identifierHasErrors } from 'src/identifiers-errors'
 
 export default defineComponent({
     name: 'IdentifierCardViewing',

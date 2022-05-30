@@ -45,7 +45,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 import { AuthorType } from 'src/types'
-import { authorHasErrors } from 'src/author-errors'
+import { authorHasErrors } from 'src/authors-errors'
 
 export default defineComponent({
     name: 'AuthorCardViewing',

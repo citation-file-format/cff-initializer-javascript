@@ -75,7 +75,7 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
             item.message = `minLength-error: At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
         } else if (item.keyword === 'anyOf') {
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `anyOf-error: At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
+            item.message = `anyOf-error: All the ${item.instancePath.split('/', 3)[1]} must be valid.`
         } else if (item.keyword === 'uniqueItems') {
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             item.message = `uniqueItems-error: There are duplicate ${item.instancePath.split('/').pop()}.`

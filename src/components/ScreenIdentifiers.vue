@@ -62,7 +62,7 @@
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in identifiersErrors.messages"
+                    v-for="(screenMessage, index) in identifiersErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -182,7 +182,11 @@ export default defineComponent({
             setIdentifierDescriptionField,
             setIdentifierTypeField,
             setIdentifierValueField,
-            identifiersErrors: computed(() => identifiersErrors(identifiers.value))
+            identifiersErrors: computed(() => {
+                return {
+                    messages: identifiersErrors(identifiers.value).messages.map((item) => item.message).join('\n')
+                }
+            })
         }
     }
 })

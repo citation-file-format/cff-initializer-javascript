@@ -19,15 +19,6 @@
         "orcid": {
             "errorMessage": "Format: https://orcid.org/0000-0000-0000-0000"
         },
-        "repository": {
-            "errorMessage": "Format: https://www.example.com (http, ftp, and sftp are also valid)"
-        },
-        "repository-code": {
-            "errorMessage": "Format: https://www.example.com (http, ftp, and sftp are also valid)"
-        },
-        "repository-articaft": {
-            "errorMessage": "Format: https://www.example.com (http, ftp, and sftp are also valid)"
-        },
         "swh-identifier": {
             "errorMessage": "Format: swh:1:xxx:hash"
         },

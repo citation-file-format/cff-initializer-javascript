@@ -164,22 +164,15 @@ export default defineComponent({
             anchor: computed(() => linkInfo[props.type].anchor),
             typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
             valueError: computed(() => {
-                const allErrors = getMyErrors(`/identifiers/${props.index}/value`).messages.filter(checkForInstancePath)
-                console.log('allErrors:', allErrors)
-                const selectError = allErrors.map((item) => {
-                    if (item.schemaPath.startsWith(`#/definitions/${props.type}/`)) {
+                const myErrors = getMyErrors(`/identifiers/${props.index}/value`).messages.filter(checkForInstancePath)
+                    .map((item) => {
                         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                        return `${props.type} ${item.message}`
-                    } else {
-                        return null
-                    }
-                    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                    // return `${item.message}`
-                }).filter((e) => { return e })
-                console.log('selectError:', selectError)
+                        // aaa
+                        return item.schemaPath.startsWith(`#/definitions/${props.type}`) ? `${props.type} ${item?.message}` : null
+                    }).filter((e) => { return e })
                 return {
-                    hasError: selectError.length > 0,
-                    messages: selectError
+                    hasError: myErrors.length > 0,
+                    messages: myErrors
                 }
             }),
             descriptionError: computed(() =>

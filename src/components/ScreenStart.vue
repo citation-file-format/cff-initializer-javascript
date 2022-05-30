@@ -22,7 +22,7 @@
                 standout
                 v-bind:model-value="title"
                 v-bind:error="titleError.hasError"
-                v-bind:error-message="titleError.messages.join(', ')"
+                v-bind:error-message="titleError.messages"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -35,7 +35,7 @@
                 outlined
                 v-bind:model-value="message"
                 v-bind:error="messageError.hasError"
-                v-bind:error-message="messageError.messages.join(', ')"
+                v-bind:error-message="messageError.messages"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             >
@@ -85,6 +85,7 @@ import StepperActions from 'components/StepperActions.vue'
 import { computed, defineComponent, onMounted } from 'vue'
 import { useCff } from '../store/cff'
 import { getMyErrors } from 'src/store/validator'
+import { ErrorObject } from 'ajv'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -118,10 +119,30 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            messageError: computed(() => getMyErrors('', ['message'])),
-            titleError: computed(() => {
+            messageErrorOLD: computed(() => getMyErrors('', ['message'])),
+            titleErrorOLD: computed(() => {
                 console.log(getMyErrors('', ['title']))
                 return getMyErrors('', ['title'])
+            }),
+            titleError: computed(() => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                const myErrors = getMyErrors('', ['title'])
+                // .map((item: ErrorObject) => {
+                //     return item.message
+                // }) as string[]
+                console.log('title-myErrors:', myErrors)
+                return {
+                    hasError: myErrors.hasError,
+                    messages: myErrors.messages.map((item) => item.message).join(', ')
+                }
+            }),
+            messageError: computed(() => {
+                const myErrors = getMyErrors('', ['message'])
+                console.log('message-myErrors:', myErrors)
+                return {
+                    hasError: myErrors.hasError,
+                    messages: myErrors.messages.map((item) => item.message).join(', ')
+                }
             })
         }
     }

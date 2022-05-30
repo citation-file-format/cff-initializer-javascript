@@ -61,7 +61,7 @@
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in authorsErrors.messages"
+                    v-for="(screenMessage, index) in authorsErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -86,6 +86,7 @@ import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { authorsErrors } from 'src/authors-errors'
+import { ErrorObject } from 'ajv'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -159,7 +160,11 @@ export default defineComponent({
             moveAuthorUp,
             removeAuthor,
             setAuthorField,
-            authorsErrors: computed(() => authorsErrors(authors.value))
+            authorsErrors: computed(() => {
+                return {
+                    messages: authorsErrors(authors.value).messages.map((item) => item.message).join('\n')
+                }
+            })
         }
     }
 })

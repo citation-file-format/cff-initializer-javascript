@@ -53,46 +53,48 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
         return true
     }
 
-    // const translateMessages = (item: ErrorObject) => {
-    //     if (item.params.missingProperty && item.keyword === 'required') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         item.message = `required-error: The ${item.params.missingProperty} field is required`
-    //     } else if (item.keyword === 'format') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         item.message = `format-error: Wrong ${item.params.format} format, please see the documentation.`
-    //         console.log('format-error:', item)
-    //     } else if (item.keyword === 'pattern') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         item.message = `pattern-error: The input should follow this pattern: ${item.params.pattern}`
-    //         console.log('pattern-error:', item)
-    //     } else if (item.keyword === 'minItems') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         item.message = `minItems-error: At least ${item.params.limit} ${item.instancePath.replace('/', '')} is needed.`
-    //     } else if (item.keyword === 'minLength') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         item.message = `minLength-error: At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
-    //     } else if (item.keyword === 'anyOf') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         item.message = `anyOf-error: At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
-    //     } else if (item.keyword === 'uniqueItems') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         item.message = `uniqueItems-error: There are duplicate ${item.instancePath.split('/').pop()}.`
-    //     } else if (item.keyword === 'enum') {
-    //         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    //         // item.message = `There are duplicate ${item.instancePath.split('/').pop()}.`
-    //         console.log('enum-error:', item)
-    //     } else {
-    //         console.log('other-error:', item)
-    //     }
-    //     return item
-    // }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    const translateMessages = (item: ErrorObject) => {
+        if (item.params.missingProperty && item.keyword === 'required') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `required-error: The ${item.params.missingProperty} field is required`
+        } else if (item.keyword === 'format') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `format-error: Wrong ${item.params.format} format, please see the documentation.`
+            console.log('format-error:', item)
+        } else if (item.keyword === 'pattern') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `pattern-error: The input should follow this pattern: ${item.params.pattern}`
+            console.log('pattern-error:', item)
+        } else if (item.keyword === 'minItems') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `minItems-error: At least ${item.params.limit} ${item.instancePath.replace('/', '')} is needed.`
+        } else if (item.keyword === 'minLength') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `minLength-error: At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
+        } else if (item.keyword === 'anyOf') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `anyOf-error: At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
+        } else if (item.keyword === 'uniqueItems') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            item.message = `uniqueItems-error: There are duplicate ${item.instancePath.split('/').pop()}.`
+        } else if (item.keyword === 'enum') {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            // item.message = `There are duplicate ${item.instancePath.split('/').pop()}.`
+            console.log('enum-error:', item)
+        } else {
+            console.log('other-error:', item)
+        }
+        return item
+    }
 
     const messages = errors.value
         .filter(checkForInstancePath)
         .filter(checkForArrayProblems)
         .filter(checkForObjectProblems)
         .filter(hideEntityErrorProblems)
-        // .map(translateMessages)
+        .map(translateMessages)
         // .map((item) => {
         //     return item.message
         // }) as string[]

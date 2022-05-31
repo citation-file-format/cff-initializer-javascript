@@ -1,7 +1,7 @@
 <template>
     <q-card
         bordered
-        v-bind:class="['bg-formcard', authorErrors.hasError ? 'red-border' : '']"
+        v-bind:class="['bg-formcard', false ? 'red-border' : '']"
         flat
         style="display: flex; flex-direction: row"
     >

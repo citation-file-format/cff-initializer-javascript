@@ -20,8 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:error="repositoryCodeError.hasError"
-                v-bind:error-message="repositoryCodeError.messages.join(', ')"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepositoryCode"
             />
 
@@ -35,8 +35,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:error="urlError.hasError"
-                v-bind:error-message="urlError.messages.join(', ')"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -50,8 +50,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="repositoryError.hasError"
-                v-bind:error-message="repositoryError.messages.join(', ')"
+                v-bind:error="error"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -65,8 +65,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:error="repositoryArtifactError.hasError"
-                v-bind:error-message="repositoryArtifactError.messages.join(', ')"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
         </div>
@@ -81,9 +81,8 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
-import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -105,11 +104,7 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl,
-            repositoryError: computed(() => getMyErrors('/repository')),
-            repositoryArtifactError: computed(() => getMyErrors('/repository-artifact')),
-            repositoryCodeError: computed(() => getMyErrors('/repository-code')),
-            urlError: computed(() => getMyErrors('/url'))
+            setUrl
         }
     }
 })

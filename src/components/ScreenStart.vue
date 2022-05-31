@@ -21,8 +21,8 @@
                 outlined
                 standout
                 v-bind:model-value="title"
-                v-bind:error="titleError.hasError"
-                v-bind:error-message="titleError.messages.join(', ')"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:update:modelValue="setTitle"
             />
             <p class="question">
@@ -34,8 +34,8 @@
                 label="message"
                 outlined
                 v-bind:model-value="message"
-                v-bind:error="messageError.hasError"
-                v-bind:error-message="messageError.messages.join(', ')"
+                v-bind:error="false"
+                v-bind:error-message="''"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             >
@@ -82,9 +82,8 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
-import { getMyErrors } from 'src/store/validator'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -114,9 +113,7 @@ export default defineComponent({
             ],
             setMessage,
             setTitle,
-            setType,
-            messageError: computed(() => getMyErrors('', ['message'])),
-            titleError: computed(() => getMyErrors('', ['title']))
+            setType
         }
     }
 })

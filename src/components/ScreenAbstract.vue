@@ -42,6 +42,7 @@ import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+
 export default defineComponent({
     name: 'ScreenAbstract',
     components: {

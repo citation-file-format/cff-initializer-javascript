@@ -43,9 +43,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { AuthorType } from 'src/types'
-import { authorErrors } from 'src/author-errors'
 
 export default defineComponent({
     name: 'AuthorCardViewing',
@@ -61,11 +60,6 @@ export default defineComponent({
         numAuthors: {
             type: Number,
             default: 0
-        }
-    },
-    setup (props) {
-        return {
-            authorErrors: computed(() => authorErrors(props.index))
         }
     },
     emits: ['editPressed', 'moveDown', 'moveUp']

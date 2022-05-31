@@ -50,7 +50,7 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="error"
+                v-bind:error="false"
                 v-bind:error-message="''"
                 v-on:update:modelValue="setRepository"
             />

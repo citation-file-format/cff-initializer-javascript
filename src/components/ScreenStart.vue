@@ -118,18 +118,8 @@ export default defineComponent({
             setMessage,
             setTitle,
             setType,
-            messageErrorOLD: computed(() => getMyErrors('', ['message'])),
-            titleErrorOLD: computed(() => {
-                console.log(getMyErrors('', ['title']))
-                return getMyErrors('', ['title'])
-            }),
             titleError: computed(() => {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                 const myErrors = getMyErrors('', ['title'])
-                // .map((item: ErrorObject) => {
-                //     return item.message
-                // }) as string[]
-                console.log('title-myErrors:', myErrors)
                 return {
                     hasError: myErrors.hasError,
                     messages: myErrors.messages.map((item) => item.message).join(', ')
@@ -137,7 +127,6 @@ export default defineComponent({
             }),
             messageError: computed(() => {
                 const myErrors = getMyErrors('', ['message'])
-                console.log('message-myErrors:', myErrors)
                 return {
                     hasError: myErrors.hasError,
                     messages: myErrors.messages.map((item) => item.message).join(', ')

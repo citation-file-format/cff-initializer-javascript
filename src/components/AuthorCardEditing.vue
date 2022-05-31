@@ -105,7 +105,7 @@
                 type="email"
                 v-bind:model-value="email"
                 v-bind:error="emailError.hasError"
-                v-bind:error-message="emailError.messages.join(', ')"
+                v-bind:error-message="emailError.messages"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
         </div>
@@ -253,7 +253,14 @@ export default defineComponent({
             nameParticleError: computed(() => getMyErrors(`/authors/${props.index}/name-particle`)),
             familyNamesError: computed(() => getMyErrors(`/authors/${props.index}/family-names`)),
             nameSuffixError: computed(() => getMyErrors(`/authors/${props.index}/name-suffix`)),
-            emailError: computed(() => getMyErrors(`/authors/${props.index}/email`)),
+            emailError: computed(() => {
+                const myErrors = getMyErrors(`/authors/${props.index}/email`)
+                console.log('emailErrors:', myErrors)
+                return {
+                    hasError: myErrors.hasError,
+                    messages: myErrors.messages.map((item) => item.message).join('\n')
+                }
+            }),
             affiliationError: computed(() => getMyErrors(`/authors/${props.index}/affiliation`)),
             orcidError: computed(() => getMyErrors(`/authors/${props.index}/orcid`)),
             authorErrors: computed(() => authorErrors(props.index))

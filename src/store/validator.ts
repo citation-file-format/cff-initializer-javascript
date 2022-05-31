@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useErrors } from './errors'
 import { ErrorObject } from 'ajv'
@@ -53,39 +54,37 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
         return true
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // eslint-disable-next-line no-unused-vars
     const translateMessages = (item: ErrorObject) => {
-        if (item.params.missingProperty && item.keyword === 'required') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `required-error: The ${item.params.missingProperty} field is required`
-        } else if (item.keyword === 'format') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `format-error: Wrong ${item.params.format} format, please see the documentation.`
-            console.log('format-error:', item)
-        } else if (item.keyword === 'pattern') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `pattern-error: The input should follow this pattern: ${item.params.pattern}`
-            console.log('pattern-error:', item)
-        } else if (item.keyword === 'minItems') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `minItems-error: At least ${item.params.limit} ${item.instancePath.replace('/', '')} is needed.`
-        } else if (item.keyword === 'minLength') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `minLength-error: At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
-        } else if (item.keyword === 'anyOf') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `anyOf-error: All the ${item.instancePath.split('/', 3)[1]} must be valid.`
-        } else if (item.keyword === 'uniqueItems') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            item.message = `uniqueItems-error: There are duplicate ${item.instancePath.split('/').pop()}.`
-        } else if (item.keyword === 'enum') {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        switch (item.keyword) {
+        case 'required':
+            item.message = `The ${item.params.missingProperty} field is required`
+            break
+        case 'format':
+            item.message = `Wrong ${item.params.format} format, please see the documentation.`
+            break
+        case 'pattern':
+            item.message = `The input should follow this pattern: ${item.params.pattern}`
+            break
+        case 'minItems':
+            item.message = `At least ${item.params.limit} ${item.instancePath.replace('/', '')} is needed.`
+            break
+        case 'minLength':
+            item.message = `At least ${item.params.limit} ${item.instancePath.split('/').pop()} is needed.`
+            break
+        case 'anyOf':
+            item.message = `All the ${item.instancePath.split('/', 3)[1]} must be valid.`
+            break
+        case 'uniqueItems':
+            item.message = `There are duplicate ${item.instancePath.split('/').pop()}.`
+            break
+        case 'enum':
             // item.message = `There are duplicate ${item.instancePath.split('/').pop()}.`
-            console.log('enum-error:', item)
-        } else {
-            console.log('other-error:', item)
+            item.message = 'enum-error'
+            break
+        default:
+            item.message = `Unknown error: ${item.message}`
         }
+
         return item
     }
 
@@ -95,9 +94,6 @@ export function getMyErrors (myPath: string, fieldNames?: string[]):messageError
         .filter(checkForObjectProblems)
         .filter(hideEntityErrorProblems)
         .map(translateMessages)
-        // .map((item) => {
-        //     return item.message
-        // }) as string[]
 
     return {
         hasError: messages.length > 0,

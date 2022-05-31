@@ -142,24 +142,13 @@
                 outlined
                 standout
                 title="The person's ORCID identifier."
+                v-bind:class="orcidErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="orcid"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="orcidErrors.length > 0"
+                v-bind:error-message="orcidErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
             />
         </div>
-
-        <q-banner
-            v-if="false"
-            class="bg-warning text-negative"
-        >
-            <div
-                v-bind:key="authindex"
-                v-for="(screenMessage, authindex) in []"
-            >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
 
         <q-card-actions align="right">
             <q-btn
@@ -196,9 +185,11 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, onUpdated, ref } from 'vue'
 import SchemaGuideLink from './SchemaGuideLink.vue'
+import { useValidation } from 'src/store/validation'
+import { byError, orcidQueries } from 'src/error-filtering'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'AuthorCardEditing',
@@ -245,8 +236,19 @@ export default defineComponent({
         onMounted(() => {
             givenNamesRef.value?.focus()
         })
+        onUpdated(() => {
+            const { setAuthors } = useStepperErrors()
+            setAuthors(document.getElementsByClassName('has-error').length > 0)
+        })
+        const { errors } = useValidation()
+        const orcidErrors = () => {
+            return orcidQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        }
         return {
-            givenNamesRef
+            givenNamesRef,
+            orcidErrors: computed(orcidErrors)
         }
     },
     emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown'],

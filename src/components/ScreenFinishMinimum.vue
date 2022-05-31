@@ -54,7 +54,7 @@ import { defineComponent, computed } from 'vue'
 import { useApp } from '../store/app'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { useErrors } from 'src/store/errors'
+import { useValidation } from 'src/store/validation'
 import DownloadButton from 'components/DownloadButton.vue'
 
 export default defineComponent({
@@ -66,7 +66,7 @@ export default defineComponent({
     },
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
-        const { errors } = useErrors()
+        const { errors } = useValidation()
         return {
             isValidCFF: computed(() => errors.value.length === 0),
             setShowAdvanced,

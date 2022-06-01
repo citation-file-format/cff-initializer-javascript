@@ -100,8 +100,8 @@ export default defineComponent({
     },
     setup () {
         onUpdated(() => {
-            const { setAuthors } = useStepperErrors()
-            setAuthors(document.getElementsByClassName('has-error').length > 0)
+            const { setErrorStateScreenAuthors } = useStepperErrors()
+            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
         })
         const { authors, setAuthors } = useCff()
         const { errors } = useValidation()
@@ -157,10 +157,15 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
+        const authorsErrors = computed(() => {
+            return authorsQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             addAuthor,
             authors,
-            authorsErrors: computed(() => authorsQueries.filter(byError(errors.value)).map(query => query.replace.message)),
+            authorsErrors,
             editingId,
             moveAuthorDown,
             moveAuthorUp,

@@ -148,3 +148,13 @@ export const keywordQueries = (index: number) => {
         }
     }] as ErrorQuery[]
 }
+
+export const dateReleasedQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/date-released',
+        schemaPath: '#/definitions/date/pattern'
+    },
+    replace: {
+        message: 'Use the YYYY-MM-DD format.'
+    }
+}]

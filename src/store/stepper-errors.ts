@@ -7,9 +7,9 @@ const state = ref({
 
 export const useStepperErrors = () => {
     return {
-        authors: computed(() => state.value.authors),
-        start: computed(() => state.value.start),
-        setAuthors: (hasErrors: boolean) => (state.value.authors = hasErrors),
-        setStart: (hasErrors: boolean) => (state.value.start = hasErrors)
+        errorStateScreenAuthors: computed(() => state.value.authors),
+        errorStateScreenStart: computed(() => state.value.start),
+        setErrorStateScreenAuthors: (hasErrors: boolean) => (state.value.authors = hasErrors),
+        setErrorStateScreenStart: (hasErrors: boolean) => (state.value.start = hasErrors)
     }
 }

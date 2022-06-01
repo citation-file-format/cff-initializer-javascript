@@ -52,9 +52,9 @@
             icon=""
             name="identifiers"
             title="Identifiers"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenIdentifiers ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenIdentifiers ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenIdentifiers"
             v-bind:order="3"
             v-if="showAdvanced"
             v-on:click="setStepName('identifiers')"
@@ -143,6 +143,7 @@ export default {
         const { showAdvanced, stepName, setStepName } = useApp()
         const {
             errorStateScreenAuthors,
+            errorStateScreenIdentifiers,
             errorStateScreenKeywords,
             errorStateScreenRelatedResources,
             errorStateScreenStart,
@@ -150,6 +151,7 @@ export default {
         } = useStepperErrors()
         return {
             errorStateScreenAuthors,
+            errorStateScreenIdentifiers,
             errorStateScreenKeywords,
             errorStateScreenRelatedResources,
             errorStateScreenStart,

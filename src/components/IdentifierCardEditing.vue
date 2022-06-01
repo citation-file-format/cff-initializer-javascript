@@ -9,8 +9,6 @@
                 <q-option-group
                     inline
                     type="radio"
-                    v-bind:error="false"
-                    v-bind:error-message="''"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
@@ -29,8 +27,9 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="false"
-                    v-bind:error-message="''"
+                    v-bind:class="identifierValueErrors.length > 0 ? 'has-error' : ''"
+                    v-bind:error="identifierValueErrors.length > 0"
+                    v-bind:error-message="identifierValueErrors.join(', ')"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                     ref="valueRef"
@@ -49,8 +48,6 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="false"
-                    v-bind:error-message="''"
                     v-bind:model-value="description"
                     v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
@@ -136,6 +133,10 @@ export default defineComponent({
         onMounted(() => {
             valueRef.value?.focus()
         })
+        const identifierValueErrors = computed(() => {
+            console.log(props.type)
+            return ['asdasd']
+        })
         return {
             valueRef,
             typeOptions: [
@@ -145,7 +146,8 @@ export default defineComponent({
                 { label: 'Other', value: 'other' }
             ],
             label: computed(() => linkInfo[props.type].label),
-            anchor: computed(() => linkInfo[props.type].anchor)
+            anchor: computed(() => linkInfo[props.type].anchor),
+            identifierValueErrors
         }
     },
     emits: [

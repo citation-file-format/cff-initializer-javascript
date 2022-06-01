@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue'
+import { defineComponent, nextTick, onUpdated, ref } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
@@ -86,6 +86,7 @@ import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { moveDown, moveUp } from '../updown'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',
@@ -97,6 +98,10 @@ export default defineComponent({
         IdentifierCardViewing
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenIdentifiers } = useStepperErrors()
+            setErrorStateScreenIdentifiers(document.getElementsByClassName('has-error').length > 0)
+        })
         const { identifiers, setIdentifiers } = useCff()
         const editingId = ref(-1)
         const addIdentifier = async () => {

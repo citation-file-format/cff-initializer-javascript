@@ -15,9 +15,9 @@
             icon=""
             name="start"
             title="Start"
-            v-bind:active-icon="startHasErrors ? 'warning' : 'edit'"
-            v-bind:color="startHasErrors ? 'negative' : 'primary'"
-            v-bind:error="startHasErrors"
+            v-bind:active-icon="errorStateScreenStart ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenStart ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenStart"
             v-bind:order="0"
             v-on:click="setStepName('start')"
         />
@@ -28,9 +28,9 @@
             icon=""
             name="authors"
             title="Authors"
-            v-bind:active-icon="authorsHasErrors ? 'warning' : 'edit'"
-            v-bind:color="authorsHasErrors ? 'negative' : 'primary'"
-            v-bind:error="authorsHasErrors"
+            v-bind:active-icon="errorStateScreenAuthors ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenAuthors ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenAuthors"
             v-bind:order="1"
             v-on:click="setStepName('authors')"
         />
@@ -141,13 +141,10 @@ import { useStepperErrors } from 'src/store/stepper-errors'
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-        const {
-            start: startHasErrors,
-            authors: authorsHasErrors
-        } = useStepperErrors()
+        const { errorStateScreenStart, errorStateScreenAuthors } = useStepperErrors()
         return {
-            authorsHasErrors,
-            startHasErrors,
+            errorStateScreenAuthors,
+            errorStateScreenStart,
             setStepName,
             showAdvanced,
             stepName

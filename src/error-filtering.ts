@@ -136,3 +136,15 @@ export const repositoryArtifactQueries: ErrorQuery[] = [{
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
     }
 }]
+
+export const keywordQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/keywords/${index}`,
+            schemaPath: '#/properties/keywords/items/minLength'
+        },
+        replace: {
+            message: 'Zero-length keywords are not allowed. Please type a keyword or remove the field entirely.'
+        }
+    }] as ErrorQuery[]
+}

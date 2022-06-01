@@ -19,6 +19,7 @@
                 label="repository-code"
                 outlined
                 standout
+                v-bind:class="repositoryCodeErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="repositoryCode"
                 v-bind:error="repositoryCodeErrors.length > 0"
                 v-bind:error-message="repositoryCodeErrors.join(', ')"
@@ -34,6 +35,7 @@
                 label="url"
                 outlined
                 standout
+                v-bind:class="urlErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="url"
                 v-bind:error="urlErrors.length > 0"
                 v-bind:error-message="urlErrors.join(', ')"
@@ -49,6 +51,7 @@
                 label="repository"
                 outlined
                 standout
+                v-bind:class="repositoryErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="repository"
                 v-bind:error="repositoryErrors.length > 0"
                 v-bind:error-message="repositoryErrors.join(', ')"
@@ -64,6 +67,7 @@
                 label="repository-artifact"
                 outlined
                 standout
+                v-bind:class="repositoryArtifactErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="repositoryArtifact"
                 v-bind:error="repositoryArtifactErrors.length > 0"
                 v-bind:error-message="repositoryArtifactErrors.join(', ')"
@@ -81,10 +85,11 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import { useCff } from '../store/cff'
 import { useValidation } from 'src/store/validation'
 import { byError, repositoryCodeQueries, repositoryQueries, urlQueries, repositoryArtifactQueries } from 'src/error-filtering'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -94,6 +99,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenRelatedResources } = useStepperErrors()
+            setErrorStateScreenRelatedResources(document.getElementsByClassName('has-error').length > 0)
+        })
         const {
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl

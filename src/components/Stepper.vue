@@ -66,9 +66,9 @@
             icon=""
             name="related-resources"
             title="Related resources"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenRelatedResources ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenRelatedResources ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenRelatedResources"
             v-bind:order="4"
             v-if="showAdvanced"
             v-on:click="setStepName('related-resources')"
@@ -141,9 +141,10 @@ import { useStepperErrors } from 'src/store/stepper-errors'
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-        const { errorStateScreenStart, errorStateScreenAuthors } = useStepperErrors()
+        const { errorStateScreenStart, errorStateScreenAuthors, errorStateScreenRelatedResources } = useStepperErrors()
         return {
             errorStateScreenAuthors,
+            errorStateScreenRelatedResources,
             errorStateScreenStart,
             setStepName,
             showAdvanced,

@@ -20,8 +20,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryCode"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryCodeErrors.length > 0"
+                v-bind:error-message="repositoryCodeErrors.join(', ')"
                 v-on:update:modelValue="setRepositoryCode"
             />
 
@@ -35,8 +35,8 @@
                 outlined
                 standout
                 v-bind:model-value="url"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="urlErrors.length > 0"
+                v-bind:error-message="urlErrors.join(', ')"
                 v-on:update:modelValue="setUrl"
             />
 
@@ -50,8 +50,8 @@
                 outlined
                 standout
                 v-bind:model-value="repository"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryErrors.length > 0"
+                v-bind:error-message="repositoryErrors.join(', ')"
                 v-on:update:modelValue="setRepository"
             />
 
@@ -65,8 +65,8 @@
                 outlined
                 standout
                 v-bind:model-value="repositoryArtifact"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="repositoryArtifactErrors.length > 0"
+                v-bind:error-message="repositoryArtifactErrors.join(', ')"
                 v-on:update:modelValue="setRepositoryArtifact"
             />
         </div>
@@ -81,8 +81,10 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCff } from '../store/cff'
+import { useValidation } from 'src/store/validation'
+import { byError, repositoryCodeQueries, repositoryQueries, urlQueries, repositoryArtifactQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'ScreenRelatedResources',
@@ -96,11 +98,36 @@ export default defineComponent({
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
         } = useCff()
+        const { errors } = useValidation()
+        const repositoryCodeErrors = computed(() => {
+            return repositoryCodeQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
+        const urlErrors = computed(() => {
+            return urlQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
+        const repositoryErrors = computed(() => {
+            return repositoryQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
+        const repositoryArtifactErrors = computed(() => {
+            return repositoryArtifactQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             repository,
+            repositoryErrors,
             repositoryArtifact,
+            repositoryArtifactErrors,
             repositoryCode,
+            repositoryCodeErrors,
             url,
+            urlErrors,
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,

@@ -96,3 +96,43 @@ export const emailQueries = (index: number) => {
         }
     }] as ErrorQuery[]
 }
+
+export const repositoryCodeQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/repository-code',
+        schemaPath: '#/definitions/url/pattern'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
+}]
+
+export const urlQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/url',
+        schemaPath: '#/definitions/url/pattern'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
+}]
+
+export const repositoryQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/repository',
+        schemaPath: '#/definitions/url/pattern'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
+}]
+
+export const repositoryArtifactQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/repository-artifact',
+        schemaPath: '#/definitions/url/pattern'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
+}]

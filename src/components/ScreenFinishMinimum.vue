@@ -67,6 +67,7 @@ export default defineComponent({
     setup () {
         const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
         const { errors } = useValidation()
+        console.log(errors.value)
         return {
             isValidCFF: computed(() => errors.value.length === 0),
             setShowAdvanced,

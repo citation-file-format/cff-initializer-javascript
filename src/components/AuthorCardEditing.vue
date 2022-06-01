@@ -104,8 +104,9 @@
                 title="The person's email address."
                 type="email"
                 v-bind:model-value="email"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:class="emailErrors.length > 0 ? 'has-error' : ''"
+                v-bind:error="emailErrors.length > 0"
+                v-bind:error-message="emailErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
         </div>
@@ -188,7 +189,7 @@
 import { computed, defineComponent, onMounted, onUpdated, ref } from 'vue'
 import SchemaGuideLink from './SchemaGuideLink.vue'
 import { useValidation } from 'src/store/validation'
-import { byError, orcidQueries } from 'src/error-filtering'
+import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
 import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
@@ -246,8 +247,14 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const emailErrors = computed(() => {
+            return emailQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             givenNamesRef,
+            emailErrors,
             orcidErrors
         }
     },

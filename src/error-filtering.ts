@@ -77,11 +77,22 @@ export const orcidQueries = (index: number) => {
     return [{
         find: {
             instancePath: `/authors/${index}/orcid`,
-            schemaPath: '#/definitions/orcid/pattern',
-            message: 'must match pattern "https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}"'
+            schemaPath: '#/definitions/orcid/pattern'
         },
         replace: {
             message: 'orcid has weird format'
+        }
+    }] as ErrorQuery[]
+}
+
+export const emailQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/authors/${index}/email`,
+            schemaPath: '#/definitions/email/pattern'
+        },
+        replace: {
+            message: 'Something like bob@gmail.com, akira@yahoo.co.jp, or t.achebe@live.org.za'
         }
     }] as ErrorQuery[]
 }

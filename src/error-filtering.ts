@@ -32,28 +32,6 @@ export const byError = (errors: ErrorObject[]) => {
     }
 }
 
-export const messageQueries: ErrorQuery[] = [{
-    find: {
-        instancePath: '',
-        message: 'must have required property \'message\'',
-        schemaPath: '#/required'
-    },
-    replace: {
-        message: '\'message\' is a required property'
-    }
-}]
-
-export const titleQueries: ErrorQuery[] = [{
-    find: {
-        instancePath: '',
-        message: 'must have required property \'title\'',
-        schemaPath: '#/required'
-    },
-    replace: {
-        message: '\'title\' is a required property'
-    }
-}]
-
 export const authorsQueries: ErrorQuery[] = [{
     find: {
         instancePath: '/authors',
@@ -73,17 +51,15 @@ export const authorsQueries: ErrorQuery[] = [{
     }
 }]
 
-export const orcidQueries = (index: number) => {
-    return [{
-        find: {
-            instancePath: `/authors/${index}/orcid`,
-            schemaPath: '#/definitions/orcid/pattern'
-        },
-        replace: {
-            message: 'Expected format is: https://orcid.org/0000-0000-0000-0000'
-        }
-    }] as ErrorQuery[]
-}
+export const dateReleasedQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/date-released',
+        schemaPath: '#/definitions/date/pattern'
+    },
+    replace: {
+        message: 'Use the YYYY-MM-DD format.'
+    }
+}]
 
 export const emailQueries = (index: number) => {
     return [{
@@ -97,9 +73,44 @@ export const emailQueries = (index: number) => {
     }] as ErrorQuery[]
 }
 
-export const repositoryCodeQueries: ErrorQuery[] = [{
+export const keywordQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/keywords/${index}`,
+            schemaPath: '#/properties/keywords/items/minLength'
+        },
+        replace: {
+            message: 'Zero-length keywords are not allowed. Please type a keyword or remove the field entirely.'
+        }
+    }] as ErrorQuery[]
+}
+
+export const messageQueries: ErrorQuery[] = [{
     find: {
-        instancePath: '/repository-code',
+        instancePath: '',
+        message: 'must have required property \'message\'',
+        schemaPath: '#/required'
+    },
+    replace: {
+        message: '\'message\' is a required property'
+    }
+}]
+
+export const orcidQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/authors/${index}/orcid`,
+            schemaPath: '#/definitions/orcid/pattern'
+        },
+        replace: {
+            message: 'Expected format is: https://orcid.org/0000-0000-0000-0000'
+        }
+    }] as ErrorQuery[]
+}
+
+export const repositoryArtifactQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/repository-artifact',
         schemaPath: '#/definitions/url/pattern'
     },
     replace: {
@@ -107,9 +118,9 @@ export const repositoryCodeQueries: ErrorQuery[] = [{
     }
 }]
 
-export const urlQueries: ErrorQuery[] = [{
+export const repositoryCodeQueries: ErrorQuery[] = [{
     find: {
-        instancePath: '/url',
+        instancePath: '/repository-code',
         schemaPath: '#/definitions/url/pattern'
     },
     replace: {
@@ -127,34 +138,23 @@ export const repositoryQueries: ErrorQuery[] = [{
     }
 }]
 
-export const repositoryArtifactQueries: ErrorQuery[] = [{
+export const titleQueries: ErrorQuery[] = [{
     find: {
-        instancePath: '/repository-artifact',
+        instancePath: '',
+        message: 'must have required property \'title\'',
+        schemaPath: '#/required'
+    },
+    replace: {
+        message: '\'title\' is a required property'
+    }
+}]
+
+export const urlQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/url',
         schemaPath: '#/definitions/url/pattern'
     },
     replace: {
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
-    }
-}]
-
-export const keywordQueries = (index: number) => {
-    return [{
-        find: {
-            instancePath: `/keywords/${index}`,
-            schemaPath: '#/properties/keywords/items/minLength'
-        },
-        replace: {
-            message: 'Zero-length keywords are not allowed. Please type a keyword or remove the field entirely.'
-        }
-    }] as ErrorQuery[]
-}
-
-export const dateReleasedQueries: ErrorQuery[] = [{
-    find: {
-        instancePath: '/date-released',
-        schemaPath: '#/definitions/date/pattern'
-    },
-    replace: {
-        message: 'Use the YYYY-MM-DD format.'
     }
 }]

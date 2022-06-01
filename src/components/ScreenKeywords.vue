@@ -65,10 +65,11 @@ import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
-import { defineComponent, nextTick } from 'vue'
+import { defineComponent, nextTick, onUpdated } from 'vue'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from '../store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'ScreenKeywords',
@@ -79,6 +80,10 @@ export default defineComponent({
         Keyword
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenKeywords } = useStepperErrors()
+            setErrorStateScreenKeywords(document.getElementsByClassName('has-error').length > 0)
+        })
         const { keywords, setKeywords } = useCff()
         const addKeyword = async () => {
             let newKeywords:string[]

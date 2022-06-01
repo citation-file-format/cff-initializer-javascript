@@ -6,6 +6,7 @@
                 dense
                 outlined
                 placeholder="Type a keyword"
+                v-bind:class="keywordErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="keyword"
                 v-bind:error="keywordErrors.length > 0"
                 v-bind:error-message="keywordErrors.join(', ')"

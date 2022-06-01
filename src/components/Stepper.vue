@@ -89,9 +89,9 @@
             icon=""
             name="keywords"
             title="Keywords"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenKeywords ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenKeywords ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenKeywords"
             v-bind:order="6"
             v-if="showAdvanced"
             v-on:click="setStepName('keywords')"
@@ -141,9 +141,15 @@ import { useStepperErrors } from 'src/store/stepper-errors'
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-        const { errorStateScreenStart, errorStateScreenAuthors, errorStateScreenRelatedResources } = useStepperErrors()
+        const {
+            errorStateScreenAuthors,
+            errorStateScreenKeywords,
+            errorStateScreenRelatedResources,
+            errorStateScreenStart
+        } = useStepperErrors()
         return {
             errorStateScreenAuthors,
+            errorStateScreenKeywords,
             errorStateScreenRelatedResources,
             errorStateScreenStart,
             setStepName,

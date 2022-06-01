@@ -67,17 +67,17 @@ export default defineComponent({
     },
     setup (props) {
         onUpdated(() => {
-            const { setAuthors } = useStepperErrors()
-            setAuthors(document.getElementsByClassName('has-error').length > 0)
+            const { setErrorStateScreenAuthors } = useStepperErrors()
+            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
         })
         const { errors } = useValidation()
-        const orcidErrors = () => {
+        const orcidErrors = computed(() => {
             return orcidQueries(props.index)
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
-        }
+        })
         return {
-            orcidErrors: computed(orcidErrors)
+            orcidErrors
         }
     },
     emits: ['editPressed', 'moveDown', 'moveUp']

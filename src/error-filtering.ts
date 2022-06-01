@@ -80,7 +80,7 @@ export const orcidQueries = (index: number) => {
             schemaPath: '#/definitions/orcid/pattern'
         },
         replace: {
-            message: 'orcid has weird format'
+            message: 'Expected format is: https://orcid.org/0000-0000-0000-0000'
         }
     }] as ErrorQuery[]
 }

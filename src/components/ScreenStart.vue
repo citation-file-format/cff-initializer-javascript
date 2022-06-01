@@ -99,8 +99,8 @@ export default defineComponent({
     },
     setup () {
         onUpdated(() => {
-            const { setStart } = useStepperErrors()
-            setStart(document.getElementsByClassName('has-error').length > 0)
+            const { setErrorStateScreenStart } = useStepperErrors()
+            setErrorStateScreenStart(document.getElementsByClassName('has-error').length > 0)
         })
         const { message, title, type, setMessage, setTitle, setType } = useCff()
         const { errors } = useValidation()
@@ -112,22 +112,22 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
-        const messageErrors = () => {
+        const messageErrors = computed(() => {
             return messageQueries
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
-        }
-        const titleErrors = () => {
+        })
+        const titleErrors = computed(() => {
             return titleQueries
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
-        }
+        })
         return {
             message,
-            messageErrors: computed(messageErrors),
+            messageErrors,
             messageOptions,
             title,
-            titleErrors: computed(titleErrors),
+            titleErrors,
             type,
             typeOptions: [
                 { label: 'Software', value: 'software' },

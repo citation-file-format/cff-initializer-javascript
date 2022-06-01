@@ -26,8 +26,6 @@
                 use-input
                 v-bind:model-value="license"
                 v-bind:options="options"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:filter="licenseFilterFunction"
                 v-on:update:model-value="setLicense"
             >

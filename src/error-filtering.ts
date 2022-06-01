@@ -1,9 +1,9 @@
 import { ErrorObject } from 'ajv'
 
 type ErrorQueryFind = {
-    [key: string]: string
+    [key: string]: string | undefined
     instancePath: string
-    message: string
+    message?: string | undefined
     schemaPath: string
 }
 type ErrorQueryReplace = {
@@ -17,9 +17,16 @@ export type ErrorQuery = {
 export const byError = (errors: ErrorObject[]) => {
     return (query: ErrorQuery) => {
         const matches = (error: ErrorObject) => {
-            return query.find.instancePath === error.instancePath &&
-                query.find.message === error.message &&
-                query.find.schemaPath === error.schemaPath
+            if (query.find.instancePath !== error.instancePath) {
+                return false
+            }
+            if (query.find.schemaPath !== error.schemaPath) {
+                return false
+            }
+            if (Object.keys(query.find).includes('message') && query.find.message !== error.message) {
+                return false
+            }
+            return true
         }
         return errors.some(matches)
     }
@@ -55,6 +62,14 @@ export const authorsQueries: ErrorQuery[] = [{
     },
     replace: {
         message: 'Use the button to add an author.'
+    }
+}, {
+    find: {
+        instancePath: '/authors',
+        schemaPath: '#/properties/authors/uniqueItems'
+    },
+    replace: {
+        message: 'There are duplicate authors.'
     }
 }]
 

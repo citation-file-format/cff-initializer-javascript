@@ -113,9 +113,9 @@
             icon=""
             name="version-specific"
             title="Version specific"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenVersionSpecific ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenVersionSpecific ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenVersionSpecific"
             v-bind:order="8"
             v-if="showAdvanced"
             v-on:click="setStepName('version-specific')"
@@ -145,13 +145,15 @@ export default {
             errorStateScreenAuthors,
             errorStateScreenKeywords,
             errorStateScreenRelatedResources,
-            errorStateScreenStart
+            errorStateScreenStart,
+            errorStateScreenVersionSpecific
         } = useStepperErrors()
         return {
             errorStateScreenAuthors,
             errorStateScreenKeywords,
             errorStateScreenRelatedResources,
             errorStateScreenStart,
+            errorStateScreenVersionSpecific,
             setStepName,
             showAdvanced,
             stepName

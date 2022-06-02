@@ -149,18 +149,6 @@
             />
         </div>
 
-        <q-banner
-            v-if="false"
-            class="bg-warning text-negative"
-        >
-            <div
-                v-bind:key="authindex"
-                v-for="(screenMessage, authindex) in []"
-            >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
-
         <q-card-actions align="right">
             <q-btn
                 color="blue"

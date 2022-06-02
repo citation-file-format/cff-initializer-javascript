@@ -24,6 +24,7 @@
                     </q-label>
                 </div>
                 <q-input
+                    autofocus
                     bg-color="white"
                     label="Value"
                     outlined
@@ -92,7 +93,7 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 
 export default defineComponent({
@@ -133,9 +134,6 @@ export default defineComponent({
             other: { label: 'identifier', anchor: '#definitionsidentifier' }
         }
         const valueRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            valueRef.value?.focus()
-        })
         return {
             valueRef,
             typeOptions: [

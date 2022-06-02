@@ -2,6 +2,7 @@
     <div class="keyword">
         <div class="keyword-input">
             <q-input
+                autofocus
                 bg-color="white"
                 dense
                 outlined
@@ -42,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
     name: 'KeywordCard',
@@ -62,9 +63,6 @@ export default defineComponent({
     },
     setup () {
         const keywordRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            keywordRef.value?.focus()
-        })
         return {
             keywordRef
         }

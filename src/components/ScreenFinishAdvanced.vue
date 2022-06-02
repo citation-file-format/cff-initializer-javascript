@@ -76,9 +76,6 @@ export default defineComponent({
                 reset()
                 setShowAdvanced(false)
                 await setStepName('start')
-            },
-            backToForm: async () => {
-                await setStepName('version-specific')
             }
         }
     }

@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from '../types'
+import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from 'src/types'
 
 const getInitialData = () => {
     return {

@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { useApp } from '../store/app'
+import { useApp } from 'src/store/app'
 
 import { defineComponent } from 'vue'
 

@@ -51,7 +51,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useApp } from '../store/app'
+import { useApp } from 'src/store/app'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { useValidation } from 'src/store/validation'

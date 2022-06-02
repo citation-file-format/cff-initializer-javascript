@@ -5,8 +5,8 @@ import {
     createWebHashHistory,
     createWebHistory
 } from 'vue-router'
-import routes from './routes'
-import { useApp, StepNameType } from '../store/app'
+import routes from 'src/router/routes'
+import { useApp, StepNameType } from 'src/store/app'
 
 /*
  * If not building with SSR mode, you can

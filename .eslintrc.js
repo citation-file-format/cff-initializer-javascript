@@ -103,6 +103,9 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
     'prefer-promise-reject-errors': 'off',
+    'no-restricted-imports': ['error', {
+        'patterns': ['.*']
+    }],
 
     // TypeScript
     quotes: ['warn', 'single', { avoidEscape: true }],

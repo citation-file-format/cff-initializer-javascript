@@ -91,6 +91,8 @@
 import { IdentifierTypeType } from '../types'
 import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import { byError, identifierValueQueries } from 'src/error-filtering'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -120,6 +122,7 @@ export default defineComponent({
         SchemaGuideLink
     },
     setup (props) {
+        const { errors } = useValidation()
         const linkInfo = {
             doi: { label: 'DOI', anchor: '#definitionsdoi' },
             url: { label: 'URL', anchor: '#definitionsurl' },
@@ -134,8 +137,9 @@ export default defineComponent({
             valueRef.value?.focus()
         })
         const identifierValueErrors = computed(() => {
-            console.log(props.type)
-            return ['asdasd']
+            return identifierValueQueries(props.index, ['doi', 'url', 'swh', 'other'].indexOf(props.type))
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
         })
         return {
             valueRef,

@@ -57,12 +57,12 @@
             </q-btn>
 
             <q-banner
-                v-if="false"
-                class="bg-warning text-negative"
+                v-if="identifiersErrors.length > 0"
+                v-bind:class="['bg-warning', 'text-negative', identifiersErrors.length > 0 ? 'has-error' : '']"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in []"
+                    v-for="(screenMessage, index) in identifiersErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, onUpdated, ref } from 'vue'
+import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
@@ -86,6 +86,8 @@ import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { moveDown, moveUp } from '../updown'
+import { useValidation } from 'src/store/validation'
+import { byError, identifiersQueries } from 'src/error-filtering'
 import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
@@ -103,6 +105,7 @@ export default defineComponent({
             setErrorStateScreenIdentifiers(document.getElementsByClassName('has-error').length > 0)
         })
         const { identifiers, setIdentifiers } = useCff()
+        const { errors } = useValidation()
         const editingId = ref(-1)
         const addIdentifier = async () => {
             let newIdentifiers:IdentifierType[]
@@ -175,11 +178,16 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
-
+        const identifiersErrors = computed(() => {
+            return identifiersQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             addIdentifier,
             editingId,
             identifiers,
+            identifiersErrors,
             moveIdentifierUp,
             moveIdentifierDown,
             removeIdentifier,

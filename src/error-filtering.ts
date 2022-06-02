@@ -2,9 +2,9 @@ import { ErrorObject } from 'ajv'
 
 type ErrorQueryFind = {
     [key: string]: string | undefined
-    instancePath: string
+    instancePath?: string | undefined
     message?: string | undefined
-    schemaPath: string
+    schemaPath?: string | undefined
 }
 type ErrorQueryReplace = {
     message: string
@@ -17,13 +17,14 @@ export type ErrorQuery = {
 export const byError = (errors: ErrorObject[]) => {
     return (query: ErrorQuery) => {
         const matches = (error: ErrorObject) => {
-            if (query.find.instancePath !== error.instancePath) {
+            const keys = Object.keys(query.find)
+            if (keys.includes('instancePath') && query.find.instancePath !== error.instancePath) {
                 return false
             }
-            if (query.find.schemaPath !== error.schemaPath) {
+            if (keys.includes('schemaPath') && query.find.schemaPath !== error.schemaPath) {
                 return false
             }
-            if (Object.keys(query.find).includes('message') && query.find.message !== error.message) {
+            if (keys.includes('message') && query.find.message !== error.message) {
                 return false
             }
             return true
@@ -72,6 +73,57 @@ export const emailQueries = (index: number) => {
         }
     }] as ErrorQuery[]
 }
+
+export const identifierValueQueries = (index: number, typeIndex: number) => {
+    return [[
+        {
+            find: {
+                instancePath: `/identifiers/${index}/value`,
+                schemaPath: '#/definitions/doi/pattern'
+            },
+            replace: {
+                message: 'e.g. \'10.5281/zenodo.1003149\' or \'10.7717/peerj-cs.86\'. Does not include the resolver URL.'
+            }
+        },
+        {
+            find: {
+                instancePath: `/identifiers/${index}/value`,
+                schemaPath: '#/definitions/url/pattern'
+            },
+            replace: {
+                message: 'e.g. \'https://www.example.com\' (http, ftp, sftp hyperlinks are also supported)'
+            }
+        },
+        {
+            find: {
+                instancePath: `/identifiers/${index}/value`,
+                schemaPath: '#/definitions/swh-identifier/pattern'
+            },
+            replace: {
+                message: 'e.g. \'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d\'. Besides \'rev\', other allowed values are: \'snp\', \'rel\', \'dir\', and \'cnt\'.'
+            }
+        },
+        {
+            find: {
+                instancePath: `/identifiers/${index}/value`,
+                schemaPath: '#/anyOf/3/properties/value/minLength'
+            },
+            replace: {
+                message: 'Zero-length identifier values are not allowed. Please type an identifier value or remove the identifier entirely.'
+            }
+        }
+    ][typeIndex]] as ErrorQuery[]
+}
+
+export const identifiersQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/identifiers',
+        schemaPath: '#/properties/identifiers/uniqueItems'
+    },
+    replace: {
+        message: 'There are duplicate identifiers.'
+    }
+}]
 
 export const keywordQueries = (index: number) => {
     return [{

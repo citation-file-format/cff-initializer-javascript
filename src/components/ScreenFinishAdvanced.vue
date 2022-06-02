@@ -71,7 +71,6 @@ export default defineComponent({
         const { reset: resetCffData } = useCff()
         const { reset: resetStepperErrorState } = useStepperErrors()
         const { errors } = useValidation()
-        console.log(errors.value)
         return {
             isValidCFF: computed(() => errors.value.length === 0),
             createAnother: async () => {

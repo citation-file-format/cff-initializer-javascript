@@ -106,6 +106,13 @@ module.exports = {
     'no-restricted-imports': ['error', {
         'patterns': ['.*']
     }],
+    'sort-imports': ['error', {
+        'ignoreCase': false,
+        'ignoreDeclarationSort': false,
+        'ignoreMemberSort': false,
+        'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single'],
+        'allowSeparatedGroups': false
+    }],
 
     // TypeScript
     quotes: ['warn', 'single', { avoidEscape: true }],

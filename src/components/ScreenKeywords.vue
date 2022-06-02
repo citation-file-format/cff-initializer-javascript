@@ -61,6 +61,9 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, nextTick } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
+import Keyword from 'components/Keyword.vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'

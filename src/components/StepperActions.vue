@@ -31,9 +31,8 @@
 </template>
 
 <script lang="ts">
-import { useApp } from 'src/store/app'
-
 import { defineComponent } from 'vue'
+import { useApp } from 'src/store/app'
 
 export default defineComponent({
     name: 'StepperActions',

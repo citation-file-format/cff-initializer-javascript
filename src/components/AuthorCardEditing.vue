@@ -240,7 +240,7 @@ export default defineComponent({
             default: 0
         }
     },
-    setup (props) {
+    setup () {
         const givenNamesRef = ref<HTMLElement | null>(null)
         onMounted(() => {
             givenNamesRef.value?.focus()

@@ -73,6 +73,11 @@ module.exports = {
   rules: {
     'vue/v-on-style': ['error', 'longform'],
     'vue/v-bind-style': ['error', 'longform'],
+    'vue/no-unused-properties': ['error', {
+        'groups': ['props', 'data', 'computed', 'methods', 'setup'],
+        'deepData': true,
+        'ignorePublicMembers': false
+      }],
     'indent': ['error', 4],
     'vue/html-indent': ['error', 4, {
       'attribute': 1,

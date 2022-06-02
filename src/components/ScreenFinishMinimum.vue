@@ -65,12 +65,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
+        const { setShowAdvanced, setStepName } = useApp()
         const { errors } = useErrors()
         return {
             isValidCFF: computed(() => errors.value.length === 0),
-            setShowAdvanced,
-            navigatePrevious,
             showAdvanced: async () => {
                 setShowAdvanced(true)
                 await setStepName('identifiers')

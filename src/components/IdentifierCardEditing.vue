@@ -18,7 +18,7 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <q-label class="question">
                         What is the value of the {{ label }}?
                         <SchemaGuideLink v-bind:anchor="anchor" />
                     </q-label>
@@ -38,7 +38,7 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <q-label class="question">
                         What is the description for the {{ label }}?
                         <SchemaGuideLink anchor="#definitionsidentifier-description" />
                     </q-label>

@@ -5,7 +5,7 @@
         class="bg-formcard q-pa-md"
     >
         <div class="row">
-            <q-label class="text-dark">
+            <q-label class="question">
                 The person's given names
                 <SchemaGuideLink anchor="#definitionspersongiven-names" />
             </q-label>
@@ -27,7 +27,7 @@
             />
         </div>
         <div class="row">
-            <q-label class="text-dark">
+            <q-label class="question">
                 The person's last names, split into parts
             </q-label>
         </div>
@@ -88,7 +88,7 @@
             </q-input>
         </div>
         <div class="row">
-            <q-label class="text-dark">
+            <q-label class="question">
                 The person's email address
                 <SchemaGuideLink anchor="#definitionsperson-email" />
             </q-label>
@@ -110,11 +110,11 @@
             />
         </div>
         <div class="row">
-            <q-label class="text-dark col">
+            <q-label class="question col">
                 The person's affiliation
                 <SchemaGuideLink anchor="#definitionsperson-affiliation" />
             </q-label>
-            <q-label class="text-dark col">
+            <q-label class="question col">
                 The person's ORCID
                 <SchemaGuideLink anchor="#definitionsperson-orcid" />
             </q-label>

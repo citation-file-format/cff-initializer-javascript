@@ -56,12 +56,12 @@
             </q-btn>
 
             <q-banner
-                v-if="false"
-                class="bg-warning text-negative"
+                v-if="authorsErrors.length > 0"
+                v-bind:class="['bg-warning', 'text-negative', authorsErrors.length > 0 ? 'has-error' : '']"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in []"
+                    v-for="(screenMessage, index) in authorsErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue'
+import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
@@ -85,6 +85,9 @@ import { AuthorType } from 'src/types'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from 'src/store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
+import { useValidation } from 'src/store/validation'
+import { byError, authorsQueries } from 'src/error-filtering'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -96,7 +99,12 @@ export default defineComponent({
         AuthorCardViewing
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenAuthors } = useStepperErrors()
+            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
+        })
         const { authors, setAuthors } = useCff()
+        const { errors } = useValidation()
         const editingId = ref(0)
         const addAuthor = async () => {
             let newAuthors:AuthorType[]
@@ -119,7 +127,7 @@ export default defineComponent({
                 setAuthors(newAuthors)
                 editingId.value = -1
                 if (Array.isArray(newAuthors) && newAuthors.length === 0) {
-                    setAuthors(undefined)
+                    setAuthors([])
                 }
             }
         }
@@ -149,10 +157,15 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
-
+        const authorsErrors = computed(() => {
+            return authorsQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             addAuthor,
             authors,
+            authorsErrors,
             editingId,
             moveAuthorDown,
             moveAuthorUp,

@@ -49,9 +49,10 @@
                 standout
                 style="width: 33.33%"
                 today-btn="true"
+                v-bind:class="dateReleasedErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="dateReleased"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="dateReleasedErrors.length > 0"
+                v-bind:error-message="dateReleasedErrors.join(', ')"
                 v-on:update:modelValue="setDateReleased"
             >
                 <template #append>
@@ -94,8 +95,11 @@
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import { useCff } from '../store/cff'
+import { useValidation } from 'src/store/validation'
+import { byError, dateReleasedQueries } from 'src/error-filtering'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'ScreenVersionSpecific',
@@ -105,6 +109,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenVersionSpecific } = useStepperErrors()
+            setErrorStateScreenVersionSpecific(document.getElementsByClassName('has-error').length > 0)
+        })
         const initializeDate = () => {
             const today = new Date()
             const y = today.getFullYear()
@@ -113,9 +121,16 @@ export default defineComponent({
             return `${y}-${m}-${d}`
         }
         const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
+        const { errors } = useValidation()
+        const dateReleasedErrors = computed(() => {
+            return dateReleasedQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             commit,
             dateReleased,
+            dateReleasedErrors,
             initializeDate,
             version,
             setCommit,

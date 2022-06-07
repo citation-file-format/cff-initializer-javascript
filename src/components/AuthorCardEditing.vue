@@ -105,8 +105,9 @@
                 title="The person's email address."
                 type="email"
                 v-bind:model-value="email"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:class="emailErrors.length > 0 ? 'has-error' : ''"
+                v-bind:error="emailErrors.length > 0"
+                v-bind:error-message="emailErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
             />
         </div>
@@ -143,9 +144,10 @@
                 outlined
                 standout
                 title="The person's ORCID identifier."
+                v-bind:class="orcidErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="orcid"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="orcidErrors.length > 0"
+                v-bind:error-message="orcidErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
             />
         </div>
@@ -185,9 +187,11 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import SchemaGuideLink from './SchemaGuideLink.vue'
+import { useValidation } from 'src/store/validation'
+import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'AuthorCardEditing',
@@ -229,10 +233,25 @@ export default defineComponent({
             default: 0
         }
     },
-    setup () {
-        const givenNamesRef = ref<HTMLElement | null>(null)
+    setup (props) {
+        onUpdated(() => {
+            const { setErrorStateScreenAuthors } = useStepperErrors()
+            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
+        })
+        const { errors } = useValidation()
+        const orcidErrors = computed(() => {
+            return orcidQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
+        const emailErrors = computed(() => {
+            return emailQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
-            givenNamesRef
+            emailErrors,
+            orcidErrors
         }
     },
     emits: ['closePressed', 'removePressed', 'update', 'moveUp', 'moveDown'],

@@ -9,8 +9,6 @@
                 <q-option-group
                     inline
                     type="radio"
-                    v-bind:error="false"
-                    v-bind:error-message="''"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
@@ -30,8 +28,9 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="false"
-                    v-bind:error-message="''"
+                    v-bind:class="identifierValueErrors.length > 0 ? 'has-error' : ''"
+                    v-bind:error="identifierValueErrors.length > 0"
+                    v-bind:error-message="identifierValueErrors.join(', ')"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                     ref="valueRef"
@@ -50,8 +49,6 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="false"
-                    v-bind:error-message="''"
                     v-bind:model-value="description"
                     v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
@@ -93,8 +90,10 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import { byError, identifierValueQueries } from 'src/error-filtering'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -124,6 +123,7 @@ export default defineComponent({
         SchemaGuideLink
     },
     setup (props) {
+        const { errors } = useValidation()
         const linkInfo = {
             doi: { label: 'DOI', anchor: '#definitionsdoi' },
             url: { label: 'URL', anchor: '#definitionsurl' },
@@ -133,9 +133,12 @@ export default defineComponent({
             },
             other: { label: 'identifier', anchor: '#definitionsidentifier' }
         }
-        const valueRef = ref<HTMLElement | null>(null)
+        const identifierValueErrors = computed(() => {
+            return identifierValueQueries(props.index, ['doi', 'url', 'swh', 'other'].indexOf(props.type))
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
-            valueRef,
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },
@@ -143,7 +146,8 @@ export default defineComponent({
                 { label: 'Other', value: 'other' }
             ],
             label: computed(() => linkInfo[props.type].label),
-            anchor: computed(() => linkInfo[props.type].anchor)
+            anchor: computed(() => linkInfo[props.type].anchor),
+            identifierValueErrors
         }
     },
     emits: [

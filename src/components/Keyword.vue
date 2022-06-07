@@ -7,9 +7,10 @@
                 dense
                 outlined
                 placeholder="Type a keyword"
+                v-bind:class="keywordErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="keyword"
-                v-bind:error="false"
-                v-bind:error-message="''"
+                v-bind:error="keywordErrors.length > 0"
+                v-bind:error-message="keywordErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
                 ref="keywordRef"
             />
@@ -43,10 +44,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { useValidation } from 'src/store/validation'
+import { byError, keywordQueries } from 'src/error-filtering'
 
 export default defineComponent({
-    name: 'KeywordCard',
+    name: 'Keyword',
     props: {
         keyword: {
             type: String,
@@ -61,10 +64,15 @@ export default defineComponent({
             default: 0
         }
     },
-    setup () {
-        const keywordRef = ref<HTMLElement | null>(null)
+    setup (props) {
+        const { errors } = useValidation()
+        const keywordErrors = computed(() => {
+            return keywordQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
-            keywordRef
+            keywordErrors
         }
     },
     emits: ['moveDown', 'moveUp', 'removePressed', 'update']

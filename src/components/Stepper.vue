@@ -15,9 +15,9 @@
             icon=""
             name="start"
             title="Start"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenStart ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenStart ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenStart"
             v-bind:order="0"
             v-on:click="setStepName('start')"
         />
@@ -28,9 +28,9 @@
             icon=""
             name="authors"
             title="Authors"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenAuthors ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenAuthors ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenAuthors"
             v-bind:order="1"
             v-on:click="setStepName('authors')"
         />
@@ -52,9 +52,9 @@
             icon=""
             name="identifiers"
             title="Identifiers"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenIdentifiers ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenIdentifiers ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenIdentifiers"
             v-bind:order="3"
             v-if="showAdvanced"
             v-on:click="setStepName('identifiers')"
@@ -66,9 +66,9 @@
             icon=""
             name="related-resources"
             title="Related resources"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenRelatedResources ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenRelatedResources ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenRelatedResources"
             v-bind:order="4"
             v-if="showAdvanced"
             v-on:click="setStepName('related-resources')"
@@ -89,9 +89,9 @@
             icon=""
             name="keywords"
             title="Keywords"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenKeywords ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenKeywords ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenKeywords"
             v-bind:order="6"
             v-if="showAdvanced"
             v-on:click="setStepName('keywords')"
@@ -113,9 +113,9 @@
             icon=""
             name="version-specific"
             title="Version specific"
-            v-bind:active-icon="false ? 'warning' : 'edit'"
-            v-bind:color="false ? 'negative' : 'primary'"
-            v-bind:error="false"
+            v-bind:active-icon="errorStateScreenVersionSpecific ? 'warning' : 'edit'"
+            v-bind:color="errorStateScreenVersionSpecific ? 'negative' : 'primary'"
+            v-bind:error="errorStateScreenVersionSpecific"
             v-bind:order="8"
             v-if="showAdvanced"
             v-on:click="setStepName('version-specific')"
@@ -136,11 +136,26 @@
 <script lang="ts">
 
 import { useApp } from '../store/app'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
+        const {
+            errorStateScreenAuthors,
+            errorStateScreenIdentifiers,
+            errorStateScreenKeywords,
+            errorStateScreenRelatedResources,
+            errorStateScreenStart,
+            errorStateScreenVersionSpecific
+        } = useStepperErrors()
         return {
+            errorStateScreenAuthors,
+            errorStateScreenIdentifiers,
+            errorStateScreenKeywords,
+            errorStateScreenRelatedResources,
+            errorStateScreenStart,
+            errorStateScreenVersionSpecific,
             setStepName,
             showAdvanced,
             stepName

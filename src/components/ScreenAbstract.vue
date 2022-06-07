@@ -24,8 +24,6 @@
                 standout
                 type="textarea"
                 v-bind:model-value="abstract"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:update:modelValue="setAbstract"
             />
         </div>

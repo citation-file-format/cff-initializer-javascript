@@ -55,8 +55,9 @@ import { useApp } from '../store/app'
 import { useCff } from '../store/cff'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { useErrors } from 'src/store/errors'
+import { useValidation } from 'src/store/validation'
 import DownloadButton from 'components/DownloadButton.vue'
+import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default defineComponent({
     name: 'ScreenFinishAdvanced',
@@ -67,13 +68,14 @@ export default defineComponent({
     },
     setup () {
         const { setStepName, setShowAdvanced } = useApp()
-        const { reset } = useCff()
-        const { errors } = useErrors()
-
+        const { reset: resetCffData } = useCff()
+        const { reset: resetStepperErrorState } = useStepperErrors()
+        const { errors } = useValidation()
         return {
             isValidCFF: computed(() => errors.value.length === 0),
             createAnother: async () => {
-                reset()
+                resetCffData()
+                resetStepperErrorState()
                 setShowAdvanced(false)
                 await setStepName('start')
             }

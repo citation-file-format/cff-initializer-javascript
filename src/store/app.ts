@@ -36,6 +36,16 @@ const firstStepIndex = 0
 const lastStepIndex = computed(() => state.value.showAdvanced ? stepNames.indexOf('finish-advanced') : stepNames.indexOf('finish-minimum'))
 const stepName = computed(() => stepNames[state.value.stepIndex])
 
+export const navigateDirect = (newStepName: StepNameType) => {
+    if (!stepNames.includes(newStepName)) {
+        return
+    }
+    if (advancedStepNames.has(newStepName)) {
+        state.value.showAdvanced = true
+    }
+    state.value.stepIndex = stepNames.indexOf(newStepName)
+}
+
 export function useApp () {
     const router = useRouter()
     return {
@@ -44,15 +54,6 @@ export function useApp () {
         lastStepIndex,
         showAdvanced: computed(() => state.value.showAdvanced),
         stepName,
-        navigateDirect: (newStepName: StepNameType) => {
-            if (!stepNames.includes(newStepName)) {
-                return
-            }
-            if (advancedStepNames.has(newStepName)) {
-                state.value.showAdvanced = true
-            }
-            state.value.stepIndex = stepNames.indexOf(newStepName)
-        },
         setStepName: async (newStepName: StepNameType) => {
             state.value.stepIndex = stepNames.indexOf(newStepName)
             await router.push({ path: `/${stepName.value}` })

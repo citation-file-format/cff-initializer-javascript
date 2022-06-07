@@ -6,7 +6,7 @@ import {
     createWebHistory
 } from 'vue-router'
 import routes from './routes'
-import { useApp, StepNameType } from '../store/app'
+import { navigateDirect, StepNameType } from 'src/store/app'
 
 /*
  * If not building with SSR mode, you can
@@ -34,7 +34,6 @@ export default route(function (/* { store, ssrContext } */) {
         )
     })
     Router.beforeEach((to) => {
-        const { navigateDirect } = useApp()
         const newStepName = to.path.replace('/', '') as StepNameType
         navigateDirect(newStepName)
     })

@@ -5,13 +5,14 @@
         class="bg-formcard q-pa-md"
     >
         <div class="row">
-            <q-label class="text-dark">
+            <q-label class="question">
                 The person's given names
                 <SchemaGuideLink anchor="#definitionspersongiven-names" />
             </q-label>
         </div>
         <div class="row">
             <q-input
+                autofocus
                 bg-color="white"
                 class="col"
                 dense
@@ -27,7 +28,7 @@
             />
         </div>
         <div class="row">
-            <q-label class="text-dark">
+            <q-label class="question">
                 The person's last names, split into parts
             </q-label>
         </div>
@@ -88,7 +89,7 @@
             </q-input>
         </div>
         <div class="row">
-            <q-label class="text-dark">
+            <q-label class="question">
                 The person's email address
                 <SchemaGuideLink anchor="#definitionsperson-email" />
             </q-label>
@@ -111,11 +112,11 @@
             />
         </div>
         <div class="row">
-            <q-label class="text-dark col">
+            <q-label class="question col">
                 The person's affiliation
                 <SchemaGuideLink anchor="#definitionsperson-affiliation" />
             </q-label>
-            <q-label class="text-dark col">
+            <q-label class="question col">
                 The person's ORCID
                 <SchemaGuideLink anchor="#definitionsperson-orcid" />
             </q-label>
@@ -186,7 +187,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUpdated, ref } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import SchemaGuideLink from './SchemaGuideLink.vue'
 import { useValidation } from 'src/store/validation'
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
@@ -233,10 +234,6 @@ export default defineComponent({
         }
     },
     setup (props) {
-        const givenNamesRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            givenNamesRef.value?.focus()
-        })
         onUpdated(() => {
             const { setErrorStateScreenAuthors } = useStepperErrors()
             setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
@@ -253,7 +250,6 @@ export default defineComponent({
                 .map(query => query.replace.message)
         })
         return {
-            givenNamesRef,
             emailErrors,
             orcidErrors
         }

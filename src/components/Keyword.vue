@@ -2,6 +2,7 @@
     <div class="keyword">
         <div class="keyword-input">
             <q-input
+                autofocus
                 bg-color="white"
                 dense
                 outlined
@@ -43,12 +44,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useValidation } from 'src/store/validation'
 import { byError, keywordQueries } from 'src/error-filtering'
 
 export default defineComponent({
-    name: 'KeywordCard',
+    name: 'Keyword',
     props: {
         keyword: {
             type: String,
@@ -64,10 +65,6 @@ export default defineComponent({
         }
     },
     setup (props) {
-        const keywordRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            keywordRef.value?.focus()
-        })
         const { errors } = useValidation()
         const keywordErrors = computed(() => {
             return keywordQueries(props.index)
@@ -75,7 +72,6 @@ export default defineComponent({
                 .map(query => query.replace.message)
         })
         return {
-            keywordRef,
             keywordErrors
         }
     },

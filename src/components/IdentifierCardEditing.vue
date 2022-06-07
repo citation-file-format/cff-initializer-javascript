@@ -16,12 +16,13 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <q-label class="question">
                         What is the value of the {{ label }}?
                         <SchemaGuideLink v-bind:anchor="anchor" />
                     </q-label>
                 </div>
                 <q-input
+                    autofocus
                     bg-color="white"
                     label="Value"
                     outlined
@@ -37,7 +38,7 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <q-label class="question">
                         What is the description for the {{ label }}?
                         <SchemaGuideLink anchor="#definitionsidentifier-description" />
                     </q-label>
@@ -89,7 +90,7 @@
 
 <script lang="ts">
 import { IdentifierTypeType } from '../types'
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import { byError, identifierValueQueries } from 'src/error-filtering'
 import { useValidation } from 'src/store/validation'
@@ -132,17 +133,12 @@ export default defineComponent({
             },
             other: { label: 'identifier', anchor: '#definitionsidentifier' }
         }
-        const valueRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            valueRef.value?.focus()
-        })
         const identifierValueErrors = computed(() => {
             return identifierValueQueries(props.index, ['doi', 'url', 'swh', 'other'].indexOf(props.type))
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
         return {
-            valueRef,
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },

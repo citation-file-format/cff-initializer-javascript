@@ -68,7 +68,6 @@ export default defineComponent({
 
         return {
             license,
-            licenses,
             options,
             setLicense,
             licenseFilterFunction (val: string, update: (a: unknown, b: unknown) => void) {

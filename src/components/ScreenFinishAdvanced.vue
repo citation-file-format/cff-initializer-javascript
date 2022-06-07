@@ -78,9 +78,6 @@ export default defineComponent({
                 resetStepperErrorState()
                 setShowAdvanced(false)
                 await setStepName('start')
-            },
-            backToForm: async () => {
-                await setStepName('version-specific')
             }
         }
     }

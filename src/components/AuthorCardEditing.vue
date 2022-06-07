@@ -12,6 +12,7 @@
         </div>
         <div class="row">
             <q-input
+                autofocus
                 bg-color="white"
                 class="col"
                 dense
@@ -185,7 +186,7 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import SchemaGuideLink from './SchemaGuideLink.vue'
 
 export default defineComponent({
@@ -230,9 +231,6 @@ export default defineComponent({
     },
     setup () {
         const givenNamesRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            givenNamesRef.value?.focus()
-        })
         return {
             givenNamesRef
         }

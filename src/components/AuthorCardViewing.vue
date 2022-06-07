@@ -83,9 +83,7 @@ export default defineComponent({
         })
         const authorErrors = [...emailErrors.value, ...orcidErrors.value]
         return {
-            authorErrors,
-            emailErrors,
-            orcidErrors
+            authorErrors
         }
     },
     emits: ['editPressed', 'moveDown', 'moveUp']

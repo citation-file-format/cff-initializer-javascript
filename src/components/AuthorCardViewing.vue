@@ -1,7 +1,7 @@
 <template>
     <q-card
         bordered
-        v-bind:class="['bg-formcard', [...emailErrors, ...orcidErrors].length > 0 ? 'red-border has-error' : '']"
+        v-bind:class="['bg-formcard', authorErrors.length > 0 ? 'red-border has-error' : '']"
         flat
         style="display: flex; flex-direction: row"
     >
@@ -81,7 +81,9 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const authorErrors = [...emailErrors.value, ...orcidErrors.value]
         return {
+            authorErrors,
             emailErrors,
             orcidErrors
         }

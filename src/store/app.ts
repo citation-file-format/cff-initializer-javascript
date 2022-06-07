@@ -36,7 +36,7 @@ const firstStepIndex = 0
 const lastStepIndex = computed(() => state.value.showAdvanced ? stepNames.indexOf('finish-advanced') : stepNames.indexOf('finish-minimum'))
 const stepName = computed(() => stepNames[state.value.stepIndex])
 
-export function useApp () {
+export const useApp = () => {
     const router = useRouter()
     return {
         cannotGoBack: computed(() => state.value.stepIndex === firstStepIndex),

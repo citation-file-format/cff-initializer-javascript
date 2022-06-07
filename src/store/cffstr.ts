@@ -9,7 +9,7 @@ import { CffType } from 'src/types'
 import kebabcaseKeys from 'kebabcase-keys'
 import deepfilter from 'deep-filter'
 
-export function useCffstr () {
+export const useCffstr = () => {
     const {
         abstract,
         authors,

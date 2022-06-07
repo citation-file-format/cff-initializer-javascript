@@ -24,7 +24,7 @@ const getInitialData = () => {
 
 const cff = ref(getInitialData())
 
-export function useCff () {
+export const useCff = () => {
     return {
         abstract: computed(() => cff.value.abstract),
         authors: computed(() => cff.value.authors),

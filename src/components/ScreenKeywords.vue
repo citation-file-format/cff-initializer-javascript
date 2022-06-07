@@ -42,12 +42,12 @@
             </q-btn>
 
             <q-banner
-                v-if="false"
-                class="bg-warning text-negative"
+                v-if="keywordsErrors.length > 0"
+                v-bind:class="['bg-warning', 'text-negative', keywordsErrors.length > 0 ? 'has-error' : '']"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in []"
+                    v-for="(screenMessage, index) in keywordsErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -65,11 +65,13 @@ import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import Keyword from 'components/Keyword.vue'
-import { defineComponent, nextTick, onUpdated } from 'vue'
+import { computed, defineComponent, nextTick, onUpdated } from 'vue'
 import { moveDown, moveUp } from '../updown'
 import { useCff } from '../store/cff'
 import { scrollToBottom } from '../scroll-to-bottom'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
+import { byError, keywordsQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'ScreenKeywords',
@@ -85,6 +87,7 @@ export default defineComponent({
             setErrorStateScreenKeywords(document.getElementsByClassName('has-error').length > 0)
         })
         const { keywords, setKeywords } = useCff()
+        const { errors } = useValidation()
         const addKeyword = async () => {
             let newKeywords:string[]
             const newKeyword = ''
@@ -115,9 +118,15 @@ export default defineComponent({
                 setKeywords(newKeywords)
             }
         }
+        const keywordsErrors = computed(() => {
+            return keywordsQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             addKeyword,
             keywords,
+            keywordsErrors,
             moveDown,
             moveUp,
             removeKeyword,

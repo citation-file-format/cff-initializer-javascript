@@ -137,6 +137,16 @@ export const keywordQueries = (index: number) => {
     }] as ErrorQuery[]
 }
 
+export const keywordsQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/keywords',
+        schemaPath: '#/properties/keywords/uniqueItems'
+    },
+    replace: {
+        message: 'There are duplicate keywords.'
+    }
+}]
+
 export const messageQueries: ErrorQuery[] = [{
     find: {
         instancePath: '',

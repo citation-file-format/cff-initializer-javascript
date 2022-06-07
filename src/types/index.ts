@@ -32,11 +32,11 @@ export type CffType = {
     keywords?: KeywordsType,
     identifiers?: IdentifiersType,
     license?: string,
-    message?: string,
+    message: string,
     repository?: string,
     repositoryArtifact?: string,
     repositoryCode?: string,
-    title?: string,
+    title: string,
     type: TypeType,
     url?: string,
     version?: string

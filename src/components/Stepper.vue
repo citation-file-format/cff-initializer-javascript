@@ -135,7 +135,7 @@
 
 <script lang="ts">
 
-import { useApp } from '../store/app'
+import { useApp } from 'src/store/app'
 import { useStepperErrors } from 'src/store/stepper-errors'
 
 export default {

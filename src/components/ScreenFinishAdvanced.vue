@@ -54,9 +54,10 @@ import { computed, defineComponent } from 'vue'
 import DownloadButton from 'components/DownloadButton.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { useValidation } from 'src/store/validation'
-import DownloadButton from 'components/DownloadButton.vue'
+import { useApp } from 'src/store/app'
+import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenFinishAdvanced',

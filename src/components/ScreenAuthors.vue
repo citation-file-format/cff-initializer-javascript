@@ -75,19 +75,19 @@
 </template>
 
 <script lang="ts">
+import { authorsQueries, byError } from 'src/error-filtering'
 import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import { moveDown, moveUp } from 'src/updown'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
-import { moveDown, moveUp } from 'src/updown'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import Stepper from 'components/Stepper.vue'
+import StepperActions from 'components/StepperActions.vue'
+import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
-import { useValidation } from 'src/store/validation'
-import { byError, authorsQueries } from 'src/error-filtering'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenAuthors',

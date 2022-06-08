@@ -14,22 +14,40 @@ export type ErrorQuery = {
     replace: ErrorQueryReplace
 }
 
-export const byError = (errors: ErrorObject[]) => {
-    return (query: ErrorQuery) => {
-        const matches = (error: ErrorObject) => {
-            const keys = Object.keys(query.find)
-            if (keys.includes('instancePath') && query.find.instancePath !== error.instancePath) {
-                return false
-            }
-            if (keys.includes('schemaPath') && query.find.schemaPath !== error.schemaPath) {
-                return false
-            }
-            if (keys.includes('message') && query.find.message !== error.message) {
-                return false
-            }
-            return true
+export interface Comparator { (error: ErrorObject, query: ErrorQuery): boolean }
+
+const defaultMatcher: Comparator = (error, query) => {
+    const keys = Object.keys(query.find)
+    if (keys.includes('instancePath') && query.find.instancePath !== error.instancePath) {
+        return false
+    }
+    if (keys.includes('schemaPath') && query.find.schemaPath !== error.schemaPath) {
+        return false
+    }
+    if (keys.includes('message') && query.find.message !== error.message) {
+        return false
+    }
+    return true
+}
+
+export const byDuplicateAuthor = (index: number) => {
+    return (error: ErrorObject) => {
+        if (error.instancePath !== '/authors') {
+            return false
         }
-        return errors.some(matches)
+        if (error.schemaPath !== '#/properties/authors/uniqueItems') {
+            return false
+        }
+        if (error.params.i !== index && error.params.j !== index) {
+            return false
+        }
+        return true
+    }
+}
+
+export const byError = (errors: ErrorObject[], matcher: Comparator = defaultMatcher) => {
+    return (query: ErrorQuery) => {
+        return errors.some((error: ErrorObject) => matcher(error, query))
     }
 }
 

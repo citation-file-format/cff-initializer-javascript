@@ -47,7 +47,7 @@ import { computed, defineComponent, onUpdated, PropType } from 'vue'
 import { AuthorType } from 'src/types'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
-import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
+import { byError, byDuplicateAuthor, emailQueries, orcidQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'AuthorCardViewing',
@@ -81,7 +81,10 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const authorErrors = [...emailErrors.value, ...orcidErrors.value]
+        const duplicateErrors = computed(() => {
+            return errors.value.filter(byDuplicateAuthor(props.index)).map(() => 'Has a duplicate')
+        })
+        const authorErrors = computed(() => [...emailErrors.value, ...orcidErrors.value, ...duplicateErrors.value])
         return {
             authorErrors
         }

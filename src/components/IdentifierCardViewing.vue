@@ -45,7 +45,7 @@
 import { computed, defineComponent, PropType } from 'vue'
 import { IdentifierType } from 'src/types'
 import { useValidation } from 'src/store/validation'
-import { byError, byDuplicateIdentifier, identifierValueQueries } from 'src/error-filtering'
+import { byError, duplicateIdentifierMatcher, duplicateIdentifierQueries, identifierValueQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'IdentifierCardViewing',
@@ -71,7 +71,9 @@ export default defineComponent({
                 .map(query => query.replace.message)
         })
         const duplicateErrors = computed(() => {
-            return errors.value.filter(byDuplicateIdentifier(props.index)).map(() => 'This identifier is a duplicate.')
+            return duplicateIdentifierQueries
+                .filter(byError(errors.value, duplicateIdentifierMatcher(props.index)))
+                .map(query => query.replace.message)
         })
         const identifierErrors = computed(() => [...identifierValueErrors.value, ...duplicateErrors.value])
         return {

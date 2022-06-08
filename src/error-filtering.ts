@@ -30,7 +30,7 @@ const defaultMatcher: Comparator = (error, query) => {
     return true
 }
 
-export const byDuplicateAuthor = (index: number) => {
+export const duplicateAuthorMatcher = (index: number) => {
     return (error: ErrorObject) => {
         if (error.instancePath !== '/authors') {
             return false
@@ -45,7 +45,7 @@ export const byDuplicateAuthor = (index: number) => {
     }
 }
 
-export const byDuplicateIdentifier = (index: number) => {
+export const duplicateIdentifierMatcher = (index: number) => {
     return (error: ErrorObject) => {
         if (error.instancePath !== '/identifiers') {
             return false
@@ -60,7 +60,7 @@ export const byDuplicateIdentifier = (index: number) => {
     }
 }
 
-export const byDuplicateKeyword = (index: number) => {
+export const duplicateKeywordMatcher = (index: number) => {
     return (error: ErrorObject) => {
         if (error.instancePath !== '/keywords') {
             return false
@@ -107,6 +107,27 @@ export const dateReleasedQueries: ErrorQuery[] = [{
     },
     replace: {
         message: 'Use the YYYY-MM-DD format.'
+    }
+}]
+
+export const duplicateAuthorQueries: ErrorQuery[] = [{
+    find: {},
+    replace: {
+        message: 'This author is a duplicate.'
+    }
+}]
+
+export const duplicateIdentifierQueries: ErrorQuery[] = [{
+    find: {},
+    replace: {
+        message: 'This identifier is a duplicate.'
+    }
+}]
+
+export const duplicateKeywordQueries: ErrorQuery[] = [{
+    find: {},
+    replace: {
+        message: 'This keyword is a duplicate.'
     }
 }]
 

@@ -71,7 +71,7 @@ export default defineComponent({
                 .map(query => query.replace.message)
         })
         const duplicateErrors = computed(() => {
-            return errors.value.filter(byDuplicateIdentifier(props.index)).map(() => 'Has a duplicate')
+            return errors.value.filter(byDuplicateIdentifier(props.index)).map(() => 'This identifier is a duplicate.')
         })
         const identifierErrors = computed(() => [...identifierValueErrors.value, ...duplicateErrors.value])
         return {

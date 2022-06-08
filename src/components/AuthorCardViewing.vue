@@ -82,7 +82,7 @@ export default defineComponent({
                 .map(query => query.replace.message)
         })
         const duplicateErrors = computed(() => {
-            return errors.value.filter(byDuplicateAuthor(props.index)).map(() => 'Has a duplicate')
+            return errors.value.filter(byDuplicateAuthor(props.index)).map(() => 'This author is a duplicate.')
         })
         const authorErrors = computed(() => [...emailErrors.value, ...orcidErrors.value, ...duplicateErrors.value])
         return {

@@ -60,6 +60,21 @@ export const byDuplicateIdentifier = (index: number) => {
     }
 }
 
+export const byDuplicateKeyword = (index: number) => {
+    return (error: ErrorObject) => {
+        if (error.instancePath !== '/keywords') {
+            return false
+        }
+        if (error.schemaPath !== '#/properties/keywords/uniqueItems') {
+            return false
+        }
+        if (error.params.i !== index && error.params.j !== index) {
+            return false
+        }
+        return true
+    }
+}
+
 export const byError = (errors: ErrorObject[], matcher: Comparator = defaultMatcher) => {
     return (query: ErrorQuery) => {
         return errors.some((error: ErrorObject) => matcher(error, query))

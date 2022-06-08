@@ -7,10 +7,10 @@
                 dense
                 outlined
                 placeholder="Type a keyword"
-                v-bind:class="keywordErrors.length > 0 ? 'has-error' : ''"
+                v-bind:class="validationErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="keyword"
-                v-bind:error="keywordErrors.length > 0"
-                v-bind:error-message="keywordErrors.join(', ')"
+                v-bind:error="validationErrors.length > 0"
+                v-bind:error-message="validationErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
                 ref="keywordRef"
             />
@@ -46,7 +46,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useValidation } from 'src/store/validation'
-import { byError, keywordQueries } from 'src/error-filtering'
+import { byError, byDuplicateKeyword, keywordQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'Keyword',
@@ -71,8 +71,12 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const duplicateErrors = computed(() => {
+            return errors.value.filter(byDuplicateKeyword(props.index)).map(() => 'This keyword is a duplicate.')
+        })
+        const validationErrors = computed(() => [...keywordErrors.value, ...duplicateErrors.value])
         return {
-            keywordErrors
+            validationErrors
         }
     },
     emits: ['moveDown', 'moveUp', 'removePressed', 'update']

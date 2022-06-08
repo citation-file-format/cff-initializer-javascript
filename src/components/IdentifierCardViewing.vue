@@ -42,10 +42,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { PropType, computed, defineComponent } from 'vue'
+import { byError, duplicateIdentifierMatcher, duplicateIdentifierQueries, identifierValueQueries } from 'src/error-filtering'
 import { IdentifierType } from 'src/types'
 import { useValidation } from 'src/store/validation'
-import { byError, duplicateIdentifierMatcher, duplicateIdentifierQueries, identifierValueQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'IdentifierCardViewing',

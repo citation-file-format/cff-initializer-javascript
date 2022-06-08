@@ -76,19 +76,19 @@
 </template>
 
 <script lang="ts">
+import { IdentifierType, IdentifierTypeType } from 'src/types'
+import { byError, identifiersQueries } from 'src/error-filtering'
 import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
+import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
+import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
-import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
-import { IdentifierType, IdentifierTypeType } from 'src/types'
+import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
-import { moveDown, moveUp } from '../updown'
-import { useValidation } from 'src/store/validation'
-import { byError, identifiersQueries } from 'src/error-filtering'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',

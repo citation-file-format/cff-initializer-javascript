@@ -43,11 +43,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onUpdated, PropType } from 'vue'
+import { PropType, computed, defineComponent, onUpdated } from 'vue'
+import { byError, duplicateAuthorMatcher, duplicateAuthorQueries, emailQueries, orcidQueries } from 'src/error-filtering'
 import { AuthorType } from 'src/types'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
-import { byError, duplicateAuthorMatcher, duplicateAuthorQueries, emailQueries, orcidQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'AuthorCardViewing',

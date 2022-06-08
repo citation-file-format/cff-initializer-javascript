@@ -1,5 +1,5 @@
-import { ref, computed } from 'vue'
-import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from '../types'
+import { AuthorsType, CffType, IdentifiersType, KeywordsType, TypeType } from 'src/types'
+import { computed, ref } from 'vue'
 
 const getInitialData = () => {
     return {
@@ -11,11 +11,11 @@ const getInitialData = () => {
         identifiers: undefined,
         keywords: undefined,
         license: undefined,
-        message: undefined,
+        message: '',
         repository: undefined,
         repositoryArtifact: undefined,
         repositoryCode: undefined,
-        title: undefined,
+        title: '',
         type: 'software',
         url: undefined,
         version: undefined
@@ -43,17 +43,17 @@ export const useCff = () => {
         url: computed(() => cff.value.url),
         version: computed(() => cff.value.version),
         setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract === '' ? undefined : newAbstract },
-        setAuthors: (newAuthors: AuthorsType) => { cff.value.authors = newAuthors === [] ? undefined : newAuthors },
+        setAuthors: (newAuthors: AuthorsType) => { cff.value.authors = newAuthors },
         setCommit: (newCommit: string) => { cff.value.commit = newCommit === '' ? undefined : newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.dateReleased = newDateReleased === '' ? undefined : newDateReleased },
         setIdentifiers: (newIdentifiers: IdentifiersType) => { cff.value.identifiers = newIdentifiers === [] ? undefined : newIdentifiers },
         setKeywords: (newKeywords: KeywordsType) => { cff.value.keywords = newKeywords === [] ? undefined : newKeywords },
         setLicense: (newLicense: string) => { cff.value.license = newLicense === '' ? undefined : newLicense },
-        setMessage: (newMessage: string) => { cff.value.message = newMessage === '' ? undefined : newMessage },
+        setMessage: (newMessage: string) => { cff.value.message = newMessage },
         setRepository: (newRepository: string) => { cff.value.repository = newRepository === '' ? undefined : newRepository },
         setRepositoryArtifact: (newRepositoryArtifact: string) => { cff.value.repositoryArtifact = newRepositoryArtifact === '' ? undefined : newRepositoryArtifact },
         setRepositoryCode: (newRepositoryCode: string) => { cff.value.repositoryCode = newRepositoryCode === '' ? undefined : newRepositoryCode },
-        setTitle: (newTitle: string) => { cff.value.title = newTitle === '' ? undefined : newTitle },
+        setTitle: (newTitle: string) => { cff.value.title = newTitle },
         setType: (newType: TypeType) => { cff.value.type = newType },
         setUrl: (newUrl: string) => { cff.value.url = newUrl === '' ? undefined : newUrl },
         setVersion: (newVersion: string) => { cff.value.version = newVersion === '' ? undefined : newVersion },

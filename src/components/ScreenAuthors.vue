@@ -75,19 +75,19 @@
 </template>
 
 <script lang="ts">
+import { authorsQueries, byError } from 'src/error-filtering'
 import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import { moveDown, moveUp } from 'src/updown'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
-import { moveDown, moveUp } from '../updown'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import Stepper from 'components/Stepper.vue'
+import StepperActions from 'components/StepperActions.vue'
+import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
-import { useValidation } from 'src/store/validation'
-import { byError, authorsQueries } from 'src/error-filtering'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -107,13 +107,8 @@ export default defineComponent({
         const { errors } = useValidation()
         const editingId = ref(-1)
         const addAuthor = async () => {
-            let newAuthors:AuthorType[]
             const newAuthor: AuthorType = {}
-            if (authors.value === undefined) {
-                newAuthors = [newAuthor]
-            } else {
-                newAuthors = [...authors.value, newAuthor]
-            }
+            const newAuthors = [...authors.value, newAuthor]
             setAuthors(newAuthors)
             editingId.value = newAuthors.length - 1
             // await the DOM update that resulted from updating the authors list
@@ -121,26 +116,18 @@ export default defineComponent({
             scrollToBottom()
         }
         const removeAuthor = () => {
-            if (authors.value !== undefined) {
-                const newAuthors = [...authors.value]
-                newAuthors.splice(editingId.value, 1)
-                setAuthors(newAuthors)
-                editingId.value = -1
-                if (Array.isArray(newAuthors) && newAuthors.length === 0) {
-                    setAuthors([])
-                }
-            }
+            const newAuthors = [...authors.value]
+            newAuthors.splice(editingId.value, 1)
+            setAuthors(newAuthors)
+            editingId.value = -1
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
-            if (authors.value !== undefined) {
-                const author = { ...authors.value[editingId.value] }
-                author[field] = value === '' ? undefined : value
-                authors.value[editingId.value] = author
-                setAuthors(authors.value)
-            }
+            const newAuthor = { ...authors.value[editingId.value] }
+            newAuthor[field] = value === '' ? undefined : value
+            authors.value[editingId.value] = newAuthor
+            setAuthors(authors.value)
         }
         const moveAuthorUp = (index: number) => {
-            if (authors.value === undefined) return
             moveUp(index, authors.value, setAuthors)
             if (editingId.value === index && index > 0) {
                 editingId.value = editingId.value - 1
@@ -149,7 +136,6 @@ export default defineComponent({
             }
         }
         const moveAuthorDown = (index: number) => {
-            if (authors.value === undefined) return
             moveDown(index, authors.value, setAuthors)
             if (editingId.value === index && index < authors.value.length - 1) {
                 editingId.value = editingId.value + 1

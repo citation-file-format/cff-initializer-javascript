@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
 
 const toDownloadUrl = (body: string) => {

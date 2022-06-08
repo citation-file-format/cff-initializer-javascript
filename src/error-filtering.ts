@@ -225,6 +225,14 @@ export const messageQueries: ErrorQuery[] = [{
     replace: {
         message: '\'message\' is a required property'
     }
+}, {
+    find: {
+        message: 'must NOT have fewer than 1 characters',
+        schemaPath: '#/properties/message/minLength'
+    },
+    replace: {
+        message: '\'message\' needs to be at least 1 character long.'
+    }
 }]
 
 export const orcidQueries = (index: number) => {
@@ -277,6 +285,14 @@ export const titleQueries: ErrorQuery[] = [{
     },
     replace: {
         message: '\'title\' is a required property'
+    }
+}, {
+    find: {
+        message: 'must NOT have fewer than 1 characters',
+        schemaPath: '#/properties/title/minLength'
+    },
+    replace: {
+        message: '\'title\' needs to be at least 1 character long.'
     }
 }]
 

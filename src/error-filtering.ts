@@ -149,6 +149,15 @@ export const keywordsQueries: ErrorQuery[] = [{
 
 export const messageQueries: ErrorQuery[] = [{
     find: {
+        instancePath: '',
+        message: 'must have required property \'message\'',
+        schemaPath: '#/required'
+    },
+    replace: {
+        message: '\'message\' is a required property'
+    }
+}, {
+    find: {
         message: 'must NOT have fewer than 1 characters',
         schemaPath: '#/properties/message/minLength'
     },
@@ -200,6 +209,15 @@ export const repositoryQueries: ErrorQuery[] = [{
 }]
 
 export const titleQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '',
+        message: 'must have required property \'title\'',
+        schemaPath: '#/required'
+    },
+    replace: {
+        message: '\'title\' is a required property'
+    }
+}, {
     find: {
         message: 'must NOT have fewer than 1 characters',
         schemaPath: '#/properties/title/minLength'

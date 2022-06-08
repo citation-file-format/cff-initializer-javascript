@@ -122,9 +122,9 @@ export default defineComponent({
             editingId.value = -1
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
-            const author = { ...authors.value[editingId.value] }
-            author[field] = value === '' ? undefined : value
-            authors.value[editingId.value] = author
+            const newAuthor = { ...authors.value[editingId.value] }
+            newAuthor[field] = value === '' ? undefined : value
+            authors.value[editingId.value] = newAuthor
             setAuthors(authors.value)
         }
         const moveAuthorUp = (index: number) => {

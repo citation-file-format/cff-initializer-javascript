@@ -81,14 +81,14 @@
 </template>
 
 <script lang="ts">
+import { byError, messageQueries, titleQueries } from 'src/error-filtering'
+import { computed, defineComponent, onUpdated } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { computed, defineComponent, onUpdated } from 'vue'
-import { useCff } from '../store/cff'
-import { useValidation } from 'src/store/validation'
-import { byError, titleQueries, messageQueries } from 'src/error-filtering'
+import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenStart',

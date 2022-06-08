@@ -89,10 +89,10 @@
 </template>
 
 <script lang="ts">
-import { IdentifierTypeType } from '../types'
-import { computed, defineComponent, PropType } from 'vue'
-import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import { PropType, computed, defineComponent } from 'vue'
 import { byError, identifierValueQueries } from 'src/error-filtering'
+import { IdentifierTypeType } from 'src/types'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({

@@ -187,11 +187,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onUpdated } from 'vue'
-import SchemaGuideLink from './SchemaGuideLink.vue'
-import { useValidation } from 'src/store/validation'
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
+import { computed, defineComponent, onUpdated } from 'vue'
+import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'AuthorCardEditing',

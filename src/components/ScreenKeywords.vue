@@ -61,17 +61,17 @@
 </template>
 
 <script lang="ts">
+import { byError, keywordsQueries } from 'src/error-filtering'
+import { computed, defineComponent, nextTick, onUpdated } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
+import Keyword from 'components/Keyword.vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import Keyword from 'components/Keyword.vue'
-import { computed, defineComponent, nextTick, onUpdated } from 'vue'
-import { moveDown, moveUp } from '../updown'
-import { useCff } from '../store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
+import { scrollToBottom } from 'src/scroll-to-bottom'
+import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
-import { byError, keywordsQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'ScreenKeywords',

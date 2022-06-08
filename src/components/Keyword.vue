@@ -44,9 +44,9 @@
 </template>
 
 <script lang="ts">
+import { byError, keywordQueries } from 'src/error-filtering'
 import { computed, defineComponent } from 'vue'
 import { useValidation } from 'src/store/validation'
-import { byError, keywordQueries } from 'src/error-filtering'
 
 export default defineComponent({
     name: 'Keyword',

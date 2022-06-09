@@ -35,14 +35,11 @@
                             v-else
                             v-bind:index="index"
                             v-bind="identifier"
-                            v-bind:num-identifiers="identifiers.length"
                             v-on:updateType="setIdentifierTypeField"
                             v-on:updateValue="setIdentifierValueField"
                             v-on:updateDescription="setIdentifierDescriptionField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeIdentifier"
-                            v-on:moveDown="moveIdentifierDown(index)"
-                            v-on:moveUp="moveIdentifierUp(index)"
                         />
                     </div>
                 </div>

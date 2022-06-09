@@ -23,6 +23,9 @@
                 <p class="finish-paragraph">
                     Use the buttons below to download your CITATION.cff file, or reset the form to start over.
                 </p>
+                <p class="finish-paragraph">
+                    Add your CITATION.cff to the root of your project and ship it along with your project, for instance, adding it to your GitHub repository.
+                </p>
                 <div class="row">
                     <q-btn
                         class="col-4 q-ma-lg"

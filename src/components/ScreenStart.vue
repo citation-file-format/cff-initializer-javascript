@@ -11,10 +11,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What is the title of the work?
                 <SchemaGuideLink anchor="#title" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="title"
@@ -26,10 +26,10 @@
                 v-bind:error-message="titleErrors.join(', ')"
                 v-on:update:modelValue="setTitle"
             />
-            <p class="question">
+            <h2 class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
                 <SchemaGuideLink anchor="#message" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="message"
@@ -62,10 +62,10 @@
                     </q-btn-dropdown>
                 </template>
             </q-input>
-            <p class="question">
+            <h2 class="question">
                 What type of work does this CITATION.cff describe?
                 <SchemaGuideLink anchor="#type" />
-            </p>
+            </h2>
             <q-option-group
                 type="radio"
                 v-bind:model-value="type"

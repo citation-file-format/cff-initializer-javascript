@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What is the commit identifier of the work?
                 <SchemaGuideLink anchor="#commit" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="commit"
@@ -23,10 +23,10 @@
                 v-on:update:modelValue="setCommit"
             />
 
-            <p class="question">
+            <h2 class="question">
                 What is the version of the work?
                 <SchemaGuideLink anchor="#version" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="version"
@@ -36,10 +36,10 @@
                 v-on:update:modelValue="setVersion"
             />
 
-            <p class="question">
+            <h2 class="question">
                 When was the version released?
                 <SchemaGuideLink anchor="#date-released" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 hint="Format: YYYY-MM-DD"

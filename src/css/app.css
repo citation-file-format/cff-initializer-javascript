@@ -175,13 +175,18 @@ body {
     margin-top: 10px;
     margin-bottom: 60px;
 }
-.question {
+.question, .subquestion {
     font-family: "Roboto Condensed", sans-serif;
     color: #333;
     font-size: 1.1rem;
     font-weight: 400;
     margin-top: 12px;
     margin-bottom: 7px;
+    line-height: normal;
+}
+.subquestion {
+    font-size: 0.9rem;
+    margin: 0px;
 }
 .finish-paragraph {
     font-family: "Roboto Condensed", sans-serif;

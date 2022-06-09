@@ -11,7 +11,7 @@
                 <img src="~assets/nlesc-logo.svg">
             </a>
         </div>
-        <span class="col text-right text-white text-body1 text-bold">
+        <span class="col text-right text-white text-body1">
             Version 2.0.1
         </span>
     </div>

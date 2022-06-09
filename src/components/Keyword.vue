@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { byError, duplicateKeywordMatcher, duplicateKeywordQueries, keywordQueries } from 'src/error-filtering'
+import { byError, duplicateKeywordQueries, duplicateMatcher, keywordQueries } from 'src/error-filtering'
 import { computed, defineComponent } from 'vue'
 import { useValidation } from 'src/store/validation'
 
@@ -73,7 +73,8 @@ export default defineComponent({
         })
         const duplicateErrors = computed(() => {
             return duplicateKeywordQueries
-                .filter(byError(errors.value, duplicateKeywordMatcher(props.index)))
+                .filter(byError(errors.value))
+                .filter(byError(errors.value, duplicateMatcher(props.index)))
                 .map(query => query.replace.message)
         })
         const validationErrors = computed(() => [...keywordErrors.value, ...duplicateErrors.value])

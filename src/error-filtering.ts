@@ -30,37 +30,7 @@ const defaultMatcher: Comparator = (error, query) => {
     return true
 }
 
-export const duplicateAuthorMatcher = (index: number) => {
-    return (error: ErrorObject) => {
-        if (error.instancePath !== '/authors') {
-            return false
-        }
-        if (error.schemaPath !== '#/properties/authors/uniqueItems') {
-            return false
-        }
-        if (error.params.i !== index && error.params.j !== index) {
-            return false
-        }
-        return true
-    }
-}
-
-export const duplicateIdentifierMatcher = (index: number) => {
-    return (error: ErrorObject) => {
-        if (error.instancePath !== '/identifiers') {
-            return false
-        }
-        if (error.schemaPath !== '#/properties/identifiers/uniqueItems') {
-            return false
-        }
-        if (error.params.i !== index && error.params.j !== index) {
-            return false
-        }
-        return true
-    }
-}
-
-export const duplicateKeywordMatcher = (index: number) => {
+export const duplicateMatcher = (index: number) => {
     return (error: ErrorObject) => error.params.i === index || error.params.j === index
 }
 
@@ -100,14 +70,20 @@ export const dateReleasedQueries: ErrorQuery[] = [{
 }]
 
 export const duplicateAuthorQueries: ErrorQuery[] = [{
-    find: {},
+    find: {
+        instancePath: '/authors',
+        schemaPath: '#/properties/authors/uniqueItems'
+    },
     replace: {
         message: 'This author is a duplicate.'
     }
 }]
 
 export const duplicateIdentifierQueries: ErrorQuery[] = [{
-    find: {},
+    find: {
+        instancePath: '/identifiers',
+        schemaPath: '#/properties/identifiers/uniqueItems'
+    },
     replace: {
         message: 'This identifier is a duplicate.'
     }

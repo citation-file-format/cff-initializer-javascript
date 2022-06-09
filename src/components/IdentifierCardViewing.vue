@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { PropType, computed, defineComponent } from 'vue'
-import { byError, duplicateIdentifierMatcher, duplicateIdentifierQueries, identifierValueQueries } from 'src/error-filtering'
+import { byError, duplicateIdentifierQueries, duplicateMatcher, identifierValueQueries } from 'src/error-filtering'
 import { IdentifierType } from 'src/types'
 import { useValidation } from 'src/store/validation'
 
@@ -72,7 +72,8 @@ export default defineComponent({
         })
         const duplicateErrors = computed(() => {
             return duplicateIdentifierQueries
-                .filter(byError(errors.value, duplicateIdentifierMatcher(props.index)))
+                .filter(byError(errors.value))
+                .filter(byError(errors.value, duplicateMatcher(props.index)))
                 .map(query => query.replace.message)
         })
         const identifierErrors = computed(() => [...identifierValueErrors.value, ...duplicateErrors.value])

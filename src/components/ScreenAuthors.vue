@@ -34,13 +34,10 @@
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
-                            v-bind:num-authors="authors.length"
                             v-bind="author"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"
-                            v-on:moveDown="moveAuthorDown(index)"
-                            v-on:moveUp="moveAuthorUp(index)"
                         />
                     </div>
                 </div>

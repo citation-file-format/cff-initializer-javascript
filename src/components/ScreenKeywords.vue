@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What keywords describe the work?
                 <SchemaGuideLink anchor="#keywords" />
-            </p>
+            </h2>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>

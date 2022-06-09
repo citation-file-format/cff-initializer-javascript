@@ -5,10 +5,10 @@
         class="bg-formcard q-pa-md"
     >
         <div class="row">
-            <q-label class="question">
+            <h3 class="subquestion">
                 The person's given names
                 <SchemaGuideLink anchor="#definitionspersongiven-names" />
-            </q-label>
+            </h3>
         </div>
         <div class="row">
             <q-input
@@ -28,9 +28,9 @@
             />
         </div>
         <div class="row">
-            <q-label class="question">
+            <h3 class="subquestion">
                 The person's last names, split into parts
-            </q-label>
+            </h3>
         </div>
         <div class="row">
             <q-input
@@ -89,10 +89,10 @@
             </q-input>
         </div>
         <div class="row">
-            <q-label class="question">
+            <h3 class="subquestion">
                 The person's email address
                 <SchemaGuideLink anchor="#definitionsperson-email" />
-            </q-label>
+            </h3>
         </div>
         <div class="row">
             <q-input
@@ -112,14 +112,14 @@
             />
         </div>
         <div class="row">
-            <q-label class="question col">
+            <h3 class="subquestion col">
                 The person's affiliation
                 <SchemaGuideLink anchor="#definitionsperson-affiliation" />
-            </q-label>
-            <q-label class="question col">
+            </h3>
+            <h3 class="subquestion col">
                 The person's ORCID
                 <SchemaGuideLink anchor="#definitionsperson-orcid" />
-            </q-label>
+            </h3>
         </div>
         <div class="row">
             <q-input

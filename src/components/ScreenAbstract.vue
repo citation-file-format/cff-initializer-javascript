@@ -11,10 +11,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 Please provide a description of the work
                 <SchemaGuideLink anchor="#abstract" />
-            </p>
+            </h2>
             <q-input
                 autogrow
                 bg-color="white"

@@ -94,6 +94,7 @@ module.exports = configure(function () {
                     accent: '#9C27B0',
 
                     formcard: '#efefef',
+                    prose: '#333',
 
                     dark: '#333',
 

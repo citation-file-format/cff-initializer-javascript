@@ -16,10 +16,10 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="question">
+                    <h3 class="subquestion">
                         What is the value of the {{ label }}?
                         <SchemaGuideLink v-bind:anchor="anchor" />
-                    </q-label>
+                    </h3>
                 </div>
                 <q-input
                     autofocus
@@ -38,10 +38,10 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="question">
+                    <h3 class="subquestion">
                         What is the description for the {{ label }}?
                         <SchemaGuideLink anchor="#definitionsidentifier-description" />
-                    </q-label>
+                    </h3>
                 </div>
                 <q-input
                     bg-color="white"

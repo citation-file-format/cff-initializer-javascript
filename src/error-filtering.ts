@@ -61,18 +61,7 @@ export const duplicateIdentifierMatcher = (index: number) => {
 }
 
 export const duplicateKeywordMatcher = (index: number) => {
-    return (error: ErrorObject) => {
-        if (error.instancePath !== '/keywords') {
-            return false
-        }
-        if (error.schemaPath !== '#/properties/keywords/uniqueItems') {
-            return false
-        }
-        if (error.params.i !== index && error.params.j !== index) {
-            return false
-        }
-        return true
-    }
+    return (error: ErrorObject) => error.params.i === index || error.params.j === index
 }
 
 export const byError = (errors: ErrorObject[], matcher: Comparator = defaultMatcher) => {
@@ -125,7 +114,10 @@ export const duplicateIdentifierQueries: ErrorQuery[] = [{
 }]
 
 export const duplicateKeywordQueries: ErrorQuery[] = [{
-    find: {},
+    find: {
+        instancePath: '/keywords',
+        schemaPath: '#/properties/keywords/uniqueItems'
+    },
     replace: {
         message: 'This keyword is a duplicate.'
     }

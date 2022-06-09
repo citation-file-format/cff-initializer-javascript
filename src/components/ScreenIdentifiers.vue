@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What persistent identifiers are available for the work?
                 <SchemaGuideLink anchor="#identifiers" />
-            </p>
+            </h2>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>

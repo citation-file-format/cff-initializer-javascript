@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What is the URL of the work in a source code repository?
                 <SchemaGuideLink anchor="#repository-code" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="repository-code"
@@ -26,10 +26,10 @@
                 v-on:update:modelValue="setRepositoryCode"
             />
 
-            <p class="question">
+            <h2 class="question">
                 What is the URL of a landing page/website for the work?
                 <SchemaGuideLink anchor="#url" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="url"
@@ -42,10 +42,10 @@
                 v-on:update:modelValue="setUrl"
             />
 
-            <p class="question">
+            <h2 class="question">
                 What is the URL of the work in a repository?
                 <SchemaGuideLink anchor="#repository" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="repository"
@@ -58,10 +58,10 @@
                 v-on:update:modelValue="setRepository"
             />
 
-            <p class="question">
+            <h2 class="question">
                 What is the URL of the work in a build artifact/binary repository?
                 <SchemaGuideLink anchor="#repository-artifact" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="repository-artifact"

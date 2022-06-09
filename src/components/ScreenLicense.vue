@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What is the license of the work?
                 <SchemaGuideLink anchor="#license" />
-            </p>
+            </h2>
             <q-select
                 bg-color="white"
                 label="license"

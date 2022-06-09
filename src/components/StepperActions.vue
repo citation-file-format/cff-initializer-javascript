@@ -1,10 +1,10 @@
 <template>
     <q-btn
-        color=""
-        flat
         label="Previous"
         no-caps
         v-bind:class="cannotGoBack ? 'hidden' : ''"
+        v-bind:color="boldPrevious ? 'primary' : ''"
+        v-bind:flat="!boldPrevious"
         v-on:click="navigatePrevious"
     />
     <span class="spacer" />
@@ -31,15 +31,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useApp } from 'src/store/app'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'StepperActions',
 
     setup () {
         const { showAdvanced, cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()
+        const { errors } = useValidation()
+
         return {
+            boldPrevious: computed(() => cannotGoForward.value && (errors.value.length > 0)),
             cannotGoBack,
             cannotGoForward,
             showAdvanced,

@@ -29,7 +29,7 @@
                 v-on:filter="licenseFilterFunction"
                 v-on:update:model-value="setLicense"
             >
-                <template #no-option>
+                <template v-slot:no-option>
                     <q-item>
                         <q-item-section class="text-grey">
                             No results

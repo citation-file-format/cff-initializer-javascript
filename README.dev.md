@@ -10,7 +10,6 @@ If you are looking for user documentation, go [here](README.md).
 
 - VSCode extensions: https://code.visualstudio.com/
   - https://marketplace.visualstudio.com/items?itemName=Vue.volar
-  - https://marketplace.visualstudio.com/items?itemName=octref.vetur
   - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 - WebStorm: https://www.jetbrains.com/webstorm/
 - Atom: https://atom.io/

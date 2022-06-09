@@ -55,7 +55,7 @@
                 v-bind:error-message="dateReleasedErrors.join(', ')"
                 v-on:update:modelValue="setDateReleased"
             >
-                <template #append>
+                <template v-slot:append>
                     <q-icon
                         name="event"
                         class="cursor-pointer"

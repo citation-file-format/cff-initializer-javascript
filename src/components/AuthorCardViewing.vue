@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { PropType, computed, defineComponent, onUpdated } from 'vue'
-import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
+import { byError, duplicateAuthorQueries, duplicateMatcher, emailQueries, orcidQueries } from 'src/error-filtering'
 import { AuthorType } from 'src/types'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -81,7 +81,13 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const authorErrors = [...emailErrors.value, ...orcidErrors.value]
+        const duplicateErrors = computed(() => {
+            return duplicateAuthorQueries
+                .filter(byError(errors.value))
+                .filter(byError(errors.value, duplicateMatcher(props.index)))
+                .map(query => query.replace.message)
+        })
+        const authorErrors = computed(() => [...emailErrors.value, ...orcidErrors.value, ...duplicateErrors.value])
         return {
             authorErrors
         }

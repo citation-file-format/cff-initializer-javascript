@@ -1,7 +1,7 @@
 <template>
     <q-card
         bordered
-        v-bind:class="['bg-formcard', identifierValueErrors.length > 0 ? 'red-border has-error' : '']"
+        v-bind:class="['bg-formcard', identifierErrors.length > 0 ? 'red-border has-error' : '']"
         flat
         style="display: flex; flex-direction: row"
     >
@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { PropType, computed, defineComponent } from 'vue'
-import { byError, identifierValueQueries } from 'src/error-filtering'
+import { byError, duplicateIdentifierQueries, duplicateMatcher, identifierValueQueries } from 'src/error-filtering'
 import { IdentifierType } from 'src/types'
 import { useValidation } from 'src/store/validation'
 
@@ -70,8 +70,15 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const duplicateErrors = computed(() => {
+            return duplicateIdentifierQueries
+                .filter(byError(errors.value))
+                .filter(byError(errors.value, duplicateMatcher(props.index)))
+                .map(query => query.replace.message)
+        })
+        const identifierErrors = computed(() => [...identifierValueErrors.value, ...duplicateErrors.value])
         return {
-            identifierValueErrors
+            identifierErrors
         }
     },
     emits: ['editPressed', 'moveDown', 'moveUp']

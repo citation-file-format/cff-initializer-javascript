@@ -102,7 +102,7 @@ export default defineComponent({
         })
         const { authors, setAuthors } = useCff()
         const { errors } = useValidation()
-        const editingId = ref(0)
+        const editingId = ref(-1)
         const addAuthor = async () => {
             const newAuthor: AuthorType = {}
             const newAuthors = [...authors.value, newAuthor]

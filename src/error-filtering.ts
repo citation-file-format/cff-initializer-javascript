@@ -14,22 +14,29 @@ export type ErrorQuery = {
     replace: ErrorQueryReplace
 }
 
-export const byError = (errors: ErrorObject[]) => {
+export interface Comparator { (error: ErrorObject, query: ErrorQuery): boolean }
+
+const defaultMatcher: Comparator = (error, query) => {
+    const keys = Object.keys(query.find)
+    if (keys.includes('instancePath') && query.find.instancePath !== error.instancePath) {
+        return false
+    }
+    if (keys.includes('schemaPath') && query.find.schemaPath !== error.schemaPath) {
+        return false
+    }
+    if (keys.includes('message') && query.find.message !== error.message) {
+        return false
+    }
+    return true
+}
+
+export const duplicateMatcher = (index: number) => {
+    return (error: ErrorObject) => error.params.i === index || error.params.j === index
+}
+
+export const byError = (errors: ErrorObject[], matcher: Comparator = defaultMatcher) => {
     return (query: ErrorQuery) => {
-        const matches = (error: ErrorObject) => {
-            const keys = Object.keys(query.find)
-            if (keys.includes('instancePath') && query.find.instancePath !== error.instancePath) {
-                return false
-            }
-            if (keys.includes('schemaPath') && query.find.schemaPath !== error.schemaPath) {
-                return false
-            }
-            if (keys.includes('message') && query.find.message !== error.message) {
-                return false
-            }
-            return true
-        }
-        return errors.some(matches)
+        return errors.some((error: ErrorObject) => matcher(error, query))
     }
 }
 
@@ -59,6 +66,36 @@ export const dateReleasedQueries: ErrorQuery[] = [{
     },
     replace: {
         message: 'Use the YYYY-MM-DD format.'
+    }
+}]
+
+export const duplicateAuthorQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/authors',
+        schemaPath: '#/properties/authors/uniqueItems'
+    },
+    replace: {
+        message: 'This author is a duplicate.'
+    }
+}]
+
+export const duplicateIdentifierQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/identifiers',
+        schemaPath: '#/properties/identifiers/uniqueItems'
+    },
+    replace: {
+        message: 'This identifier is a duplicate.'
+    }
+}]
+
+export const duplicateKeywordQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/keywords',
+        schemaPath: '#/properties/keywords/uniqueItems'
+    },
+    replace: {
+        message: 'This keyword is a duplicate.'
     }
 }]
 

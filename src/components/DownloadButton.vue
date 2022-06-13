@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
 
-function toDownloadUrl (body: string) {
+const toDownloadUrl = (body: string) => {
     return `data:text/vnd.yaml,${encodeURIComponent(body)}`
 }
 

@@ -43,9 +43,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
-import { useErrors } from 'src/store/errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'Preview',
@@ -53,7 +53,7 @@ export default defineComponent({
     },
     setup () {
         const { cffstr } = useCffstr()
-        const { errors } = useErrors()
+        const { errors } = useValidation()
         const showTooltip = ref(false)
 
         const copyToClipboard = async () => {
@@ -63,12 +63,10 @@ export default defineComponent({
             showTooltip.value = false
         }
 
-        const isValidCFF = computed(() => errors.value.length === 0)
-
         return {
             cffstr,
             copyToClipboard,
-            isValidCFF,
+            isValidCFF: computed(() => errors.value.length === 0),
             showTooltip
         }
     }

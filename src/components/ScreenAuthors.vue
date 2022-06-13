@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 Who are the author(s) of the work?
                 <SchemaGuideLink anchor="#authors" />
-            </p>
+            </h2>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>
@@ -34,13 +34,10 @@
                         <AuthorCardEditing
                             v-else
                             v-bind:index="index"
-                            v-bind:num-authors="authors.length"
                             v-bind="author"
                             v-on:update="setAuthorField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeAuthor"
-                            v-on:moveDown="moveAuthorDown(index)"
-                            v-on:moveUp="moveAuthorUp(index)"
                         />
                     </div>
                 </div>
@@ -56,12 +53,12 @@
             </q-btn>
 
             <q-banner
-                v-if="authorsErrors.messages.length > 0"
-                class="bg-warning text-negative"
+                v-if="authorsErrors.length > 0"
+                v-bind:class="['bg-warning', 'text-negative', authorsErrors.length > 0 ? 'has-error' : '']"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in authorsErrors.messages"
+                    v-for="(screenMessage, index) in authorsErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -75,17 +72,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, nextTick, ref } from 'vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
+import { authorsQueries, byError } from 'src/error-filtering'
+import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
-import { moveDown, moveUp } from '../updown'
+import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import Stepper from 'components/Stepper.vue'
+import StepperActions from 'components/StepperActions.vue'
+import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
-import { authorsErrors } from 'src/authors-errors'
+import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenAuthors',
@@ -97,16 +96,16 @@ export default defineComponent({
         AuthorCardViewing
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenAuthors } = useStepperErrors()
+            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
+        })
         const { authors, setAuthors } = useCff()
+        const { errors } = useValidation()
         const editingId = ref(0)
         const addAuthor = async () => {
-            let newAuthors:AuthorType[]
             const newAuthor: AuthorType = {}
-            if (authors.value === undefined) {
-                newAuthors = [newAuthor]
-            } else {
-                newAuthors = [...authors.value, newAuthor]
-            }
+            const newAuthors = [...authors.value, newAuthor]
             setAuthors(newAuthors)
             editingId.value = newAuthors.length - 1
             // await the DOM update that resulted from updating the authors list
@@ -114,26 +113,18 @@ export default defineComponent({
             scrollToBottom()
         }
         const removeAuthor = () => {
-            if (authors.value !== undefined) {
-                const newAuthors = [...authors.value]
-                newAuthors.splice(editingId.value, 1)
-                setAuthors(newAuthors)
-                editingId.value = -1
-                if (Array.isArray(newAuthors) && newAuthors.length === 0) {
-                    setAuthors(undefined)
-                }
-            }
+            const newAuthors = [...authors.value]
+            newAuthors.splice(editingId.value, 1)
+            setAuthors(newAuthors)
+            editingId.value = -1
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
-            if (authors.value !== undefined) {
-                const author = { ...authors.value[editingId.value] }
-                author[field] = value === '' ? undefined : value
-                authors.value[editingId.value] = author
-                setAuthors(authors.value)
-            }
+            const newAuthor = { ...authors.value[editingId.value] }
+            newAuthor[field] = value === '' ? undefined : value
+            authors.value[editingId.value] = newAuthor
+            setAuthors(authors.value)
         }
         const moveAuthorUp = (index: number) => {
-            if (authors.value === undefined) return
             moveUp(index, authors.value, setAuthors)
             if (editingId.value === index && index > 0) {
                 editingId.value = editingId.value - 1
@@ -142,7 +133,6 @@ export default defineComponent({
             }
         }
         const moveAuthorDown = (index: number) => {
-            if (authors.value === undefined) return
             moveDown(index, authors.value, setAuthors)
             if (editingId.value === index && index < authors.value.length - 1) {
                 editingId.value = editingId.value + 1
@@ -150,16 +140,20 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
-
+        const authorsErrors = computed(() => {
+            return authorsQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             addAuthor,
             authors,
+            authorsErrors,
             editingId,
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,
-            setAuthorField,
-            authorsErrors: computed(() => authorsErrors(authors.value))
+            setAuthorField
         }
     }
 })

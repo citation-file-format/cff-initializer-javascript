@@ -2,13 +2,15 @@
     <div class="keyword">
         <div class="keyword-input">
             <q-input
+                autofocus
                 bg-color="white"
                 dense
                 outlined
                 placeholder="Type a keyword"
+                v-bind:class="keywordErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="keyword"
-                v-bind:error="keywordError.hasError"
-                v-bind:error-message="keywordError.messages.join(', ')"
+                v-bind:error="keywordErrors.length > 0"
+                v-bind:error-message="keywordErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
                 ref="keywordRef"
             />
@@ -42,11 +44,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
-import { getMyErrors } from 'src/store/validator'
+import { byError, keywordQueries } from 'src/error-filtering'
+import { computed, defineComponent } from 'vue'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
-    name: 'KeywordCard',
+    name: 'Keyword',
     props: {
         keyword: {
             type: String,
@@ -62,13 +65,14 @@ export default defineComponent({
         }
     },
     setup (props) {
-        const keywordRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            keywordRef.value?.focus()
+        const { errors } = useValidation()
+        const keywordErrors = computed(() => {
+            return keywordQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
         })
         return {
-            keywordRef,
-            keywordError: computed(() => getMyErrors(`/keywords/${props.index}`))
+            keywordErrors
         }
     },
     emits: ['moveDown', 'moveUp', 'removePressed', 'update']

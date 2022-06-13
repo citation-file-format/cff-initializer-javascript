@@ -73,6 +73,12 @@ module.exports = {
   rules: {
     'vue/v-on-style': ['error', 'longform'],
     'vue/v-bind-style': ['error', 'longform'],
+    'vue/v-slot-style': ['error', 'longform'],
+    'vue/no-unused-properties': ['error', {
+        'groups': ['props', 'data', 'computed', 'methods', 'setup'],
+        'deepData': true,
+        'ignorePublicMembers': false
+      }],
     'indent': ['error', 4],
     'vue/html-indent': ['error', 4, {
       'attribute': 1,
@@ -98,6 +104,16 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
     'prefer-promise-reject-errors': 'off',
+    'no-restricted-imports': ['error', {
+        'patterns': ['.*']
+    }],
+    'sort-imports': ['error', {
+        'ignoreCase': false,
+        'ignoreDeclarationSort': false,
+        'ignoreMemberSort': false,
+        'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single'],
+        'allowSeparatedGroups': false
+    }],
 
     // TypeScript
     quotes: ['warn', 'single', { avoidEscape: true }],

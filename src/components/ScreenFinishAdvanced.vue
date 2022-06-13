@@ -50,13 +50,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { useApp } from '../store/app'
-import { useCff } from '../store/cff'
+import { computed, defineComponent } from 'vue'
+import DownloadButton from 'components/DownloadButton.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { useErrors } from 'src/store/errors'
-import DownloadButton from 'components/DownloadButton.vue'
+import { useApp } from 'src/store/app'
+import { useCff } from 'src/store/cff'
+import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenFinishAdvanced',
@@ -67,18 +68,16 @@ export default defineComponent({
     },
     setup () {
         const { setStepName, setShowAdvanced } = useApp()
-        const { reset } = useCff()
-        const { errors } = useErrors()
-
+        const { reset: resetCffData } = useCff()
+        const { reset: resetStepperErrorState } = useStepperErrors()
+        const { errors } = useValidation()
         return {
             isValidCFF: computed(() => errors.value.length === 0),
             createAnother: async () => {
-                reset()
+                resetCffData()
+                resetStepperErrorState()
                 setShowAdvanced(false)
                 await setStepName('start')
-            },
-            backToForm: async () => {
-                await setStepName('version-specific')
             }
         }
     }

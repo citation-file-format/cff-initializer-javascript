@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What persistent identifiers are available for the work?
                 <SchemaGuideLink anchor="#identifiers" />
-            </p>
+            </h2>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>
@@ -35,14 +35,11 @@
                             v-else
                             v-bind:index="index"
                             v-bind="identifier"
-                            v-bind:num-identifiers="identifiers.length"
                             v-on:updateType="setIdentifierTypeField"
                             v-on:updateValue="setIdentifierValueField"
                             v-on:updateDescription="setIdentifierDescriptionField"
                             v-on:closePressed="() => (editingId = -1)"
                             v-on:removePressed="removeIdentifier"
-                            v-on:moveDown="moveIdentifierDown(index)"
-                            v-on:moveUp="moveIdentifierUp(index)"
                         />
                     </div>
                 </div>
@@ -57,12 +54,12 @@
             </q-btn>
 
             <q-banner
-                v-if="identifiersErrors.messages.length > 0"
-                class="bg-warning text-negative"
+                v-if="identifiersErrors.length > 0"
+                v-bind:class="['bg-warning', 'text-negative', identifiersErrors.length > 0 ? 'has-error' : '']"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in identifiersErrors.messages"
+                    v-for="(screenMessage, index) in identifiersErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -76,17 +73,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, nextTick, ref } from 'vue'
+import { IdentifierType, IdentifierTypeType } from 'src/types'
+import { byError, identifiersQueries } from 'src/error-filtering'
+import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
+import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
+import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
-import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
-import { IdentifierType, IdentifierTypeType } from 'src/types'
+import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
-import { moveDown, moveUp } from '../updown'
-import { identifiersErrors } from 'src/identifiers-errors'
+import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenIdentifiers',
@@ -98,7 +97,12 @@ export default defineComponent({
         IdentifierCardViewing
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenIdentifiers } = useStepperErrors()
+            setErrorStateScreenIdentifiers(document.getElementsByClassName('has-error').length > 0)
+        })
         const { identifiers, setIdentifiers } = useCff()
+        const { errors } = useValidation()
         const editingId = ref(-1)
         const addIdentifier = async () => {
             let newIdentifiers:IdentifierType[]
@@ -171,18 +175,22 @@ export default defineComponent({
                 editingId.value = editingId.value - 1
             }
         }
-
+        const identifiersErrors = computed(() => {
+            return identifiersQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             addIdentifier,
             editingId,
             identifiers,
+            identifiersErrors,
             moveIdentifierUp,
             moveIdentifierDown,
             removeIdentifier,
             setIdentifierDescriptionField,
             setIdentifierTypeField,
-            setIdentifierValueField,
-            identifiersErrors: computed(() => identifiersErrors(identifiers.value))
+            setIdentifierValueField
         }
     }
 })

@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What is the license of the work?
                 <SchemaGuideLink anchor="#license" />
-            </p>
+            </h2>
             <q-select
                 bg-color="white"
                 label="license"
@@ -26,12 +26,10 @@
                 use-input
                 v-bind:model-value="license"
                 v-bind:options="options"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:filter="licenseFilterFunction"
                 v-on:update:model-value="setLicense"
             >
-                <template #no-option>
+                <template v-slot:no-option>
                     <q-item>
                         <q-item-section class="text-grey">
                             No results
@@ -49,12 +47,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useCff } from '../store/cff'
 import { QSelect } from 'quasar'
-import schema from '../schemas/1.2.0/schema.json'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
+import schema from 'src/schemas/1.2.0/schema.json'
+import { useCff } from 'src/store/cff'
 
 export default defineComponent({
     name: 'ScreenLicense',
@@ -70,7 +68,6 @@ export default defineComponent({
 
         return {
             license,
-            licenses,
             options,
             setLicense,
             licenseFilterFunction (val: string, update: (a: unknown, b: unknown) => void) {

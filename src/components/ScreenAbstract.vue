@@ -11,10 +11,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 Please provide a description of the work
                 <SchemaGuideLink anchor="#abstract" />
-            </p>
+            </h2>
             <q-input
                 autogrow
                 bg-color="white"
@@ -24,8 +24,6 @@
                 standout
                 type="textarea"
                 v-bind:model-value="abstract"
-                v-bind:error="false"
-                v-bind:error-message="''"
                 v-on:update:modelValue="setAbstract"
             />
         </div>
@@ -41,7 +39,8 @@ import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
 import { defineComponent } from 'vue'
-import { useCff } from '../store/cff'
+import { useCff } from 'src/store/cff'
+
 export default defineComponent({
     name: 'ScreenAbstract',
     components: {

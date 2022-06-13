@@ -11,35 +11,37 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What is the title of the work?
                 <SchemaGuideLink anchor="#title" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="title"
                 outlined
                 standout
+                v-bind:class="[titleErrors.length > 0 ? 'has-error' : '']"
                 v-bind:model-value="title"
-                v-bind:error="titleError.hasError"
-                v-bind:error-message="titleError.messages.join(', ')"
+                v-bind:error="titleErrors.length > 0"
+                v-bind:error-message="titleErrors.join(', ')"
                 v-on:update:modelValue="setTitle"
             />
-            <p class="question">
+            <h2 class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
                 <SchemaGuideLink anchor="#message" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="message"
                 outlined
+                v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
                 v-bind:model-value="message"
-                v-bind:error="messageError.hasError"
-                v-bind:error-message="messageError.messages.join(', ')"
+                v-bind:error="messageErrors.length > 0"
+                v-bind:error-message="messageErrors.join(', ')"
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             >
-                <template #append>
+                <template v-slot:append>
                     <q-btn-dropdown
                         class="dropdown"
                         flat
@@ -60,10 +62,10 @@
                     </q-btn-dropdown>
                 </template>
             </q-input>
-            <p class="question">
+            <h2 class="question">
                 What type of work does this CITATION.cff describe?
                 <SchemaGuideLink anchor="#type" />
-            </p>
+            </h2>
             <q-option-group
                 type="radio"
                 v-bind:model-value="type"
@@ -79,12 +81,14 @@
 </template>
 
 <script lang="ts">
+import { byError, messageQueries, titleQueries } from 'src/error-filtering'
+import { computed, defineComponent, onUpdated } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { computed, defineComponent } from 'vue'
-import { useCff } from '../store/cff'
-import { getMyErrors } from 'src/store/validator'
+import { useCff } from 'src/store/cff'
+import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenStart',
@@ -94,7 +98,12 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenStart } = useStepperErrors()
+            setErrorStateScreenStart(document.getElementsByClassName('has-error').length > 0)
+        })
         const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const { errors } = useValidation()
         const messageOptions = [
             'If you use this software, please cite it using the metadata from this file.',
             'Please cite this software using these metadata.',
@@ -103,10 +112,22 @@ export default defineComponent({
             'Please cite this dataset using these metadata.',
             'Please cite this dataset using the metadata from \'preferred-citation\'.'
         ]
+        const messageErrors = computed(() => {
+            return messageQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
+        const titleErrors = computed(() => {
+            return titleQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             message,
+            messageErrors,
             messageOptions,
             title,
+            titleErrors,
             type,
             typeOptions: [
                 { label: 'Software', value: 'software' },
@@ -114,9 +135,7 @@ export default defineComponent({
             ],
             setMessage,
             setTitle,
-            setType,
-            messageError: computed(() => getMyErrors('', ['message'])),
-            titleError: computed(() => getMyErrors('', ['title']))
+            setType
         }
     }
 })

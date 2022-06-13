@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What keywords describe the work?
                 <SchemaGuideLink anchor="#keywords" />
-            </p>
+            </h2>
             <div class="scroll-to-bottom-container">
                 <span class="bottom" />
                 <div>
@@ -42,12 +42,12 @@
             </q-btn>
 
             <q-banner
-                v-if="keywordsErrors.messages.length > 0"
-                class="bg-warning text-negative"
+                v-if="keywordsErrors.length > 0"
+                v-bind:class="['bg-warning', 'text-negative', keywordsErrors.length > 0 ? 'has-error' : '']"
             >
                 <div
                     v-bind:key="index"
-                    v-for="(screenMessage, index) in keywordsErrors.messages"
+                    v-for="(screenMessage, index) in keywordsErrors"
                 >
                     {{ screenMessage }}
                 </div>
@@ -61,15 +61,17 @@
 </template>
 
 <script lang="ts">
+import { byError, keywordsQueries } from 'src/error-filtering'
+import { computed, defineComponent, nextTick, onUpdated } from 'vue'
+import { moveDown, moveUp } from 'src/updown'
+import Keyword from 'components/Keyword.vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import Keyword from 'components/Keyword.vue'
-import { computed, defineComponent, nextTick } from 'vue'
-import { moveDown, moveUp } from '../updown'
-import { useCff } from '../store/cff'
-import { scrollToBottom } from '../scroll-to-bottom'
-import { getMyErrors } from 'src/store/validator'
+import { scrollToBottom } from 'src/scroll-to-bottom'
+import { useCff } from 'src/store/cff'
+import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenKeywords',
@@ -80,7 +82,12 @@ export default defineComponent({
         Keyword
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenKeywords } = useStepperErrors()
+            setErrorStateScreenKeywords(document.getElementsByClassName('has-error').length > 0)
+        })
         const { keywords, setKeywords } = useCff()
+        const { errors } = useValidation()
         const addKeyword = async () => {
             let newKeywords:string[]
             const newKeyword = ''
@@ -111,15 +118,20 @@ export default defineComponent({
                 setKeywords(newKeywords)
             }
         }
+        const keywordsErrors = computed(() => {
+            return keywordsQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             addKeyword,
             keywords,
+            keywordsErrors,
             moveDown,
             moveUp,
             removeKeyword,
             setKeyword,
-            setKeywords,
-            keywordsErrors: computed(() => getMyErrors('/keywords'))
+            setKeywords
         }
     }
 })

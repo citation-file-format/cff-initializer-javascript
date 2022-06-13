@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - main
+      - dev
   workflow_dispatch:
 
 jobs:
@@ -29,7 +31,7 @@ jobs:
         if [[ ${{ github.event_name }} == "pull_request" ]]; then
             export PUBLICPATH=PR${{ github.event.number }}
         else
-            export PUBLICPATH=main
+            export PUBLICPATH=$GITHUB_REF_NAME
         fi
         echo "PUBLICPATH=$PUBLICPATH" >> $GITHUB_ENV
         sed -i "s|publicPath: 'cff-initializer-javascript'|publicPath: '$PUBLICPATH'|" quasar.conf.js

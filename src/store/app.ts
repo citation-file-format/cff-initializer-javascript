@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export type StepNameType = 'start' | 'authors' | 'finish-minimum' | 'identifiers' | 'related-resources' |
@@ -36,7 +36,7 @@ const firstStepIndex = 0
 const lastStepIndex = computed(() => state.value.showAdvanced ? stepNames.indexOf('finish-advanced') : stepNames.indexOf('finish-minimum'))
 const stepName = computed(() => stepNames[state.value.stepIndex])
 
-export function useApp () {
+export const useApp = () => {
     const router = useRouter()
     return {
         cannotGoBack: computed(() => state.value.stepIndex === firstStepIndex),

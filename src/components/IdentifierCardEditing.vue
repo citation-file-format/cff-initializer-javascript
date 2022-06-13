@@ -9,8 +9,6 @@
                 <q-option-group
                     inline
                     type="radio"
-                    v-bind:error="typeError.hasError"
-                    v-bind:error-message="typeError.messages.join(', ')"
                     v-bind:model-value="type"
                     v-bind:options="typeOptions"
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
@@ -18,19 +16,21 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <h3 class="subquestion">
                         What is the value of the {{ label }}?
                         <SchemaGuideLink v-bind:anchor="anchor" />
-                    </q-label>
+                    </h3>
                 </div>
                 <q-input
+                    autofocus
                     bg-color="white"
                     label="Value"
                     outlined
                     standout
                     dense
-                    v-bind:error="valueError.hasError"
-                    v-bind:error-message="valueError.messages.join(', ')"
+                    v-bind:class="identifierValueErrors.length > 0 ? 'has-error' : ''"
+                    v-bind:error="identifierValueErrors.length > 0"
+                    v-bind:error-message="identifierValueErrors.join(', ')"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
                     ref="valueRef"
@@ -38,10 +38,10 @@
             </div>
             <div class="q-mt-md items-center no-wrap">
                 <div class="row">
-                    <q-label class="text-dark">
+                    <h3 class="subquestion">
                         What is the description for the {{ label }}?
                         <SchemaGuideLink anchor="#definitionsidentifier-description" />
-                    </q-label>
+                    </h3>
                 </div>
                 <q-input
                     bg-color="white"
@@ -49,30 +49,12 @@
                     outlined
                     standout
                     dense
-                    v-bind:error="descriptionError.hasError"
-                    v-bind:error-message="descriptionError.messages.join(', ')"
                     v-bind:model-value="description"
                     v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
                 />
             </div>
         </q-card-section>
         <q-card-actions align="right">
-            <q-btn
-                dense
-                color="blue"
-                v-bind:disable="index == 0"
-                icon="ion-arrow-up"
-                tabindex="-1"
-                v-on:click="$emit('moveUp')"
-            />
-            <q-btn
-                dense
-                color="blue"
-                v-bind:disable="index >= numIdentifiers - 1"
-                icon="ion-arrow-down"
-                tabindex="-1"
-                v-on:click="$emit('moveDown')"
-            />
             <q-btn
                 color="negative"
                 dense
@@ -91,11 +73,11 @@
 </template>
 
 <script lang="ts">
-import { IdentifierTypeType } from '../types'
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
-import { getMyErrors } from 'src/store/validator'
-import { identifierErrors } from 'src/identifier-errors'
+import { PropType, computed, defineComponent } from 'vue'
+import { byError, identifierValueQueries } from 'src/error-filtering'
+import { IdentifierTypeType } from 'src/types'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'IdentifierCardEditing',
@@ -115,16 +97,13 @@ export default defineComponent({
         description: {
             type: String,
             default: ''
-        },
-        numIdentifiers: {
-            type: Number,
-            default: 0
         }
     },
     components: {
         SchemaGuideLink
     },
     setup (props) {
+        const { errors } = useValidation()
         const linkInfo = {
             doi: { label: 'DOI', anchor: '#definitionsdoi' },
             url: { label: 'URL', anchor: '#definitionsurl' },
@@ -134,12 +113,12 @@ export default defineComponent({
             },
             other: { label: 'identifier', anchor: '#definitionsidentifier' }
         }
-        const valueRef = ref<HTMLElement | null>(null)
-        onMounted(() => {
-            valueRef.value?.focus()
+        const identifierValueErrors = computed(() => {
+            return identifierValueQueries(props.index, ['doi', 'url', 'swh', 'other'].indexOf(props.type))
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
         })
         return {
-            valueRef,
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },
@@ -148,12 +127,7 @@ export default defineComponent({
             ],
             label: computed(() => linkInfo[props.type].label),
             anchor: computed(() => linkInfo[props.type].anchor),
-            typeError: computed(() => getMyErrors(`/identifiers/${props.index}/type`)),
-            valueError: computed(() => getMyErrors(`/identifiers/${props.index}/value`)),
-            descriptionError: computed(() =>
-                getMyErrors(`/identifiers/${props.index}/description`)
-            ),
-            identifierErrors: computed(() => identifierErrors(props.index))
+            identifierValueErrors
         }
     },
     emits: [
@@ -161,9 +135,7 @@ export default defineComponent({
         'removePressed',
         'updateType',
         'updateValue',
-        'updateDescription',
-        'moveUp',
-        'moveDown'
+        'updateDescription'
     ]
 })
 </script>

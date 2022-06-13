@@ -1,7 +1,7 @@
 <template>
     <q-card
         bordered
-        v-bind:class="['bg-formcard', authorErrors.hasError ? 'red-border' : '']"
+        v-bind:class="['bg-formcard', authorErrors.length > 0 ? 'red-border has-error' : '']"
         flat
         style="display: flex; flex-direction: row"
     >
@@ -43,9 +43,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { PropType, computed, defineComponent, onUpdated } from 'vue'
+import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
 import { AuthorType } from 'src/types'
-import { authorErrors } from 'src/author-errors'
+import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'AuthorCardViewing',
@@ -64,8 +66,24 @@ export default defineComponent({
         }
     },
     setup (props) {
+        onUpdated(() => {
+            const { setErrorStateScreenAuthors } = useStepperErrors()
+            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
+        })
+        const { errors } = useValidation()
+        const emailErrors = computed(() => {
+            return emailQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
+        const orcidErrors = computed(() => {
+            return orcidQueries(props.index)
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
+        const authorErrors = [...emailErrors.value, ...orcidErrors.value]
         return {
-            authorErrors: computed(() => authorErrors(props.index))
+            authorErrors
         }
     },
     emits: ['editPressed', 'moveDown', 'moveUp']

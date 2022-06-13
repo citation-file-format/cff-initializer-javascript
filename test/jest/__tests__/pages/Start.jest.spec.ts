@@ -1,8 +1,7 @@
+import { VueWrapper, shallowMount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from '@jest/globals'
+import LayoutLanding from 'src/components/LayoutLanding.vue'
 import { installQuasarPlugin } from '@quasar/quasar-app-extension-testing-unit-jest'
-import { shallowMount, VueWrapper } from '@vue/test-utils'
-
-import LayoutLanding from '../../../../src/components/LayoutLanding.vue'
 
 // Specify here Quasar config you'll need to test your component
 installQuasarPlugin()

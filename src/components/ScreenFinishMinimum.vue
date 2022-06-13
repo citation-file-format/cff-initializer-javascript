@@ -50,12 +50,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { useApp } from '../store/app'
+import { computed, defineComponent } from 'vue'
+import DownloadButton from 'components/DownloadButton.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { useErrors } from 'src/store/errors'
-import DownloadButton from 'components/DownloadButton.vue'
+import { useApp } from 'src/store/app'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenFinishMinimum',
@@ -65,12 +65,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const { setShowAdvanced, navigatePrevious, setStepName } = useApp()
-        const { errors } = useErrors()
+        const { setShowAdvanced, setStepName } = useApp()
+        const { errors } = useValidation()
         return {
             isValidCFF: computed(() => errors.value.length === 0),
-            setShowAdvanced,
-            navigatePrevious,
             showAdvanced: async () => {
                 setShowAdvanced(true)
                 await setStepName('identifiers')

@@ -10,10 +10,10 @@
         </div>
 
         <div id="form-content">
-            <p class="question">
+            <h2 class="question">
                 What is the commit identifier of the work?
                 <SchemaGuideLink anchor="#commit" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="commit"
@@ -23,10 +23,10 @@
                 v-on:update:modelValue="setCommit"
             />
 
-            <p class="question">
+            <h2 class="question">
                 What is the version of the work?
                 <SchemaGuideLink anchor="#version" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 label="version"
@@ -36,10 +36,10 @@
                 v-on:update:modelValue="setVersion"
             />
 
-            <p class="question">
+            <h2 class="question">
                 When was the version released?
                 <SchemaGuideLink anchor="#date-released" />
-            </p>
+            </h2>
             <q-input
                 bg-color="white"
                 hint="Format: YYYY-MM-DD"
@@ -49,12 +49,13 @@
                 standout
                 style="width: 33.33%"
                 today-btn="true"
+                v-bind:class="dateReleasedErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="dateReleased"
-                v-bind:error="dateError.hasError"
-                v-bind:error-message="dateError.messages.join(', ')"
+                v-bind:error="dateReleasedErrors.length > 0"
+                v-bind:error-message="dateReleasedErrors.join(', ')"
                 v-on:update:modelValue="setDateReleased"
             >
-                <template #append>
+                <template v-slot:append>
                     <q-icon
                         name="event"
                         class="cursor-pointer"
@@ -91,12 +92,14 @@
 </template>
 
 <script lang="ts">
+import { byError, dateReleasedQueries } from 'src/error-filtering'
+import { computed, defineComponent, onUpdated } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
-import { computed, defineComponent } from 'vue'
-import { useCff } from '../store/cff'
-import { getMyErrors } from 'src/store/validator'
+import { useCff } from 'src/store/cff'
+import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'ScreenVersionSpecific',
@@ -106,6 +109,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        onUpdated(() => {
+            const { setErrorStateScreenVersionSpecific } = useStepperErrors()
+            setErrorStateScreenVersionSpecific(document.getElementsByClassName('has-error').length > 0)
+        })
         const initializeDate = () => {
             const today = new Date()
             const y = today.getFullYear()
@@ -114,15 +121,21 @@ export default defineComponent({
             return `${y}-${m}-${d}`
         }
         const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
+        const { errors } = useValidation()
+        const dateReleasedErrors = computed(() => {
+            return dateReleasedQueries
+                .filter(byError(errors.value))
+                .map(query => query.replace.message)
+        })
         return {
             commit,
             dateReleased,
+            dateReleasedErrors,
             initializeDate,
             version,
             setCommit,
             setDateReleased,
-            setVersion,
-            dateError: computed(() => getMyErrors('/date-released'))
+            setVersion
         }
     }
 })

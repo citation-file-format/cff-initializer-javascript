@@ -5,6 +5,7 @@
         v-bind:class="cannotGoBack ? 'hidden' : ''"
         v-bind:color="boldPrevious ? 'primary' : ''"
         v-bind:flat="!boldPrevious"
+        v-bind:unelevated="boldPrevious"
         v-on:click="navigatePrevious"
     />
     <span class="spacer" />
@@ -25,6 +26,7 @@
             color="primary"
             label="Next"
             no-caps
+            unelevated
             v-on:click="navigateNext"
         />
     </q-btn-group>

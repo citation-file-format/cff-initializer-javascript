@@ -23,6 +23,9 @@
                 <p class="finish-paragraph">
                     You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, or continue adding more properties.
                 </p>
+                <p class="finish-paragraph">
+                    Distribute the CITATION.cff with your project, for instance, by adding it to the root of your GitHub repository.
+                </p>
                 <div class="row">
                     <DownloadButton class="col-4 q-ma-lg" />
                     <q-btn

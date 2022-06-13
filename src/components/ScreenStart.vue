@@ -41,7 +41,7 @@
                 v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
             >
-                <template v-slot:append="">
+                <template v-slot:append>
                     <q-btn-dropdown
                         class="dropdown"
                         flat

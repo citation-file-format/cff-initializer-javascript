@@ -91,7 +91,7 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's email address
-                <SchemaGuideLink anchor="#definitionsperson-email" />
+                <SchemaGuideLink anchor="#definitionspersonemail" />
             </h3>
         </div>
         <div class="row">
@@ -114,11 +114,11 @@
         <div class="row">
             <h3 class="subquestion col">
                 The person's affiliation
-                <SchemaGuideLink anchor="#definitionsperson-affiliation" />
+                <SchemaGuideLink anchor="#definitionspersonaffiliation" />
             </h3>
             <h3 class="subquestion col">
                 The person's ORCID
-                <SchemaGuideLink anchor="#definitionsperson-orcid" />
+                <SchemaGuideLink anchor="#definitionspersonorcid" />
             </h3>
         </div>
         <div class="row">

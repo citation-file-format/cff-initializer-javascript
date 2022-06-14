@@ -137,22 +137,24 @@ This section describes how to make a release in 2 parts:
 
 ### (1/2) Preparation
 
-1. Update the information in `CITATION.cff`
-1. Generate an updated version of `.zenodo.json` if needed using `cffconvert`
-1. Update the `version` field in `package.json` and `package-lock.json`
-1. Update the version in the [landing page footer](src/components/LayoutLanding.vue)
-1. Update the version in the [app footer](src/components/Footer.vue)
-1. Run `npm run lint` and make sure the linter does not complain
-1. Run the unit tests with `npm run test:unit:ci`
-1. Push any changes to GitHub, then review and merge to the default branch `main`
-1. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow was triggered by merging to `main` and that it was successful
-1. Inspect the deployed website
+1. Update the information in `CITATION.cff`.
+1. Generate an updated version of `.zenodo.json` if needed using `cffconvert`.
+1. Update the `version` field in `package.json` and `package-lock.json`.
+1. Update the version in the [landing page footer](src/components/LayoutLanding.vue).
+1. Update the version in the [app footer](src/components/Footer.vue).
+1. Run `npm run lint` and make sure the linter does not complain.
+1. Run the unit tests with `npm run test:unit:ci`.
+1. Push any changes to GitHub, then review and merge to the default branch `main`.
+1. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow was triggered by merging to `main`, and that it was successful.
+1. Inspect the Netlify preview website.
 
 ### (2/2) Making a release on GitHub
 
 1. Make a [release on GitHub](https://github.com/citation-file-format/cff-initializer-javascript/releases/new).
-2. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly by making the GitHub release.
-3. Go to Zenodo, log in, inspect the draft release. If all looks good, click "Publish" in Zenodo's frontend.
+1. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow was triggered by making the release, and that it was successful.
+1. Inspect the deployed github.io website [https://citation-file-format.github.io/cff-initializer-javascript/](https://citation-file-format.github.io/cff-initializer-javascript/).
+1. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly by making the GitHub release.
+1. Go to Zenodo, log in, inspect the draft release. If all looks good, click "Publish" in Zenodo's frontend.
 
 ## References
 

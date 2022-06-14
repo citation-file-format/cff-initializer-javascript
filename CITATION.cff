@@ -1,3 +1,4 @@
+abstract: Web form to initialize CITATION.cff files.
 authors:
   - affiliation: Netherlands eScience Center
     family-names: Spaaks

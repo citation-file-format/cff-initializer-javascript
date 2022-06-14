@@ -145,7 +145,6 @@ This section describes how to make a release in 2 parts:
 1. Run `npm run lint` and make sure the linter does not complain.
 1. Run the unit tests with `npm run test:unit:ci`.
 1. Push any changes to GitHub, then review and merge to the default branch `main`.
-1. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow was triggered by merging to `main`, and that it was successful.
 1. Inspect the Netlify preview website.
 
 ### (2/2) Making a release on GitHub

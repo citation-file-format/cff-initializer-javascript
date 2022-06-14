@@ -31,6 +31,7 @@
       "orcid": "0000-0002-2170-3253"
     }
   ],
+  "description": "Web form to initialize CITATION.cff files.",
   "keywords": [
     "citation",
     "CITATION.cff",

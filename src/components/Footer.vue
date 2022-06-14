@@ -12,7 +12,7 @@
             </a>
         </div>
         <span class="col text-right text-white text-body1">
-            Version 2.0.2
+            Version 2.0.3
         </span>
     </div>
 </template>

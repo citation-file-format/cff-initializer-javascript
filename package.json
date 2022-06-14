@@ -1,6 +1,6 @@
 {
     "name": "cffinit",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Web form to assist people in creating a CITATION.cff file for their projects.",
     "productName": "cffinit",
     "author": "Netherlands eScience Center",

@@ -27,7 +27,7 @@ cff-version: 1.2.0
 date-released: 2022-06-14
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.6563589
+    value: 10.5281/zenodo.6641653
     description: >-
       This is the identifier used to uniquely identify the version of the
       software.

@@ -4,9 +4,6 @@
     .scale-container {
         overflow: hidden;
     }
-    #app {
-        transform: scale(1.1);
-    }
 }
 
 :root {
@@ -24,23 +21,14 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     row-gap: 20px;
-}
-#header-outer {
-    background-color: var(--bgcolor, rosybrown);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
 }
 #header-inner {
     background-color: purple;
     color: white;
     display: flex;
     flex-direction: row;
-    max-height: 50px;
-    min-height: 50px;
-    width: 1900px;
+    height: 50px;
 }
 #middle {
     background-color: var(--bgcolor, lightblue);
@@ -51,22 +39,11 @@ body {
     justify-content: center;
     row-gap: 20px;
 }
-#metroline {
-    background-color: var(--fgcolor, lightgreen);
-    max-height: 1000px;
-    min-height: 500px;
-    width: 250px;
-    overflow: auto;
-    border-radius: 7px 0px 0px 7px;
-}
 #form {
     background-color: var(--fgcolor, plum);
     display: flex;
     flex-direction: column;
     flex-grow: 0.5;
-    max-width: 800px;
-    min-height: 400px;
-    min-width: 800px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -78,8 +55,6 @@ body {
 #form-content {
     background-color: var(--fgcolor, lightslategray);
     flex-grow: 1;
-    max-height: 600px;
-    min-height: 600px;
     padding-bottom: 30px;
 }
 #form-button-bar {
@@ -96,9 +71,6 @@ body {
     display: flex;
     flex-direction: column;
     flex-grow: 0.5;
-    max-width: 600px;
-    min-height: 400px;
-    min-width: 600px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -109,8 +81,6 @@ body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    max-height: 720px;
-    min-height: 300px;
 }
 #preview-button-bar {
     align-items: center;
@@ -121,22 +91,14 @@ body {
     max-height: 80px;
     min-height: 80px;
 }
-#footer-outer {
-    background-color: var(--bgcolor, slateblue);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
 #footer-inner {
     background-color: deepskyblue;
     display: flex;
     flex-direction: column;
+    height: 50px;
     justify-content: center;
-    max-height: 50px;
-    min-height: 50px;
     padding-left: 10px;
     padding-right: 10px;
-    width: 1900px;
 }
 #logo {
     display: flex;

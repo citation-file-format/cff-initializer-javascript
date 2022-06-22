@@ -1,32 +1,34 @@
 <template>
-    <div class="scale-container">
+    <q-layout view="hHh lpR fFf">
         <div id="app">
-            <span class="spacer" />
-            <div id="header-outer">
-                <div id="header-inner">
-                    <Header />
-                </div>
-            </div>
-            <div id="middle">
-                <router-view />
-                <div id="preview">
-                    <div id="preview-content">
-                        <Preview />
-                    </div>
+            <q-header id="header-inner">
+                <Header />
+            </q-header>
+            <q-page-container>
+                <q-page
+                    id="middle"
+                    class="row"
+                >
+                    <router-view />
+                    <div
+                        id="preview"
+                        class="col-12 col-md-4 col-sm-3"
+                    >
+                        <div id="preview-content">
+                            <Preview />
+                        </div>
 
-                    <div id="preview-button-bar">
-                        <DownloadButton v-if="isNotFinish" />
+                        <div id="preview-button-bar">
+                            <DownloadButton v-if="isNotFinish" />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div id="footer-outer">
-                <div id="footer-inner">
-                    <Footer />
-                </div>
-            </div>
-            <span class="spacer" />
+                </q-page>
+            </q-page-container>
+            <q-footer id="footer-inner">
+                <Footer />
+            </q-footer>
         </div>
-    </div>
+    </q-layout>
 </template>
 
 <script lang="ts">

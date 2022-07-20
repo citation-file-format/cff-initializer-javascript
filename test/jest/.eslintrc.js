@@ -6,5 +6,5 @@ module.exports = {
     'plugin:jest/recommended',
     // Uncomment following line to apply style rules
     // 'plugin:jest/style',
-  ],
+  ]
 };

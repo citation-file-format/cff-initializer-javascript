@@ -1,5 +1,3 @@
-const cffUrl = 'http://localhost:8080/cff-initializer-javascript/#/'
-
 describe('Minimum usage', () => {
     it('Visit site, fill minimum information and download', () => {
         // Main screen

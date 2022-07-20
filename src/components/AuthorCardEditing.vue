@@ -15,6 +15,7 @@
                 autofocus
                 bg-color="white"
                 class="col"
+                data-cy="given-names"
                 dense
                 label="given-names"
                 outlined
@@ -36,6 +37,7 @@
             <q-input
                 bg-color="white"
                 class="col-3"
+                data-cy="name-particle"
                 dense
                 label="name-particle"
                 outlined
@@ -54,6 +56,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="family-names"
                 dense
                 label="family-names"
                 outlined
@@ -72,6 +75,7 @@
             <q-input
                 bg-color="white"
                 class="col-3"
+                data-cy="name-suffix"
                 dense
                 label="name-suffix"
                 outlined
@@ -98,6 +102,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="email"
                 dense
                 label="email"
                 outlined
@@ -125,6 +130,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="affiliation"
                 dense
                 label="affiliation"
                 outlined
@@ -138,6 +144,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="orcid"
                 dense
                 hint="Format: https://orcid.org/0000-0000-0000-0000"
                 label="orcid"
@@ -155,12 +162,14 @@
         <q-card-actions align="right">
             <q-btn
                 color="negative"
+                data-cy="remove"
                 dense
                 icon="delete"
                 label="Remove"
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
+                data-cy="done"
                 dense
                 icon="done"
                 label="Done"

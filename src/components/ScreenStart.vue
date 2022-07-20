@@ -18,6 +18,7 @@
             </h2>
             <q-input
                 bg-color="white"
+                data-cy="title"
                 label="title"
                 outlined
                 standout
@@ -33,6 +34,7 @@
             </h2>
             <q-input
                 bg-color="white"
+                data-cy="message"
                 label="message"
                 outlined
                 v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"

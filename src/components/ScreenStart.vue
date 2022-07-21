@@ -18,7 +18,7 @@
             </h2>
             <q-input
                 bg-color="white"
-                data-cy="title"
+                data-cy="input-title"
                 label="title"
                 outlined
                 standout
@@ -34,7 +34,7 @@
             </h2>
             <q-input
                 bg-color="white"
-                data-cy="message"
+                data-cy="input-message"
                 label="message"
                 outlined
                 v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
@@ -70,6 +70,7 @@
                 <SchemaGuideLink anchor="#type" />
             </h2>
             <q-option-group
+                data-cy="radio-type"
                 type="radio"
                 v-bind:model-value="type"
                 v-bind:options="typeOptions"

@@ -13,6 +13,7 @@
         vertical
     >
         <q-step
+            data-cy="stepper-start"
             name="start"
             title="Start"
             v-bind:active-icon="errorStateScreenStart ? 'warning' : 'edit'"
@@ -22,6 +23,7 @@
         />
 
         <q-step
+            data-cy="stepper-authors"
             name="authors"
             title="Authors"
             v-bind:active-icon="errorStateScreenAuthors ? 'warning' : 'edit'"
@@ -32,6 +34,7 @@
 
         <q-step
             active-icon="navigate_next"
+            data-cy="stepper-finish-minimum"
             name="finish-minimum"
             title="Finish"
             v-bind:order="2"
@@ -40,6 +43,7 @@
         />
 
         <q-step
+            data-cy="stepper-identifiers"
             name="identifiers"
             title="Identifiers"
             v-bind:active-icon="errorStateScreenIdentifiers ? 'warning' : 'edit'"
@@ -50,6 +54,7 @@
         />
 
         <q-step
+            data-cy="stepper-related-resources"
             name="related-resources"
             title="Related resources"
             v-bind:active-icon="errorStateScreenRelatedResources ? 'warning' : 'edit'"
@@ -60,6 +65,7 @@
         />
 
         <q-step
+            data-cy="stepper-abstract"
             name="abstract"
             title="Abstract"
             v-bind:order="5"
@@ -68,6 +74,7 @@
         />
 
         <q-step
+            data-cy="stepper-keywords"
             name="keywords"
             title="Keywords"
             v-bind:active-icon="errorStateScreenKeywords ? 'warning' : 'edit'"
@@ -78,6 +85,7 @@
         />
 
         <q-step
+            data-cy="stepper-license"
             name="license"
             title="License"
             v-bind:order="7"
@@ -86,6 +94,7 @@
         />
 
         <q-step
+            data-cy="stepper-version-specific"
             name="version-specific"
             title="Version specific"
             v-bind:active-icon="errorStateScreenVersionSpecific ? 'warning' : 'edit'"
@@ -97,6 +106,7 @@
 
         <q-step
             active-icon="navigate_next"
+            data-cy="stepper-finish-advanced"
             name="finish-advanced"
             title="Finish"
             v-bind:order="9"

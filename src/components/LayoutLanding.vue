@@ -39,7 +39,7 @@
                     </div>
                     <q-btn
                         class="start-button"
-                        data-cy="create"
+                        data-cy="btn-create"
                         label="Create"
                         icon="add"
                         no-caps

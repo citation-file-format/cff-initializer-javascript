@@ -32,6 +32,7 @@
                     <q-btn
                         class="col-4 q-ma-lg"
                         color="primary"
+                        data-cy="btn-add-more"
                         icon="workspace_premium"
                         label="Add more"
                         no-caps

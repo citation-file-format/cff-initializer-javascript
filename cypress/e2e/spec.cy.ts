@@ -35,45 +35,70 @@ const testStepperActions = (visibleActions : string[]) => {
         })
 }
 
+const fillMinimumInformation = () => {
+    // Main screen
+    cy.visit('/')
+    cy.contains('Generate your citation metadata files with ease')
+    cy.get('[data-cy="btn-create"]')
+        .click()
+
+    // Start screen
+    cy.url().should('include', '/start')
+    cy.get('[data-cy="input-title"]')
+        .type('My Title')
+        .should('have.value', 'My Title')
+    cy.get('[data-cy="input-message"]')
+        .type('Some message')
+        .should('have.value', 'Some message')
+    cy.get('[data-cy="btn-next"]')
+        .click()
+
+    // Author screen
+    cy.url().should('include', '/authors')
+    cy.get('[data-cy="btn-add-author"]')
+        .click()
+    cy.get('[data-cy="btn-done"]')
+        .click()
+    cy.get('[data-cy="btn-next"]')
+        .click()
+}
+
 describe('Minimum usage', () => {
     it('Visit site, fill minimum information and download', () => {
-        // Main screen
-        cy.visit('/')
-        cy.contains('Generate your citation metadata files with ease')
-        cy.get('[data-cy="btn-create"]')
-            .click()
-
-        // Start screen
-        cy.url().should('include', '/start')
-        cy.get('[data-cy="input-title"]')
-            .type('My Title')
-            .should('have.value', 'My Title')
-        cy.get('[data-cy="input-message"]')
-            .type('Some message')
-            .should('have.value', 'Some message')
-        cy.get('[data-cy="btn-next"]')
-            .click()
-
-        // Author screen
-        cy.url().should('include', '/authors')
-        cy.get('[data-cy="btn-add-author"]')
-            .click()
-        cy.get('[data-cy="btn-done"]')
-            .click()
-        cy.get('[data-cy="btn-next"]')
-            .click()
+        fillMinimumInformation()
 
         // Finish Minimum screen
         cy.url().should('include', '/finish-minimum')
-        cy.get('[data-cy="btn-download"')
+        cy.get('[data-cy="btn-download"]')
             .click()
         const downloadsFolder = Cypress.config('downloadsFolder')
         const cfffile = `${downloadsFolder}/CITATION.cff`
 
         cy.readFile(cfffile, 'binary', { timeout: 400 })
             .should(buffer => expect(buffer).to.be.equal(minimumCff))
+    })
 
-        // Confirm that
+    it('Fill minimum and go through each advanced page', () => {
+        fillMinimumInformation()
+
+        // Click Add More
+        cy.get('[data-cy="btn-add-more"]')
+            .click()
+
+        ;['identifiers', 'related-resources', 'abstract', 'keywords', 'license', 'version-specific']
+            .forEach((screen) => {
+                cy.url().should('include', `/${screen}`)
+                cy.get('[data-cy="btn-next"]')
+                    .click()
+            })
+        cy.url().should('include', '/finish-advanced')
+        cy.get('[data-cy="btn-download"]')
+            .click()
+        const downloadsFolder = Cypress.config('downloadsFolder')
+        const cfffile = `${downloadsFolder}/CITATION.cff`
+
+        cy.readFile(cfffile, 'binary', { timeout: 400 })
+            .should(buffer => expect(buffer).to.be.equal(minimumCff))
     })
 })
 
@@ -200,7 +225,7 @@ describe('Authors page interactions', () => {
             .type('bad')
             .parents()
             .should('have.class', 'has-error')
-        cy.get('[data-cy="stepper-authors"')
+        cy.get('[data-cy="stepper-authors"]')
             .find('i')
             .should('have.text', 'warning')
         cy.get('[data-cy="input-email"]')
@@ -213,7 +238,7 @@ describe('Authors page interactions', () => {
             .type('0000-0000-0000-0000')
             .parents()
             .should('have.class', 'has-error')
-        cy.get('[data-cy="stepper-authors"')
+        cy.get('[data-cy="stepper-authors"]')
             .find('i')
             .should('have.text', 'warning')
         cy.get('[data-cy="input-orcid"]')
@@ -228,7 +253,7 @@ describe('Authors page interactions', () => {
         cy.get('.q-card').should(($div) => {
             expect($div).to.have.length(1)
         })
-        cy.get('[data-cy="stepper-authors"')
+        cy.get('[data-cy="stepper-authors"]')
             .find('i')
             .should('not.have.text', 'warning')
 

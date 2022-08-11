@@ -1,9 +1,10 @@
 <template>
-    <div id="metroline">
-        <Stepper />
-    </div>
+    <Stepper />
 
-    <div id="form">
+    <div
+        id="form"
+        class="col-12 col-md-6 col-sm-7"
+    >
         <div id="form-title">
             <h1 class="page-title">
                 Start

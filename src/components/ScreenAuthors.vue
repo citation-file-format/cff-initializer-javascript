@@ -1,8 +1,9 @@
 <template>
-    <div id="metroline">
-        <Stepper />
-    </div>
-    <div id="form">
+    <Stepper />
+    <div
+        id="form"
+        class="col-12 col-lg-5 col-md-4 col-sm-3"
+    >
         <div id="form-title">
             <h1 class="page-title">
                 Authors

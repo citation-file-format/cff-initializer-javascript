@@ -66,7 +66,7 @@ body {
     max-height: 80px;
     min-height: 80px;
 }
-#preview {
+#preview-drawer, #preview-static {
     background-color: var(--fgcolor, limegreen);
     display: flex;
     flex-direction: column;
@@ -75,6 +75,14 @@ body {
     padding-right: 30px;
     padding-top: 30px;
     border-radius: 0px 7px 7px 0px;
+}
+#preview-button-close {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-height: 80px;
+    min-height: 80px;
 }
 #preview-content {
     background-color: var(--fgcolor, lightcoral);

@@ -20,6 +20,13 @@
             target="_blank"
             type="a"
         />
+        <q-btn
+            class="lt-lg"
+            icon="menu"
+            v-on:click="$emit('togglePreview')"
+        >
+            Preview
+        </q-btn>
     </q-btn-group>
 </template>
 
@@ -27,7 +34,8 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'Header'
+    name: 'Header',
+    emits: ['togglePreview']
 })
 </script>
 

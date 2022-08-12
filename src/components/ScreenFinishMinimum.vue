@@ -2,7 +2,7 @@
     <Stepper />
     <div
         id="form"
-        class="col-12 col-md-6 col-sm-7"
+        class="col-12 col-lg-5 col-sm-10"
     >
         <div id="form-title">
             <h1

@@ -2,8 +2,35 @@
     <q-layout view="hHh lpR fFf">
         <div id="app">
             <q-header id="header-inner">
-                <Header />
+                <Header v-on:togglePreview="onTogglePreview" />
             </q-header>
+
+            <q-drawer
+                id="preview-drawer"
+                elevated
+                overlay
+                side="right"
+                v-model="isPreviewDrawerEnabled"
+                width="600"
+            >
+                <div id="preview-button-close">
+                    <q-btn
+                        icon="close"
+                        v-on:click="onTogglePreview"
+                    >
+                        Close preview
+                    </q-btn>
+                </div>
+
+                <div id="preview-content">
+                    <Preview />
+                </div>
+
+                <div id="preview-button-bar">
+                    <DownloadButton v-if="isNotFinish" />
+                </div>
+            </q-drawer>
+
             <q-page-container>
                 <q-page
                     id="middle"
@@ -11,8 +38,8 @@
                 >
                     <router-view />
                     <div
-                        id="preview"
-                        class="col-12 col-md-4 col-sm-3"
+                        id="preview-static"
+                        class="col-12 col-lg-5 gt-md"
                     >
                         <div id="preview-content">
                             <Preview />
@@ -32,7 +59,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import DownloadButton from 'components/DownloadButton.vue'
 import Footer from 'components/Footer.vue'
 import Header from 'components/Header.vue'
@@ -48,11 +75,14 @@ export default defineComponent({
         Footer
     },
     setup () {
+        const isPreviewDrawerEnabled = ref(false)
         return {
             isNotFinish: computed(() => {
                 const currentPath = useRoute().path
                 return currentPath !== '/finish-minimum' && currentPath !== '/finish-advanced'
-            })
+            }),
+            isPreviewDrawerEnabled,
+            onTogglePreview: () => { isPreviewDrawerEnabled.value = !isPreviewDrawerEnabled.value }
         }
     }
 })

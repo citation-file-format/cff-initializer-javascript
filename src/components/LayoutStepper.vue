@@ -2,7 +2,7 @@
     <q-layout view="hHh lpR fFf">
         <div id="app">
             <q-header id="header-inner">
-                <Header v-on:togglePreview="togglePreview" />
+                <Header v-on:togglePreview="onTogglePreview" />
             </q-header>
 
             <q-drawer
@@ -10,13 +10,13 @@
                 elevated
                 overlay
                 side="right"
-                v-model="previewDrawer"
+                v-model="isPreviewDrawerEnabled"
                 width="600"
             >
                 <div id="preview-button-close">
                     <q-btn
                         icon="close"
-                        v-on:click="togglePreview"
+                        v-on:click="onTogglePreview"
                     >
                         Close preview
                     </q-btn>
@@ -75,14 +75,14 @@ export default defineComponent({
         Footer
     },
     setup () {
-        const previewDrawer = ref(false)
+        const isPreviewDrawerEnabled = ref(false)
         return {
             isNotFinish: computed(() => {
                 const currentPath = useRoute().path
                 return currentPath !== '/finish-minimum' && currentPath !== '/finish-advanced'
             }),
-            previewDrawer,
-            togglePreview: () => { previewDrawer.value = !previewDrawer.value }
+            isPreviewDrawerEnabled,
+            onTogglePreview: () => { isPreviewDrawerEnabled.value = !isPreviewDrawerEnabled.value }
         }
     }
 })

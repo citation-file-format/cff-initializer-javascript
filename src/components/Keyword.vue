@@ -12,7 +12,6 @@
                 v-bind:error="validationErrors.length > 0"
                 v-bind:error-message="validationErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', $event)"
-                ref="keywordRef"
             />
         </div>
         <q-btn

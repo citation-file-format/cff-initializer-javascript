@@ -24,7 +24,6 @@
                 v-bind:error="false"
                 v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
-                ref="givenNamesRef"
             />
         </div>
         <div class="row">

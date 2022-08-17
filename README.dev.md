@@ -35,7 +35,7 @@ You can start the development server by running
 npm run dev
 ```
 
-Use a browser to navigate to [localhost:8080](http://localhost:8080/) to see the website.
+Use a browser to navigate to [localhost:8080/cff-initializer-javascript/](http://localhost:8080/cff-initializer-javascript/) to see the website.
 
 ## Building the application
 

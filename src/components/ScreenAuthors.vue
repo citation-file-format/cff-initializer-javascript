@@ -121,7 +121,12 @@ export default defineComponent({
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
             const newAuthor = { ...authors.value[editingId.value] }
-            newAuthor[field] = value === '' ? undefined : value
+            if (value === '' ||
+                (field === 'orcid' && value === 'https://orcid.org/____-____-____-____')) {
+                newAuthor[field] = undefined
+            } else {
+                newAuthor[field] = value
+            }
             authors.value[editingId.value] = newAuthor
             setAuthors(authors.value)
         }

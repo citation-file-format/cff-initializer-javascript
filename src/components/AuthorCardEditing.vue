@@ -139,8 +139,8 @@
                 bg-color="white"
                 class="col"
                 dense
-                hint="Format: https://orcid.org/0000-0000-0000-0000"
-                label="orcid"
+                fill-mask
+                mask="https://orcid.org/####-####-####-###X"
                 outlined
                 standout
                 title="The person's ORCID identifier."

@@ -11,7 +11,7 @@ const getInitialData = () => {
         identifiers: undefined,
         keywords: undefined,
         license: undefined,
-        message: '',
+        message: 'If you use this software, please cite it using the metadata from this file.',
         repository: undefined,
         repositoryArtifact: undefined,
         repositoryCode: undefined,

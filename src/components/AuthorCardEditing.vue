@@ -139,7 +139,7 @@
                 bg-color="white"
                 class="col"
                 dense
-                fill-mask
+                hint="Format: https://orcid.org/0000-0000-0000-0000"
                 mask="https://orcid.org/####-####-####-###X"
                 outlined
                 standout

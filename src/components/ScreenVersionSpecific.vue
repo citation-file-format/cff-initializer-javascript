@@ -62,7 +62,6 @@
                         class="cursor-pointer"
                     >
                         <q-popup-proxy
-                            ref="qDateProxy"
                             transition-show="scale"
                             transition-hide="scale"
                         >

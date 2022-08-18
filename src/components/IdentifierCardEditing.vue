@@ -33,7 +33,6 @@
                     v-bind:error-message="identifierValueErrors.join(', ')"
                     v-bind:model-value="value"
                     v-on:update:modelValue="$emit('updateValue', 'value', $event)"
-                    ref="valueRef"
                 />
             </div>
             <div class="q-mt-md items-center no-wrap">

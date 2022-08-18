@@ -36,6 +36,7 @@
                 v-bind:error="titleErrors.length > 0"
                 v-bind:error-message="titleErrors.join(', ')"
                 v-on:update:modelValue="setTitle"
+                v-bind:placeholder="titlePlaceHolder"
             />
             <h2 class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
@@ -50,10 +51,10 @@
                 v-bind:model-value="message"
                 v-bind:error="messageErrors.length > 0"
                 v-bind:error-message="messageErrors.join(', ')"
+                v-bind:placeholder="messagePlaceHolder"
                 v-on:update:modelValue="setMessage"
             />
         </div>
-
         <div id="form-button-bar">
             <StepperActions />
         </div>
@@ -84,6 +85,8 @@ export default defineComponent({
         })
         const { message, title, type, setMessage, setTitle, setType } = useCff()
         const { errors } = useValidation()
+        const titlePlaceHolder = 'The name of the software or dataset.'
+        const messagePlaceHolder = 'Let the readers know what to do with the citation metadata.'
         const messageErrors = computed(() => {
             return messageQueries
                 .filter(byError(errors.value))
@@ -105,8 +108,10 @@ export default defineComponent({
         return {
             message,
             messageErrors,
+            messagePlaceHolder,
             title,
             titleErrors,
+            titlePlaceHolder,
             type,
             typeOptions: [
                 { label: 'Software', value: 'software' },

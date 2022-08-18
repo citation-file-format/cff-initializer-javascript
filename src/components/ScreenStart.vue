@@ -36,7 +36,6 @@
                 v-bind:error="titleErrors.length > 0"
                 v-bind:error-message="titleErrors.join(', ')"
                 v-on:update:modelValue="setTitle"
-                v-bind:placeholder="titlePlaceHolder"
             />
             <h2 class="question">
                 What do you want citers to do with the information provided in your CITATION.cff file?
@@ -51,7 +50,6 @@
                 v-bind:model-value="message"
                 v-bind:error="messageErrors.length > 0"
                 v-bind:error-message="messageErrors.join(', ')"
-                v-bind:placeholder="messagePlaceHolder"
                 v-on:update:modelValue="setMessage"
             />
         </div>
@@ -85,8 +83,6 @@ export default defineComponent({
         })
         const { message, title, type, setMessage, setTitle, setType } = useCff()
         const { errors } = useValidation()
-        const titlePlaceHolder = 'The name of the software or dataset.'
-        const messagePlaceHolder = 'Let the readers know what to do with the citation metadata.'
         const messageErrors = computed(() => {
             return messageQueries
                 .filter(byError(errors.value))
@@ -101,6 +97,8 @@ export default defineComponent({
             // check if user modified the placeholder, if that is the case, do not update the message
             const messagePlaceHolderRegex = /^If you use this (?<cfftype>software|dataset), please cite it using the metadata from this file.$/igd
             const isMessageModifiedByApp = messagePlaceHolderRegex.exec(message.value)
+            const testing = messagePlaceHolderRegex.test(message.value)
+            console.log(testing)
             if (isMessageModifiedByApp) {
                 setMessage(`If you use this ${type.value}, please cite it using the metadata from this file.`)
             }
@@ -108,10 +106,8 @@ export default defineComponent({
         return {
             message,
             messageErrors,
-            messagePlaceHolder,
             title,
             titleErrors,
-            titlePlaceHolder,
             type,
             typeOptions: [
                 { label: 'Software', value: 'software' },

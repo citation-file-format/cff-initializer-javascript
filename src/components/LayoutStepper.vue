@@ -36,7 +36,17 @@
                     id="middle"
                     class="row"
                 >
-                    <router-view />
+                    <Stepper />
+                    <div
+                        id="form"
+                        class="col-12 col-lg-5 col-sm-10"
+                    >
+                        <router-view />
+
+                        <div id="form-button-bar">
+                            <StepperActions />
+                        </div>
+                    </div>
                     <div
                         id="preview-static"
                         class="col-12 col-lg-5 gt-md"
@@ -51,6 +61,7 @@
                     </div>
                 </q-page>
             </q-page-container>
+
             <q-footer id="footer-inner">
                 <Footer />
             </q-footer>
@@ -64,6 +75,8 @@ import DownloadButton from 'components/DownloadButton.vue'
 import Footer from 'components/Footer.vue'
 import Header from 'components/Header.vue'
 import Preview from 'components/Preview.vue'
+import Stepper from 'components/Stepper.vue'
+import StepperActions from 'components/StepperActions.vue'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
@@ -72,7 +85,9 @@ export default defineComponent({
         Header,
         Preview,
         DownloadButton,
-        Footer
+        Footer,
+        Stepper,
+        StepperActions
     },
     setup () {
         const isPreviewDrawerEnabled = ref(false)

@@ -1,74 +1,64 @@
 <template>
-    <Stepper />
-    <div
-        id="form"
-        class="col-12 col-lg-5 col-sm-10"
-    >
-        <div id="form-title">
-            <h1 class="page-title">
-                Authors
-            </h1>
-        </div>
+    <div id="form-title">
+        <h1 class="page-title">
+            Authors
+        </h1>
+    </div>
 
-        <div id="form-content">
-            <h2 class="question">
-                Who are the author(s) of the work?
-                <SchemaGuideLink anchor="#authors" />
-            </h2>
-            <div class="scroll-to-bottom-container">
-                <span class="bottom" />
-                <div>
-                    <div
-                        class="q-mb-md q-mr-lg"
-                        v-bind:key="index"
-                        v-for="(author, index) in authors"
-                    >
-                        <AuthorCardViewing
-                            v-if="editingId !== index"
-                            v-bind:index="index"
-                            v-bind:author="author"
-                            v-bind:num-authors="authors.length"
-                            v-on:editPressed="() => (editingId = index)"
-                            v-on:moveDown="moveAuthorDown(index)"
-                            v-on:moveUp="moveAuthorUp(index)"
-                        />
-                        <AuthorCardEditing
-                            v-else
-                            v-bind:index="index"
-                            v-bind="author"
-                            v-on:update="setAuthorField"
-                            v-on:closePressed="() => (editingId = -1)"
-                            v-on:removePressed="removeAuthor"
-                        />
-                    </div>
+    <div id="form-content">
+        <h2 class="question">
+            Who are the author(s) of the work?
+            <SchemaGuideLink anchor="#authors" />
+        </h2>
+        <div class="scroll-to-bottom-container">
+            <span class="bottom" />
+            <div>
+                <div
+                    class="q-mb-md q-mr-lg"
+                    v-bind:key="index"
+                    v-for="(author, index) in authors"
+                >
+                    <AuthorCardViewing
+                        v-if="editingId !== index"
+                        v-bind:index="index"
+                        v-bind:author="author"
+                        v-bind:num-authors="authors.length"
+                        v-on:editPressed="() => (editingId = index)"
+                        v-on:moveDown="moveAuthorDown(index)"
+                        v-on:moveUp="moveAuthorUp(index)"
+                    />
+                    <AuthorCardEditing
+                        v-else
+                        v-bind:index="index"
+                        v-bind="author"
+                        v-on:update="setAuthorField"
+                        v-on:closePressed="() => (editingId = -1)"
+                        v-on:removePressed="removeAuthor"
+                    />
                 </div>
             </div>
-
-            <q-btn
-                class="q-mt-md q-mb-md"
-                color="primary"
-                no-caps
-                v-on:click="addAuthor"
-            >
-                Add author
-            </q-btn>
-
-            <q-banner
-                v-if="authorsErrors.length > 0"
-                v-bind:class="['bg-warning', 'text-negative', authorsErrors.length > 0 ? 'has-error' : '']"
-            >
-                <div
-                    v-bind:key="index"
-                    v-for="(screenMessage, index) in authorsErrors"
-                >
-                    {{ screenMessage }}
-                </div>
-            </q-banner>
         </div>
 
-        <div id="form-button-bar">
-            <StepperActions />
-        </div>
+        <q-btn
+            class="q-mt-md q-mb-md"
+            color="primary"
+            no-caps
+            v-on:click="addAuthor"
+        >
+            Add author
+        </q-btn>
+
+        <q-banner
+            v-if="authorsErrors.length > 0"
+            v-bind:class="['bg-warning', 'text-negative', authorsErrors.length > 0 ? 'has-error' : '']"
+        >
+            <div
+                v-bind:key="index"
+                v-for="(screenMessage, index) in authorsErrors"
+            >
+                {{ screenMessage }}
+            </div>
+        </q-banner>
     </div>
 </template>
 
@@ -80,8 +70,6 @@ import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -91,8 +79,6 @@ export default defineComponent({
     name: 'ScreenAuthors',
     components: {
         SchemaGuideLink,
-        Stepper,
-        StepperActions,
         AuthorCardEditing,
         AuthorCardViewing
     },

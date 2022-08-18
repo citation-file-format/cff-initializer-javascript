@@ -42,6 +42,8 @@ module.exports = {
     'plugin:vue/vue3-strongly-recommended', // Priority B: Strongly Recommended (Improving Readability)
     // 'plugin:vue/vue3-recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
+    'plugin:cypress/recommended',
+
     'standard'
 
   ],

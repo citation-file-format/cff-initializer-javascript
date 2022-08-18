@@ -13,6 +13,16 @@
 
         <div id="form-content">
             <h2 class="question">
+                What type of work does this CITATION.cff describe?
+                <SchemaGuideLink anchor="#type" />
+            </h2>
+            <q-option-group
+                type="radio"
+                v-bind:model-value="type"
+                v-bind:options="typeOptions"
+                v-on:update:modelValue="[setType, setMessagePlaceHolder]"
+            />
+            <h2 class="question">
                 What is the title of the work?
                 <SchemaGuideLink anchor="#title" />
             </h2>
@@ -35,43 +45,12 @@
                 bg-color="white"
                 label="message"
                 outlined
+                standout
                 v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
                 v-bind:model-value="message"
                 v-bind:error="messageErrors.length > 0"
                 v-bind:error-message="messageErrors.join(', ')"
-                v-on:new-value="setMessage"
                 v-on:update:modelValue="setMessage"
-            >
-                <template v-slot:append>
-                    <q-btn-dropdown
-                        class="dropdown"
-                        flat
-                    >
-                        <q-list>
-                            <q-item
-                                clickable
-                                v-bind:key="messageOption"
-                                v-close-popup
-                                v-for="messageOption in messageOptions"
-                                v-on:click="setMessage(messageOption)"
-                            >
-                                <q-item-section>
-                                    <q-item-label>{{ messageOption }}</q-item-label>
-                                </q-item-section>
-                            </q-item>
-                        </q-list>
-                    </q-btn-dropdown>
-                </template>
-            </q-input>
-            <h2 class="question">
-                What type of work does this CITATION.cff describe?
-                <SchemaGuideLink anchor="#type" />
-            </h2>
-            <q-option-group
-                type="radio"
-                v-bind:model-value="type"
-                v-bind:options="typeOptions"
-                v-on:update:modelValue="setType"
             />
         </div>
 
@@ -105,14 +84,6 @@ export default defineComponent({
         })
         const { message, title, type, setMessage, setTitle, setType } = useCff()
         const { errors } = useValidation()
-        const messageOptions = [
-            'If you use this software, please cite it using the metadata from this file.',
-            'Please cite this software using these metadata.',
-            'Please cite this software using the metadata from \'preferred-citation\'.',
-            'If you use this dataset, please cite it using the metadata from this file.',
-            'Please cite this dataset using these metadata.',
-            'Please cite this dataset using the metadata from \'preferred-citation\'.'
-        ]
         const messageErrors = computed(() => {
             return messageQueries
                 .filter(byError(errors.value))
@@ -123,10 +94,17 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const setMessagePlaceHolder = () => {
+            // check if user modified the placeholder, if that is the case, do not update the message
+            const messagePlaceHolderRegex = /^If you use this (?<cfftype>software|dataset), please cite it using the metadata from this file.$/igd
+            const isMessageModifiedByApp = messagePlaceHolderRegex.exec(message.value)
+            if (isMessageModifiedByApp) {
+                setMessage(`If you use this ${type.value}, please cite it using the metadata from this file.`)
+            }
+        }
         return {
             message,
             messageErrors,
-            messageOptions,
             title,
             titleErrors,
             type,
@@ -135,6 +113,7 @@ export default defineComponent({
                 { label: 'Dataset', value: 'dataset' }
             ],
             setMessage,
+            setMessagePlaceHolder,
             setTitle,
             setType
         }

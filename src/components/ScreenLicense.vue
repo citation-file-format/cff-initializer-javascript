@@ -1,48 +1,38 @@
 <template>
-    <Stepper />
-    <div
-        id="form"
-        class="col-12 col-lg-5 col-sm-10"
-    >
-        <div id="form-title">
-            <h1 class="page-title">
-                License
-            </h1>
-        </div>
+    <div id="form-title">
+        <h1 class="page-title">
+            License
+        </h1>
+    </div>
 
-        <div id="form-content">
-            <h2 class="question">
-                What is the license of the work?
-                <SchemaGuideLink anchor="#license" />
-            </h2>
-            <q-select
-                bg-color="white"
-                label="license"
-                clearable
-                fill-input
-                hide-selected
-                input-debounce="0"
-                outlined
-                standout
-                use-input
-                v-bind:model-value="license"
-                v-bind:options="options"
-                v-on:filter="licenseFilterFunction"
-                v-on:update:model-value="setLicense"
-            >
-                <template v-slot:no-option>
-                    <q-item>
-                        <q-item-section class="text-grey">
-                            No results
-                        </q-item-section>
-                    </q-item>
-                </template>
-            </q-select>
-        </div>
-
-        <div id="form-button-bar">
-            <StepperActions />
-        </div>
+    <div id="form-content">
+        <h2 class="question">
+            What is the license of the work?
+            <SchemaGuideLink anchor="#license" />
+        </h2>
+        <q-select
+            bg-color="white"
+            label="license"
+            clearable
+            fill-input
+            hide-selected
+            input-debounce="0"
+            outlined
+            standout
+            use-input
+            v-bind:model-value="license"
+            v-bind:options="options"
+            v-on:filter="licenseFilterFunction"
+            v-on:update:model-value="setLicense"
+        >
+            <template v-slot:no-option>
+                <q-item>
+                    <q-item-section class="text-grey">
+                        No results
+                    </q-item-section>
+                </q-item>
+            </template>
+        </q-select>
     </div>
 </template>
 
@@ -50,17 +40,13 @@
 import { defineComponent, ref } from 'vue'
 import { QSelect } from 'quasar'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
 import schema from 'src/schemas/1.2.0/schema.json'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
     name: 'ScreenLicense',
     components: {
-        SchemaGuideLink,
-        Stepper,
-        StepperActions
+        SchemaGuideLink
     },
     setup () {
         const { license, setLicense } = useCff()

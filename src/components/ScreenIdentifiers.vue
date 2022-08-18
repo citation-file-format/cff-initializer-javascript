@@ -1,75 +1,65 @@
 <template>
-    <Stepper />
-    <div
-        id="form"
-        class="col-12 col-lg-5 col-sm-10"
-    >
-        <div id="form-title">
-            <h1 class="page-title">
-                Identifiers
-            </h1>
-        </div>
+    <div id="form-title">
+        <h1 class="page-title">
+            Identifiers
+        </h1>
+    </div>
 
-        <div id="form-content">
-            <h2 class="question">
-                What persistent identifiers are available for the work?
-                <SchemaGuideLink anchor="#identifiers" />
-            </h2>
-            <div class="scroll-to-bottom-container">
-                <span class="bottom" />
-                <div>
-                    <div
-                        class="q-mb-md q-mr-lg"
-                        v-bind:key="index"
-                        v-for="(identifier, index) in identifiers"
-                    >
-                        <IdentifierCardViewing
-                            v-if="editingId !== index"
-                            v-bind:index="index"
-                            v-bind:identifier="identifier"
-                            v-bind:num-identifiers="identifiers.length"
-                            v-on:editPressed="() => (editingId = index)"
-                            v-on:moveDown="moveIdentifierDown(index)"
-                            v-on:moveUp="moveIdentifierUp(index)"
-                        />
-                        <IdentifierCardEditing
-                            v-else
-                            v-bind:index="index"
-                            v-bind="identifier"
-                            v-on:updateType="setIdentifierTypeField"
-                            v-on:updateValue="setIdentifierValueField"
-                            v-on:updateDescription="setIdentifierDescriptionField"
-                            v-on:closePressed="() => (editingId = -1)"
-                            v-on:removePressed="removeIdentifier"
-                        />
-                    </div>
+    <div id="form-content">
+        <h2 class="question">
+            What persistent identifiers are available for the work?
+            <SchemaGuideLink anchor="#identifiers" />
+        </h2>
+        <div class="scroll-to-bottom-container">
+            <span class="bottom" />
+            <div>
+                <div
+                    class="q-mb-md q-mr-lg"
+                    v-bind:key="index"
+                    v-for="(identifier, index) in identifiers"
+                >
+                    <IdentifierCardViewing
+                        v-if="editingId !== index"
+                        v-bind:index="index"
+                        v-bind:identifier="identifier"
+                        v-bind:num-identifiers="identifiers.length"
+                        v-on:editPressed="() => (editingId = index)"
+                        v-on:moveDown="moveIdentifierDown(index)"
+                        v-on:moveUp="moveIdentifierUp(index)"
+                    />
+                    <IdentifierCardEditing
+                        v-else
+                        v-bind:index="index"
+                        v-bind="identifier"
+                        v-on:updateType="setIdentifierTypeField"
+                        v-on:updateValue="setIdentifierValueField"
+                        v-on:updateDescription="setIdentifierDescriptionField"
+                        v-on:closePressed="() => (editingId = -1)"
+                        v-on:removePressed="removeIdentifier"
+                    />
                 </div>
             </div>
-            <q-btn
-                class="q-mt-md q-mb-md"
-                color="primary"
-                no-caps
-                v-on:click="addIdentifier"
-            >
-                Add identifier
-            </q-btn>
-
-            <q-banner
-                v-if="identifiersErrors.length > 0"
-                v-bind:class="['bg-warning', 'text-negative', identifiersErrors.length > 0 ? 'has-error' : '']"
-            >
-                <div
-                    v-bind:key="index"
-                    v-for="(screenMessage, index) in identifiersErrors"
-                >
-                    {{ screenMessage }}
-                </div>
-            </q-banner>
         </div>
+        <q-btn
+            class="q-mt-md q-mb-md"
+            color="primary"
+            no-caps
+            v-on:click="addIdentifier"
+        >
+            Add identifier
+        </q-btn>
 
-        <div id="form-button-bar">
-            <StepperActions />
-        </div>
+        <q-banner
+            v-if="identifiersErrors.length > 0"
+            v-bind:class="['bg-warning', 'text-negative', identifiersErrors.length > 0 ? 'has-error' : '']"
+        >
+            <div
+                v-bind:key="index"
+                v-for="(screenMessage, index) in identifiersErrors"
+            >
+                {{ screenMessage }}
+            </div>
+        </q-banner>
     </div>
 </template>
 
@@ -81,8 +71,6 @@ import { moveDown, moveUp } from 'src/updown'
 import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
 import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import Stepper from 'components/Stepper.vue'
-import StepperActions from 'components/StepperActions.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -92,8 +80,6 @@ export default defineComponent({
     name: 'ScreenIdentifiers',
     components: {
         SchemaGuideLink,
-        Stepper,
-        StepperActions,
         IdentifierCardEditing,
         IdentifierCardViewing
     },

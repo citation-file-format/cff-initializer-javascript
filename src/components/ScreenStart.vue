@@ -94,13 +94,11 @@ export default defineComponent({
                 .map(query => query.replace.message)
         })
         const setMessagePlaceHolder = () => {
-            // check if user modified the placeholder, if that is the case, do not update the message
-            const messagePlaceHolderRegex = /^If you use this (?<cfftype>software|dataset), please cite it using the metadata from this file.$/igd
-            const isMessageModifiedByApp = messagePlaceHolderRegex.exec(message.value)
-            const testing = messagePlaceHolderRegex.test(message.value)
-            console.log(testing)
-            if (isMessageModifiedByApp) {
-                setMessage(`If you use this ${type.value}, please cite it using the metadata from this file.`)
+            const messagePlaceHolderRegex = /(software|dataset)/igm
+            const matches = messagePlaceHolderRegex.exec(message.value)
+            if (matches) {
+                // search and replace all occurrences
+                setMessage(message.value.split(matches[0]).join(type.value))
             }
         }
         return {

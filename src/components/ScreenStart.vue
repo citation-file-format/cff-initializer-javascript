@@ -14,7 +14,7 @@
             type="radio"
             v-bind:model-value="type"
             v-bind:options="typeOptions"
-            v-on:update:modelValue="[setType, setMessagePlaceHolder]"
+            v-on:update:modelValue="[setType, parseAndSetMessagePlaceHolder]"
         />
         <h2 class="question">
             What is the title of the work?
@@ -40,6 +40,7 @@
             label="message"
             outlined
             standout
+            v-bind:placeholder="messagePlaceHolder"
             v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
             v-bind:model-value="message"
             v-bind:error="messageErrors.length > 0"
@@ -67,7 +68,7 @@ export default defineComponent({
             const { setErrorStateScreenStart } = useStepperErrors()
             setErrorStateScreenStart(document.getElementsByClassName('has-error').length > 0)
         })
-        const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const { message, messagePlaceHolder, title, type, setMessage, setMessagePlaceHolder, setTitle, setType } = useCff()
         const { errors } = useValidation()
         const messageErrors = computed(() => {
             return messageQueries
@@ -79,16 +80,17 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const setMessagePlaceHolder = () => {
+        const parseAndSetMessagePlaceHolder = () => {
             const messagePlaceHolderRegex = /(software|dataset)/igm
-            const matches = messagePlaceHolderRegex.exec(message.value)
+            const matches = messagePlaceHolderRegex.exec(messagePlaceHolder.value)
             if (matches) {
                 // search and replace all occurrences
-                setMessage(message.value.split(matches[0]).join(type.value))
+                setMessagePlaceHolder(messagePlaceHolder.value.split(matches[0]).join(type.value))
             }
         }
         return {
             message,
+            messagePlaceHolder,
             messageErrors,
             title,
             titleErrors,
@@ -98,7 +100,7 @@ export default defineComponent({
                 { label: 'Dataset', value: 'dataset' }
             ],
             setMessage,
-            setMessagePlaceHolder,
+            parseAndSetMessagePlaceHolder,
             setTitle,
             setType
         }

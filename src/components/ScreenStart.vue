@@ -19,6 +19,11 @@
         <h2 class="question">
             What is the title of the work?
             <SchemaGuideLink anchor="#title" />
+            <q-btn
+                icon="help"
+                flat
+                v-on:click="showTitleHelp = true"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -37,7 +42,7 @@
             <q-btn
                 icon="help"
                 flat
-                v-on:click="showHelp= true"
+                v-on:click="showMessageHelp = true"
             />
         </h2>
         <q-input
@@ -52,8 +57,12 @@
             v-on:update:modelValue="setMessage"
         />
         <InfoDialog
-            v-model="showHelp"
+            v-model="showMessageHelp"
             v-bind:data="helpData.message"
+        />
+        <InfoDialog
+            v-model="showTitleHelp"
+            v-bind:data="helpData.title"
         />
     </div>
 </template>
@@ -110,14 +119,22 @@ export default defineComponent({
                 ]
             },
             title: {
-
+                title: 'title',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#title',
+                description: 'The name of the software or dataset.',
+                examples: [
+                    'cffconvert',
+                    'Firefox',
+                    'LibreOffice'
+                ]
             }
         }
         return {
             helpData,
             message,
             messageErrors,
-            showHelp: ref(false),
+            showMessageHelp: ref(false),
+            showTitleHelp: ref(false),
             title,
             titleErrors,
             type,

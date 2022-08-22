@@ -8,10 +8,12 @@
     <div id="form-content">
         <h2 class="question">
             What type of work does this CITATION.cff describe?
-            <q-btn
-                icon="help"
-                flat
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
                 v-on:click="showTypeHelp = true"
+                style="cursor:pointer;"
             />
         </h2>
         <q-option-group
@@ -22,10 +24,12 @@
         />
         <h2 class="question">
             What is the title of the work?
-            <q-btn
-                icon="help"
-                flat
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
                 v-on:click="showTitleHelp = true"
+                style="cursor:pointer;"
             />
         </h2>
         <q-input
@@ -41,10 +45,12 @@
         />
         <h2 class="question">
             What do you want citers to do with the information provided in your CITATION.cff file?
-            <q-btn
-                icon="help"
-                flat
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
                 v-on:click="showMessageHelp = true"
+                style="cursor:pointer;"
             />
         </h2>
         <q-input

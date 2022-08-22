@@ -6,11 +6,12 @@
             v-model="showDialog"
         >
             <q-card
-                style="width:1000px;max-width=1500"
+                class="window-width"
+                id="form-content"
             >
                 <q-card-section class="row items-center q-pb-none">
                     <div class="text-h6">
-                        Help - {{ data.title }}
+                        Info for {{ data.title }} field
                     </div>
                     <q-space />
                     <q-btn
@@ -27,7 +28,6 @@
                 </q-card-section>
                 <q-card-section>
                     Examples:
-
                     <ul>
                         <li
                             v-for="item in data.examples"
@@ -43,7 +43,7 @@
                         tabindex="-1"
                         target="_blank"
                     >
-                        See documentation for more details.
+                        Click here to see the documentation.
                     </a>
                 </q-card-section>
             </q-card>

@@ -34,6 +34,11 @@
         <h2 class="question">
             What do you want citers to do with the information provided in your CITATION.cff file?
             <SchemaGuideLink anchor="#message" />
+            <q-btn
+                icon="help"
+                flat
+                v-on:click="showHelp= true"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -46,12 +51,17 @@
             v-bind:error-message="messageErrors.join(', ')"
             v-on:update:modelValue="setMessage"
         />
+        <InfoDialog
+            v-model="showHelp"
+            v-bind:data="helpData.message"
+        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, messageQueries, titleQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
+import { computed, defineComponent, onUpdated, ref } from 'vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -60,7 +70,8 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenStart',
     components: {
-        SchemaGuideLink
+        SchemaGuideLink,
+        InfoDialog
     },
     setup () {
         onUpdated(() => {
@@ -87,9 +98,26 @@ export default defineComponent({
                 setMessage(message.value.split(matches[0]).join(type.value))
             }
         }
+        const helpData = {
+            message: {
+                title: 'message',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#message',
+                description: 'A message to the human reader of the CITATION.cff file to let them know what to do with the citation metadata.',
+                examples: [
+                    'If you use this software, please cite it using the metadata from this file.',
+                    'Please cite this software using these metadata.',
+                    'Please cite this software using the metadata from "preferred-citation".'
+                ]
+            },
+            title: {
+
+            }
+        }
         return {
+            helpData,
             message,
             messageErrors,
+            showHelp: ref(false),
             title,
             titleErrors,
             type,

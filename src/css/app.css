@@ -21,7 +21,6 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
 }
 #header-inner {
     background-color: purple;

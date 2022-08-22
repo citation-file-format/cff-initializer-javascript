@@ -33,7 +33,6 @@ export type CffType = {
     identifiers?: IdentifiersType,
     license?: string,
     message: string,
-    messagePlaceHolder: string,
     repository?: string,
     repositoryArtifact?: string,
     repositoryCode?: string,

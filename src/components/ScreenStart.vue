@@ -52,7 +52,7 @@
 
 <script lang="ts">
 import { byError, messageQueries, titleQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
+import { computed, defineComponent, onUpdated, ref } from 'vue'
 import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -68,7 +68,8 @@ export default defineComponent({
             const { setErrorStateScreenStart } = useStepperErrors()
             setErrorStateScreenStart(document.getElementsByClassName('has-error').length > 0)
         })
-        const { message, messagePlaceHolder, title, type, setMessage, setMessagePlaceHolder, setTitle, setType } = useCff()
+        const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const messagePlaceHolder = ref('e.g. If you use this software, please cite it using the metadata from this file.')
         const { errors } = useValidation()
         const messageErrors = computed(() => {
             return messageQueries
@@ -85,12 +86,11 @@ export default defineComponent({
             const matches = messagePlaceHolderRegex.exec(messagePlaceHolder.value)
             if (matches) {
                 // search and replace all occurrences
-                setMessagePlaceHolder(messagePlaceHolder.value.split(matches[0]).join(type.value))
+                messagePlaceHolder.value = messagePlaceHolder.value.split(matches[0]).join(type.value)
             }
         }
         return {
             message,
-            messagePlaceHolder,
             messageErrors,
             title,
             titleErrors,
@@ -100,6 +100,7 @@ export default defineComponent({
                 { label: 'Dataset', value: 'dataset' }
             ],
             setMessage,
+            messagePlaceHolder,
             parseAndSetMessagePlaceHolder,
             setTitle,
             setType

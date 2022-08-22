@@ -1,7 +1,13 @@
 <template>
-    <div class="q-pa-md q-gutter-sm">
-        <q-dialog v-model="showDialog">
-            <q-card>
+    <div
+        class="q-pa-md q-gutter-sm"
+    >
+        <q-dialog
+            v-model="showDialog"
+        >
+            <q-card
+                style="width:1000px;max-width=1500"
+            >
                 <q-card-section class="row items-center q-pb-none">
                     <div class="text-h6">
                         Help - {{ data.title }}
@@ -18,7 +24,8 @@
 
                 <q-card-section>
                     {{ data.description }}
-                    <br><br>
+                </q-card-section>
+                <q-card-section>
                     Examples:
 
                     <ul>
@@ -29,8 +36,8 @@
                             {{ item }}
                         </li>
                     </ul>
-
-                    <br>
+                </q-card-section>
+                <q-card-section>
                     <a
                         v-bind:href="data.url"
                         tabindex="-1"

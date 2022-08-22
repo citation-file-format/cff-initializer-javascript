@@ -7,11 +7,11 @@
         >
             <q-card
                 class="window-width"
-                id="form-content"
+                id="help-dialog"
             >
                 <q-card-section class="row items-center q-pb-none">
-                    <div class="text-h6">
-                        Info for {{ data.title }} field
+                    <div class="text-h5">
+                        {{ data.title }} field
                     </div>
                     <q-space />
                     <q-btn
@@ -27,7 +27,9 @@
                     {{ data.description }}
                 </q-card-section>
                 <q-card-section>
-                    Examples:
+                    <div class="text-h6">
+                        Examples
+                    </div>
                     <ul>
                         <li
                             v-for="item in data.examples"

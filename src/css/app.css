@@ -116,6 +116,10 @@ body {
     width: 245px;
 }
 
+#help-dialog {
+    background-color: var(--fgcolor, lightslategray);
+}
+
 @font-face {
     font-family: "Roboto";
     src: url("./fonts/Roboto/Roboto-Regular.ttf");

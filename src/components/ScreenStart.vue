@@ -8,7 +8,11 @@
     <div id="form-content">
         <h2 class="question">
             What type of work does this CITATION.cff describe?
-            <SchemaGuideLink anchor="#type" />
+            <q-btn
+                icon="help"
+                flat
+                v-on:click="showTypeHelp = true"
+            />
         </h2>
         <q-option-group
             type="radio"
@@ -18,7 +22,6 @@
         />
         <h2 class="question">
             What is the title of the work?
-            <SchemaGuideLink anchor="#title" />
             <q-btn
                 icon="help"
                 flat
@@ -38,7 +41,6 @@
         />
         <h2 class="question">
             What do you want citers to do with the information provided in your CITATION.cff file?
-            <SchemaGuideLink anchor="#message" />
             <q-btn
                 icon="help"
                 flat
@@ -57,6 +59,10 @@
             v-on:update:modelValue="setMessage"
         />
         <InfoDialog
+            v-model="showTypeHelp"
+            v-bind:data="helpData.type"
+        />
+        <InfoDialog
             v-model="showMessageHelp"
             v-bind:data="helpData.message"
         />
@@ -71,7 +77,6 @@
 import { byError, messageQueries, titleQueries } from 'src/error-filtering'
 import { computed, defineComponent, onUpdated, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -79,7 +84,6 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenStart',
     components: {
-        SchemaGuideLink,
         InfoDialog
     },
     setup () {
@@ -108,6 +112,15 @@ export default defineComponent({
             }
         }
         const helpData = {
+            type: {
+                title: 'type',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#type',
+                description: 'The type of the work that is being described by this CITATION.cff file.',
+                examples: [
+                    'software',
+                    'dataset'
+                ]
+            },
             message: {
                 title: 'message',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#message',
@@ -135,6 +148,7 @@ export default defineComponent({
             messageErrors,
             showMessageHelp: ref(false),
             showTitleHelp: ref(false),
+            showTypeHelp: ref(false),
             title,
             titleErrors,
             type,

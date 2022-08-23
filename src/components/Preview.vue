@@ -77,7 +77,7 @@ export default defineComponent({
             copyToClipboard,
             isNotMinimumCFF: computed(() => errors.value
                 .map((v) => v.instancePath)
-                .some((i) => i.includes('title') || i.includes('authors'))),
+                .some((i) => i.includes('title') || i.includes('authors') || i.includes('message'))),
             isValidCFF: computed(() => errors.value.length === 0),
             showTooltip
         }

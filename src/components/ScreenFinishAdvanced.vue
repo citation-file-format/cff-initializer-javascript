@@ -24,14 +24,15 @@
             </p>
             <div class="row">
                 <q-btn
-                    class="col-4 q-ma-lg"
+                    class="q-mt-md q-mb-md"
                     color="primary"
                     icon="refresh"
                     label="Reset form"
                     no-caps
-                    size="xl"
                     v-on:click="createAnother"
                 />
+            </div>
+            <div class="row">
                 <DownloadButton class="col-4 q-ma-lg" />
             </div>
         </div>

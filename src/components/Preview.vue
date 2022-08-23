@@ -37,7 +37,7 @@
     />
     <div class="validation-msg">
         <p
-            v-if="isNotMinimumCFF"
+            v-if="doesNotHaveRequiredFields"
             class="invalid"
         >
             Your CITATION.cff does not have the minimum fields
@@ -75,7 +75,7 @@ export default defineComponent({
         return {
             cffstr,
             copyToClipboard,
-            isNotMinimumCFF: computed(() => errors.value
+            doesNotHaveRequiredFields: computed(() => errors.value
                 .map((v) => v.instancePath)
                 .some((i) => i.includes('title') || i.includes('authors') || i.includes('message'))),
             isValidCFF: computed(() => errors.value.length === 0),

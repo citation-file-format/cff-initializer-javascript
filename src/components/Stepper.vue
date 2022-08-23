@@ -2,7 +2,7 @@
     <q-stepper
         animated
         color="primary"
-        class="bg-secondary col-12 col-sm-2 text-primary"
+        class="bg-secondary col-12 col-sm-2 gt-xs text-primary"
         error-color="negative"
         error-icon="warning"
         flat

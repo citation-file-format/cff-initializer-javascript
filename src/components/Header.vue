@@ -21,7 +21,7 @@
             type="a"
         />
         <q-btn
-            class="lt-lg"
+            class="lt-lg gt-xs"
             icon="menu"
             v-on:click="$emit('togglePreview')"
         >

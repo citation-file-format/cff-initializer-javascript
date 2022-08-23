@@ -36,7 +36,16 @@
         wrap="hard"
     />
     <div class="validation-msg">
-        <p v-bind:class="isValidCFF ? '' : 'invalid'">
+        <p
+            v-if="isMinimumCFF"
+            v-bind:class="isValidCFF ? '' : 'invalid'"
+        >
+            Your CITATION.cff does not have a title and/or author
+        </p>
+        <p
+            v-else
+            v-bind:class="isValidCFF ? '' : 'invalid'"
+        >
             Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}
         </p>
     </div>
@@ -66,6 +75,7 @@ export default defineComponent({
         return {
             cffstr,
             copyToClipboard,
+            isMinimumCFF: computed(() => errors.value.map((v) => v.instancePath).some((i) => i.includes('title') || i.includes('authors'))),
             isValidCFF: computed(() => errors.value.length === 0),
             showTooltip
         }

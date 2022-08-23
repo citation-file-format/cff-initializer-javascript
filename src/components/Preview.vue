@@ -40,7 +40,7 @@
             v-if="isNotMinimumCFF"
             class="invalid"
         >
-            Your CITATION.cff does not have a title and/or author
+            Your CITATION.cff does not have the minimum fields
         </p>
         <p
             v-else
@@ -75,7 +75,9 @@ export default defineComponent({
         return {
             cffstr,
             copyToClipboard,
-            isNotMinimumCFF: computed(() => errors.value.map((v) => v.instancePath).some((i) => i.includes('title') || i.includes('authors'))),
+            isNotMinimumCFF: computed(() => errors.value
+                .map((v) => v.instancePath)
+                .some((i) => i.includes('title') || i.includes('authors'))),
             isValidCFF: computed(() => errors.value.length === 0),
             showTooltip
         }

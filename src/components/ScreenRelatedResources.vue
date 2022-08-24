@@ -8,7 +8,13 @@
     <div id="form-content">
         <h2 class="question">
             What is the URL of the work in a source code repository?
-            <SchemaGuideLink anchor="#repository-code" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showRepositoryCodeHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -24,7 +30,13 @@
 
         <h2 class="question">
             What is the URL of a landing page/website for the work?
-            <SchemaGuideLink anchor="#url" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showUrlHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -40,7 +52,13 @@
 
         <h2 class="question">
             What is the URL of the work in a repository?
-            <SchemaGuideLink anchor="#repository" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showRepositoryHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -56,7 +74,13 @@
 
         <h2 class="question">
             What is the URL of the work in a build artifact/binary repository?
-            <SchemaGuideLink anchor="#repository-artifact" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showRepositoryArtifactHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -69,13 +93,29 @@
             v-bind:error-message="repositoryArtifactErrors.join(', ')"
             v-on:update:modelValue="setRepositoryArtifact"
         />
+        <InfoDialog
+            v-model="showRepositoryHelp"
+            v-bind:data="helpData.repository"
+        />
+        <InfoDialog
+            v-model="showRepositoryArtifactHelp"
+            v-bind:data="helpData.repositoryArtifact"
+        />
+        <InfoDialog
+            v-model="showRepositoryCodeHelp"
+            v-bind:data="helpData.repositoryCode"
+        />
+        <InfoDialog
+            v-model="showUrlHelp"
+            v-bind:data="helpData.url"
+        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, repositoryArtifactQueries, repositoryCodeQueries, repositoryQueries, urlQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import { computed, defineComponent, onUpdated, ref } from 'vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -83,7 +123,7 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenRelatedResources',
     components: {
-        SchemaGuideLink
+        InfoDialog
     },
     setup () {
         onUpdated(() => {
@@ -115,7 +155,42 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const helpData = {
+            repository: {
+                title: 'repository',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository',
+                description: 'URL of the work in a repository/archive that is neither a source code repository nor a build artifact repository',
+                examples: [
+                    'https://ascl.net/2105.013'
+                ]
+            },
+            repositoryArtifact: {
+                title: 'repository-artifact',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-artifact',
+                description: 'URL of the work in a build artifact/binary repository',
+                examples: [
+                    'https://search.maven.org/artifact/org.corpus-tools/cff-maven-plugin/0.4.0/maven-plugin'
+                ]
+            },
+            repositoryCode: {
+                title: 'repository-code',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-code',
+                description: 'URL of the work in a source code repository',
+                examples: [
+                    'https://github.com/citation-file-format/citation-file-format'
+                ]
+            },
+            url: {
+                title: 'url',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#url',
+                description: 'URL of the landing page/website for the work',
+                examples: [
+                    'https://citation-file-format.github.io/'
+                ]
+            }
+        }
         return {
+            helpData,
             repository,
             repositoryErrors,
             repositoryArtifact,
@@ -127,7 +202,11 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl
+            setUrl,
+            showRepositoryHelp: ref(false),
+            showRepositoryArtifactHelp: ref(false),
+            showRepositoryCodeHelp: ref(false),
+            showUrlHelp: ref(false)
         }
     }
 })

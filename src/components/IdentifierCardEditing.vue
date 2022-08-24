@@ -18,7 +18,13 @@
                 <div class="row">
                     <h3 class="subquestion">
                         What is the value of the {{ label }}?
-                        <SchemaGuideLink v-bind:anchor="anchor" />
+                        <q-icon
+                            name="ion-information-circle-outline"
+                            size="24px"
+                            color="primary"
+                            v-on:click="showIdentifierHelp = true"
+                            style="cursor:pointer;"
+                        />
                     </h3>
                 </div>
                 <q-input
@@ -39,7 +45,13 @@
                 <div class="row">
                     <h3 class="subquestion">
                         What is the description for the {{ label }}?
-                        <SchemaGuideLink anchor="#definitionsidentifier-description" />
+                        <q-icon
+                            name="ion-information-circle-outline"
+                            size="24px"
+                            color="primary"
+                            v-on:click="showDescriptionHelp = true"
+                            style="cursor:pointer;"
+                        />
                     </h3>
                 </div>
                 <q-input
@@ -69,13 +81,21 @@
             />
         </q-card-actions>
     </q-card>
+    <InfoDialog
+        v-model="showIdentifierHelp"
+        v-bind:data="helpData[identifierType]"
+    />
+    <InfoDialog
+        v-model="showDescriptionHelp"
+        v-bind:data="helpData.description"
+    />
 </template>
 
 <script lang="ts">
-import { PropType, computed, defineComponent } from 'vue'
+import { PropType, computed, defineComponent, ref } from 'vue'
 import { byError, identifierValueQueries, unique } from 'src/error-filtering'
 import { IdentifierTypeType } from 'src/types'
-import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import InfoDialog from 'src/components/InfoDialog.vue'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -99,18 +119,15 @@ export default defineComponent({
         }
     },
     components: {
-        SchemaGuideLink
+        InfoDialog
     },
     setup (props) {
         const { errors } = useValidation()
-        const linkInfo = {
-            doi: { label: 'DOI', anchor: '#definitionsdoi' },
-            url: { label: 'URL', anchor: '#definitionsurl' },
-            swh: {
-                label: 'Software Heritage identifier',
-                anchor: '#definitionsswh-identifier'
-            },
-            other: { label: 'identifier', anchor: '#definitionsidentifier' }
+        const labels = {
+            doi: 'DOI',
+            url: 'URL',
+            swh: 'Software Heritage identifier',
+            other: 'identifier'
         }
         const identifierValueErrors = computed(() => {
             return identifierValueQueries(props.index, ['doi', 'url', 'swh', 'other'].indexOf(props.type))
@@ -118,16 +135,67 @@ export default defineComponent({
                 .map(query => query.replace.message)
                 .filter(unique)
         })
+        const helpData = {
+            doi: {
+                title: 'doi',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsdoi',
+                description: 'The DOI (https://en.wikipedia.org/wiki/Digital_object_identifier) of the work.',
+                examples: [
+                    '10.5281/zenodo.1003150'
+                ]
+            },
+            url: {
+                title: 'url',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsurl',
+                description: 'A URL.',
+                examples: [
+                    'https://research-software-project.org',
+                    'http://research-software-project.org',
+                    'sftp://files.research-software-project.org',
+                    'ftp://files.research-software-project.org'
+                ]
+            },
+            swh: {
+                title: 'swh',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsswh-identifier',
+                description: 'The Software Heritage identifier (https://www.softwareheritage.org/).',
+                examples: [
+                    'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d'
+                ]
+            },
+            other: {
+                title: 'other',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier',
+                description: 'An identifier that does not fit in the other categories.',
+                examples: [
+                    'arXiv:2103.06681'
+                ]
+            },
+            description: {
+                title: 'description',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier-description',
+                description: 'A description of the identifier.',
+                examples: [
+                    'The concept DOI of the work.',
+                    'The URL of version 1.1.0 of the software',
+                    'The Software Heritage link for version 1.1.0.',
+                    'The ArXiv deposit of the encompassing paper.'
+                ]
+            }
+        }
         return {
+            helpData,
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },
                 { label: 'Software Heritage', value: 'swh' },
                 { label: 'Other', value: 'other' }
             ],
-            label: computed(() => linkInfo[props.type].label),
-            anchor: computed(() => linkInfo[props.type].anchor),
-            identifierValueErrors
+            identifierType: computed(() => props.type),
+            label: computed(() => labels[props.type]),
+            identifierValueErrors,
+            showDescriptionHelp: ref(false),
+            showIdentifierHelp: ref(false)
         }
     },
     emits: [

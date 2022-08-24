@@ -23,16 +23,18 @@
                 Distribute the CITATION.cff with your project, for instance, by adding it to the root of your GitHub repository.
             </p>
             <div class="row">
+                <DownloadButton class="col-4 q-ma-lg" />
+            </div>
+            <div class="row">
                 <q-btn
-                    class="col-4 q-ma-lg"
-                    color="primary"
+                    class="q-mt-md q-mb-md"
+                    color=""
+                    text-color="red"
                     icon="refresh"
                     label="Reset form"
                     no-caps
-                    size="xl"
                     v-on:click="createAnother"
                 />
-                <DownloadButton class="col-4 q-ma-lg" />
             </div>
         </div>
         <div v-else>

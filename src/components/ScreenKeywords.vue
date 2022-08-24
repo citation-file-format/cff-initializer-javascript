@@ -8,7 +8,13 @@
     <div id="form-content">
         <h2 class="question">
             What keywords describe the work?
-            <SchemaGuideLink anchor="#keywords" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showKeywordsHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -48,15 +54,19 @@
                 {{ screenMessage }}
             </div>
         </q-banner>
+        <InfoDialog
+            v-model="showKeywordsHelp"
+            v-bind:data="helpData.keywords"
+        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, keywordsQueries } from 'src/error-filtering'
-import { computed, defineComponent, nextTick, onUpdated } from 'vue'
+import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
+import InfoDialog from 'components/InfoDialog.vue'
 import Keyword from 'components/Keyword.vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -65,7 +75,7 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenKeywords',
     components: {
-        SchemaGuideLink,
+        InfoDialog,
         Keyword
     },
     setup () {
@@ -110,15 +120,29 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const helpData = {
+            keywords: {
+                title: 'keywords',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#keywords',
+                description: 'Keywords that describe the work.',
+                examples: [
+                    'keyword',
+                    'other-keyword',
+                    'Yet Another Keyword'
+                ]
+            }
+        }
         return {
             addKeyword,
             keywords,
             keywordsErrors,
+            helpData,
             moveDown,
             moveUp,
             removeKeyword,
             setKeyword,
-            setKeywords
+            setKeywords,
+            showKeywordsHelp: ref(false)
         }
     }
 })

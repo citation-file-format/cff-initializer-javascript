@@ -8,7 +8,13 @@
     <div id="form-content">
         <h2 class="question">
             What is the license of the work?
-            <SchemaGuideLink anchor="#license" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showLicenseHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-select
             bg-color="white"
@@ -33,27 +39,44 @@
                 </q-item>
             </template>
         </q-select>
+        <InfoDialog
+            v-model="showLicenseHelp"
+            v-bind:data="helpData.license"
+        />
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import { QSelect } from 'quasar'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
 import schema from 'src/schemas/1.2.0/schema.json'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
     name: 'ScreenLicense',
     components: {
-        SchemaGuideLink
+        InfoDialog
     },
     setup () {
         const { license, setLicense } = useCff()
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
+        const helpData = {
+            license: {
+                title: 'license',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#license',
+                description: 'The SPDX license identifier for the license under which the work is available.',
+                examples: [
+                    'Apache-2.0',
+                    'MIT',
+                    'GPL-3.0'
+                ]
+            }
+        }
 
         return {
+            helpData,
             license,
             options,
             setLicense,
@@ -72,7 +95,8 @@ export default defineComponent({
                         ref.moveOptionSelection(1, true)
                     }
                 })
-            }
+            },
+            showLicenseHelp: ref(false)
         }
     }
 })

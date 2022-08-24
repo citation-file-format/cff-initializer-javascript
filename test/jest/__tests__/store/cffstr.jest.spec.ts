@@ -23,7 +23,7 @@ describe('useCffstr', () => {
         })
 
         it('should have title', () => {
-            const expected = generatedBy + "cff-version: 1.2.0\ntitle: sometitle\nmessage: >-\n  If you use this software, please cite it using the\n  metadata from this file.\ntype: software\nauthors: []\n"
+            const expected = generatedBy + 'cff-version: 1.2.0\ntitle: sometitle\nmessage: >-\n  If you use this software, please cite it using the\n  metadata from this file.\ntype: software\nauthors: []\n'
             expect(cffstr.value).toEqual(expected)
         })
     })

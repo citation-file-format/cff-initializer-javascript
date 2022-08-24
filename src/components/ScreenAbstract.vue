@@ -8,7 +8,13 @@
     <div id="form-content">
         <h2 class="question">
             Please provide a description of the work
-            <SchemaGuideLink anchor="#abstract" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showAbstractHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             autogrow
@@ -21,24 +27,37 @@
             v-bind:model-value="abstract"
             v-on:update:modelValue="setAbstract"
         />
+        <InfoDialog
+            v-model="showAbstractHelp"
+            v-bind:data="helpData.abstract"
+        />
     </div>
 </template>
 
 <script lang="ts">
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
     name: 'ScreenAbstract',
     components: {
-        SchemaGuideLink
+        InfoDialog
     },
     setup () {
         const { abstract, setAbstract } = useCff()
+        const helpData = {
+            abstract: {
+                title: 'abstract',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#abstract',
+                description: 'A description or summary of the work.'
+            }
+        }
         return {
             abstract,
-            setAbstract
+            helpData,
+            setAbstract,
+            showAbstractHelp: ref(false)
         }
     }
 })

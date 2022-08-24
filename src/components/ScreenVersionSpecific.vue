@@ -8,7 +8,13 @@
     <div id="form-content">
         <h2 class="question">
             What is the commit identifier of the work?
-            <SchemaGuideLink anchor="#commit" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showCommitHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -21,7 +27,13 @@
 
         <h2 class="question">
             What is the version of the work?
-            <SchemaGuideLink anchor="#version" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showVersionHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -34,7 +46,13 @@
 
         <h2 class="question">
             When was the version released?
-            <SchemaGuideLink anchor="#date-released" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showDateReleasedHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <q-input
             bg-color="white"
@@ -78,13 +96,25 @@
                 </q-icon>
             </template>
         </q-input>
+        <InfoDialog
+            v-model="showCommitHelp"
+            v-bind:data="helpData.commit"
+        />
+        <InfoDialog
+            v-model="showVersionHelp"
+            v-bind:data="helpData.version"
+        />
+        <InfoDialog
+            v-model="showDateReleasedHelp"
+            v-bind:data="helpData.dateReleased"
+        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, dateReleasedQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import { computed, defineComponent, onUpdated, ref } from 'vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -92,7 +122,7 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenVersionSpecific',
     components: {
-        SchemaGuideLink
+        InfoDialog
     },
     setup () {
         onUpdated(() => {
@@ -113,15 +143,45 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const helpData = {
+            commit: {
+                title: 'commit',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#commit',
+                description: 'The commit hash or revision number of the software version.',
+                examples: [
+                    '1ff847d81f29c45a3a1a5ce73d38e45c2f319bba',
+                    'Revision: 8612'
+                ]
+            },
+            version: {
+                title: 'version',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#version',
+                description: 'The version of the software or dataset.',
+                examples: [
+                    '1.2.0',
+                    '1.2',
+                    '21.10 (Impish Indri)'
+                ]
+            },
+            dateReleased: {
+                title: 'date-released',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#date-released',
+                description: 'The date the work has been released.'
+            }
+        }
         return {
             commit,
             dateReleased,
             dateReleasedErrors,
+            helpData,
             initializeDate,
             version,
             setCommit,
             setDateReleased,
-            setVersion
+            setVersion,
+            showCommitHelp: ref(false),
+            showVersionHelp: ref(false),
+            showDateReleasedHelp: ref(false)
         }
     }
 })

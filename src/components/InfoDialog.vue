@@ -83,7 +83,6 @@ export default defineComponent({
 })
 </script>
 
-
 <style scoped>
 .help-dialog {
     background-color: var(--fgcolor, lightslategray);

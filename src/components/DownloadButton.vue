@@ -5,7 +5,6 @@
         label="Download"
         size="xl"
         no-caps
-        stack
         type="a"
         download="CITATION.cff"
         v-bind:href="downloadUrl"

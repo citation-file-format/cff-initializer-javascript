@@ -6,12 +6,11 @@
             v-model="showDialog"
         >
             <q-card
-                class="window-width"
-                id="help-dialog"
+                class="window-width help-dialog"
             >
                 <q-card-section class="row items-center q-pb-none">
                     <div class="text-h5">
-                        {{ data.title }} field
+                        CFF field: {{ data.title }}
                     </div>
                     <q-space />
                     <q-btn
@@ -26,7 +25,7 @@
                 <q-card-section>
                     {{ data.description }}
                 </q-card-section>
-                <q-card-section>
+                <q-card-section v-if="data.examples">
                     <div class="text-h6">
                         Examples
                     </div>
@@ -66,7 +65,7 @@ export default defineComponent({
         },
         data: {
             type: Object,
-            required: false,
+            required: true,
             default: null
         }
     },
@@ -83,3 +82,12 @@ export default defineComponent({
     }
 })
 </script>
+
+
+<style scoped>
+.help-dialog {
+    background-color: var(--fgcolor, lightslategray);
+}
+</style>
+
+}

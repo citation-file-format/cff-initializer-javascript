@@ -33,6 +33,7 @@
                     size="xl"
                     to="/identifiers"
                     v-on:click="showAdvanced"
+                    v-bind:class="$q.platform.is.mobile ? 'full-width' : ''"
                 />
             </div>
         </div>
@@ -48,6 +49,7 @@
 import { computed, defineComponent } from 'vue'
 import DownloadButton from 'components/DownloadButton.vue'
 import { useApp } from 'src/store/app'
+import { useQuasar } from 'quasar'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -58,7 +60,9 @@ export default defineComponent({
     setup () {
         const { setShowAdvanced, setStepName } = useApp()
         const { errors } = useValidation()
+        const $q = useQuasar()
         return {
+            $q,
             isValidCFF: computed(() => errors.value.length === 0),
             showAdvanced: async () => {
                 setShowAdvanced(true)

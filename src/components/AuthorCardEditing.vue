@@ -170,6 +170,7 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios'
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
 import { computed, defineComponent, onUpdated } from 'vue'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
@@ -219,8 +220,29 @@ export default defineComponent({
         })
         const { errors } = useValidation()
         const orcidErrors = computed(() => {
-            return orcidQueries(props.index)
+            const orcidErrors = orcidQueries(props.index)
                 .filter(byError(errors.value))
+            if (orcidErrors.length === 0) {
+                // If a valid orcid is found, look for data in the orcid API (maybe only if we do not have data already)
+                const orcid = '0000-0001-8555-849X' // This should come from props.orcid
+                const orcidEndpoint = 'https://pub.sandbox.orcid.org/v3.0/expanded-search/?q=orcid:' + orcid + '&rows=1'
+                axios.get(orcidEndpoint,
+                    {
+                    data: {},
+                    headers: {
+                        'accept': 'application/vnd.orcid+json'
+                    }
+                }).then(resp => {
+                    console.log('These values should be injected in the right places')
+                    console.log('email     : ' + resp.data['expanded-result'][0]['email'][0])
+                    console.log('last-name : ' + resp.data['expanded-result'][0]['family-names'])
+                    console.log('first-name: ' + resp.data['expanded-result'][0]['given-names'])
+                    console.log('Institution: ' + resp.data['expanded-result'][0]['institution-name'])
+                    console.log('Orcid     : ' + resp.data['expanded-result'][0]['orcid-id'])
+                    
+                })
+            }
+            return orcidErrors
                 .map(query => query.replace.message)
         })
         const emailErrors = computed(() => {

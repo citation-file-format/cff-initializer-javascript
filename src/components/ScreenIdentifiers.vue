@@ -26,6 +26,7 @@
                         v-on:editPressed="() => (editingId = index)"
                         v-on:moveDown="moveIdentifierDown(index)"
                         v-on:moveUp="moveIdentifierUp(index)"
+                        v-on:removePressed="removeIdentifier(index)"
                     />
                     <IdentifierCardEditing
                         v-else
@@ -35,7 +36,7 @@
                         v-on:updateValue="setIdentifierValueField"
                         v-on:updateDescription="setIdentifierDescriptionField"
                         v-on:closePressed="() => (editingId = -1)"
-                        v-on:removePressed="removeIdentifier"
+                        v-on:removePressed="removeIdentifier(editingId)"
                     />
                 </div>
             </div>
@@ -109,12 +110,16 @@ export default defineComponent({
             await nextTick()
             scrollToBottom()
         }
-        const removeIdentifier = () => {
+        const removeIdentifier = (index: number) => {
             if (identifiers.value !== undefined) {
                 const newIdentifiers = [...identifiers.value]
-                newIdentifiers.splice(editingId.value, 1)
+                newIdentifiers.splice(index, 1)
                 setIdentifiers(newIdentifiers)
-                editingId.value = -1
+                if (index < editingId.value) {
+                    editingId.value -= 1
+                } else if (index === editingId.value) {
+                    editingId.value = -1
+                }
                 if (Array.isArray(newIdentifiers) && newIdentifiers.length === 0) {
                     setIdentifiers(undefined)
                 }

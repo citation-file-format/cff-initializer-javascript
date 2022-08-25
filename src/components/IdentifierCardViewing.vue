@@ -37,6 +37,14 @@
                 title="Edit"
                 v-on:click="$emit('editPressed')"
             />
+            <q-btn
+                class="identifier-button"
+                color="negative"
+                hover-color="negative"
+                icon="delete"
+                title="Remove Identifier"
+                v-on:click="$emit('removePressed')"
+            />
         </div>
     </q-card>
 </template>
@@ -81,7 +89,7 @@ export default defineComponent({
             identifierErrors
         }
     },
-    emits: ['editPressed', 'moveDown', 'moveUp']
+    emits: ['editPressed', 'moveDown', 'moveUp', 'removePressed']
 })
 </script>
 <style scoped>

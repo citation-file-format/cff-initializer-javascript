@@ -26,6 +26,7 @@
                         v-on:editPressed="() => (editingId = index)"
                         v-on:moveDown="moveAuthorDown(index)"
                         v-on:moveUp="moveAuthorUp(index)"
+                        v-on:removePressed="removeAuthor(index)"
                     />
                     <AuthorCardEditing
                         v-else
@@ -33,7 +34,7 @@
                         v-bind="author"
                         v-on:update="setAuthorField"
                         v-on:closePressed="() => (editingId = -1)"
-                        v-on:removePressed="removeAuthor"
+                        v-on:removePressed="removeAuthor(editingId)"
                     />
                 </div>
             </div>
@@ -99,11 +100,15 @@ export default defineComponent({
             await nextTick()
             scrollToBottom()
         }
-        const removeAuthor = () => {
+        const removeAuthor = (index: number) => {
             const newAuthors = [...authors.value]
-            newAuthors.splice(editingId.value, 1)
+            newAuthors.splice(index, 1)
             setAuthors(newAuthors)
-            editingId.value = -1
+            if (index < editingId.value) {
+                editingId.value -= 1
+            } else if (index === editingId.value) {
+                editingId.value = -1
+            }
         }
         const setAuthorField = (field: keyof AuthorType, value: string) => {
             const newAuthor = { ...authors.value[editingId.value] }

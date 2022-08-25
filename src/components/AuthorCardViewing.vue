@@ -38,6 +38,14 @@
                 title="Edit"
                 v-on:click="$emit('editPressed')"
             />
+            <q-btn
+                class="author-button"
+                color="negative"
+                hover-color="negative"
+                icon="delete"
+                title="Remove author"
+                v-on:click="$emit('removePressed')"
+            />
         </div>
     </q-card>
 </template>
@@ -92,7 +100,7 @@ export default defineComponent({
             authorErrors
         }
     },
-    emits: ['editPressed', 'moveDown', 'moveUp']
+    emits: ['editPressed', 'moveDown', 'moveUp', 'removePressed']
 })
 </script>
 <style scoped>

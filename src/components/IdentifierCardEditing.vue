@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import { PropType, computed, defineComponent } from 'vue'
-import { byError, identifierValueQueries } from 'src/error-filtering'
+import { byError, identifierValueQueries, unique } from 'src/error-filtering'
 import { IdentifierTypeType } from 'src/types'
 import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
 import { useValidation } from 'src/store/validation'
@@ -116,6 +116,7 @@ export default defineComponent({
             return identifierValueQueries(props.index, ['doi', 'url', 'swh', 'other'].indexOf(props.type))
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
+                .filter(unique)
         })
         return {
             typeOptions: [

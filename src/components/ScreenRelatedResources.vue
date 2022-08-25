@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts">
-import { byError, repositoryArtifactQueries, repositoryCodeQueries, repositoryQueries, urlQueries } from 'src/error-filtering'
+import { byError, repositoryArtifactQueries, repositoryCodeQueries, repositoryQueries, unique, urlQueries } from 'src/error-filtering'
 import { computed, defineComponent, onUpdated, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
@@ -139,21 +139,25 @@ export default defineComponent({
             return repositoryCodeQueries
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
+                .filter(unique)
         })
         const urlErrors = computed(() => {
             return urlQueries
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
+                .filter(unique)
         })
         const repositoryErrors = computed(() => {
             return repositoryQueries
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
+                .filter(unique)
         })
         const repositoryArtifactErrors = computed(() => {
             return repositoryArtifactQueries
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
+                .filter(unique)
         })
         const helpData = {
             repository: {

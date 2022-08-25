@@ -2,18 +2,16 @@
  
  [![Build](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/ghpages.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/ghpages.yml)
  [![Lint](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/lint.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/lint.yml)
- [![Preview](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/preview.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/preview.yml)
- [![Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml)
  [![Test](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/test.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/test.yml)
- [![cffconvert](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/cffconvert.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/cffconvert.yml)
- [![zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml)
  
 # cffinit: a web application to create CITATION.cff files
 
 ## What cffinit can do for you?
+
 When you made some software and you want to include instructions on how to cite it, CITATION.cff files are the answer. However, sometimes it's tricky to ensure you write valid CFF. This tool helps mitigate that problem by generating the CFF text using a web form with form validation and user feedback.
 
 ## Information for users
+
 - Check out the **live version** at <https://citation-file-format.github.io/cff-initializer-javascript/>.
 - For the rationale behind CITATION.cff files, you can read more here:
   - <https://www.software.ac.uk/blog/2017-12-12-standard-format-citation-files>.

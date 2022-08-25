@@ -116,6 +116,7 @@
 import { byError, repositoryArtifactQueries, repositoryCodeQueries, repositoryQueries, urlQueries } from 'src/error-filtering'
 import { computed, defineComponent, onUpdated, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
+import { helpData } from 'src/store/help-data'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -155,40 +156,6 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            repository: {
-                title: 'repository',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository',
-                description: 'URL of the work in a repository/archive that is neither a source code repository nor a build artifact repository',
-                examples: [
-                    'https://ascl.net/2105.013'
-                ]
-            },
-            repositoryArtifact: {
-                title: 'repository-artifact',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-artifact',
-                description: 'URL of the work in a build artifact/binary repository',
-                examples: [
-                    'https://search.maven.org/artifact/org.corpus-tools/cff-maven-plugin/0.4.0/maven-plugin'
-                ]
-            },
-            repositoryCode: {
-                title: 'repository-code',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-code',
-                description: 'URL of the work in a source code repository',
-                examples: [
-                    'https://github.com/citation-file-format/citation-file-format'
-                ]
-            },
-            url: {
-                title: 'url',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#url',
-                description: 'URL of the landing page/website for the work',
-                examples: [
-                    'https://citation-file-format.github.io/'
-                ]
-            }
-        }
         return {
             helpData,
             repository,

@@ -50,6 +50,7 @@
 import { defineComponent, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { QSelect } from 'quasar'
+import { helpData } from 'src/store/help-data'
 import schema from 'src/schemas/1.2.0/schema.json'
 import { useCff } from 'src/store/cff'
 
@@ -62,18 +63,6 @@ export default defineComponent({
         const { license, setLicense } = useCff()
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
-        const helpData = {
-            license: {
-                title: 'license',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#license',
-                description: 'The SPDX license identifier for the license under which the work is available.',
-                examples: [
-                    'Apache-2.0',
-                    'MIT',
-                    'GPL-3.0'
-                ]
-            }
-        }
 
         return {
             helpData,

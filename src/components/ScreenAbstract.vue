@@ -37,6 +37,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
+import { helpData } from 'src/store/help-data'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
@@ -46,13 +47,6 @@ export default defineComponent({
     },
     setup () {
         const { abstract, setAbstract } = useCff()
-        const helpData = {
-            abstract: {
-                title: 'abstract',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#abstract',
-                description: 'A description or summary of the work.'
-            }
-        }
         return {
             abstract,
             helpData,

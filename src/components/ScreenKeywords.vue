@@ -67,6 +67,7 @@ import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
 import InfoDialog from 'components/InfoDialog.vue'
 import Keyword from 'components/Keyword.vue'
+import { helpData } from 'src/store/help-data'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -120,18 +121,6 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            keywords: {
-                title: 'keywords',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#keywords',
-                description: 'Keywords that describe the work.',
-                examples: [
-                    'keyword',
-                    'other-keyword',
-                    'Yet Another Keyword'
-                ]
-            }
-        }
         return {
             addKeyword,
             keywords,

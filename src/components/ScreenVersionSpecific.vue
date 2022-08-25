@@ -115,6 +115,7 @@
 import { byError, dateReleasedQueries } from 'src/error-filtering'
 import { computed, defineComponent, onUpdated, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
+import { helpData } from 'src/store/help-data'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -143,32 +144,6 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            commit: {
-                title: 'commit',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#commit',
-                description: 'The commit hash or revision number of the software version.',
-                examples: [
-                    '1ff847d81f29c45a3a1a5ce73d38e45c2f319bba',
-                    'Revision: 8612'
-                ]
-            },
-            version: {
-                title: 'version',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#version',
-                description: 'The version of the software or dataset.',
-                examples: [
-                    '1.2.0',
-                    '1.2',
-                    '21.10 (Impish Indri)'
-                ]
-            },
-            dateReleased: {
-                title: 'date-released',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#date-released',
-                description: 'The date the work has been released.'
-            }
-        }
         return {
             commit,
             dateReleased,

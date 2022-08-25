@@ -83,6 +83,7 @@
 import { byError, messageQueries, titleQueries } from 'src/error-filtering'
 import { computed, defineComponent, onUpdated, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
+import { helpData } from 'src/store/help-data'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -115,33 +116,6 @@ export default defineComponent({
             if (matches) {
                 // search and replace all occurrences
                 setMessage(message.value.split(matches[0]).join(type.value))
-            }
-        }
-        const helpData = {
-            type: {
-                title: 'type',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#type',
-                description: 'The type of the work that is being described by this CITATION.cff file.'
-            },
-            title: {
-                title: 'title',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#title',
-                description: 'The name of the software or dataset.',
-                examples: [
-                    'cffconvert',
-                    'Firefox',
-                    'LibreOffice'
-                ]
-            },
-            message: {
-                title: 'message',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#message',
-                description: 'A message to the human reader of the CITATION.cff file to let them know what to do with the citation metadata.',
-                examples: [
-                    'If you use this software, please cite it using the metadata from this file.',
-                    'Please cite this software using these metadata.',
-                    'Please cite this software using the metadata from "preferred-citation".'
-                ]
             }
         }
         return {

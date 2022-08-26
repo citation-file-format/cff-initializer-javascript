@@ -148,6 +148,7 @@
                 v-bind:error="orcidErrors.length > 0"
                 v-bind:error-message="orcidErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
+                v-on:keyup="updateOrcid"
             />
         </div>
 
@@ -212,7 +213,7 @@ export default defineComponent({
             default: ''
         }
     },
-    setup (props) {
+    setup (props, ctx) {
         onUpdated(() => {
             const { setErrorStateScreenAuthors } = useStepperErrors()
             setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
@@ -228,9 +229,50 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        type OrcidAuthor = {
+            'given-names': string,
+            'family-names': string,
+            'institution-name': Array<string>,
+            email: Array<string>,
+            'orcid-id': string
+        }
+        type ExpandedResults = {
+            'expanded-result'?: Array<OrcidAuthor>
+            'num-found': number
+        }
+        const updateOrcid = () => {
+            const orcid = props.orcid.split('/').pop() || ''
+            if (!orcid || orcid.length !== 19) {
+                return
+            }
+            const url = `https://pub.orcid.org/v3.0/expanded-search/?q=orcid:${orcid.toString()}&rows=1`
+            fetch(url, {
+                headers: {
+                    Accept: 'application/vnd.orcid+json'
+                }
+            }).then(res => res.json())
+                .then(jsonArray => {
+                    if (!jsonArray) {
+                        return
+                    }
+                    const authors = jsonArray as ExpandedResults
+                    const author = authors?.['expanded-result']?.[0]
+                    if (!author) {
+                        return
+                    }
+                    console.log('Authors: ', authors)
+                    ctx.emit('update', 'givenNames', author['given-names'])
+                    ctx.emit('update', 'familyNames', author['family-names'])
+                    ctx.emit('update', 'affiliation', author['institution-name'].shift())
+                    ctx.emit('update', 'email', author.email.shift())
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
         return {
             emailErrors,
-            orcidErrors
+            orcidErrors,
+            updateOrcid
         }
     },
     emits: ['closePressed', 'removePressed', 'update'],

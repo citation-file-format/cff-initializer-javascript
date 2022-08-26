@@ -8,7 +8,7 @@
         type="a"
         download="CITATION.cff"
         v-bind:href="downloadUrl"
-        v-bind:class="$q.platform.is.mobile ? 'full-width' : ''"
+        v-bind:class="q.platform.is.mobile ? 'full-width' : ''"
     />
 </template>
 
@@ -25,9 +25,9 @@ export default defineComponent({
     name: 'DownloadButton',
     setup () {
         const { cffstr } = useCffstr()
-        const $q = useQuasar()
+        const q = useQuasar()
         return {
-            $q,
+            q,
             downloadUrl: computed(() => toDownloadUrl(cffstr.value))
         }
     }

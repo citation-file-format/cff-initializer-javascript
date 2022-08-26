@@ -33,7 +33,7 @@
                     size="xl"
                     to="/identifiers"
                     v-on:click="showAdvanced"
-                    v-bind:class="$q.platform.is.mobile ? 'full-width' : ''"
+                    v-bind:class="q.platform.is.mobile ? 'full-width' : ''"
                 />
             </div>
         </div>
@@ -60,9 +60,9 @@ export default defineComponent({
     setup () {
         const { setShowAdvanced, setStepName } = useApp()
         const { errors } = useValidation()
-        const $q = useQuasar()
+        const q = useQuasar()
         return {
-            $q,
+            q,
             isValidCFF: computed(() => errors.value.length === 0),
             showAdvanced: async () => {
                 setShowAdvanced(true)

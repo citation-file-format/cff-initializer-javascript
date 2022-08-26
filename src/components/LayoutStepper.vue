@@ -11,7 +11,7 @@
                 overlay
                 side="right"
                 v-model="isPreviewDrawerEnabled"
-                width="600"
+                v-bind:width="600"
             >
                 <div id="preview-button-close">
                     <q-btn

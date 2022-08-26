@@ -11,7 +11,7 @@
                 overlay
                 side="right"
                 v-model="isPreviewDrawerEnabled"
-                width="600"
+                v-model:width="width"
             >
                 <div id="preview-button-close">
                     <q-btn
@@ -90,12 +90,14 @@ export default defineComponent({
         StepperActions
     },
     setup () {
+        const width = ref(600)
         const isPreviewDrawerEnabled = ref(false)
         return {
             isNotFinish: computed(() => {
                 const currentPath = useRoute().path
                 return currentPath !== '/finish-minimum' && currentPath !== '/finish-advanced'
             }),
+            width,
             isPreviewDrawerEnabled,
             onTogglePreview: () => { isPreviewDrawerEnabled.value = !isPreviewDrawerEnabled.value }
         }

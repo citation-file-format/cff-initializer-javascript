@@ -180,7 +180,12 @@ export default defineComponent({
         const helpData = {
             identifiers: {
                 title: 'identifiers',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#identifiers',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for identifiers.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#identifiers'
+                    }
+                ],
                 description: 'The identifiers of the work, such as DOIs, Software Heritage deposits, and URLs for relevant objects.',
                 examples: [
                     'DOI: 10.5281/zenodo.1003149 - The concept DOI of the work',

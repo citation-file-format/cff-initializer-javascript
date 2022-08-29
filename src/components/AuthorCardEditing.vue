@@ -270,7 +270,7 @@ export default defineComponent({
         })
         const helpData = {
             name: {
-                title: 'name',
+                title: 'given-names',
                 url: [
                     {
                         text: 'Click here to see the documentation for name.',

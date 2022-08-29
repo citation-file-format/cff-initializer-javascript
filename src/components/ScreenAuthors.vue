@@ -42,6 +42,7 @@
         <q-btn
             class="q-mt-md q-mb-md"
             color="primary"
+            data-cy="btn-add-author"
             no-caps
             v-on:click="addAuthor"
         >

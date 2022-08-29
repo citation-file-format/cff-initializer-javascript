@@ -160,6 +160,7 @@
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
+                data-cy="btn-done"
                 dense
                 icon="done"
                 label="Done"

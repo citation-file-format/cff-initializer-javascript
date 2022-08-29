@@ -284,7 +284,7 @@ export default defineComponent({
                 ]
             },
             lastName: {
-                title: 'lastNames',
+                title: 'name particle, family name, name suffix',
                 url: [
                     {
                         text: 'Click here to see the documentation for name particle.',

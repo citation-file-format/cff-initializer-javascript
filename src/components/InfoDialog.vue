@@ -35,7 +35,10 @@
                             v-bind:key="item"
                             class="q-mt-sm"
                         >
-                            <div v-for="(line, index) in item.split('\n')" :key="index">
+                            <div
+                                v-for="(line, index) in item.split('\n')"
+                                v-bind:key="index"
+                            >
                                 {{ line }}
                             </div>
                         </li>

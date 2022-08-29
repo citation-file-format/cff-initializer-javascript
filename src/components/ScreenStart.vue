@@ -123,7 +123,7 @@ export default defineComponent({
             type: {
                 title: 'type',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#type',
-                description: `The type of the ${type.value} that is being described by this CITATION.cff file.`
+                description: 'The type of the work that is being described by this CITATION.cff file.'
             },
             title: {
                 title: 'title',

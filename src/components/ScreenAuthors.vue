@@ -8,7 +8,13 @@
     <div id="form-content">
         <h2 class="question">
             Who are the author(s) of the work?
-            <SchemaGuideLink anchor="#authors" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showAuthorsHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -59,6 +65,10 @@
                 {{ screenMessage }}
             </div>
         </q-banner>
+        <InfoDialog
+            v-model="showAuthorsHelp"
+            v-bind:data="helpData.authors"
+        />
     </div>
 </template>
 
@@ -69,7 +79,7 @@ import { moveDown, moveUp } from 'src/updown'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -78,9 +88,9 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenAuthors',
     components: {
-        SchemaGuideLink,
         AuthorCardEditing,
-        AuthorCardViewing
+        AuthorCardViewing,
+        InfoDialog
     },
     setup () {
         onUpdated(() => {
@@ -132,15 +142,38 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const helpData = {
+            authors: {
+                title: 'authors',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for authors.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#authors'
+                    },
+                    {
+                        text: 'How to deal with unknown individual authors?',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#how-to-deal-with-unknown-individual-authors'
+                    }
+                ],
+                description: 'The authors of a software or dataset.',
+                examples: [
+                    ' given-names: Jane\n family-names: Doe',
+                    ' name: "The Research Software project"',
+                    ' given-names: John\n family-names: Doe\n name: "The Research Software project"'
+                ]
+            }
+        }
         return {
             addAuthor,
             authors,
             authorsErrors,
             editingId,
+            helpData,
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,
-            setAuthorField
+            setAuthorField,
+            showAuthorsHelp: ref(false)
         }
     }
 })

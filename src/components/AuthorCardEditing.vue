@@ -25,7 +25,6 @@
                 label="given-names"
                 outlined
                 standout
-                title="The person's given names."
                 v-bind:model-value="givenNames"
                 v-bind:error="false"
                 v-bind:error-message="''"
@@ -52,7 +51,6 @@
                 label="name-particle"
                 outlined
                 standout
-                title="The person's name particle, e.g., a nobiliary particle or a [preposition] meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt')."
                 v-bind:model-value="nameParticle"
                 v-bind:error="false"
                 v-bind:error-message="''"
@@ -65,7 +63,6 @@
                 label="family-names"
                 outlined
                 standout
-                title="The person's family names."
                 v-bind:model-value="familyNames"
                 v-bind:error="false"
                 v-bind:error-message="''"
@@ -78,7 +75,6 @@
                 label="name-suffix"
                 outlined
                 standout
-                title="The person's name suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III."
                 v-bind:model-value="nameSuffix"
                 v-bind:error="false"
                 v-bind:error-message="''"
@@ -105,7 +101,6 @@
                 label="email"
                 outlined
                 standout
-                title="The person's email address."
                 type="email"
                 v-bind:model-value="email"
                 v-bind:class="emailErrors.length > 0 ? 'has-error' : ''"
@@ -144,7 +139,6 @@
                 label="affiliation"
                 outlined
                 standout
-                title="The person's affiliation."
                 v-bind:model-value="affiliation"
                 v-bind:error="false"
                 v-bind:error-message="''"
@@ -159,7 +153,6 @@
                 mask="https://orcid.org/####-####-####-###X"
                 outlined
                 standout
-                title="The person's ORCID identifier."
                 v-bind:class="orcidErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="orcid"
                 v-bind:error="orcidErrors.length > 0"

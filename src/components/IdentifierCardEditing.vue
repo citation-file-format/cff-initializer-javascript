@@ -138,7 +138,12 @@ export default defineComponent({
         const helpData = {
             doi: {
                 title: 'doi',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsdoi',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for doi.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsdoi'
+                    }
+                ],
                 description: 'The DOI (https://en.wikipedia.org/wiki/Digital_object_identifier) of the work.',
                 examples: [
                     '10.5281/zenodo.1003150'
@@ -146,7 +151,12 @@ export default defineComponent({
             },
             url: {
                 title: 'url',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsurl',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for url.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsurl'
+                    }
+                ],
                 description: 'A URL.',
                 examples: [
                     'https://research-software-project.org',
@@ -157,7 +167,12 @@ export default defineComponent({
             },
             swh: {
                 title: 'swh',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsswh-identifier',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for swh.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsswh-identifier'
+                    }
+                ],
                 description: 'The Software Heritage identifier (https://www.softwareheritage.org/).',
                 examples: [
                     'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d'
@@ -165,7 +180,12 @@ export default defineComponent({
             },
             other: {
                 title: 'other',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for other.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier'
+                    }
+                ],
                 description: 'An identifier that does not fit in the other categories.',
                 examples: [
                     'arXiv:2103.06681'
@@ -173,7 +193,12 @@ export default defineComponent({
             },
             description: {
                 title: 'description',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier-description',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for description.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier-description'
+                    }
+                ],
                 description: 'A description of the identifier.',
                 examples: [
                     'The concept DOI of the work.',

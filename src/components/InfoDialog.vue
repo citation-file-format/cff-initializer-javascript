@@ -33,19 +33,33 @@
                         <li
                             v-for="item in data.examples"
                             v-bind:key="item"
+                            class="q-mt-sm"
                         >
-                            {{ item }}
+                            <div
+                                v-for="(line, index) in item.split('\n')"
+                                v-bind:key="index"
+                            >
+                                {{ line }}
+                            </div>
                         </li>
                     </ul>
                 </q-card-section>
-                <q-card-section>
-                    <a
-                        v-bind:href="data.url"
-                        tabindex="-1"
-                        target="_blank"
+                <q-card-section v-if="data.url">
+                    <div class="text-h6">
+                        Related links
+                    </div>
+                    <div
+                        v-for="item in data.url"
+                        v-bind:key="item"
                     >
-                        Click here to see the documentation.
-                    </a>
+                        <a
+                            v-bind:href="item.link"
+                            tabindex="-1"
+                            target="_blank"
+                        >
+                            {{ item.text }}
+                        </a>
+                    </div>
                 </q-card-section>
             </q-card>
         </q-dialog>

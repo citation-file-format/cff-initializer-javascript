@@ -7,7 +7,13 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's given names
-                <SchemaGuideLink anchor="#definitionspersongiven-names" />
+                <q-icon
+                    name="ion-information-circle-outline"
+                    size="24px"
+                    color="primary"
+                    v-on:click="showHelpDialogName = true"
+                    style="cursor:pointer;"
+                />
             </h3>
         </div>
         <div class="row">
@@ -29,6 +35,13 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's last names, split into parts
+                <q-icon
+                    name="ion-information-circle-outline"
+                    size="24px"
+                    color="primary"
+                    v-on:click="showHelpDialogLastName = true"
+                    style="cursor:pointer;"
+                />
             </h3>
         </div>
         <div class="row">
@@ -44,12 +57,7 @@
                 v-bind:error="false"
                 v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
-            >
-                <SchemaGuideLink
-                    anchor="#definitionspersonname-particle"
-                    class="q-pt-sm"
-                />
-            </q-input>
+            />
             <q-input
                 bg-color="white"
                 class="col"
@@ -62,12 +70,7 @@
                 v-bind:error="false"
                 v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'familyNames', $event)"
-            >
-                <SchemaGuideLink
-                    anchor="#definitionspersonfamily-names"
-                    class="q-pt-sm"
-                />
-            </q-input>
+            />
             <q-input
                 bg-color="white"
                 class="col-3"
@@ -80,17 +83,18 @@
                 v-bind:error="false"
                 v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
-            >
-                <SchemaGuideLink
-                    anchor="#definitionspersonname-suffix"
-                    class="q-pt-sm"
-                />
-            </q-input>
+            />
         </div>
         <div class="row">
             <h3 class="subquestion">
                 The person's email address
-                <SchemaGuideLink anchor="#definitionspersonemail" />
+                <q-icon
+                    name="ion-information-circle-outline"
+                    size="24px"
+                    color="primary"
+                    v-on:click="showHelpDialogEmail = true"
+                    style="cursor:pointer;"
+                />
             </h3>
         </div>
         <div class="row">
@@ -113,11 +117,23 @@
         <div class="row">
             <h3 class="subquestion col">
                 The person's affiliation
-                <SchemaGuideLink anchor="#definitionspersonaffiliation" />
+                <q-icon
+                    name="ion-information-circle-outline"
+                    size="24px"
+                    color="primary"
+                    v-on:click="showHelpDialogAffiliation = true"
+                    style="cursor:pointer;"
+                />
             </h3>
             <h3 class="subquestion col">
                 The person's ORCID
-                <SchemaGuideLink anchor="#definitionspersonorcid" />
+                <q-icon
+                    name="ion-information-circle-outline"
+                    size="24px"
+                    color="primary"
+                    v-on:click="showHelpDialogOrcid = true"
+                    style="cursor:pointer;"
+                />
             </h3>
         </div>
         <div class="row">
@@ -139,6 +155,7 @@
                 class="col"
                 dense
                 hint="Format: https://orcid.org/0000-0000-0000-0000"
+                label="orcid"
                 mask="https://orcid.org/####-####-####-###X"
                 outlined
                 standout
@@ -168,17 +185,40 @@
             />
         </q-card-actions>
     </q-card>
+    <InfoDialog
+        v-model="showHelpDialogName"
+        v-bind:data="helpData.name"
+    />
+    <InfoDialog
+        v-model="showHelpDialogLastName"
+        v-bind:data="helpData.lastName"
+    />
+    <InfoDialog
+        v-model="showHelpDialogEmail"
+        v-bind:data="helpData.email"
+    />
+    <InfoDialog
+        v-model="showHelpDialogAffiliation"
+        v-bind:data="helpData.affiliation"
+    />
+    <InfoDialog
+        v-model="showHelpDialogOrcid"
+        v-bind:data="helpData.orcid"
+    />
 </template>
 
 <script lang="ts">
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
-import SchemaGuideLink from 'src/components/SchemaGuideLink.vue'
+import { computed, defineComponent, onUpdated, ref } from 'vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'AuthorCardEditing',
+    components: {
+        InfoDialog
+    },
     props: {
         index: {
             type: Number,
@@ -229,13 +269,101 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const helpData = {
+            name: {
+                title: 'given-names',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for name.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersongiven-names'
+                    }
+                ],
+                description: 'The person\'s given names.',
+                examples: [
+                    'Jane',
+                    'John'
+                ]
+            },
+            lastName: {
+                title: 'name-particle, family-names, name-suffix',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for name particle.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-particle'
+                    },
+                    {
+                        text: 'Click here to see the documentation for family name.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonfamily-names'
+                    },
+                    {
+                        text: 'Click here to see the documentation for name suffix.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-suffix'
+                    }
+                ],
+                description: 'The person\'s last names, split into parts.',
+                examples: [
+                    'name particle: von',
+                    'family name: Doe',
+                    'name suffix: Jr.'
+                ]
+            },
+            email: {
+                title: 'email',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for email.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonemail'
+                    }
+                ],
+                description: 'The person\'s email address.',
+                examples: [
+                    'mail@research-project.org'
+                ]
+            },
+            affiliation: {
+                title: 'affiliation',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for affiliation.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonaffiliation'
+                    }
+                ],
+                description: 'The person\'s affiliation.',
+                examples: [
+                    'Netherlands eScience Center',
+                    'German Aerospace Center (DLR)'
+                ]
+            },
+            orcid: {
+                title: 'orcid',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for orcid.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonorcid'
+                    },
+                    {
+                        text: 'https://orcid.org',
+                        link: 'https://orcid.org'
+                    }
+                ],
+                description: 'The person\'s ORCID identifier.',
+                examples: [
+                    'https://orcid.org/0000-0003-4925-7248'
+                ]
+            }
+        }
         return {
             emailErrors,
-            orcidErrors
+            helpData,
+            orcidErrors,
+            showHelpDialogLastName: ref(false),
+            showHelpDialogName: ref(false),
+            showHelpDialogEmail: ref(false),
+            showHelpDialogAffiliation: ref(false),
+            showHelpDialogOrcid: ref(false)
         }
     },
-    emits: ['closePressed', 'removePressed', 'update'],
-    components: { SchemaGuideLink }
+    emits: ['closePressed', 'removePressed', 'update']
 })
 </script>
 <style scoped>

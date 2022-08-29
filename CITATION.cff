@@ -24,8 +24,12 @@ authors:
     family-names: Garcia Gonzalez
     given-names: Jesus
     orcid: https://orcid.org/0000-0002-2170-3253
+  - affiliation: Netherlands eScience Center
+    family-names: Cushing
+    given-names: Reggie
+    orcid: https://orcid.org/0000-0002-5967-7302
 cff-version: 1.2.0
-date-released: 2022-06-14
+date-released: 2022-08-29
 identifiers:
   - type: doi
     value: 10.5281/zenodo.6641931
@@ -46,4 +50,4 @@ license: Apache-2.0
 message: If you use this software, please cite it using these metadata.
 repository-code: https://github.com/citation-file-format/cff-initializer-javascript
 title: cffinit
-version: 2.0.3
+version: 2.0.4

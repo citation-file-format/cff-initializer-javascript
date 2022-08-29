@@ -33,8 +33,11 @@
                         <li
                             v-for="item in data.examples"
                             v-bind:key="item"
+                            class="q-mt-sm"
                         >
-                            {{ item }}
+                            <div v-for="(line, index) in item.split('\n')" :key="index">
+                                {{ line }}
+                            </div>
                         </li>
                     </ul>
                 </q-card-section>

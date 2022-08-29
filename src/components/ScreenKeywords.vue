@@ -123,7 +123,12 @@ export default defineComponent({
         const helpData = {
             keywords: {
                 title: 'keywords',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#keywords',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for keywords.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#keywords'
+                    }
+                ],
                 description: 'Keywords that describe the work.',
                 examples: [
                     'keyword',

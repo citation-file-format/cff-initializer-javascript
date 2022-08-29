@@ -273,7 +273,7 @@ export default defineComponent({
                 title: 'given-names',
                 url: [
                     {
-                        text: 'Click here to see the documentation for name.',
+                        text: 'Click here to see the documentation for given-names.',
                         link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersongiven-names'
                     }
                 ],
@@ -287,23 +287,23 @@ export default defineComponent({
                 title: 'name-particle, family-names, name-suffix',
                 url: [
                     {
-                        text: 'Click here to see the documentation for name particle.',
+                        text: 'Click here to see the documentation for name-particle.',
                         link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-particle'
                     },
                     {
-                        text: 'Click here to see the documentation for family name.',
+                        text: 'Click here to see the documentation for family-name.',
                         link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonfamily-names'
                     },
                     {
-                        text: 'Click here to see the documentation for name suffix.',
+                        text: 'Click here to see the documentation for name-suffix.',
                         link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-suffix'
                     }
                 ],
                 description: 'The person\'s last names, split into parts.',
                 examples: [
-                    'name particle: von',
-                    'family name: Doe',
-                    'name suffix: Jr.'
+                    'name-particle: von',
+                    'family-name: Doe',
+                    'name-suffix: Jr.'
                 ]
             },
             email: {

@@ -173,6 +173,7 @@ This section describes how to make a release in 2 parts:
 1. Update the version in the [app footer](src/components/Footer.vue).
 1. Run `npm run lint` and make sure the linter does not complain.
 1. Run the unit tests with `npm run test:unit:ci`.
+1. Run the end-to-end tests with `npm run cypress:open`.
 1. Push any changes to GitHub, make a PR.
 1. Inspect the Netlify preview website.
 1. Review the PR and merge to the default branch `main`.
@@ -182,7 +183,7 @@ This section describes how to make a release in 2 parts:
 1. Make a [release on GitHub](https://github.com/citation-file-format/cff-initializer-javascript/releases/new).
 1. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow was triggered by making the release, and that it was successful.
 1. Inspect the deployed github.io website [https://citation-file-format.github.io/cff-initializer-javascript/](https://citation-file-format.github.io/cff-initializer-javascript/).
-1. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly by making the GitHub release.
+1. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly when the GitHub release was created.
 1. Go to Zenodo, log in, inspect the draft release. If all looks good, click "Publish" in Zenodo's frontend.
 
 ## References

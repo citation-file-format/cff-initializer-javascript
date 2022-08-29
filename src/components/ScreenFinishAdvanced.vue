@@ -33,7 +33,7 @@
                     icon="refresh"
                     label="Reset form"
                     no-caps
-                    v-on:click="createAnother"
+                    v-on:click="confirmAndReset"
                 />
             </div>
         </div>
@@ -51,6 +51,7 @@ import DownloadButton from 'components/DownloadButton.vue'
 import { useApp } from 'src/store/app'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
+import { useQuasar } from 'quasar'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -63,13 +64,21 @@ export default defineComponent({
         const { reset: resetCffData } = useCff()
         const { reset: resetStepperErrorState } = useStepperErrors()
         const { errors } = useValidation()
+        const q = useQuasar()
         return {
             isValidCFF: computed(() => errors.value.length === 0),
-            createAnother: async () => {
-                resetCffData()
-                resetStepperErrorState()
-                setShowAdvanced(false)
-                await setStepName('start')
+            confirmAndReset: async () => {
+                q.dialog({
+                    title: 'Confirm',
+                    message: 'Would you like to reset the form? All changes will be lost.',
+                    cancel: true,
+                    persistent: true
+                }).onOk(async () => {
+                    resetCffData()
+                    resetStepperErrorState()
+                    setShowAdvanced(false)
+                    await setStepName('start')
+                })
             }
         }
     }

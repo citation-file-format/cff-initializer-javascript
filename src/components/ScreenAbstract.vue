@@ -7,7 +7,7 @@
 
     <div id="form-content">
         <h2 class="question">
-            Please provide a description of the work
+            Please provide a description of the {{ type }}
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -45,17 +45,18 @@ export default defineComponent({
         InfoDialog
     },
     setup () {
-        const { abstract, setAbstract } = useCff()
+        const { abstract, setAbstract, type } = useCff()
         const helpData = {
             abstract: {
                 title: 'abstract',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#abstract',
-                description: 'A description or summary of the work.'
+                description: `A description or summary of the ${type.value}.`
             }
         }
         return {
             abstract,
             helpData,
+            type,
             setAbstract,
             showAbstractHelp: ref(false)
         }

@@ -23,7 +23,7 @@
             v-on:update:modelValue="[setType, setMessagePlaceHolder]"
         />
         <h2 class="question">
-            What is the title of the work?
+            What is the title of the {{ type }}?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -97,7 +97,7 @@ export default defineComponent({
             const { setErrorStateScreenStart } = useStepperErrors()
             setErrorStateScreenStart(document.getElementsByClassName('has-error').length > 0)
         })
-        const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const { message, title, setMessage, setTitle, setType, type } = useCff()
         const { errors } = useValidation()
         const messageErrors = computed(() => {
             return messageQueries
@@ -121,7 +121,7 @@ export default defineComponent({
             type: {
                 title: 'type',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#type',
-                description: 'The type of the work that is being described by this CITATION.cff file.'
+                description: `The type of the ${type.value} that is being described by this CITATION.cff file.`
             },
             title: {
                 title: 'title',
@@ -153,7 +153,6 @@ export default defineComponent({
             showTypeHelp: ref(false),
             title,
             titleErrors,
-            type,
             typeOptions: [
                 { label: 'Software', value: 'software' },
                 { label: 'Dataset', value: 'dataset' }
@@ -161,7 +160,8 @@ export default defineComponent({
             setMessage,
             setMessagePlaceHolder,
             setTitle,
-            setType
+            setType,
+            type
         }
     }
 })

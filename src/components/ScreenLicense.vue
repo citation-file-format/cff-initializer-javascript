@@ -7,7 +7,7 @@
 
     <div id="form-content">
         <h2 class="question">
-            What is the license of the work?
+            What is the license of the {{ type }}?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -59,14 +59,14 @@ export default defineComponent({
         InfoDialog
     },
     setup () {
-        const { license, setLicense } = useCff()
+        const { license, setLicense, type } = useCff()
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
         const helpData = {
             license: {
                 title: 'license',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#license',
-                description: 'The SPDX license identifier for the license under which the work is available.',
+                description: `The SPDX license identifier for the license under which the ${type.value} is available.`,
                 examples: [
                     'Apache-2.0',
                     'MIT',
@@ -96,7 +96,8 @@ export default defineComponent({
                     }
                 })
             },
-            showLicenseHelp: ref(false)
+            showLicenseHelp: ref(false),
+            type
         }
     }
 })

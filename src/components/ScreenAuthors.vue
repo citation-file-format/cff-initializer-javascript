@@ -7,7 +7,7 @@
 
     <div id="form-content">
         <h2 class="question">
-            Who are the author(s) of the work?
+            Who are the author(s) of the {{ type }}?
             <SchemaGuideLink anchor="#authors" />
         </h2>
         <div class="scroll-to-bottom-container">
@@ -87,7 +87,7 @@ export default defineComponent({
             const { setErrorStateScreenAuthors } = useStepperErrors()
             setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
         })
-        const { authors, setAuthors } = useCff()
+        const { authors, setAuthors, type } = useCff()
         const { errors } = useValidation()
         const editingId = ref(-1)
         const addAuthor = async () => {
@@ -140,7 +140,8 @@ export default defineComponent({
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,
-            setAuthorField
+            setAuthorField,
+            type
         }
     }
 })

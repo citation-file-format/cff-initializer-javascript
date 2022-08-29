@@ -7,7 +7,7 @@
 
     <div id="form-content">
         <h2 class="question">
-            What is the URL of the work in a source code repository?
+            What is the URL of the {{ type }} in a source code repository?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -29,7 +29,7 @@
         />
 
         <h2 class="question">
-            What is the URL of a landing page/website for the work?
+            What is the URL of a landing page/website for the {{ type }}?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -51,7 +51,7 @@
         />
 
         <h2 class="question">
-            What is the URL of the work in a repository?
+            What is the URL of the {{ type }} in a repository?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -73,7 +73,7 @@
         />
 
         <h2 class="question">
-            What is the URL of the work in a build artifact/binary repository?
+            What is the URL of the {{ type }} in a build artifact/binary repository?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -132,7 +132,7 @@ export default defineComponent({
         })
         const {
             repository, repositoryArtifact, repositoryCode, url,
-            setRepository, setRepositoryArtifact, setRepositoryCode, setUrl
+            setRepository, setRepositoryArtifact, setRepositoryCode, setUrl, type
         } = useCff()
         const { errors } = useValidation()
         const repositoryCodeErrors = computed(() => {
@@ -163,7 +163,7 @@ export default defineComponent({
             repository: {
                 title: 'repository',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository',
-                description: 'URL of the work in a repository/archive that is neither a source code repository nor a build artifact repository',
+                description: `URL of the ${type.value} in a repository/archive that is neither a source code repository nor a build artifact repository`,
                 examples: [
                     'https://ascl.net/2105.013'
                 ]
@@ -171,7 +171,7 @@ export default defineComponent({
             repositoryArtifact: {
                 title: 'repository-artifact',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-artifact',
-                description: 'URL of the work in a build artifact/binary repository',
+                description: `URL of the ${type.value}  in a build artifact/binary repository`,
                 examples: [
                     'https://search.maven.org/artifact/org.corpus-tools/cff-maven-plugin/0.4.0/maven-plugin'
                 ]
@@ -179,7 +179,7 @@ export default defineComponent({
             repositoryCode: {
                 title: 'repository-code',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-code',
-                description: 'URL of the work in a source code repository',
+                description: `URL of the ${type.value} in a source code repository`,
                 examples: [
                     'https://github.com/citation-file-format/citation-file-format'
                 ]
@@ -187,7 +187,7 @@ export default defineComponent({
             url: {
                 title: 'url',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#url',
-                description: 'URL of the landing page/website for the work',
+                description: `URL of the landing page/website for the ${type.value}`,
                 examples: [
                     'https://citation-file-format.github.io/'
                 ]
@@ -210,7 +210,8 @@ export default defineComponent({
             showRepositoryHelp: ref(false),
             showRepositoryArtifactHelp: ref(false),
             showRepositoryCodeHelp: ref(false),
-            showUrlHelp: ref(false)
+            showUrlHelp: ref(false),
+            type
         }
     }
 })

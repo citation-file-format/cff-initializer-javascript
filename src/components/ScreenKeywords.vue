@@ -7,7 +7,7 @@
 
     <div id="form-content">
         <h2 class="question">
-            What keywords describe the work?
+            What keywords describe the {{ type }}?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -83,7 +83,7 @@ export default defineComponent({
             const { setErrorStateScreenKeywords } = useStepperErrors()
             setErrorStateScreenKeywords(document.getElementsByClassName('has-error').length > 0)
         })
-        const { keywords, setKeywords } = useCff()
+        const { keywords, setKeywords, type } = useCff()
         const { errors } = useValidation()
         const addKeyword = async () => {
             let newKeywords:string[]
@@ -124,7 +124,7 @@ export default defineComponent({
             keywords: {
                 title: 'keywords',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#keywords',
-                description: 'Keywords that describe the work.',
+                description: `Keywords that describe the ${type.value}.`,
                 examples: [
                     'keyword',
                     'other-keyword',
@@ -142,7 +142,8 @@ export default defineComponent({
             removeKeyword,
             setKeyword,
             setKeywords,
-            showKeywordsHelp: ref(false)
+            showKeywordsHelp: ref(false),
+            type
         }
     }
 })

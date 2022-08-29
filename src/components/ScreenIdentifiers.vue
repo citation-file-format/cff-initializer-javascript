@@ -7,7 +7,7 @@
 
     <div id="form-content">
         <h2 class="question">
-            What persistent identifiers are available for the work?
+            What persistent identifiers are available for the {{ type }}?
             <SchemaGuideLink anchor="#identifiers" />
         </h2>
         <div class="scroll-to-bottom-container">
@@ -88,7 +88,7 @@ export default defineComponent({
             const { setErrorStateScreenIdentifiers } = useStepperErrors()
             setErrorStateScreenIdentifiers(document.getElementsByClassName('has-error').length > 0)
         })
-        const { identifiers, setIdentifiers } = useCff()
+        const { identifiers, setIdentifiers, type } = useCff()
         const { errors } = useValidation()
         const editingId = ref(-1)
         const addIdentifier = async () => {
@@ -177,7 +177,8 @@ export default defineComponent({
             removeIdentifier,
             setIdentifierDescriptionField,
             setIdentifierTypeField,
-            setIdentifierValueField
+            setIdentifierValueField,
+            type
         }
     }
 })

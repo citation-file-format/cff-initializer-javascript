@@ -7,7 +7,7 @@
 
     <div id="form-content">
         <h2 class="question">
-            What is the commit identifier of the work?
+            What is the commit identifier of the {{ type }}?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -26,7 +26,7 @@
         />
 
         <h2 class="question">
-            What is the version of the work?
+            What is the version of the {{ type }}?
             <q-icon
                 name="ion-information-circle-outline"
                 size="24px"
@@ -136,7 +136,7 @@ export default defineComponent({
             const d = ('0' + today.getDate().toString()).slice(-2)
             return `${y}-${m}-${d}`
         }
-        const { commit, dateReleased, version, setCommit, setDateReleased, setVersion } = useCff()
+        const { commit, dateReleased, version, setCommit, setDateReleased, setVersion, type } = useCff()
         const { errors } = useValidation()
         const dateReleasedErrors = computed(() => {
             return dateReleasedQueries
@@ -147,7 +147,7 @@ export default defineComponent({
             commit: {
                 title: 'commit',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#commit',
-                description: 'The commit hash or revision number of the software version.',
+                description: `The commit hash or revision number of the ${type.value} version.`,
                 examples: [
                     '1ff847d81f29c45a3a1a5ce73d38e45c2f319bba',
                     'Revision: 8612'
@@ -156,7 +156,7 @@ export default defineComponent({
             version: {
                 title: 'version',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#version',
-                description: 'The version of the software or dataset.',
+                description: `The version of the ${type.value}.`,
                 examples: [
                     '1.2.0',
                     '1.2',
@@ -166,7 +166,7 @@ export default defineComponent({
             dateReleased: {
                 title: 'date-released',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#date-released',
-                description: 'The date the work has been released.'
+                description: `The date the ${type.value} has been released.`
             }
         }
         return {
@@ -181,7 +181,8 @@ export default defineComponent({
             setVersion,
             showCommitHelp: ref(false),
             showVersionHelp: ref(false),
-            showDateReleasedHelp: ref(false)
+            showDateReleasedHelp: ref(false),
+            type
         }
     }
 })

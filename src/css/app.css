@@ -23,7 +23,7 @@ body {
     flex-direction: column;
 }
 #header-inner {
-    background-color: purple;
+    background-color: grey;
     color: white;
     display: flex;
     flex-direction: row;

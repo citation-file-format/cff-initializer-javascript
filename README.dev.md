@@ -51,6 +51,8 @@ npm run build
 
 ## Tests
 
+### Unit tests
+
 We use `Jest` for unit tests. The unit tests can be found under `test/jest/__tests__/` folder.
 
 You can run the test with
@@ -64,6 +66,33 @@ You can also use the Majestic web interface to run the unit tests in your browse
 ```shell
 npm run test:unit:ui
 ```
+
+### End-to-end tests
+
+We use [Cypress](https://cypress.io) for end-to-end tests. These tests can be found under the `cypress/e2e` folder.
+
+You can start Cypress with
+
+```shell
+npm run cypress:open
+```
+
+Select "E2E Testing", which should be configured already and select the desired browser and click the start button.
+
+A browser will open with the list of tests, which can be explored.
+It should look like this:
+
+<figure style="text-align: center; width=80%;">
+  <img alt="Cypress E2E specs list" src="https://docs.cypress.io/_nuxt/img/spec-list-with-new-spec.61d015d.png">
+  <caption>
+    Cypress E2E specs list. Image is from https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test
+  </caption>
+</figure>
+
+Click on the spec file.
+The next screen will show the tests being executed.
+If anything goes wrong, you will see it in red.
+For more information, check <https://docs.cypress.io/guides/end-to-end-testing/testing-your-app#What-you-ll-learn>.
 
 ## Linting and formatting
 

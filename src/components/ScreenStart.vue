@@ -34,6 +34,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-title"
             label="title"
             outlined
             standout
@@ -55,6 +56,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-message"
             label="message"
             outlined
             standout

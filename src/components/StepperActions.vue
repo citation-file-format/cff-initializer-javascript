@@ -24,6 +24,7 @@
         />
         <q-btn
             color="primary"
+            data-cy="btn-next"
             label="Next"
             no-caps
             unelevated

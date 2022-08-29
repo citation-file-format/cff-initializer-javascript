@@ -1,6 +1,7 @@
 <template>
     <q-btn
         color="primary"
+        data-cy="btn-download"
         icon="download"
         label="Download"
         size="xl"

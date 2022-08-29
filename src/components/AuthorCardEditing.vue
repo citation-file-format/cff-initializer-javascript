@@ -309,7 +309,7 @@ export default defineComponent({
                         link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-suffix'
                     }
                 ],
-                description: 'The person\'s given names.',
+                description: 'The person\'s last names, split into parts.',
                 examples: [
                     'name particle: von',
                     'family name: Doe',

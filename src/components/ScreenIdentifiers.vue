@@ -8,7 +8,13 @@
     <div id="form-content">
         <h2 class="question">
             What persistent identifiers are available for the {{ type }}?
-            <SchemaGuideLink anchor="#identifiers" />
+            <q-icon
+                name="ion-information-circle-outline"
+                size="24px"
+                color="primary"
+                v-on:click="showIdentifiersHelp = true"
+                style="cursor:pointer;"
+            />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -60,6 +66,10 @@
                 {{ screenMessage }}
             </div>
         </q-banner>
+        <InfoDialog
+            v-model="showIdentifiersHelp"
+            v-bind:data="helpData.identifiers"
+        />
     </div>
 </template>
 
@@ -70,7 +80,7 @@ import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
 import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
 import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
-import SchemaGuideLink from 'components/SchemaGuideLink.vue'
+import InfoDialog from 'components/InfoDialog.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -79,7 +89,7 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenIdentifiers',
     components: {
-        SchemaGuideLink,
+        InfoDialog,
         IdentifierCardEditing,
         IdentifierCardViewing
     },
@@ -167,9 +177,23 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
+        const helpData = {
+            identifiers: {
+                title: 'identifiers',
+                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#identifiers',
+                description: 'The identifiers of the work, such as DOIs, Software Heritage deposits, and URLs for relevant objects.',
+                examples: [
+                    'DOI: 10.5281/zenodo.1003149 - The concept DOI of the work',
+                    'SWH: swh:1:dir:bc286860f423ea7ced246ba7458eef4b4541cf2d - The Software Heritage for version 1.1.0',
+                    'URL: https://github.com/citation-file-format/citation-file-format/releases/tag/1.1.0 - The GitHub release URL of tag 1.1.0',
+                    'OTHER: arXiv:2103.06681 - The ArXiv preprint of the paper'
+                ]
+            }
+        }
         return {
             addIdentifier,
             editingId,
+            helpData,
             identifiers,
             identifiersErrors,
             moveIdentifierUp,
@@ -178,6 +202,7 @@ export default defineComponent({
             setIdentifierDescriptionField,
             setIdentifierTypeField,
             setIdentifierValueField,
+            showIdentifiersHelp: ref(false),
             type
         }
     }

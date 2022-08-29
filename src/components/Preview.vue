@@ -40,7 +40,7 @@
             v-if="doesNotHaveRequiredFields"
             class="invalid"
         >
-            Your CITATION.cff does not have the minimum fields
+            Your CITATION.cff does not meet the minimum requirements. Please fill the message and the title fields and add at least one author.
         </p>
         <p
             v-else

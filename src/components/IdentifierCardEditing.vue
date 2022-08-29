@@ -124,7 +124,7 @@ export default defineComponent({
     },
     setup (props) {
         const { errors } = useValidation()
-        const cffType = useCff().type
+        const { type } = useCff()
         const labels = {
             doi: 'DOI',
             url: 'URL',
@@ -141,7 +141,7 @@ export default defineComponent({
             doi: {
                 title: 'doi',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsdoi',
-                description: `The DOI (https://en.wikipedia.org/wiki/Digital_object_identifier) of the ${cffType.value}.`,
+                description: `The DOI (https://en.wikipedia.org/wiki/Digital_object_identifier) of the ${type.value}.`,
                 examples: [
                     '10.5281/zenodo.1003150'
                 ]
@@ -178,7 +178,7 @@ export default defineComponent({
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier-description',
                 description: 'A description of the identifier.',
                 examples: [
-                    `The concept DOI of the ${cffType.value}.`,
+                    `The concept DOI of the ${type.value}.`,
                     'The URL of version 1.1.0 of the software',
                     'The Software Heritage link for version 1.1.0.',
                     'The ArXiv deposit of the encompassing paper.'

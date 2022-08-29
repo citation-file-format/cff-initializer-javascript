@@ -40,6 +40,10 @@ export const byError = (errors: ErrorObject[], matcher: Comparator = defaultMatc
     }
 }
 
+export const unique = (message: string, index: number, self: string[]) => {
+    return self.indexOf(message) === index
+}
+
 export const authorsQueries: ErrorQuery[] = [{
     find: {
         instancePath: '/authors',
@@ -112,44 +116,58 @@ export const emailQueries = (index: number) => {
 }
 
 export const identifierValueQueries = (index: number, typeIndex: number) => {
-    return [[
-        {
-            find: {
-                instancePath: `/identifiers/${index}/value`,
-                schemaPath: '#/definitions/doi/pattern'
-            },
-            replace: {
-                message: 'e.g. \'10.5281/zenodo.1003149\' or \'10.7717/peerj-cs.86\'. Does not include the resolver URL.'
+    return [
+        [
+            {
+                find: {
+                    instancePath: `/identifiers/${index}/value`,
+                    schemaPath: '#/definitions/doi/pattern'
+                },
+                replace: {
+                    message: 'e.g. \'10.5281/zenodo.1003149\' or \'10.7717/peerj-cs.86\'. Does not include the resolver URL.'
+                }
             }
-        },
-        {
-            find: {
-                instancePath: `/identifiers/${index}/value`,
-                schemaPath: '#/definitions/url/pattern'
+        ], [
+            {
+                find: {
+                    instancePath: `/identifiers/${index}/value`,
+                    schemaPath: '#/definitions/url/pattern'
+                },
+                replace: {
+                    message: 'e.g. \'https://www.example.com\' (http, ftp, sftp hyperlinks are also supported)'
+                }
             },
-            replace: {
-                message: 'e.g. \'https://www.example.com\' (http, ftp, sftp hyperlinks are also supported)'
+            {
+                find: {
+                    instancePath: `/identifiers/${index}/value`,
+                    schemaPath: '#/definitions/url/format'
+                },
+                replace: {
+                    message: 'e.g. \'https://www.example.com\' (http, ftp, sftp hyperlinks are also supported)'
+                }
             }
-        },
-        {
-            find: {
-                instancePath: `/identifiers/${index}/value`,
-                schemaPath: '#/definitions/swh-identifier/pattern'
-            },
-            replace: {
-                message: 'e.g. \'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d\'. Besides \'rev\', other allowed values are: \'snp\', \'rel\', \'dir\', and \'cnt\'.'
+        ], [
+            {
+                find: {
+                    instancePath: `/identifiers/${index}/value`,
+                    schemaPath: '#/definitions/swh-identifier/pattern'
+                },
+                replace: {
+                    message: 'e.g. \'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d\'. Besides \'rev\', other allowed values are: \'snp\', \'rel\', \'dir\', and \'cnt\'.'
+                }
             }
-        },
-        {
-            find: {
-                instancePath: `/identifiers/${index}/value`,
-                schemaPath: '#/anyOf/3/properties/value/minLength'
-            },
-            replace: {
-                message: 'Zero-length identifier values are not allowed. Please type an identifier value or remove the identifier entirely.'
+        ], [
+            {
+                find: {
+                    instancePath: `/identifiers/${index}/value`,
+                    schemaPath: '#/anyOf/3/properties/value/minLength'
+                },
+                replace: {
+                    message: 'Zero-length identifier values are not allowed. Please type an identifier value or remove the identifier entirely.'
+                }
             }
-        }
-    ][typeIndex]] as ErrorQuery[]
+        ]
+    ][typeIndex] as ErrorQuery[]
 }
 
 export const identifiersQueries: ErrorQuery[] = [{
@@ -223,6 +241,14 @@ export const repositoryArtifactQueries: ErrorQuery[] = [{
     replace: {
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
     }
+}, {
+    find: {
+        instancePath: '/repository-artifact',
+        schemaPath: '#/definitions/url/format'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
 }]
 
 export const repositoryCodeQueries: ErrorQuery[] = [{
@@ -233,12 +259,28 @@ export const repositoryCodeQueries: ErrorQuery[] = [{
     replace: {
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
     }
+}, {
+    find: {
+        instancePath: '/repository-code',
+        schemaPath: '#/definitions/url/format'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
 }]
 
 export const repositoryQueries: ErrorQuery[] = [{
     find: {
         instancePath: '/repository',
         schemaPath: '#/definitions/url/pattern'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
+}, {
+    find: {
+        instancePath: '/repository',
+        schemaPath: '#/definitions/url/format'
     },
     replace: {
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
@@ -268,6 +310,14 @@ export const urlQueries: ErrorQuery[] = [{
     find: {
         instancePath: '/url',
         schemaPath: '#/definitions/url/pattern'
+    },
+    replace: {
+        message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
+}, {
+    find: {
+        instancePath: '/url',
+        schemaPath: '#/definitions/url/format'
     },
     replace: {
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'

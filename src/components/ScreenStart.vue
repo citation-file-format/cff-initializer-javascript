@@ -122,12 +122,22 @@ export default defineComponent({
         const helpData = {
             type: {
                 title: 'type',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#type',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for type.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#type'
+                    }
+                ],
                 description: 'The type of the work that is being described by this CITATION.cff file.'
             },
             title: {
                 title: 'title',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#title',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for title.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#title'
+                    }
+                ],
                 description: 'The name of the software or dataset.',
                 examples: [
                     'cffconvert',
@@ -137,7 +147,12 @@ export default defineComponent({
             },
             message: {
                 title: 'message',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#message',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for message.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#message'
+                    }
+                ],
                 description: 'A message to the human reader of the CITATION.cff file to let them know what to do with the citation metadata.',
                 examples: [
                     'If you use this software, please cite it using the metadata from this file.',

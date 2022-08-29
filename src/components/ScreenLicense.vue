@@ -65,7 +65,12 @@ export default defineComponent({
         const helpData = {
             license: {
                 title: 'license',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#license',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for license.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#license'
+                    }
+                ],
                 description: 'The SPDX license identifier for the license under which the work is available.',
                 examples: [
                     'Apache-2.0',

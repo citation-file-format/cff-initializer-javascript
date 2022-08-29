@@ -162,7 +162,12 @@ export default defineComponent({
         const helpData = {
             repository: {
                 title: 'repository',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for repository.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository'
+                    }
+                ],
                 description: 'URL of the work in a repository/archive that is neither a source code repository nor a build artifact repository',
                 examples: [
                     'https://ascl.net/2105.013'
@@ -170,7 +175,12 @@ export default defineComponent({
             },
             repositoryArtifact: {
                 title: 'repository-artifact',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-artifact',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for repository-artifact.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-artifact'
+                    }
+                ],
                 description: 'URL of the work in a build artifact/binary repository',
                 examples: [
                     'https://search.maven.org/artifact/org.corpus-tools/cff-maven-plugin/0.4.0/maven-plugin'
@@ -178,7 +188,12 @@ export default defineComponent({
             },
             repositoryCode: {
                 title: 'repository-code',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-code',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for repository-code.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-code'
+                    }
+                ],
                 description: 'URL of the work in a source code repository',
                 examples: [
                     'https://github.com/citation-file-format/citation-file-format'
@@ -186,7 +201,12 @@ export default defineComponent({
             },
             url: {
                 title: 'url',
-                url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#url',
+                url: [
+                    {
+                        text: 'Click here to see the documentation for url.',
+                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#url'
+                    }
+                ],
                 description: 'URL of the landing page/website for the work',
                 examples: [
                     'https://citation-file-format.github.io/'

@@ -42,15 +42,6 @@
                     v-on:click="showHelpDialogLastName = true"
                     style="cursor:pointer;"
                 />
-                <SchemaGuideLink anchor="#definitionspersonname-particle" />
-                <SchemaGuideLink
-                    anchor="#definitionspersonname-suffix"
-                    class="q-pt-sm"
-                />
-                <SchemaGuideLink
-                    anchor="#definitionspersonfamily-names"
-                    class="q-pt-sm"
-                />
             </h3>
         </div>
         <div class="row">

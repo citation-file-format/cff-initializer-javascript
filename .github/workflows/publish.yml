@@ -13,7 +13,7 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
     - name: Use Node.js 14
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '14'
         cache: 'npm'

@@ -29,6 +29,11 @@
       "affiliation": "Netherlands eScience Center",
       "name": "Garcia Gonzalez, Jesus",
       "orcid": "0000-0002-2170-3253"
+    },
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Cushing, Reggie",
+      "orcid": "0000-0002-5967-7302"
     }
   ],
   "description": "Web form to initialize CITATION.cff files.",
@@ -41,7 +46,7 @@
   "license": {
     "id": "Apache-2.0"
   },
-  "publication_date": "2022-06-14",
+  "publication_date": "2022-08-29",
   "title": "cffinit",
-  "version": "2.0.3"
+  "version": "2.0.4"
 }

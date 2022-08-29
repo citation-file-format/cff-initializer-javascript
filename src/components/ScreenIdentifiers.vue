@@ -181,9 +181,9 @@ export default defineComponent({
             identifiers: {
                 title: 'identifiers',
                 url: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#identifiers',
-                description: 'The identifiers of the work, such as DOIs, Software Heritage deposits, and URLs for relevant objects.',
+                description: `The identifiers of the ${type.value}, such as DOIs, Software Heritage deposits, and URLs for relevant objects.`,
                 examples: [
-                    'DOI: 10.5281/zenodo.1003149 - The concept DOI of the work',
+                    `DOI: 10.5281/zenodo.1003149 - The concept DOI of the ${type.value}`,
                     'SWH: swh:1:dir:bc286860f423ea7ced246ba7458eef4b4541cf2d - The Software Heritage for version 1.1.0',
                     'URL: https://github.com/citation-file-format/citation-file-format/releases/tag/1.1.0 - The GitHub release URL of tag 1.1.0',
                     'OTHER: arXiv:2103.06681 - The ArXiv preprint of the paper'

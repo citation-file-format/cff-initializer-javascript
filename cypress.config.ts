@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
     e2e: {
         baseUrl: 'http://localhost:8080/cff-initializer-javascript/#',
-        supportFile: false // If the support/e2e.ts or support/commands.ts files are reinstated, delete this line
+        setupNodeEvents (on, config) {
+            require('@cypress/code-coverage/task')(on, config)
+
+            return config
+        }
     }
 })

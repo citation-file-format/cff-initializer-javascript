@@ -1,9 +1,10 @@
 # cffinit: a web application to create CITATION.cff files
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1404735.svg)](https://doi.org/10.5281/zenodo.1404735) 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1404735.svg)](https://doi.org/10.5281/zenodo.1404735)
 [![Build](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/ghpages.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/ghpages.yml)
 [![Lint](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/lint.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/lint.yml)
 [![Test](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/test.yml/badge.svg)](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/test.yml)
+[![codecov.io](https://codecov.io/github/citation-file-format/cff-initializer-javascript/coverage.svg?branch=main)](https://codecov.io/github/citation-file-format/cff-initializer-javascript?branch=main)
 
 ## What cffinit can do for you?
 

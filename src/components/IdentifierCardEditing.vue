@@ -7,6 +7,7 @@
         <q-card-section>
             <div class="items-center no-wrap">
                 <q-option-group
+                    data-cy="radio-identifier"
                     inline
                     type="radio"
                     v-bind:model-value="type"
@@ -30,6 +31,7 @@
                 <q-input
                     autofocus
                     bg-color="white"
+                    data-cy="input-identifier-value"
                     label="Value"
                     outlined
                     standout
@@ -56,6 +58,7 @@
                 </div>
                 <q-input
                     bg-color="white"
+                    data-cy="input-identifier-description"
                     label="Description"
                     outlined
                     standout
@@ -68,12 +71,14 @@
         <q-card-actions align="right">
             <q-btn
                 color="negative"
+                data-cy="btn-identifier-remove"
                 dense
                 icon="delete"
                 label="Remove"
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
+                data-cy="btn-identifier-done"
                 dense
                 icon="done"
                 label="Done"

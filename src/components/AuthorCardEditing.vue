@@ -21,6 +21,7 @@
                 autofocus
                 bg-color="white"
                 class="col"
+                data-cy="input-given-names"
                 dense
                 label="given-names"
                 outlined
@@ -47,6 +48,7 @@
             <q-input
                 bg-color="white"
                 class="col-3"
+                data-cy="input-name-particle"
                 dense
                 label="name-particle"
                 outlined
@@ -59,6 +61,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="input-family-names"
                 dense
                 label="family-names"
                 outlined
@@ -71,6 +74,7 @@
             <q-input
                 bg-color="white"
                 class="col-3"
+                data-cy="input-name-suffix"
                 dense
                 label="name-suffix"
                 outlined
@@ -97,6 +101,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="input-email"
                 dense
                 label="email"
                 outlined
@@ -135,6 +140,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="input-affiliation"
                 dense
                 label="affiliation"
                 outlined
@@ -147,6 +153,7 @@
             <q-input
                 bg-color="white"
                 class="col"
+                data-cy="input-orcid"
                 dense
                 hint="Format: https://orcid.org/0000-0000-0000-0000"
                 label="orcid"
@@ -164,6 +171,7 @@
         <q-card-actions align="right">
             <q-btn
                 color="negative"
+                data-cy="btn-remove"
                 dense
                 icon="delete"
                 label="Remove"

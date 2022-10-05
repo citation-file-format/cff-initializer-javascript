@@ -18,6 +18,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-repository-code"
             label="repository-code"
             outlined
             standout
@@ -40,6 +41,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-url"
             label="url"
             outlined
             standout
@@ -62,6 +64,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-repository"
             label="repository"
             outlined
             standout
@@ -84,6 +87,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-repository-artifact"
             label="repository-artifact"
             outlined
             standout

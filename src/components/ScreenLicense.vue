@@ -18,6 +18,7 @@
         </h2>
         <q-select
             bg-color="white"
+            data-cy="select-license"
             label="license"
             clearable
             fill-input

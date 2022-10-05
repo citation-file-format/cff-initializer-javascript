@@ -8,6 +8,7 @@
                 outlined
                 placeholder="Type a keyword"
                 v-bind:class="validationErrors.length > 0 ? 'has-error' : ''"
+                v-bind:data-cy="'input-keyword' + index"
                 v-bind:model-value="keyword"
                 v-bind:error="validationErrors.length > 0"
                 v-bind:error-message="validationErrors.join(', ')"
@@ -17,6 +18,7 @@
         <q-btn
             class="keyword-btn"
             color="blue"
+            v-bind:data-cy="'btn-keyword' + index + '-up'"
             v-bind:disable="index == 0"
             icon="ion-arrow-up"
             tabindex="-1"
@@ -25,6 +27,7 @@
         <q-btn
             class="keyword-btn"
             color="blue"
+            v-bind:data-cy="'btn-keyword' + index + '-down'"
             v-bind:disable="index == numKeywords - 1"
             icon="ion-arrow-down"
             tabindex="-1"
@@ -33,6 +36,7 @@
         <q-btn
             class="keyword-btn"
             color="negative"
+            v-bind:data-cy="'btn-keyword' + index + '-delete'"
             dense
             icon="delete"
             tabindex="-1"

@@ -19,6 +19,7 @@
         <q-input
             autogrow
             bg-color="white"
+            data-cy="input-abstract"
             input-style="min-height: 100px; max-height: 444px"
             label="abstract"
             outlined

@@ -7,14 +7,7 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's given names
-                <q-icon
-                    name="ion-information-circle-outline"
-                    size="24px"
-                    color="primary"
-                    data-cy="info-icon-given-names"
-                    v-on:click="showNameHelp = true"
-                    style="cursor:pointer;"
-                />
+                <InfoDialog v-bind:data="helpData.name" />
             </h3>
         </div>
         <div class="row">
@@ -36,14 +29,7 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's last names, split into parts
-                <q-icon
-                    name="ion-information-circle-outline"
-                    size="24px"
-                    color="primary"
-                    data-cy="info-icon-name-particle, family-names, name-suffix"
-                    v-on:click="showLastNameHelp = true"
-                    style="cursor:pointer;"
-                />
+                <InfoDialog v-bind:data="helpData.lastName" />
             </h3>
         </div>
         <div class="row">
@@ -90,14 +76,7 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's email address
-                <q-icon
-                    name="ion-information-circle-outline"
-                    size="24px"
-                    color="primary"
-                    data-cy="info-icon-email"
-                    v-on:click="showEmailHelp = true"
-                    style="cursor:pointer;"
-                />
+                <InfoDialog v-bind:data="helpData.email" />
             </h3>
         </div>
         <div class="row">
@@ -120,25 +99,11 @@
         <div class="row">
             <h3 class="subquestion col">
                 The person's affiliation
-                <q-icon
-                    name="ion-information-circle-outline"
-                    size="24px"
-                    color="primary"
-                    data-cy="info-icon-affiliation"
-                    v-on:click="showAffiliationHelp = true"
-                    style="cursor:pointer;"
-                />
+                <InfoDialog v-bind:data="helpData.affiliation" />
             </h3>
             <h3 class="subquestion col">
                 The person's ORCID
-                <q-icon
-                    name="ion-information-circle-outline"
-                    size="24px"
-                    color="primary"
-                    data-cy="info-icon-orcid"
-                    v-on:click="showOrcidHelp = true"
-                    style="cursor:pointer;"
-                />
+                <InfoDialog v-bind:data="helpData.orcid" />
             </h3>
         </div>
         <div class="row">
@@ -190,31 +155,11 @@
             />
         </q-card-actions>
     </q-card>
-    <InfoDialog
-        v-model="showNameHelp"
-        v-bind:data="helpData.name"
-    />
-    <InfoDialog
-        v-model="showLastNameHelp"
-        v-bind:data="helpData.lastName"
-    />
-    <InfoDialog
-        v-model="showEmailHelp"
-        v-bind:data="helpData.email"
-    />
-    <InfoDialog
-        v-model="showAffiliationHelp"
-        v-bind:data="helpData.affiliation"
-    />
-    <InfoDialog
-        v-model="showOrcidHelp"
-        v-bind:data="helpData.orcid"
-    />
 </template>
 
 <script lang="ts">
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated, ref } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
@@ -360,12 +305,7 @@ export default defineComponent({
         return {
             emailErrors,
             helpData,
-            orcidErrors,
-            showLastNameHelp: ref(false),
-            showNameHelp: ref(false),
-            showEmailHelp: ref(false),
-            showAffiliationHelp: ref(false),
-            showOrcidHelp: ref(false)
+            orcidErrors
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

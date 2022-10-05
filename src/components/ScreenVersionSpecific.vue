@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What is the commit identifier of the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-commit"
-                v-on:click="showCommitHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.commit" />
         </h2>
         <q-input
             bg-color="white"
@@ -29,14 +22,7 @@
 
         <h2 class="question">
             What is the version of the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-version"
-                v-on:click="showVersionHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.version" />
         </h2>
         <q-input
             bg-color="white"
@@ -50,14 +36,7 @@
 
         <h2 class="question">
             When was the version released?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-date-released"
-                v-on:click="showDateReleasedHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.dateReleased" />
         </h2>
         <q-input
             bg-color="white"
@@ -102,24 +81,12 @@
                 </q-icon>
             </template>
         </q-input>
-        <InfoDialog
-            v-model="showCommitHelp"
-            v-bind:data="helpData.commit"
-        />
-        <InfoDialog
-            v-model="showVersionHelp"
-            v-bind:data="helpData.version"
-        />
-        <InfoDialog
-            v-model="showDateReleasedHelp"
-            v-bind:data="helpData.dateReleased"
-        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, dateReleasedQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated, ref } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -199,10 +166,7 @@ export default defineComponent({
             version,
             setCommit,
             setDateReleased,
-            setVersion,
-            showCommitHelp: ref(false),
-            showVersionHelp: ref(false),
-            showDateReleasedHelp: ref(false)
+            setVersion
         }
     }
 })

@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What is the license of the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-license"
-                v-on:click="showLicenseHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.license" />
         </h2>
         <q-select
             bg-color="white"
@@ -41,10 +34,6 @@
                 </q-item>
             </template>
         </q-select>
-        <InfoDialog
-            v-model="showLicenseHelp"
-            v-bind:data="helpData.license"
-        />
     </div>
 </template>
 
@@ -102,8 +91,7 @@ export default defineComponent({
                         ref.moveOptionSelection(1, true)
                     }
                 })
-            },
-            showLicenseHelp: ref(false)
+            }
         }
     }
 })

@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             Who are the author(s) of the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-authors"
-                v-on:click="showAuthorsHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.authors" />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -68,10 +61,6 @@
                 {{ screenMessage }}
             </div>
         </q-banner>
-        <InfoDialog
-            v-model="showAuthorsHelp"
-            v-bind:data="helpData.authors"
-        />
     </div>
 </template>
 
@@ -179,8 +168,7 @@ export default defineComponent({
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,
-            setAuthorField,
-            showAuthorsHelp: ref(false)
+            setAuthorField
         }
     }
 })

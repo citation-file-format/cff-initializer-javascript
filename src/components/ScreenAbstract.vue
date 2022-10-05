@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             Please provide a description of the work
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-abstract"
-                v-on:click="showAbstractHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.abstract" />
         </h2>
         <q-input
             autogrow
@@ -29,16 +22,12 @@
             v-bind:model-value="abstract"
             v-on:update:modelValue="setAbstract"
         />
-        <InfoDialog
-            v-model="showAbstractHelp"
-            v-bind:data="helpData.abstract"
-        />
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
+import { defineComponent } from 'vue'
 import { useCff } from 'src/store/cff'
 
 export default defineComponent({
@@ -63,8 +52,7 @@ export default defineComponent({
         return {
             abstract,
             helpData,
-            setAbstract,
-            showAbstractHelp: ref(false)
+            setAbstract
         }
     }
 })

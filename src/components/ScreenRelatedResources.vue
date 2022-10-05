@@ -12,6 +12,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-repository-code"
                 v-on:click="showRepositoryCodeHelp = true"
                 style="cursor:pointer;"
             />
@@ -35,6 +36,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-url"
                 v-on:click="showUrlHelp = true"
                 style="cursor:pointer;"
             />
@@ -58,6 +60,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-repository"
                 v-on:click="showRepositoryHelp = true"
                 style="cursor:pointer;"
             />
@@ -81,6 +84,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-repository-artifact"
                 v-on:click="showRepositoryArtifactHelp = true"
                 style="cursor:pointer;"
             />

@@ -11,6 +11,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
+                    data-cy="info-icon-given-names"
                     v-on:click="showNameHelp = true"
                     style="cursor:pointer;"
                 />
@@ -39,6 +40,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
+                    data-cy="info-icon-name-particle, family-names, name-suffix"
                     v-on:click="showLastNameHelp = true"
                     style="cursor:pointer;"
                 />
@@ -92,6 +94,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
+                    data-cy="info-icon-email"
                     v-on:click="showEmailHelp = true"
                     style="cursor:pointer;"
                 />
@@ -121,6 +124,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
+                    data-cy="info-icon-affiliation"
                     v-on:click="showAffiliationHelp = true"
                     style="cursor:pointer;"
                 />
@@ -131,6 +135,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
+                    data-cy="info-icon-orcid"
                     v-on:click="showOrcidHelp = true"
                     style="cursor:pointer;"
                 />

@@ -1,5 +1,6 @@
 <template>
     <q-dialog
+        v-bind:data-cy="'info-dialog-' + data.title"
         v-model="showDialog"
     >
         <q-card

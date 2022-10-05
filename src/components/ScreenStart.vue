@@ -17,6 +17,7 @@
             />
         </h2>
         <q-option-group
+            data-cy="radio-type"
             type="radio"
             v-bind:model-value="type"
             v-bind:options="typeOptions"

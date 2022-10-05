@@ -36,6 +36,7 @@
         <q-btn
             class="q-mt-md q-mb-md"
             color="primary"
+            data-cy="btn-add-keyword"
             no-caps
             style="width: max-content"
             v-on:click="addKeyword"

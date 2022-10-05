@@ -18,6 +18,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-commit"
             label="commit"
             outlined
             standout
@@ -37,6 +38,7 @@
         </h2>
         <q-input
             bg-color="white"
+            data-cy="input-version"
             label="version"
             outlined
             standout
@@ -57,6 +59,7 @@
         <q-input
             bg-color="white"
             hint="Format: YYYY-MM-DD"
+            data-cy="input-date-released"
             label="date-released"
             mask="####-##-##"
             outlined

@@ -50,6 +50,7 @@
         <q-btn
             class="q-mt-md q-mb-md"
             color="primary"
+            data-cy="btn-add-identifier"
             no-caps
             v-on:click="addIdentifier"
         >

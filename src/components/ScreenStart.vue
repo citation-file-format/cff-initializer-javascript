@@ -12,6 +12,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-type"
                 v-on:click="showTypeHelp = true"
                 style="cursor:pointer;"
             />
@@ -29,6 +30,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-title"
                 v-on:click="showTitleHelp = true"
                 style="cursor:pointer;"
             />
@@ -51,6 +53,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-message"
                 v-on:click="showMessageHelp = true"
                 style="cursor:pointer;"
             />

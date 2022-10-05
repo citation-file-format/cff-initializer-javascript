@@ -12,6 +12,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-authors"
                 v-on:click="showAuthorsHelp = true"
                 style="cursor:pointer;"
             />

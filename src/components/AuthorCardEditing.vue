@@ -11,7 +11,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
-                    v-on:click="showHelpDialogName = true"
+                    v-on:click="showNameHelp = true"
                     style="cursor:pointer;"
                 />
             </h3>
@@ -39,7 +39,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
-                    v-on:click="showHelpDialogLastName = true"
+                    v-on:click="showLastNameHelp = true"
                     style="cursor:pointer;"
                 />
             </h3>
@@ -92,7 +92,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
-                    v-on:click="showHelpDialogEmail = true"
+                    v-on:click="showEmailHelp = true"
                     style="cursor:pointer;"
                 />
             </h3>
@@ -121,7 +121,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
-                    v-on:click="showHelpDialogAffiliation = true"
+                    v-on:click="showAffiliationHelp = true"
                     style="cursor:pointer;"
                 />
             </h3>
@@ -131,7 +131,7 @@
                     name="ion-information-circle-outline"
                     size="24px"
                     color="primary"
-                    v-on:click="showHelpDialogOrcid = true"
+                    v-on:click="showOrcidHelp = true"
                     style="cursor:pointer;"
                 />
             </h3>
@@ -187,23 +187,23 @@
         </q-card-actions>
     </q-card>
     <InfoDialog
-        v-model="showHelpDialogName"
+        v-model="showNameHelp"
         v-bind:data="helpData.name"
     />
     <InfoDialog
-        v-model="showHelpDialogLastName"
+        v-model="showLastNameHelp"
         v-bind:data="helpData.lastName"
     />
     <InfoDialog
-        v-model="showHelpDialogEmail"
+        v-model="showEmailHelp"
         v-bind:data="helpData.email"
     />
     <InfoDialog
-        v-model="showHelpDialogAffiliation"
+        v-model="showAffiliationHelp"
         v-bind:data="helpData.affiliation"
     />
     <InfoDialog
-        v-model="showHelpDialogOrcid"
+        v-model="showOrcidHelp"
         v-bind:data="helpData.orcid"
     />
 </template>
@@ -357,11 +357,11 @@ export default defineComponent({
             emailErrors,
             helpData,
             orcidErrors,
-            showHelpDialogLastName: ref(false),
-            showHelpDialogName: ref(false),
-            showHelpDialogEmail: ref(false),
-            showHelpDialogAffiliation: ref(false),
-            showHelpDialogOrcid: ref(false)
+            showLastNameHelp: ref(false),
+            showNameHelp: ref(false),
+            showEmailHelp: ref(false),
+            showAffiliationHelp: ref(false),
+            showOrcidHelp: ref(false)
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

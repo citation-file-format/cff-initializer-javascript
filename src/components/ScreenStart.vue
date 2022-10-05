@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What type of work does this CITATION.cff describe?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-type"
-                v-on:click="showTypeHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.type" />
         </h2>
         <q-option-group
             data-cy="radio-type"
@@ -26,14 +19,7 @@
         />
         <h2 class="question">
             What is the title of the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-title"
-                v-on:click="showTitleHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.title" />
         </h2>
         <q-input
             bg-color="white"
@@ -49,14 +35,7 @@
         />
         <h2 class="question">
             What do you want citers to do with the information provided in your CITATION.cff file?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-message"
-                v-on:click="showMessageHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.message" />
         </h2>
         <q-input
             bg-color="white"
@@ -70,24 +49,12 @@
             v-bind:error-message="messageErrors.join(', ')"
             v-on:update:modelValue="setMessage"
         />
-        <InfoDialog
-            v-model="showTypeHelp"
-            v-bind:data="helpData.type"
-        />
-        <InfoDialog
-            v-model="showMessageHelp"
-            v-bind:data="helpData.message"
-        />
-        <InfoDialog
-            v-model="showTitleHelp"
-            v-bind:data="helpData.title"
-        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, messageQueries, titleQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated, ref } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -169,9 +136,6 @@ export default defineComponent({
             helpData,
             message,
             messageErrors,
-            showMessageHelp: ref(false),
-            showTitleHelp: ref(false),
-            showTypeHelp: ref(false),
             title,
             titleErrors,
             type,

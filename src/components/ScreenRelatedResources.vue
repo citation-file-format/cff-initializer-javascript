@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What is the URL of the work in a source code repository?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-repository-code"
-                v-on:click="showRepositoryCodeHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.repositoryCode" />
         </h2>
         <q-input
             bg-color="white"
@@ -32,14 +25,7 @@
 
         <h2 class="question">
             What is the URL of a landing page/website for the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-url"
-                v-on:click="showUrlHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.url" />
         </h2>
         <q-input
             bg-color="white"
@@ -56,14 +42,7 @@
 
         <h2 class="question">
             What is the URL of the work in a repository?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-repository"
-                v-on:click="showRepositoryHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.repository" />
         </h2>
         <q-input
             bg-color="white"
@@ -80,14 +59,7 @@
 
         <h2 class="question">
             What is the URL of the work in a build artifact/binary repository?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-repository-artifact"
-                v-on:click="showRepositoryArtifactHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.repositoryArtifact" />
         </h2>
         <q-input
             bg-color="white"
@@ -101,28 +73,12 @@
             v-bind:error-message="repositoryArtifactErrors.join(', ')"
             v-on:update:modelValue="setRepositoryArtifact"
         />
-        <InfoDialog
-            v-model="showRepositoryHelp"
-            v-bind:data="helpData.repository"
-        />
-        <InfoDialog
-            v-model="showRepositoryArtifactHelp"
-            v-bind:data="helpData.repositoryArtifact"
-        />
-        <InfoDialog
-            v-model="showRepositoryCodeHelp"
-            v-bind:data="helpData.repositoryCode"
-        />
-        <InfoDialog
-            v-model="showUrlHelp"
-            v-bind:data="helpData.url"
-        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, repositoryArtifactQueries, repositoryCodeQueries, repositoryQueries, unique, urlQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated, ref } from 'vue'
+import { computed, defineComponent, onUpdated } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
 import { useStepperErrors } from 'src/store/stepper-errors'
@@ -234,11 +190,7 @@ export default defineComponent({
             setRepository,
             setRepositoryArtifact,
             setRepositoryCode,
-            setUrl,
-            showRepositoryHelp: ref(false),
-            showRepositoryArtifactHelp: ref(false),
-            showRepositoryCodeHelp: ref(false),
-            showUrlHelp: ref(false)
+            setUrl
         }
     }
 })

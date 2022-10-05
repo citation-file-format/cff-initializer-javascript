@@ -1,4 +1,12 @@
 <template>
+    <q-icon
+        name="ion-information-circle-outline"
+        size="24px"
+        color="primary"
+        v-bind:data-cy="'info-icon-' + data.title"
+        v-on:click="showDialog = true"
+        style="cursor:pointer;"
+    />
     <q-dialog
         v-bind:data-cy="'info-dialog-' + data.title"
         v-model="showDialog"
@@ -64,28 +72,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
     name: 'InfoDialog',
     props: {
-        modelValue: {
-            type: Boolean,
-            required: true,
-            default: false
-        },
         data: {
             type: Object,
             required: true,
             default: null
         }
     },
-    emits: ['update:modelValue'],
-    setup (props, { emit }) {
-        const showDialog = computed({
-            get () { return props.modelValue },
-            set (newValue) { emit('update:modelValue', newValue) }
-        })
+    setup () {
+        const showDialog = ref(false)
 
         return {
             showDialog
@@ -99,5 +98,3 @@ export default defineComponent({
     background-color: var(--fgcolor, lightslategray);
 }
 </style>
-
-}

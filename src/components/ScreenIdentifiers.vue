@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What persistent identifiers are available for the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-identifiers"
-                v-on:click="showIdentifiersHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.identifiers" />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -69,10 +62,6 @@
                 {{ screenMessage }}
             </div>
         </q-banner>
-        <InfoDialog
-            v-model="showIdentifiersHelp"
-            v-bind:data="helpData.identifiers"
-        />
     </div>
 </template>
 
@@ -213,8 +202,7 @@ export default defineComponent({
             removeIdentifier,
             setIdentifierDescriptionField,
             setIdentifierTypeField,
-            setIdentifierValueField,
-            showIdentifiersHelp: ref(false)
+            setIdentifierValueField
         }
     }
 })

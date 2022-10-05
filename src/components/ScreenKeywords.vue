@@ -8,14 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What keywords describe the work?
-            <q-icon
-                name="ion-information-circle-outline"
-                size="24px"
-                color="primary"
-                data-cy="info-icon-keywords"
-                v-on:click="showKeywordsHelp = true"
-                style="cursor:pointer;"
-            />
+            <InfoDialog v-bind:data="helpData.keywords" />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -56,16 +49,12 @@
                 {{ screenMessage }}
             </div>
         </q-banner>
-        <InfoDialog
-            v-model="showKeywordsHelp"
-            v-bind:data="helpData.keywords"
-        />
     </div>
 </template>
 
 <script lang="ts">
 import { byError, keywordsQueries } from 'src/error-filtering'
-import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
+import { computed, defineComponent, nextTick, onUpdated } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
 import InfoDialog from 'components/InfoDialog.vue'
 import Keyword from 'components/Keyword.vue'
@@ -148,8 +137,7 @@ export default defineComponent({
             moveUp,
             removeKeyword,
             setKeyword,
-            setKeywords,
-            showKeywordsHelp: ref(false)
+            setKeywords
         }
     }
 })

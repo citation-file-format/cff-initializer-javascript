@@ -12,6 +12,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-license"
                 v-on:click="showLicenseHelp = true"
                 style="cursor:pointer;"
             />

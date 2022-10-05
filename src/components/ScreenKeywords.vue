@@ -12,6 +12,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-keywords"
                 v-on:click="showKeywordsHelp = true"
                 style="cursor:pointer;"
             />

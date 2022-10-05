@@ -12,6 +12,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-commit"
                 v-on:click="showCommitHelp = true"
                 style="cursor:pointer;"
             />
@@ -32,6 +33,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-version"
                 v-on:click="showVersionHelp = true"
                 style="cursor:pointer;"
             />
@@ -52,6 +54,7 @@
                 name="ion-information-circle-outline"
                 size="24px"
                 color="primary"
+                data-cy="info-icon-date-released"
                 v-on:click="showDateReleasedHelp = true"
                 style="cursor:pointer;"
             />

@@ -23,6 +23,7 @@
                             name="ion-information-circle-outline"
                             size="24px"
                             color="primary"
+                            v-bind:data-cy="'info-icon-' + type"
                             v-on:click="showIdentifierHelp = true"
                             style="cursor:pointer;"
                         />
@@ -51,6 +52,7 @@
                             name="ion-information-circle-outline"
                             size="24px"
                             color="primary"
+                            data-cy="info-icon-description"
                             v-on:click="showDescriptionHelp = true"
                             style="cursor:pointer;"
                         />

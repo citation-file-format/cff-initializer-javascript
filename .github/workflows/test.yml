@@ -22,7 +22,7 @@ jobs:
     - name: Run npm clean-install
       run: npm clean-install
     - name: Run unit tests
-      run: npm run test:unit:ci
+      run: npm run test:unit:coverage
     - name: Cypress run
       uses: cypress-io/github-action@v4
       with:

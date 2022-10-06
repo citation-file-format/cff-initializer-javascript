@@ -1,28 +1,24 @@
 <template>
-    <div id="form-title">
-        <h1 class="page-title">
-            Abstract
-        </h1>
-    </div>
+    <h1 id="form-title">
+        Abstract
+    </h1>
 
-    <div id="form-content">
-        <h2 class="question">
-            Please provide a description of the work
-            <InfoDialog name="abstract" />
-        </h2>
-        <q-input
-            autogrow
-            bg-color="white"
-            data-cy="input-abstract"
-            input-style="min-height: 100px; max-height: 444px"
-            label="abstract"
-            outlined
-            standout
-            type="textarea"
-            v-bind:model-value="abstract"
-            v-on:update:modelValue="setAbstract"
-        />
-    </div>
+    <h2 class="question">
+        Please provide a description of the work
+        <InfoDialog name="abstract" />
+    </h2>
+    <q-input
+        autogrow
+        bg-color="white"
+        data-cy="input-abstract"
+        input-style="min-height: 100px; max-height: 444px"
+        label="abstract"
+        outlined
+        standout
+        type="textarea"
+        v-bind:model-value="abstract"
+        v-on:update:modelValue="setAbstract"
+    />
 </template>
 
 <script lang="ts">

@@ -1,67 +1,63 @@
 <template>
-    <div id="form-title">
-        <h1 class="page-title">
-            Authors
-        </h1>
-    </div>
+    <h1 id="form-title">
+        Authors
+    </h1>
 
-    <div id="form-content">
-        <h2 class="question">
-            Who are the author(s) of the work?
-            <InfoDialog name="authors" />
-        </h2>
-        <div class="scroll-to-bottom-container">
-            <span class="bottom" />
-            <div>
-                <div
-                    class="q-mb-md q-mr-lg"
-                    v-bind:key="index"
-                    v-for="(author, index) in authors"
-                >
-                    <AuthorCardViewing
-                        v-if="editingId !== index"
-                        v-bind:index="index"
-                        v-bind:author="author"
-                        v-bind:num-authors="authors.length"
-                        v-on:editPressed="() => (editingId = index)"
-                        v-on:moveDown="moveAuthorDown(index)"
-                        v-on:moveUp="moveAuthorUp(index)"
-                        v-on:removePressed="removeAuthor(index)"
-                    />
-                    <AuthorCardEditing
-                        v-else
-                        v-bind:index="index"
-                        v-bind="author"
-                        v-on:update="setAuthorField"
-                        v-on:closePressed="() => (editingId = -1)"
-                        v-on:removePressed="removeAuthor(editingId)"
-                    />
-                </div>
+    <h2 class="question">
+        Who are the author(s) of the work?
+        <InfoDialog name="authors" />
+    </h2>
+    <div class="scroll-to-bottom-container">
+        <span class="bottom" />
+        <div>
+            <div
+                class="q-mb-md q-mr-lg"
+                v-bind:key="index"
+                v-for="(author, index) in authors"
+            >
+                <AuthorCardViewing
+                    v-if="editingId !== index"
+                    v-bind:index="index"
+                    v-bind:author="author"
+                    v-bind:num-authors="authors.length"
+                    v-on:editPressed="() => (editingId = index)"
+                    v-on:moveDown="moveAuthorDown(index)"
+                    v-on:moveUp="moveAuthorUp(index)"
+                    v-on:removePressed="removeAuthor(index)"
+                />
+                <AuthorCardEditing
+                    v-else
+                    v-bind:index="index"
+                    v-bind="author"
+                    v-on:update="setAuthorField"
+                    v-on:closePressed="() => (editingId = -1)"
+                    v-on:removePressed="removeAuthor(editingId)"
+                />
             </div>
         </div>
-
-        <q-btn
-            class="q-mt-md q-mb-md"
-            color="primary"
-            data-cy="btn-add-author"
-            no-caps
-            v-on:click="addAuthor"
-        >
-            Add author
-        </q-btn>
-
-        <q-banner
-            v-if="authorsErrors.length > 0"
-            v-bind:class="['bg-warning', 'text-negative', authorsErrors.length > 0 ? 'has-error' : '']"
-        >
-            <div
-                v-bind:key="index"
-                v-for="(screenMessage, index) in authorsErrors"
-            >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
     </div>
+
+    <q-btn
+        class="q-mt-md q-mb-md"
+        color="primary"
+        data-cy="btn-add-author"
+        no-caps
+        v-on:click="addAuthor"
+    >
+        Add author
+    </q-btn>
+
+    <q-banner
+        v-if="authorsErrors.length > 0"
+        v-bind:class="['bg-warning', 'text-negative', authorsErrors.length > 0 ? 'has-error' : '']"
+    >
+        <div
+            v-bind:key="index"
+            v-for="(screenMessage, index) in authorsErrors"
+        >
+            {{ screenMessage }}
+        </div>
+    </q-banner>
 </template>
 
 <script lang="ts">

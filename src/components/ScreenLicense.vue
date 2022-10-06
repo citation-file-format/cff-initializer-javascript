@@ -1,40 +1,36 @@
 <template>
-    <div id="form-title">
-        <h1 class="page-title">
-            License
-        </h1>
-    </div>
+    <h1 id="form-title">
+        License
+    </h1>
 
-    <div id="form-content">
-        <h2 class="question">
-            What is the license of the work?
-            <InfoDialog name="license" />
-        </h2>
-        <q-select
-            bg-color="white"
-            data-cy="select-license"
-            label="license"
-            clearable
-            fill-input
-            hide-selected
-            input-debounce="0"
-            outlined
-            standout
-            use-input
-            v-bind:model-value="license"
-            v-bind:options="options"
-            v-on:filter="licenseFilterFunction"
-            v-on:update:model-value="setLicense"
-        >
-            <template v-slot:no-option>
-                <q-item>
-                    <q-item-section class="text-grey">
-                        No results
-                    </q-item-section>
-                </q-item>
-            </template>
-        </q-select>
-    </div>
+    <h2 class="question">
+        What is the license of the work?
+        <InfoDialog name="license" />
+    </h2>
+    <q-select
+        bg-color="white"
+        data-cy="select-license"
+        label="license"
+        clearable
+        fill-input
+        hide-selected
+        input-debounce="0"
+        outlined
+        standout
+        use-input
+        v-bind:model-value="license"
+        v-bind:options="options"
+        v-on:filter="licenseFilterFunction"
+        v-on:update:model-value="setLicense"
+    >
+        <template v-slot:no-option>
+            <q-item>
+                <q-item-section class="text-grey">
+                    No results
+                </q-item-section>
+            </q-item>
+        </template>
+    </q-select>
 </template>
 
 <script lang="ts">

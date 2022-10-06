@@ -1,47 +1,43 @@
 <template>
-    <div id="form-title">
-        <h1
-            class="finish-title"
-            v-if="isValidCFF"
-        >
-            Congratulations
-        </h1>
-        <h1
-            class="finish-title"
-            v-else
-        >
-            Uh-oh!
-        </h1>
-    </div>
+    <h1
+        id="form-title"
+        v-if="isValidCFF"
+    >
+        Congratulations
+    </h1>
+    <h1
+        id="form-title"
+        v-else
+    >
+        Uh-oh!
+    </h1>
 
-    <div id="form-content">
-        <div v-if="isValidCFF">
-            <p class="finish-paragraph">
-                Use the buttons below to download your CITATION.cff file, or reset the form to start over.
-            </p>
-            <p class="finish-paragraph">
-                Distribute the CITATION.cff with your project, for instance, by adding it to the root of your GitHub repository.
-            </p>
-            <div class="row">
-                <DownloadButton class="col-4 q-ma-lg" />
-            </div>
-            <div class="row">
-                <q-btn
-                    class="q-mt-md q-mb-md"
-                    color=""
-                    text-color="red"
-                    icon="refresh"
-                    label="Reset form"
-                    no-caps
-                    v-on:click="confirmAndReset"
-                />
-            </div>
+    <div v-if="isValidCFF">
+        <p class="finish-paragraph">
+            Use the buttons below to download your CITATION.cff file, or reset the form to start over.
+        </p>
+        <p class="finish-paragraph">
+            Distribute the CITATION.cff with your project, for instance, by adding it to the root of your GitHub repository.
+        </p>
+        <div class="row">
+            <DownloadButton class="col-4 q-ma-lg" />
         </div>
-        <div v-else>
-            <p class="finish-paragraph">
-                Your CITATION.cff is not valid just yet. Go back to the form to make some changes.
-            </p>
+        <div class="row">
+            <q-btn
+                class="q-mt-md q-mb-md"
+                color=""
+                text-color="red"
+                icon="refresh"
+                label="Reset form"
+                no-caps
+                v-on:click="confirmAndReset"
+            />
         </div>
+    </div>
+    <div v-else>
+        <p class="finish-paragraph">
+            Your CITATION.cff is not valid just yet. Go back to the form to make some changes.
+        </p>
     </div>
 </template>
 

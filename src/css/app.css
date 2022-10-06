@@ -16,12 +16,6 @@ body {
     background-color: var(--bgcolor);
 }
 
-#app {
-    background-color: var(--bgcolor, tan);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
 #header-inner {
     background-color: purple;
     color: white;
@@ -48,8 +42,11 @@ body {
     padding-top: 30px;
 }
 #form-title {
-    background-color: var(--fgcolor, tomato);
-    height: 120px;
+    font-family: "Roboto", sans-serif;
+    color: var(--q-prose);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-top: 0px;
 }
 #form-content {
     background-color: var(--fgcolor, lightslategray);
@@ -135,15 +132,6 @@ body {
     font-family: "Roboto Condensed", sans-serif;
 }
 
-.page-title,
-.finish-title {
-    font-family: "Roboto", sans-serif;
-    color: var(--q-prose);
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-top: 10px;
-    margin-bottom: 60px;
-}
 .question {
     font-family: "Roboto Condensed", sans-serif;
     color: var(--q-prose);

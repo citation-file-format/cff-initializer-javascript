@@ -19,14 +19,7 @@
                 <div class="row">
                     <h3 class="subquestion">
                         What is the value of the {{ label }}?
-                        <q-icon
-                            name="ion-information-circle-outline"
-                            size="24px"
-                            color="primary"
-                            v-bind:data-cy="'info-icon-' + type"
-                            v-on:click="showIdentifierHelp = true"
-                            style="cursor:pointer;"
-                        />
+                        <InfoDialog v-bind:data="helpData[identifierType]" />
                     </h3>
                 </div>
                 <q-input
@@ -48,14 +41,7 @@
                 <div class="row">
                     <h3 class="subquestion">
                         What is the description for the {{ label }}?
-                        <q-icon
-                            name="ion-information-circle-outline"
-                            size="24px"
-                            color="primary"
-                            data-cy="info-icon-description"
-                            v-on:click="showDescriptionHelp = true"
-                            style="cursor:pointer;"
-                        />
+                        <InfoDialog v-bind:data="helpData.description" />
                     </h3>
                 </div>
                 <q-input
@@ -88,18 +74,10 @@
             />
         </q-card-actions>
     </q-card>
-    <InfoDialog
-        v-model="showIdentifierHelp"
-        v-bind:data="helpData[identifierType]"
-    />
-    <InfoDialog
-        v-model="showDescriptionHelp"
-        v-bind:data="helpData.description"
-    />
 </template>
 
 <script lang="ts">
-import { PropType, computed, defineComponent, ref } from 'vue'
+import { PropType, computed, defineComponent } from 'vue'
 import { byError, identifierValueQueries, unique } from 'src/error-filtering'
 import { IdentifierTypeType } from 'src/types'
 import InfoDialog from 'src/components/InfoDialog.vue'
@@ -225,9 +203,7 @@ export default defineComponent({
             ],
             identifierType: computed(() => props.type),
             label: computed(() => labels[props.type]),
-            identifierValueErrors,
-            showDescriptionHelp: ref(false),
-            showIdentifierHelp: ref(false)
+            identifierValueErrors
         }
     },
     emits: [

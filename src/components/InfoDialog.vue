@@ -72,21 +72,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
+import { helpData } from 'src/store/help-data'
 
 export default defineComponent({
     name: 'InfoDialog',
     props: {
-        data: {
-            type: Object,
+        name: {
+            type: String,
             required: true,
             default: null
         }
     },
-    setup () {
+    setup (props) {
         const showDialog = ref(false)
 
         return {
+            data: computed(() => helpData[props.name as keyof typeof helpData]),
             showDialog
         }
     }

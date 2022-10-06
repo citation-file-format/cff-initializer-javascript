@@ -8,7 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What is the commit identifier of the work?
-            <InfoDialog v-bind:data="helpData.commit" />
+            <InfoDialog name="commit" />
         </h2>
         <q-input
             bg-color="white"
@@ -22,7 +22,7 @@
 
         <h2 class="question">
             What is the version of the work?
-            <InfoDialog v-bind:data="helpData.version" />
+            <InfoDialog name="version" />
         </h2>
         <q-input
             bg-color="white"
@@ -36,7 +36,7 @@
 
         <h2 class="question">
             When was the version released?
-            <InfoDialog v-bind:data="helpData.dateReleased" />
+            <InfoDialog name="dateReleased" />
         </h2>
         <q-input
             bg-color="white"
@@ -116,52 +116,10 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            commit: {
-                title: 'commit',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for commit.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#commit'
-                    }
-                ],
-                description: 'The commit hash or revision number of the software version.',
-                examples: [
-                    '1ff847d81f29c45a3a1a5ce73d38e45c2f319bba',
-                    'Revision: 8612'
-                ]
-            },
-            version: {
-                title: 'version',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for version.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#version'
-                    }
-                ],
-                description: 'The version of the software or dataset.',
-                examples: [
-                    '1.2.0',
-                    '1.2',
-                    '21.10 (Impish Indri)'
-                ]
-            },
-            dateReleased: {
-                title: 'date-released',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for date-released.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#date-released'
-                    }
-                ],
-                description: 'The date the work has been released.'
-            }
-        }
         return {
             commit,
             dateReleased,
             dateReleasedErrors,
-            helpData,
             initializeDate,
             version,
             setCommit,

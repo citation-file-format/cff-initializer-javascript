@@ -7,7 +7,7 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's given names
-                <InfoDialog v-bind:data="helpData.name" />
+                <InfoDialog name="authorGivenNames" />
             </h3>
         </div>
         <div class="row">
@@ -29,7 +29,7 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's last names, split into parts
-                <InfoDialog v-bind:data="helpData.lastName" />
+                <InfoDialog name="authorLastNames" />
             </h3>
         </div>
         <div class="row">
@@ -76,7 +76,7 @@
         <div class="row">
             <h3 class="subquestion">
                 The person's email address
-                <InfoDialog v-bind:data="helpData.email" />
+                <InfoDialog name="authorEmail" />
             </h3>
         </div>
         <div class="row">
@@ -99,11 +99,11 @@
         <div class="row">
             <h3 class="subquestion col">
                 The person's affiliation
-                <InfoDialog v-bind:data="helpData.affiliation" />
+                <InfoDialog name="authorAffiliation" />
             </h3>
             <h3 class="subquestion col">
                 The person's ORCID
-                <InfoDialog v-bind:data="helpData.orcid" />
+                <InfoDialog name="authorOrcid" />
             </h3>
         </div>
         <div class="row">
@@ -219,92 +219,8 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            name: {
-                title: 'given-names',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for given-names.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersongiven-names'
-                    }
-                ],
-                description: 'The person\'s given names.',
-                examples: [
-                    'Jane',
-                    'John'
-                ]
-            },
-            lastName: {
-                title: 'name-particle, family-names, name-suffix',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for name-particle.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-particle'
-                    },
-                    {
-                        text: 'Click here to see the documentation for family-name.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonfamily-names'
-                    },
-                    {
-                        text: 'Click here to see the documentation for name-suffix.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-suffix'
-                    }
-                ],
-                description: 'The person\'s last names, split into parts.',
-                examples: [
-                    'name-particle: von',
-                    'family-name: Doe',
-                    'name-suffix: Jr.'
-                ]
-            },
-            email: {
-                title: 'email',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for email.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonemail'
-                    }
-                ],
-                description: 'The person\'s email address.',
-                examples: [
-                    'mail@research-project.org'
-                ]
-            },
-            affiliation: {
-                title: 'affiliation',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for affiliation.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonaffiliation'
-                    }
-                ],
-                description: 'The person\'s affiliation.',
-                examples: [
-                    'Netherlands eScience Center',
-                    'German Aerospace Center (DLR)'
-                ]
-            },
-            orcid: {
-                title: 'orcid',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for orcid.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonorcid'
-                    },
-                    {
-                        text: 'https://orcid.org',
-                        link: 'https://orcid.org'
-                    }
-                ],
-                description: 'The person\'s ORCID identifier.',
-                examples: [
-                    'https://orcid.org/0000-0003-4925-7248'
-                ]
-            }
-        }
         return {
             emailErrors,
-            helpData,
             orcidErrors
         }
     },

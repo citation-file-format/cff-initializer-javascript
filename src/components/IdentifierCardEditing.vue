@@ -19,7 +19,7 @@
                 <div class="row">
                     <h3 class="subquestion">
                         What is the value of the {{ label }}?
-                        <InfoDialog v-bind:data="helpData[identifierType]" />
+                        <InfoDialog v-bind:name="identifierType" />
                     </h3>
                 </div>
                 <q-input
@@ -41,7 +41,7 @@
                 <div class="row">
                     <h3 class="subquestion">
                         What is the description for the {{ label }}?
-                        <InfoDialog v-bind:data="helpData.description" />
+                        <InfoDialog name="identifierDescription" />
                     </h3>
                 </div>
                 <q-input
@@ -92,6 +92,7 @@ export default defineComponent({
         },
         type: {
             type: String as PropType<IdentifierTypeType>,
+            required: true,
             default: ''
         },
         value: {
@@ -120,88 +121,14 @@ export default defineComponent({
                 .map(query => query.replace.message)
                 .filter(unique)
         })
-        const helpData = {
-            doi: {
-                title: 'doi',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for doi.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsdoi'
-                    }
-                ],
-                description: 'The DOI (https://en.wikipedia.org/wiki/Digital_object_identifier) of the work.',
-                examples: [
-                    '10.5281/zenodo.1003150'
-                ]
-            },
-            url: {
-                title: 'url',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for url.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsurl'
-                    }
-                ],
-                description: 'A URL.',
-                examples: [
-                    'https://research-software-project.org',
-                    'http://research-software-project.org',
-                    'sftp://files.research-software-project.org',
-                    'ftp://files.research-software-project.org'
-                ]
-            },
-            swh: {
-                title: 'swh',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for swh.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsswh-identifier'
-                    }
-                ],
-                description: 'The Software Heritage identifier (https://www.softwareheritage.org/).',
-                examples: [
-                    'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d'
-                ]
-            },
-            other: {
-                title: 'other',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for other.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier'
-                    }
-                ],
-                description: 'An identifier that does not fit in the other categories.',
-                examples: [
-                    'arXiv:2103.06681'
-                ]
-            },
-            description: {
-                title: 'description',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for description.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier-description'
-                    }
-                ],
-                description: 'A description of the identifier.',
-                examples: [
-                    'The concept DOI of the work.',
-                    'The URL of version 1.1.0 of the software',
-                    'The Software Heritage link for version 1.1.0.',
-                    'The ArXiv deposit of the encompassing paper.'
-                ]
-            }
-        }
         return {
-            helpData,
             typeOptions: [
                 { label: 'DOI', value: 'doi' },
                 { label: 'URL', value: 'url' },
                 { label: 'Software Heritage', value: 'swh' },
                 { label: 'Other', value: 'other' }
             ],
-            identifierType: computed(() => props.type),
+            identifierType: computed(() => 'identifier' + props.type.slice(0, 1).toUpperCase() + props.type.slice(1)),
             label: computed(() => labels[props.type]),
             identifierValueErrors
         }

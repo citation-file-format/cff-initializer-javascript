@@ -8,7 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What persistent identifiers are available for the work?
-            <InfoDialog v-bind:data="helpData.identifiers" />
+            <InfoDialog name="identifiers" />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -173,28 +173,9 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            identifiers: {
-                title: 'identifiers',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for identifiers.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#identifiers'
-                    }
-                ],
-                description: 'The identifiers of the work, such as DOIs, Software Heritage deposits, and URLs for relevant objects.',
-                examples: [
-                    'DOI: 10.5281/zenodo.1003149 - The concept DOI of the work',
-                    'SWH: swh:1:dir:bc286860f423ea7ced246ba7458eef4b4541cf2d - The Software Heritage for version 1.1.0',
-                    'URL: https://github.com/citation-file-format/citation-file-format/releases/tag/1.1.0 - The GitHub release URL of tag 1.1.0',
-                    'OTHER: arXiv:2103.06681 - The ArXiv preprint of the paper'
-                ]
-            }
-        }
         return {
             addIdentifier,
             editingId,
-            helpData,
             identifiers,
             identifiersErrors,
             moveIdentifierUp,

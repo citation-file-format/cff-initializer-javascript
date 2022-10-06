@@ -24,3 +24,4 @@ When you made some software and you want to include instructions on how to cite 
 
 - If you want to know how you can contribute, please have a look at [the current issues](https://github.com/citation-file-format/cff-initializer-javascript/issues) and read [CONTRIBUTING.md](CONTRIBUTING.md)
 - Developer documentation can be found in [README.dev.md](README.dev.md)
+- Check out the **development branch preview** at <https://cffinit.netlify.app/main/>.

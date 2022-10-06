@@ -8,7 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What is the license of the work?
-            <InfoDialog v-bind:data="helpData.license" />
+            <InfoDialog name="license" />
         </h2>
         <q-select
             bg-color="white"
@@ -53,26 +53,8 @@ export default defineComponent({
         const { license, setLicense } = useCff()
         const licenses = schema.definitions['license-enum'].enum
         const options = ref(licenses)
-        const helpData = {
-            license: {
-                title: 'license',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for license.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#license'
-                    }
-                ],
-                description: 'The SPDX license identifier for the license under which the work is available.',
-                examples: [
-                    'Apache-2.0',
-                    'MIT',
-                    'GPL-3.0'
-                ]
-            }
-        }
 
         return {
-            helpData,
             license,
             options,
             setLicense,

@@ -8,7 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             What keywords describe the work?
-            <InfoDialog v-bind:data="helpData.keywords" />
+            <InfoDialog name="keywords" />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -111,28 +111,10 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            keywords: {
-                title: 'keywords',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for keywords.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#keywords'
-                    }
-                ],
-                description: 'Keywords that describe the work.',
-                examples: [
-                    'keyword',
-                    'other-keyword',
-                    'Yet Another Keyword'
-                ]
-            }
-        }
         return {
             addKeyword,
             keywords,
             keywordsErrors,
-            helpData,
             moveDown,
             moveUp,
             removeKeyword,

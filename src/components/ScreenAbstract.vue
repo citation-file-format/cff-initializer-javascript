@@ -8,7 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             Please provide a description of the work
-            <InfoDialog v-bind:data="helpData.abstract" />
+            <InfoDialog name="abstract" />
         </h2>
         <q-input
             autogrow
@@ -37,21 +37,8 @@ export default defineComponent({
     },
     setup () {
         const { abstract, setAbstract } = useCff()
-        const helpData = {
-            abstract: {
-                title: 'abstract',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for abstract.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#abstract'
-                    }
-                ],
-                description: 'A description or summary of the work.'
-            }
-        }
         return {
             abstract,
-            helpData,
             setAbstract
         }
     }

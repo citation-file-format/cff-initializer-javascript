@@ -8,7 +8,7 @@
     <div id="form-content">
         <h2 class="question">
             Who are the author(s) of the work?
-            <InfoDialog v-bind:data="helpData.authors" />
+            <InfoDialog name="authors" />
         </h2>
         <div class="scroll-to-bottom-container">
             <span class="bottom" />
@@ -138,33 +138,11 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const helpData = {
-            authors: {
-                title: 'authors',
-                url: [
-                    {
-                        text: 'Click here to see the documentation for authors.',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#authors'
-                    },
-                    {
-                        text: 'How to deal with unknown individual authors?',
-                        link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#how-to-deal-with-unknown-individual-authors'
-                    }
-                ],
-                description: 'The authors of a software or dataset.',
-                examples: [
-                    ' given-names: Jane\n family-names: Doe',
-                    ' name: "The Research Software project"',
-                    ' given-names: John\n family-names: Doe\n name: "The Research Software project"'
-                ]
-            }
-        }
         return {
             addAuthor,
             authors,
             authorsErrors,
             editingId,
-            helpData,
             moveAuthorDown,
             moveAuthorUp,
             removeAuthor,

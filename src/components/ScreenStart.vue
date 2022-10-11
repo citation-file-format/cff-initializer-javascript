@@ -1,55 +1,51 @@
 <template>
-    <div id="form-title">
-        <h1 class="page-title">
-            Start
-        </h1>
-    </div>
+    <h1 id="form-title">
+        Start
+    </h1>
 
-    <div id="form-content">
-        <h2 class="question">
-            What type of work does this CITATION.cff describe?
-            <InfoDialog name="type" />
-        </h2>
-        <q-option-group
-            data-cy="radio-type"
-            type="radio"
-            v-bind:model-value="type"
-            v-bind:options="typeOptions"
-            v-on:update:modelValue="[setType, setMessagePlaceHolder]"
-        />
-        <h2 class="question">
-            What is the title of the work?
-            <InfoDialog name="title" />
-        </h2>
-        <q-input
-            bg-color="white"
-            data-cy="input-title"
-            label="title"
-            outlined
-            standout
-            v-bind:class="[titleErrors.length > 0 ? 'has-error' : '']"
-            v-bind:model-value="title"
-            v-bind:error="titleErrors.length > 0"
-            v-bind:error-message="titleErrors.join(', ')"
-            v-on:update:modelValue="setTitle"
-        />
-        <h2 class="question">
-            What do you want citers to do with the information provided in your CITATION.cff file?
-            <InfoDialog name="message" />
-        </h2>
-        <q-input
-            bg-color="white"
-            data-cy="input-message"
-            label="message"
-            outlined
-            standout
-            v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
-            v-bind:model-value="message"
-            v-bind:error="messageErrors.length > 0"
-            v-bind:error-message="messageErrors.join(', ')"
-            v-on:update:modelValue="setMessage"
-        />
-    </div>
+    <h2 class="question">
+        What type of work does this CITATION.cff describe?
+        <InfoDialog name="type" />
+    </h2>
+    <q-option-group
+        data-cy="radio-type"
+        type="radio"
+        v-bind:model-value="type"
+        v-bind:options="typeOptions"
+        v-on:update:modelValue="[setType, setMessagePlaceHolder]"
+    />
+    <h2 class="question">
+        What is the title of the work?
+        <InfoDialog name="title" />
+    </h2>
+    <q-input
+        bg-color="white"
+        data-cy="input-title"
+        label="title"
+        outlined
+        standout
+        v-bind:class="[titleErrors.length > 0 ? 'has-error' : '']"
+        v-bind:model-value="title"
+        v-bind:error="titleErrors.length > 0"
+        v-bind:error-message="titleErrors.join(', ')"
+        v-on:update:modelValue="setTitle"
+    />
+    <h2 class="question">
+        What do you want citers to do with the information provided in your CITATION.cff file?
+        <InfoDialog name="message" />
+    </h2>
+    <q-input
+        bg-color="white"
+        data-cy="input-message"
+        label="message"
+        outlined
+        standout
+        v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
+        v-bind:model-value="message"
+        v-bind:error="messageErrors.length > 0"
+        v-bind:error-message="messageErrors.join(', ')"
+        v-on:update:modelValue="setMessage"
+    />
 </template>
 
 <script lang="ts">

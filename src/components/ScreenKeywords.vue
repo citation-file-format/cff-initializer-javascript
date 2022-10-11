@@ -1,55 +1,51 @@
 <template>
-    <div id="form-title">
-        <h1 class="page-title">
-            Keywords
-        </h1>
-    </div>
+    <h1 id="form-title">
+        Keywords
+    </h1>
 
-    <div id="form-content">
-        <h2 class="question">
-            What keywords describe the work?
-            <InfoDialog name="keywords" />
-        </h2>
-        <div class="scroll-to-bottom-container">
-            <span class="bottom" />
-            <div>
-                <Keyword
-                    class="q-mr-lg"
-                    v-bind:key="index"
-                    v-bind:keyword="keyword"
-                    v-bind:index="index"
-                    v-bind:num-keywords="keywords.length"
-                    v-for="(keyword, index) in keywords"
-                    v-on:moveDown="moveDown(index, keywords, setKeywords)"
-                    v-on:moveUp="moveUp(index, keywords, setKeywords)"
-                    v-on:removePressed="removeKeyword(index)"
-                    v-on:update="setKeyword(index, $event)"
-                />
-            </div>
-        </div>
-        <q-btn
-            class="q-mt-md q-mb-md"
-            color="primary"
-            data-cy="btn-add-keyword"
-            no-caps
-            style="width: max-content"
-            v-on:click="addKeyword"
-        >
-            Add keyword
-        </q-btn>
-
-        <q-banner
-            v-if="keywordsErrors.length > 0"
-            v-bind:class="['bg-warning', 'text-negative', keywordsErrors.length > 0 ? 'has-error' : '']"
-        >
-            <div
+    <h2 class="question">
+        What keywords describe the work?
+        <InfoDialog name="keywords" />
+    </h2>
+    <div class="scroll-to-bottom-container">
+        <span class="bottom" />
+        <div>
+            <Keyword
+                class="q-mr-lg"
                 v-bind:key="index"
-                v-for="(screenMessage, index) in keywordsErrors"
-            >
-                {{ screenMessage }}
-            </div>
-        </q-banner>
+                v-bind:keyword="keyword"
+                v-bind:index="index"
+                v-bind:num-keywords="keywords.length"
+                v-for="(keyword, index) in keywords"
+                v-on:moveDown="moveDown(index, keywords, setKeywords)"
+                v-on:moveUp="moveUp(index, keywords, setKeywords)"
+                v-on:removePressed="removeKeyword(index)"
+                v-on:update="setKeyword(index, $event)"
+            />
+        </div>
     </div>
+    <q-btn
+        class="q-mt-md q-mb-md"
+        color="primary"
+        data-cy="btn-add-keyword"
+        no-caps
+        style="width: max-content"
+        v-on:click="addKeyword"
+    >
+        Add keyword
+    </q-btn>
+
+    <q-banner
+        v-if="keywordsErrors.length > 0"
+        v-bind:class="['bg-warning', 'text-negative', keywordsErrors.length > 0 ? 'has-error' : '']"
+    >
+        <div
+            v-bind:key="index"
+            v-for="(screenMessage, index) in keywordsErrors"
+        >
+            {{ screenMessage }}
+        </div>
+    </q-banner>
 </template>
 
 <script lang="ts">

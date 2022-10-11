@@ -1,71 +1,71 @@
 <template>
     <q-layout view="hHh lpR fFf">
-        <div id="app">
-            <q-header id="header-inner">
-                <Header v-on:togglePreview="onTogglePreview" />
-            </q-header>
+        <q-header id="header-inner">
+            <Header v-on:togglePreview="onTogglePreview" />
+        </q-header>
 
-            <q-drawer
-                id="preview-drawer"
-                elevated
-                overlay
-                side="right"
-                v-model="isPreviewDrawerEnabled"
-                v-bind:width="600"
-            >
-                <div id="preview-button-close">
-                    <q-btn
-                        icon="close"
-                        v-on:click="onTogglePreview"
-                    >
-                        Close preview
-                    </q-btn>
-                </div>
-
-                <div id="preview-content">
-                    <Preview />
-                </div>
-
-                <div id="preview-button-bar">
-                    <DownloadButton v-if="isNotFinish" />
-                </div>
-            </q-drawer>
-
-            <q-page-container>
-                <q-page
-                    id="middle"
-                    class="row"
+        <q-drawer
+            id="preview-drawer"
+            elevated
+            overlay
+            side="right"
+            v-model="isPreviewDrawerEnabled"
+            v-bind:width="600"
+        >
+            <div id="preview-button-close">
+                <q-btn
+                    icon="close"
+                    v-on:click="onTogglePreview"
                 >
-                    <Stepper />
-                    <div
-                        id="form"
-                        class="col-12 col-lg-5 col-sm-10"
-                    >
+                    Close preview
+                </q-btn>
+            </div>
+
+            <div id="preview-content">
+                <Preview />
+            </div>
+
+            <div id="preview-button-bar">
+                <DownloadButton v-if="isNotFinish" />
+            </div>
+        </q-drawer>
+
+        <q-page-container>
+            <q-page
+                id="middle"
+                class="row"
+            >
+                <Stepper />
+                <div
+                    id="form"
+                    class="col-12 col-lg-5 col-sm-10"
+                >
+                    <div id="form-content">
                         <router-view />
-
-                        <div id="form-button-bar">
-                            <StepperActions />
-                        </div>
                     </div>
-                    <div
-                        id="preview-static"
-                        class="col-12 col-lg-5 gt-md"
-                    >
-                        <div id="preview-content">
-                            <Preview />
-                        </div>
 
-                        <div id="preview-button-bar">
-                            <DownloadButton v-if="isNotFinish" />
-                        </div>
+                    <div id="form-button-bar">
+                        <StepperActions />
                     </div>
-                </q-page>
-            </q-page-container>
+                </div>
+                <div
+                    id="preview-static"
+                    class="col-12 col-lg-5 gt-md"
+                >
+                    <div id="preview-content">
+                        <Preview />
+                    </div>
 
-            <q-footer id="footer-inner">
-                <Footer />
-            </q-footer>
-        </div>
+                    <div id="preview-button-bar">
+                        <DownloadButton v-if="isNotFinish" />
+                    </div>
+                </div>
+            </q-page>
+        </q-page-container>
+
+        <q-footer id="footer-inner">
+            <Footer />
+        </q-footer>
     </q-layout>
 </template>
 

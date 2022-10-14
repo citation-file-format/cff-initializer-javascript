@@ -16,6 +16,7 @@
             <q-btn
                 class="author-button"
                 color="blue"
+                v-bind:data-cy="'btn-move-up' + index"
                 v-bind:disable="index == 0"
                 icon="ion-arrow-up"
                 tabindex="-1"
@@ -24,6 +25,7 @@
             <q-btn
                 class="author-button"
                 color="blue"
+                v-bind:data-cy="'btn-move-down' + index"
                 v-bind:disable="index >= numAuthors - 1"
                 icon="ion-arrow-down"
                 tabindex="-1"
@@ -32,6 +34,7 @@
             <q-btn
                 class="author-button"
                 color="primary"
+                v-bind:data-cy="'btn-edit' + index"
                 flat
                 hover-color="negative"
                 icon="edit"
@@ -41,6 +44,7 @@
             <q-btn
                 class="author-button"
                 color="negative"
+                v-bind:data-cy="'btn-remove' + index"
                 hover-color="negative"
                 icon="delete"
                 title="Remove author"

@@ -15,6 +15,7 @@
             <q-btn
                 class="identifier-button"
                 color="blue"
+                v-bind:data-cy="'btn-move-up' + index"
                 v-bind:disable="index == 0"
                 icon="ion-arrow-up"
                 tabindex="-1"
@@ -23,6 +24,7 @@
             <q-btn
                 class="identifier-button"
                 color="blue"
+                v-bind:data-cy="'btn-move-down' + index"
                 v-bind:disable="index >= numIdentifiers - 1"
                 icon="ion-arrow-down"
                 tabindex="-1"
@@ -35,6 +37,7 @@
                 hover-color="negative"
                 icon="edit"
                 title="Edit"
+                v-bind:data-cy="'btn-edit' + index"
                 v-on:click="$emit('editPressed')"
             />
             <q-btn
@@ -43,6 +46,7 @@
                 hover-color="negative"
                 icon="delete"
                 title="Remove Identifier"
+                v-bind:data-cy="'btn-remove' + index"
                 v-on:click="$emit('removePressed')"
             />
         </div>

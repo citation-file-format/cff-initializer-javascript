@@ -25,7 +25,7 @@
                 <q-input
                     autofocus
                     bg-color="white"
-                    data-cy="input-identifier-value"
+                    data-cy="input-value"
                     label="Value"
                     outlined
                     standout
@@ -46,7 +46,7 @@
                 </div>
                 <q-input
                     bg-color="white"
-                    data-cy="input-identifier-description"
+                    data-cy="input-description"
                     label="Description"
                     outlined
                     standout
@@ -59,14 +59,14 @@
         <q-card-actions align="right">
             <q-btn
                 color="negative"
-                data-cy="btn-identifier-remove"
+                data-cy="btn-remove"
                 dense
                 icon="delete"
                 label="Remove"
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
-                data-cy="btn-identifier-done"
+                data-cy="btn-done"
                 dense
                 icon="done"
                 label="Done"

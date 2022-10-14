@@ -9,6 +9,7 @@ export default defineConfig({
             require('@cypress/code-coverage/task')(on, config)
 
             return config
-        }
+        },
+        supportFile: 'cypress/support/index.ts'
     }
 })

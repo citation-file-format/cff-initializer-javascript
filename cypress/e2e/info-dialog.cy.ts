@@ -6,35 +6,35 @@ const infoDialogs = [
     {
         screen: 'authors',
         values: ['authors', 'given-names', 'name-particle, family-names, name-suffix', 'email', 'affiliation', 'orcid'],
-        before: () => { cy.get('[data-cy="btn-add-author"]').click() }
+        before: () => { cy.dataCy('btn-add-author').click() }
     },
     {
         screen: 'identifiers',
         values: ['identifiers', 'doi', 'description'],
-        before: () => { cy.get('[data-cy="btn-add-identifier"]').click() }
+        before: () => { cy.dataCy('btn-add-identifier').click() }
     },
     {
         screen: 'identifiers',
         values: ['url', 'description'],
         before: () => {
-            cy.get('[data-cy="btn-add-identifier"]').click()
-            cy.get('[data-cy="radio-identifier"]').children().eq(1).click()
+            cy.dataCy('btn-add-identifier').click()
+            cy.dataCy('radio-identifier').children().eq(1).click()
         }
     },
     {
         screen: 'identifiers',
         values: ['swh', 'description'],
         before: () => {
-            cy.get('[data-cy="btn-add-identifier"]').click()
-            cy.get('[data-cy="radio-identifier"]').children().eq(2).click()
+            cy.dataCy('btn-add-identifier').click()
+            cy.dataCy('radio-identifier').children().eq(2).click()
         }
     },
     {
         screen: 'identifiers',
         values: ['other', 'description'],
         before: () => {
-            cy.get('[data-cy="btn-add-identifier"]').click()
-            cy.get('[data-cy="radio-identifier"]').children().eq(3).click()
+            cy.dataCy('btn-add-identifier').click()
+            cy.dataCy('radio-identifier').children().eq(3).click()
         }
     },
     {
@@ -67,9 +67,9 @@ describe('InfoDialog', () => {
                 infoDialog.before()
             }
             for (const value of infoDialog.values) {
-                cy.get(`[data-cy="info-icon-${value}"]`)
+                cy.dataCy(`info-icon-${value}`)
                     .click()
-                cy.get(`[data-cy="info-dialog-${value}"]`)
+                cy.dataCy(`info-dialog-${value}`)
                     .find('button')
                     .contains('close')
                     .click()

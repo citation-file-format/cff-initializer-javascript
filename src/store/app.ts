@@ -48,7 +48,7 @@ export const useApp = () => {
             if (!stepNames.includes(newStepName)) {
                 return
             }
-            if (advancedStepNames.has(newStepName)) {
+            if (advancedStepNames.has(newStepName) || newStepName === 'finish-advanced') {
                 state.value.showAdvanced = true
             }
             state.value.stepIndex = stepNames.indexOf(newStepName)

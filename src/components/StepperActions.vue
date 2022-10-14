@@ -1,5 +1,6 @@
 <template>
     <q-btn
+        data-cy="btn-previous"
         label="Previous"
         no-caps
         v-bind:class="cannotGoBack ? 'hidden' : ''"
@@ -16,6 +17,7 @@
     >
         <q-btn
             color=""
+            data-cy="btn-finish"
             flat
             label="Finish"
             no-caps

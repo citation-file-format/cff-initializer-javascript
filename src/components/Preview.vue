@@ -30,6 +30,7 @@
         </q-btn>
     </div>
     <textarea
+        data-cy="ta-cff-preview"
         v-bind:class="['cffstr', isValidCFF ? '' : 'error']"
         readonly="true"
         v-bind:value="cffstr"
@@ -39,11 +40,13 @@
         <p
             v-if="doesNotHaveRequiredFields"
             class="invalid"
+            data-cy="text-validation-msg"
         >
             Your CITATION.cff does not have the minimum fields
         </p>
         <p
             v-else
+            data-cy="text-validation-msg"
             v-bind:class="isValidCFF ? '' : 'invalid'"
         >
             Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}

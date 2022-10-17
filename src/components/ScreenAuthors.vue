@@ -20,6 +20,7 @@
                     v-bind:index="index"
                     v-bind:author="author"
                     v-bind:num-authors="authors.length"
+                    v-bind:data-cy="'card-author' + index"
                     v-on:editPressed="() => (editingId = index)"
                     v-on:moveDown="moveAuthorDown(index)"
                     v-on:moveUp="moveAuthorUp(index)"
@@ -29,6 +30,7 @@
                     v-else
                     v-bind:index="index"
                     v-bind="author"
+                    v-bind:data-cy="'card-author' + index"
                     v-on:update="setAuthorField"
                     v-on:closePressed="() => (editingId = -1)"
                     v-on:removePressed="removeAuthor(editingId)"

@@ -6,7 +6,7 @@
         style="display: flex; flex-direction: row"
     >
         <div style="flex-grow: 1.0">
-            <ul>
+            <ul v-bind:data-cy="'card-info' + index">
                 <li>{{ author.givenNames }} {{ author.nameParticle }} {{ author.familyNames }} {{ author.nameSuffix }}</li>
                 <li>{{ author.email }}</li>
                 <li>{{ author.affiliation }} {{ author.orcid }}</li>

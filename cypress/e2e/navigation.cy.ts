@@ -176,4 +176,232 @@ describe('App navigation', () => {
                 .should('be.visible')
         })
     })
+
+    describe('On the screen Authors', () => {
+        it('should be possible to move authors around', () => {
+            cy.visit('/authors')
+            ;['A', 'B', 'C'].forEach((givenName) => {
+                cy.dataCy('btn-add-author')
+                    .click()
+                cy.dataCy('input-given-names')
+                    .type('John')
+                cy.dataCy('input-family-names')
+                    .type(`${givenName}. Doe`)
+            })
+            cy.dataCy('btn-done')
+                .click()
+            cy.dataCy('card-info0')
+                .should('contain.text', 'John  A. Doe')
+            cy.dataCy('card-info1')
+                .should('contain.text', 'John  B. Doe')
+            cy.dataCy('card-info2')
+                .should('contain.text', 'John  C. Doe')
+
+            // Enabled and disabled
+            const disabledButtons = ['btn-move-up0', 'btn-move-down2']
+            ;['up', 'down'].forEach((movement) => {
+                [0, 1, 2].forEach((authorIndex) => {
+                    const buttonName = `btn-move-${movement}${authorIndex}`
+                    cy.dataCy(buttonName)
+                        .should(
+                            disabledButtons.includes(buttonName)
+                                ? 'be.disabled'
+                                : 'be.enabled'
+                        )
+                })
+            })
+
+            const movementsAndResults = [
+                [['down0'], ['B', 'A', 'C']],
+                [['down1'], ['B', 'C', 'A']],
+                [['up1'], ['C', 'B', 'A']],
+                [['up2'], ['C', 'A', 'B']],
+                [['down0', 'down0'], ['C', 'A', 'B']],
+                [['down0', 'up2'], ['A', 'B', 'C']]
+            ]
+            movementsAndResults.forEach((value) => {
+                const [movements, result] = value
+                movements.forEach((movement) => {
+                    cy.dataCy(`btn-move-${movement}`)
+                        .click()
+                })
+                result.forEach((middle, index) => {
+                    cy.dataCy(`card-info${index}`)
+                        .should('contain.text', `John  ${middle}. Doe`)
+                })
+            })
+
+            cy.dataCy('btn-edit1')
+                .click()
+            cy.dataCy('input-name-particle')
+                .type('von')
+            cy.dataCy('btn-done')
+                .click()
+            cy.dataCy('card-info1')
+                .should('contain.text', 'John von B. Doe')
+
+            cy.dataCy('btn-remove0')
+                .click()
+            cy.dataCy('card-info0')
+                .should('contain.text', 'John von B. Doe')
+            cy.dataCy('card-author0')
+                .should('exist')
+            cy.dataCy('card-author1')
+                .should('exist')
+            cy.dataCy('card-author2')
+                .should('not.exist')
+            cy.dataCy('btn-remove0')
+                .click()
+            cy.dataCy('card-info0')
+                .should('contain.text', 'John  C. Doe')
+            cy.dataCy('card-author0')
+                .should('exist')
+            cy.dataCy('card-author1')
+                .should('not.exist')
+        })
+    })
+
+    describe('On the screen Identifiers', () => {
+        it('should be possible to move identifiers around', () => {
+            cy.visit('/identifiers')
+            ;['A', 'B', 'C'].forEach((identifier) => {
+                cy.dataCy('btn-add-identifier')
+                    .click()
+                cy.dataCy('input-value')
+                    .type(`10.1234/${identifier}`)
+            })
+            cy.dataCy('btn-done')
+                .click()
+            cy.dataCy('card-info0')
+                .should('contain.text', '10.1234/A')
+            cy.dataCy('card-info1')
+                .should('contain.text', '10.1234/B')
+            cy.dataCy('card-info2')
+                .should('contain.text', '10.1234/C')
+
+            // Enabled and disabled
+            const disabledButtons = ['btn-move-up0', 'btn-move-down2']
+            ;['up', 'down'].forEach((movement) => {
+                [0, 1, 2].forEach((identifierIndex) => {
+                    const buttonName = `btn-move-${movement}${identifierIndex}`
+                    cy.dataCy(buttonName)
+                        .should(
+                            disabledButtons.includes(buttonName)
+                                ? 'be.disabled'
+                                : 'be.enabled'
+                        )
+                })
+            })
+
+            const movementsAndResults = [
+                [['down0'], ['B', 'A', 'C']],
+                [['down1'], ['B', 'C', 'A']],
+                [['up1'], ['C', 'B', 'A']],
+                [['up2'], ['C', 'A', 'B']],
+                [['down0', 'down0'], ['C', 'A', 'B']],
+                [['down0', 'up2'], ['A', 'B', 'C']]
+            ]
+            movementsAndResults.forEach((value) => {
+                const [movements, result] = value
+                movements.forEach((movement) => {
+                    cy.dataCy(`btn-move-${movement}`)
+                        .click()
+                })
+                result.forEach((identifier, index) => {
+                    cy.dataCy(`card-info${index}`)
+                        .should('contain.text', `10.1234/${identifier}`)
+                })
+            })
+
+            cy.dataCy('btn-edit1')
+                .click()
+            cy.dataCy('input-value')
+                .clear()
+                .type('10.4321/B')
+            cy.dataCy('btn-done')
+                .click()
+            cy.dataCy('card-info1')
+                .should('contain.text', '10.4321/B')
+
+            cy.dataCy('btn-remove0')
+                .click()
+            cy.dataCy('card-info0')
+                .should('contain.text', '10.4321/B')
+            cy.dataCy('card-identifier0')
+                .should('exist')
+            cy.dataCy('card-identifier1')
+                .should('exist')
+            cy.dataCy('card-identifier2')
+                .should('not.exist')
+            cy.dataCy('btn-remove0')
+                .click()
+            cy.dataCy('card-info0')
+                .should('contain.text', '10.1234/C')
+            cy.dataCy('card-identifier0')
+                .should('exist')
+            cy.dataCy('card-identifier1')
+                .should('not.exist')
+        })
+    })
+
+    describe('On the screen Keywords', () => {
+        it('should be possible to move keywords around', () => {
+            cy.visit('/keywords')
+            ;['A', 'B', 'C'].forEach((keyword, index) => {
+                cy.dataCy('btn-add-keyword')
+                    .click()
+                cy.dataCy(`input-keyword${index}`)
+                    .type(`key${keyword}`)
+            })
+
+            // Enabled and disabled
+            const disabledButtons = ['btn-move-up0', 'btn-move-down2']
+            ;['up', 'down'].forEach((movement) => {
+                [0, 1, 2].forEach((keywordIndex) => {
+                    const buttonName = `btn-move-${movement}${keywordIndex}`
+                    cy.dataCy(buttonName)
+                        .should(
+                            disabledButtons.includes(buttonName)
+                                ? 'be.disabled'
+                                : 'be.enabled'
+                        )
+                })
+            })
+
+            const movementsAndResults = [
+                [['down0'], ['B', 'A', 'C']],
+                [['down1'], ['B', 'C', 'A']],
+                [['up1'], ['C', 'B', 'A']],
+                [['up2'], ['C', 'A', 'B']],
+                [['down0', 'down0'], ['C', 'A', 'B']],
+                [['down0', 'up2'], ['A', 'B', 'C']]
+            ]
+            movementsAndResults.forEach((value) => {
+                const [movements, result] = value
+                movements.forEach((movement) => {
+                    cy.dataCy(`btn-move-${movement}`)
+                        .click()
+                })
+                result.forEach((keyword, index) => {
+                    cy.dataCy(`input-keyword${index}`)
+                        .should('contain.value', `key${keyword}`)
+                })
+            })
+
+            cy.dataCy('btn-remove0')
+                .click()
+            cy.dataCy('input-keyword0')
+                .should('contain.value', 'keyB')
+            cy.dataCy('input-keyword1')
+                .should('contain.value', 'keyC')
+            cy.dataCy('input-keyword2')
+                .should('not.exist')
+            cy.dataCy('btn-remove0')
+                .click()
+            cy.dataCy('input-keyword0')
+                .should('contain.value', 'keyC')
+            cy.dataCy('input-keyword1')
+                .should('not.exist')
+        })
+    })
 })

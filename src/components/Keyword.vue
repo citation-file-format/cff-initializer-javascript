@@ -18,7 +18,7 @@
         <q-btn
             class="keyword-btn"
             color="blue"
-            v-bind:data-cy="'btn-keyword' + index + '-up'"
+            v-bind:data-cy="'btn-move-up' + index"
             v-bind:disable="index == 0"
             icon="ion-arrow-up"
             tabindex="-1"
@@ -27,7 +27,7 @@
         <q-btn
             class="keyword-btn"
             color="blue"
-            v-bind:data-cy="'btn-keyword' + index + '-down'"
+            v-bind:data-cy="'btn-move-down' + index"
             v-bind:disable="index == numKeywords - 1"
             icon="ion-arrow-down"
             tabindex="-1"
@@ -36,7 +36,7 @@
         <q-btn
             class="keyword-btn"
             color="negative"
-            v-bind:data-cy="'btn-keyword' + index + '-delete'"
+            v-bind:data-cy="'btn-remove' + index"
             dense
             icon="delete"
             tabindex="-1"

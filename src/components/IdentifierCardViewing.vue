@@ -6,7 +6,7 @@
         style="display: flex; flex-direction: row"
     >
         <div style="flex-grow: 1.0">
-            <ul>
+            <ul v-bind:data-cy="'card-info' + index">
                 <li>{{ identifier.description }}</li>
                 <li>{{ identifier.type }}: {{ identifier.value }}</li>
             </ul>

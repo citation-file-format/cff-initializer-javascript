@@ -107,27 +107,55 @@
 
 <script lang="ts">
 
+import {
+    byError,
+    instancePathStartsWithMatcher,
+    screenAuthorQueries,
+    screenIdentifiersQueries,
+    screenKeywordsQueries,
+    screenRelatedResourcesQueries,
+    screenStartQueries,
+    screenVersionSpecificQueries
+} from 'src/error-filtering'
+import { computed } from 'vue'
 import { useApp } from 'src/store/app'
-import { useStepperErrors } from 'src/store/stepper-errors'
+import { useValidation } from 'src/store/validation'
 
 export default {
     setup () {
         const { showAdvanced, stepName, setStepName } = useApp()
-        const {
-            errorStateScreenAuthors,
-            errorStateScreenIdentifiers,
-            errorStateScreenKeywords,
-            errorStateScreenRelatedResources,
-            errorStateScreenStart,
-            errorStateScreenVersionSpecific
-        } = useStepperErrors()
+        const { errors } = useValidation()
         return {
-            errorStateScreenAuthors,
-            errorStateScreenIdentifiers,
-            errorStateScreenKeywords,
-            errorStateScreenRelatedResources,
-            errorStateScreenStart,
-            errorStateScreenVersionSpecific,
+            errorStateScreenAuthors: computed(() => {
+                return screenAuthorQueries
+                    .filter(byError(errors.value, instancePathStartsWithMatcher))
+                    .length > 0
+            }),
+            errorStateScreenIdentifiers: computed(() => {
+                return screenIdentifiersQueries
+                    .filter(byError(errors.value, instancePathStartsWithMatcher))
+                    .length > 0
+            }),
+            errorStateScreenKeywords: computed(() => {
+                return screenKeywordsQueries
+                    .filter(byError(errors.value, instancePathStartsWithMatcher))
+                    .length > 0
+            }),
+            errorStateScreenRelatedResources: computed(() => {
+                return screenRelatedResourcesQueries
+                    .filter(byError(errors.value, instancePathStartsWithMatcher))
+                    .length > 0
+            }),
+            errorStateScreenStart: computed(() => {
+                return screenStartQueries
+                    .filter(byError(errors.value)) // One of the possible errors is instancePath == '', so we use a traditional approach here
+                    .length > 0
+            }),
+            errorStateScreenVersionSpecific: computed(() => {
+                return screenVersionSpecificQueries
+                    .filter(byError(errors.value, instancePathStartsWithMatcher))
+                    .length > 0
+            }),
             setStepName,
             showAdvanced,
             stepName

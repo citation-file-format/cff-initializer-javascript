@@ -55,10 +55,9 @@
 </template>
 
 <script lang="ts">
-import { PropType, computed, defineComponent, onUpdated } from 'vue'
+import { PropType, computed, defineComponent } from 'vue'
 import { byError, duplicateAuthorQueries, duplicateMatcher, emailQueries, orcidQueries } from 'src/error-filtering'
 import { AuthorType } from 'src/types'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -78,10 +77,6 @@ export default defineComponent({
         }
     },
     setup (props) {
-        onUpdated(() => {
-            const { setErrorStateScreenAuthors } = useStepperErrors()
-            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
-        })
         const { errors } = useValidation()
         const emailErrors = computed(() => {
             return emailQueries(props.index)

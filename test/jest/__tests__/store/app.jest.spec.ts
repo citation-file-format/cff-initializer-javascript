@@ -106,13 +106,17 @@ describe('useApp', () => {
         beforeEach(() => {
             setShowAdvanced(false)
         })
-        it('should enable advanced mode for advanced steps and finish-advanced and respect next/previous', () => {
-            advancedStepNames.forEach((step) => {
+        advancedStepNames.forEach((step) => {
+            it(`should enable advanced mode for step ${step} and respect next/previous`, () => {
+                expect(showAdvanced.value).toBe(false)
                 navigateDirect(step)
                 expect(showAdvanced.value).toBe(true)
                 expect(cannotGoForward.value).toBe(false)
                 expect(cannotGoBack.value).toBe(false)
             })
+        })
+        it('should enable advanced mode for step finish-advanced and respect next/previous', () => {
+            expect(showAdvanced.value).toBe(false)
             navigateDirect('finish-advanced')
             expect(showAdvanced.value).toBe(true)
             expect(cannotGoForward.value).toBe(true)

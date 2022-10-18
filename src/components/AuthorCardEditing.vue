@@ -159,9 +159,8 @@
 
 <script lang="ts">
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
+import { computed, defineComponent } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -204,10 +203,6 @@ export default defineComponent({
         }
     },
     setup (props) {
-        onUpdated(() => {
-            const { setErrorStateScreenAuthors } = useStepperErrors()
-            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
-        })
         const { errors } = useValidation()
         const orcidErrors = computed(() => {
             return orcidQueries(props.index)

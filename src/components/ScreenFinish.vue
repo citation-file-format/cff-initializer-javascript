@@ -69,7 +69,6 @@ import DownloadButton from 'components/DownloadButton.vue'
 import { useApp } from 'src/store/app'
 import { useCff } from 'src/store/cff'
 import { useQuasar } from 'quasar'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -80,7 +79,6 @@ export default defineComponent({
     setup () {
         const { setStepName, setShowAdvanced, showAdvanced } = useApp()
         const { reset: resetCffData } = useCff()
-        const { reset: resetStepperErrorState } = useStepperErrors()
         const { errors } = useValidation()
         const q = useQuasar()
         return {
@@ -92,7 +90,6 @@ export default defineComponent({
                     persistent: true
                 }).onOk(async () => {
                     resetCffData()
-                    resetStepperErrorState()
                     setShowAdvanced(false)
                     await setStepName('start')
                 })

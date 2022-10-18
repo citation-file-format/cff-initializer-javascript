@@ -1,40 +1,40 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-export type StepNameType = 'start' | 'authors' | 'finish-minimum' | 'identifiers' | 'related-resources' |
-                    'abstract' | 'keywords' | 'license' | 'version-specific' | 'finish-advanced'
+export type StepNameType = 'start' | 'authors' | 'identifiers' | 'related-resources' |
+                    'abstract' | 'keywords' | 'license' | 'version-specific' | 'finish'
 
 const state = ref({
     showAdvanced: false,
     stepIndex: 0
 })
 
-const stepNames = [
+const basicStepNames = [
     'start',
-    'authors',
-    'finish-minimum',
-    'identifiers',
-    'related-resources',
-    'abstract',
-    'keywords',
-    'license',
-    'version-specific',
-    'finish-advanced'
+    'authors'
 ] as Array<StepNameType>
 
-const advancedStepNames = new Set([
+const advancedStepNames = [
     'identifiers',
     'related-resources',
     'abstract',
     'keywords',
     'license',
     'version-specific'
-])
+] as Array<StepNameType>
+
+const stepNames = computed(() => {
+    if (state.value.showAdvanced) {
+        return basicStepNames.concat(advancedStepNames).concat(['finish'])
+    } else {
+        return basicStepNames.concat(['finish'])
+    }
+})
 
 const firstStepIndex = 0
 
-const lastStepIndex = computed(() => state.value.showAdvanced ? stepNames.indexOf('finish-advanced') : stepNames.indexOf('finish-minimum'))
-const stepName = computed(() => stepNames[state.value.stepIndex])
+const lastStepIndex = computed(() => stepNames.value.length - 1)
+const stepName = computed(() => stepNames.value[state.value.stepIndex])
 
 export const useApp = () => {
     const router = useRouter()
@@ -45,33 +45,25 @@ export const useApp = () => {
         showAdvanced: computed(() => state.value.showAdvanced),
         stepName,
         navigateDirect: (newStepName: StepNameType) => {
-            if (!stepNames.includes(newStepName)) {
+            if (![...basicStepNames, ...advancedStepNames, 'finish'].includes(newStepName)) {
                 return
             }
-            if (advancedStepNames.has(newStepName) || newStepName === 'finish-advanced') {
+            if (advancedStepNames.includes(newStepName)) {
                 state.value.showAdvanced = true
             }
-            state.value.stepIndex = stepNames.indexOf(newStepName)
+            state.value.stepIndex = stepNames.value.indexOf(newStepName)
         },
         setStepName: async (newStepName: StepNameType) => {
-            state.value.stepIndex = stepNames.indexOf(newStepName)
+            state.value.stepIndex = stepNames.value.indexOf(newStepName)
             await router.push({ path: `/${stepName.value}` })
         },
         navigateNext: async () => {
-            if (state.value.showAdvanced === true && stepName.value === 'authors') {
-                // extra increment to step past finish-minimum
-                state.value.stepIndex++
-            }
             if (state.value.stepIndex < lastStepIndex.value) {
                 state.value.stepIndex++
                 await router.push({ path: `/${stepName.value}` })
             }
         },
         navigatePrevious: async () => {
-            if (state.value.showAdvanced === true && stepName.value === 'identifiers') {
-                // extra decrement to step past finish-minimum
-                state.value.stepIndex--
-            }
             if (state.value.stepIndex > firstStepIndex) {
                 state.value.stepIndex--
                 await router.push({ path: `/${stepName.value}` })

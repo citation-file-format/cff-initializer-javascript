@@ -74,7 +74,7 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish Minimum screen
+        // Finish screen (minimum version)
         cy.url().should('include', '/finish')
         cy.dataCy('btn-download')
             .click()
@@ -130,7 +130,7 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish Minimum screen
+        // Finish screen (minimum version)
         cy.url().should('include', '/finish')
         cy.dataCy('btn-add-more')
             .click()
@@ -240,7 +240,7 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish Advanced screen
+        // Finish screen (advanced version)
         cy.url().should('include', '/finish')
         cy.dataCy('btn-download')
             .click()

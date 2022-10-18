@@ -13,8 +13,17 @@
     </h1>
 
     <div v-if="isValidCFF">
-        <p class="finish-paragraph">
-            You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, or continue adding more properties.
+        <p
+            v-if="!showAdvanced"
+            class="finish-paragraph"
+        >
+            You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, continue adding more properties, or reset the form.
+        </p>
+        <p
+            v-else
+            class="finish-paragraph"
+        >
+            Use the buttons below to download your CITATION.cff file, or reset the form to start over.
         </p>
         <p class="finish-paragraph">
             Distribute the CITATION.cff with your project, for instance, by adding it to the root of your GitHub repository.
@@ -22,6 +31,7 @@
         <div class="row">
             <DownloadButton class="col-4 q-ma-lg" />
             <q-btn
+                v-if="!showAdvanced"
                 class="col-4 q-ma-lg"
                 color="primary"
                 data-cy="btn-add-more"
@@ -30,8 +40,19 @@
                 no-caps
                 size="xl"
                 to="/identifiers"
-                v-on:click="showAdvanced"
+                v-on:click="setupAdvanced"
                 v-bind:class="q.platform.is.mobile ? 'full-width' : ''"
+            />
+        </div>
+        <div class="row">
+            <q-btn
+                class="q-mt-md q-mb-md"
+                color=""
+                text-color="red"
+                icon="refresh"
+                label="Reset form"
+                no-caps
+                v-on:click="confirmAndReset"
             />
         </div>
     </div>
@@ -46,25 +67,43 @@
 import { computed, defineComponent } from 'vue'
 import DownloadButton from 'components/DownloadButton.vue'
 import { useApp } from 'src/store/app'
+import { useCff } from 'src/store/cff'
 import { useQuasar } from 'quasar'
+import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
-    name: 'ScreenFinishMinimum',
+    name: 'ScreenFinish',
     components: {
         DownloadButton
     },
     setup () {
-        const { setShowAdvanced, setStepName } = useApp()
+        const { setStepName, setShowAdvanced, showAdvanced } = useApp()
+        const { reset: resetCffData } = useCff()
+        const { reset: resetStepperErrorState } = useStepperErrors()
         const { errors } = useValidation()
         const q = useQuasar()
         return {
-            q,
+            confirmAndReset: () => {
+                q.dialog({
+                    title: 'Confirm',
+                    message: 'Would you like to reset the form? All changes will be lost.',
+                    cancel: true,
+                    persistent: true
+                }).onOk(async () => {
+                    resetCffData()
+                    resetStepperErrorState()
+                    setShowAdvanced(false)
+                    await setStepName('start')
+                })
+            },
             isValidCFF: computed(() => errors.value.length === 0),
-            showAdvanced: async () => {
+            q,
+            setupAdvanced: async () => {
                 setShowAdvanced(true)
                 await setStepName('identifiers')
-            }
+            },
+            showAdvanced
         }
     }
 })

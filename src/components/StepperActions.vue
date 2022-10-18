@@ -22,7 +22,7 @@
             label="Finish"
             no-caps
             v-bind:class="!showAdvanced ? 'hidden' : ''"
-            v-bind:to="showAdvanced === true ? '/finish-advanced' : '/finish-minimum'"
+            to="/finish"
         />
         <q-btn
             color="primary"

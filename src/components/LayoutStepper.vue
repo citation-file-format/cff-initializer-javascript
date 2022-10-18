@@ -94,7 +94,7 @@ export default defineComponent({
         return {
             isNotFinish: computed(() => {
                 const currentPath = useRoute().path
-                return currentPath !== '/finish-minimum' && currentPath !== '/finish-advanced'
+                return currentPath !== '/finish'
             }),
             isPreviewDrawerEnabled,
             onTogglePreview: () => { isPreviewDrawerEnabled.value = !isPreviewDrawerEnabled.value }

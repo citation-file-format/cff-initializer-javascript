@@ -60,7 +60,7 @@ describe('useApp', () => {
                 void navigateNext()
                 expect(cannotGoBack.value).toBe(false)
             })
-            expect(stepName.value).toBe('finish-minimum')
+            expect(stepName.value).toBe('finish')
             expect(cannotGoForward.value).toBe(true)
             Array.from(basicStepNames).reverse().forEach((step) => {
                 expect(cannotGoBack.value).toBe(false)
@@ -79,7 +79,7 @@ describe('useApp', () => {
         })
         const allSteps = [...basicStepNames, ...advancedStepNames]
         it(`should have ${allSteps.length} as lastIndex`, () => {
-            expect(lastStepIndex.value).toBe(allSteps.length + 1) // Off-by-one numbering of steps
+            expect(lastStepIndex.value).toBe(allSteps.length)
         })
         it('should be navigable with next and previous (except at boundaries)', () => {
             expect(cannotGoBack.value).toBe(true)
@@ -89,7 +89,7 @@ describe('useApp', () => {
                 void navigateNext()
                 expect(cannotGoBack.value).toBe(false)
             })
-            expect(stepName.value).toBe('finish-advanced')
+            expect(stepName.value).toBe('finish')
             expect(cannotGoForward.value).toBe(true)
             Array.from(allSteps).reverse().forEach((step) => {
                 expect(cannotGoBack.value).toBe(false)
@@ -115,21 +115,14 @@ describe('useApp', () => {
                 expect(cannotGoBack.value).toBe(false)
             })
         })
-        it('should enable advanced mode for step finish-advanced and respect next/previous', () => {
-            expect(showAdvanced.value).toBe(false)
-            navigateDirect('finish-advanced')
-            expect(showAdvanced.value).toBe(true)
-            expect(cannotGoForward.value).toBe(true)
-            expect(cannotGoBack.value).toBe(false)
-        })
-        it('should not enable advanced mode for basic steps and finish-minimum and respect next/previous', () => {
+        it('should not enable advanced mode for basic steps and finish and respect next/previous', () => {
             basicStepNames.forEach((step) => {
                 navigateDirect(step)
                 expect(showAdvanced.value).toBe(false)
                 expect(cannotGoForward.value).toBe(false)
                 expect(cannotGoBack.value).toBe(step === 'start')
             })
-            navigateDirect('finish-minimum')
+            navigateDirect('finish')
             expect(showAdvanced.value).toBe(false)
             expect(cannotGoForward.value).toBe(true)
             expect(cannotGoBack.value).toBe(false)

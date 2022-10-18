@@ -33,22 +33,12 @@
         />
 
         <q-step
-            active-icon="navigate_next"
-            data-cy="step-finish-minimum"
-            name="finish-minimum"
-            title="Finish"
-            v-bind:order="2"
-            v-if="!showAdvanced"
-            v-on:click="setStepName('finish-minimum')"
-        />
-
-        <q-step
             data-cy="step-identifiers"
             name="identifiers"
             title="Identifiers"
             v-bind:active-icon="errorStateScreenIdentifiers ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenIdentifiers"
-            v-bind:order="3"
+            v-bind:order="2"
             v-if="showAdvanced"
             v-on:click="setStepName('identifiers')"
         />
@@ -59,7 +49,7 @@
             title="Related resources"
             v-bind:active-icon="errorStateScreenRelatedResources ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenRelatedResources"
-            v-bind:order="4"
+            v-bind:order="3"
             v-if="showAdvanced"
             v-on:click="setStepName('related-resources')"
         />
@@ -68,7 +58,7 @@
             data-cy="step-abstract"
             name="abstract"
             title="Abstract"
-            v-bind:order="5"
+            v-bind:order="4"
             v-if="showAdvanced"
             v-on:click="setStepName('abstract')"
         />
@@ -79,7 +69,7 @@
             title="Keywords"
             v-bind:active-icon="errorStateScreenKeywords ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenKeywords"
-            v-bind:order="6"
+            v-bind:order="5"
             v-if="showAdvanced"
             v-on:click="setStepName('keywords')"
         />
@@ -88,7 +78,7 @@
             data-cy="step-license"
             name="license"
             title="License"
-            v-bind:order="7"
+            v-bind:order="6"
             v-if="showAdvanced"
             v-on:click="setStepName('license')"
         />
@@ -99,19 +89,18 @@
             title="Version specific"
             v-bind:active-icon="errorStateScreenVersionSpecific ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenVersionSpecific"
-            v-bind:order="8"
+            v-bind:order="7"
             v-if="showAdvanced"
             v-on:click="setStepName('version-specific')"
         />
 
         <q-step
             active-icon="navigate_next"
-            data-cy="step-finish-advanced"
-            name="finish-advanced"
+            data-cy="step-finish"
+            name="finish"
             title="Finish"
-            v-bind:order="9"
-            v-if="showAdvanced"
-            v-on:click="setStepName('finish-advanced')"
+            v-bind:order="showAdvanced ? 8 : 2"
+            v-on:click="setStepName('finish')"
         />
     </q-stepper>
 </template>

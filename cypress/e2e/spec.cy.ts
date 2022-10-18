@@ -74,8 +74,8 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish Minimum screen
-        cy.url().should('include', '/finish-minimum')
+        // Finish screen (minimum version)
+        cy.url().should('include', '/finish')
         cy.dataCy('btn-download')
             .click()
         const downloadsFolder = Cypress.config('downloadsFolder')
@@ -130,8 +130,8 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish Minimum screen
-        cy.url().should('include', '/finish-minimum')
+        // Finish screen (minimum version)
+        cy.url().should('include', '/finish')
         cy.dataCy('btn-add-more')
             .click()
 
@@ -240,8 +240,8 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish Advanced screen
-        cy.url().should('include', '/finish-advanced')
+        // Finish screen (advanced version)
+        cy.url().should('include', '/finish')
         cy.dataCy('btn-download')
             .click()
 

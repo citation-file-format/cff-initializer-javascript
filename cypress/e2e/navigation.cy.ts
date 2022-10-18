@@ -29,7 +29,7 @@ describe('App navigation', () => {
                 cy.dataCy('btn-previous')
                     .should('be.visible')
             })
-            cy.url().should('include', '/finish-minimum')
+            cy.url().should('include', '/finish')
             cy.dataCy('btn-next')
                 .should('not.be.visible')
             Array.from(basicStepNames).reverse().forEach((step) => {
@@ -44,7 +44,7 @@ describe('App navigation', () => {
                 .should('not.be.visible')
         })
         it('should be navigable through the stepper', () => {
-            ['finish-minimum', ...basicStepNames, ...[...basicStepNames].reverse()].forEach((step) => {
+            ['finish', ...basicStepNames, ...[...basicStepNames].reverse()].forEach((step) => {
                 cy.visit(step === 'start' ? '/authors' : `/${step}`)
                 cy.dataCy(`step-${step}`)
                     .click()
@@ -62,7 +62,7 @@ describe('App navigation', () => {
             cy.visit('/authors')
             cy.dataCy('btn-add-author')
                 .click()
-            cy.visit('/finish-minimum')
+            cy.visit('/finish')
             cy.dataCy('btn-add-more')
                 .click()
         })
@@ -82,7 +82,7 @@ describe('App navigation', () => {
                 cy.dataCy('btn-previous')
                     .should('be.visible')
             })
-            cy.url().should('include', '/finish-advanced')
+            cy.url().should('include', '/finish')
             cy.dataCy('btn-next')
                 .should('not.be.visible')
             Array.from(allStepNames).reverse().forEach((step) => {
@@ -97,7 +97,7 @@ describe('App navigation', () => {
                 .should('not.be.visible')
         })
         it('should be navigable through the stepper', () => {
-            ['finish-advanced', ...allStepNames, ...[...allStepNames].reverse()].forEach((step) => {
+            ['finish', ...allStepNames, ...[...allStepNames].reverse()].forEach((step) => {
                 cy.visit(step === 'start' ? '/authors' : `/${step}`)
                 cy.dataCy(`step-${step}`)
                     .click()
@@ -106,7 +106,7 @@ describe('App navigation', () => {
             })
         })
         describe('if there are no errors', () => {
-            it('should jump from step to finish-advanced when finish is clicked', () => {
+            it('should jump from step to finish when finish is clicked', () => {
                 allStepNames.forEach((step) => {
                     cy.visit(`/${step}`)
                     // The next test is just to make sure the page loaded without using cy.wait
@@ -115,7 +115,7 @@ describe('App navigation', () => {
                         .should('be.visible')
                         .click()
                     cy.url()
-                        .should('contain', '/finish-advanced')
+                        .should('contain', '/finish')
                 })
             })
         })
@@ -153,21 +153,10 @@ describe('App navigation', () => {
                 }
             })
         })
-        it(`should have ${basicStepNames.length + 1} steps, visible previous, hidden next/finish for step finish-minimum`, () => {
-            cy.visit('/finish-minimum')
+        it(`should have ${basicStepNames.length + 1} steps, visible previous, hidden next/finish for step finish`, () => {
+            cy.visit('/finish')
             cy.get('.q-stepper__tab')
                 .should('have.length', basicStepNames.length + 1)
-            cy.dataCy('btn-finish')
-                .should('not.be.visible')
-            cy.dataCy('btn-next')
-                .should('not.be.visible')
-            cy.dataCy('btn-previous')
-                .should('be.visible')
-        })
-        it(`should have ${advancedStepNames.length + 1} steps, visible previous, hidden next/finish for step finish-advanced`, () => {
-            cy.visit('/finish-advanced')
-            cy.get('.q-stepper__tab')
-                .should('have.length', allStepNames.length + 1)
             cy.dataCy('btn-finish')
                 .should('not.be.visible')
             cy.dataCy('btn-next')

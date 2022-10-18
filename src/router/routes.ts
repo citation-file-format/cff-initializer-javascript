@@ -20,11 +20,6 @@ const routes: RouteRecordRaw[] = [
         children: [{ path: '', component: () => import('src/components/ScreenAuthors.vue') }]
     },
     {
-        path: '/finish-minimum',
-        component: () => import('src/components/LayoutStepper.vue'),
-        children: [{ path: '', component: () => import('src/components/ScreenFinishMinimum.vue') }]
-    },
-    {
         path: '/identifiers',
         component: () => import('src/components/LayoutStepper.vue'),
         children: [{ path: '', component: () => import('src/components/ScreenIdentifiers.vue') }]
@@ -55,9 +50,9 @@ const routes: RouteRecordRaw[] = [
         children: [{ path: '', component: () => import('src/components/ScreenVersionSpecific.vue') }]
     },
     {
-        path: '/finish-advanced',
+        path: '/finish',
         component: () => import('src/components/LayoutStepper.vue'),
-        children: [{ path: '', component: () => import('src/components/ScreenFinishAdvanced.vue') }]
+        children: [{ path: '', component: () => import('src/components/ScreenFinish.vue') }]
     },
     {
         path: '/404',

@@ -15,7 +15,7 @@ describe('On application start', () => {
     // Since the stepper is separate from the screen itself, it doesn't matter which screen we join
     const stepsWithExpectedErrors = ['start', 'authors']
     it('should have errors in start and authors, but not in any other steps', () => {
-        cy.visit('/finish-advanced')
+        cy.visit('/identifiers')
         stepsWithExpectedErrors.forEach((step) => {
             cy.checkThatStepperValidityIs(false, step)
         })
@@ -43,10 +43,9 @@ describe('From a fixed advanced app', () => {
         cy.visit('/authors')
         cy.dataCy('btn-add-author')
             .click()
-        cy.visit('/finish-advanced')
+        cy.visit('/identifiers')
     })
     it('should have no errors', () => {
-        cy.visit('/finish-advanced')
         allStepNames.forEach((step) => {
             cy.checkThatStepperValidityIs(true, step)
             cy.dataCy('ta-cff-preview')

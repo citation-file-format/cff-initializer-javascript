@@ -148,7 +148,7 @@ export default {
             }),
             errorStateScreenStart: computed(() => {
                 return screenStartQueries
-                    .filter(byError(errors.value))
+                    .filter(byError(errors.value)) // One of the possible errors is instancePath == '', so we use a traditional approach here
                     .length > 0
             }),
             errorStateScreenVersionSpecific: computed(() => {

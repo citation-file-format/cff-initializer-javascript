@@ -50,10 +50,9 @@
 
 <script lang="ts">
 import { byError, messageQueries, titleQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
+import { computed, defineComponent } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -62,10 +61,6 @@ export default defineComponent({
         InfoDialog
     },
     setup () {
-        onUpdated(() => {
-            const { setErrorStateScreenStart } = useStepperErrors()
-            setErrorStateScreenStart(document.getElementsByClassName('has-error').length > 0)
-        })
         const { message, title, type, setMessage, setTitle, setType } = useCff()
         const { errors } = useValidation()
         const messageErrors = computed(() => {

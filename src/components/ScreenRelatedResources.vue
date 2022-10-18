@@ -74,10 +74,9 @@
 
 <script lang="ts">
 import { byError, repositoryArtifactQueries, repositoryCodeQueries, repositoryQueries, unique, urlQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
+import { computed, defineComponent } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -86,10 +85,6 @@ export default defineComponent({
         InfoDialog
     },
     setup () {
-        onUpdated(() => {
-            const { setErrorStateScreenRelatedResources } = useStepperErrors()
-            setErrorStateScreenRelatedResources(document.getElementsByClassName('has-error').length > 0)
-        })
         const {
             repository, repositoryArtifact, repositoryCode, url,
             setRepository, setRepositoryArtifact, setRepositoryCode, setUrl

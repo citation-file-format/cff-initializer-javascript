@@ -1,7 +1,6 @@
 import { StepNameType, useApp } from 'src/store/app'
 import { describe, expect, it, jest } from '@jest/globals'
 import { useCff } from 'src/store/cff'
-import { useStepperErrors } from 'src/store/stepper-errors'
 
 const routerPushMock = jest.fn()
 
@@ -25,7 +24,6 @@ describe('useApp', () => {
         stepName
     } = useApp()
     const { reset: resetCffData } = useCff()
-    const { reset: resetStepperErrorState } = useStepperErrors()
     const basicStepNames = ['start', 'authors'] as Array<StepNameType>
     const advancedStepNames = [
         'identifiers',
@@ -38,7 +36,6 @@ describe('useApp', () => {
 
     beforeEach(() => {
         resetCffData()
-        resetStepperErrorState()
         setShowAdvanced(false)
         void setStepName('start')
     })

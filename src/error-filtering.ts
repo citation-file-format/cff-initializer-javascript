@@ -30,6 +30,10 @@ const defaultMatcher: Comparator = (error, query) => {
     return true
 }
 
+export const instancePathStartsWithMatcher: Comparator = (error, query) => {
+    return error.instancePath.startsWith(query.find.instancePath as string)
+}
+
 export const duplicateMatcher = (index: number) => {
     return (error: ErrorObject) => error.params.i === index || error.params.j === index
 }
@@ -284,6 +288,81 @@ export const repositoryQueries: ErrorQuery[] = [{
     },
     replace: {
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+    }
+}]
+
+export const screenAuthorQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/authors'
+    },
+    replace: {
+        message: 'Screen Authors has errors'
+    }
+}]
+
+export const screenIdentifiersQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/identifiers'
+    },
+    replace: {
+        message: 'Screen Identifiers has errors'
+    }
+}]
+
+export const screenKeywordsQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/keywords'
+    },
+    replace: {
+        message: 'Screen Keywords has errors'
+    }
+}]
+
+export const screenRelatedResourcesQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/repository'
+    },
+    replace: {
+        message: 'Screen Related Resources has errors'
+    }
+}, {
+    find: {
+        instancePath: '/url'
+    },
+    replace: {
+        message: 'Screen Related Resources has errors'
+    }
+}]
+
+export const screenStartQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: ''
+    },
+    replace: {
+        message: 'Screen Start has errors'
+    }
+}, {
+    find: {
+        instancePath: '/title'
+    },
+    replace: {
+        message: 'Screen Start has errors'
+    }
+}, {
+    find: {
+        instancePath: '/message'
+    },
+    replace: {
+        message: 'Screen Start has errors'
+    }
+}]
+
+export const screenVersionSpecificQueries: ErrorQuery[] = [{
+    find: {
+        instancePath: '/date-released'
+    },
+    replace: {
+        message: 'Screen Version Specific has errors'
     }
 }]
 

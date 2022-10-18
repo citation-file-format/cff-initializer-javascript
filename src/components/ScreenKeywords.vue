@@ -50,13 +50,12 @@
 
 <script lang="ts">
 import { byError, keywordsQueries } from 'src/error-filtering'
-import { computed, defineComponent, nextTick, onUpdated } from 'vue'
+import { computed, defineComponent, nextTick } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
 import InfoDialog from 'components/InfoDialog.vue'
 import Keyword from 'components/Keyword.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -66,10 +65,6 @@ export default defineComponent({
         Keyword
     },
     setup () {
-        onUpdated(() => {
-            const { setErrorStateScreenKeywords } = useStepperErrors()
-            setErrorStateScreenKeywords(document.getElementsByClassName('has-error').length > 0)
-        })
         const { keywords, setKeywords } = useCff()
         const { errors } = useValidation()
         const addKeyword = async () => {

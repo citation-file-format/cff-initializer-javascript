@@ -64,7 +64,7 @@
 
 <script lang="ts">
 import { authorsQueries, byError } from 'src/error-filtering'
-import { computed, defineComponent, nextTick, onUpdated, ref } from 'vue'
+import { computed, defineComponent, nextTick, ref } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
@@ -72,7 +72,6 @@ import { AuthorType } from 'src/types'
 import InfoDialog from 'components/InfoDialog.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -83,10 +82,6 @@ export default defineComponent({
         InfoDialog
     },
     setup () {
-        onUpdated(() => {
-            const { setErrorStateScreenAuthors } = useStepperErrors()
-            setErrorStateScreenAuthors(document.getElementsByClassName('has-error').length > 0)
-        })
         const { authors, setAuthors } = useCff()
         const { errors } = useValidation()
         const editingId = ref(-1)

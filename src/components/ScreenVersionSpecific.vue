@@ -82,10 +82,9 @@
 
 <script lang="ts">
 import { byError, dateReleasedQueries } from 'src/error-filtering'
-import { computed, defineComponent, onUpdated } from 'vue'
+import { computed, defineComponent } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
-import { useStepperErrors } from 'src/store/stepper-errors'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -94,10 +93,6 @@ export default defineComponent({
         InfoDialog
     },
     setup () {
-        onUpdated(() => {
-            const { setErrorStateScreenVersionSpecific } = useStepperErrors()
-            setErrorStateScreenVersionSpecific(document.getElementsByClassName('has-error').length > 0)
-        })
         const initializeDate = () => {
             const today = new Date()
             const y = today.getFullYear()

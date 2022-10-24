@@ -12,45 +12,48 @@
         type="radio"
         v-bind:model-value="type"
         v-bind:options="typeOptions"
-        v-on:update:modelValue="[setType, setMessagePlaceHolder]"
+        v-on:update:modelValue="[setType, setMessageOrDefault, checkDefaultMessage]"
     />
-    <h2 class="question">
-        What is the title of the work?
-        <InfoDialog name="title" />
-    </h2>
+
     <q-input
         bg-color="white"
         data-cy="input-title"
-        label="title"
         outlined
         standout
+        v-bind:aria-label="`Title of the ${ type } (required). Press tab to reach help button.`"
         v-bind:class="[titleErrors.length > 0 ? 'has-error' : '']"
-        v-bind:model-value="title"
-        v-bind:error="titleErrors.length > 0"
         v-bind:error-message="titleErrors.join(', ')"
+        v-bind:error="titleErrors.length > 0"
+        v-bind:label="`Title of the ${ type } (required)`"
+        v-bind:model-value="title"
         v-on:update:modelValue="setTitle"
-    />
-    <h2 class="question">
-        What do you want citers to do with the information provided in your CITATION.cff file?
-        <InfoDialog name="message" />
-    </h2>
+    >
+        <template v-slot:after>
+            <InfoDialog name="title" />
+        </template>
+    </q-input>
     <q-input
+        aria-label="`Title of the ${ type }. Press tab to reach help button.`"
         bg-color="white"
         data-cy="input-message"
-        label="message"
+        label="Personalized message. Leave blank to use default"
         outlined
         standout
         v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
-        v-bind:model-value="message"
+        v-model="localMessage"
         v-bind:error="messageErrors.length > 0"
         v-bind:error-message="messageErrors.join(', ')"
-        v-on:update:modelValue="setMessage"
-    />
+        v-on:update:modelValue="setMessageOrDefault"
+    >
+        <template v-slot:after>
+            <InfoDialog name="message" />
+        </template>
+    </q-input>
 </template>
 
 <script lang="ts">
 import { byError, messageQueries, titleQueries } from 'src/error-filtering'
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { useCff } from 'src/store/cff'
 import { useValidation } from 'src/store/validation'
@@ -62,6 +65,7 @@ export default defineComponent({
     },
     setup () {
         const { message, title, type, setMessage, setTitle, setType } = useCff()
+        const localMessage = ref('')
         const { errors } = useValidation()
         const messageErrors = computed(() => {
             return messageQueries
@@ -73,16 +77,25 @@ export default defineComponent({
                 .filter(byError(errors.value))
                 .map(query => query.replace.message)
         })
-        const setMessagePlaceHolder = () => {
-            const messagePlaceHolderRegex = /(software|dataset)/igm
-            const matches = messagePlaceHolderRegex.exec(message.value)
-            if (matches) {
+        const checkDefaultMessage = () => {
+            if (message.value === `If you use this ${type.value}, please cite it using the metadata from this file.`) {
+                localMessage.value = ''
+            } else {
+                localMessage.value = message.value
+            }
+        }
+        checkDefaultMessage()
+        const setMessageOrDefault = () => {
+            if (localMessage.value === '') {
                 // search and replace all occurrences
-                setMessage(message.value.split(matches[0]).join(type.value))
+                setMessage(`If you use this ${type.value}, please cite it using the metadata from this file.`)
+            } else {
+                setMessage(localMessage.value)
             }
         }
         return {
-            message,
+            checkDefaultMessage,
+            localMessage,
             messageErrors,
             title,
             titleErrors,
@@ -91,8 +104,7 @@ export default defineComponent({
                 { label: 'Software', value: 'software' },
                 { label: 'Dataset', value: 'dataset' }
             ],
-            setMessage,
-            setMessagePlaceHolder,
+            setMessageOrDefault,
             setTitle,
             setType
         }

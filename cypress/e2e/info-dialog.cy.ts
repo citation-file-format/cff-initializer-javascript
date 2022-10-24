@@ -5,7 +5,7 @@ const infoDialogs = [
     },
     {
         screen: 'authors',
-        values: ['authors', 'given-names', 'name-particle, family-names, name-suffix', 'email', 'affiliation', 'orcid'],
+        values: ['authors', 'given-names, name-particle, family-names, name-suffix', 'email', 'affiliation', 'orcid'],
         before: () => { cy.dataCy('btn-add-author').click() }
     },
     {

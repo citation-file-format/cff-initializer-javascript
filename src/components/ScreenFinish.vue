@@ -88,10 +88,10 @@ export default defineComponent({
                     message: 'Would you like to reset the form? All changes will be lost.',
                     cancel: true,
                     persistent: true
-                }).onOk(async () => {
+                }).onOk(() => {
                     resetCffData()
                     setShowAdvanced(false)
-                    await setStepName('start')
+                    void setStepName('start')
                 })
             },
             isValidCFF: computed(() => errors.value.length === 0),

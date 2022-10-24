@@ -36,6 +36,34 @@ export const helpData = {
             'mail@research-project.org'
         ]
     },
+    authorNames: {
+        title: 'given-names, name-particle, family-names, name-suffix',
+        url: [
+            {
+                text: 'Click here to see the documentation for given-names.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersongiven-names'
+            },
+            {
+                text: 'Click here to see the documentation for name-particle.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-particle'
+            },
+            {
+                text: 'Click here to see the documentation for family-name.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonfamily-names'
+            },
+            {
+                text: 'Click here to see the documentation for name-suffix.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-suffix'
+            }
+        ],
+        description: 'The person\'s full name, split into fours parts: The given names, a possible name particle, the family names, and a possible name suffix',
+        examples: [
+            'given-name: John',
+            'name-particle: von',
+            'family-name: Doe',
+            'name-suffix: Jr.'
+        ]
+    },
     authorGivenNames: {
         title: 'given-names',
         url: [

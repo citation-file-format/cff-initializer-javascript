@@ -15,49 +15,46 @@
                     v-on:update:modelValue="$emit('updateType', 'type', $event)"
                 />
             </div>
-            <div class="q-mt-md items-center no-wrap">
-                <div class="row">
-                    <h3 class="subquestion">
-                        What is the value of the {{ label }}?
-                        <InfoDialog v-bind:name="identifierType" />
-                    </h3>
-                </div>
-                <q-input
-                    autofocus
-                    bg-color="white"
-                    data-cy="input-value"
-                    label="Value"
-                    outlined
-                    standout
-                    dense
-                    v-bind:class="identifierValueErrors.length > 0 ? 'has-error' : ''"
-                    v-bind:error="identifierValueErrors.length > 0"
-                    v-bind:error-message="identifierValueErrors.join(', ')"
-                    v-bind:model-value="value"
-                    v-on:update:modelValue="$emit('updateValue', 'value', $event)"
-                />
-            </div>
-            <div class="q-mt-md items-center no-wrap">
-                <div class="row">
-                    <h3 class="subquestion">
-                        What is the description for the {{ label }}?
-                        <InfoDialog name="identifierDescription" />
-                    </h3>
-                </div>
-                <q-input
-                    bg-color="white"
-                    data-cy="input-description"
-                    label="Description"
-                    outlined
-                    standout
-                    dense
-                    v-bind:model-value="description"
-                    v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
-                />
-            </div>
+
+            <q-input
+                autofocus
+                bg-color="white"
+                data-cy="input-value"
+                dense
+                outlined
+                standout
+                v-bind:aria-label="`Value of the ${label}. Press tab to reach help button.`"
+                v-bind:class="identifierValueErrors.length > 0 ? 'has-error' : ''"
+                v-bind:error-message="identifierValueErrors.join(', ')"
+                v-bind:error="identifierValueErrors.length > 0"
+                v-bind:label="`Value of the ${label}`"
+                v-bind:model-value="value"
+                v-on:update:modelValue="$emit('updateValue', 'value', $event)"
+            >
+                <template v-slot:after>
+                    <InfoDialog v-bind:name="identifierType" />
+                </template>
+            </q-input>
+
+            <q-input
+                bg-color="white"
+                data-cy="input-description"
+                dense
+                outlined
+                standout
+                v-bind:aria-label="`Description of the ${label}. Press tab to reach help button.`"
+                v-bind:label="`Description of the ${label}`"
+                v-bind:model-value="description"
+                v-on:update:modelValue="$emit('updateDescription', 'description', $event)"
+            >
+                <template v-slot:after>
+                    <InfoDialog name="identifierDescription" />
+                </template>
+            </q-input>
         </q-card-section>
         <q-card-actions align="right">
             <q-btn
+                aria-label="Remove identifier being edited"
                 color="negative"
                 data-cy="btn-remove"
                 dense
@@ -142,10 +139,3 @@ export default defineComponent({
     ]
 })
 </script>
-<style scoped>
-.row {
-  display: flex;
-  flex-direction: row;
-  column-gap: 10px;
-}
-</style>

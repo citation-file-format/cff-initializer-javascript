@@ -29,12 +29,18 @@
             </q-tooltip>
         </q-btn>
     </div>
+    <label
+        for="cff-preview"
+    >
+        CITATION.cff preview
+    </label>
     <textarea
         data-cy="ta-cff-preview"
-        v-bind:class="['cffstr', isValidCFF ? '' : 'error']"
+        id="cff-preview"
         readonly="true"
-        v-bind:value="cffstr"
         wrap="hard"
+        v-bind:class="['cffstr', isValidCFF ? '' : 'error']"
+        v-bind:value="cffstr"
     />
     <div class="validation-msg">
         <p

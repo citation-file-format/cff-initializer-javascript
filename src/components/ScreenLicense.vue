@@ -3,14 +3,11 @@
         License
     </h1>
 
-    <h2 class="question">
-        What is the license of the work?
-        <InfoDialog name="license" />
-    </h2>
     <q-select
+        aria-label="License. Press tab to reach help button."
         bg-color="white"
         data-cy="select-license"
-        label="license"
+        label="License"
         clearable
         fill-input
         hide-selected
@@ -29,6 +26,9 @@
                     No results
                 </q-item-section>
             </q-item>
+        </template>
+        <template v-slot:after>
+            <InfoDialog name="license" />
         </template>
     </q-select>
 </template>

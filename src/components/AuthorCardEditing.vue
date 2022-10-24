@@ -4,20 +4,18 @@
         bordered
         class="bg-formcard q-pa-md"
     >
-        <div class="row">
-            <h3 class="subquestion">
-                The person's given names
-                <InfoDialog name="authorGivenNames" />
-            </h3>
-        </div>
-        <div class="row">
+        <fieldset class="q-mb-md">
+            <legend>
+                Author's name, split into four parts
+                <InfoDialog name="authorNames" />
+            </legend>
             <q-input
                 autofocus
                 bg-color="white"
                 class="col"
                 data-cy="input-given-names"
                 dense
-                label="given-names"
+                label="Given names"
                 outlined
                 standout
                 v-bind:model-value="givenNames"
@@ -25,67 +23,56 @@
                 v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'givenNames', $event)"
             />
-        </div>
-        <div class="row">
-            <h3 class="subquestion">
-                The person's last names, split into parts
-                <InfoDialog name="authorLastNames" />
-            </h3>
-        </div>
-        <div class="row">
-            <q-input
-                bg-color="white"
-                class="col-3"
-                data-cy="input-name-particle"
-                dense
-                label="name-particle"
-                outlined
-                standout
-                v-bind:model-value="nameParticle"
-                v-bind:error="false"
-                v-bind:error-message="''"
-                v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
-            />
-            <q-input
-                bg-color="white"
-                class="col"
-                data-cy="input-family-names"
-                dense
-                label="family-names"
-                outlined
-                standout
-                v-bind:model-value="familyNames"
-                v-bind:error="false"
-                v-bind:error-message="''"
-                v-on:update:modelValue="$emit('update', 'familyNames', $event)"
-            />
-            <q-input
-                bg-color="white"
-                class="col-3"
-                data-cy="input-name-suffix"
-                dense
-                label="name-suffix"
-                outlined
-                standout
-                v-bind:model-value="nameSuffix"
-                v-bind:error="false"
-                v-bind:error-message="''"
-                v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
-            />
-        </div>
-        <div class="row">
-            <h3 class="subquestion">
-                The person's email address
-                <InfoDialog name="authorEmail" />
-            </h3>
-        </div>
+            <div class="row">
+                <q-input
+                    bg-color="white"
+                    class="col-3"
+                    data-cy="input-name-particle"
+                    dense
+                    label="Name particle"
+                    outlined
+                    standout
+                    v-bind:model-value="nameParticle"
+                    v-bind:error="false"
+                    v-bind:error-message="''"
+                    v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
+                />
+                <q-input
+                    bg-color="white"
+                    class="col"
+                    data-cy="input-family-names"
+                    dense
+                    label="Family names"
+                    outlined
+                    standout
+                    v-bind:model-value="familyNames"
+                    v-bind:error="false"
+                    v-bind:error-message="''"
+                    v-on:update:modelValue="$emit('update', 'familyNames', $event)"
+                />
+                <q-input
+                    bg-color="white"
+                    class="col-3"
+                    data-cy="input-name-suffix"
+                    dense
+                    label="Name suffix"
+                    outlined
+                    standout
+                    v-bind:model-value="nameSuffix"
+                    v-bind:error="false"
+                    v-bind:error-message="''"
+                    v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
+                />
+            </div>
+        </fieldset>
         <div class="row">
             <q-input
+                aria-label="E-mail. Press tab to reach help button."
                 bg-color="white"
                 class="col"
                 data-cy="input-email"
                 dense
-                label="email"
+                label="E-mail"
                 outlined
                 standout
                 type="email"
@@ -94,39 +81,39 @@
                 v-bind:error="emailErrors.length > 0"
                 v-bind:error-message="emailErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
-            />
-        </div>
-        <div class="row">
-            <h3 class="subquestion col">
-                The person's affiliation
-                <InfoDialog name="authorAffiliation" />
-            </h3>
-            <h3 class="subquestion col">
-                The person's ORCID
-                <InfoDialog name="authorOrcid" />
-            </h3>
+            >
+                <template v-slot:after>
+                    <InfoDialog name="authorEmail" />
+                </template>
+            </q-input>
         </div>
         <div class="row">
             <q-input
+                aria-label="Affiliation. Press tab to reach help button."
                 bg-color="white"
                 class="col"
                 data-cy="input-affiliation"
                 dense
-                label="affiliation"
+                label="Affiliation"
                 outlined
                 standout
                 v-bind:model-value="affiliation"
                 v-bind:error="false"
                 v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'affiliation', $event)"
-            />
+            >
+                <template v-slot:after>
+                    <InfoDialog name="authorAffiliation" />
+                </template>
+            </q-input>
             <q-input
+                aria-label="ORCID. Press tab to reach help button."
                 bg-color="white"
                 class="col"
                 data-cy="input-orcid"
                 dense
                 hint="Format: https://orcid.org/0000-0000-0000-0000"
-                label="orcid"
+                label="ORCID"
                 mask="https://orcid.org/####-####-####-###X"
                 outlined
                 standout
@@ -135,7 +122,11 @@
                 v-bind:error="orcidErrors.length > 0"
                 v-bind:error-message="orcidErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
-            />
+            >
+                <template v-slot:after>
+                    <InfoDialog name="authorOrcid" />
+                </template>
+            </q-input>
         </div>
 
         <q-card-actions align="right">

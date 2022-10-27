@@ -1,13 +1,14 @@
 <template>
     <q-btn
+        aria-label="Download CITATION.cff"
         color="primary"
         data-cy="btn-download"
+        download="CITATION.cff"
         icon="download"
         label="Download"
         size="xl"
         no-caps
         type="a"
-        download="CITATION.cff"
         v-bind:href="downloadUrl"
         v-bind:class="q.platform.is.mobile ? 'full-width' : ''"
     />

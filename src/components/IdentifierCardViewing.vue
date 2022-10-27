@@ -16,7 +16,6 @@
                 class="identifier-button"
                 color="blue"
                 icon="ion-arrow-up"
-                tabindex="-1"
                 v-bind:aria-label="`Move identifier ${index + 1} up`"
                 v-bind:data-cy="'btn-move-up' + index"
                 v-bind:disable="index == 0"
@@ -26,7 +25,6 @@
                 class="identifier-button"
                 color="blue"
                 icon="ion-arrow-down"
-                tabindex="-1"
                 v-bind:aria-label="`Move identifier ${index + 1} down`"
                 v-bind:data-cy="'btn-move-down' + index"
                 v-bind:disable="index >= numIdentifiers - 1"
@@ -39,6 +37,7 @@
                 hover-color="negative"
                 icon="edit"
                 title="Edit"
+                v-bind:aria-label="`Edit identifier ${index + 1}`"
                 v-bind:data-cy="'btn-edit' + index"
                 v-on:click="$emit('editPressed')"
             />
@@ -48,6 +47,7 @@
                 hover-color="negative"
                 icon="delete"
                 title="Remove Identifier"
+                v-bind:aria-label="`Remove identifier ${index + 1}`"
                 v-bind:data-cy="'btn-remove' + index"
                 v-on:click="$emit('removePressed')"
             />

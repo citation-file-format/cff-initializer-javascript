@@ -15,6 +15,7 @@
         <q-step
             data-cy="step-start"
             name="start"
+            aria-label="Start"
             title="Start"
             v-bind:active-icon="errorStateScreenStart ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenStart"
@@ -25,6 +26,7 @@
         <q-step
             data-cy="step-authors"
             name="authors"
+            aria-label="Authors"
             title="Authors"
             v-bind:active-icon="errorStateScreenAuthors ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenAuthors"
@@ -35,6 +37,7 @@
         <q-step
             data-cy="step-identifiers"
             name="identifiers"
+            aria-label="Identifiers"
             title="Identifiers"
             v-bind:active-icon="errorStateScreenIdentifiers ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenIdentifiers"
@@ -46,6 +49,7 @@
         <q-step
             data-cy="step-related-resources"
             name="related-resources"
+            aria-label="Related resources"
             title="Related resources"
             v-bind:active-icon="errorStateScreenRelatedResources ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenRelatedResources"
@@ -57,6 +61,7 @@
         <q-step
             data-cy="step-abstract"
             name="abstract"
+            aria-label="Abstract"
             title="Abstract"
             v-bind:order="4"
             v-if="showAdvanced"
@@ -66,6 +71,7 @@
         <q-step
             data-cy="step-keywords"
             name="keywords"
+            aria-label="Keywords"
             title="Keywords"
             v-bind:active-icon="errorStateScreenKeywords ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenKeywords"
@@ -77,6 +83,7 @@
         <q-step
             data-cy="step-license"
             name="license"
+            aria-label="License"
             title="License"
             v-bind:order="6"
             v-if="showAdvanced"
@@ -86,6 +93,7 @@
         <q-step
             data-cy="step-version-specific"
             name="version-specific"
+            aria-label="Version specific"
             title="Version specific"
             v-bind:active-icon="errorStateScreenVersionSpecific ? 'warning' : 'edit'"
             v-bind:error="errorStateScreenVersionSpecific"
@@ -98,6 +106,7 @@
             active-icon="navigate_next"
             data-cy="step-finish"
             name="finish"
+            aria-label="Finish"
             title="Finish"
             v-bind:order="showAdvanced ? 8 : 2"
             v-on:click="setStepName('finish')"

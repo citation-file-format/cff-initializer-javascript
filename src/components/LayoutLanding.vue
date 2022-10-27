@@ -8,7 +8,7 @@
                 >
             </div>
         </div>
-        <div class="container">
+        <main class="container">
             <div class="row">
                 <div class="col-sm-6 col-xs-12 q-pa-lg slide-in-from-left-animation">
                     <div
@@ -16,29 +16,34 @@
                         class="q-gutter-md q-mb-xl"
                         style="font-size: 1.3rem"
                     >
-                        <h3>Generate your citation metadata files with ease</h3>
+                        <h1>Generate your citation metadata files with ease</h1>
                         <p>
                             <code class="decoration">CITATION.cff</code>
                             files are plain text files with human- and machine-readable citation information for software and datasets.
                         </p>
                         <p>Code developers can include such files in their source code repositories to let others know how to correctly cite their software.</p>
+                        <p>
+                            You can read more about the Citation File Format in the
+                            <a
+                                class="document"
+                                href="https://citation-file-format.github.io"
+                                target="_blank"
+                            >
+                                official CFF specification website.
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <img
                     class="col-sm-6 col-xs-12 q-pa-lg illustration slide-from-right-animation"
                     src="~assets/landing-image.svg"
+                    alt=""
                 >
             </div>
             <div class="row justify-center items-center q-pt-md q-mb-xl">
                 <div class="column items-center slide-up-animation">
                     <div style="font-size: 1.2rem">
-                        Generate your
-                        <a
-                            class="document"
-                            href="https://citation-file-format.github.io"
-                            target="_blank"
-                        >
-                            Citation File Format</a> file
+                        Generate your CITATION.cff now!
                     </div>
                     <q-btn
                         aria-label="Create your CITATION.cff file"
@@ -55,7 +60,7 @@
             <span class="text-right text-black text-body1">
                 Version 2.0.4
             </span>
-        </div>
+        </main>
     </div>
 </template>
 
@@ -74,6 +79,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+h1 {
+    font-size: 3rem;
+    line-height: 3.125rem;
+    letter-spacing: normal;
+}
 .layout{
     display: flex;
     flex-direction:column;

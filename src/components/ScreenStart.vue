@@ -32,7 +32,6 @@
         outlined
         standout
         v-bind:aria-label="`Title of the ${ type } (required). Press tab to reach help button.`"
-        v-bind:class="[titleErrors.length > 0 ? 'has-error' : '']"
         v-bind:error-message="titleErrors.join(', ')"
         v-bind:error="titleErrors.length > 0"
         v-bind:label="`Title of the ${ type } (required)`"
@@ -50,7 +49,6 @@
         label="Personalized message. Leave blank to use default"
         outlined
         standout
-        v-bind:class="[messageErrors.length > 0 ? 'has-error' : '']"
         v-model="localMessage"
         v-bind:error="messageErrors.length > 0"
         v-bind:error-message="messageErrors.join(', ')"

@@ -77,7 +77,6 @@
                 standout
                 type="email"
                 v-bind:model-value="email"
-                v-bind:class="emailErrors.length > 0 ? 'has-error' : ''"
                 v-bind:error="emailErrors.length > 0"
                 v-bind:error-message="emailErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
@@ -117,7 +116,6 @@
                 mask="https://orcid.org/####-####-####-###X"
                 outlined
                 standout
-                v-bind:class="orcidErrors.length > 0 ? 'has-error' : ''"
                 v-bind:model-value="orcid"
                 v-bind:error="orcidErrors.length > 0"
                 v-bind:error-message="orcidErrors.join(', ')"

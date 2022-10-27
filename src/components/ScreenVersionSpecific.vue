@@ -45,7 +45,6 @@
             standout
             style="width: 33.33%"
             today-btn="true"
-            v-bind:class="dateReleasedErrors.length > 0 ? 'has-error' : ''"
             v-bind:model-value="dateReleased"
             v-bind:error="dateReleasedErrors.length > 0"
             v-bind:error-message="dateReleasedErrors.join(', ')"

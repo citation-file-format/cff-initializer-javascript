@@ -65,16 +65,13 @@ Cypress.Commands.add('findInputError', (input) => {
 Cypress.Commands.add('checkThatInputValidityIs', (passing, input) => {
     cy.dataCy(`input-${input}`)
         .parents('.q-field')
-        .should(prependIf(passing, 'have.class'), 'has-error')
+        .should(prependIf(passing, 'have.class'), 'q-field--error')
         .find('.q-field__messages > div')
         .should(prependIf(passing, 'exist'))
 })
 
 Cypress.Commands.add('checkThatAppValidityIs', (passing) => {
-    cy.dataCy('ta-cff-preview')
-        .should(prependIf(passing, 'have.class'), 'error')
     cy.dataCy('text-validation-msg')
-        .should(prependIf(passing, 'have.class'), 'invalid')
         .should(prependIf(!passing, 'contain.text'), 'Your CITATION.cff is valid')
         .should(prependIf(passing, 'contain.text'), 'not')
 })

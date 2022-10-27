@@ -12,6 +12,12 @@ const advancedStepNames = [
 const allStepNames = [...basicStepNames, ...advancedStepNames]
 
 describe('App navigation', () => {
+    it('should be able to go back through the logo button', () => {
+        cy.visit('/start')
+        cy.dataCy('btn-logo')
+            .click()
+        cy.url().then((e) => expect(e.endsWith('#/')).to.be.true)
+    })
     describe('during basic mode', () => {
         it(`should have ${basicStepNames.length + 1} steps on stepper`, () => {
             cy.visit('/start')

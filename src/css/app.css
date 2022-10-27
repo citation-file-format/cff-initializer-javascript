@@ -17,8 +17,8 @@ body {
 }
 
 #header-inner {
-    background-color: purple;
-    color: white;
+    background-color: #fdfdfd;
+    color: black;
     display: flex;
     flex-direction: row;
     height: 50px;

@@ -1,8 +1,21 @@
 <template>
-    <span class="spacer" />
-    <q-btn-group flat>
+    <q-toolbar>
         <q-btn
-            color=""
+            aria-label="Back to landing page"
+            class="q-py-sm"
+            data-cy="btn-logo"
+            flat
+            id="btn-logo"
+            v-on:click="goHome"
+        >
+            <img
+                alt=""
+                height="40"
+                src="~assets/cff-logo.svg"
+            >
+        </q-btn>
+        <q-space />
+        <q-btn
             flat
             href="https://github.com/citation-file-format/cff-initializer-javascript/issues"
             icon-right="ion-logo-github"
@@ -23,25 +36,32 @@
         />
         <q-btn
             class="lt-lg gt-xs"
+            flat
             icon="menu"
             v-on:click="$emit('togglePreview')"
         >
             Preview
         </q-btn>
-    </q-btn-group>
+    </q-toolbar>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
     name: 'Header',
-    emits: ['togglePreview']
+    emits: ['togglePreview'],
+    setup () {
+        const router = useRouter()
+        return {
+            goHome: async () => {
+                await router.push({ path: '/' })
+            }
+        }
+    }
 })
 </script>
 
 <style scoped>
-.spacer {
-    flex-grow: 1;
-}
 </style>

@@ -1,7 +1,19 @@
 <template>
     <q-layout view="hHh lpR fFf">
         <q-header id="header-inner">
-            <Header v-on:togglePreview="onTogglePreview" />
+            <a
+                class="skip-to-main-content-link"
+                href="#middle"
+                id="skipToMain"
+                v-on:blur="skipToMainFocused = false"
+                v-on:click.prevent="focusMain"
+                v-on:focus="skipToMainFocused = true"
+            >
+                Skip to main content
+            </a>
+            <Header
+                v-on:togglePreview="onTogglePreview"
+            />
         </q-header>
 
         <q-drawer
@@ -34,6 +46,8 @@
             <q-page
                 id="middle"
                 class="row"
+                role="main"
+                tabindex="0"
             >
                 <Stepper />
                 <div
@@ -92,12 +106,18 @@ export default defineComponent({
     setup () {
         const isPreviewDrawerEnabled = ref(false)
         return {
+            focusMain: () => {
+                const element = window.document.getElementById('middle')
+                if (!element) return
+                element.focus()
+            },
             isNotFinish: computed(() => {
                 const currentPath = useRoute().path
                 return currentPath !== '/finish'
             }),
             isPreviewDrawerEnabled,
-            onTogglePreview: () => { isPreviewDrawerEnabled.value = !isPreviewDrawerEnabled.value }
+            onTogglePreview: () => { isPreviewDrawerEnabled.value = !isPreviewDrawerEnabled.value },
+            skipToMainFocused: ref(false)
         }
     }
 })
@@ -105,5 +125,19 @@ export default defineComponent({
 <style scoped>
 .spacer {
     flex-grow: 1.0;
+}
+.skip-to-main-content-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1em;
+  background-color: black;
+  color: white;
+  opacity: 0;
+}
+.skip-to-main-content-link:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
 }
 </style>

@@ -9,6 +9,7 @@
                 placeholder="Type a keyword"
                 v-bind:class="validationErrors.length > 0 ? 'has-error' : ''"
                 v-bind:data-cy="'input-keyword' + index"
+                v-bind:label="'Keyword #' + (index + 1)"
                 v-bind:model-value="keyword"
                 v-bind:error="validationErrors.length > 0"
                 v-bind:error-message="validationErrors.join(', ')"
@@ -18,29 +19,32 @@
         <q-btn
             class="keyword-btn"
             color="blue"
-            v-bind:data-cy="'btn-move-up' + index"
-            v-bind:disable="index == 0"
             icon="ion-arrow-up"
             tabindex="-1"
+            v-bind:aria-label="`move keyword #${index + 1} up`"
+            v-bind:data-cy="'btn-move-up' + index"
+            v-bind:disable="index == 0"
             v-on:click="$emit('moveUp')"
         />
         <q-btn
             class="keyword-btn"
             color="blue"
-            v-bind:data-cy="'btn-move-down' + index"
-            v-bind:disable="index == numKeywords - 1"
             icon="ion-arrow-down"
             tabindex="-1"
+            v-bind:aria-label="`move keyword #${index + 1} down`"
+            v-bind:data-cy="'btn-move-down' + index"
+            v-bind:disable="index == numKeywords - 1"
             v-on:click="$emit('moveDown')"
         />
         <q-btn
             class="keyword-btn"
             color="negative"
-            v-bind:data-cy="'btn-remove' + index"
             dense
             icon="delete"
             tabindex="-1"
             title="Remove"
+            v-bind:aria-label="`remove keyword #${index + 1}`"
+            v-bind:data-cy="'btn-remove' + index"
             v-on:click="$emit('removePressed')"
         />
     </div>

@@ -15,19 +15,21 @@
             <q-btn
                 class="identifier-button"
                 color="blue"
-                v-bind:data-cy="'btn-move-up' + index"
-                v-bind:disable="index == 0"
                 icon="ion-arrow-up"
                 tabindex="-1"
+                v-bind:aria-label="`Move identifier ${index + 1} up`"
+                v-bind:data-cy="'btn-move-up' + index"
+                v-bind:disable="index == 0"
                 v-on:click="$emit('moveUp')"
             />
             <q-btn
                 class="identifier-button"
                 color="blue"
-                v-bind:data-cy="'btn-move-down' + index"
-                v-bind:disable="index >= numIdentifiers - 1"
                 icon="ion-arrow-down"
                 tabindex="-1"
+                v-bind:aria-label="`Move identifier ${index + 1} down`"
+                v-bind:data-cy="'btn-move-down' + index"
+                v-bind:disable="index >= numIdentifiers - 1"
                 v-on:click="$emit('moveDown')"
             />
             <q-btn

@@ -61,7 +61,7 @@ describe('Basic usage', () => {
             .type('My Title')
             .should('have.value', 'My Title')
         cy.dataCy('input-message')
-            .should('have.value', 'If you use this software, please cite it using the metadata from this file.')
+            .should('have.value', '')
         cy.dataCy('btn-next')
             .click()
 

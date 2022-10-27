@@ -3,14 +3,11 @@
         Related resources
     </h1>
 
-    <h2 class="question">
-        What is the URL of the work in a source code repository?
-        <InfoDialog name="repositoryCode" />
-    </h2>
     <q-input
+        aria-label="Code repository. Press tab to reach help button."
         bg-color="white"
         data-cy="input-repository-code"
-        label="repository-code"
+        label="Code repository"
         outlined
         standout
         v-bind:class="repositoryCodeErrors.length > 0 ? 'has-error' : ''"
@@ -18,16 +15,17 @@
         v-bind:error="repositoryCodeErrors.length > 0"
         v-bind:error-message="repositoryCodeErrors.join(', ')"
         v-on:update:modelValue="setRepositoryCode"
-    />
+    >
+        <template v-slot:after>
+            <InfoDialog name="repositoryCode" />
+        </template>
+    </q-input>
 
-    <h2 class="question">
-        What is the URL of a landing page/website for the work?
-        <InfoDialog name="url" />
-    </h2>
     <q-input
+        aria-label="Webiste/Landing page. Press tab to reach help button."
         bg-color="white"
         data-cy="input-url"
-        label="url"
+        label="Website/Landing page"
         outlined
         standout
         v-bind:class="urlErrors.length > 0 ? 'has-error' : ''"
@@ -35,16 +33,17 @@
         v-bind:error="urlErrors.length > 0"
         v-bind:error-message="urlErrors.join(', ')"
         v-on:update:modelValue="setUrl"
-    />
+    >
+        <template v-slot:after>
+            <InfoDialog name="url" />
+        </template>
+    </q-input>
 
-    <h2 class="question">
-        What is the URL of the work in a repository?
-        <InfoDialog name="repository" />
-    </h2>
     <q-input
+        aria-label="Other repository. Press tab to reach help button."
         bg-color="white"
         data-cy="input-repository"
-        label="repository"
+        label="Other repository"
         outlined
         standout
         v-bind:class="repositoryErrors.length > 0 ? 'has-error' : ''"
@@ -52,16 +51,17 @@
         v-bind:error="repositoryErrors.length > 0"
         v-bind:error-message="repositoryErrors.join(', ')"
         v-on:update:modelValue="setRepository"
-    />
+    >
+        <template v-slot:after>
+            <InfoDialog name="repository" />
+        </template>
+    </q-input>
 
-    <h2 class="question">
-        What is the URL of the work in a build artifact/binary repository?
-        <InfoDialog name="repositoryArtifact" />
-    </h2>
     <q-input
+        aria-label="Artifact repository. Press tab to reach help button."
         bg-color="white"
         data-cy="input-repository-artifact"
-        label="repository-artifact"
+        label="Artifact repository"
         outlined
         standout
         v-bind:class="repositoryArtifactErrors.length > 0 ? 'has-error' : ''"
@@ -69,7 +69,11 @@
         v-bind:error="repositoryArtifactErrors.length > 0"
         v-bind:error-message="repositoryArtifactErrors.join(', ')"
         v-on:update:modelValue="setRepositoryArtifact"
-    />
+    >
+        <template v-slot:after>
+            <InfoDialog name="repositoryArtifact" />
+        </template>
+    </q-input>
 </template>
 
 <script lang="ts">

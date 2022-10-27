@@ -57,6 +57,7 @@ describe('From a fixed advanced app', () => {
     })
     it('should validate screen Start', () => {
         cy.visit('/start')
+        cy.checkThatInputValidityIs(true, 'message')
         cy.dataCy('input-title')
             .clear()
         cy.checkThatStepperValidityIs(false, 'start')
@@ -69,26 +70,11 @@ describe('From a fixed advanced app', () => {
         cy.get('.q-field__messages > div')
             .should('have.length', 1)
 
-        cy.dataCy('input-message')
-            .clear()
-        cy.checkThatInputValidityIs(false, 'message')
-        cy.get('.q-field__messages > div')
-            .should('have.length', 2)
-
         cy.dataCy('input-title')
             .type('A')
         cy.findInputError('title')
             .should('not.exist')
 
-        cy.checkThatStepperValidityIs(false, 'start')
-        cy.dataCy('ta-cff-preview')
-            .should('have.class', 'error')
-        cy.dataCy('text-validation-msg')
-            .should('have.class', 'invalid')
-            .should('contain.text', 'minimum')
-
-        cy.dataCy('input-message')
-            .type('A')
         cy.checkThatInputValidityIs(true, 'message')
         cy.checkThatStepperValidityIs(true, 'start')
         cy.dataCy('ta-cff-preview')

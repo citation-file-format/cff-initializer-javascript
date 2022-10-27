@@ -10,6 +10,7 @@ export default defineConfig({
 
             return config
         },
-        supportFile: 'cypress/support/index.ts'
+        supportFile: 'cypress/support/index.ts',
+        video: false
     }
 })

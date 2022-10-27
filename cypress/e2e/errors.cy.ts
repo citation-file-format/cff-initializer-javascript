@@ -197,9 +197,7 @@ describe('From a fixed advanced app', () => {
             cy.checkThatInputValidityIs(false, 'value')
             cy.checkThatAppValidityIs(false)
 
-            cy.dataCy('radio-identifier')
-                .children()
-                .eq(1)
+            cy.dataCy('radio-identifier-url')
                 .click()
             cy.checkThatStepperValidityIs(false, 'identifiers')
             cy.checkThatInputValidityIs(false, 'value')
@@ -216,9 +214,7 @@ describe('From a fixed advanced app', () => {
             cy.checkThatInputValidityIs(false, 'value')
             cy.checkThatAppValidityIs(false)
 
-            cy.dataCy('radio-identifier')
-                .children()
-                .eq(2)
+            cy.dataCy('radio-identifier-swh')
                 .click()
             cy.checkThatStepperValidityIs(false, 'identifiers')
             cy.checkThatInputValidityIs(false, 'value')

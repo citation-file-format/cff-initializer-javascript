@@ -18,7 +18,7 @@ const infoDialogs = [
         values: ['url', 'description'],
         before: () => {
             cy.dataCy('btn-add-identifier').click()
-            cy.dataCy('radio-identifier').children().eq(1).click()
+            cy.dataCy('radio-identifier-url').click()
         }
     },
     {
@@ -26,7 +26,7 @@ const infoDialogs = [
         values: ['swh', 'description'],
         before: () => {
             cy.dataCy('btn-add-identifier').click()
-            cy.dataCy('radio-identifier').children().eq(2).click()
+            cy.dataCy('radio-identifier-swh').click()
         }
     },
     {
@@ -34,7 +34,7 @@ const infoDialogs = [
         values: ['other', 'description'],
         before: () => {
             cy.dataCy('btn-add-identifier').click()
-            cy.dataCy('radio-identifier').children().eq(3).click()
+            cy.dataCy('radio-identifier-other').click()
         }
     },
     {

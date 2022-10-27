@@ -5,16 +5,29 @@
         class="bg-formcard q-pa-md"
     >
         <q-card-section>
-            <div class="items-center no-wrap">
-                <q-option-group
-                    data-cy="radio-identifier"
-                    inline
-                    type="radio"
-                    v-bind:model-value="type"
-                    v-bind:options="typeOptions"
-                    v-on:update:modelValue="$emit('updateType', 'type', $event)"
-                />
-            </div>
+            <fieldset
+                class="q-mb-md"
+                role="radiogroup"
+            >
+                <legend
+                    class="question"
+                >
+                    What type of identifier?
+                    <!-- <InfoDialog name="type" /> -->
+                </legend>
+                <label
+                    v-for="typeOption in typeOptions"
+                    v-bind:key="typeOption.label"
+                >
+                    <q-radio
+                        v-bind:data-cy="'radio-identifier-' + typeOption.value"
+                        v-bind:label="typeOption.label"
+                        v-bind:model-value="type"
+                        v-bind:val="typeOption.value"
+                        v-on:update:modelValue="$emit('updateType', 'type', $event)"
+                    />
+                </label>
+            </fieldset>
 
             <q-input
                 autofocus

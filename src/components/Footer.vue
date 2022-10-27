@@ -9,7 +9,10 @@
                 target="_blank"
                 aria-label="Netherlands eScience Center website (opens in a new tab)"
             >
-                <img src="~assets/nlesc-logo.svg">
+                <img
+                    src="~assets/nlesc-logo.svg"
+                    alt="Netherlands eScience Center logo"
+                >
             </a>
         </div>
         <span class="col text-right text-white text-body1">

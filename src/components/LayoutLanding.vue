@@ -2,7 +2,10 @@
     <div class="layout bg-white">
         <div class="header">
             <div class="header-image">
-                <img src="~assets/cff-logo.svg">
+                <img
+                    src="~assets/cff-logo.svg"
+                    alt="cffinit logo"
+                >
             </div>
         </div>
         <div class="container">

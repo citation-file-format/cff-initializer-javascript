@@ -49,17 +49,7 @@
         Add author
     </q-btn>
 
-    <q-banner
-        v-if="authorsErrors.length > 0"
-        v-bind:class="['bg-warning', 'text-negative', authorsErrors.length > 0 ? 'has-error' : '']"
-    >
-        <div
-            v-bind:key="index"
-            v-for="(screenMessage, index) in authorsErrors"
-        >
-            {{ screenMessage }}
-        </div>
-    </q-banner>
+    <BannerErrorMessages v-bind:error-messages="authorsErrors" />
 </template>
 
 <script lang="ts">
@@ -69,6 +59,7 @@ import { moveDown, moveUp } from 'src/updown'
 import AuthorCardEditing from 'components/AuthorCardEditing.vue'
 import AuthorCardViewing from 'components/AuthorCardViewing.vue'
 import { AuthorType } from 'src/types'
+import BannerErrorMessages from 'src/components/BannerErrorMessages.vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
 import { useCff } from 'src/store/cff'
@@ -79,6 +70,7 @@ export default defineComponent({
     components: {
         AuthorCardEditing,
         AuthorCardViewing,
+        BannerErrorMessages,
         InfoDialog
     },
     setup () {

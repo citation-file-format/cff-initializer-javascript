@@ -3,7 +3,7 @@
         <q-header id="header-inner">
             <a
                 class="skip-to-main-content-link"
-                href="#middle"
+                href="#main"
                 id="skipToMain"
                 v-on:blur="skipToMainFocused = false"
                 v-on:click.prevent="focusMain"
@@ -44,19 +44,21 @@
 
         <q-page-container>
             <q-page
-                id="middle"
                 class="row"
+                id="main"
                 role="main"
                 tabindex="0"
             >
-                <Stepper />
+                <aside class="bg-secondary col-12 col-sm-2 gt-xs">
+                    <Stepper />
+                </aside>
                 <div
                     id="form"
                     class="col-12 col-lg-5 col-sm-10"
                 >
-                    <div id="form-content">
+                    <form id="form-content">
                         <router-view />
-                    </div>
+                    </form>
 
                     <div id="form-button-bar">
                         <StepperActions />
@@ -107,7 +109,7 @@ export default defineComponent({
         const isPreviewDrawerEnabled = ref(false)
         return {
             focusMain: () => {
-                const element = window.document.getElementById('middle')
+                const element = window.document.getElementById('main')
                 if (!element) return
                 element.focus()
             },

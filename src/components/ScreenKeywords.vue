@@ -35,23 +35,14 @@
         Add keyword
     </q-btn>
 
-    <q-banner
-        v-if="keywordsErrors.length > 0"
-        v-bind:class="['bg-warning', 'text-negative', keywordsErrors.length > 0 ? 'has-error' : '']"
-    >
-        <div
-            v-bind:key="index"
-            v-for="(screenMessage, index) in keywordsErrors"
-        >
-            {{ screenMessage }}
-        </div>
-    </q-banner>
+    <BannerErrorMessages v-bind:error-messages="keywordsErrors" />
 </template>
 
 <script lang="ts">
 import { byError, keywordsQueries } from 'src/error-filtering'
 import { computed, defineComponent, nextTick } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
+import BannerErrorMessages from 'src/components/BannerErrorMessages.vue'
 import InfoDialog from 'components/InfoDialog.vue'
 import Keyword from 'components/Keyword.vue'
 import { scrollToBottom } from 'src/scroll-to-bottom'
@@ -61,6 +52,7 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenKeywords',
     components: {
+        BannerErrorMessages,
         InfoDialog,
         Keyword
     },

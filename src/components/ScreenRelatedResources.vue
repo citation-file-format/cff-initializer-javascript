@@ -10,7 +10,6 @@
         label="Code repository"
         outlined
         standout
-        v-bind:class="repositoryCodeErrors.length > 0 ? 'has-error' : ''"
         v-bind:model-value="repositoryCode"
         v-bind:error="repositoryCodeErrors.length > 0"
         v-bind:error-message="repositoryCodeErrors.join(', ')"
@@ -28,7 +27,6 @@
         label="Website/Landing page"
         outlined
         standout
-        v-bind:class="urlErrors.length > 0 ? 'has-error' : ''"
         v-bind:model-value="url"
         v-bind:error="urlErrors.length > 0"
         v-bind:error-message="urlErrors.join(', ')"
@@ -46,7 +44,6 @@
         label="Other repository"
         outlined
         standout
-        v-bind:class="repositoryErrors.length > 0 ? 'has-error' : ''"
         v-bind:model-value="repository"
         v-bind:error="repositoryErrors.length > 0"
         v-bind:error-message="repositoryErrors.join(', ')"
@@ -64,7 +61,6 @@
         label="Artifact repository"
         outlined
         standout
-        v-bind:class="repositoryArtifactErrors.length > 0 ? 'has-error' : ''"
         v-bind:model-value="repositoryArtifact"
         v-bind:error="repositoryArtifactErrors.length > 0"
         v-bind:error-message="repositoryArtifactErrors.join(', ')"

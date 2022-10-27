@@ -1,9 +1,9 @@
 <template>
     <q-card
         bordered
-        v-bind:class="['bg-formcard', authorErrors.length > 0 ? 'red-border has-error' : '']"
         flat
         style="display: flex; flex-direction: row"
+        v-bind:class="['bg-formcard', authorErrors.length > 0 ? 'red-border' : '']"
     >
         <div style="flex-grow: 1.0">
             <ul v-bind:data-cy="'card-info' + index">

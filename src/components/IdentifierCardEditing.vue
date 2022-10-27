@@ -37,7 +37,6 @@
                 outlined
                 standout
                 v-bind:aria-label="`Value of the ${label}. Press tab to reach help button.`"
-                v-bind:class="identifierValueErrors.length > 0 ? 'has-error' : ''"
                 v-bind:error-message="identifierValueErrors.join(', ')"
                 v-bind:error="identifierValueErrors.length > 0"
                 v-bind:label="`Value of the ${label}`"

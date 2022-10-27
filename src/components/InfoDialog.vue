@@ -1,13 +1,17 @@
 <template>
-    <q-icon
-        name="ion-information-circle-outline"
-        size="24px"
-        color="primary"
+    <q-btn
+        class="transparent"
+        flat
+        icon="ion-information-circle-outline"
+        round
         v-bind:data-cy="'info-icon-' + data.title"
+        v-bind:aria-label="'Open help for ' + data.title"
         v-on:click="showDialog = true"
-        style="cursor:pointer;"
     />
     <q-dialog
+        aria-modal="true"
+        role="dialog"
+        v-bind:aria-label="'Help for ' + data.title"
         v-bind:data-cy="'info-dialog-' + data.title"
         v-model="showDialog"
     >
@@ -15,26 +19,28 @@
             class="window-width help-dialog"
         >
             <q-card-section class="row items-center q-pb-none">
-                <div class="text-h5">
+                <h2>
                     CFF field: {{ data.title }}
-                </div>
+                </h2>
                 <q-space />
                 <q-btn
                     icon="close"
                     flat
-                    round
+                    label="close"
                     dense
                     v-close-popup
                 />
             </q-card-section>
 
             <q-card-section>
-                {{ data.description }}
+                <p>
+                    {{ data.description }}
+                </p>
             </q-card-section>
             <q-card-section v-if="data.examples">
-                <div class="text-h6">
+                <h3>
                     Examples
-                </div>
+                </h3>
                 <ul>
                     <li
                         v-for="item in data.examples"
@@ -51,21 +57,22 @@
                 </ul>
             </q-card-section>
             <q-card-section v-if="data.url">
-                <div class="text-h6">
+                <h3>
                     Related links
-                </div>
-                <div
-                    v-for="item in data.url"
-                    v-bind:key="item"
-                >
-                    <a
-                        v-bind:href="item.link"
-                        tabindex="-1"
-                        target="_blank"
+                </h3>
+                <ul>
+                    <li
+                        v-for="item in data.url"
+                        v-bind:key="item"
                     >
-                        {{ item.text }}
-                    </a>
-                </div>
+                        <a
+                            v-bind:href="item.link"
+                            target="_blank"
+                        >
+                            {{ item.text }}
+                        </a>
+                    </li>
+                </ul>
             </q-card-section>
         </q-card>
     </q-dialog>
@@ -98,5 +105,18 @@ export default defineComponent({
 <style scoped>
 .help-dialog {
     background-color: var(--fgcolor, lightslategray);
+}
+h2 {
+    font-size: 2rem;
+    line-height: normal;
+    margin-top: 12px;
+    margin-bottom: 7px;
+    letter-spacing: normal;
+}
+h3 {
+    font-size: 1.25rem;
+    line-height: normal;
+    margin: 0px;
+    letter-spacing: normal;
 }
 </style>

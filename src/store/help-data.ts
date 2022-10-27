@@ -3,7 +3,7 @@ export const helpData = {
         title: 'abstract',
         url: [
             {
-                text: 'Click here to see the documentation for abstract.',
+                text: 'Documentation for abstract.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#abstract'
             }
         ],
@@ -13,7 +13,7 @@ export const helpData = {
         title: 'affiliation',
         url: [
             {
-                text: 'Click here to see the documentation for affiliation.',
+                text: 'Documentation for affiliation.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonaffiliation'
             }
         ],
@@ -27,7 +27,7 @@ export const helpData = {
         title: 'email',
         url: [
             {
-                text: 'Click here to see the documentation for email.',
+                text: 'Documentation for email.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonemail'
             }
         ],
@@ -40,19 +40,19 @@ export const helpData = {
         title: 'given-names, name-particle, family-names, name-suffix',
         url: [
             {
-                text: 'Click here to see the documentation for given-names.',
+                text: 'Documentation for given-names.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersongiven-names'
             },
             {
-                text: 'Click here to see the documentation for name-particle.',
+                text: 'Documentation for name-particle.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-particle'
             },
             {
-                text: 'Click here to see the documentation for family-name.',
+                text: 'Documentation for family-name.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonfamily-names'
             },
             {
-                text: 'Click here to see the documentation for name-suffix.',
+                text: 'Documentation for name-suffix.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-suffix'
             }
         ],
@@ -68,7 +68,7 @@ export const helpData = {
         title: 'given-names',
         url: [
             {
-                text: 'Click here to see the documentation for given-names.',
+                text: 'Documentation for given-names.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersongiven-names'
             }
         ],
@@ -82,15 +82,15 @@ export const helpData = {
         title: 'name-particle, family-names, name-suffix',
         url: [
             {
-                text: 'Click here to see the documentation for name-particle.',
+                text: 'Documentation for name-particle.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-particle'
             },
             {
-                text: 'Click here to see the documentation for family-name.',
+                text: 'Documentation for family-name.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonfamily-names'
             },
             {
-                text: 'Click here to see the documentation for name-suffix.',
+                text: 'Documentation for name-suffix.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname-suffix'
             }
         ],
@@ -105,7 +105,7 @@ export const helpData = {
         title: 'orcid',
         url: [
             {
-                text: 'Click here to see the documentation for orcid.',
+                text: 'Documentation for orcid.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonorcid'
             },
             {
@@ -122,7 +122,7 @@ export const helpData = {
         title: 'authors',
         url: [
             {
-                text: 'Click here to see the documentation for authors.',
+                text: 'Documentation for authors.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#authors'
             },
             {
@@ -141,7 +141,7 @@ export const helpData = {
         title: 'commit',
         url: [
             {
-                text: 'Click here to see the documentation for commit.',
+                text: 'Documentation for commit.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#commit'
             }
         ],
@@ -155,7 +155,7 @@ export const helpData = {
         title: 'date-released',
         url: [
             {
-                text: 'Click here to see the documentation for date-released.',
+                text: 'Documentation for date-released.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#date-released'
             }
         ],
@@ -165,7 +165,7 @@ export const helpData = {
         title: 'description',
         url: [
             {
-                text: 'Click here to see the documentation for description.',
+                text: 'Documentation for description.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier-description'
             }
         ],
@@ -181,7 +181,7 @@ export const helpData = {
         title: 'doi',
         url: [
             {
-                text: 'Click here to see the documentation for doi.',
+                text: 'Documentation for doi.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsdoi'
             }
         ],
@@ -194,7 +194,7 @@ export const helpData = {
         title: 'other',
         url: [
             {
-                text: 'Click here to see the documentation for other.',
+                text: 'Documentation for other.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsidentifier'
             }
         ],
@@ -207,7 +207,7 @@ export const helpData = {
         title: 'swh',
         url: [
             {
-                text: 'Click here to see the documentation for swh.',
+                text: 'Documentation for swh.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsswh-identifier'
             }
         ],
@@ -220,7 +220,7 @@ export const helpData = {
         title: 'url',
         url: [
             {
-                text: 'Click here to see the documentation for url.',
+                text: 'Documentation for url.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsurl'
             }
         ],
@@ -236,7 +236,7 @@ export const helpData = {
         title: 'identifiers',
         url: [
             {
-                text: 'Click here to see the documentation for identifiers.',
+                text: 'Documentation for identifiers.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#identifiers'
             }
         ],
@@ -252,7 +252,7 @@ export const helpData = {
         title: 'keywords',
         url: [
             {
-                text: 'Click here to see the documentation for keywords.',
+                text: 'Documentation for keywords.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#keywords'
             }
         ],
@@ -267,7 +267,7 @@ export const helpData = {
         title: 'license',
         url: [
             {
-                text: 'Click here to see the documentation for license.',
+                text: 'Documentation for license.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#license'
             }
         ],
@@ -282,7 +282,7 @@ export const helpData = {
         title: 'message',
         url: [
             {
-                text: 'Click here to see the documentation for message.',
+                text: 'Documentation for message.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#message'
             }
         ],
@@ -297,7 +297,7 @@ export const helpData = {
         title: 'repository',
         url: [
             {
-                text: 'Click here to see the documentation for repository.',
+                text: 'Documentation for repository.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository'
             }
         ],
@@ -310,7 +310,7 @@ export const helpData = {
         title: 'repository-artifact',
         url: [
             {
-                text: 'Click here to see the documentation for repository-artifact.',
+                text: 'Documentation for repository-artifact.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-artifact'
             }
         ],
@@ -323,7 +323,7 @@ export const helpData = {
         title: 'repository-code',
         url: [
             {
-                text: 'Click here to see the documentation for repository-code.',
+                text: 'Documentation for repository-code.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#repository-code'
             }
         ],
@@ -336,7 +336,7 @@ export const helpData = {
         title: 'title',
         url: [
             {
-                text: 'Click here to see the documentation for title.',
+                text: 'Documentation for title.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#title'
             }
         ],
@@ -351,7 +351,7 @@ export const helpData = {
         title: 'type',
         url: [
             {
-                text: 'Click here to see the documentation for type.',
+                text: 'Documentation for type.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#type'
             }
         ],
@@ -361,7 +361,7 @@ export const helpData = {
         title: 'url',
         url: [
             {
-                text: 'Click here to see the documentation for url.',
+                text: 'Documentation for url.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#url'
             }
         ],
@@ -374,7 +374,7 @@ export const helpData = {
         title: 'version',
         url: [
             {
-                text: 'Click here to see the documentation for version.',
+                text: 'Documentation for version.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#version'
             }
         ],

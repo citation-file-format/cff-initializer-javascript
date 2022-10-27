@@ -3,18 +3,29 @@
         Start
     </h1>
 
-    <h2 class="question">
-        What type of work does this CITATION.cff describe?
-        <InfoDialog name="type" />
-    </h2>
-    <q-option-group
-        data-cy="radio-type"
-        type="radio"
-        v-bind:model-value="type"
-        v-bind:options="typeOptions"
-        v-on:update:modelValue="[setType, setMessageOrDefault, checkDefaultMessage]"
-    />
-
+    <fieldset
+        class="q-mb-md"
+        role="radiogroup"
+    >
+        <legend
+            class="question"
+        >
+            Type of the work
+            <InfoDialog name="type" />
+        </legend>
+        <label
+            v-for="typeOption in typeOptions"
+            v-bind:key="typeOption.label"
+        >
+            <q-radio
+                v-bind:data-cy="'radio-type-' + typeOption.value"
+                v-bind:label="typeOption.label"
+                v-bind:model-value="type"
+                v-bind:val="typeOption.value"
+                v-on:update:modelValue="[setType, setMessageOrDefault, checkDefaultMessage]"
+            />
+        </label>
+    </fieldset>
     <q-input
         bg-color="white"
         data-cy="input-title"

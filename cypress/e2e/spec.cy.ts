@@ -9,7 +9,7 @@ const minimumValidCff = {
 }
 const fullValidCff = {
     'cff-version': '1.2.0',
-    type: 'software',
+    type: 'dataset',
     title: 'My Title',
     message: 'New message',
     authors: [{
@@ -49,13 +49,9 @@ describe('Basic usage', () => {
 
         // Start screen
         cy.url().should('include', '/start')
-        cy.dataCy('radio-type')
-            .children()
-            .eq(0)
+        cy.dataCy('radio-type-software')
             .should('have.text', 'Software')
-        cy.dataCy('radio-type')
-            .children()
-            .eq(1)
+        cy.dataCy('radio-type-dataset')
             .should('have.text', 'Dataset')
         cy.dataCy('input-title')
             .type('My Title')
@@ -95,9 +91,7 @@ describe('Basic usage', () => {
 
         // Start screen
         cy.url().should('include', '/start')
-        cy.dataCy('radio-type')
-            .children()
-            .eq(1)
+        cy.dataCy('radio-type-dataset')
             .click()
         cy.dataCy('input-title')
             .type('My Title')
@@ -145,9 +139,7 @@ describe('Basic usage', () => {
             .type('Some DOI')
         cy.dataCy('btn-add-identifier')
             .click()
-        cy.dataCy('radio-identifier')
-            .children()
-            .eq(1)
+        cy.dataCy('radio-identifier-url')
             .click()
         cy.dataCy('input-value')
             .type('https://id')
@@ -155,9 +147,7 @@ describe('Basic usage', () => {
             .type('Some URL')
         cy.dataCy('btn-add-identifier')
             .click()
-        cy.dataCy('radio-identifier')
-            .children()
-            .eq(2)
+        cy.dataCy('radio-identifier-swh')
             .click()
         cy.dataCy('input-value')
             .type('swh:1:rev:0123456789abcdef0123456789abcdef01234567')
@@ -165,9 +155,7 @@ describe('Basic usage', () => {
             .type('Some SWH')
         cy.dataCy('btn-add-identifier')
             .click()
-        cy.dataCy('radio-identifier')
-            .children()
-            .eq(3)
+        cy.dataCy('radio-identifier-other')
             .click()
         cy.dataCy('input-value')
             .type('Other')

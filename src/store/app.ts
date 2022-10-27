@@ -41,9 +41,11 @@ export const useApp = () => {
     return {
         cannotGoBack: computed(() => state.value.stepIndex === firstStepIndex),
         cannotGoForward: computed(() => state.value.stepIndex === lastStepIndex.value),
+        currentStepIndex: computed(() => state.value.stepIndex),
         lastStepIndex,
         showAdvanced: computed(() => state.value.showAdvanced),
         stepName,
+        stepNames,
         navigateDirect: (newStepName: StepNameType) => {
             if (![...basicStepNames, ...advancedStepNames, 'finish'].includes(newStepName)) {
                 return

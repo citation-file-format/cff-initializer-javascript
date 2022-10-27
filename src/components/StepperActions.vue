@@ -1,5 +1,6 @@
 <template>
     <q-btn
+        aria-label="Previous page"
         data-cy="btn-previous"
         label="Previous"
         no-caps
@@ -16,6 +17,7 @@
         v-bind:class="cannotGoForward ? 'hidden' : ''"
     >
         <q-btn
+            aria-label="Jump to finish"
             color=""
             data-cy="btn-finish"
             flat
@@ -25,6 +27,7 @@
             to="/finish"
         />
         <q-btn
+            aria-label="Next page"
             color="primary"
             data-cy="btn-next"
             label="Next"

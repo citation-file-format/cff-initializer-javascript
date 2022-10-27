@@ -7,6 +7,7 @@
             <a
                 href="https://esciencecenter.nl"
                 target="_blank"
+                aria-label="Netherlands eScience Center website (opens in a new tab)"
             >
                 <img src="~assets/nlesc-logo.svg">
             </a>

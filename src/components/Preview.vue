@@ -6,6 +6,7 @@
             hover-color="negative"
             flat
             icon="content_copy"
+            aria-label="copy to clipboard"
             v-bind:ripple="false"
             v-on:click="copyToClipboard"
         >

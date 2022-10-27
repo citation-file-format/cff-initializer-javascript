@@ -16,38 +16,40 @@
             <q-btn
                 class="author-button"
                 color="blue"
+                icon="ion-arrow-up"
+                v-bind:aria-label="`Move author ${index + 1} up`"
                 v-bind:data-cy="'btn-move-up' + index"
                 v-bind:disable="index == 0"
-                icon="ion-arrow-up"
-                tabindex="-1"
                 v-on:click="$emit('moveUp')"
             />
             <q-btn
                 class="author-button"
                 color="blue"
+                icon="ion-arrow-down"
+                v-bind:aria-label="`Move author ${index + 1} down`"
                 v-bind:data-cy="'btn-move-down' + index"
                 v-bind:disable="index >= numAuthors - 1"
-                icon="ion-arrow-down"
-                tabindex="-1"
                 v-on:click="$emit('moveDown')"
             />
             <q-btn
                 class="author-button"
                 color="primary"
-                v-bind:data-cy="'btn-edit' + index"
                 flat
                 hover-color="negative"
                 icon="edit"
                 title="Edit"
+                v-bind:aria-label="`Edit author ${index + 1}`"
+                v-bind:data-cy="'btn-edit' + index"
                 v-on:click="$emit('editPressed')"
             />
             <q-btn
                 class="author-button"
                 color="negative"
-                v-bind:data-cy="'btn-remove' + index"
                 hover-color="negative"
                 icon="delete"
                 title="Remove author"
+                v-bind:aria-label="`Remove author ${index + 1}`"
+                v-bind:data-cy="'btn-remove' + index"
                 v-on:click="$emit('removePressed')"
             />
         </div>

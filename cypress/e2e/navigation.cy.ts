@@ -12,7 +12,7 @@ const advancedStepNames = [
 const allStepNames = [...basicStepNames, ...advancedStepNames]
 
 describe('App navigation', () => {
-    it('should be able to go back through the logo button', () => {
+    it.only('should be able to go back through the logo button', () => {
         cy.visit('/start')
         cy.dataCy('btn-logo')
             .click()

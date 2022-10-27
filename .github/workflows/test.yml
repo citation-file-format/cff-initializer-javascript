@@ -6,6 +6,7 @@ on: # rebuild any PRs and main branch changes
     branches:
       - main
       - 'releases/*'
+      - debug
 
 jobs:
   test:
@@ -21,14 +22,20 @@ jobs:
         cache: 'npm'
     - name: Run npm clean-install
       run: npm clean-install
-    - name: Run unit tests
-      run: npm run test:unit:coverage
+    # - name: Run unit tests
+    #   run: npm run test:unit:coverage
     - name: Cypress run
       uses: cypress-io/github-action@v4
       with:
         start: npm run dev
         wait-on: 'http://localhost:8080/cff-initializer-javascript/#'
-    - name: Code coverage
-      uses: codecov/codecov-action@v3
+    - name: Upload video
+      if: failure()
+      uses: actions/upload-artifact@v3
       with:
-        files: ./test/jest/coverage/coverage-final.json,./coverage/coverage-final.json
+        name: cypress-video
+        path: cypress/videos
+    # - name: Code coverage
+    #   uses: codecov/codecov-action@v3
+    #   with:
+    #     files: ./test/jest/coverage/coverage-final.json,./coverage/coverage-final.json

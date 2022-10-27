@@ -38,6 +38,7 @@
                             Citation File Format</a> file
                     </div>
                     <q-btn
+                        aria-label="Create your CITATION.cff file"
                         class="start-button"
                         data-cy="btn-create"
                         label="Create"

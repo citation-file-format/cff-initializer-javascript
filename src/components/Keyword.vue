@@ -20,7 +20,6 @@
             class="keyword-btn"
             color="blue"
             icon="ion-arrow-up"
-            tabindex="-1"
             v-bind:aria-label="`move keyword #${index + 1} up`"
             v-bind:data-cy="'btn-move-up' + index"
             v-bind:disable="index == 0"
@@ -30,7 +29,6 @@
             class="keyword-btn"
             color="blue"
             icon="ion-arrow-down"
-            tabindex="-1"
             v-bind:aria-label="`move keyword #${index + 1} down`"
             v-bind:data-cy="'btn-move-down' + index"
             v-bind:disable="index == numKeywords - 1"
@@ -41,7 +39,6 @@
             color="negative"
             dense
             icon="delete"
-            tabindex="-1"
             title="Remove"
             v-bind:aria-label="`remove keyword #${index + 1}`"
             v-bind:data-cy="'btn-remove' + index"

@@ -131,6 +131,7 @@
 
         <q-card-actions align="right">
             <q-btn
+                aria-label="Remove author being edited"
                 color="negative"
                 data-cy="btn-remove"
                 dense

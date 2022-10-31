@@ -7,7 +7,6 @@
                 dense
                 outlined
                 placeholder="Type a keyword"
-                v-bind:class="validationErrors.length > 0 ? 'has-error' : ''"
                 v-bind:data-cy="'input-keyword' + index"
                 v-bind:label="'Keyword #' + (index + 1)"
                 v-bind:model-value="keyword"

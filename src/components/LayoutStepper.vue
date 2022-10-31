@@ -1,5 +1,6 @@
 <template>
     <q-layout view="hHh lpR fFf">
+        <q-resize-observer v-on:resize="onResize" />
         <q-header id="header-inner">
             <a
                 class="skip-to-main-content-link"
@@ -12,22 +13,26 @@
                 Skip to main content
             </a>
             <Header
-                v-on:togglePreview="onTogglePreview"
+                v-bind:show-open-preview-button="isPreviewDrawer"
+                v-on:togglePreview="togglePreview"
             />
         </q-header>
 
         <q-drawer
             id="preview-drawer"
-            elevated
-            overlay
             side="right"
-            v-model="isPreviewDrawerEnabled"
+            v-bind:breakpoint="1440"
+            v-bind:overlay="isPreviewDrawer"
+            v-model="isPreviewDrawerOpen"
             v-bind:width="600"
         >
-            <div id="preview-button-close">
+            <div
+                v-if="isPreviewDrawer"
+                id="preview-button-close"
+            >
                 <q-btn
                     icon="close"
-                    v-on:click="onTogglePreview"
+                    v-on:click="togglePreview"
                 >
                     Close preview
                 </q-btn>
@@ -44,7 +49,7 @@
 
         <q-page-container>
             <q-page
-                class="row"
+                class="row bg-secondary"
                 id="main"
                 role="main"
                 tabindex="0"
@@ -64,18 +69,6 @@
                         <StepperActions />
                     </div>
                 </div>
-                <div
-                    id="preview-static"
-                    class="col-12 col-lg-5 gt-md"
-                >
-                    <div id="preview-content">
-                        <Preview />
-                    </div>
-
-                    <div id="preview-button-bar">
-                        <DownloadButton v-if="isNotFinish" />
-                    </div>
-                </div>
             </q-page>
         </q-page-container>
 
@@ -93,6 +86,7 @@ import Header from 'components/Header.vue'
 import Preview from 'components/Preview.vue'
 import Stepper from 'components/Stepper.vue'
 import StepperActions from 'components/StepperActions.vue'
+import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
@@ -106,7 +100,10 @@ export default defineComponent({
         StepperActions
     },
     setup () {
-        const isPreviewDrawerEnabled = ref(false)
+        const q = useQuasar()
+        const screenIsBigEnough = computed(() => q.screen.lg || q.screen.xl)
+        const isPreviewDrawerOpen = ref(screenIsBigEnough.value)
+        const onResize = () => { isPreviewDrawerOpen.value = false }
         return {
             focusMain: () => {
                 const element = window.document.getElementById('main')
@@ -117,8 +114,10 @@ export default defineComponent({
                 const currentPath = useRoute().path
                 return currentPath !== '/finish'
             }),
-            isPreviewDrawerEnabled,
-            onTogglePreview: () => { isPreviewDrawerEnabled.value = !isPreviewDrawerEnabled.value },
+            isPreviewDrawerOpen,
+            onResize,
+            togglePreview: () => { isPreviewDrawerOpen.value = !isPreviewDrawerOpen.value },
+            isPreviewDrawer: computed(() => q.screen.sm || q.screen.md),
             skipToMainFocused: ref(false)
         }
     }
@@ -131,15 +130,15 @@ export default defineComponent({
 .skip-to-main-content-link {
   position: absolute;
   left: -9999px;
-  z-index: 999;
-  padding: 1em;
-  background-color: black;
-  color: white;
-  opacity: 0;
+    z-index: 999;
+    padding: 1em;
+    background-color: black;
+    color: white;
+    opacity: 0;
 }
 .skip-to-main-content-link:focus {
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
 }
 </style>

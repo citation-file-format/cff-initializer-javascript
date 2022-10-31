@@ -35,6 +35,7 @@
             type="a"
         />
         <q-btn
+            v-if="showOpenPreviewButton"
             class="lt-lg gt-xs"
             flat
             icon="menu"
@@ -52,6 +53,13 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
     name: 'Header',
     emits: ['togglePreview'],
+    props: {
+        showOpenPreviewButton: {
+            type: Boolean,
+            required: false,
+            default: false
+        }
+    },
     setup () {
         const router = useRouter()
         return {

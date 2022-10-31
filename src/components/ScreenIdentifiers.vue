@@ -50,17 +50,7 @@
         Add identifier
     </q-btn>
 
-    <q-banner
-        v-if="identifiersErrors.length > 0"
-        v-bind:class="['bg-warning', 'text-negative', identifiersErrors.length > 0 ? 'has-error' : '']"
-    >
-        <div
-            v-bind:key="index"
-            v-for="(screenMessage, index) in identifiersErrors"
-        >
-            {{ screenMessage }}
-        </div>
-    </q-banner>
+    <BannerErrorMessages v-bind:error-messages="identifiersErrors" />
 </template>
 
 <script lang="ts">
@@ -68,6 +58,7 @@ import { IdentifierType, IdentifierTypeType } from 'src/types'
 import { byError, identifiersQueries } from 'src/error-filtering'
 import { computed, defineComponent, nextTick, ref } from 'vue'
 import { moveDown, moveUp } from 'src/updown'
+import BannerErrorMessages from 'src/components/BannerErrorMessages.vue'
 import IdentifierCardEditing from 'components/IdentifierCardEditing.vue'
 import IdentifierCardViewing from 'components/IdentifierCardViewing.vue'
 import InfoDialog from 'components/InfoDialog.vue'
@@ -78,6 +69,7 @@ import { useValidation } from 'src/store/validation'
 export default defineComponent({
     name: 'ScreenIdentifiers',
     components: {
+        BannerErrorMessages,
         InfoDialog,
         IdentifierCardEditing,
         IdentifierCardViewing

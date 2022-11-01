@@ -7,9 +7,7 @@
         class="q-mb-md"
         role="radiogroup"
     >
-        <legend
-            class="question"
-        >
+        <legend>
             Type of the work
             <InfoDialog name="type" />
         </legend>
@@ -27,7 +25,6 @@
         </label>
     </fieldset>
     <q-input
-        bg-color="white"
         data-cy="input-title"
         outlined
         standout
@@ -44,7 +41,6 @@
     </q-input>
     <q-input
         aria-label="`Title of the ${ type }. Press tab to reach help button.`"
-        bg-color="white"
         data-cy="input-message"
         label="Personalized message. Leave blank to use default"
         outlined
@@ -120,9 +116,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-.dropdown {
-    height: 100%;
-}
-</style>

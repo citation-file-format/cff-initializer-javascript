@@ -16,7 +16,7 @@
         v-model="showDialog"
     >
         <q-card
-            class="window-width help-dialog"
+            class="window-width"
         >
             <q-card-section class="row items-center q-pb-none">
                 <h2>
@@ -101,22 +101,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-.help-dialog {
-    background-color: var(--fgcolor, lightslategray);
-}
-h2 {
-    font-size: 2rem;
-    line-height: normal;
-    margin-top: 12px;
-    margin-bottom: 7px;
-    letter-spacing: normal;
-}
-h3 {
-    font-size: 1.25rem;
-    line-height: normal;
-    margin: 0px;
-    letter-spacing: normal;
-}
-</style>

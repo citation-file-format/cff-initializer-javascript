@@ -28,6 +28,12 @@ jobs:
       with:
         start: npm run dev
         wait-on: 'http://localhost:8080/cff-initializer-javascript/#'
+    - name: Upload Screenshot of Cypress when errors occur
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
     - name: Code coverage
       uses: codecov/codecov-action@v3
       with:

@@ -6,11 +6,12 @@
     >
         <q-card-section class="q-gutter-md">
             <fieldset
+                id="radiogroup"
                 role="radiogroup"
+                tabindex="0"
             >
                 <legend>
                     What type of identifier?
-                    <!-- <InfoDialog name="type" /> -->
                 </legend>
                 <label
                     v-for="typeOption in typeOptions"
@@ -27,7 +28,6 @@
             </fieldset>
 
             <q-input
-                autofocus
                 data-cy="input-value"
                 dense
                 outlined

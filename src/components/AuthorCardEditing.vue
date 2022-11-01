@@ -106,7 +106,6 @@
                 class="col"
                 data-cy="input-orcid"
                 dense
-                hint="Format: https://orcid.org/0000-0000-0000-0000"
                 label="ORCID"
                 mask="https://orcid.org/####-####-####-###X"
                 outlined

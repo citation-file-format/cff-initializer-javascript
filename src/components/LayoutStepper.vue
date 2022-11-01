@@ -5,16 +5,21 @@
             id="header"
             class="text-black"
         >
-            <a
-                class="skip-to-main-content-link"
-                href="#main"
+            <div
                 id="skipToMain"
-                v-on:blur="skipToMainFocused = false"
-                v-on:click.prevent="focusMain"
-                v-on:focus="skipToMainFocused = true"
             >
-                Skip to main content
-            </a>
+                <a
+                    v-for="skipLink in skipLinks"
+                    class="skip-to-main-content-link"
+                    v-bind:key="skipLink.id"
+                    v-bind:href="`#${skipLink.id}`"
+                    v-on:blur="skipToMainFocused = false"
+                    v-on:click.prevent="focusElement(skipLink.id)"
+                    v-on:focus="skipToMainFocused = true"
+                >
+                    Skip to {{ skipLink.where }}
+                </a>
+            </div>
             <Header
                 v-bind:show-open-preview-button="isPreviewDrawer"
             />
@@ -32,12 +37,17 @@
                         id="main-block"
                         v-bind:class="['row', 'col', 'bg-white', 'q-pa-md', isMainConnected ? '' : 'elevated rounded-borders q-mx-lg']"
                     >
-                        <aside class="col-auto gt-xs">
+                        <aside
+                            class="col-auto gt-xs"
+                            id="stepper"
+                            tabindex="0"
+                        >
                             <Stepper />
                         </aside>
-                        <div
-                            id="form"
+                        <form
                             class="col column"
+                            id="form"
+                            tabindex="0"
                         >
                             <div id="form-content">
                                 <router-view />
@@ -60,7 +70,7 @@
                                 no-caps
                                 v-on:click="togglePreview"
                             />
-                        </div>
+                        </form>
                     </div>
                     <component
                         v-if="!isOnlyForm"
@@ -136,8 +146,8 @@ export default defineComponent({
             isPreviewDrawerOpen.value = false
         }
         return {
-            focusMain: () => {
-                const element = window.document.getElementById('main')
+            focusElement: (id: string) => {
+                const element = window.document.getElementById(id)
                 if (!element) return
                 element.focus()
             },
@@ -149,6 +159,10 @@ export default defineComponent({
             isPreviewDrawerOpen,
             isPreviewDrawer: computed(() => q.screen.sm || q.screen.md),
             isMainConnected: computed(() => q.screen.xs || q.screen.sm),
+            skipLinks: [
+                { id: 'form', where: 'main content' },
+                { id: 'stepper', where: 'stepper navigation' }
+            ],
             skipToMainFocused: ref(false),
             onResize,
             togglePreview: () => {

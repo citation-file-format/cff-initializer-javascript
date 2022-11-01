@@ -94,6 +94,10 @@ export default defineComponent({
             editingId.value = newIdentifiers.length - 1
             // await the DOM update that resulted from updating the identifiers list
             await nextTick()
+            const radio = document.getElementById('radiogroup')
+            if (radio) {
+                radio.focus()
+            }
             scrollToBottom()
         }
         const removeIdentifier = (index: number) => {

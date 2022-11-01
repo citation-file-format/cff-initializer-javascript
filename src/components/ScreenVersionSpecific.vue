@@ -6,7 +6,6 @@
     <div class="q-gutter-md">
         <q-input
             aria-label="Commit identifier. Press tab to reach help button."
-            bg-color="white"
             data-cy="input-commit"
             label="Commit identifier"
             outlined
@@ -21,7 +20,6 @@
 
         <q-input
             aria-label="Version. Press tab to reach help button."
-            bg-color="white"
             data-cy="input-version"
             label="Version"
             outlined
@@ -36,14 +34,12 @@
 
         <q-input
             aria-label="Release date. Press tab to reach help button."
-            bg-color="white"
             hint="Format: YYYY-MM-DD"
             data-cy="input-date-released"
             label="Release date"
             mask="####-##-##"
             outlined
             standout
-            style="width: 33.33%"
             today-btn="true"
             v-bind:model-value="dateReleased"
             v-bind:error="dateReleasedErrors.length > 0"
@@ -123,6 +119,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-</style>

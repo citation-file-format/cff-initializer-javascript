@@ -3,12 +3,11 @@
         <q-stepper
             animated
             class="transparent"
+            done-color="primary"
             error-color="negative"
-            error-icon="warning"
+            inactive-color="grey-7"
             flat
             header-nav
-            inactive-color="primary"
-            inactive-icon=""
             v-bind:model-value="stepName"
             vertical
         >

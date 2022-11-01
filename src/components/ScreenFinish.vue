@@ -15,40 +15,34 @@
     <div v-if="isValidCFF">
         <p
             v-if="!showAdvanced"
-            class="finish-paragraph"
         >
             You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, continue adding more properties, or reset the form.
         </p>
         <p
             v-else
-            class="finish-paragraph"
         >
             Use the buttons below to download your CITATION.cff file, or reset the form to start over.
         </p>
-        <p class="finish-paragraph">
+        <p>
             Distribute the CITATION.cff with your project, for instance, by adding it to the root of your GitHub repository.
         </p>
-        <div class="row">
-            <DownloadButton class="col-4 q-ma-lg" />
+        <div class="row q-gutter-md justify-center">
+            <DownloadButton />
             <q-btn
                 v-if="!showAdvanced"
-                class="col-4 q-ma-lg"
-                color="primary"
+                class="rounded-borders bg-primary text-white"
                 data-cy="btn-add-more"
                 icon="workspace_premium"
-                label="Add more"
+                label="Add more fields"
                 no-caps
                 size="xl"
                 to="/identifiers"
                 v-on:click="setupAdvanced"
-                v-bind:class="q.platform.is.mobile ? 'full-width' : ''"
             />
         </div>
-        <div class="row">
+        <div class="row justify-center">
             <q-btn
-                class="q-mt-md q-mb-md"
-                color=""
-                text-color="red"
+                class="q-mt-md q-mb-md rounded-borders bg-secondary text-white"
                 icon="refresh"
                 label="Reset form"
                 no-caps
@@ -57,7 +51,7 @@
         </div>
     </div>
     <div v-else>
-        <p class="finish-paragraph">
+        <p>
             Your CITATION.cff is not valid just yet. Go back to the form to make some changes.
         </p>
     </div>
@@ -65,7 +59,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import DownloadButton from 'components/DownloadButton.vue'
+import DownloadButton from 'src/components/DownloadButton.vue'
 import { useApp } from 'src/store/app'
 import { useCff } from 'src/store/cff'
 import { useQuasar } from 'quasar'
@@ -95,7 +89,6 @@ export default defineComponent({
                 })
             },
             isValidCFF: computed(() => errors.value.length === 0),
-            q,
             setupAdvanced: async () => {
                 setShowAdvanced(true)
                 await setStepName('identifiers')
@@ -105,11 +98,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center
-}
-</style>

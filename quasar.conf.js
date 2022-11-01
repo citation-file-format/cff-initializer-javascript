@@ -99,7 +99,7 @@ module.exports = configure(function () {
                     dark: '#333',
 
                     positive: '#39d98a',
-                    negative: '#D93D33',
+                    negative: '#D5362C',
                     info: '#B3C5DB',
                     warning: '#fddd48'
                 }

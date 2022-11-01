@@ -1,32 +1,30 @@
 <template>
     <q-card
-        flat
         bordered
         class="bg-formcard q-pa-md"
+        flat
     >
         <fieldset class="q-mb-md">
             <legend>
                 Author's name, split into four parts
                 <InfoDialog name="authorNames" />
             </legend>
-            <q-input
-                autofocus
-                bg-color="white"
-                class="col"
-                data-cy="input-given-names"
-                dense
-                label="Given names"
-                outlined
-                standout
-                v-bind:model-value="givenNames"
-                v-bind:error="false"
-                v-bind:error-message="''"
-                v-on:update:modelValue="$emit('update', 'givenNames', $event)"
-            />
-            <div class="row">
+            <div class="q-gutter-sm row">
                 <q-input
-                    bg-color="white"
-                    class="col-3"
+                    autofocus
+                    class="col"
+                    data-cy="input-given-names"
+                    dense
+                    label="Given names"
+                    outlined
+                    standout
+                    v-bind:model-value="givenNames"
+                    v-bind:error="false"
+                    v-bind:error-message="''"
+                    v-on:update:modelValue="$emit('update', 'givenNames', $event)"
+                />
+                <q-input
+                    class="small-input"
                     data-cy="input-name-particle"
                     dense
                     label="Name particle"
@@ -37,8 +35,9 @@
                     v-bind:error-message="''"
                     v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
                 />
+            </div>
+            <div class="q-gutter-sm row">
                 <q-input
-                    bg-color="white"
                     class="col"
                     data-cy="input-family-names"
                     dense
@@ -51,8 +50,7 @@
                     v-on:update:modelValue="$emit('update', 'familyNames', $event)"
                 />
                 <q-input
-                    bg-color="white"
-                    class="col-3"
+                    class="small-input"
                     data-cy="input-name-suffix"
                     dense
                     label="Name suffix"
@@ -65,10 +63,9 @@
                 />
             </div>
         </fieldset>
-        <div class="row">
+        <div class="row q-pb-sm">
             <q-input
                 aria-label="E-mail. Press tab to reach help button."
-                bg-color="white"
                 class="col"
                 data-cy="input-email"
                 dense
@@ -89,7 +86,6 @@
         <div class="row">
             <q-input
                 aria-label="Affiliation. Press tab to reach help button."
-                bg-color="white"
                 class="col"
                 data-cy="input-affiliation"
                 dense
@@ -107,7 +103,6 @@
             </q-input>
             <q-input
                 aria-label="ORCID. Press tab to reach help button."
-                bg-color="white"
                 class="col"
                 data-cy="input-orcid"
                 dense
@@ -130,17 +125,20 @@
         <q-card-actions align="right">
             <q-btn
                 aria-label="Remove author being edited"
+                class="rounded-borders"
                 color="negative"
                 data-cy="btn-remove"
-                dense
                 icon="delete"
                 label="Remove"
+                no-caps
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
-                dense
+                class="rounded-borders"
+                color="secondary"
                 icon="done"
                 label="Done"
+                no-caps
                 v-on:click="$emit('closePressed')"
             />
         </q-card-actions>
@@ -213,9 +211,7 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.row {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
+.small-input {
+    max-width: 150px;
 }
 </style>

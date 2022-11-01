@@ -3,11 +3,11 @@
         Identifiers
     </h1>
 
-    <h2 class="question">
+    <p>
         What persistent identifiers are available for the work?
         <InfoDialog name="identifiers" />
-    </h2>
-    <div class="scroll-to-bottom-container">
+    </p>
+    <div>
         <span class="bottom" />
         <div>
             <div
@@ -41,8 +41,8 @@
         </div>
     </div>
     <q-btn
-        class="q-mt-md q-mb-md"
-        color="primary"
+        class="q-mt-md q-mb-md rounded-borders"
+        color="secondary"
         data-cy="btn-add-identifier"
         no-caps
         v-on:click="addIdentifier"
@@ -173,12 +173,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-.scroll-to-bottom-container {
-    display: flex;
-    flex-direction: column-reverse;
-    max-height: 450px;
-    overflow-y: auto;
-}
-</style>

@@ -4,14 +4,11 @@
         bordered
         class="bg-formcard q-pa-md"
     >
-        <q-card-section>
+        <q-card-section class="q-gutter-md">
             <fieldset
-                class="q-mb-md"
                 role="radiogroup"
             >
-                <legend
-                    class="question"
-                >
+                <legend>
                     What type of identifier?
                     <!-- <InfoDialog name="type" /> -->
                 </legend>
@@ -31,7 +28,6 @@
 
             <q-input
                 autofocus
-                bg-color="white"
                 data-cy="input-value"
                 dense
                 outlined
@@ -49,7 +45,6 @@
             </q-input>
 
             <q-input
-                bg-color="white"
                 data-cy="input-description"
                 dense
                 outlined
@@ -67,16 +62,17 @@
         <q-card-actions align="right">
             <q-btn
                 aria-label="Remove identifier being edited"
+                class="rounded-borders"
                 color="negative"
                 data-cy="btn-remove"
-                dense
                 icon="delete"
                 label="Remove"
                 v-on:click="$emit('removePressed')"
             />
             <q-btn
+                class="rounded-borders"
+                color="secondary"
                 data-cy="btn-done"
-                dense
                 icon="done"
                 label="Done"
                 v-on:click="$emit('closePressed')"

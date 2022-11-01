@@ -89,20 +89,19 @@ module.exports = configure(function () {
         framework: {
             config: {
                 brand: {
-                    primary: '#65686b',
-                    secondary: '#efefef',
-                    accent: '#9C27B0',
+                    primary: '#346FEF',
+                    secondary: '#555770',
+                    accent: '#fdac42',
 
                     formcard: '#efefef',
                     prose: '#333',
 
                     dark: '#333',
 
-                    positive: '#21BA45',
-                    negative: '#C10015',
-                    info: '#31CCEC',
-                    warning: '#F9E3A4'
-
+                    positive: '#39d98a',
+                    negative: '#D93D33',
+                    info: '#B3C5DB',
+                    warning: '#fddd48'
                 }
             },
 

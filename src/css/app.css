@@ -9,162 +9,111 @@
 :root {
     --fgcolor: #efefef;
     --bgcolor: #ddd;
-    --primary: #3E7BFA;
+    --white: #efefef;
 }
 
 body {
     background-color: var(--bgcolor);
+    color: #333;
+    font-family: "Inter", sans-serif;
+    font-size: 14pt;
 }
 
-#header-inner {
-    background-color: #fdfdfd;
-    color: black;
-    display: flex;
-    flex-direction: row;
-    height: 50px;
+#main-block {
+    max-width: 1044px;
+    min-height: 500px;
+    position: relative;
 }
-#middle {
-    background-color: var(--bgcolor, lightblue);
-    column-gap: 0px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 20px;
+
+#preview-block {
+    max-width: 600px;
 }
-#form {
-    background-color: var(--fgcolor, plum);
-    display: flex;
-    flex-direction: column;
-    flex-grow: 0.5;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
+
+#header {
+    background-color: #f8f8f8;
 }
-#form-title {
-    font-family: "Roboto", sans-serif;
-    color: var(--q-prose);
-    font-size: 1.6rem;
+
+#footer {
+    background-color: #b3c5db;
+}
+
+a:not(.q-btn) {
+    color: var(--q-primary);
+    text-decoration: none
+}
+
+a:not(.q-btn):hover{
+    text-decoration: underline
+}
+
+.elevated {
+    box-shadow: 0px 8px 22px -6px rgba(24, 39, 75, 0.12), 0px 14px 64px -4px rgba(24, 39, 75, 0.12);
+}
+
+.floating-preview-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.rounded-borders {
+    border-radius: 10px;
+}
+
+.bg-formcard {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: 32pt;
+    font-weight: bold;
+}
+h2 {
+    font-size: 26pt;
+}
+h3 {
+    font-size: 22pt;
+}
+h4 {
+    font-size: 20pt;
+}
+h1, h2, h3, h4 {
+    line-height: normal;
+    margin: 1rem 0rem;
+}
+
+.q-drawer {
+    background-color: transparent !important;
+}
+
+@font-face {
+    font-family: "Inter";
     font-weight: 400;
-    margin-top: 0px;
-}
-#form-content {
-    background-color: var(--fgcolor, lightslategray);
-    flex-grow: 1;
-    padding-bottom: 30px;
-}
-#form-button-bar {
-    align-items: center;
-    background-color: var(--fgcolor, khaki);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    max-height: 80px;
-    min-height: 80px;
-}
-#preview-drawer, #preview-static {
-    background-color: var(--fgcolor, limegreen);
-    display: flex;
-    flex-direction: column;
-    flex-grow: 0.5;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    border-radius: 0px 7px 7px 0px;
-}
-#preview-button-close {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    max-height: 80px;
-    min-height: 80px;
-}
-#preview-content {
-    background-color: var(--fgcolor, lightcoral);
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-#preview-button-bar {
-    align-items: center;
-    background-color: var(--fgcolor, darkorange);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    max-height: 80px;
-    min-height: 80px;
-}
-#footer-inner {
-    background-color: deepskyblue;
-    display: flex;
-    flex-direction: column;
-    height: 50px;
-    justify-content: center;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-#logo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 16px;
-    width: 245px;
+    src: url("./fonts/Inter/Inter-Regular.ttf");
 }
 
 @font-face {
-    font-family: "Roboto";
-    src: url("./fonts/Roboto/Roboto-Regular.ttf");
+    font-family: "Inter";
+    font-weight: bold;
+    src: url("./fonts/Inter/Inter-Bold.ttf");
 }
 
 @font-face {
-    font-family: "Roboto Condensed";
-    src: url("./fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Roboto Mono";
-    src: url("./fonts/Roboto_Mono/static/RobotoMono-Regular.ttf");
+    font-family: "Fira Code";
+    src: url("./fonts/Fira_Code/FiraCode-Regular.ttf");
 }
 
 p,
 body {
-    font-family: "Roboto Condensed", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
-.question {
-    font-family: "Roboto Condensed", sans-serif;
-    color: var(--q-prose);
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin-top: 12px;
-    margin-bottom: 7px;
-    line-height: normal;
-}
-.subquestion {
-    font-family: "Roboto Condensed", sans-serif;
-    color: var(--q-prose);
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 0px;
-    line-height: normal;
-    font-size: 0.9rem;
-}
-.finish-paragraph {
-    font-family: "Roboto Condensed", sans-serif;
-    color: var(--q-prose);
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.7;
-    letter-spacing: normal;
-}
-
-pre,
-.mono {
-    font-family: "Roboto Mono", sans-serif;
+.cffstr {
+    font-family: "Fira Code", monospace;
+    font-size: 11pt;
 }
 
 .red-border {
     border-color: #c10015;
-    border-width: 2px;
 }

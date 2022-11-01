@@ -16,33 +16,24 @@
         </q-btn>
         <q-space />
         <q-btn
+            class="gt-xs"
             flat
             href="https://github.com/citation-file-format/cff-initializer-javascript/issues"
-            icon-right="ion-logo-github"
+            icon="ion-logo-github"
             label="Report an issue"
-            no-caps
             target="_blank"
             type="a"
         />
         <q-btn
             aria-label="Documentation of the CFF schema"
-            color=""
+            class="gt-xs"
             flat
             href="https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md"
+            icon="ion-document"
             label="Documentation"
-            no-caps
             target="_blank"
             type="a"
         />
-        <q-btn
-            v-if="showOpenPreviewButton"
-            class="lt-lg gt-xs"
-            flat
-            icon="menu"
-            v-on:click="$emit('togglePreview')"
-        >
-            Preview
-        </q-btn>
     </q-toolbar>
 </template>
 
@@ -52,14 +43,6 @@ import { useRouter } from 'vue-router'
 
 export default defineComponent({
     name: 'Header',
-    emits: ['togglePreview'],
-    props: {
-        showOpenPreviewButton: {
-            type: Boolean,
-            required: false,
-            default: false
-        }
-    },
     setup () {
         const router = useRouter()
         return {
@@ -70,6 +53,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-</style>

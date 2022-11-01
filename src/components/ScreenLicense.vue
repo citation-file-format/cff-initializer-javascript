@@ -5,7 +5,6 @@
 
     <q-select
         aria-label="License. Press tab to reach help button."
-        bg-color="white"
         data-cy="select-license"
         label="License"
         clearable
@@ -74,6 +73,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-</style>

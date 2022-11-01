@@ -6,7 +6,6 @@
     <q-input
         aria-label="Abstract/Description of the work. Press tab to reach help button."
         autogrow
-        bg-color="white"
         data-cy="input-abstract"
         input-style="min-height: 100px; max-height: 444px"
         label="Abstract/Description"
@@ -41,6 +40,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-</style>

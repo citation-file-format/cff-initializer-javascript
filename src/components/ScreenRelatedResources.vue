@@ -5,7 +5,6 @@
 
     <q-input
         aria-label="Code repository. Press tab to reach help button."
-        bg-color="white"
         data-cy="input-repository-code"
         label="Code repository"
         outlined
@@ -22,7 +21,6 @@
 
     <q-input
         aria-label="Webiste/Landing page. Press tab to reach help button."
-        bg-color="white"
         data-cy="input-url"
         label="Website/Landing page"
         outlined
@@ -39,7 +37,6 @@
 
     <q-input
         aria-label="Other repository. Press tab to reach help button."
-        bg-color="white"
         data-cy="input-repository"
         label="Other repository"
         outlined
@@ -56,7 +53,6 @@
 
     <q-input
         aria-label="Artifact repository. Press tab to reach help button."
-        bg-color="white"
         data-cy="input-repository-artifact"
         label="Artifact repository"
         outlined
@@ -131,6 +127,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-</style>

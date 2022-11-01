@@ -1,62 +1,64 @@
 <template>
-    <div style="position: relative">
-        <q-btn
-            class="copy-button"
-            color="primary"
-            hover-color="negative"
-            flat
-            icon="content_copy"
-            aria-label="copy to clipboard"
-            v-bind:ripple="false"
-            v-on:click="copyToClipboard"
-        >
-            <q-tooltip class="bg-primary text-subtitle2">
-                Copy to clipboard
-            </q-tooltip>
-            <q-tooltip
-                anchor="center left"
-                self="center right"
-                v-bind:offset="[10, 10]"
-                no-parent-event
-                v-bind:model-value="showTooltip"
-                class="text-subtitle2"
-            >
-                Copied
-                <q-icon
-                    size="md"
-                    name="check"
-                    class="text-green"
-                />
-            </q-tooltip>
-        </q-btn>
-    </div>
-    <label
-        for="cff-preview"
-    >
-        CITATION.cff preview
-    </label>
-    <textarea
+    <q-input
+        autogrow
         data-cy="ta-cff-preview"
         id="cff-preview"
-        readonly="true"
+        label="CITATION.cff preview"
+        readonly
+        v-bind:class="['bg-white', 'cffstr', insideDrawer ? '' : 'elevated', 'rounded-borders', 'q-pa-md']"
+        v-model="cffstr"
         wrap="hard"
-        v-bind:class="['cffstr', isValidCFF ? '' : 'error']"
-        v-bind:value="cffstr"
-    />
-    <div class="validation-msg">
+    >
+        <template v-slot:append>
+            <q-btn
+                aria-label="copy to clipboard"
+                class="q-pa-sm"
+                color="primary"
+                flat
+                icon="content_copy"
+                v-bind:ripple="false"
+                v-on:click="copyToClipboard"
+            >
+                <q-tooltip class="bg-primary text-subtitle2">
+                    Copy to clipboard
+                </q-tooltip>
+                <q-tooltip
+                    anchor="center left"
+                    self="center right"
+                    v-bind:offset="[10, 10]"
+                    no-parent-event
+                    v-bind:model-value="showTooltip"
+                    class="text-subtitle2"
+                >
+                    Copied
+                    <q-icon
+                        size="md"
+                        name="check"
+                        class="text-positive"
+                    />
+                </q-tooltip>
+            </q-btn>
+        </template>
+    </q-input>
+    <div class="q-pt-lg text-left">
         <p
-            v-if="doesNotHaveRequiredFields"
-            class="invalid"
             data-cy="text-validation-msg"
         >
-            Your CITATION.cff does not have the minimum fields
-        </p>
-        <p
-            v-else
-            data-cy="text-validation-msg"
-            v-bind:class="isValidCFF ? '' : 'invalid'"
-        >
-            Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}
+            <q-icon
+                v-bind:class="isValidCFF ? 'text-primary' : 'text-negative'"
+                v-bind:name="isValidCFF ? 'ion-checkmark-circle' : 'warning'"
+                size="40px"
+            />
+            <span
+                v-if="doesNotHaveRequiredFields"
+            >
+                Your CITATION.cff does not have the minimum fields
+            </span>
+            <span
+                v-else
+            >
+                Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}
+            </span>
         </p>
     </div>
 </template>
@@ -68,7 +70,12 @@ import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
     name: 'Preview',
-    components: {
+    props: {
+        insideDrawer: {
+            type: Boolean,
+            required: false,
+            default: false
+        }
     },
     setup () {
         const { cffstr } = useCffstr()
@@ -94,55 +101,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-.cffstr {
-    background-color:white;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-family: 'Roboto Mono';
-    height: 100%;
-    max-height: 670px;
-    outline: none !important;
-    overflow-wrap: normal;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 15px;
-    resize: none;
-    white-space: pre;
-}
-.cffstr:hover {
-    border: 1px solid #000;
-}
-.cffstr:focus {
-    border:2px solid #888;
-}
-.cffstr:active {
-    border:2px solid #888;
-}
-.copy-button {
-    background-color: white;
-    border: 1px solid #ccc;
-    margin-bottom: 17px;
-    margin-left: 17px;
-    margin-right: 17px;
-    margin-top: 17px;
-    padding: 10px;
-    position: absolute;
-    right: 0px;
-}
-.validation-msg {
-    padding-bottom: 25px;
-    padding-top: 20px;
-    text-align: center;
-}
-.error {
-    border-color: #C10015 !important;
-    border-width: 2px !important;
-}
-.invalid {
-    color: var(--q-negative);
-}
-</style>

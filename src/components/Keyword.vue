@@ -1,9 +1,8 @@
 <template>
-    <div class="keyword">
-        <div class="keyword-input">
+    <div class="row q-pb-lg">
+        <div class="col">
             <q-input
                 autofocus
-                bg-color="white"
                 dense
                 outlined
                 placeholder="Type a keyword"
@@ -17,7 +16,8 @@
         </div>
         <q-btn
             class="keyword-btn"
-            color="blue"
+            color="secondary"
+            flat
             icon="ion-arrow-up"
             v-bind:aria-label="`move keyword #${index + 1} up`"
             v-bind:data-cy="'btn-move-up' + index"
@@ -26,7 +26,8 @@
         />
         <q-btn
             class="keyword-btn"
-            color="blue"
+            color="secondary"
+            flat
             icon="ion-arrow-down"
             v-bind:aria-label="`move keyword #${index + 1} down`"
             v-bind:data-cy="'btn-move-down' + index"
@@ -36,7 +37,7 @@
         <q-btn
             class="keyword-btn"
             color="negative"
-            dense
+            flat
             icon="delete"
             title="Remove"
             v-bind:aria-label="`remove keyword #${index + 1}`"
@@ -89,14 +90,6 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.keyword {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 14px;
-}
-.keyword-input {
-    flex-grow: 1.0;
-}
 .keyword-btn {
     height: 40px;
     margin-left: 10px;

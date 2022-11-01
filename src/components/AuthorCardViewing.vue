@@ -2,57 +2,66 @@
     <q-card
         bordered
         flat
-        style="display: flex; flex-direction: row"
         v-bind:class="['bg-formcard', authorErrors.length > 0 ? 'red-border' : '']"
     >
-        <div style="flex-grow: 1.0">
-            <ul v-bind:data-cy="'card-info' + index">
-                <li>{{ author.givenNames }} {{ author.nameParticle }} {{ author.familyNames }} {{ author.nameSuffix }}</li>
-                <li>{{ author.email }}</li>
-                <li>{{ author.affiliation }} {{ author.orcid }}</li>
-            </ul>
-        </div>
-        <div>
-            <q-btn
-                class="author-button"
-                color="blue"
-                icon="ion-arrow-up"
-                v-bind:aria-label="`Move author ${index + 1} up`"
-                v-bind:data-cy="'btn-move-up' + index"
-                v-bind:disable="index == 0"
-                v-on:click="$emit('moveUp')"
-            />
-            <q-btn
-                class="author-button"
-                color="blue"
-                icon="ion-arrow-down"
-                v-bind:aria-label="`Move author ${index + 1} down`"
-                v-bind:data-cy="'btn-move-down' + index"
-                v-bind:disable="index >= numAuthors - 1"
-                v-on:click="$emit('moveDown')"
-            />
-            <q-btn
-                class="author-button"
-                color="primary"
-                flat
-                hover-color="negative"
-                icon="edit"
-                title="Edit"
-                v-bind:aria-label="`Edit author ${index + 1}`"
-                v-bind:data-cy="'btn-edit' + index"
-                v-on:click="$emit('editPressed')"
-            />
-            <q-btn
-                class="author-button"
-                color="negative"
-                hover-color="negative"
-                icon="delete"
-                title="Remove author"
-                v-bind:aria-label="`Remove author ${index + 1}`"
-                v-bind:data-cy="'btn-remove' + index"
-                v-on:click="$emit('removePressed')"
-            />
-        </div>
+        <q-card-section
+            horizontal
+        >
+            <div class="col">
+                <ul
+                    class="q-pl-md"
+                    v-bind:data-cy="'card-info' + index"
+                >
+                    <li
+                        v-for="(field, fieldIndex) in authorFields"
+                        v-bind:key="fieldIndex"
+                        class="row"
+                    >
+                        {{ field }}
+                    </li>
+                </ul>
+            </div>
+            <q-card-actions>
+                <q-btn
+                    color="secondary"
+                    flat
+                    icon="ion-arrow-up"
+                    v-bind:aria-label="`Move author ${index + 1} up`"
+                    v-bind:data-cy="'btn-move-up' + index"
+                    v-bind:disable="index == 0"
+                    v-on:click="$emit('moveUp')"
+                />
+                <q-btn
+                    color="secondary"
+                    flat
+                    icon="ion-arrow-down"
+                    v-bind:aria-label="`Move author ${index + 1} down`"
+                    v-bind:data-cy="'btn-move-down' + index"
+                    v-bind:disable="index >= numAuthors - 1"
+                    v-on:click="$emit('moveDown')"
+                />
+                <q-btn
+                    color="secondary"
+                    flat
+                    hover-color="negative"
+                    icon="edit"
+                    title="Edit"
+                    v-bind:aria-label="`Edit author ${index + 1}`"
+                    v-bind:data-cy="'btn-edit' + index"
+                    v-on:click="$emit('editPressed')"
+                />
+                <q-btn
+                    color="negative"
+                    flat
+                    hover-color="negative"
+                    icon="delete"
+                    title="Remove author"
+                    v-bind:aria-label="`Remove author ${index + 1}`"
+                    v-bind:data-cy="'btn-remove' + index"
+                    v-on:click="$emit('removePressed')"
+                />
+            </q-card-actions>
+        </q-card-section>
     </q-card>
 </template>
 
@@ -97,28 +106,17 @@ export default defineComponent({
                 .map(query => query.replace.message)
         })
         const authorErrors = computed(() => [...emailErrors.value, ...orcidErrors.value, ...duplicateErrors.value])
+        const authorFields = computed(() => [
+            [props.author.givenNames, props.author.nameParticle, props.author.familyNames, props.author.nameSuffix].join(' '),
+            props.author.email,
+            props.author.affiliation,
+            props.author.orcid
+        ].filter((x) => x))
         return {
-            authorErrors
+            authorErrors,
+            authorFields
         }
     },
     emits: ['editPressed', 'moveDown', 'moveUp', 'removePressed']
 })
 </script>
-<style scoped>
-ul {
-    padding-inline-start: 20px;
-}
-li {
-    list-style: none;
-    list-style-position: inside;
-}
-.author-button {
-    background-color: white;
-    border: 1px solid #ccc;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
-    padding: 10px;
-}
-</style>

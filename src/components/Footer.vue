@@ -1,24 +1,23 @@
 <template>
-    <div class="row">
-        <div
-            id="logo"
-            class="col"
+    <q-toolbar>
+        <q-btn
+            aria-label="Netherlands eScience Center website (opens in a new tab)"
+            class="q-py-md"
+            flat
+            href="https://esciencecenter.nl"
+            target="_blank"
+            type="a"
         >
-            <a
-                href="https://esciencecenter.nl"
-                target="_blank"
-                aria-label="Netherlands eScience Center website (opens in a new tab)"
+            <img
+                alt=""
+                height="28"
+                src="~assets/nlesc-logo.svg"
             >
-                <img
-                    src="~assets/nlesc-logo.svg"
-                    alt="Netherlands eScience Center logo"
-                >
-            </a>
-        </div>
-        <span class="col text-right text-white text-body1">
+        </q-btn>
+        <q-toolbar-title class="text-black text-right text-body1">
             Version 2.0.4
-        </span>
-    </div>
+        </q-toolbar-title>
+    </q-toolbar>
 </template>
 
 <script lang="ts">
@@ -28,13 +27,3 @@ export default defineComponent({
     name: 'Footer'
 })
 </script>
-
-<style scoped>
-a {
-    text-decoration: none;
-    display: flex;
-}
-img {
-    height: 22px;
-}
-</style>

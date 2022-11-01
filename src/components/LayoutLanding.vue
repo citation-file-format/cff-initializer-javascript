@@ -47,7 +47,7 @@
                     </div>
                     <q-btn
                         aria-label="Create your CITATION.cff file"
-                        class="start-button"
+                        class="start-button bg-primary"
                         data-cy="btn-create"
                         label="Create"
                         icon="add"
@@ -143,14 +143,6 @@ h1 {
     }
 }
 
-a.document{
-    color: var(--primary);
-    text-decoration: none
-
-}
-a.document:hover{
-    text-decoration: underline
-}
 .start-button{
     margin-top: 15px;
     padding: 0px 40px;

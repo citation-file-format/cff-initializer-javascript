@@ -3,11 +3,11 @@
         Keywords
     </h1>
 
-    <h2 class="question">
+    <p>
         What keywords describe the work?
         <InfoDialog name="keywords" />
-    </h2>
-    <div class="scroll-to-bottom-container">
+    </p>
+    <div>
         <span class="bottom" />
         <div>
             <Keyword
@@ -25,8 +25,8 @@
         </div>
     </div>
     <q-btn
-        class="q-mt-md q-mb-md"
-        color="primary"
+        class="q-mt-md q-mb-md rounded-borders"
+        color="secondary"
         data-cy="btn-add-keyword"
         no-caps
         style="width: max-content"
@@ -107,11 +107,3 @@ export default defineComponent({
     }
 })
 </script>
-<style scoped>
-.scroll-to-bottom-container {
-    display: flex;
-    flex-direction: column-reverse;
-    max-height: 450px;
-    overflow-y: auto;
-}
-</style>

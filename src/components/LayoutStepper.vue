@@ -29,7 +29,6 @@
             <q-page
                 id="main"
                 role="main"
-                tabindex="0"
                 v-bind:class="isMainConnected ? '' : 'q-pa-md'"
             >
                 <div v-bind:class="['row', 'justify-center', isMainConnected ? '' : 'q-pa-md q-ml-auto']">

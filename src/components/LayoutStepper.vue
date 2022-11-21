@@ -39,14 +39,13 @@
                         <aside
                             class="col-auto gt-xs"
                             id="stepper"
-                            tabindex="0"
+                            tabindex="-1"
                         >
                             <Stepper />
                         </aside>
                         <form
                             class="col column"
                             id="form"
-                            tabindex="0"
                         >
                             <div id="form-content">
                                 <router-view />
@@ -159,7 +158,7 @@ export default defineComponent({
             isPreviewDrawer: computed(() => q.screen.sm || q.screen.md),
             isMainConnected: computed(() => q.screen.xs || q.screen.sm),
             skipLinks: [
-                { id: 'form', where: 'main content' },
+                { id: 'form-title', where: 'main content' },
                 { id: 'stepper', where: 'stepper navigation' }
             ],
             skipToMainFocused: ref(false),

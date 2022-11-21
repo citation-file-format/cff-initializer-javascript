@@ -1,5 +1,8 @@
 <template>
-    <h1 id="form-title">
+    <h1
+        id="form-title"
+        tabindex="-1"
+    >
         Keywords
     </h1>
 

@@ -22,6 +22,7 @@
             no-caps
             to="/finish"
             v-bind:class="!showAdvanced || cannotGoForward ? 'hidden' : ''"
+            v-on:click="setStepName('finish')"
         />
         <q-btn
             aria-label="Next page"
@@ -45,14 +46,15 @@ export default defineComponent({
     name: 'StepperActions',
 
     setup () {
-        const { showAdvanced, cannotGoBack, cannotGoForward, navigateNext, navigatePrevious } = useApp()
+        const { cannotGoBack, cannotGoForward, navigateNext, navigatePrevious, setStepName, showAdvanced } = useApp()
 
         return {
             cannotGoBack,
             cannotGoForward,
-            showAdvanced,
             navigateNext,
-            navigatePrevious
+            navigatePrevious,
+            setStepName,
+            showAdvanced
         }
     }
 

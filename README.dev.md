@@ -184,7 +184,7 @@ This section describes how to make a release in 2 parts:
 1. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow was triggered by making the release, and that it was successful.
 1. Inspect the deployed github.io website [https://citation-file-format.github.io/cff-initializer-javascript/](https://citation-file-format.github.io/cff-initializer-javascript/).
 1. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly when the GitHub release was created.
-1. Go to Zenodo, log in, inspect the draft release. If all looks good, click "Publish" in Zenodo's frontend.
+1. Go to Zenodo and verify that the new DOI was created by zenodraft.
 
 ## References
 

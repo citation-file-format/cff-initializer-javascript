@@ -21,7 +21,7 @@ jobs:
           with:
             collection: 1404735
             metadata: .zenodo.json
-            publish: false
+            publish: true
             sandbox: false
             upsert-doi: true
             upsert-location: identifiers[0]

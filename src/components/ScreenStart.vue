@@ -1,5 +1,8 @@
 <template>
-    <h1 id="form-title">
+    <h1
+        id="form-title"
+        tabindex="-1"
+    >
         Start
     </h1>
 
@@ -40,7 +43,7 @@
         </template>
     </q-input>
     <q-input
-        aria-label="`Title of the ${ type }. Press tab to reach help button.`"
+        aria-label="Personalized message. Leave blank to use default. Press tab to reach help button."
         data-cy="input-message"
         label="Personalized message. Leave blank to use default"
         outlined

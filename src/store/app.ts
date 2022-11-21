@@ -38,6 +38,11 @@ const stepName = computed(() => stepNames.value[state.value.stepIndex])
 
 export const useApp = () => {
     const router = useRouter()
+    const focusFormTitle = () => {
+        const element = window.document.getElementById('form-title')
+        if (!element) return
+        element.focus()
+    }
     return {
         cannotGoBack: computed(() => state.value.stepIndex === firstStepIndex),
         cannotGoForward: computed(() => state.value.stepIndex === lastStepIndex.value),
@@ -58,17 +63,20 @@ export const useApp = () => {
         setStepName: async (newStepName: StepNameType) => {
             state.value.stepIndex = stepNames.value.indexOf(newStepName)
             await router.push({ path: `/${stepName.value}` })
+            focusFormTitle()
         },
         navigateNext: async () => {
             if (state.value.stepIndex < lastStepIndex.value) {
                 state.value.stepIndex++
                 await router.push({ path: `/${stepName.value}` })
+                focusFormTitle()
             }
         },
         navigatePrevious: async () => {
             if (state.value.stepIndex > firstStepIndex) {
                 state.value.stepIndex--
                 await router.push({ path: `/${stepName.value}` })
+                focusFormTitle()
             }
         },
         setShowAdvanced: (newShowAdvanced: boolean) => { state.value.showAdvanced = newShowAdvanced }

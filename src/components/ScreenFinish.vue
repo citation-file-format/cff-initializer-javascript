@@ -2,12 +2,14 @@
     <h1
         id="form-title"
         v-if="isValidCFF"
+        tabindex="-1"
     >
         Congratulations
     </h1>
     <h1
         id="form-title"
         v-else
+        tabindex="-1"
     >
         Uh-oh!
     </h1>

@@ -36,9 +36,6 @@ export default route((/* { store, ssrContext } */) => {
     Router.beforeEach((to) => {
         const { navigateDirect } = useApp()
         const newStepName = to.path.replace('/', '') as StepNameType
-        document.body.setAttribute('tabindex', '-1')
-        document.body.focus()
-        document.body.removeAttribute('tabindex')
         navigateDirect(newStepName)
     })
     return Router

@@ -173,7 +173,7 @@ This section describes how to make a release in 2 parts:
 1. Update the version in the [app footer](src/components/Footer.vue).
 1. Run `npm run lint` and make sure the linter does not complain.
 1. Run the unit tests with `npm run test:unit:ci`.
-1. Run the end-to-end tests with `npm run cypress:open`.
+1. Run the end-to-end tests with `npm run cypress:run`.
 1. Push any changes to GitHub, make a PR.
 1. Inspect the Netlify preview website.
 1. Review the PR and merge to the default branch `main`.

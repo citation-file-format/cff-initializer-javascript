@@ -5,81 +5,85 @@
     >
         Version specific
     </h1>
+    <p>
+        The values here identify a specific point in the work lifetime. Remember to update them, for instance, when making a new release.
+    </p>
 
-    <div class="q-gutter-md">
-        <q-input
-            aria-label="Commit identifier. Press tab to reach help button."
-            data-cy="input-commit"
-            label="Commit identifier"
-            outlined
-            standout
-            v-bind:model-value="commit"
-            v-on:update:modelValue="setCommit"
-        >
-            <template v-slot:after>
-                <InfoDialog name="commit" />
-            </template>
-        </q-input>
+    <q-input
+        aria-label="Commit identifier. Press tab to reach help button."
+        class="q-pb-md"
+        data-cy="input-commit"
+        label="Commit identifier"
+        outlined
+        standout
+        v-bind:model-value="commit"
+        v-on:update:modelValue="setCommit"
+    >
+        <template v-slot:after>
+            <InfoDialog name="commit" />
+        </template>
+    </q-input>
 
-        <q-input
-            aria-label="Version. Press tab to reach help button."
-            data-cy="input-version"
-            label="Version"
-            outlined
-            standout
-            v-bind:model-value="version"
-            v-on:update:modelValue="setVersion"
-        >
-            <template v-slot:after>
-                <InfoDialog name="version" />
-            </template>
-        </q-input>
+    <q-input
+        aria-label="Version. Press tab to reach help button."
+        class="q-pb-md"
+        data-cy="input-version"
+        label="Version"
+        outlined
+        standout
+        v-bind:model-value="version"
+        v-on:update:modelValue="setVersion"
+    >
+        <template v-slot:after>
+            <InfoDialog name="version" />
+        </template>
+    </q-input>
 
-        <q-input
-            aria-label="Release date. Press tab to reach help button."
-            hint="Format: YYYY-MM-DD"
-            data-cy="input-date-released"
-            label="Release date"
-            mask="####-##-##"
-            outlined
-            standout
-            today-btn="true"
-            v-bind:model-value="dateReleased"
-            v-bind:error="dateReleasedErrors.length > 0"
-            v-bind:error-message="dateReleasedErrors.join(', ')"
-            v-on:update:modelValue="setDateReleased"
-        >
-            <template v-slot:append>
-                <q-icon
-                    name="event"
-                    class="cursor-pointer"
+    <q-input
+        aria-label="Release date. Press tab to reach help button."
+        class="q-pb-md"
+        hint="Format: YYYY-MM-DD"
+        data-cy="input-date-released"
+        label="Release date"
+        mask="####-##-##"
+        outlined
+        standout
+        today-btn="true"
+        v-bind:model-value="dateReleased"
+        v-bind:error="dateReleasedErrors.length > 0"
+        v-bind:error-message="dateReleasedErrors.join(', ')"
+        v-on:update:modelValue="setDateReleased"
+    >
+        <template v-slot:append>
+            <q-icon
+                name="event"
+                class="cursor-pointer"
+            >
+                <q-popup-proxy
+                    transition-show="scale"
+                    transition-hide="scale"
                 >
-                    <q-popup-proxy
-                        transition-show="scale"
-                        transition-hide="scale"
+                    <q-date
+                        v-bind:model-value="dateReleased ? dateReleased : initializeDate()"
+                        v-on:update:modelValue="setDateReleased"
+                        mask="YYYY-MM-DD"
                     >
-                        <q-date
-                            v-bind:model-value="dateReleased ? dateReleased : initializeDate()"
-                            v-on:update:modelValue="setDateReleased"
-                            mask="YYYY-MM-DD"
-                        >
-                            <div class="row items-center justify-end">
-                                <q-btn
-                                    v-close-popup
-                                    label="Close"
-                                    color="primary"
-                                    flat
-                                />
-                            </div>
-                        </q-date>
-                    </q-popup-proxy>
-                </q-icon>
-            </template>
-            <template v-slot:after>
-                <InfoDialog name="dateReleased" />
-            </template>
-        </q-input>
-    </div>
+                        <div class="row items-center justify-end">
+                            <q-btn
+                                v-close-popup
+                                label="Close"
+                                color="primary"
+                                flat
+                            />
+                        </div>
+                    </q-date>
+                </q-popup-proxy>
+            </q-icon>
+        </template>
+        <template v-slot:after>
+            <InfoDialog name="dateReleased" />
+        </template>
+    </q-input>
 </template>
 
 <script lang="ts">

@@ -7,7 +7,7 @@
     </h1>
 
     <p>
-        What keywords describe the work?
+        You can add as many keywords as you want.
         <InfoDialog name="keywords" />
     </p>
     <div>

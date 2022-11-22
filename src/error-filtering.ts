@@ -55,7 +55,7 @@ export const authorsQueries: ErrorQuery[] = [{
         message: 'must NOT have fewer than 1 items'
     },
     replace: {
-        message: 'Use the button to add an author.'
+        message: 'Add at least one author.'
     }
 }, {
     find: {
@@ -73,7 +73,7 @@ export const dateReleasedQueries: ErrorQuery[] = [{
         schemaPath: '#/definitions/date/pattern'
     },
     replace: {
-        message: 'Use the YYYY-MM-DD format.'
+        message: 'Wrong format. Use YYYY-MM-DD.'
     }
 }]
 
@@ -114,7 +114,7 @@ export const emailQueries = (index: number) => {
             schemaPath: '#/definitions/email/pattern'
         },
         replace: {
-            message: 'Something like bob@gmail.com, akira@yahoo.co.jp, or t.achebe@live.org.za'
+            message: 'E-mail format is invalid'
         }
     }] as ErrorQuery[]
 }
@@ -128,7 +128,7 @@ export const identifierValueQueries = (index: number, typeIndex: number) => {
                     schemaPath: '#/definitions/doi/pattern'
                 },
                 replace: {
-                    message: 'e.g. \'10.5281/zenodo.1003149\' or \'10.7717/peerj-cs.86\'. Does not include the resolver URL.'
+                    message: 'DOI format is wrong. It should be like \'10.1234/zenodo.4321\'. Click the info button for details.'
                 }
             }
         ], [
@@ -138,7 +138,7 @@ export const identifierValueQueries = (index: number, typeIndex: number) => {
                     schemaPath: '#/definitions/url/pattern'
                 },
                 replace: {
-                    message: 'e.g. \'https://www.example.com\' (http, ftp, sftp hyperlinks are also supported)'
+                    message: 'URL format is wrong. Do not forget the URL resolver (http, etc.)'
                 }
             },
             {
@@ -147,7 +147,7 @@ export const identifierValueQueries = (index: number, typeIndex: number) => {
                     schemaPath: '#/definitions/url/format'
                 },
                 replace: {
-                    message: 'e.g. \'https://www.example.com\' (http, ftp, sftp hyperlinks are also supported)'
+                    message: 'URL format is wrong. Do not forget the URL resolver (http, etc.)'
                 }
             }
         ], [
@@ -157,7 +157,7 @@ export const identifierValueQueries = (index: number, typeIndex: number) => {
                     schemaPath: '#/definitions/swh-identifier/pattern'
                 },
                 replace: {
-                    message: 'e.g. \'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d\'. Besides \'rev\', other allowed values are: \'snp\', \'rel\', \'dir\', and \'cnt\'.'
+                    message: 'SWH format is wrong. Click the info button for details.'
                 }
             }
         ], [
@@ -167,7 +167,7 @@ export const identifierValueQueries = (index: number, typeIndex: number) => {
                     schemaPath: '#/anyOf/3/properties/value/minLength'
                 },
                 replace: {
-                    message: 'Zero-length identifier values are not allowed. Please type an identifier value or remove the identifier entirely.'
+                    message: 'Value cannot be empty.'
                 }
             }
         ]
@@ -191,7 +191,7 @@ export const keywordQueries = (index: number) => {
             schemaPath: '#/properties/keywords/items/minLength'
         },
         replace: {
-            message: 'Zero-length keywords are not allowed. Please type a keyword or remove the field entirely.'
+            message: 'Keyword cannot be empty.'
         }
     }] as ErrorQuery[]
 }
@@ -221,7 +221,7 @@ export const messageQueries: ErrorQuery[] = [{
         schemaPath: '#/properties/message/minLength'
     },
     replace: {
-        message: '\'message\' needs to be at least 1 character long.'
+        message: 'Message cannot be empty.'
     }
 }]
 
@@ -232,7 +232,7 @@ export const orcidQueries = (index: number) => {
             schemaPath: '#/definitions/orcid/pattern'
         },
         replace: {
-            message: 'Expected format is: https://orcid.org/0000-0000-0000-0000'
+            message: 'ORCID format is invalid'
         }
     }] as ErrorQuery[]
 }
@@ -381,7 +381,7 @@ export const titleQueries: ErrorQuery[] = [{
         schemaPath: '#/properties/title/minLength'
     },
     replace: {
-        message: '\'title\' needs to be at least 1 character long.'
+        message: 'Title cannot be empty.'
     }
 }]
 

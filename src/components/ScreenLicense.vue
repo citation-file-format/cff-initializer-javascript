@@ -5,6 +5,9 @@
     >
         License
     </h1>
+    <p>
+        Always add a license. Write in the input below to filter matching licenses.
+    </p>
 
     <q-select
         aria-label="License. Press tab to reach help button."

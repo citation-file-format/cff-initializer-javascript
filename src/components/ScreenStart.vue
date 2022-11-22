@@ -3,8 +3,11 @@
         id="form-title"
         tabindex="-1"
     >
-        Start
+        Basic information
     </h1>
+    <p>
+        Indicate whether your work is a software or a dataset, give it a title, and optionally change the default message.
+    </p>
 
     <fieldset
         class="q-mb-md"

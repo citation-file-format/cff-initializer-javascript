@@ -5,6 +5,9 @@
     >
         Abstract
     </h1>
+    <p>
+        Adding an abstract (short description) helps possible users know at a glance if this work is what they are looking for.
+    </p>
 
     <q-input
         aria-label="Abstract/Description of the work. Press tab to reach help button."

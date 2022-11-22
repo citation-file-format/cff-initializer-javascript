@@ -43,7 +43,7 @@
             <div class="row justify-center items-center q-pt-md q-mb-xl">
                 <div class="column items-center slide-up-animation">
                     <div style="font-size: 1.2rem">
-                        Generate your CITATION.cff now!
+                        Create your CITATION.cff now!
                     </div>
                     <q-btn
                         aria-label="Create your CITATION.cff file"

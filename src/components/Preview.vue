@@ -40,27 +40,29 @@
             </q-btn>
         </template>
     </q-input>
-    <div class="q-pt-lg text-left">
-        <p
+    <q-card
+        class="transparent"
+        flat
+    >
+        <q-card-section
             data-cy="text-validation-msg"
+            horizontal
         >
-            <q-icon
-                v-bind:class="isValidCFF ? 'text-primary' : 'text-negative'"
-                v-bind:name="isValidCFF ? 'ion-checkmark-circle' : 'warning'"
-                size="40px"
-            />
-            <span
-                v-if="doesNotHaveRequiredFields"
-            >
-                Your CITATION.cff does not have the minimum fields
-            </span>
-            <span
-                v-else
-            >
+            <q-card-actions>
+                <q-icon
+                    v-bind:class="isValidCFF ? 'text-primary' : 'text-negative'"
+                    v-bind:name="isValidCFF ? 'ion-checkmark-circle' : 'warning'"
+                    size="40px"
+                />
+            </q-card-actions>
+            <q-card-section v-if="doesNotHaveRequiredFields">
+                Your CITATION.cff does not have the minimum fields. Make sure the title has been filled and that at least one author was added.
+            </q-card-section>
+            <q-card-section v-else>
                 Your CITATION.cff is {{ isValidCFF ? "valid" : "not valid" }}
-            </span>
-        </p>
-    </div>
+            </q-card-section>
+        </q-card-section>
+    </q-card>
 </template>
 
 <script lang="ts">

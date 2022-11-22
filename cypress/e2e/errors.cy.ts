@@ -80,7 +80,7 @@ describe('From a fixed advanced app', () => {
             cy.checkThatStepperValidityIs(false, 'authors')
             cy.checkThatAppValidityIs(false)
             cy.dataCy('banner-error-messages')
-                .should('contain.text', 'Use the button to add an author')
+                .should('contain.text', 'Add at least one author')
             cy.dataCy('btn-add-author')
                 .click()
             cy.checkThatStepperValidityIs(true, 'authors')

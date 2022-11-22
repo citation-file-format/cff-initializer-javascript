@@ -183,11 +183,16 @@ export const helpData = {
             {
                 text: 'Documentation for doi.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsdoi'
+            },
+            {
+                text: 'Wikipedia page for DOI',
+                link: 'https://en.wikipedia.org/wiki/Digital_object_identifier'
             }
         ],
-        description: 'The DOI (https://en.wikipedia.org/wiki/Digital_object_identifier) of the work.',
+        description: 'The DOI of the work. Do not include the resolver URL.',
         examples: [
-            '10.5281/zenodo.1003150'
+            '10.5281/zenodo.1003150',
+            '10.7717/peerj-cs.86'
         ]
     },
     identifierOther: {
@@ -209,9 +214,13 @@ export const helpData = {
             {
                 text: 'Documentation for swh.',
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionsswh-identifier'
+            },
+            {
+                text: 'Software Heritage site.',
+                link: 'https://www.softwareheritage.org/'
             }
         ],
-        description: 'The Software Heritage identifier (https://www.softwareheritage.org/).',
+        description: 'The Software Heritage identifier. Besides \'rev\', other allowed values are: \'snp\', \'rel\', \'dir\', and \'cnt\'.',
         examples: [
             'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d'
         ]

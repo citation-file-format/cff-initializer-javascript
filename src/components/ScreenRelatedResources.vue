@@ -5,6 +5,9 @@
     >
         Related resources
     </h1>
+    <p>
+        The URLs in this section are the main entry point to your work.
+    </p>
 
     <q-input
         aria-label="Code repository. Press tab to reach help button."

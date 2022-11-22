@@ -7,7 +7,7 @@
     </h1>
 
     <p>
-        Who are the author(s) of the work?
+        Add all authors of the work. At least one must be provided.
         <InfoDialog name="authors" />
     </p>
     <div>

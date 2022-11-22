@@ -7,7 +7,7 @@
     </h1>
 
     <p>
-        What persistent identifiers are available for the work?
+        You can add persistent identifiers such as DOIs, Software Heritage numbers, or ArXiv URLs.
         <InfoDialog name="identifiers" />
     </p>
     <div>

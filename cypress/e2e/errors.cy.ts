@@ -1,7 +1,8 @@
 import { StepNameType } from 'src/store/app'
 
-const basicStepNames = ['start', 'authors'] as Array<StepNameType>
-const advancedStepNames = [
+const stepNames = [
+    'start',
+    'authors',
     'identifiers',
     'related-resources',
     'abstract',
@@ -9,7 +10,6 @@ const advancedStepNames = [
     'license',
     'version-specific'
 ] as Array<StepNameType>
-const allStepNames = [...basicStepNames, ...advancedStepNames]
 
 describe('On application start', () => {
     // Since the stepper is separate from the screen itself, it doesn't matter which screen we join
@@ -20,7 +20,7 @@ describe('On application start', () => {
             cy.checkThatStepperValidityIs(false, step)
         })
         // Future proofing, in case more steps add considered basic
-        allStepNames.filter(x => !stepsWithExpectedErrors.includes(x))
+        stepNames.filter(x => !stepsWithExpectedErrors.includes(x))
             .forEach((step) => {
                 cy.checkThatStepperValidityIs(true, step)
             })
@@ -32,7 +32,7 @@ describe('On application start', () => {
     })
 })
 
-describe('From a fixed advanced app', () => {
+describe('From a fixed app', () => {
     beforeEach(() => {
         cy.visit('/start')
         cy.dataCy('input-title')
@@ -43,7 +43,7 @@ describe('From a fixed advanced app', () => {
         cy.visit('/identifiers')
     })
     it('should have no errors', () => {
-        allStepNames.forEach((step) => {
+        stepNames.forEach((step) => {
             cy.checkThatStepperValidityIs(true, step)
             cy.checkThatAppValidityIs(true)
         })

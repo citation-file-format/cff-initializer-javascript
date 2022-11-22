@@ -15,14 +15,7 @@
     </h1>
 
     <div v-if="isValidCFF">
-        <p
-            v-if="!showAdvanced"
-        >
-            You now have a minimal CITATION.cff file. Use the buttons below to download your CITATION.cff file, continue adding more properties, or reset the form.
-        </p>
-        <p
-            v-else
-        >
+        <p>
             Use the buttons below to download your CITATION.cff file, or reset the form to start over.
         </p>
         <p>
@@ -30,17 +23,6 @@
         </p>
         <div class="row q-gutter-md justify-center">
             <DownloadButton />
-            <q-btn
-                v-if="!showAdvanced"
-                class="rounded-borders bg-primary text-white"
-                data-cy="btn-add-more"
-                icon="workspace_premium"
-                label="Add more fields"
-                no-caps
-                size="xl"
-                to="/identifiers"
-                v-on:click="setupAdvanced"
-            />
         </div>
         <div class="row justify-center">
             <q-btn
@@ -73,7 +55,7 @@ export default defineComponent({
         DownloadButton
     },
     setup () {
-        const { setStepName, setShowAdvanced, showAdvanced } = useApp()
+        const { setStepName } = useApp()
         const { reset: resetCffData } = useCff()
         const { errors } = useValidation()
         const q = useQuasar()
@@ -86,16 +68,10 @@ export default defineComponent({
                     persistent: true
                 }).onOk(() => {
                     resetCffData()
-                    setShowAdvanced(false)
                     void setStepName('start')
                 })
             },
-            isValidCFF: computed(() => errors.value.length === 0),
-            setupAdvanced: async () => {
-                setShowAdvanced(true)
-                await setStepName('identifiers')
-            },
-            showAdvanced
+            isValidCFF: computed(() => errors.value.length === 0)
         }
     }
 })

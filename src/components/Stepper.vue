@@ -3,6 +3,7 @@
         <q-stepper
             animated
             class="transparent"
+            active-color="dark"
             done-color="primary"
             error-color="negative"
             inactive-color="grey-7"
@@ -13,12 +14,12 @@
         >
             <q-step
                 v-for="(step, stepIndex) in stepNames"
-                v-bind:active-icon="activeIcon(errorPerStep[step].value, step)"
+                v-bind:active-icon="activeIcon(currentStepIndex > stepIndex && errorPerStep[step].value, step)"
                 v-bind:aria-label="toLabel(step)"
-                v-bind:caption="stepIndex < 2 ? 'required' : ''"
+                v-bind:caption="stepIndex < 2 ? 'required' : 'optional'"
                 v-bind:data-cy="`step-${step}`"
                 v-bind:done="currentStepIndex > stepIndex"
-                v-bind:error="errorPerStep[step].value"
+                v-bind:error="currentStepIndex > stepIndex && errorPerStep[step].value"
                 v-bind:key="step"
                 v-bind:name="step"
                 v-bind:order="stepIndex"

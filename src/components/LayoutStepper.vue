@@ -46,6 +46,7 @@
                         <form
                             class="col column"
                             id="form"
+                            v-on:submit.prevent
                         >
                             <div id="form-content">
                                 <router-view />

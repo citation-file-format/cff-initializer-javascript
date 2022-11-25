@@ -4,10 +4,6 @@ import { useRouter } from 'vue-router'
 export type StepNameType = 'start' | 'authors' | 'identifiers' | 'related-resources' |
                     'abstract' | 'keywords' | 'license' | 'version-specific' | 'finish'
 
-const state = ref({
-    stepIndex: 0
-})
-
 const stepNames = [
     'start',
     'authors',
@@ -19,6 +15,11 @@ const stepNames = [
     'version-specific',
     'finish'
 ] as Array<StepNameType>
+
+const state = ref({
+    stepIndex: 0,
+    screenVisited: Array(stepNames.length).fill(false) as Array<boolean>
+})
 
 const firstStepIndex = 0
 
@@ -32,6 +33,11 @@ export const useApp = () => {
         if (!element) return
         element.focus()
     }
+    const visitScreen = (screenName: StepNameType) => {
+        for (let i = 0; i <= stepNames.indexOf(screenName); i++) {
+            state.value.screenVisited[i] = true
+        }
+    }
     return {
         cannotGoBack: computed(() => state.value.stepIndex === firstStepIndex),
         cannotGoForward: computed(() => state.value.stepIndex === lastStepIndex.value),
@@ -44,15 +50,12 @@ export const useApp = () => {
                 return
             }
             state.value.stepIndex = stepNames.indexOf(newStepName)
-        },
-        setStepName: async (newStepName: StepNameType) => {
-            state.value.stepIndex = stepNames.indexOf(newStepName)
-            await router.push({ path: `/${stepName.value}` })
-            focusFormTitle()
+            visitScreen(newStepName)
         },
         navigateNext: async () => {
             if (state.value.stepIndex < lastStepIndex.value) {
                 state.value.stepIndex++
+                visitScreen(stepName.value)
                 await router.push({ path: `/${stepName.value}` })
                 focusFormTitle()
             }
@@ -60,9 +63,23 @@ export const useApp = () => {
         navigatePrevious: async () => {
             if (state.value.stepIndex > firstStepIndex) {
                 state.value.stepIndex--
+                visitScreen(stepName.value)
                 await router.push({ path: `/${stepName.value}` })
                 focusFormTitle()
             }
+        },
+        resetState: () => {
+            state.value.stepIndex = 0
+            state.value.screenVisited.fill(false)
+        },
+        screenVisited: (screenName: StepNameType) => {
+            return state.value.screenVisited[stepNames.indexOf(screenName)]
+        },
+        setStepName: async (newStepName: StepNameType) => {
+            state.value.stepIndex = stepNames.indexOf(newStepName)
+            visitScreen(stepName.value)
+            await router.push({ path: `/${stepName.value}` })
+            focusFormTitle()
         }
     }
 }

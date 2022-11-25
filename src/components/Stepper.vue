@@ -18,8 +18,8 @@
                 v-bind:aria-label="toLabel(step)"
                 v-bind:caption="stepIndex < 2 ? 'required' : 'optional'"
                 v-bind:data-cy="`step-${step}`"
-                v-bind:done="currentStepIndex > stepIndex"
-                v-bind:error="currentStepIndex > stepIndex && errorPerStep[step].value"
+                v-bind:done="screenVisited(step) && !errorPerStep[step].value"
+                v-bind:error="currentStepIndex != stepIndex && screenVisited(step) && errorPerStep[step].value"
                 v-bind:key="step"
                 v-bind:name="step"
                 v-bind:order="stepIndex"
@@ -49,7 +49,7 @@ import { useValidation } from 'src/store/validation'
 
 export default {
     setup () {
-        const { currentStepIndex, stepName, setStepName, stepNames } = useApp()
+        const { currentStepIndex, screenVisited, stepName, setStepName, stepNames } = useApp()
         const { errors } = useValidation()
         const toLabel = (name: string) => {
             if (name === 'start') { // Exception
@@ -110,6 +110,7 @@ export default {
             },
             currentStepIndex,
             errorPerStep,
+            screenVisited,
             setStepName,
             stepName,
             stepNames,

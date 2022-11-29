@@ -14,17 +14,18 @@
         >
             <q-step
                 v-for="(step, stepIndex) in stepNames"
-                v-bind:active-icon="activeIcon(currentStepIndex > stepIndex && errorPerStep[step].value, step)"
+                v-bind:active-icon="step === 'finish' ? 'done' : 'edit'"
                 v-bind:aria-label="toLabel(step)"
                 v-bind:caption="stepIndex < 2 ? 'required' : (step !== 'finish' ? 'optional' : '')"
                 v-bind:data-cy="`step-${step}`"
                 v-bind:done="screenVisited(step) && !errorPerStep[step].value"
                 v-bind:error="currentStepIndex != stepIndex && screenVisited(step) && errorPerStep[step].value"
+                v-bind:header-nav="stepIndex !== currentStepIndex && screenVisited(step) && !anyErrorBetween('start', step)"
                 v-bind:key="step"
                 v-bind:name="step"
                 v-bind:order="stepIndex"
                 v-bind:title="toLabel(step)"
-                v-on:click="setStepName(step)"
+                v-on:click="onStepClick(step)"
                 v-on:keyup.enter="setStepName(step)"
             />
         </q-stepper>
@@ -33,82 +34,58 @@
 
 <script lang="ts">
 
-import { ComputedRef, computed } from 'vue'
 import { StepNameType, useApp } from 'src/store/app'
-import {
-    byError,
-    instancePathStartsWithMatcher,
-    screenAuthorQueries,
-    screenIdentifiersQueries,
-    screenKeywordsQueries,
-    screenRelatedResourcesQueries,
-    screenStartQueries,
-    screenVersionSpecificQueries
-} from 'src/error-filtering'
-import { useValidation } from 'src/store/validation'
+import { errorPerStep } from 'src/store/stepper-errors'
+import { useQuasar } from 'quasar'
 
 export default {
     setup () {
         const { currentStepIndex, screenVisited, stepName, setStepName, stepNames } = useApp()
-        const { errors } = useValidation()
+        const $q = useQuasar()
+        const anyErrorBetween = (stepA: StepNameType, stepB: StepNameType) => {
+            const stepIndexA = stepNames.indexOf(stepA)
+            const stepIndexB = stepNames.indexOf(stepB)
+            return stepNames.slice(stepIndexA, stepIndexB)
+                .map((step) => errorPerStep[step].value)
+                .reduce((result, errorOnStep) => result || errorOnStep, false)
+        }
         const toLabel = (name: string) => {
             if (name === 'start') { // Exception
-                return 'Basic information'
+                return 'Basic Information'
             }
             return name.split('-').map((s) => s.slice(0, 1).toUpperCase() + s.slice(1)).join(' ')
         }
-        const errorStateScreenAuthors = computed(() => {
-            return screenAuthorQueries
-                .filter(byError(errors.value, instancePathStartsWithMatcher))
-                .length > 0
-        })
-        const errorStateScreenIdentifiers = computed(() => {
-            return screenIdentifiersQueries
-                .filter(byError(errors.value, instancePathStartsWithMatcher))
-                .length > 0
-        })
-        const errorStateScreenKeywords = computed(() => {
-            return screenKeywordsQueries
-                .filter(byError(errors.value, instancePathStartsWithMatcher))
-                .length > 0
-        })
-        const errorStateScreenRelatedResources = computed(() => {
-            return screenRelatedResourcesQueries
-                .filter(byError(errors.value, instancePathStartsWithMatcher))
-                .length > 0
-        })
-        const errorStateScreenStart = computed(() => {
-            return screenStartQueries
-                .filter(byError(errors.value)) // One of the possible errors is instancePath == '', so we use a traditional approach here
-                .length > 0
-        })
-        const errorStateScreenVersionSpecific = computed(() => {
-            return screenVersionSpecificQueries
-                .filter(byError(errors.value, instancePathStartsWithMatcher))
-                .length > 0
-        })
-        const errorPerStep: Record<StepNameType, ComputedRef<boolean>> = {
-            start: errorStateScreenStart,
-            authors: errorStateScreenAuthors,
-            identifiers: errorStateScreenIdentifiers,
-            'related-resources': errorStateScreenRelatedResources,
-            abstract: computed(() => false),
-            keywords: errorStateScreenKeywords,
-            license: computed(() => false),
-            'version-specific': errorStateScreenVersionSpecific,
-            finish: computed(() => false)
-        }
         return {
-            activeIcon: (hasError: boolean, step: StepNameType) => {
-                if (hasError) {
-                    return 'warning'
-                } else if (step === 'finish' && errors.value.length === 0) {
-                    return 'done'
-                } else {
-                    return 'edit'
+            anyErrorBetween,
+            currentStepIndex,
+            onStepClick: (step: StepNameType) => {
+                const curIndex = currentStepIndex.value
+                const clickIndex = stepNames.indexOf(step)
+                if ( // Only allow clicking on stepper if
+                    step !== stepName.value && // it is not the current step
+                    screenVisited(step) && // it is not a new screen
+                    ( // don't skip errors when moving forward
+                        curIndex > clickIndex || // it is going back (up); OR
+                        (
+                            !errorPerStep[stepName.value].value && // it is not leaving an erroring screen
+                            !anyErrorBetween(stepName.value, step) // not skipping intermediary erroring screens if going forward
+                        )
+                    )
+                ) {
+                    void setStepName(step)
+                } else if ( // Can't skip erroring screens
+                    curIndex < clickIndex &&
+                    anyErrorBetween(stepName.value, step)
+                ) {
+                    const firstStepWithError = stepNames.filter((step) => errorPerStep[step].value)[0]
+                    $q.notify({
+                        message: `Fix error in "${toLabel(firstStepWithError)}" before proceeding`,
+                        color: 'negative',
+                        progress: true,
+                        timeout: 1200
+                    })
                 }
             },
-            currentStepIndex,
             errorPerStep,
             screenVisited,
             setStepName,

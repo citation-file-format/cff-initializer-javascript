@@ -22,21 +22,6 @@
                 <q-tooltip class="bg-primary text-subtitle2">
                     Copy to clipboard
                 </q-tooltip>
-                <q-tooltip
-                    anchor="center left"
-                    self="center right"
-                    v-bind:offset="[10, 10]"
-                    no-parent-event
-                    v-bind:model-value="showTooltip"
-                    class="text-subtitle2"
-                >
-                    Copied
-                    <q-icon
-                        size="md"
-                        name="check"
-                        class="text-positive"
-                    />
-                </q-tooltip>
             </q-btn>
         </template>
     </q-input>
@@ -66,8 +51,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useCffstr } from 'src/store/cffstr'
+import { useQuasar } from 'quasar'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -82,13 +68,19 @@ export default defineComponent({
     setup () {
         const { cffstr } = useCffstr()
         const { errors } = useValidation()
-        const showTooltip = ref(false)
+        const $q = useQuasar()
 
         const copyToClipboard = async () => {
             await navigator.clipboard.writeText(cffstr.value)
-            showTooltip.value = true
-            await new Promise(resolve => setTimeout(resolve, 3000))
-            showTooltip.value = false
+            $q.notify({
+                message: 'CITATION.cff copied!',
+                color: 'primary',
+                progress: true,
+                timeout: 800,
+                actions: [
+                    { label: 'Dismiss', color: 'white' }
+                ]
+            })
         }
 
         return {
@@ -97,8 +89,7 @@ export default defineComponent({
             doesNotHaveRequiredFields: computed(() => errors.value
                 .map((v) => v.instancePath)
                 .some((i) => i.includes('title') || i.includes('authors') || i.includes('message'))),
-            isValidCFF: computed(() => errors.value.length === 0),
-            showTooltip
+            isValidCFF: computed(() => errors.value.length === 0)
         }
     }
 })

@@ -117,7 +117,8 @@ module.exports = configure(function () {
 
             // Quasar plugins
             plugins: [
-                'Dialog'
+                'Dialog',
+                'Notify'
             ]
         },
 

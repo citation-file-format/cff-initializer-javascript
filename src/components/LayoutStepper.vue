@@ -20,9 +20,7 @@
                     Skip to {{ skipLink.where }}
                 </a>
             </div>
-            <Header
-                v-bind:show-open-preview-button="isPreviewDrawer"
-            />
+            <Header />
         </q-header>
 
         <q-page-container>

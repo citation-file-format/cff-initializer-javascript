@@ -26,7 +26,8 @@ export const useCffstr = () => {
         title,
         type,
         url,
-        version
+        version,
+        extraCffFields
     } = useCff()
 
     const notEmpty = (value: unknown, prop: unknown, subject: unknown) => {
@@ -59,9 +60,9 @@ export const useCffstr = () => {
 
     const makeCffstr = () => {
         const kebabed = makeJavascriptObject()
-        const yamlString = yaml.dump(kebabed, { indent: 2, lineWidth: 53 })
+        const yamlString = yaml.dump(kebabed, { indent: 2, lineWidth: 60 })
         const generatedBy = '# This CITATION.cff file was generated with cffinit.\n# Visit https://bit.ly/cffinit to generate yours today!\n\n'
-        return generatedBy + yamlString
+        return generatedBy + yamlString + extraCffFields.value
     }
     return {
         jsObject: computed(makeJavascriptObject),

@@ -336,13 +336,6 @@ export const screenRelatedResourcesQueries: ErrorQuery[] = [{
 
 export const screenStartQueries: ErrorQuery[] = [{
     find: {
-        instancePath: ''
-    },
-    replace: {
-        message: 'Screen Start has errors'
-    }
-}, {
-    find: {
         instancePath: '/title'
     },
     replace: {

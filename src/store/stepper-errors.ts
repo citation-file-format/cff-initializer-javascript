@@ -54,5 +54,6 @@ export const errorPerStep = {
     keywords: errorStateScreenKeywords,
     license: computed(() => false),
     'version-specific': errorStateScreenVersionSpecific,
+    'extra-cff-fields': computed(() => errors.value.length > 0),
     finish: computed(() => false)
 }

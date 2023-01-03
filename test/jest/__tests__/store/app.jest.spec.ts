@@ -29,7 +29,8 @@ describe('useApp', () => {
         'abstract',
         'keywords',
         'license',
-        'version-specific'
+        'version-specific',
+        'extra-cff-fields'
     ] as Array<StepNameType>
 
     beforeEach(() => {

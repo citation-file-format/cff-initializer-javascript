@@ -23,6 +23,7 @@ const getInitialData = () => {
 }
 
 const cff = ref(getInitialData())
+const extraCffFields = ref('')
 
 export const useCff = () => {
     return {
@@ -31,6 +32,7 @@ export const useCff = () => {
         commit: computed(() => cff.value.commit),
         cffVersion: computed(() => cff.value.cffVersion),
         dateReleased: computed(() => cff.value.dateReleased),
+        extraCffFields: computed(() => extraCffFields.value),
         identifiers: computed(() => cff.value.identifiers),
         keywords: computed(() => cff.value.keywords),
         license: computed(() => cff.value.license),
@@ -46,6 +48,7 @@ export const useCff = () => {
         setAuthors: (newAuthors: AuthorsType) => { cff.value.authors = newAuthors },
         setCommit: (newCommit: string) => { cff.value.commit = newCommit === '' ? undefined : newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.dateReleased = newDateReleased === '' ? undefined : newDateReleased },
+        setExtraCffFields: (newExtraCffFields: string) => { extraCffFields.value = newExtraCffFields },
         setIdentifiers: (newIdentifiers: IdentifiersType) => { cff.value.identifiers = newIdentifiers === [] ? undefined : newIdentifiers },
         setKeywords: (newKeywords: KeywordsType) => { cff.value.keywords = newKeywords === [] ? undefined : newKeywords },
         setLicense: (newLicense: string) => { cff.value.license = newLicense === '' ? undefined : newLicense },
@@ -59,6 +62,7 @@ export const useCff = () => {
         setVersion: (newVersion: string) => { cff.value.version = newVersion === '' ? undefined : newVersion },
         reset: () => {
             cff.value = getInitialData()
+            extraCffFields.value = ''
         }
     }
 }

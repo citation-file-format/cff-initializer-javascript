@@ -36,7 +36,12 @@ const fullValidCff = {
     license: 'Apache-2.0',
     commit: '123',
     version: 'v1.2.3',
-    'date-released': '2022-01-01'
+    'date-released': '2022-01-01',
+    'preferred-citation': {
+        authors: [{ 'given-names': 'Some', 'family-names': 'Body' }],
+        title: 'The Paper',
+        type: 'article'
+    }
 }
 
 describe('Basic usage', () => {
@@ -222,6 +227,13 @@ describe('Basic usage', () => {
             .type('v1.2.3')
         cy.dataCy('input-date-released')
             .type('2022-01-01')
+        cy.dataCy('btn-next')
+            .click()
+
+        // Extra CFF fields screen
+        cy.url().should('include', '/extra-cff-fields')
+        cy.dataCy('input-extra-cff-fields')
+            .type('preferred-citation:\n  authors:\n  - given-names: Some\n    family-names: Body\n  title: The Paper\n  type: article')
         cy.dataCy('btn-next')
             .click()
 

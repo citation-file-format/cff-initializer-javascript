@@ -2,7 +2,7 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export type StepNameType = 'start' | 'authors' | 'identifiers' | 'related-resources' |
-                    'abstract' | 'keywords' | 'license' | 'version-specific' | 'finish'
+                    'abstract' | 'keywords' | 'license' | 'version-specific' | 'extra-cff-fields' | 'finish'
 
 const stepNames = [
     'start',
@@ -13,6 +13,7 @@ const stepNames = [
     'keywords',
     'license',
     'version-specific',
+    'extra-cff-fields',
     'finish'
 ] as Array<StepNameType>
 

@@ -16,7 +16,7 @@
                 v-for="(step, stepIndex) in stepNames"
                 v-bind:active-icon="activeIcon(currentStepIndex > stepIndex && errorPerStep[step].value, step)"
                 v-bind:aria-label="toLabel(step)"
-                v-bind:caption="stepIndex < 2 ? 'required' : 'optional'"
+                v-bind:caption="stepIndex < 2 ? 'required' : (step !== 'finish' ? 'optional' : '')"
                 v-bind:data-cy="`step-${step}`"
                 v-bind:done="screenVisited(step) && !errorPerStep[step].value"
                 v-bind:error="currentStepIndex != stepIndex && screenVisited(step) && errorPerStep[step].value"

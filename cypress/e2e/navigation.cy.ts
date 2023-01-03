@@ -72,7 +72,7 @@ describe('App navigation', () => {
             .should('not.be.disabled')
     })
 
-    it.only('should not allow download if there are errors', () => {
+    it('should not allow download if there are errors', () => {
         cy.visit('/start')
         cy.dataCy('btn-download')
             .should('not.be.enabled')

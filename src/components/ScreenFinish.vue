@@ -55,7 +55,7 @@ export default defineComponent({
         DownloadButton
     },
     setup () {
-        const { setStepName } = useApp()
+        const { setStepName, resetState } = useApp()
         const { reset: resetCffData } = useCff()
         const { errors } = useValidation()
         const q = useQuasar()
@@ -68,6 +68,7 @@ export default defineComponent({
                     persistent: true
                 }).onOk(() => {
                     resetCffData()
+                    resetState()
                     void setStepName('start')
                 })
             },

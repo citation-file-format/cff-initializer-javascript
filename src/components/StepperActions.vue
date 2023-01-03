@@ -21,7 +21,7 @@
             label="Finish"
             no-caps
             to="/finish"
-            v-bind:class="!showAdvanced || cannotGoForward ? 'hidden' : ''"
+            v-bind:class="cannotGoForward ? 'hidden' : ''"
             v-on:click="setStepName('finish')"
         />
         <q-btn
@@ -46,15 +46,14 @@ export default defineComponent({
     name: 'StepperActions',
 
     setup () {
-        const { cannotGoBack, cannotGoForward, navigateNext, navigatePrevious, setStepName, showAdvanced } = useApp()
+        const { cannotGoBack, cannotGoForward, navigateNext, navigatePrevious, setStepName } = useApp()
 
         return {
             cannotGoBack,
             cannotGoForward,
             navigateNext,
             navigatePrevious,
-            setStepName,
-            showAdvanced
+            setStepName
         }
     }
 

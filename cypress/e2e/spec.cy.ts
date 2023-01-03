@@ -70,7 +70,9 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish screen (minimum version)
+        // Finish screen
+        cy.dataCy('btn-finish')
+            .click()
         cy.url().should('include', '/finish')
         cy.dataCy('btn-download')
             .click()
@@ -122,11 +124,6 @@ describe('Basic usage', () => {
         cy.dataCy('btn-done')
             .click()
         cy.dataCy('btn-next')
-            .click()
-
-        // Finish screen (minimum version)
-        cy.url().should('include', '/finish')
-        cy.dataCy('btn-add-more')
             .click()
 
         // Identifiers screen
@@ -228,7 +225,7 @@ describe('Basic usage', () => {
         cy.dataCy('btn-next')
             .click()
 
-        // Finish screen (advanced version)
+        // Finish screen
         cy.url().should('include', '/finish')
         cy.dataCy('btn-download')
             .click()

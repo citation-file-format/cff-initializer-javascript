@@ -1,7 +1,8 @@
 import { StepNameType } from 'src/store/app'
 
-const basicStepNames = ['start', 'authors'] as Array<StepNameType>
-const advancedStepNames = [
+const stepNames = [
+    'start',
+    'authors',
     'identifiers',
     'related-resources',
     'abstract',
@@ -9,7 +10,6 @@ const advancedStepNames = [
     'license',
     'version-specific'
 ] as Array<StepNameType>
-const allStepNames = [...basicStepNames, ...advancedStepNames]
 
 describe('App navigation', () => {
     it('should be able to go back through the logo button', () => {
@@ -18,49 +18,7 @@ describe('App navigation', () => {
             .click()
         cy.url().then((e) => expect(e.endsWith('#/')).to.be.true)
     })
-    describe('during basic mode', () => {
-        it(`should have ${basicStepNames.length + 1} steps on stepper`, () => {
-            cy.visit('/start')
-            cy.get('.q-stepper__tab')
-                .should('have.length', basicStepNames.length + 1)
-        })
-        it('should allow navigation using next/previous', () => {
-            cy.visit('/start')
-            cy.dataCy('btn-previous')
-                .should('not.be.visible')
-            basicStepNames.forEach((step) => {
-                cy.url().should('include', `/${step}`)
-                cy.dataCy('btn-next')
-                    .click()
-                cy.dataCy('btn-previous')
-                    .should('be.visible')
-            })
-            cy.url().should('include', '/finish')
-            cy.dataCy('btn-next')
-                .should('not.be.visible')
-            Array.from(basicStepNames).reverse().forEach((step) => {
-                cy.dataCy('btn-previous')
-                    .click()
-                cy.url().should('include', `/${step}`)
-                cy.dataCy('btn-next')
-                    .should('be.visible')
-            })
-            cy.url().should('include', '/start')
-            cy.dataCy('btn-previous')
-                .should('not.be.visible')
-        })
-        it('should be navigable through the stepper', () => {
-            ['finish', ...basicStepNames, ...[...basicStepNames].reverse()].forEach((step) => {
-                cy.visit(step === 'start' ? '/authors' : `/${step}`)
-                cy.dataCy(`step-${step}`)
-                    .click()
-                cy.url()
-                    .should('contain', `/${step}`)
-            })
-        })
-    })
-
-    describe('during advanced mode', () => {
+    describe('basic checks', () => {
         beforeEach(() => {
             cy.visit('/start')
             cy.dataCy('input-title')
@@ -68,20 +26,17 @@ describe('App navigation', () => {
             cy.visit('/authors')
             cy.dataCy('btn-add-author')
                 .click()
-            cy.visit('/finish')
-            cy.dataCy('btn-add-more')
-                .click()
         })
-        it(`should have ${allStepNames.length + 1} steps on stepper`, () => {
+        it(`should have ${stepNames.length + 1} steps on stepper`, () => {
             cy.visit('/start')
             cy.get('.q-stepper__tab')
-                .should('have.length', allStepNames.length + 1)
+                .should('have.length', stepNames.length + 1)
         })
         it('should allow navigation using next/previous ', () => {
             cy.visit('/start')
             cy.dataCy('btn-previous')
                 .should('not.be.visible')
-            allStepNames.forEach((step) => {
+            stepNames.forEach((step) => {
                 cy.url().should('include', `/${step}`)
                 cy.dataCy('btn-next')
                     .click()
@@ -91,7 +46,7 @@ describe('App navigation', () => {
             cy.url().should('include', '/finish')
             cy.dataCy('btn-next')
                 .should('not.be.visible')
-            Array.from(allStepNames).reverse().forEach((step) => {
+            Array.from(stepNames).reverse().forEach((step) => {
                 cy.dataCy('btn-previous')
                     .click()
                 cy.url().should('include', `/${step}`)
@@ -103,7 +58,7 @@ describe('App navigation', () => {
                 .should('not.be.visible')
         })
         it('should be navigable through the stepper', () => {
-            ['finish', ...allStepNames, ...[...allStepNames].reverse()].forEach((step) => {
+            ['finish', ...stepNames, ...[...stepNames].reverse()].forEach((step) => {
                 cy.visit(step === 'start' ? '/authors' : `/${step}`)
                 cy.dataCy(`step-${step}`)
                     .click()
@@ -113,7 +68,7 @@ describe('App navigation', () => {
         })
         describe('if there are no errors', () => {
             it('should jump from step to finish when finish is clicked', () => {
-                allStepNames.forEach((step) => {
+                stepNames.forEach((step) => {
                     cy.visit(`/${step}`)
                     // The next test is just to make sure the page loaded without using cy.wait
                     cy.get('#form-title').should('not.contain', 'Congratulations')
@@ -128,47 +83,18 @@ describe('App navigation', () => {
     })
 
     describe('while navigating directly to a page', () => {
-        it(`should have ${allStepNames.length + 1} steps and visible finish/next/previous`, () => {
-            advancedStepNames.forEach((step) => {
+        it(`should have ${stepNames.length + 1} steps and visible finish/next/previous`, () => {
+            stepNames.forEach((step) => {
                 cy.visit(`/${step}`)
                 cy.get('.q-stepper__tab')
-                    .should('have.length', allStepNames.length + 1)
+                    .should('have.length', stepNames.length + 1)
                 cy.dataCy('btn-finish')
                     .should('be.visible')
                 cy.dataCy('btn-next')
                     .should('be.visible')
                 cy.dataCy('btn-previous')
-                    .should('be.visible')
+                    .should((step === 'start' ? 'not.' : '') + 'be.visible')
             })
-        })
-        it(`should have ${basicStepNames.length + 1} steps, visible next/previous, and hidden finish`, () => {
-            basicStepNames.forEach((step) => {
-                cy.visit(`/${step}`)
-                cy.get('.q-stepper__tab')
-                    .should('have.length', basicStepNames.length + 1)
-                cy.dataCy('btn-finish')
-                    .should('not.be.visible')
-                cy.dataCy('btn-next')
-                    .should('be.visible')
-                if (step === 'start') {
-                    cy.dataCy('btn-previous')
-                        .should('not.be.visible')
-                } else {
-                    cy.dataCy('btn-previous')
-                        .should('be.visible')
-                }
-            })
-        })
-        it(`should have ${basicStepNames.length + 1} steps, visible previous, hidden next/finish for step finish`, () => {
-            cy.visit('/finish')
-            cy.get('.q-stepper__tab')
-                .should('have.length', basicStepNames.length + 1)
-            cy.dataCy('btn-finish')
-                .should('not.be.visible')
-            cy.dataCy('btn-next')
-                .should('not.be.visible')
-            cy.dataCy('btn-previous')
-                .should('be.visible')
         })
     })
 

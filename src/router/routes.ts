@@ -50,6 +50,11 @@ const routes: RouteRecordRaw[] = [
         children: [{ path: '', component: () => import('src/components/ScreenVersionSpecific.vue') }]
     },
     {
+        path: '/extra-cff-fields',
+        component: () => import('src/components/LayoutStepper.vue'),
+        children: [{ path: '', component: () => import('src/components/ScreenExtraCffFields.vue') }]
+    },
+    {
         path: '/finish',
         component: () => import('src/components/LayoutStepper.vue'),
         children: [{ path: '', component: () => import('src/components/ScreenFinish.vue') }]

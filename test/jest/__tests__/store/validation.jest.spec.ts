@@ -128,5 +128,20 @@ describe('useValidation', () => {
                 expect(errors.value[0].schemaPath).toEqual('#/definitions/url/format')
             })
         }
+        test('bad YAML in extra CFF', () => {
+            cff.setExtraCffFields('a: -')
+            expect(errors.value[0].keyword).toEqual('Extra CFF Fields error')
+            expect(errors.value[0].message).toContain('end of the stream')
+        })
+        test('wrong extra field in extra CFF', () => {
+            cff.setExtraCffFields('extra: field')
+            expect(errors.value[0].keyword).toEqual('additionalProperties')
+        })
+        test('preferred-citation missing title', () => {
+            cff.setExtraCffFields('preferred-citation:\n  authors: [{}]\n  type: article')
+            expect(errors.value.length).toBe(1)
+            expect(errors.value[0].instancePath).toEqual('/preferred-citation')
+            expect(errors.value[0].message).toEqual("must have required property 'title'")
+        })
     })
 })

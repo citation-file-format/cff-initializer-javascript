@@ -8,7 +8,8 @@ const stepNames = [
     'abstract',
     'keywords',
     'license',
-    'version-specific'
+    'version-specific',
+    'extra-cff-fields'
 ] as Array<StepNameType>
 
 describe('App navigation', () => {

@@ -42,19 +42,34 @@
             </div>
             <div class="row justify-center items-center q-pt-md q-mb-xl">
                 <div class="column items-center slide-up-animation">
-                    <div style="font-size: 1.2rem">
-                        Create your CITATION.cff now!
+                    <div
+                        class="q-mb-md"
+                        style="font-size: 1.2rem"
+                    >
+                        Create your CITATION.cff now, or start from an existing file!
                     </div>
-                    <q-btn
-                        aria-label="Create your CITATION.cff file"
-                        class="start-button bg-primary"
-                        data-cy="btn-create"
-                        label="Create"
-                        icon="add"
-                        no-caps
-                        size="xl"
-                        to="/start"
-                    />
+                    <div class="justify-center q-gutter-md">
+                        <q-btn
+                            aria-label="Create your CITATION.cff file"
+                            class="start-button bg-primary"
+                            data-cy="btn-create"
+                            label="Create"
+                            icon="add"
+                            no-caps
+                            size="xl"
+                            to="/start"
+                        />
+                        <q-btn
+                            aria-label="Update your CITATION.cff file"
+                            class="start-button bg-primary"
+                            data-cy="btn-update"
+                            label="Update"
+                            icon="edit"
+                            no-caps
+                            size="xl"
+                            to="/update"
+                        />
+                    </div>
                 </div>
             </div>
             <span class="text-right text-black text-body1">

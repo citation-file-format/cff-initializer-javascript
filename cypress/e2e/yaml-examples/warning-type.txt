@@ -1,0 +1,1 @@
+Invalid type 'potato'. Using 'software' instead.

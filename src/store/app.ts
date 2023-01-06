@@ -81,6 +81,7 @@ export const useApp = () => {
             visitScreen(stepName.value)
             await router.push({ path: `/${stepName.value}` })
             focusFormTitle()
-        }
+        },
+        visitScreen
     }
 }

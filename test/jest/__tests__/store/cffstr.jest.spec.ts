@@ -16,7 +16,7 @@ describe('useCffstr', () => {
     }
     const cffstrFields = [
         { field: 'abstract', value: 'Description', cffFunction: cff.setAbstract },
-        { field: 'authors', value: [{ 'given-names': 'John', 'last-name': 'Doe', orcid: 'https://1234-1234-1234-123X' }], cffFunction: cff.setAuthors },
+        { field: 'authors', value: [{ 'given-names': 'John', 'family-names': 'Doe', orcid: 'https://1234-1234-1234-123X' }], cffFunction: cff.setAuthors },
         { field: 'commit', value: '1234567890abcde', cffFunction: cff.setCommit },
         { field: 'date-released', value: '2022-01-01', cffFunction: cff.setDateReleased },
         { field: 'identifiers', value: [{ type: 'doi', value: '10.5281/zenodo.5171937' }], cffFunction: cff.setIdentifiers },

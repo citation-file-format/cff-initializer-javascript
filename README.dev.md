@@ -201,3 +201,29 @@ Links to documentation or tutorials related to technologies/tools we use in the 
 - [Jest](https://jestjs.io/): Testing framework to run unit tests and perform test assertions.
 - [ESLint](https://eslint.org/): To get constistent code style and prevent errors the industry standard linter ESLint is used.
 - [Majestic Web UI](https://github.com/Raathigesh/majestic): Web UI for unit tests using Jest
+
+## User stories/Requirements
+
+### Update existing CFF
+
+Constraints:
+
+- Files that were not created by cffinit should still be accepted. This implies that
+  - Fields like `preferred-citation` should be handled.
+  - Old valid files should be handled.
+- Ignore or fix small mistakes, to make the experience smoother.
+- Updating is like continuing from a finished state, so all screen should be marked as visited.
+
+Here is the list of situations that can happen:
+
+- If the input is not valid YAML, raise an error and don't proceed.
+- If the input is not an object, raise an error and don't proceed. This includes vectors and strings.
+- Keys at root level that are not part of the `cff` object are passed to `extraCffFields`. A warning is printed, but proceed.
+- Keys at nested levels (e.g., authors) are ignored. A warning is printed, but proceed.
+- Radio values ('type' and 'identifiers/type') should be sanitized.
+- If an old `cff-version` was present, warn that a newer version will be used.
+- If no `cff-version` was found, no need to warn.
+- 'date-released' should be sanitized so it is a 'yyyy-mm-dd' string, and not a Javascript date.
+- Input validation is only done a posteriori, so don't check it during update.
+- Special situations (such as `cff-version` and `type` above) should be handled explicitly and documented.
+- If parsing is successful, give positive feedback.

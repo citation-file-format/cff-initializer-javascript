@@ -10,6 +10,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/components/LayoutLanding.vue')
     },
     {
+        path: '/update',
+        component: () => import('src/components/LayoutUpdate.vue')
+    },
+    {
         path: '/start',
         component: () => import('src/components/LayoutStepper.vue'),
         children: [{ path: '', component: () => import('src/components/ScreenStart.vue') }]

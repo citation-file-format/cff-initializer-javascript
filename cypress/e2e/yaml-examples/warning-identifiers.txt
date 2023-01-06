@@ -1,0 +1,2 @@
+Property 'tijpe: doi' inside 'identifiers' was ignored. Check if the key is correct.
+Invalid value 'dio' for identifier type. Using 'other' instead.

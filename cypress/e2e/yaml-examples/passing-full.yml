@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+title: My Title
+message: New message
+type: dataset
+authors:
+  - given-names: John
+    name-particle: von
+    family-names: Doe
+    name-suffix: Sr.
+    email: john@doe.com
+    affiliation: UU
+    orcid: 'https://orcid.org/1234-1234-1234-123X'
+identifiers:
+  - type: doi
+    value: 10.1234/x
+    description: Some DOI
+  - type: url
+    value: 'https://id'
+    description: Some URL
+  - type: swh
+    value: 'swh:1:rev:0123456789abcdef0123456789abcdef01234567'
+    description: Some SWH
+  - type: other
+    value: Other
+    description: Some other thing
+repository-code: 'https://rc'
+url: 'https://url'
+repository: 'https://r'
+repository-artifact: 'https://ra'
+abstract: Lorem ipsum
+keywords:
+  - kw0
+  - kw1
+  - kw2
+license: Apache-2.0
+commit: '123'
+version: v1.2.3
+date-released: '2022-01-01'
+preferred-citation:
+  - authors:
+      - given-names: John
+        family-names: Doe
+    title: My Paper
+    type: article

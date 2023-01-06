@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: My title
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: John
+    family-names: Doe
+identifiers:
+  - type: other
+    value: ''
+  - type: other
+    value: ''
+    description: 2
+  - type: doi
+    value: ''
+    description: 3

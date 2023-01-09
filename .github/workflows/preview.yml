@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  release:
   workflow_dispatch:
 
 jobs:
@@ -28,6 +29,8 @@ jobs:
       run: |
         if [[ ${{ github.event_name }} == "pull_request" ]]; then
             export PUBLICPATH=PR${{ github.event.number }}
+        elseif [[ ${{ github.event_name }} == "release" ]]; then
+            export PUBLICPATH="release"
         else
             export PUBLICPATH=$GITHUB_REF_NAME
         fi

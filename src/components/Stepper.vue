@@ -19,7 +19,7 @@
                 v-bind:caption="stepIndex < 2 ? 'required' : (step !== 'finish' ? 'optional' : '')"
                 v-bind:data-cy="`step-${step}`"
                 v-bind:done="screenVisited(step) && !errorPerStep[step].value"
-                v-bind:error="currentStepIndex != stepIndex && screenVisited(step) && errorPerStep[step].value"
+                v-bind:error="isScreenError(step)"
                 v-bind:header-nav="stepIndex !== currentStepIndex && screenVisited(step) && !anyErrorBetween('start', step)"
                 v-bind:key="step"
                 v-bind:name="step"
@@ -87,6 +87,23 @@ export default {
                 }
             },
             errorPerStep,
+            isScreenError: (step: StepNameType) => {
+                if (!screenVisited(step) || !errorPerStep[step].value || currentStepIndex.value === stepNames.indexOf(step)) {
+                    return false
+                } else if (step === 'extra-cff-fields') {
+                    // If no other screen has error, then it must be the stepNames
+                    const otherScreensHaveErrors = stepNames.reduce((acc, step) => {
+                        if (step === 'extra-cff-fields') {
+                            return acc
+                        } else {
+                            return acc || errorPerStep[step].value
+                        }
+                    }, false)
+                    return !otherScreensHaveErrors
+                } else {
+                    return true
+                }
+            },
             screenVisited,
             setStepName,
             stepName,

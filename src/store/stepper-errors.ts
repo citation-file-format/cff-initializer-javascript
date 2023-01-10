@@ -9,10 +9,11 @@ import {
     screenVersionSpecificQueries
 } from 'src/error-filtering'
 import { computed } from 'vue'
-// import { StepNameType } from 'src/store/app'
+import { useCff } from 'src/store/cff'
 import { useValidation } from 'src/store/validation'
 
 const { errors } = useValidation()
+const { extraCffFields } = useCff()
 
 const errorStateScreenAuthors = computed(() => {
     return screenAuthorQueries
@@ -54,6 +55,6 @@ export const errorPerStep = {
     keywords: errorStateScreenKeywords,
     license: computed(() => false),
     'version-specific': errorStateScreenVersionSpecific,
-    'extra-cff-fields': computed(() => errors.value.length > 0),
+    'extra-cff-fields': computed(() => { return extraCffFields.value.length > 0 && errors.value.length > 0 }),
     finish: computed(() => false)
 }

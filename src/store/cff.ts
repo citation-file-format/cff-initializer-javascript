@@ -50,8 +50,16 @@ export const updateCff = (newCffstr: string) => {
             throw new Error('Error: CFF is invalid. It should be a YAML map.')
         }
 
-        cff.value = getInitialData()
         const existingCffProperties = Object.getOwnPropertyNames(existingCff) as Array<keyof typeof existingCff>
+        if (existingCffProperties.length === 0) {
+            throw new Error('Error: CFF is empty.')
+        } else if (existingCffProperties.filter(x => x === '[object Object]').length > 0) {
+            throw new Error('Error: invalid object in keys (did you use {} as key?).')
+        } else if (existingCffProperties.filter(x => !x).length > 0) {
+            throw new Error('Error: invalid null property.')
+        }
+
+        cff.value = getInitialData()
         const cffProperties = Object.getOwnPropertyNames(cff.value) as Array<keyof CffType>
         existingCffProperties.forEach((property) => {
             const camelCaseProperty = camelCase(property) as keyof CffType

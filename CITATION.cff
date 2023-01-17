@@ -29,7 +29,7 @@ authors:
     given-names: Reggie
     orcid: https://orcid.org/0000-0002-5967-7302
 cff-version: 1.2.0
-date-released: 2022-11-21
+date-released: 2023-01-17
 identifiers:
   - type: doi
     value: 10.5281/zenodo.7342296
@@ -50,4 +50,4 @@ license: Apache-2.0
 message: If you use this software, please cite it using these metadata.
 repository-code: https://github.com/citation-file-format/cff-initializer-javascript
 title: cffinit
-version: 2.1.0
+version: 2.2.0

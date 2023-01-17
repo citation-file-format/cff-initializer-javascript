@@ -184,7 +184,7 @@ This section describes how to make a release in 2 parts:
 1. Check that the [Publish](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/publish.yml) workflow was triggered by making the release, and that it was successful.
 1. Inspect the deployed github.io website [https://citation-file-format.github.io/cff-initializer-javascript/](https://citation-file-format.github.io/cff-initializer-javascript/).
 1. Verify that the [Preview](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/preview.yml) workflow was triggered on release deploying a preview of the tag to <https://cffinit.netlify.com/TAG>.
-1. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly when the GitHub release was created.
+1. Check whether the [zenodraft](https://github.com/citation-file-format/cff-initializer-javascript/actions/workflows/zenodraft.yml) workflow was triggered correctly when the GitHub release was created. If it was not, then trigger it manually.
 1. Go to Zenodo and verify that the new DOI was created by zenodraft.
 
 ## References

@@ -195,26 +195,6 @@ export default defineComponent({
         const orcidErrors = computed(() => {
             const orcidErrors = orcidQueries(props.index)
                 .filter(byError(errors.value))
-            if (orcidErrors.length === 0) {
-                // If a valid orcid is found, look for data in the orcid API (maybe only if we do not have data already)
-                const orcid = '0000-0001-8555-849X' // This should come from props.orcid
-                const orcidEndpoint = 'https://pub.sandbox.orcid.org/v3.0/expanded-search/?q=orcid:' + orcid + '&rows=1'
-                axios.get(orcidEndpoint,
-                    {
-                    data: {},
-                    headers: {
-                        'accept': 'application/vnd.orcid+json'
-                    }
-                }).then(resp => {
-                    console.log('These values should be injected in the right places')
-                    console.log('email     : ' + resp.data['expanded-result'][0]['email'][0])
-                    console.log('last-name : ' + resp.data['expanded-result'][0]['family-names'])
-                    console.log('first-name: ' + resp.data['expanded-result'][0]['given-names'])
-                    console.log('Institution: ' + resp.data['expanded-result'][0]['institution-name'])
-                    console.log('Orcid     : ' + resp.data['expanded-result'][0]['orcid-id'])
-                    
-                })
-            }
             return orcidErrors
                 .map(query => query.replace.message)
         })
@@ -226,6 +206,35 @@ export default defineComponent({
         return {
             emailErrors,
             orcidErrors
+        }
+    },
+    watch: {
+        orcid(oldVal, newVal) {
+            if (this.orcid.length === 37 && this.orcidErrors.length === 0) {
+                // If a valid orcid is found, look for data in the orcid API (maybe only if we do not have data already)
+                const orcidSearchApi = 'https://pub.orcid.org/v3.0/expanded-search/?q=orcid:';
+                const orcidEndpoint = this.orcid.replace('https://orcid.org/', orcidSearchApi) + '&rows=1';
+                // This is a test endpoint on Zenodo sandbox.
+                // const orcidEndpoint = 'https://pub.sandbox.orcid.org/v3.0/expanded-search/?q=orcid:0000-0001-8555-849X&rows=1';
+
+                axios.interceptors.request.use((config) => {
+                    config.props = this;
+                    return config;
+                });
+
+                void axios.get(orcidEndpoint,
+                    {
+                        data: {},
+                        headers: {
+                            accept: 'application/vnd.orcid+json'
+                        }
+                    }).then(resp => {
+                    resp.config.props.$emit('update', 'givenNames', resp.data['expanded-result'][0]['given-names']);
+                    resp.config.props.$emit('update', 'familyNames', resp.data['expanded-result'][0]['family-names']);
+                    resp.config.props.$emit('update', 'email', resp.data['expanded-result'][0].email[0]);
+                    resp.config.props.$emit('update', 'affiliation', resp.data['expanded-result'][0]['institution-name'][0]);
+                })
+            }
         }
     },
     emits: ['closePressed', 'removePressed', 'update']

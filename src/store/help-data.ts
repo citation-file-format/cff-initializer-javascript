@@ -130,7 +130,7 @@ export const helpData = {
                 link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#how-to-deal-with-unknown-individual-authors'
             }
         ],
-        description: 'The authors of a software or dataset.',
+        description: 'The authors of a software or dataset. TIP: you can use the ORCID of the author to autocomplete author information.',
         examples: [
             ' given-names: Jane\n family-names: Doe',
             ' name: "The Research Software project"',

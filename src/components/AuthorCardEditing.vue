@@ -147,6 +147,7 @@
 
 <script lang="ts">
 import axios from 'axios'
+// eslint-disable-next-line sort-imports
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
 import { computed, defineComponent } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
@@ -210,18 +211,19 @@ export default defineComponent({
         }
     },
     watch: {
-        orcid(oldVal, newVal) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        orcid (oldVal, newVal) {
             if (this.orcid.length === 37 && this.orcidErrors.length === 0) {
                 // If a valid orcid is found, look for data in the orcid API (maybe only if we do not have data already)
-                const orcidSearchApi = 'https://pub.orcid.org/v3.0/expanded-search/?q=orcid:';
-                const orcidEndpoint = this.orcid.replace('https://orcid.org/', orcidSearchApi) + '&rows=1';
+                const orcidSearchApi = 'https://pub.orcid.org/v3.0/expanded-search/?q=orcid:'
+                const orcidEndpoint = this.orcid.replace('https://orcid.org/', orcidSearchApi) + '&rows=1'
                 // This is a test endpoint on Zenodo sandbox.
                 // const orcidEndpoint = 'https://pub.sandbox.orcid.org/v3.0/expanded-search/?q=orcid:0000-0001-8555-849X&rows=1';
 
                 axios.interceptors.request.use((config) => {
-                    config.props = this;
-                    return config;
-                });
+                    config.props = this
+                    return config
+                })
 
                 void axios.get(orcidEndpoint,
                     {
@@ -230,10 +232,14 @@ export default defineComponent({
                             accept: 'application/vnd.orcid+json'
                         }
                     }).then(resp => {
-                    resp.config.props.$emit('update', 'givenNames', resp.data['expanded-result'][0]['given-names']);
-                    resp.config.props.$emit('update', 'familyNames', resp.data['expanded-result'][0]['family-names']);
-                    resp.config.props.$emit('update', 'email', resp.data['expanded-result'][0].email[0]);
-                    resp.config.props.$emit('update', 'affiliation', resp.data['expanded-result'][0]['institution-name'][0]);
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+                    resp.config.props.$emit('update', 'givenNames', resp.data['expanded-result'][0]['given-names'])
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+                    resp.config.props.$emit('update', 'familyNames', resp.data['expanded-result'][0]['family-names'])
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+                    resp.config.props.$emit('update', 'email', resp.data['expanded-result'][0].email[0])
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+                    resp.config.props.$emit('update', 'affiliation', resp.data['expanded-result'][0]['institution-name'][0])
                 })
             }
         }

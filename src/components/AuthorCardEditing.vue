@@ -151,6 +151,7 @@ import axios from 'axios'
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
 import { computed, defineComponent } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
+import { useQuasar } from 'quasar'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
@@ -193,6 +194,7 @@ export default defineComponent({
         }
     },
     setup (props) {
+        const $q = useQuasar()
         const { errors } = useValidation()
         const orcidErrors = computed(() => {
             const orcidErrors = orcidQueries(props.index)
@@ -212,7 +214,7 @@ export default defineComponent({
     },
     watch: {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        orcid (oldVal, newVal) {
+        orcid (_oldVal, _newVal) {
             if (this.orcid.length === 37 && this.orcidErrors.length === 0) {
                 // If a valid orcid is found, look for data in the orcid API (maybe only if we do not have data already)
                 const orcidSearchApi = 'https://pub.orcid.org/v3.0/expanded-search/?q=orcid:'
@@ -240,6 +242,17 @@ export default defineComponent({
                     resp.config.props.$emit('update', 'email', resp.data['expanded-result'][0].email[0])
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                     resp.config.props.$emit('update', 'affiliation', resp.data['expanded-result'][0]['institution-name'][0])
+
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+                    resp.config.props.$q.notify({
+                        message: 'Author information fetched from ORCID API!',
+                        color: 'primary',
+                        progress: true,
+                        timeout: 800,
+                        actions: [
+                            { label: 'Dismiss', color: 'white' }
+                        ]
+                    })
                 })
             }
         }

@@ -12,12 +12,10 @@ on:
 
 jobs:
   preview:
-    if: github.repository_owner == 'citation-file-format'
+    if: github.repository == 'citation-file-format/cff-initializer-javascript'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
     - name: Use Node.js 18
       uses: actions/setup-node@v3
       with:
@@ -46,7 +44,7 @@ jobs:
         user_email: 'cffinit[bot]@users.noreply.github.com'
         commit_message: ':robot: Create preview of ${{ env.PUBLICPATH }}'
   pr_comment:
-    if: github.event_name == 'pull_request' && github.repository_owner == 'citation-file-format'
+    if: github.event_name == 'pull_request' && github.repository == 'citation-file-format/cff-initializer-javascript'
     needs: preview
     runs-on: ubuntu-latest
     steps:

@@ -225,7 +225,15 @@ export default defineComponent({
                     config.props = this
                     return config
                 })
-
+                interface OrcidAuthor {
+                    'given-names': string
+                    'family-names': string
+                    email: string
+                    'institution-name': string[]
+                }
+                interface OrcidResponse {
+                    'expanded-result': OrcidAuthor[]
+                }
                 void axios.get(orcidEndpoint,
                     {
                         data: {},

@@ -67,6 +67,18 @@ export const authorsQueries: ErrorQuery[] = [{
     }
 }]
 
+export const authorNameQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/authors/${index}`,
+            schemaPath: '#/required'
+        },
+        replace: {
+            message: 'Entity name cannot be empty'
+        }
+    }] as ErrorQuery[]
+}
+
 export const dateReleasedQueries: ErrorQuery[] = [{
     find: {
         instancePath: '/date-released',
@@ -76,6 +88,30 @@ export const dateReleasedQueries: ErrorQuery[] = [{
         message: 'Wrong format. Use YYYY-MM-DD.'
     }
 }]
+
+export const dateStartQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/authors/${index}/date-start`,
+            schemaPath: '#/definitions/date/pattern'
+        },
+        replace: {
+            message: 'Wrong format. Use YYYY-MM-DD.'
+        }
+    }]
+}
+
+export const dateEndQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/authors/${index}/date-end`,
+            schemaPath: '#/definitions/date/pattern'
+        },
+        replace: {
+            message: 'Wrong format. Use YYYY-MM-DD.'
+        }
+    }]
+}
 
 export const duplicateAuthorQueries: ErrorQuery[] = [{
     find: {
@@ -395,3 +431,24 @@ export const urlQueries: ErrorQuery[] = [{
         message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
     }
 }]
+
+export const websiteQueries = (index: number) => {
+    return [{
+        find: {
+            instancePath: `/authors/${index}/website`,
+            schemaPath: '#/definitions/url/pattern'
+        },
+        replace: {
+            message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+        }
+    },
+    {
+        find: {
+            instancePath: `/authors/${index}/website`,
+            schemaPath: '#/definitions/url/format'
+        },
+        replace: {
+            message: 'Format: https://www.example.com (http, ftp, sftp hyperlinks are also supported)'
+        }
+    }]
+}

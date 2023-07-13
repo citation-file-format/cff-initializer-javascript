@@ -1,5 +1,6 @@
 import * as yaml from 'js-yaml'
 import { beforeEach, describe, expect, it } from '@jest/globals'
+import { AuthorsType } from 'src/types'
 import { useCff } from 'src/store/cff'
 import { useCffstr } from 'src/store/cffstr'
 
@@ -16,7 +17,7 @@ describe('useCffstr', () => {
     }
     const cffstrFields = [
         { field: 'abstract', value: 'Description', cffFunction: cff.setAbstract },
-        { field: 'authors', value: [{ 'given-names': 'John', 'family-names': 'Doe', orcid: 'https://1234-1234-1234-123X' }], cffFunction: cff.setAuthors },
+        { field: 'authors', value: [{ 'given-names': 'John', 'family-names': 'Doe', orcid: 'https://1234-1234-1234-123X' }, { name: 'Netherlands eScience Center', alias: 'NLeSC', country: 'NL' }], cffFunction: (authors: AuthorsType) => { cff.setAuthors(authors, ['person', 'entity']) } },
         { field: 'commit', value: '1234567890abcde', cffFunction: cff.setCommit },
         { field: 'date-released', value: '2022-01-01', cffFunction: cff.setDateReleased },
         { field: 'identifiers', value: [{ type: 'doi', value: '10.5281/zenodo.5171937' }], cffFunction: cff.setIdentifiers },

@@ -37,7 +37,7 @@ describe('From a fixed app', () => {
         cy.dataCy('input-title')
             .type('A')
         cy.visit('/authors')
-        cy.dataCy('btn-add-author')
+        cy.dataCy('btn-add-person')
             .click()
         cy.visit('/finish')
     })
@@ -74,20 +74,20 @@ describe('From a fixed app', () => {
             cy.checkThatAppValidityIs(false)
             cy.dataCy('banner-error-messages')
                 .should('contain.text', 'Add at least one author')
-            cy.dataCy('btn-add-author')
+            cy.dataCy('btn-add-person')
                 .click()
             cy.checkThatAppValidityIs(true)
         })
         it('should validate duplicate authors', () => {
             cy.dataCy('btn-remove')
                 .click()
-            cy.dataCy('btn-add-author')
+            cy.dataCy('btn-add-person')
                 .click()
             cy.dataCy('input-given-names')
                 .type('A')
             cy.dataCy('btn-done')
                 .click()
-            cy.dataCy('btn-add-author')
+            cy.dataCy('btn-add-person')
                 .click()
             cy.dataCy('input-given-names')
                 .type('A')
@@ -104,10 +104,34 @@ describe('From a fixed app', () => {
                 .click()
             cy.checkThatAppValidityIs(true)
         })
-        it('should validate authors\' fields', () => {
+        it('should validate person and entity being equal', () => {
+            cy.dataCy('input-email')
+                .type('some@email.com')
+            cy.dataCy('input-orcid')
+                .type('1234123412341234')
+            cy.dataCy('btn-done')
+                .click()
+            cy.dataCy('btn-add-entity')
+                .click()
+            cy.dataCy('input-email')
+                .type('some@email.com')
+            cy.dataCy('input-orcid')
+                .type('1234123412341234')
+            cy.dataCy('btn-done')
+                .click()
+
+            cy.dataCy('card-author0')
+                .should('have.class', 'red-border')
+            cy.dataCy('card-author1')
+                .should('have.class', 'red-border')
+            cy.checkThatAppValidityIs(false)
+            cy.dataCy('banner-error-messages')
+                .should('contain.text', 'There are duplicate authors')
+        })
+        it('should validate person\'s fields', () => {
             cy.dataCy('btn-remove')
                 .click()
-            cy.dataCy('btn-add-author')
+            cy.dataCy('btn-add-person')
                 .click()
             cy.dataCy('input-email')
                 .type('a')
@@ -127,6 +151,65 @@ describe('From a fixed app', () => {
                 .parents('.q-field')
                 .should('not.have.class', 'q-field--error')
             cy.checkThatAppValidityIs(true)
+        })
+        it('should validate entity\'s fields', () => {
+            cy.dataCy('btn-remove')
+                .click()
+            cy.dataCy('btn-add-entity')
+                .click()
+            cy.dataCy('input-name')
+                .type('Entity name')
+
+            const fields = [
+                { name: 'date-start', bad: '2021-01-0', fix: '1', checkInput: false },
+                { name: 'date-end', bad: '2021-01-0', fix: '1', checkInput: false },
+                { name: 'email', bad: 'a', fix: '@a.com', checkInput: true },
+                { name: 'orcid', bad: '1', fix: '234123412341234', checkInput: true }
+            ]
+            for (const field of fields) {
+                cy.dataCy(`input-${field.name}`)
+                    .type(field.bad)
+                cy.checkThatInputValidityIs(false, field.name)
+                cy.checkThatAppValidityIs(false)
+                cy.dataCy(`input-${field.name}`)
+                    .type(field.fix)
+                if (field.checkInput) {
+                    cy.checkThatInputValidityIs(true, field.name)
+                } else {
+                    cy.dataCy(`input-${field.name}`)
+                        .parents('.q-field')
+                        .should('not.have.class', 'q-field--error')
+                }
+                cy.checkThatAppValidityIs(true)
+            }
+        })
+        it('should error when it is inferrable that it is an entity without name', () => {
+            cy.dataCy('btn-remove')
+                .click()
+            cy.dataCy('btn-add-entity')
+                .click()
+
+            const fields = [
+                { name: 'date-start', value: '2021-01-01' },
+                { name: 'date-end', value: '2021-01-01' },
+                { name: 'location', value: 'Here' }
+            ]
+            for (const field of fields) {
+                cy.dataCy(`input-${field.name}`)
+                    .type(field.value)
+
+                cy.checkThatInputValidityIs(false, 'name')
+                cy.checkThatAppValidityIs(false)
+                cy.dataCy('input-name')
+                    .type('Fixed')
+                cy.checkThatInputValidityIs(true, 'name')
+                cy.checkThatAppValidityIs(true)
+
+                cy.dataCy('input-name')
+                    .clear()
+                cy.dataCy(`input-${field.name}`)
+                    .clear()
+            }
         })
     })
 

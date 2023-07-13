@@ -24,6 +24,11 @@ describe('Update of existing CFF', () => {
                     'family-names': 'Doe',
                     orcid: 'https://1234-1234-1234-123X',
                     email: 'john@doe.com'
+                },
+                {
+                    name: 'Netherlands eScience Center',
+                    alias: 'NLeSC',
+                    country: 'NL'
                 }
             ]
         },
@@ -114,12 +119,20 @@ describe('Update of existing CFF', () => {
         const expected = { ...cffMinimumFields, bad: 'value' }
         expect(parsedCffStr()).toEqual(expected)
     })
-    test('keys at authors level that are not part of the part of cff are ignored', () => {
+    test('If it is not an Author, print infringing keys', () => {
         const { msg, success } = updateCff('authors:\n- bad: value')
         expect(msg).toHaveLength(1)
-        expect(msg[0]).toBe("Property 'bad: value' inside 'authors' was ignored. Check if the key is correct.")
+        expect(msg[0]).toBe('Could not add author. It is not a Person due to fields bad and not an Entity due to fields bad. Skipping.')
         expect(success).toBe(true)
-        const expected = { ...cffMinimumFields, authors: [{}] }
+        const expected = { ...cffMinimumFields, authors: [] }
+        expect(parsedCffStr()).toEqual(expected)
+    })
+    test('Cannot mix Person and Entity', () => {
+        const { msg, success } = updateCff('authors:\n- given-names: a\n  name: b')
+        expect(msg).toHaveLength(1)
+        expect(msg[0]).toBe('Could not add author. It is not a Person due to fields name and not an Entity due to fields given-names. Skipping.')
+        expect(success).toBe(true)
+        const expected = { ...cffMinimumFields, authors: [] }
         expect(parsedCffStr()).toEqual(expected)
     })
     test('keys at identifiers level that are not part of the part of cff are ignored', () => {

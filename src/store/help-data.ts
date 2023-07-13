@@ -9,6 +9,19 @@ export const helpData = {
         ],
         description: 'A description or summary of the work.'
     },
+    authorAddress: {
+        title: 'address',
+        url: [
+            {
+                text: 'Documentation for address.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonaddress'
+            }
+        ],
+        description: 'The entity\'s address.',
+        examples: [
+            '742 Evergreen Terrace'
+        ]
+    },
     authorAffiliation: {
         title: 'affiliation',
         url: [
@@ -23,6 +36,71 @@ export const helpData = {
             'German Aerospace Center (DLR)'
         ]
     },
+    authorAlias: {
+        title: 'alias',
+        url: [
+            {
+                text: 'Documentation for alias.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonalias'
+            }
+        ],
+        description: 'The entity\'s alias.',
+        examples: [
+            'NASA'
+        ]
+    },
+    authorCity: {
+        title: 'city',
+        url: [
+            {
+                text: 'Documentation for city.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersoncity'
+            }
+        ],
+        description: 'The entity\'s city.',
+        examples: [
+            'Berlin'
+        ]
+    },
+    authorCountry: {
+        title: 'country',
+        url: [
+            {
+                text: 'Documentation for country.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersoncountry'
+            }
+        ],
+        description: 'The entity\'s country.',
+        examples: [
+            'DE'
+        ]
+    },
+    authorDateEnd: {
+        title: 'date-end',
+        url: [
+            {
+                text: 'Documentation for date-end.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersondate-end'
+            }
+        ],
+        description: 'The entity\'s ending date, e.g. when the entity is a conference.',
+        examples: [
+            '2021-07-27'
+        ]
+    },
+    authorDateStart: {
+        title: 'date-start',
+        url: [
+            {
+                text: 'Documentation for date-start.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersondate-start'
+            }
+        ],
+        description: 'The entity\'s starting date, e.g. when the entity is a conference.',
+        examples: [
+            '2021-07-27'
+        ]
+    },
     authorEmail: {
         title: 'email',
         url: [
@@ -34,6 +112,32 @@ export const helpData = {
         description: 'The person\'s email address.',
         examples: [
             'mail@research-project.org'
+        ]
+    },
+    authorFax: {
+        title: 'fax',
+        url: [
+            {
+                text: 'Documentation for fax.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonfax'
+            }
+        ],
+        description: 'The entity\'s fax number.',
+        examples: [
+            '+12-3456-7890'
+        ]
+    },
+    authorName: {
+        title: 'name',
+        url: [
+            {
+                text: 'Documentation for name.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonname'
+            }
+        ],
+        description: 'The entity\'s name.',
+        examples: [
+            'The Research Software Project'
         ]
     },
     authorNames: {
@@ -101,6 +205,19 @@ export const helpData = {
             'name-suffix: Jr.'
         ]
     },
+    authorLocation: {
+        title: 'location',
+        url: [
+            {
+                text: 'Documentation for location.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonlocation'
+            }
+        ],
+        description: 'The entity\'s location.',
+        examples: [
+            'Lovelace Building, room 0.42'
+        ]
+    },
     authorOrcid: {
         title: 'orcid',
         url: [
@@ -116,6 +233,58 @@ export const helpData = {
         description: 'The person\'s ORCID identifier.',
         examples: [
             'https://orcid.org/0000-0003-4925-7248'
+        ]
+    },
+    authorPostCode: {
+        title: 'post-code',
+        url: [
+            {
+                text: 'Documentation for post-code.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonpost-code'
+            }
+        ],
+        description: 'The entity\'s post code.',
+        examples: [
+            '90210'
+        ]
+    },
+    authorRegion: {
+        title: 'region',
+        url: [
+            {
+                text: 'Documentation for region.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonregion'
+            }
+        ],
+        description: 'The entity\'s region.',
+        examples: [
+            'Renfrewshire'
+        ]
+    },
+    authorTel: {
+        title: 'tel',
+        url: [
+            {
+                text: 'Documentation for tel.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersontel'
+            }
+        ],
+        description: 'The entity\'s telephone number.',
+        examples: [
+            '+12-345-6789098'
+        ]
+    },
+    authorWebsite: {
+        title: 'website',
+        url: [
+            {
+                text: 'Documentation for website.',
+                link: 'https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md#definitionspersonwebsite'
+            }
+        ],
+        description: 'The entity\'s website.',
+        examples: [
+            'https://research-software-project.org'
         ]
     },
     authors: {

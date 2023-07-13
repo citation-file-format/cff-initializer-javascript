@@ -1,9 +1,12 @@
 <template>
     <q-card
         bordered
-        class="bg-formcard q-pa-md"
+        class="bg-formcard q-px-md q-py-sm"
         flat
     >
+        <div class="row text-h6 q-mx-none q-my-none q-pa-none">
+            Person
+        </div>
         <fieldset class="q-mb-md">
             <legend>
                 Author's name, split into four parts
@@ -18,7 +21,7 @@
                     label="Given names"
                     outlined
                     standout
-                    v-bind:model-value="givenNames"
+                    v-bind:model-value="author.givenNames"
                     v-bind:error="false"
                     v-bind:error-message="''"
                     v-on:update:modelValue="$emit('update', 'givenNames', $event)"
@@ -30,7 +33,7 @@
                     label="Name particle"
                     outlined
                     standout
-                    v-bind:model-value="nameParticle"
+                    v-bind:model-value="author.nameParticle"
                     v-bind:error="false"
                     v-bind:error-message="''"
                     v-on:update:modelValue="$emit('update', 'nameParticle', $event)"
@@ -44,7 +47,7 @@
                     label="Family names"
                     outlined
                     standout
-                    v-bind:model-value="familyNames"
+                    v-bind:model-value="author.familyNames"
                     v-bind:error="false"
                     v-bind:error-message="''"
                     v-on:update:modelValue="$emit('update', 'familyNames', $event)"
@@ -56,7 +59,7 @@
                     label="Name suffix"
                     outlined
                     standout
-                    v-bind:model-value="nameSuffix"
+                    v-bind:model-value="author.nameSuffix"
                     v-bind:error="false"
                     v-bind:error-message="''"
                     v-on:update:modelValue="$emit('update', 'nameSuffix', $event)"
@@ -73,7 +76,7 @@
                 outlined
                 standout
                 type="email"
-                v-bind:model-value="email"
+                v-bind:model-value="author.email"
                 v-bind:error="emailErrors.length > 0"
                 v-bind:error-message="emailErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'email', $event)"
@@ -92,7 +95,7 @@
                 label="Affiliation"
                 outlined
                 standout
-                v-bind:model-value="affiliation"
+                v-bind:model-value="author.affiliation"
                 v-bind:error="false"
                 v-bind:error-message="''"
                 v-on:update:modelValue="$emit('update', 'affiliation', $event)"
@@ -110,7 +113,7 @@
                 mask="https://orcid.org/####-####-####-###X"
                 outlined
                 standout
-                v-bind:model-value="orcid"
+                v-bind:model-value="author.orcid"
                 v-bind:error="orcidErrors.length > 0"
                 v-bind:error-message="orcidErrors.join(', ')"
                 v-on:update:modelValue="$emit('update', 'orcid', $event)"
@@ -146,13 +149,14 @@
 </template>
 
 <script lang="ts">
+import { PropType, computed, defineComponent } from 'vue'
 import { byError, emailQueries, orcidQueries } from 'src/error-filtering'
-import { computed, defineComponent } from 'vue'
 import InfoDialog from 'components/InfoDialog.vue'
+import { PersonType } from 'src/types'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
-    name: 'AuthorCardEditing',
+    name: 'PersonCardEditing',
     components: {
         InfoDialog
     },
@@ -161,33 +165,9 @@ export default defineComponent({
             type: Number,
             required: true
         },
-        givenNames: {
-            type: String,
-            default: ''
-        },
-        nameParticle: {
-            type: String,
-            default: ''
-        },
-        familyNames: {
-            type: String,
-            default: ''
-        },
-        nameSuffix: {
-            type: String,
-            default: ''
-        },
-        email: {
-            type: String,
-            default: ''
-        },
-        affiliation: {
-            type: String,
-            default: ''
-        },
-        orcid: {
-            type: String,
-            default: ''
+        author: {
+            type: Object as PropType<PersonType>,
+            required: true
         }
     },
     setup (props) {

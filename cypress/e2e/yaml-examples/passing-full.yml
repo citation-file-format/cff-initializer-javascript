@@ -10,6 +10,21 @@ authors:
     email: john@doe.com
     affiliation: UU
     orcid: 'https://orcid.org/1234-1234-1234-123X'
+  - address: Some street
+    alias: NLeSC
+    city: Amsterdam
+    country: NL
+    date-end: '2022-01-01'
+    date-start: '2021-01-01'
+    email: nl@esc.com
+    fax: +31 02 1234 1234
+    location: Science Park
+    name: Netherlands eScience Center
+    orcid: 'https://orcid.org/1234-1234-1234-1234'
+    post-code: 1234AM
+    region: Oost
+    tel: +31 02 1234 5678
+    website: 'https://nlesc.org'
 identifiers:
   - type: doi
     value: 10.1234/x
@@ -37,8 +52,8 @@ commit: '123'
 version: v1.2.3
 date-released: '2022-01-01'
 preferred-citation:
-  - authors:
-      - given-names: John
-        family-names: Doe
-    title: My Paper
-    type: article
+  authors:
+    - given-names: John
+      family-names: Doe
+  title: My Paper
+  type: article

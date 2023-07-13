@@ -20,6 +20,22 @@ const fullValidCff = {
         email: 'john@doe.com',
         affiliation: 'UU',
         orcid: 'https://orcid.org/1234-1234-1234-123X'
+    }, {
+        address: 'Some street',
+        alias: 'NLeSC',
+        city: 'Amsterdam',
+        country: 'NL',
+        'date-end': '2022-01-01',
+        'date-start': '2021-01-01',
+        email: 'nl@esc.com',
+        fax: '+31 02 1234 1234',
+        location: 'Science Park',
+        name: 'Netherlands eScience Center',
+        orcid: 'https://orcid.org/1234-1234-1234-1234',
+        'post-code': '1234AM',
+        region: 'Oost',
+        tel: '+31 02 1234 5678',
+        website: 'https://nlesc.org'
     }],
     identifiers: [
         { type: 'doi', value: '10.1234/x', description: 'Some DOI' },
@@ -43,6 +59,8 @@ const fullValidCff = {
         type: 'article'
     }
 }
+const downloadsFolder = Cypress.config('downloadsFolder')
+const cfffile = `${downloadsFolder}/CITATION.cff`
 
 describe('Basic usage', () => {
     it('is working for the minimum information', () => {
@@ -68,7 +86,7 @@ describe('Basic usage', () => {
 
         // Author screen
         cy.url().should('include', '/authors')
-        cy.dataCy('btn-add-author')
+        cy.dataCy('btn-add-person')
             .click()
         cy.dataCy('btn-done')
             .click()
@@ -110,7 +128,7 @@ describe('Basic usage', () => {
 
         // Author screen
         cy.url().should('include', '/authors')
-        cy.dataCy('btn-add-author')
+        cy.dataCy('btn-add-person')
             .click()
         cy.dataCy('input-given-names')
             .type('John')
@@ -128,6 +146,44 @@ describe('Basic usage', () => {
             .type('123412341234123X')
         cy.dataCy('btn-done')
             .click()
+        cy.dataCy('btn-add-entity')
+            .click()
+        cy.dataCy('input-name')
+            .type('Netherlands eScience Center')
+        cy.dataCy('input-address')
+            .type('Some street')
+        cy.dataCy('input-city')
+            .type('Amsterdam')
+
+        cy.dataCy('select-country')
+            .first()
+            .type('NL')
+            .click()
+            .get('.q-item__label')
+            .eq(0)
+            .click()
+        cy.dataCy('input-post-code')
+            .type('1234AM')
+        cy.dataCy('input-location')
+            .type('Science Park')
+        cy.dataCy('input-region')
+            .type('Oost')
+        cy.dataCy('input-alias')
+            .type('NLeSC')
+        cy.dataCy('input-email')
+            .type('nl@esc.com')
+        cy.dataCy('input-date-start')
+            .type('2021-01-01')
+        cy.dataCy('input-date-end')
+            .type('2022-01-01')
+        cy.dataCy('input-tel')
+            .type('+31 02 1234 5678')
+        cy.dataCy('input-fax')
+            .type('+31 02 1234 1234')
+        cy.dataCy('input-website')
+            .type('https://nlesc.org')
+        cy.dataCy('input-orcid')
+            .type('1234123412341234')
         cy.dataCy('btn-next')
             .click()
 
@@ -241,9 +297,6 @@ describe('Basic usage', () => {
         cy.url().should('include', '/finish')
         cy.dataCy('btn-download')
             .click()
-
-        const downloadsFolder = Cypress.config('downloadsFolder')
-        const cfffile = `${downloadsFolder}/CITATION.cff`
 
         cy.readFile(cfffile, 'binary', { timeout: 400 })
             .then((str) => {

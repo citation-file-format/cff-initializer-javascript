@@ -1,4 +1,4 @@
-export type AuthorType = {
+export type PersonType = {
     givenNames?: string;
     nameParticle?: string;
     nameSuffix?: string;
@@ -8,7 +8,27 @@ export type AuthorType = {
     email?: string;
 }
 
-export type AuthorsType = Array<AuthorType>
+export type EntityType = {
+    address?: string
+    alias?: string
+    city?: string
+    country?: string
+    dateEnd?: string
+    dateStart?: string
+    email?: string
+    fax?: string
+    location?: string
+    name?: string
+    orcid?: string
+    postCode?: string
+    region?: string
+    tel?: string
+    website?: string
+}
+
+export type AuthorsType = Array<PersonType | EntityType>
+
+export type AuthorKind = 'person' | 'entity'
 
 export type IdentifierTypeType = 'doi' | 'url' | 'swh' | 'other'
 export type IdentifierType = {
@@ -26,6 +46,7 @@ export type TypeType = 'software' | 'dataset'
 export type CffType = {
     abstract?: string,
     authors: AuthorsType,
+    authorsKind: Array<AuthorKind>,
     cffVersion: string,
     commit?: string,
     dateReleased?: string,

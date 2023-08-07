@@ -6,4 +6,6 @@ message: >-
 type: software
 authors:
   - given-names: John
-    family-name: Doe
+    family-names: Doe
+  - name: Bad
+    given-names: Bad

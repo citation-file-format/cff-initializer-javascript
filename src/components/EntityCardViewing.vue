@@ -8,8 +8,11 @@
             horizontal
         >
             <div class="col">
+                <div class="row text-h6 q-mx-md q-my-sm q-pa-none">
+                    Entity
+                </div>
                 <ul
-                    class="q-pl-md"
+                    class="q-pl-md q-pt-none q-mt-none"
                     v-bind:data-cy="'card-info' + index"
                 >
                     <li
@@ -68,18 +71,18 @@
 <script lang="ts">
 import { PropType, computed, defineComponent } from 'vue'
 import { byError, duplicateAuthorQueries, duplicateMatcher, emailQueries, orcidQueries } from 'src/error-filtering'
-import { AuthorType } from 'src/types'
+import { EntityType } from 'src/types'
 import { useValidation } from 'src/store/validation'
 
 export default defineComponent({
-    name: 'AuthorCardViewing',
+    name: 'EntityCardViewing',
     props: {
         index: {
             type: Number,
             required: true
         },
         author: {
-            type: Object as PropType<AuthorType>,
+            type: Object as PropType<EntityType>,
             required: true
         },
         numAuthors: {
@@ -105,12 +108,34 @@ export default defineComponent({
                 .filter(byError(errors.value, duplicateMatcher(props.index)))
                 .map(query => query.replace.message)
         })
+        const entityName = (name: string | undefined, alias: string | undefined) => {
+            if (name && alias) {
+                return `${name} (${alias})`
+            } else if (name) {
+                return name
+            } else {
+                return alias
+            }
+        }
+        const ifTruePrefix = (prefix: string, value: string | undefined) => {
+            if (value) {
+                return prefix + value
+            } else {
+                return value
+            }
+        }
         const authorErrors = computed(() => [...emailErrors.value, ...orcidErrors.value, ...duplicateErrors.value])
         const authorFields = computed(() => [
-            [props.author.givenNames, props.author.nameParticle, props.author.familyNames, props.author.nameSuffix].join(' '),
+            entityName(props.author.name, props.author.alias),
+            props.author.address,
+            props.author.website,
+            [props.author.city, props.author.country, props.author.postCode].filter(x => x).join(', '),
+            [props.author.location, props.author.region].filter(x => x).join(', '),
+            [props.author.dateStart, props.author.dateEnd].filter(x => x).join(' - '),
             props.author.email,
-            props.author.affiliation,
-            props.author.orcid
+            props.author.orcid,
+            ifTruePrefix('Tel: ', props.author.tel),
+            ifTruePrefix('Fax: ', props.author.fax)
         ].filter((x) => x))
         return {
             authorErrors,

@@ -1,5 +1,5 @@
 import * as yaml from 'js-yaml'
-import { AuthorType, AuthorsType, CffType, IdentifierType, IdentifierTypeType, IdentifiersType, KeywordsType, TypeType } from 'src/types'
+import { AuthorKind, AuthorsType, CffType, EntityType, IdentifierType, IdentifierTypeType, IdentifiersType, KeywordsType, PersonType, TypeType } from 'src/types'
 import { computed, ref } from 'vue'
 import camelCase from 'camelcase'
 
@@ -7,6 +7,7 @@ const getInitialData = () => {
     return {
         abstract: undefined,
         authors: [],
+        authorsKind: [],
         cffVersion: '1.2.0',
         commit: undefined,
         dateReleased: undefined,
@@ -26,7 +27,7 @@ const getInitialData = () => {
 
 const cff = ref(getInitialData())
 const extraCffFields = ref('')
-const authorProperties = [
+export const personProperties = [
     'affiliation',
     'email',
     'familyNames',
@@ -34,6 +35,23 @@ const authorProperties = [
     'nameParticle',
     'nameSuffix',
     'orcid'
+]
+export const entityProperties = [
+    'address',
+    'alias',
+    'city',
+    'country',
+    'dateEnd',
+    'dateStart',
+    'email',
+    'fax',
+    'location',
+    'name',
+    'orcid',
+    'postCode',
+    'region',
+    'tel',
+    'website'
 ]
 const identifierProperties = ['type', 'value', 'description']
 
@@ -84,18 +102,50 @@ export const updateCff = (newCffstr: string) => {
 
                     const existingCffAuthors = value as Array<Record<string, string>>
                     existingCffAuthors.forEach((existingAuthor) => {
-                        const newAuthor: AuthorType = {}
-                        Object.getOwnPropertyNames(existingAuthor)
-                            .forEach((authorProperty) => {
-                                const camelCaseAuthorProperty = camelCase(authorProperty) as keyof typeof newAuthor
-                                const value = existingAuthor[authorProperty]
-                                if (authorProperties.includes(camelCaseAuthorProperty)) {
-                                    newAuthor[camelCaseAuthorProperty] = value
-                                } else {
-                                    msg.push(`Property '${authorProperty}: ${value}' inside 'authors' was ignored. Check if the key is correct.`)
+                        const notAnAuthorReason = [[], []] as Array<Array<string>>
+                        const isPerson = Object.getOwnPropertyNames(existingAuthor).reduce(
+                            (curValue, authorProperty) => {
+                                if (personProperties.includes(camelCase(authorProperty))) {
+                                    return curValue
                                 }
-                            })
-                        cff.value.authors.push(newAuthor)
+                                notAnAuthorReason[0].push(authorProperty)
+                                return false
+                            },
+                            true
+                        )
+                        const isEntity = Object.getOwnPropertyNames(existingAuthor).reduce(
+                            (curValue, authorProperty) => {
+                                if (entityProperties.includes(camelCase(authorProperty))) {
+                                    return curValue
+                                }
+                                notAnAuthorReason[1].push(authorProperty)
+                                return false
+                            },
+                            true
+                        )
+                        if (isPerson) {
+                            const newPerson: PersonType = {}
+                            Object.getOwnPropertyNames(existingAuthor)
+                                .forEach((personProperty) => {
+                                    const camelCasePersonProperty = camelCase(personProperty) as keyof typeof newPerson
+                                    const value = existingAuthor[personProperty]
+                                    newPerson[camelCasePersonProperty] = value
+                                })
+                            cff.value.authors.push(newPerson)
+                            cff.value.authorsKind.push('person')
+                        } else if (isEntity) {
+                            const newEntity: EntityType = {}
+                            Object.getOwnPropertyNames(existingAuthor)
+                                .forEach((entityProperty) => {
+                                    const camelCaseEntityProperty = camelCase(entityProperty) as keyof typeof newEntity
+                                    const value = existingAuthor[entityProperty]
+                                    newEntity[camelCaseEntityProperty] = value
+                                })
+                            cff.value.authors.push(newEntity)
+                            cff.value.authorsKind.push('entity')
+                        } else {
+                            msg.push(`Could not add author. It is not a Person due to fields ${notAnAuthorReason[0].join(', ')} and not an Entity due to fields ${notAnAuthorReason[1].join(', ')}. Skipping.`)
+                        }
                     })
                 } else if (property === 'identifiers') {
                     cff.value.identifiers = [] as IdentifiersType
@@ -162,6 +212,7 @@ export const useCff = () => {
     return {
         abstract: computed(() => cff.value.abstract),
         authors: computed(() => cff.value.authors),
+        authorsKind: computed(() => cff.value.authorsKind),
         commit: computed(() => cff.value.commit),
         cffVersion: computed(() => cff.value.cffVersion),
         dateReleased: computed(() => cff.value.dateReleased),
@@ -178,7 +229,10 @@ export const useCff = () => {
         url: computed(() => cff.value.url),
         version: computed(() => cff.value.version),
         setAbstract: (newAbstract: string) => { cff.value.abstract = newAbstract === '' ? undefined : newAbstract },
-        setAuthors: (newAuthors: AuthorsType) => { cff.value.authors = newAuthors },
+        setAuthors: (newAuthors: AuthorsType, newAuthorsKind: Array<AuthorKind>) => {
+            cff.value.authors = newAuthors
+            cff.value.authorsKind = newAuthorsKind
+        },
         setCommit: (newCommit: string) => { cff.value.commit = newCommit === '' ? undefined : newCommit },
         setDateReleased: (newDateReleased: string) => { cff.value.dateReleased = newDateReleased === '' ? undefined : newDateReleased },
         setExtraCffFields: (newExtraCffFields: string) => { extraCffFields.value = newExtraCffFields },

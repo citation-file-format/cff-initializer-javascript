@@ -220,7 +220,9 @@ Here is the list of situations that can happen:
 - If the input is not valid YAML, raise an error and don't proceed.
 - If the input is not an object, raise an error and don't proceed. This includes vectors and strings.
 - Keys at root level that are not part of the `cff` object are passed to `extraCffFields`. A warning is printed, but proceed.
-- Keys at nested levels (e.g., authors) are ignored. A warning is printed, but proceed.
+- If an author is not a Person nor Entity, print the infringing fields and drop the author.
+- If an author does not have enough fields to check whether it is a Person or Entity (e.g., only orcid), then use Person.
+- Keys at nested identifiers levels are ignored. A warning is printed but proceed.
 - Radio values ('type' and 'identifiers/type') should be sanitized.
 - If an old `cff-version` was present, warn that a newer version will be used.
 - If no `cff-version` was found, no need to warn.
@@ -228,3 +230,8 @@ Here is the list of situations that can happen:
 - Input validation is only done a posteriori, so don't check it during update.
 - Special situations (such as `cff-version` and `type` above) should be handled explicitly and documented.
 - If parsing is successful, give positive feedback.
+
+Deprecated:
+
+- Keys at nested levels (e.g., authors) are ignored. A warning is printed, but proceed.
+  - Deprecated because the author can be a Person or Entity. So to check that, we have to decide based on the fields what to check.

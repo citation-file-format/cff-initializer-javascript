@@ -1,1 +1,1 @@
-Property 'family-name: Doe' inside 'authors' was ignored. Check if the key is correct.
+Could not add author. It is not a Person due to fields name and not an Entity due to fields given-names. Skipping

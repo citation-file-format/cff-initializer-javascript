@@ -6,7 +6,12 @@ const infoDialogs = [
     {
         screen: 'authors',
         values: ['authors', 'given-names, name-particle, family-names, name-suffix', 'email', 'affiliation', 'orcid'],
-        before: () => { cy.dataCy('btn-add-author').click() }
+        before: () => { cy.dataCy('btn-add-person').click() }
+    },
+    {
+        screen: 'authors',
+        values: ['authors', 'name', 'address', 'city', 'country', 'post-code', 'location', 'region', 'alias', 'email', 'date-start', 'date-end', 'tel', 'fax', 'website', 'orcid'],
+        before: () => { cy.dataCy('btn-add-entity').click() }
     },
     {
         screen: 'identifiers',

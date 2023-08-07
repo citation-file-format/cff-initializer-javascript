@@ -15,7 +15,7 @@
             >
         </q-btn>
         <q-toolbar-title class="text-black text-right text-body1">
-            Version 2.2.0
+            Version 2.3.0
         </q-toolbar-title>
     </q-toolbar>
 </template>

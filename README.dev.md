@@ -166,15 +166,17 @@ This section describes how to make a release in 2 parts:
 
 ### (1/2) Preparation
 
-1. Update the `version`, the `date-released`, and possibly other information in `CITATION.cff`.
-1. Generate an updated version of `.zenodo.json` if needed using `cffconvert`.
-1. Update the `version` field in `package.json` and `package-lock.json`.
-1. Update the version in the [landing page footer](src/components/LayoutLanding.vue).
-1. Update the version in the [app footer](src/components/Footer.vue).
+1. Create a new branch `release-x.y.z`.
+1. Run the `update-version` script running `bash .github/update-version.sh x.y.z` and check the result. It should
+    1. Update the `version`, the `date-released`, and possibly other information in `CITATION.cff`;
+    1. Generate an updated version of `.zenodo.json` if needed using `cffconvert`;
+    1. Update the `version` field in `package.json` and `package-lock.json`;
+    1. Update the version in the [landing page footer](src/components/LayoutLanding.vue); and
+    1. Update the version in the [app footer](src/components/Footer.vue).
 1. Run `npm run lint` and make sure the linter does not complain.
 1. Run the unit tests with `npm run test:unit:ci`.
 1. Run the end-to-end tests with `npm run cypress:run`.
-1. Push any changes to GitHub, make a PR.
+1. Commit and push all changes to GitHub, make a PR.
 1. Inspect the Netlify preview website.
 1. Review the PR and merge to the default branch `main`.
 

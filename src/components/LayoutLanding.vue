@@ -73,7 +73,7 @@
                 </div>
             </div>
             <span class="text-right text-black text-body1">
-                Version 2.3.0
+                Version 2.3.1
             </span>
         </main>
     </div>

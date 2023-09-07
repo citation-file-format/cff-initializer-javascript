@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= productName %></title>
+
+<head>
+    <title>
+        <%= productName %>
+    </title>
 
     <meta charset="utf-8">
     <meta name="description" content="<%= productDescription %>">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=5, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>">
+    <meta name="viewport"
+        content="initial-scale=1, maximum-scale=5, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>">
     <link rel="icon" type="image/png" href="favicon.png">
-  </head>
-  <body>
+
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        console.log('sup')
+        _paq.push(['requireConsent']);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//matomo.research.software/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '4']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+
+</head>
+
+<body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
-  </body>
+</body>
+
 </html>

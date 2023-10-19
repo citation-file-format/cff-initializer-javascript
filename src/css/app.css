@@ -42,7 +42,7 @@ a:not(.q-btn) {
     text-decoration: none
 }
 
-a:not(.q-btn):hover{
+a:not(.q-btn):hover {
     text-decoration: underline
 }
 
@@ -69,16 +69,23 @@ h1 {
     font-size: 32pt;
     font-weight: bold;
 }
+
 h2 {
     font-size: 26pt;
 }
+
 h3 {
     font-size: 22pt;
 }
+
 h4 {
     font-size: 20pt;
 }
-h1, h2, h3, h4 {
+
+h1,
+h2,
+h3,
+h4 {
     line-height: normal;
     margin: 1rem 0rem;
 }
@@ -132,4 +139,9 @@ body {
     left: 50%;
     transform: translateX(-50%);
     opacity: 1;
+}
+
+.link-over-primary {
+    color: white !important;
+    text-decoration: underline !important;
 }
